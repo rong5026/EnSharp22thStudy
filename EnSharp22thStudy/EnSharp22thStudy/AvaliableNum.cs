@@ -14,6 +14,7 @@ namespace EnSharp22thStudy
 
             while (true)
             {
+             
                 Console.Write("Select type of Star!!!!(If want to stop game Plese select 0)\nChoose a star type from 1 to 4\nNumber : ");
                 string Select_Num = Console.ReadLine();
 
@@ -28,7 +29,9 @@ namespace EnSharp22thStudy
                     }
                     else if (input < 49 || input > 52)  // 입력값의 아스키코드 값이 숫자가 아닐때
                     {
-                        Console.WriteLine(" @@ select number from 1 to 4 @@");
+                        Console.WriteLine("---------------------------------------");
+                        Console.WriteLine(" @@ ERROR!!! select number from 1 to 4 @@");
+                        Console.WriteLine("---------------------------------------");
                         return ValidStarNumber();  // 새로 입력값 받음
                     }
                     else
@@ -36,7 +39,9 @@ namespace EnSharp22thStudy
                 }
                 else
                 {
-                    Console.WriteLine(" @@ select number from 1 to 4 @@");
+                    Console.WriteLine("---------------------------------------");
+                    Console.WriteLine(" @@ ERROR!!! select number from 1 to 4 @@");
+                    Console.WriteLine("---------------------------------------");
                     return ValidStarNumber();  // 새로 입력값 
                 }
             }
@@ -48,6 +53,7 @@ namespace EnSharp22thStudy
             int stringCount = 0;
             while (true)
             {
+             
                 Console.Write("How many lines will you print?\nPlease enter a number.. : ");
 
                 string Column_Num = Console.ReadLine();  // 입력
@@ -56,7 +62,9 @@ namespace EnSharp22thStudy
                 {
                     if (Convert.ToInt32(Column_Num[i]) < 48 || Convert.ToInt32(Column_Num[i]) > 57)
                     {
-                        Console.WriteLine("Please enter only integers!!!");
+                        Console.WriteLine("---------------------------------------");
+                        Console.WriteLine(" ERROR !!! Please enter only integers!!!");
+                        Console.WriteLine("---------------------------------------");
                         return ValidColNumber();  // 입력값 한자리씩 예외 검사
                     }
                     else
