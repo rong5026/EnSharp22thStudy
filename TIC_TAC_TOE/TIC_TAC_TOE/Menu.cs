@@ -16,10 +16,16 @@ namespace TIC_TAC_TOE
             Console.WriteLine("└------------------------------------------------┘");
 
             Console.WriteLine("┌------------------------------------------------┐");
-            Console.WriteLine("│ 1. vs Computer 2. vs User 3.Scoreboard 0. Exit │");
+            Console.WriteLine("│ 1.vs Computer  2.vs User  3.Scoreboard  0.Exit │");
             Console.WriteLine("└------------------------------------------------┘\n");
 
-            int Select_Menu =
+
+            ValidInput select_menu = new ValidInput();
+            int Select_Menu = select_menu.ValidNumber();
+
+
+
+
         }
     }
 }
