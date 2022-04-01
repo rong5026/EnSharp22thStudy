@@ -1,0 +1,15 @@
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\bin\Debug\net6.0\TIC_TAC_TOE.exe
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\bin\Debug\net6.0\TIC_TAC_TOE.deps.json
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\bin\Debug\net6.0\TIC_TAC_TOE.runtimeconfig.json
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\bin\Debug\net6.0\TIC_TAC_TOE.dll
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\bin\Debug\net6.0\TIC_TAC_TOE.pdb
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\TIC_TAC_TOE.csproj.AssemblyReference.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\TIC_TAC_TOE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\TIC_TAC_TOE.AssemblyInfoInputs.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\TIC_TAC_TOE.AssemblyInfo.cs
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\TIC_TAC_TOE.csproj.CoreCompileInputs.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\TIC_TAC_TOE.dll
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\refint\TIC_TAC_TOE.dll
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\TIC_TAC_TOE.pdb
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\TIC_TAC_TOE.genruntimeconfig.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\TIC_TAC_TOE\TIC_TAC_TOE\obj\Debug\net6.0\ref\TIC_TAC_TOE.dll
