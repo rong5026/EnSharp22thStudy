@@ -15,7 +15,7 @@ namespace EnSharp22thStudy
             while (true)
             {
              
-                Console.Write("Select type of Star!!!!(If want to stop game Plese select 0)\nChoose a star type from 1 to 4\nNumber : ");
+                Console.Write("Select type of Star!!!!(If want to stop game Please select 0)\nChoose a star type from 1 to 4\nNumber : ");
                 string Select_Num = Console.ReadLine();
 
                 if (Select_Num.Length == 1)  // 입력값의 길이가 1일때 정수 1~4 조건 통과
@@ -63,7 +63,7 @@ namespace EnSharp22thStudy
                     if (Convert.ToInt32(Column_Num[i]) < 48 || Convert.ToInt32(Column_Num[i]) > 57)
                     {
                         Console.WriteLine("---------------------------------------");
-                        Console.WriteLine(" ERROR !!! Please enter only integers!!!");
+                        Console.WriteLine(" ERROR !!! Please enter only Integers!!!");
                         Console.WriteLine("---------------------------------------");
                         return ValidColNumber();  // 입력값 한자리씩 예외 검사
                     }
