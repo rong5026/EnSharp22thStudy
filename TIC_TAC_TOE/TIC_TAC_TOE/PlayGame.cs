@@ -51,7 +51,7 @@ namespace TIC_TAC_TOE
                         PrintGameOver();
                         Console.WriteLine("┌------------------------------------------------┐");
                         Console.WriteLine("│                      DRAW !!!                  │");
-                        Console.WriteLine("└------------------------------------------------┘\n");
+                        Console.WriteLine("└------------------------------------------------┘\n");                       
                         break;
                     }
 
@@ -158,7 +158,7 @@ namespace TIC_TAC_TOE
             if (drawCount == 9)
                 return 3; // 무승부 count가 9일때 무승부
 
-            Bot_SearchIndex(); // Computer Bot
+            ComputerAutoPlay(); // Computer Bot
             drawCount++;
 
             Console.Clear();
@@ -175,7 +175,7 @@ namespace TIC_TAC_TOE
             }
            
         }
-        public void Bot_SearchIndex()
+        public void ComputerAutoPlay()
         {
 
             if(AttackAndSheild('X') == 0) // 공격
