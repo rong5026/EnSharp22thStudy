@@ -43,7 +43,8 @@ namespace TIC_TAC_TOE
                     {
                         Console.WriteLine("Enter an integer between 0 and 3");
                         return ValidNumber();
-                    }              
+                    }
+               
                 }
                 else
                 {

@@ -8,7 +8,7 @@ namespace TIC_TAC_TOE
 {
     internal class GameStart
     {
-        public static class Store
+        public static class Score
         {
             public static int computerScore = 0;
             public static int playerScore = 0;
@@ -16,8 +16,34 @@ namespace TIC_TAC_TOE
 
         public void StartGame()
         {
+            Console.WriteLine("┌------------------------------------------------┐");
+            Console.WriteLine("│            TIC TAC TOE GAME START !!           │");
+            Console.WriteLine("└------------------------------------------------┘\n");
             while (true)
             {
+
+                Menu menu = new Menu();
+                int game_mode = menu.ShowMenu();
+
+               
+                if (game_mode == 0)
+                {
+                    break;    // 프로그램 종료
+                }
+                else if(game_mode == 3)
+                {
+                    PlayGame start = new PlayGame();
+                    Console.WriteLine("┌------------------------------------------------┐");
+                    Console.WriteLine("│        USER SCORE : "+start.score[0]+"    COMPUTER SOCRE :" + start.score[1]+"     │");
+                    Console.WriteLine("└------------------------------------------------┘\n"); //score 프린트
+                }
+                else
+                {
+                    PlayGame start = new PlayGame();
+                    
+                    start.GamePlay(game_mode);
+                }
+                    
 
             }
         }

@@ -8,7 +8,7 @@ namespace TIC_TAC_TOE
 {
     internal class Menu
     {
-        public void ShowMenu()
+        public int ShowMenu()
         {
            
             Console.WriteLine("┌------------------------------------------------┐");
@@ -21,10 +21,7 @@ namespace TIC_TAC_TOE
 
 
             ValidInput select_menu = new ValidInput();
-            int Select_Menu = select_menu.ValidNumber();
-
-
-
+            return select_menu.ValidNumber();
 
         }
     }

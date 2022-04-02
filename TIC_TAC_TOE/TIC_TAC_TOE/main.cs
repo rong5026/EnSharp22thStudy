@@ -10,10 +10,10 @@ namespace TIC_TAC_TOE
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("┌------------------------------------------------┐");
-            Console.WriteLine("│            TIC TAC TOE GAME START !!           │");
-            Console.WriteLine("└------------------------------------------------┘\n");
+         
 
+            GameStart start = new GameStart();
+            start.StartGame();
 
         }
 

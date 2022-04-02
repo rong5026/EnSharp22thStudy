@@ -9,16 +9,13 @@ namespace TIC_TAC_TOE
     internal class PlayGame
     {
 
-        static char[] arr = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        static int[] score = { 0, 0 };
-       
-    
-
-
-        public int drawCount = 0;
+        static char[] arr = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }; // 게임판 초기화
+        public int drawCount = 0; // 9번 끝났을 때 무승부 count
+        public int []score = { 0, 0 }; // user와 computer의 점수 배열
+        
         public void GamePlay(int gametype)
         {
-            int drawCount = 0;
+            drawCount = 0;
             Console.WriteLine("┌------------------------------------------------┐");
             Console.WriteLine("│                  GAME START !!!                │");
             Console.WriteLine("└------------------------------------------------┘\n");
@@ -28,12 +25,12 @@ namespace TIC_TAC_TOE
 
             while (true)
             {
-                if (gametype == 2)
+                if (gametype == 2) // User Mode 
                 {
-                
-                    int usermode_win = UserMode();
+                    
+                    int usermode_win = UserMode();  // 입력값 + board판에 'O' 찍기
                    
-                    if (usermode_win == 1)
+                    if (usermode_win == 1) //user 가 이겼을때
                     {
                         PrintGameOver();
                         Console.WriteLine("┌------------------------------------------------┐");
@@ -41,7 +38,7 @@ namespace TIC_TAC_TOE
                         Console.WriteLine("└------------------------------------------------┘\n");
                         break;
                     }
-                    else if(usermode_win == 2)
+                    else if(usermode_win == 2) // computer가 이겼을때
                     {
                         PrintGameOver();
                         Console.WriteLine("┌------------------------------------------------┐");
@@ -49,7 +46,7 @@ namespace TIC_TAC_TOE
                         Console.WriteLine("└------------------------------------------------┘\n");
                         break;
                     }
-                    if (usermode_win == 3)
+                    if (usermode_win == 3) // 무승부일때
                     {
                         PrintGameOver();
                         Console.WriteLine("┌------------------------------------------------┐");
@@ -60,12 +57,12 @@ namespace TIC_TAC_TOE
 
                 }
 
-                else if(gametype == 1)
+                else if(gametype == 1) // Computer Mode
                 {
                     
-                    int computermode_win = ComputerMode();
+                    int computermode_win = ComputerMode(); // computer의 자동선택
                   
-                    if (computermode_win == 1)
+                    if (computermode_win == 1) //user 승리
                     {
                         PrintGameOver();
                         Console.WriteLine("┌------------------------------------------------┐");
@@ -73,7 +70,7 @@ namespace TIC_TAC_TOE
                         Console.WriteLine("└------------------------------------------------┘\n");
                         break;
                     }
-                    else if (computermode_win == 2)
+                    else if (computermode_win == 2) // computer 승리
                     {
                         PrintGameOver();
                         Console.WriteLine("┌------------------------------------------------┐");
@@ -81,7 +78,7 @@ namespace TIC_TAC_TOE
                         Console.WriteLine("└------------------------------------------------┘\n");
                         break;
                     }
-                    if (computermode_win == 3)
+                    if (computermode_win == 3) // 무승부
                     {
                         PrintGameOver();
                         Console.WriteLine("┌------------------------------------------------┐");
@@ -96,15 +93,15 @@ namespace TIC_TAC_TOE
             }
 
         }
-        public int UserMode()
+        public int UserMode() // user 입력값 
         {
            
             Console.Clear();
             Board();
 
          
-            DistinguishUser(1);
-            int user1_select = ValidGameInput(1);
+            PrintDistinguishUser(1);
+            int user1_select = ValidGameInput(1); //입력값 1~9 사이 정수
             arr[user1_select] = 'O';
             drawCount++;
 
@@ -112,14 +109,14 @@ namespace TIC_TAC_TOE
             Board();
 
  
-            if (CheckWin('O') == 1)
+            if (CheckWin('O') == 1) 
             {
-                return 1;  // USER1이 승리시 1리턴
+                return 1;  // USER1 승리시 1리턴
             }
 
-            if (drawCount == 9)
+            if (drawCount == 9) // drawCount가 9가 되면 무승부 처리
                 return 3;
-            DistinguishUser(2);
+            PrintDistinguishUser(2);
             int user2_select = ValidGameInput(2);
             arr[user2_select] = 'X';
             drawCount++;
@@ -130,7 +127,7 @@ namespace TIC_TAC_TOE
 
             if (CheckWin('X') == 1)
             {
-                return 2;  //USER2가 승리시 2리턴
+                return 2;  //USER2 승리시 2리턴
             }
             else
             {
@@ -143,9 +140,9 @@ namespace TIC_TAC_TOE
             Console.Clear();
             Board();
 
-            DistinguishUser(1);
-            int user1_select = ValidGameInput(1);
-            arr[user1_select] = 'O';
+            PrintDistinguishUser(1);   //user1 정보 출력
+            int user1_select = ValidGameInput(1); //입력값 유효성 검사
+            arr[user1_select] = 'O'; // board판에 사용자1의 'O'를 입력
             drawCount++;
 
 
@@ -154,14 +151,14 @@ namespace TIC_TAC_TOE
 
             if (CheckWin('O') == 1)
             {
-                score[0] = score[0] + 1;
+                score[0] = score[0] + 1; // User1 승리시 점수 증가
                 return 1;
             }
 
             if (drawCount == 9)
-                return 3;
+                return 3; // 무승부 count가 9일때 무승부
 
-            Bot_SearchIndex();
+            Bot_SearchIndex(); // Computer Bot
             drawCount++;
 
             Console.Clear();
@@ -169,7 +166,7 @@ namespace TIC_TAC_TOE
 
             if (CheckWin('X') == 1)
             {
-                score[1] = score[1] + 1;
+                score[1] = score[1] + 1;// Computer 승리시 점수 증가
                 return 2;
             }
             else
@@ -177,26 +174,18 @@ namespace TIC_TAC_TOE
                 return 0;
             }
            
-
-
-
-
         }
         public void Bot_SearchIndex()
         {
 
-            if(AttackAndSheild('X') == 0)
+            if(AttackAndSheild('X') == 0) // 공격
             {
-                if(AttackAndSheild('O') == 0)
+                if(AttackAndSheild('O') == 0)//방어
                 {
-                    RandomBot();
+                    RandomBot();// 랜덤
               
                 }
             }
-              // 게임을 끝낼 수 있으면 끝냄
-            
-   
-            
             // 우선순위
             // 1. 게임을 끝낼 수 있으면 끝냄
             // 2. 방어
@@ -204,13 +193,10 @@ namespace TIC_TAC_TOE
         }
         public void RandomBot()  // 처음에 랜덤으로 시작
         {
-            int board_index = GetRandom();
-            Console.WriteLine(board_index);
-           
-            arr[board_index] = 'X';
-          
+            int board_index = GetRandom();                
+            arr[board_index] = 'X';  // 비어있는 인덱스에 랜덤으로 할당          
         }
-        public int GetRandom()
+        public int GetRandom() // 1~9사이의 비어있는 인덱스값 return
         {
             Random random = new Random();
             int board_index = random.Next(1, 9);
@@ -228,7 +214,7 @@ namespace TIC_TAC_TOE
             }
             return board_index;
         }
-        public int AttackAndSheild(char t)  //  공격,방어 알고리즘
+        public int AttackAndSheild(char t)  // Computer Bot공격,방어 알고리즘
         {
             int index = 0;
             for (int i = 1; i <= 3; i++)  //세로 확인
@@ -250,13 +236,13 @@ namespace TIC_TAC_TOE
                 }
             }
 
-            index = ComputerFindIndex(1,5,9, t);
+            index = ComputerFindIndex(1,5,9, t); // 대각선 확인
             if (index != -1)
             {
                 arr[index] = 'X';
                 return 1;
             }
-            index = ComputerFindIndex(3, 5, 7, t);
+            index = ComputerFindIndex(3, 5, 7, t); // 대각선 확인
             if (index != -1)
             {
                 arr[index] = 'X';
@@ -267,7 +253,7 @@ namespace TIC_TAC_TOE
         }
         
         
-        public int ComputerFindIndex(int index1, int index2, int index3, char t)
+        public int ComputerFindIndex(int index1, int index2, int index3, char t) // 공격 or 방어할 인덱스 리턴
         {
             int user_wincount = 0;
             int num_index = -1;
@@ -282,10 +268,10 @@ namespace TIC_TAC_TOE
             if (arr[index3] == t) { user_wincount++; }
             else { num_index = index3; }
 
-            if (user_wincount == 2)
+            if (user_wincount == 2) // 나열된 인덱스 값중 문자열 t의 수가 3개중에 2개가 있다면 
             {
                 if (arr[num_index] != 'O' && arr[num_index] != 'X')
-                    return num_index;
+                    return num_index;  //공격 or 방어를 해야하므로 3개중 나머지 1개의 인덱스 return
                 else
                     return -1;
             }
@@ -295,7 +281,7 @@ namespace TIC_TAC_TOE
         }
       
        
-        public int CheckWin(char t)
+        public int CheckWin(char t) // 승리를 확인
         {
             for(int i = 1; i <=9; i=i+3)
             {
@@ -320,7 +306,7 @@ namespace TIC_TAC_TOE
                 return 0;
         }
 
-        public int ValidGameInput(int usernum)
+        public int ValidGameInput(int usernum) // 유효한 입력값 확인 후 리턴
         {
             string Select_Num = Console.ReadLine();
 
@@ -329,17 +315,17 @@ namespace TIC_TAC_TOE
                 char Char_Num = Convert.ToChar(Select_Num);
                 int input = Convert.ToInt32(Char_Num);
 
-                if( input >= 49 && input <= 57)
+                if( input >= 49 && input <= 57) // 1 ~ 9까지의 정수
                 {
                     for( int i = 1; i < 9; i++)
                     {
                         if(arr[i] == 'O' || arr[i] == 'X')
                         {
-                            if (i == (input - '0'))
+                            if (i == (input - '0')) 
                             {
                               
                                 Console.WriteLine("Choose an unselected number from 1 to 9");
-                                DistinguishUser(usernum);
+                                PrintDistinguishUser(usernum);
                                 return ValidGameInput(usernum);  // 새로 입력값 
                             }
                         }
@@ -349,19 +335,19 @@ namespace TIC_TAC_TOE
                 else
                 {
                     Console.WriteLine("Choose an unselected number from 1 to 9");
-                    DistinguishUser(usernum);
+                    PrintDistinguishUser(usernum);
                     return ValidGameInput(usernum);  // 새로 입력값 
                 }
             }
             else
             {
                 Console.WriteLine("Choose an unselected number from 1 to 9");
-                DistinguishUser(usernum);
+                PrintDistinguishUser(usernum);
                 return ValidGameInput(usernum);  // 새로 입력값 
             }
 
         }
-        public void DistinguishUser(int usernum)
+        public void PrintDistinguishUser(int usernum) // 유저 정보 출력
         {
             if (usernum == 1)
             {
