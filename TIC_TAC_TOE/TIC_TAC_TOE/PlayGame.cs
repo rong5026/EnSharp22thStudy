@@ -9,16 +9,19 @@ namespace TIC_TAC_TOE
     internal class PlayGame
     {
 
-        // public char[] gameBoard = new char[10];
-        char[] gameBoard = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        public char[] gameBoard = new char[10];
+        //char[] gameBoard = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         public int drawCount = 0; // 9번 끝났을 때 무승부 count
         public int[] score = { 0, 0 }; // user와 computer의 점수 배열
         PrintUI UI = new PrintUI();
         
         public PlayGame()
         {
-           // for (int i = 0; i < gameBoard.Length; i++)
-              //  gameBoard[i] = Convert.ToChar(i + '0');
+            for (int i = 0; i < gameBoard.Length; i++)
+            {
+
+                gameBoard[i] = Convert.ToChar(i + '0');
+            }
         }
 
         public void GamePlay(int gametype)
@@ -86,13 +89,13 @@ namespace TIC_TAC_TOE
         {
             int user1Select;
             int user2Select;
-
+            ValidInput exception = new ValidInput();
             Console.Clear();
             UI.PrintBoard(gameBoard,1);  // BoardUI 출력
             
          
-            PrintDistinguishUser(1);
-            user1Select = ValidGameInput(1); //입력값 1~9 사이 정수
+            UI.PrintDistinguishUser(1);
+            user1Select = exception.ValidGameInput(1, gameBoard); //입력값 1~9 사이 정수
             gameBoard[user1Select] = 'O';
             drawCount++;
 
@@ -108,8 +111,8 @@ namespace TIC_TAC_TOE
             if (drawCount == 9) // drawCount가 9가 되면 무승부 처리
                 return 3;
 
-            PrintDistinguishUser(2);
-            user2Select = ValidGameInput(2);
+            UI.PrintDistinguishUser(2);
+            user2Select = exception.ValidGameInput(2, gameBoard);
             gameBoard[user2Select] = 'X';
             drawCount++;
 
@@ -130,11 +133,13 @@ namespace TIC_TAC_TOE
         public int ComputerMode()
         {
             int user1Select;
+            ValidInput exception = new ValidInput();
+
             Console.Clear();
             UI.PrintBoard(gameBoard,2);  // BoardUI 출력
 
-            PrintDistinguishUser(1);   //user1 정보 출력
-            user1Select = ValidGameInput(1); //입력값 유효성 검사
+            UI.PrintDistinguishUser(1);   //user1 정보 출력
+            user1Select = exception.ValidGameInput(1, gameBoard); //입력값 유효성 검사
             gameBoard[user1Select] = 'O'; // board판에 사용자1의 'O'를 입력
             drawCount++;
 
@@ -299,71 +304,7 @@ namespace TIC_TAC_TOE
                 return 0;
         }
 
-        public int ValidGameInput(int usernum) // 유효한 입력값 확인 후 리턴
-        {
-            char charNumber;
-            int input;
-
-            string selectNum = Console.ReadLine();
-
-            if (selectNum.Length == 1)  
-            {
-                charNumber = Convert.ToChar(selectNum);
-                input = Convert.ToInt32(charNumber);
-
-                if( input >= 49 && input <= 57) // 1 ~ 9까지의 정수
-                {
-                    for( int index = 1; index < 9; index++)
-                    {
-                        if(gameBoard[index] == 'O' || gameBoard[index] == 'X')
-                        {
-                            if (index == (input - '0')) 
-                            {
-
-                                UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
-                                PrintDistinguishUser(usernum); // USER 정보 UI
-                                return ValidGameInput(usernum);  // 새로 입력값 
-                            }
-                        }
-                    }
-                    return input - '0';
-                }
-                else
-                {
-                    UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
-                    PrintDistinguishUser(usernum); // USER 정보 UI
-                    return ValidGameInput(usernum);  // 새로 입력값 
-                }
-            }
-            else
-            {
-                UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
-                PrintDistinguishUser(usernum); // USER 정보 UI
-                return ValidGameInput(usernum);  // 새로 입력값 
-            }
-
-        }
-        public void PrintDistinguishUser(int usernum) // 유저 정보 출력
-        {
-            if (usernum == 1)
-            {
-                Console.WriteLine(" [User_1][ O ]  Select Number( 1 to 9 )");
-                Console.WriteLine("==========================================");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write(" USER_1 : ");
-                Console.ResetColor();
-               
-             
-            }
-            else
-            {
-                Console.WriteLine(" [User_2][ X ]  Select Number( 1 to 9 )");
-                Console.WriteLine("==========================================");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(" USER_2 : ");
-                Console.ResetColor();
-            }
-        }
+       
        
 
     }
