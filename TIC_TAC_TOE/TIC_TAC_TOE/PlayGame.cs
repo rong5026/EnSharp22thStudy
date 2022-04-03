@@ -9,121 +9,113 @@ namespace TIC_TAC_TOE
     internal class PlayGame
     {
 
-        static char[] arr = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }; // 게임판 초기화
+        // public char[] gameBoard = new char[10];
+        char[] gameBoard = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         public int drawCount = 0; // 9번 끝났을 때 무승부 count
-        public int []score = { 0, 0 }; // user와 computer의 점수 배열
+        public int[] score = { 0, 0 }; // user와 computer의 점수 배열
+        PrintUI UI = new PrintUI();
         
+        public PlayGame()
+        {
+           // for (int i = 0; i < gameBoard.Length; i++)
+              //  gameBoard[i] = Convert.ToChar(i + '0');
+        }
+
         public void GamePlay(int gametype)
         {
-            drawCount = 0;
-            Console.WriteLine("┌------------------------------------------------┐");
-            Console.WriteLine("│                  GAME START !!!                │");
-            Console.WriteLine("└------------------------------------------------┘\n");
+            int userModeWin;
+            int computerModeWin;
+            const int USERWIN = 1;
+            const int COMPUTERWIN = 2;
+            const int DRAW = 3;
 
-            char[] arr = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            drawCount = 0;
+            UI.PrintMenu(); // gameMenuUI 
+            //char[] gameBoard = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
 
             while (true)
             {
                 if (gametype == 2) // User Mode 
-                {
-                    
-                    int usermode_win = UserMode();  // 입력값 + board판에 'O' 찍기
-                   
-                    if (usermode_win == 1) //user 가 이겼을때
+                {                   
+                    userModeWin = UserMode();  // 입력값 + board판에 'O' 찍기
+        
+                    switch (userModeWin)
                     {
-                        PrintGameOver();
-                        Console.WriteLine("┌------------------------------------------------┐");
-                        Console.WriteLine("│                 USER_1 WIN !!!                 │");
-                        Console.WriteLine("└------------------------------------------------┘\n");
-                        break;
+                        case USERWIN:
+                            UI.PrintGameOver();
+                            UI.PrintFirstUserWin();
+                            return;
+                          
+                        case COMPUTERWIN:
+                            UI.PrintGameOver();
+                            UI.PrintSecondUserWin();
+                            return;
+                           
+                        case DRAW:
+                            UI.PrintGameOver();
+                            UI.PrintDraw();
+                            return;
+                            
                     }
-                    else if(usermode_win == 2) // computer가 이겼을때
-                    {
-                        PrintGameOver();
-                        Console.WriteLine("┌------------------------------------------------┐");
-                        Console.WriteLine("│                 USER_2 WIN !!!                 │");
-                        Console.WriteLine("└------------------------------------------------┘\n");
-                        break;
-                    }
-                    if (usermode_win == 3) // 무승부일때
-                    {
-                        PrintGameOver();
-                        Console.WriteLine("┌------------------------------------------------┐");
-                        Console.WriteLine("│                      DRAW !!!                  │");
-                        Console.WriteLine("└------------------------------------------------┘\n");                       
-                        break;
-                    }
-
                 }
 
                 else if(gametype == 1) // Computer Mode
-                {
-                    
-                    int computermode_win = ComputerMode(); // computer의 자동선택
-                  
-                    if (computermode_win == 1) //user 승리
-                    {
-                        PrintGameOver();
-                        Console.WriteLine("┌------------------------------------------------┐");
-                        Console.WriteLine("│                 USER_1 WIN !!!                 │");
-                        Console.WriteLine("└------------------------------------------------┘\n");
-                        break;
-                    }
-                    else if (computermode_win == 2) // computer 승리
-                    {
-                        PrintGameOver();
-                        Console.WriteLine("┌------------------------------------------------┐");
-                        Console.WriteLine("│                 Computer WIN !!!               │");
-                        Console.WriteLine("└------------------------------------------------┘\n");
-                        break;
-                    }
-                    if (computermode_win == 3) // 무승부
-                    {
-                        PrintGameOver();
-                        Console.WriteLine("┌------------------------------------------------┐");
-                        Console.WriteLine("│                      DRAW !!!                  │");
-                        Console.WriteLine("└------------------------------------------------┘\n");
-                        break;
-                    }
+                {                   
+                    computerModeWin = ComputerMode(); // computer의 자동선택
 
-
+                    switch (computerModeWin)
+                    {
+                        case USERWIN:
+                            UI.PrintGameOver();
+                            UI.PrintFirstUserWin();
+                            return;
+                        case COMPUTERWIN:
+                            UI.PrintGameOver();
+                            UI.PrintComputerWin();
+                            return;
+                        case DRAW:
+                            UI.PrintGameOver();
+                            UI.PrintDraw();
+                            return;
+                    }
                 }
-
             }
-
         }
         public int UserMode() // user 입력값 
         {
-           
-            Console.Clear();
-            Board();
+            int user1Select;
+            int user2Select;
 
+            Console.Clear();
+            UI.PrintBoard(gameBoard,1);  // BoardUI 출력
+            
          
             PrintDistinguishUser(1);
-            int user1_select = ValidGameInput(1); //입력값 1~9 사이 정수
-            arr[user1_select] = 'O';
+            user1Select = ValidGameInput(1); //입력값 1~9 사이 정수
+            gameBoard[user1Select] = 'O';
             drawCount++;
 
             Console.Clear();
-            Board();
+            UI.PrintBoard(gameBoard,1);  // BoardUI 출력
 
- 
+
             if (CheckWin('O') == 1) 
-            {
+            {               
                 return 1;  // USER1 승리시 1리턴
             }
 
             if (drawCount == 9) // drawCount가 9가 되면 무승부 처리
                 return 3;
+
             PrintDistinguishUser(2);
-            int user2_select = ValidGameInput(2);
-            arr[user2_select] = 'X';
+            user2Select = ValidGameInput(2);
+            gameBoard[user2Select] = 'X';
             drawCount++;
 
             Console.Clear();
-            Board();
-           
+            UI.PrintBoard(gameBoard,1);  // BoardUI 출력
+
 
             if (CheckWin('X') == 1)
             {
@@ -137,17 +129,18 @@ namespace TIC_TAC_TOE
         }
         public int ComputerMode()
         {
+            int user1Select;
             Console.Clear();
-            Board();
+            UI.PrintBoard(gameBoard,2);  // BoardUI 출력
 
             PrintDistinguishUser(1);   //user1 정보 출력
-            int user1_select = ValidGameInput(1); //입력값 유효성 검사
-            arr[user1_select] = 'O'; // board판에 사용자1의 'O'를 입력
+            user1Select = ValidGameInput(1); //입력값 유효성 검사
+            gameBoard[user1Select] = 'O'; // board판에 사용자1의 'O'를 입력
             drawCount++;
 
 
             Console.Clear();
-            Board();
+            UI.PrintBoard(gameBoard,2);  // BoardUI 출력
 
             if (CheckWin('O') == 1)
             {
@@ -162,7 +155,7 @@ namespace TIC_TAC_TOE
             drawCount++;
 
             Console.Clear();
-            Board();
+            UI.PrintBoard(gameBoard,2);  // BoardUI 출력
 
             if (CheckWin('X') == 1)
             {
@@ -193,59 +186,59 @@ namespace TIC_TAC_TOE
         }
         public void RandomBot()  // 처음에 랜덤으로 시작
         {
-            int board_index = GetRandom();                
-            arr[board_index] = 'X';  // 비어있는 인덱스에 랜덤으로 할당          
+            int boardIndex = GetRandom();                
+            gameBoard[boardIndex] = 'X';  // 비어있는 인덱스에 랜덤으로 할당          
         }
         public int GetRandom() // 1~9사이의 비어있는 인덱스값 return
         {
             Random random = new Random();
-            int board_index = random.Next(1, 9);
+            int boardIndex = random.Next(1, 9);
 
 
-            for (int i = 1; i <= 9; i++)
+            for (int index = 1; index <= 9; index++)
             {
-                if (arr[i] == 'O' || arr[i] == 'X')
+                if (gameBoard[index] == 'O' || gameBoard[index] == 'X')
                 {
-                    if (i == board_index)
+                    if (index == boardIndex)
                     {
                         return GetRandom();
                     }
                 }
             }
-            return board_index;
+            return boardIndex;
         }
-        public int AttackAndSheild(char t)  // Computer Bot공격,방어 알고리즘
+        public int AttackAndSheild(char OX)  // Computer Bot공격,방어 알고리즘
         {
-            int index = 0;
-            for (int i = 1; i <= 3; i++)  //세로 확인
+            int boardIndex = 0;
+            for (int index = 1; index <= 3; index++)  //세로 확인
             {
-                index = ComputerFindIndex(i, i + 3, i + 6, t);
-                if (index != -1) { 
-                    arr[index] = 'X';
+                boardIndex = ComputerFindIndex(index, index + 3, index + 6, OX);
+                if (boardIndex != -1) { 
+                    gameBoard[boardIndex] = 'X';
                     return 1;
                 }
             }
         
-            for(int i =1; i<=9; i = i + 3)  // 3X3 board에서 가로 확인
+            for(int index = 1; index <= 9; index = index + 3)  // 3X3 board에서 가로 확인
             {
-                index = ComputerFindIndex(i, i + 1, i + 2, t);
-                if (index != -1)
+                boardIndex = ComputerFindIndex(index, index + 1, index + 2, OX);
+                if (boardIndex != -1)
                 {
-                    arr[index] = 'X';
+                    gameBoard[boardIndex] = 'X';
                     return 1;
                 }
             }
 
-            index = ComputerFindIndex(1,5,9, t); // 대각선 확인
-            if (index != -1)
+            boardIndex = ComputerFindIndex(1,5,9, OX); // 대각선 확인
+            if (boardIndex != -1)
             {
-                arr[index] = 'X';
+                gameBoard[boardIndex] = 'X';
                 return 1;
             }
-            index = ComputerFindIndex(3, 5, 7, t); // 대각선 확인
-            if (index != -1)
+            boardIndex = ComputerFindIndex(3, 5, 7, OX); // 대각선 확인
+            if (boardIndex != -1)
             {
-                arr[index] = 'X';
+                gameBoard[boardIndex] = 'X';
                 return 1;
             }
           
@@ -253,25 +246,25 @@ namespace TIC_TAC_TOE
         }
         
         
-        public int ComputerFindIndex(int index1, int index2, int index3, char t) // 공격 or 방어할 인덱스 리턴
+        public int ComputerFindIndex(int index1, int index2, int index3, char OX) // 공격 or 방어할 인덱스 리턴
         {
-            int user_wincount = 0;
-            int num_index = -1;
+            int userWinCount = 0;
+            int numIndex = -1;
 
 
-            if (arr[index1] == t) { user_wincount++; }
-            else { num_index = index1; }
+            if (gameBoard[index1] == OX) { userWinCount++; }
+            else { numIndex = index1; }
 
-            if (arr[index2] == t) { user_wincount++; }
-            else { num_index = index2; }
+            if (gameBoard[index2] == OX) { userWinCount++; }
+            else { numIndex = index2; }
 
-            if (arr[index3] == t) { user_wincount++; }
-            else { num_index = index3; }
+            if (gameBoard[index3] == OX) { userWinCount++; }
+            else { numIndex = index3; }
 
-            if (user_wincount == 2) // 나열된 인덱스 값중 문자열 t의 수가 3개중에 2개가 있다면 
+            if (userWinCount == 2) // 나열된 인덱스 값중 문자열 t의 수가 3개중에 2개가 있다면 
             {
-                if (arr[num_index] != 'O' && arr[num_index] != 'X')
-                    return num_index;  //공격 or 방어를 해야하므로 3개중 나머지 1개의 인덱스 return
+                if (gameBoard[numIndex] != 'O' && gameBoard[numIndex] != 'X')
+                    return numIndex;  //공격 or 방어를 해야하므로 3개중 나머지 1개의 인덱스 return
                 else
                     return -1;
             }
@@ -281,23 +274,23 @@ namespace TIC_TAC_TOE
         }
       
        
-        public int CheckWin(char t) // 승리를 확인
+        public int CheckWin(char OX) // 승리를 확인
         {
-            for(int i = 1; i <=9; i=i+3)
+            for(int index = 1; index <=9; index = index + 3)  // 3*3 에서 가로줄 확인
             {
-                if(arr[i] == t && arr[i+1]==t && arr[i + 2] == t)            
+                if(gameBoard[index] == OX && gameBoard[index + 1]== OX && gameBoard[index + 2] == OX)            
                     return 1;   
             }
-            for(int i = 1; i <=3; i++)
+            for(int index = 1; index <= 3; index++) // 3*3 에서 세로줄 확인
             {
-                if (arr[i] == t && arr[i + 3] == t && arr[i + 6] == t)
+                if (gameBoard[index] == OX && gameBoard[index + 3] == OX && gameBoard[index + 6] == OX)
                     return 1;
             }
-            if (arr[1] == t && arr[5] == t && arr[9] == t)
+            if (gameBoard[1] == OX && gameBoard[5] == OX && gameBoard[9] == OX) //3 * 3 에서 대각선 확인
             {
                 return 1;
             }
-            else if (arr[3] == t && arr[5] == t && arr[7] == t)
+            else if (gameBoard[3] == OX && gameBoard[5] == OX && gameBoard[7] == OX) //3 * 3 에서 두번째 대각선 확인
             {
                 return 1;
             }
@@ -308,24 +301,27 @@ namespace TIC_TAC_TOE
 
         public int ValidGameInput(int usernum) // 유효한 입력값 확인 후 리턴
         {
-            string Select_Num = Console.ReadLine();
+            char charNumber;
+            int input;
 
-            if (Select_Num.Length == 1)  
+            string selectNum = Console.ReadLine();
+
+            if (selectNum.Length == 1)  
             {
-                char Char_Num = Convert.ToChar(Select_Num);
-                int input = Convert.ToInt32(Char_Num);
+                charNumber = Convert.ToChar(selectNum);
+                input = Convert.ToInt32(charNumber);
 
                 if( input >= 49 && input <= 57) // 1 ~ 9까지의 정수
                 {
-                    for( int i = 1; i < 9; i++)
+                    for( int index = 1; index < 9; index++)
                     {
-                        if(arr[i] == 'O' || arr[i] == 'X')
+                        if(gameBoard[index] == 'O' || gameBoard[index] == 'X')
                         {
-                            if (i == (input - '0')) 
+                            if (index == (input - '0')) 
                             {
-                              
-                                Console.WriteLine("Choose an unselected number from 1 to 9");
-                                PrintDistinguishUser(usernum);
+
+                                UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
+                                PrintDistinguishUser(usernum); // USER 정보 UI
                                 return ValidGameInput(usernum);  // 새로 입력값 
                             }
                         }
@@ -334,15 +330,15 @@ namespace TIC_TAC_TOE
                 }
                 else
                 {
-                    Console.WriteLine("Choose an unselected number from 1 to 9");
-                    PrintDistinguishUser(usernum);
+                    UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
+                    PrintDistinguishUser(usernum); // USER 정보 UI
                     return ValidGameInput(usernum);  // 새로 입력값 
                 }
             }
             else
             {
-                Console.WriteLine("Choose an unselected number from 1 to 9");
-                PrintDistinguishUser(usernum);
+                UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
+                PrintDistinguishUser(usernum); // USER 정보 UI
                 return ValidGameInput(usernum);  // 새로 입력값 
             }
 
@@ -351,47 +347,24 @@ namespace TIC_TAC_TOE
         {
             if (usernum == 1)
             {
-                Console.WriteLine("[User_1][ O ]  Select Number( 1 to 9 )");
-                Console.Write("USER_1 : ");
+                Console.WriteLine(" [User_1][ O ]  Select Number( 1 to 9 )");
+                Console.WriteLine("==========================================");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(" USER_1 : ");
+                Console.ResetColor();
+               
+             
             }
             else
             {
-                Console.WriteLine("[User_2][ X ]  Select Number( 1 to 9 )");
-                Console.Write("USER_2 : ");
+                Console.WriteLine(" [User_2][ X ]  Select Number( 1 to 9 )");
+                Console.WriteLine("==========================================");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(" USER_2 : ");
+                Console.ResetColor();
             }
         }
-        public static void Board()
-        {
-            
-            Console.WriteLine("┌---------------------------------------┐");
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│      {0}     ││      {1}     ││     {2}     │", arr[1], arr[2], arr[3]);
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│------------││------------││-----------│");
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│      {0}     ││      {1}     ││     {2}     │", arr[4], arr[5], arr[6]);
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│------------││------------││-----------│");
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│      {0}     ││      {1}     ││     {2}     │", arr[7], arr[8], arr[9]);
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("│            ││            ││           │");
-            Console.WriteLine("└---------------------------------------┘");
-            Console.WriteLine("│  USER_1 =  [ O ]      USER_2 = [ X ]  │");
-            Console.WriteLine("└---------------------------------------┘");
-        }
-
-        public void PrintGameOver()
-        {
-            Console.WriteLine("┌------------------------------------------------┐");
-            Console.WriteLine("│                  GAME OVER !!!                 │");
-            Console.WriteLine("└------------------------------------------------┘\n");
-        }
+       
 
     }
 
