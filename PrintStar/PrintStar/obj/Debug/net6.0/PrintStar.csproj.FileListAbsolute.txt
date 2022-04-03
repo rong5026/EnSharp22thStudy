@@ -1,0 +1,15 @@
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\bin\Debug\net6.0\PrintStar.exe
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\bin\Debug\net6.0\PrintStar.deps.json
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\bin\Debug\net6.0\PrintStar.runtimeconfig.json
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\bin\Debug\net6.0\PrintStar.dll
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\bin\Debug\net6.0\PrintStar.pdb
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\PrintStar.csproj.AssemblyReference.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\PrintStar.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\PrintStar.AssemblyInfoInputs.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\PrintStar.AssemblyInfo.cs
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\PrintStar.csproj.CoreCompileInputs.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\PrintStar.dll
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\refint\PrintStar.dll
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\PrintStar.pdb
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\PrintStar.genruntimeconfig.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\PrintStar\PrintStar\obj\Debug\net6.0\ref\PrintStar.dll
