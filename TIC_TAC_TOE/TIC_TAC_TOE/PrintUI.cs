@@ -134,6 +134,26 @@ namespace TIC_TAC_TOE
             Console.WriteLine("Choose an unselected number from 1 to 9");
         }
 
-      
+        public void PrintDistinguishUser(int usernum) // 유저 정보 출력
+        {
+            if (usernum == 1)
+            {
+                Console.WriteLine(" [User_1][ O ]  Select Number( 1 to 9 )");
+                Console.WriteLine("==========================================");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(" USER_1 : ");
+                Console.ResetColor();
+
+            }
+            else
+            {
+                Console.WriteLine(" [User_2][ X ]  Select Number( 1 to 9 )");
+                Console.WriteLine("==========================================");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(" USER_2 : ");
+                Console.ResetColor();
+            }
+        }
+
     }
 }
