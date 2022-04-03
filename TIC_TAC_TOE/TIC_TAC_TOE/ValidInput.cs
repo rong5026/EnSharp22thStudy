@@ -24,7 +24,7 @@ namespace TIC_TAC_TOE
 
             while (true)
             {
-                Console.Write("Select Menu : ");
+                Console.Write(" Select Menu : ");
                 selectNum = Console.ReadLine();   //입력값 
 
                 if (selectNum.Length == 1)  // 입력값의 길이가 1일때 정수 1~4 조건 통과
@@ -59,6 +59,53 @@ namespace TIC_TAC_TOE
                 }
                
             }
+        }
+
+
+        public int ValidGameInput(int usernum,char[] gameBoard) // 유효한 입력값 확인 후 리턴
+        {
+            PrintUI UI = new PrintUI(); 
+            char charNumber;
+            int input;
+
+            string selectNum = Console.ReadLine();
+
+            if (selectNum.Length == 1)
+            {
+                charNumber = Convert.ToChar(selectNum);
+                input = Convert.ToInt32(charNumber);
+
+                if (input >= 49 && input <= 57) // 1 ~ 9까지의 정수
+                {
+                    for (int index = 1; index < 9; index++)
+                    {
+                        if (gameBoard[index] == 'O' || gameBoard[index] == 'X')
+                        {
+                            if (index == (input - '0'))
+                            {
+
+                                UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
+                                UI.PrintDistinguishUser(usernum); // USER 정보 UI
+                                return ValidGameInput(usernum, gameBoard);  // 새로 입력값 
+                            }
+                        }
+                    }
+                    return input - '0';
+                }
+                else
+                {
+                    UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
+                    UI.PrintDistinguishUser(usernum); // USER 정보 UI
+                    return ValidGameInput(usernum, gameBoard);  // 새로 입력값 
+                }
+            }
+            else
+            {
+                UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
+                UI.PrintDistinguishUser(usernum); // USER 정보 UI
+                return ValidGameInput(usernum, gameBoard);  // 새로 입력값 
+            }
+
         }
     }
 }
