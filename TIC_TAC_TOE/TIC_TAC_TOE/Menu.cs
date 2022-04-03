@@ -20,7 +20,7 @@ namespace TIC_TAC_TOE
             Console.WriteLine("└------------------------------------------------┘\n");
 
 
-            ValidInput select_menu = new ValidInput();
+            ValidInput select_menu = new ValidInput();   // 1,2,3,0 값을 예외처리 후 입력
             return select_menu.ValidNumber();
 
         }
