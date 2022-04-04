@@ -32,7 +32,7 @@ namespace TIC_TAC_TOE
             Console.WriteLine("│            ││            ││           │");
             Console.WriteLine("└---------------------------------------┘");
 
-            if(gameType == 1)
+            if (gameType == 1)
             {
                 Console.WriteLine("│  USER_1 =  [ O ]      USER_2 = [ X ]  │");
                 Console.WriteLine("└---------------------------------------┘");
@@ -42,8 +42,9 @@ namespace TIC_TAC_TOE
                 Console.WriteLine("│  USER_1 =  [ O ]    Computer = [ X ]  │");
                 Console.WriteLine("└---------------------------------------┘");
             }
-         
+
         }
+       
 
         public void PrintGameOver()
         {
@@ -131,7 +132,9 @@ namespace TIC_TAC_TOE
        
         public void PrintSelectOtherNumber()
         {
-            Console.WriteLine("Choose an unselected number from 1 to 9");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(" Choose an unselected number from 1 to 9");
+            Console.ResetColor();
         }
 
         public void PrintDistinguishUser(int usernum) // 유저 정보 출력
