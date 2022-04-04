@@ -30,7 +30,7 @@ namespace TIC_TAC_TOE
             UI.PrintGameStart();
             while (true)
             {
-               
+             
                 UI.PrintMenu();
                 gameType = selectMenu.ValidNumber();  // 1,2,3,0 값을 예외처리 후 입력
                 // 메뉴 선택  1.computer게임 2.user게임 3.score 4.Exit
@@ -59,10 +59,9 @@ namespace TIC_TAC_TOE
         }
         private void ResetBoard() // Board 초기화
         {
-            for (int i = 0; i < gameBoard.Length; i++)
-            {
-                gameBoard[i] = Convert.ToChar(i + '0');
-            }
+            for (int index = 0; index < gameBoard.Length; index++)         
+                gameBoard[index] = Convert.ToChar(index + '0');
+            
         }
         
 
