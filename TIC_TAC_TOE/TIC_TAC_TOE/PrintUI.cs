@@ -130,7 +130,7 @@ namespace TIC_TAC_TOE
             Console.WriteLine("└------------------------------------------------┘\n"); 
         }
        
-        public void PrintSelectOtherNumber()
+        public void PrintGameInputError()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(" Choose an unselected number from 1 to 9");
@@ -157,6 +157,14 @@ namespace TIC_TAC_TOE
                 Console.ResetColor();
             }
         }
+
+        public void PrintNumberError()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("       Enter an integer between 0 and 3 !!! \n");
+            Console.ResetColor();
+        }
+    
 
     }
 }
