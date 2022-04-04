@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Collections;
 namespace TIC_TAC_TOE
 {
     internal class PrintUI
@@ -133,7 +133,7 @@ namespace TIC_TAC_TOE
         public void PrintGameInputError()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(" Choose an unselected number from 1 to 9");
+            Console.WriteLine(" Choose an unselected number from 1 to 9\n");
             Console.ResetColor();
         }
 

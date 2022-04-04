@@ -10,8 +10,6 @@ namespace TIC_TAC_TOE
     {
         static void Main(string[] args)
         {
-         
-
             GameStart start = new GameStart();
             start.StartGame();
 
