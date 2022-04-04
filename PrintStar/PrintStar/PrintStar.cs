@@ -15,18 +15,18 @@ namespace EnSharp22thStudy
             switch (starType)
             {
                 case 1: 
-                    TriangleType(column, starType);
+                    PrintTriangleType(column, starType);
                     break;
                 case 2:
-                    TriangleType(column, starType);
+                    PrintTriangleType(column, starType);
                     break;
                 case 3:
-                    ReverseTriangleType(column);
-                    TriangleType(column, starType);
+                    PrintReverseTriangleType(column);
+                    PrintTriangleType(column, starType);
                     break;
                 default:
-                    TriangleType(column, starType);
-                    ReverseTriangleType(column);
+                    PrintTriangleType(column, starType);
+                    PrintReverseTriangleType(column);
                     break;
             }
             
@@ -35,10 +35,10 @@ namespace EnSharp22thStudy
            
         }
 
-        public void TriangleType(int column, int starType)  // 삼각형 별쌓기
+        public void PrintTriangleType(int column, int starType)  // 삼각형 별쌓기
         {
             if (starType == 4)
-                column--;
+                column--;  // 다이아몬드 찍을때 한줄을 안찍음
 
             for (int index = 0; index < column; index++)
             {
@@ -53,7 +53,7 @@ namespace EnSharp22thStudy
                 Console.WriteLine();
             }
         }
-        public void ReverseTriangleType(int column) // 역삼각형 별쌓기
+        public void PrintReverseTriangleType(int column) // 역삼각형 별쌓기
         {
             for (int index = 0; index < column; index++)
             {
