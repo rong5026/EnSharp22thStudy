@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,13 @@ namespace TIC_TAC_TOE
 
         const int EXIT = 0;
         const int SCORE = 3;
-
-        PrintUI UI;      
         int gameType;
+
+        PrintUI UI;
         PlayGame start;
         ValidInput selectMenu;
+        static public List<int> scoreList;
+
 
         char[] gameBoard = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
@@ -23,10 +26,11 @@ namespace TIC_TAC_TOE
         {
             UI = new PrintUI();     
             selectMenu = new ValidInput();
-            
+          
         }
         public void StartGame()
         {
+            scoreList = new List<int> { 0, 0 };
             UI.PrintGameStart();
             while (true)
             {
@@ -44,7 +48,7 @@ namespace TIC_TAC_TOE
                 else if(gameType == SCORE)  // 3.Score 선택
                 {
                     Console.Clear();
-                    UI.PrintScore(0,0);
+                    UI.PrintScore(scoreList[0], scoreList[1]);
                 }
                 else  // 1 or 2 게임시작
                 {
