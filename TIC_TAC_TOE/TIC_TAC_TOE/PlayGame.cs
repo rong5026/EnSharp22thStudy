@@ -8,22 +8,20 @@ namespace TIC_TAC_TOE
 {
     internal class PlayGame
     {
-
-        public char[] gameBoard = new char[10];
-        //char[] gameBoard = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         public int drawCount = 0; // 9번 끝났을 때 무승부 count
         public int[] score = { 0, 0 }; // user와 computer의 점수 배열
         PrintUI UI = new PrintUI();
-        
-        public PlayGame()
-        {
-            for (int i = 0; i < gameBoard.Length; i++)
-            {
+        char[] gameBoard = new char[10];
 
-                gameBoard[i] = Convert.ToChar(i + '0');
-            }
+        const int ATTACK_OR_DEFENSE_SUCCESS = 1;
+        const int ATTACK_OR_DEFENSE_FAIL = -1;
+       
+
+        public PlayGame(char []gameBoar)
+        {          
+            this.gameBoard = gameBoar;
         }
-
+        
         public void GamePlay(int gametype)
         {
             int userModeWin;
@@ -34,8 +32,7 @@ namespace TIC_TAC_TOE
 
             drawCount = 0;
             UI.PrintMenu(); // gameMenuUI 
-            //char[] gameBoard = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-
+          
 
             while (true)
             {
@@ -91,17 +88,17 @@ namespace TIC_TAC_TOE
             int user2Select;
             ValidInput exception = new ValidInput();
             Console.Clear();
-            UI.PrintBoard(gameBoard,1);  // BoardUI 출력
-            
-         
+            UI.PrintBoard(gameBoard, 1);  // BoardUI 출력
+
+
             UI.PrintDistinguishUser(1);
-            user1Select = exception.ValidGameInput(1, gameBoard); //입력값 1~9 사이 정수
+            user1Select = exception.ValidGameInput(1, gameBoard, 1); //입력값 1~9 사이 정수
             gameBoard[user1Select] = 'O';
             drawCount++;
 
             Console.Clear();
             UI.PrintBoard(gameBoard,1);  // BoardUI 출력
-
+           
 
             if (CheckWin('O') == 1) 
             {               
@@ -112,13 +109,12 @@ namespace TIC_TAC_TOE
                 return 3;
 
             UI.PrintDistinguishUser(2);
-            user2Select = exception.ValidGameInput(2, gameBoard);
+            user2Select = exception.ValidGameInput(2, gameBoard,1);
             gameBoard[user2Select] = 'X';
             drawCount++;
 
             Console.Clear();
-            UI.PrintBoard(gameBoard,1);  // BoardUI 출력
-
+            UI.PrintBoard(gameBoard, 1);  // BoardUI 출력
 
             if (CheckWin('X') == 1)
             {
@@ -136,16 +132,15 @@ namespace TIC_TAC_TOE
             ValidInput exception = new ValidInput();
 
             Console.Clear();
-            UI.PrintBoard(gameBoard,2);  // BoardUI 출력
-
+            UI.PrintBoard(gameBoard, 2);  // BoardUI 출력 , 
             UI.PrintDistinguishUser(1);   //user1 정보 출력
-            user1Select = exception.ValidGameInput(1, gameBoard); //입력값 유효성 검사
+            user1Select = exception.ValidGameInput(1, gameBoard,2); //입력값 유효성 검사
             gameBoard[user1Select] = 'O'; // board판에 사용자1의 'O'를 입력
             drawCount++;
 
 
             Console.Clear();
-            UI.PrintBoard(gameBoard,2);  // BoardUI 출력
+            UI.PrintBoard(gameBoard, 2);  // BoardUI 출력
 
             if (CheckWin('O') == 1)
             {
@@ -160,7 +155,7 @@ namespace TIC_TAC_TOE
             drawCount++;
 
             Console.Clear();
-            UI.PrintBoard(gameBoard,2);  // BoardUI 출력
+            UI.PrintBoard(gameBoard, 2);  // BoardUI 출력
 
             if (CheckWin('X') == 1)
             {
@@ -212,42 +207,46 @@ namespace TIC_TAC_TOE
             }
             return boardIndex;
         }
-        public int AttackAndSheild(char OX)  // Computer Bot공격,방어 알고리즘
+
+      
+        public int AttackAndSheild(char OX)  // Computer Bot공격,방어 알고리즘, OX = "X" 또는 "O"값
         {
             int boardIndex = 0;
+         
+
             for (int index = 1; index <= 3; index++)  //세로 확인
             {
                 boardIndex = ComputerFindIndex(index, index + 3, index + 6, OX);
                 if (boardIndex != -1) { 
-                    gameBoard[boardIndex] = 'X';
-                    return 1;
+                    gameBoard[boardIndex] = 'X'; // 세로줄 중 공격이나 방어할 곳이 있으면 공격, 방어 
+                    return ATTACK_OR_DEFENSE_SUCCESS;
                 }
             }
         
             for(int index = 1; index <= 9; index = index + 3)  // 3X3 board에서 가로 확인
             {
                 boardIndex = ComputerFindIndex(index, index + 1, index + 2, OX);
-                if (boardIndex != -1)
+                if (boardIndex != ATTACK_OR_DEFENSE_FAIL)
                 {
                     gameBoard[boardIndex] = 'X';
-                    return 1;
+                    return ATTACK_OR_DEFENSE_SUCCESS;
                 }
             }
 
             boardIndex = ComputerFindIndex(1,5,9, OX); // 대각선 확인
-            if (boardIndex != -1)
+            if (boardIndex != ATTACK_OR_DEFENSE_FAIL)
             {
                 gameBoard[boardIndex] = 'X';
-                return 1;
+                return ATTACK_OR_DEFENSE_SUCCESS;
             }
             boardIndex = ComputerFindIndex(3, 5, 7, OX); // 대각선 확인
-            if (boardIndex != -1)
+            if (boardIndex != ATTACK_OR_DEFENSE_FAIL)
             {
                 gameBoard[boardIndex] = 'X';
-                return 1;
+                return ATTACK_OR_DEFENSE_SUCCESS;
             }
           
-            return 0;   // 게임을 끝낼 공격, 방어할 곳이 없을때 0 리턴
+            return 0;   //  세로,가로,대각선을 탐색 후 게임을 끝낼 공격이 없고, 방어할 곳이 없을때 0 리턴
         }
         
         
@@ -271,10 +270,10 @@ namespace TIC_TAC_TOE
                 if (gameBoard[numIndex] != 'O' && gameBoard[numIndex] != 'X')
                     return numIndex;  //공격 or 방어를 해야하므로 3개중 나머지 1개의 인덱스 return
                 else
-                    return -1;
+                    return ATTACK_OR_DEFENSE_FAIL;
             }
             else
-                return -1;
+                return ATTACK_OR_DEFENSE_FAIL;
 
         }
       
