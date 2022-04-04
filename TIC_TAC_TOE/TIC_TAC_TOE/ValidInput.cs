@@ -62,7 +62,7 @@ namespace TIC_TAC_TOE
         }
 
 
-        public int ValidGameInput(int usernum,char[] gameBoard) // 유효한 입력값 확인 후 리턴
+        public int ValidGameInput(int usernum,char[] gameBoard, int gameType) // 유효한 입력값 확인 후 리턴
         {
             PrintUI UI = new PrintUI(); 
             char charNumber;
@@ -84,9 +84,11 @@ namespace TIC_TAC_TOE
                             if (index == (input - '0'))
                             {
 
+                                Console.Clear();
+                                UI.PrintBoard(gameBoard, gameType);
                                 UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
                                 UI.PrintDistinguishUser(usernum); // USER 정보 UI
-                                return ValidGameInput(usernum, gameBoard);  // 새로 입력값 
+                                return ValidGameInput(usernum, gameBoard, gameType);  // 새로 입력값 
                             }
                         }
                     }
@@ -94,16 +96,20 @@ namespace TIC_TAC_TOE
                 }
                 else
                 {
+                    Console.Clear();
+                    UI.PrintBoard(gameBoard, gameType);
                     UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
                     UI.PrintDistinguishUser(usernum); // USER 정보 UI
-                    return ValidGameInput(usernum, gameBoard);  // 새로 입력값 
+                    return ValidGameInput(usernum, gameBoard, gameType);  // 새로 입력값 
                 }
             }
             else
             {
+                Console.Clear();
+                UI.PrintBoard(gameBoard, gameType);
                 UI.PrintSelectOtherNumber(); // 다른 수 입력 UI
                 UI.PrintDistinguishUser(usernum); // USER 정보 UI
-                return ValidGameInput(usernum, gameBoard);  // 새로 입력값 
+                return ValidGameInput(usernum, gameBoard, gameType);  // 새로 입력값 
             }
 
         }
