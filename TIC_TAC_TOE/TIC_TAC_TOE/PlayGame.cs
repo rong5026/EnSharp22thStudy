@@ -173,24 +173,25 @@ namespace TIC_TAC_TOE
         }
         private void ComputerAutoPlay()
         {
-
-            if(AttackAndSheild('X') == 0) // 공격
+            int index = 0;
+            if(AttackAndDepense('X') == 0) // 공격할 곳이 없을때 0 리턴
             {
-                if(AttackAndSheild('O') == 0)//방어
+                if(AttackAndDepense('O') == 0)//방어할 곳이 없을 때 0 리턴
                 {
-                    RandomBot();// 랜덤
-              
+                    index = FindComputerProfitIndex();
+                    if (index == -1)
+                        gameBoard[GetRandom()] = 'X';  // 비어있는 인덱스에 랜덤으로 할당
+                    else
+                        gameBoard[index] = 'X';  //유리한 곳에 두기
+                                                       
+
                 }
             }
             // 우선순위
             // 1. 게임을 끝낼 수 있으면 끝냄
             // 2. 방어
-            // 3. 랜덤
-        }
-        private void RandomBot()  // 처음에 랜덤으로 시작
-        {
-            int boardIndex = GetRandom();                
-            gameBoard[boardIndex] = 'X';  // 비어있는 인덱스에 랜덤으로 할당          
+            // 3. 유리한 인덱스에 두기
+            // 4. 랜덤
         }
         private int GetRandom() // 1~9사이의 비어있는 인덱스값 return
         {
@@ -210,16 +211,119 @@ namespace TIC_TAC_TOE
             }
             return boardIndex;
         }
+        private int FindComputerProfitIndex()
+        {
 
+            int computerCount = 0;
+            int userCount = 0;
+            int profitIndex= 0;
+
+            for (int index = 1; index <= 3; index++)  //세로 확인
+            {
+                if (gameBoard[index] == 'O')
+                    userCount++;
+                else if (gameBoard[index] == 'X')
+                    computerCount++;
+                else
+                    profitIndex = index;
+
+                if (gameBoard[index+3] == 'O')
+                    userCount++;
+                else if (gameBoard[index+3] == 'X')
+                    computerCount++;
+                else
+                    profitIndex = index+3;
+
+
+                if (gameBoard[index+6] == 'O')
+                    userCount++;
+                else if (gameBoard[index+6] == 'X')
+                    computerCount++;
+                else
+                    profitIndex = index+6;
+
+                if (computerCount == 1 && userCount == 0)
+                    return profitIndex;
+            }
+            computerCount = 0;
+            userCount = 0;
+
+            for (int index = 1; index <= 9; index = index + 3)  // 3*3 에서 가로줄 확인
+            {
+                if (gameBoard[index] == 'O')
+                    userCount++;
+                else if (gameBoard[index] == 'X')
+                    computerCount++;
+                else
+                    profitIndex = index;
+
+                if (gameBoard[index + 1] == 'O')
+                    userCount++;
+                else if (gameBoard[index + 1] == 'X')
+                    computerCount++;
+                else
+                    profitIndex = index + 1;
+
+
+                if (gameBoard[index + 2] == 'O')
+                    userCount++;
+                else if (gameBoard[index + 2] == 'X')
+                    computerCount++;
+                else
+                    profitIndex = index + 2;
+
+                if (computerCount == 1 && userCount == 0)
+                    return profitIndex;
+            }
+            computerCount = 0;
+            userCount = 0;
+
+            for (int index = 1; index <= 9; index = index + 4)  // 1 , 5, 9  대각선 확인
+            {
+                if (gameBoard[index] == 'O')
+                    userCount++;
+                else if (gameBoard[index] == 'X')
+                    computerCount++;
+                else
+                    profitIndex = index;
+            }
+
+            if (computerCount == 1 && userCount == 0)
+                return profitIndex;
+
+
+            for (int index = 3; index <= 7; index = index + 2)
+            {
+                if (gameBoard[index] == 'O')
+                    userCount++;
+                else if (gameBoard[index] == 'X')
+                    computerCount++;
+                else
+                    profitIndex = index;
+            }
+
+            if (computerCount == 1 && userCount == 0)
+                return profitIndex;
+
+            else
+                return -1;  // 조건에 해당하는 인덱스가 없을때 -1
+
+
+
+
+
+
+
+        }
       
-        private int AttackAndSheild(char OX)  // Computer Bot공격,방어 알고리즘, OX = "X" 또는 "O"값
+        private int AttackAndDepense(char OX)  // Computer Bot공격,방어 알고리즘, OX = "X" 또는 "O"값
         {
             int boardIndex = 0;
          
 
             for (int index = 1; index <= 3; index++)  //세로 확인
             {
-                boardIndex = ComputerFindIndex(index, index + 3, index + 6, OX);
+                boardIndex = FindComputerIndex(index, index + 3, index + 6, OX);
                 if (boardIndex != -1) { 
                     gameBoard[boardIndex] = 'X'; // 세로줄 중 공격이나 방어할 곳이 있으면 공격, 방어 
                     return ATTACK_OR_DEFENSE_SUCCESS;
@@ -228,7 +332,7 @@ namespace TIC_TAC_TOE
         
             for(int index = 1; index <= 9; index = index + 3)  // 3X3 board에서 가로 확인
             {
-                boardIndex = ComputerFindIndex(index, index + 1, index + 2, OX);
+                boardIndex = FindComputerIndex(index, index + 1, index + 2, OX);
                 if (boardIndex != ATTACK_OR_DEFENSE_FAIL)
                 {
                     gameBoard[boardIndex] = 'X';
@@ -236,13 +340,13 @@ namespace TIC_TAC_TOE
                 }
             }
 
-            boardIndex = ComputerFindIndex(1,5,9, OX); // 대각선 확인
+            boardIndex = FindComputerIndex(1,5,9, OX); // 대각선 확인
             if (boardIndex != ATTACK_OR_DEFENSE_FAIL)
             {
                 gameBoard[boardIndex] = 'X';
                 return ATTACK_OR_DEFENSE_SUCCESS;
             }
-            boardIndex = ComputerFindIndex(3, 5, 7, OX); // 대각선 확인
+            boardIndex = FindComputerIndex(3, 5, 7, OX); // 대각선 확인
             if (boardIndex != ATTACK_OR_DEFENSE_FAIL)
             {
                 gameBoard[boardIndex] = 'X';
@@ -253,7 +357,7 @@ namespace TIC_TAC_TOE
         }
         
         
-        private int ComputerFindIndex(int index1, int index2, int index3, char OX) // 공격 or 방어할 인덱스 리턴
+        private int FindComputerIndex(int index1, int index2, int index3, char OX) // 공격 or 방어할 인덱스 리턴
         {
             int userWinCount = 0;
             int numIndex = -1;
