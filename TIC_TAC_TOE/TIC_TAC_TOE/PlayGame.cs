@@ -17,17 +17,18 @@ namespace TIC_TAC_TOE
         const int ATTACK_OR_DEFENSE_SUCCESS = 1;
         const int ATTACK_OR_DEFENSE_FAIL = -1;
         const int NO_VALID_VALUE = -1;
-
         const int USER_MODE = 2;
         const int COMPUTER_MODE = 1;
 
+        const int STOP = -1;
         const int USERWIN = 1;
         const int COMPUTERWIN = 2;
         const int DRAW = 3;
-
         const int DRAWCOUNT = 9;
         const int WINNER_TRUE = 1;
         const int WINNER_FALSE = 0;
+        const int VALID = 1;
+        const int NOT_VALID = 0;
 
         int userModeWin;
         int computerModeWin;
@@ -59,6 +60,7 @@ namespace TIC_TAC_TOE
         
                     switch (userModeWin)
                     {
+                       
                         case USERWIN: // 유저가 이겼을 때 UI 출력  return 1;
                             UI.PrintGameOver();
                             UI.PrintFirstUserWin();
@@ -73,6 +75,9 @@ namespace TIC_TAC_TOE
                             UI.PrintGameOver();
                             UI.PrintDraw();
                             return;
+                        case STOP:
+                            Console.Clear();
+                            return;
                             
                     }
                 }
@@ -83,6 +88,7 @@ namespace TIC_TAC_TOE
 
                     switch (computerModeWin)
                     {
+                     
                         case USERWIN:// 유저가 이겼을 때 UI 출력
                             UI.PrintGameOver();
                             UI.PrintFirstUserWin();
@@ -107,7 +113,12 @@ namespace TIC_TAC_TOE
             UI.PrintBoard(gameBoard, 1);  
             UI.PrintDistinguishUser(1);//User1 BoardUI 출력  
 
+        
             user1Select = exception.FindValidGameInput(1, gameBoard, 1); //입력값 1~9 사이 정수 (유저정보,보드데이터,게임타입)
+     
+            if (user1Select == 0)                
+                return STOP;
+            
             gameBoard[user1Select] = 'O';
             drawCount++;
 
@@ -116,7 +127,8 @@ namespace TIC_TAC_TOE
            
 
             if (CheckWin('O') == WINNER_TRUE) 
-            {               
+            {
+                userScoreList[0]++;
                 return WINNER_TRUE;  // USER1 승리시 1리턴
             }
 
@@ -125,7 +137,9 @@ namespace TIC_TAC_TOE
 
             UI.PrintDistinguishUser(2);
             user2Select = exception.FindValidGameInput(2, gameBoard,1); // (유저정보,보드데이터,
-                                                                    // 게임타입 1은 vs USER, 2는 vs Computer)
+       
+            if (user2Select == 0)
+                return STOP;                                                 
             gameBoard[user2Select] = 'X';
             drawCount++;
 
@@ -134,6 +148,7 @@ namespace TIC_TAC_TOE
 
             if (CheckWin('X') == WINNER_TRUE)
             {
+                userScoreList[1]++;
                 return USERWIN;  //USER2 승리시 2리턴
             }
             else
@@ -150,6 +165,9 @@ namespace TIC_TAC_TOE
             UI.PrintBoard(gameBoard, 2);   // (보드데이터, 게임타입)
             UI.PrintDistinguishUser(1);   //user1 정보 출력
             user1Select = exception.FindValidGameInput(1, gameBoard,2); //입력값 유효성 검사
+           // if (user1Select == 0)           
+             //   return STOP;
+            
             gameBoard[user1Select] = 'O'; // board판에 사용자1의 'O'를 입력
             drawCount++;
         
@@ -192,24 +210,38 @@ namespace TIC_TAC_TOE
             {
                 if(AttackAndDepense('O') == 0)//방어할 곳이 없을 때 0 리턴
                 {
-                    fitIndex = FindComputerProfitIndex();
-                   
-                    if (fitIndex == NO_VALID_VALUE)
-                    {                     
-                        gameBoard[GetRandom()] = 'X';  // 첫 게임 시작시 랜덤으로 두기
-                       
-                    }
+                    int n = FindCountResult('X');
+                    if (n != 0)                  
+                        gameBoard[n] = 'X';                   
                     else
-                        gameBoard[fitIndex] = 'X';  //유리한 곳에 두기
-                                                       
-
+                    {
+                        n = FindCountResult('O');
+                        if (n != 0)                    
+                            gameBoard[n] = 'X';                   
+                        else
+                        {
+                            if (gameBoard[5] != 'X' && gameBoard[5] != 'O')
+                                gameBoard[5] = 'X';
+                            else
+                            {
+                                fitIndex = FindComputerProfitIndex();
+                                if (fitIndex == NO_VALID_VALUE)
+                                    gameBoard[GetRandom()] = 'X';  // 첫 게임 시작시 랜덤으로 두기                               
+                                else
+                                    gameBoard[fitIndex] = 'X';  //유리한 곳에 두기
+                                                           
+                            }
+                        }
+                    }                                                                     
                 }
             }
             // 우선순위
             // 1. 게임을 끝낼 수 있으면 끝냄
             // 2. 방어
-            // 3. 유리한 인덱스에 두기
-            // 4. 랜덤
+            // 3. 두줄에 돌이 1개씩있는 곳의 모서리이거나 가운데
+            // 4. 가운데 두기
+            // 5. 한줄에 X만 한개 있는 경우 그 줄에 두기
+            // 6. 랜덤
         }
         private int GetRandom() // 1~9사이의 비어있는 인덱스값 return
         {
@@ -228,7 +260,7 @@ namespace TIC_TAC_TOE
             }
             return boardIndex;
         }
-        private int FindComputerProfitIndex()
+        private int FindComputerProfitIndex() // 한줄씩 검사하여 유효한 인덱스 리턴
         {
             int validNumber=-1;
 
@@ -237,9 +269,7 @@ namespace TIC_TAC_TOE
 
                 validNumber = VerifyIndex(index, index + 3, index + 6);
                 if (validNumber!= 0)
-                {
-                    Console.WriteLine("세로");
-                    Console.ReadLine();
+                {                 
                     return validNumber;
                 }
 
@@ -265,9 +295,7 @@ namespace TIC_TAC_TOE
                 return -1;
             // 조건에 해당하는 인덱스가 없을때 -1
         }
-
-
-        private int VerifyIndex(int firstIndex , int secondIndex , int thirdIndex)
+        private int VerifyIndex(int firstIndex , int secondIndex , int thirdIndex) // 한줄의 3가지 요소에 user의 "O" 또는 computer의 "X" 가 몇개 있는지 count
         {
             computerCount = 0;
             userCount = 0;
@@ -300,8 +328,6 @@ namespace TIC_TAC_TOE
                 return 0;
             
         }
-
-
         private int AttackAndDepense(char OX)  // Computer Bot공격,방어 알고리즘, OX = "X" 또는 "O"값
         {
            
@@ -340,8 +366,7 @@ namespace TIC_TAC_TOE
           
             return 0;   //  세로,가로,대각선을 탐색 후 게임을 끝낼 공격이 없고, 방어할 곳이 없을때 0 리턴
         }
-        
-        
+             
         private int FindComputerIndex(int index1, int index2, int index3, char OX) // 공격 or 방어할 인덱스 리턴
         {
 
@@ -398,8 +423,70 @@ namespace TIC_TAC_TOE
                 return WINNER_FALSE;
         }
 
-       
-       
+
+   
+        private int FindCount(int firstIndex, int secondIndex,char type)
+        {
+            computerCount = 0;
+            userCount = 0;
+
+            if (gameBoard[firstIndex] == 'O')
+                userCount++;
+            else if (gameBoard[firstIndex] == 'X')
+                computerCount++;
+            
+            if (gameBoard[secondIndex] == 'O')
+                userCount++;
+            else if (gameBoard[secondIndex] == 'X')
+                computerCount++;           
+
+            if(type == 'X')
+            {
+                if (userCount == 0 && computerCount == 1)
+                    return NOT_VALID;
+                else
+                    return NOT_VALID;
+            }
+            else
+            {
+                if(userCount == 1 && computerCount == 0)
+                    return NOT_VALID;
+                else
+                    return NOT_VALID;
+            }     
+        }
+
+        private int FindCountResult(char type) // type문자가  꼭짓점과 연결되어 있는 2개의 줄 중에 2줄 2목을 만들 수 있는 index를 찾아서 해당 인덱스를 리턴
+        {
+            if (   (FindCount(2, 3, type) + FindCount(4, 7, type)) ==2 || (FindCount(5,9, type) + FindCount(4, 7, type)) == 2 || (FindCount(2, 3, type) + FindCount(5, 9, type)) == 2)
+            {             
+                return 1;
+            }
+            else if ((FindCount(1, 4, type) + FindCount(8, 9, type)) == 2 || (FindCount(1, 4, type) + FindCount(5, 3, type)) == 2 || (FindCount(3, 5, type) + FindCount(8, 9, type)) == 2)
+            {
+                return 7;
+            }
+            else if ((FindCount(7, 8, type) + FindCount(3, 6, type)) == 2 || (FindCount(7, 8, type) + FindCount(1, 5, type)) == 2 || (FindCount(1, 5, type) + FindCount(3, 6, type)) == 2)
+            {
+                return 9;
+            }
+            else if ((FindCount(1, 2, type) + FindCount(6, 9, type)) == 2 || (FindCount(1, 2, type) + FindCount(5, 7, type)) == 2 || (FindCount(5, 7, type) + FindCount(6, 9, type)) == 2)
+            {
+                return 3;
+            }
+            else if (    (FindCount(2, 8, type) + FindCount(4,6 , type)) == 2 || (FindCount(2, 8, type) + FindCount(3, 7, type)) == 2 || (FindCount(2, 8, type) + FindCount(1, 9, type)) == 2
+                || (FindCount(4, 6, type) + FindCount(1, 9, type)) == 2   || (FindCount(4, 6, type) + FindCount(3, 7, type)) == 2)
+            {
+                return 5;
+            }
+            else
+                return NOT_VALID;
+               
+
+        }
+
+
+
 
     }
 
