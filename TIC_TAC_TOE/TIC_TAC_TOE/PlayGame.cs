@@ -24,6 +24,8 @@ namespace TIC_TAC_TOE
         const int DRAW = 3;
         const int DRAWCOUNT = 9;
         const int NO_WINNER = 0;
+        const int WINNER_TRUE = 1;
+        const int WINNER_FALSE = 0;
 
         int userModeWin;
         int computerModeWin;
@@ -105,7 +107,7 @@ namespace TIC_TAC_TOE
             UI.PrintBoard(gameBoard, 1);  
             UI.PrintDistinguishUser(1);//User1 BoardUI 출력  
 
-            user1Select = exception.ValidGameInput(1, gameBoard, 1); //입력값 1~9 사이 정수 (유저정보,보드데이터,게임타입)
+            user1Select = exception.FindValidGameInput(1, gameBoard, 1); //입력값 1~9 사이 정수 (유저정보,보드데이터,게임타입)
             gameBoard[user1Select] = 'O';
             drawCount++;
 
@@ -122,7 +124,7 @@ namespace TIC_TAC_TOE
                 return DRAW;
 
             UI.PrintDistinguishUser(2);
-            user2Select = exception.ValidGameInput(2, gameBoard,1); // (유저정보,보드데이터,
+            user2Select = exception.FindValidGameInput(2, gameBoard,1); // (유저정보,보드데이터,
                                                                     // 게임타입 1은 vs USER, 2는 vs Computer)
             gameBoard[user2Select] = 'X';
             drawCount++;
@@ -147,7 +149,7 @@ namespace TIC_TAC_TOE
             Console.Clear();
             UI.PrintBoard(gameBoard, 2);   // (보드데이터, 게임타입)
             UI.PrintDistinguishUser(1);   //user1 정보 출력
-            user1Select = exception.ValidGameInput(1, gameBoard,2); //입력값 유효성 검사
+            user1Select = exception.FindValidGameInput(1, gameBoard,2); //입력값 유효성 검사
             gameBoard[user1Select] = 'O'; // board판에 사용자1의 'O'를 입력
             drawCount++;
         
@@ -208,7 +210,6 @@ namespace TIC_TAC_TOE
             Random random = new Random();
             int boardIndex = random.Next(1, 9);
 
-
             for (int index = 1; index <= 9; index++)
             {
                 if (gameBoard[index] == 'O' || gameBoard[index] == 'X')
@@ -224,108 +225,66 @@ namespace TIC_TAC_TOE
         private int FindComputerProfitIndex()
         {
 
-          
-
             for (int index = 1; index <= 3; index++)  //세로 확인
             {
-                if (gameBoard[index] == 'O')
-                    userCount++;
-                else if (gameBoard[index] == 'X')
-                    computerCount++;
-                else
-                    profitIndex = index;
 
-                if (gameBoard[index+3] == 'O')
-                    userCount++;
-                else if (gameBoard[index+3] == 'X')
-                    computerCount++;
-                else
-                    profitIndex = index+3;
-
-
-                if (gameBoard[index+6] == 'O')
-                    userCount++;
-                else if (gameBoard[index+6] == 'X')
-                    computerCount++;
-                else
-                    profitIndex = index+6;
-
-                if (computerCount == 1 && userCount == 0)
-                    return profitIndex;
+                index = VerifyIndex(index, index + 3, index + 6);
+                if(index != 0)
+                    return index;              
             }
-            computerCount = 0;
-            userCount = 0;
-
+            
             for (int index = 1; index <= 9; index = index + 3)  // 3*3 에서 가로줄 확인
             {
-                if (gameBoard[index] == 'O')
-                    userCount++;
-                else if (gameBoard[index] == 'X')
-                    computerCount++;
-                else
-                    profitIndex = index;
-
-                if (gameBoard[index + 1] == 'O')
-                    userCount++;
-                else if (gameBoard[index + 1] == 'X')
-                    computerCount++;
-                else
-                    profitIndex = index + 1;
-
-
-                if (gameBoard[index + 2] == 'O')
-                    userCount++;
-                else if (gameBoard[index + 2] == 'X')
-                    computerCount++;
-                else
-                    profitIndex = index + 2;
-
-                if (computerCount == 1 && userCount == 0)
-                    return profitIndex;
-            }
-            computerCount = 0;
-            userCount = 0;
-
-            for (int index = 1; index <= 9; index = index + 4)  // 1 , 5, 9  대각선 확인
-            {
-                if (gameBoard[index] == 'O')
-                    userCount++;
-                else if (gameBoard[index] == 'X')
-                    computerCount++;
-                else
-                    profitIndex = index;
+                index = VerifyIndex(index, index + 1, index + 2);
+                if (index != 0)
+                    return index;
             }
 
-            if (computerCount == 1 && userCount == 0)
-                return profitIndex;
-
-            computerCount = 0;
-            userCount = 0;
-
-            for (int index = 3; index <= 7; index = index + 2)
-            {
-                if (gameBoard[index] == 'O')
-                    userCount++;
-                else if (gameBoard[index] == 'X')
-                    computerCount++;
-                else
-                    profitIndex = index;
-            }
-
-            if (computerCount == 1 && userCount == 0)
-                return profitIndex;
-
+            index = VerifyIndex(1, 5, 9);
+            if (index != 0)
+                return index;
+            index = VerifyIndex(3, 5, 7);
+            if (index != 0)
+                return index;
             else
-                return -1;  // 조건에 해당하는 인덱스가 없을때 -1
-
-
-
-
-
-
-
+                return -1;// 조건에 해당하는 인덱스가 없을때 -1
         }
-      
+
+        private int VerifyIndex(int firstIndex , int secondIndex , int thirdIndex)
+        {
+            if (gameBoard[firstIndex] == 'O')
+                userCount++;
+            else if (gameBoard[firstIndex] == 'X')
+                computerCount++;
+            else
+                profitIndex = firstIndex;
+
+            if (gameBoard[secondIndex] == 'O')
+                userCount++;
+            else if (gameBoard[secondIndex] == 'X')
+                computerCount++;
+            else
+                profitIndex = secondIndex;
+
+
+            if (gameBoard[thirdIndex] == 'O')
+                userCount++;
+            else if (gameBoard[thirdIndex] == 'X')
+                computerCount++;
+            else
+                profitIndex = thirdIndex;
+
+            if (computerCount == 1 && userCount == 0)
+                return profitIndex;
+            else
+            {
+                computerCount = 0;
+                userCount = 0;
+                return 0;
+            }
+        }
+
+
         private int AttackAndDepense(char OX)  // Computer Bot공격,방어 알고리즘, OX = "X" 또는 "O"값
         {
            
@@ -398,24 +357,24 @@ namespace TIC_TAC_TOE
             for(int index = 1; index <=9; index = index + 3)  // 3*3 에서 가로줄 확인
             {
                 if(gameBoard[index] == OX && gameBoard[index + 1]== OX && gameBoard[index + 2] == OX)            
-                    return 1;   
+                    return WINNER_TRUE;   
             }
             for(int index = 1; index <= 3; index++) // 3*3 에서 세로줄 확인
             {
                 if (gameBoard[index] == OX && gameBoard[index + 3] == OX && gameBoard[index + 6] == OX)
-                    return 1;
+                    return WINNER_TRUE;
             }
             if (gameBoard[1] == OX && gameBoard[5] == OX && gameBoard[9] == OX) //3 * 3 에서 대각선 확인
             {
-                return 1;
+                return WINNER_TRUE;
             }
             else if (gameBoard[3] == OX && gameBoard[5] == OX && gameBoard[7] == OX) //3 * 3 에서 두번째 대각선 확인
             {
-                return 1;
+                return WINNER_TRUE;
             }
 
             else
-                return 0;
+                return WINNER_FALSE;
         }
 
        
