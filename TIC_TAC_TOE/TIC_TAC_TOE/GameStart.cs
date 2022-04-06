@@ -12,12 +12,13 @@ namespace TIC_TAC_TOE
 
         const int EXIT = 0;
         const int SCORE = 3;
+        const Boolean PROGRAM_ON = true;
         int gameType;
-
         PrintUI UI;
         PlayGame start;
         ValidInput selectMenu;
-        static public List<int> scoreList;
+        static public List<int> scoreList = new List<int> { 0, 0 };
+        static public List<int> userScoreList = new List<int> { 0, 0 };
 
 
         char[] gameBoard = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
@@ -30,17 +31,14 @@ namespace TIC_TAC_TOE
         }
         public void StartGame()
         {
-            scoreList = new List<int> { 0, 0 };
             UI.PrintGameStart();
-            while (true)
+            while (PROGRAM_ON)
             {
              
                 UI.PrintMenu();
-                gameType = selectMenu.ValidNumber();  // 1,2,3,0 값을 예외처리 후 입력
+                gameType = selectMenu.FindValidNumber();  // 1,2,3,0 값을 예외처리 후 입력
                 // 메뉴 선택  1.computer게임 2.user게임 3.score 4.Exit
               
-
-
                 if (gameType == EXIT)  // 4.Exit 선택 시 종료
                 {
                     break;    // 프로그램 종료
@@ -49,6 +47,7 @@ namespace TIC_TAC_TOE
                 {
                     Console.Clear();
                     UI.PrintScore(scoreList[0], scoreList[1]);
+                    UI.PrintUserScore(userScoreList[0], userScoreList[1]);
                 }
                 else  // 1 or 2 게임시작
                 {
