@@ -12,6 +12,8 @@ namespace TIC_TAC_TOE
         public int[] score = { 0, 0 }; // user와 computer의 점수 배열
         PrintUI UI = new PrintUI();
         ValidInput exception = new ValidInput();
+    
+        Random random;
         char[] gameBoard = new char[10];    
     
         const int ATTACK_OR_DEFENSE_SUCCESS = 1;
@@ -40,6 +42,10 @@ namespace TIC_TAC_TOE
         int computerCount = 0;
         int userCount = 0;
         int profitIndex = 0;
+        int validNumber;
+        int bestIndex;
+        int fitIndex;
+      
 
         public PlayGame(char []gameBoar)
         {          
@@ -100,6 +106,9 @@ namespace TIC_TAC_TOE
                         case DRAW:// 비겼을때 UI출력
                             UI.PrintGameOver();
                             UI.PrintDraw();
+                            return;
+                        case STOP:
+                            Console.Clear();
                             return;
                     }
                 }
@@ -165,8 +174,8 @@ namespace TIC_TAC_TOE
             UI.PrintBoard(gameBoard, 2);   // (보드데이터, 게임타입)
             UI.PrintDistinguishUser(1);   //user1 정보 출력
             user1Select = exception.FindValidGameInput(1, gameBoard,2); //입력값 유효성 검사
-           // if (user1Select == 0)           
-             //   return STOP;
+            if (user1Select == 0)           
+                return STOP;
             
             gameBoard[user1Select] = 'O'; // board판에 사용자1의 'O'를 입력
             drawCount++;
@@ -204,20 +213,19 @@ namespace TIC_TAC_TOE
         }
         private void ComputerAutoPlay()
         {
-
-            int fitIndex = 0;
+            fitIndex = 0;
             if(AttackAndDepense('X') == 0) // 공격할 곳이 없을때 0 리턴
             {
                 if(AttackAndDepense('O') == 0)//방어할 곳이 없을 때 0 리턴
                 {
-                    int n = FindCountResult('X');
-                    if (n != 0)                  
-                        gameBoard[n] = 'X';                   
+                    bestIndex = FindCountResult('X');
+                    if (bestIndex != 0)                  
+                        gameBoard[bestIndex] = 'X';                   
                     else
                     {
-                        n = FindCountResult('O');
-                        if (n != 0)                    
-                            gameBoard[n] = 'X';                   
+                        bestIndex = FindCountResult('O');
+                        if (bestIndex != 0)                    
+                            gameBoard[bestIndex] = 'X';                   
                         else
                         {
                             if (gameBoard[5] != 'X' && gameBoard[5] != 'O')
@@ -245,8 +253,8 @@ namespace TIC_TAC_TOE
         }
         private int GetRandom() // 1~9사이의 비어있는 인덱스값 return
         {
-            Random random = new Random();
-            int boardIndex = random.Next(1, 9);
+            random = new Random();
+            boardIndex = random.Next(1, 9);
 
             for (int index = 1; index <= 9; index++)
             {
@@ -262,7 +270,7 @@ namespace TIC_TAC_TOE
         }
         private int FindComputerProfitIndex() // 한줄씩 검사하여 유효한 인덱스 리턴
         {
-            int validNumber=-1;
+            validNumber=-1;
 
             for (int index = 1; index <= 3; index++)  //세로 확인
             {
@@ -325,7 +333,7 @@ namespace TIC_TAC_TOE
             if (computerCount == 1 && userCount == 0)
                 return profitIndex;
             else               
-                return 0;
+                return NOT_VALID;
             
         }
         private int AttackAndDepense(char OX)  // Computer Bot공격,방어 알고리즘, OX = "X" 또는 "O"값
@@ -364,7 +372,7 @@ namespace TIC_TAC_TOE
                 return ATTACK_OR_DEFENSE_SUCCESS;
             }
           
-            return 0;   //  세로,가로,대각선을 탐색 후 게임을 끝낼 공격이 없고, 방어할 곳이 없을때 0 리턴
+            return NOT_VALID;   //  세로,가로,대각선을 탐색 후 게임을 끝낼 공격이 없고, 방어할 곳이 없을때 0 리턴
         }
              
         private int FindComputerIndex(int index1, int index2, int index3, char OX) // 공격 or 방어할 인덱스 리턴
