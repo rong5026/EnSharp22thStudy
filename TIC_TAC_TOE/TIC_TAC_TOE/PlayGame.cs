@@ -216,28 +216,51 @@ namespace TIC_TAC_TOE
             fitIndex = 0;
             if(AttackAndDepense('X') == 0) // 공격할 곳이 없을때 0 리턴
             {
+               
                 if(AttackAndDepense('O') == 0)//방어할 곳이 없을 때 0 리턴
                 {
                     bestIndex = FindCountResult('X');
-                    if (bestIndex != 0)                  
-                        gameBoard[bestIndex] = 'X';                   
+                    if (bestIndex != 0)
+                    {
+                        Console.WriteLine("두줄에 두돌 공격");
+                        Console.ReadLine();
+                        gameBoard[bestIndex] = 'X';
+                    }
                     else
                     {
                         bestIndex = FindCountResult('O');
-                        if (bestIndex != 0)                    
-                            gameBoard[bestIndex] = 'X';                   
+                        if (bestIndex != 0)
+                        {
+                            Console.WriteLine("두줄에 두돌 방어");
+                            Console.WriteLine(bestIndex);
+                            Console.ReadLine();
+                            gameBoard[bestIndex] = 'X';
+                        }
                         else
                         {
                             if (gameBoard[5] != 'X' && gameBoard[5] != 'O')
+                            {
+                                Console.WriteLine("가운데");
+                                Console.ReadLine();
                                 gameBoard[5] = 'X';
+                            }
                             else
                             {
                                 fitIndex = FindComputerProfitIndex();
                                 if (fitIndex == NO_VALID_VALUE)
-                                    gameBoard[GetRandom()] = 'X';  // 첫 게임 시작시 랜덤으로 두기                               
+                                {
+                                    Console.WriteLine("랜덤");
+                                    Console.ReadLine();
+                                    gameBoard[GetRandom()] = 'X';  // 첫 게임 시작시 랜덤으로 두기
+
+                                }
                                 else
+                                {
+                                    Console.WriteLine("유리한곳");
+                                    Console.ReadLine();
                                     gameBoard[fitIndex] = 'X';  //유리한 곳에 두기
-                                                           
+                                }
+
                             }
                         }
                     }                                                                     
@@ -433,7 +456,8 @@ namespace TIC_TAC_TOE
 
 
    
-        private int FindCount(int firstIndex, int secondIndex,char type)
+        private int FindCount(int firstIndex, int secondIndex,char type) // 해당 인덱스 board판에
+                                                                         // type문자(O,X)가 몇개나 있는지 확인
         {
             computerCount = 0;
             userCount = 0;
@@ -450,15 +474,15 @@ namespace TIC_TAC_TOE
 
             if(type == 'X')
             {
-                if (userCount == 0 && computerCount == 1)
-                    return NOT_VALID;
+                if (userCount == 0 && computerCount == 1) // 한줄에 컴퓨터가 놓은 돌이 1개만 있을때
+                    return VALID;
                 else
                     return NOT_VALID;
             }
             else
             {
                 if(userCount == 1 && computerCount == 0)
-                    return NOT_VALID;
+                    return VALID;
                 else
                     return NOT_VALID;
             }     
@@ -466,24 +490,24 @@ namespace TIC_TAC_TOE
 
         private int FindCountResult(char type) // type문자가  꼭짓점과 연결되어 있는 2개의 줄 중에 2줄 2목을 만들 수 있는 index를 찾아서 해당 인덱스를 리턴
         {
-            if (   (FindCount(2, 3, type) + FindCount(4, 7, type)) ==2 || (FindCount(5,9, type) + FindCount(4, 7, type)) == 2 || (FindCount(2, 3, type) + FindCount(5, 9, type)) == 2)
+            if ( (gameBoard[1]!='X' && gameBoard[1] != 'O') && ((FindCount(2, 3, type) + FindCount(4, 7, type)) ==2 || (FindCount(5,9, type) + FindCount(4, 7, type)) == 2 || (FindCount(2, 3, type) + FindCount(5, 9, type)) == 2)    )
             {             
-                return 1;
+                return 1;   // 1번 자리에 아무런 돌이 없고 && ( 1번을 포함한 세로줄, 가로줄, 대각선에서 type모양의 돌이 1개 있는것이 2줄일떼   )   return 1을 해준다.
             }
-            else if ((FindCount(1, 4, type) + FindCount(8, 9, type)) == 2 || (FindCount(1, 4, type) + FindCount(5, 3, type)) == 2 || (FindCount(3, 5, type) + FindCount(8, 9, type)) == 2)
+            else if ((gameBoard[7] != 'X' && gameBoard[7] != 'O') && ((FindCount(1, 4, type) + FindCount(8, 9, type)) == 2 || (FindCount(1, 4, type) + FindCount(5, 3, type)) == 2 || (FindCount(3, 5, type) + FindCount(8, 9, type)) == 2)    )
             {
                 return 7;
             }
-            else if ((FindCount(7, 8, type) + FindCount(3, 6, type)) == 2 || (FindCount(7, 8, type) + FindCount(1, 5, type)) == 2 || (FindCount(1, 5, type) + FindCount(3, 6, type)) == 2)
+            else if ((gameBoard[9] != 'X' && gameBoard[9] != 'O') && ((FindCount(7, 8, type) + FindCount(3, 6, type)) == 2 || (FindCount(7, 8, type) + FindCount(1, 5, type)) == 2 || (FindCount(1, 5, type) + FindCount(3, 6, type)) == 2)   )
             {
                 return 9;
             }
-            else if ((FindCount(1, 2, type) + FindCount(6, 9, type)) == 2 || (FindCount(1, 2, type) + FindCount(5, 7, type)) == 2 || (FindCount(5, 7, type) + FindCount(6, 9, type)) == 2)
+            else if ((gameBoard[3] != 'X' && gameBoard[3] != 'O') && ((FindCount(1, 2, type) + FindCount(6, 9, type)) == 2 || (FindCount(1, 2, type) + FindCount(5, 7, type)) == 2 || (FindCount(5, 7, type) + FindCount(6, 9, type)) == 2 )    )
             {
                 return 3;
             }
-            else if (    (FindCount(2, 8, type) + FindCount(4,6 , type)) == 2 || (FindCount(2, 8, type) + FindCount(3, 7, type)) == 2 || (FindCount(2, 8, type) + FindCount(1, 9, type)) == 2
-                || (FindCount(4, 6, type) + FindCount(1, 9, type)) == 2   || (FindCount(4, 6, type) + FindCount(3, 7, type)) == 2)
+            else if ((gameBoard[5] != 'X' && gameBoard[5] != 'O') && ((FindCount(2, 8, type) + FindCount(4,6 , type)) == 2 || (FindCount(2, 8, type) + FindCount(3, 7, type)) == 2 || (FindCount(2, 8, type) + FindCount(1, 9, type)) == 2
+                || (FindCount(4, 6, type) + FindCount(1, 9, type)) == 2   || (FindCount(4, 6, type) + FindCount(3, 7, type)) == 2))
             {
                 return 5;
             }
