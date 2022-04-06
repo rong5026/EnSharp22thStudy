@@ -32,10 +32,13 @@ namespace TIC_TAC_TOE
         const int VALID = 1;
         const int NOT_VALID = 0;
 
+        const int USER1_TYPE = 1;
+        const int USER2_TYPE = 2;
+
         int userModeWin;
         int computerModeWin;
-        int user1Select;
-        int user2Select;
+    
+        int userSelect;
         int boardIndex = 0;
         int userWinCount = 0;
         int numIndex = -1;
@@ -45,7 +48,7 @@ namespace TIC_TAC_TOE
         int validNumber;
         int bestIndex;
         int fitIndex;
-      
+        int order;
 
         public PlayGame(char []gameBoar)
         {          
@@ -57,11 +60,19 @@ namespace TIC_TAC_TOE
                
             drawCount = 0;
             UI.PrintMenu(); // gameMenuUI 
-          
+            Console.Clear();
+            if (gametype == 2)
+                UI.PrintWhoUserFirst();
+            else
+                UI.PrintWhoComputerFirst();
+
+            order = exception.FindWhoFirstInput(gametype);
+
             while (true)
             {
                 if (gametype == USER_MODE) // User Mode 
-                {                   
+                {
+        
                     userModeWin = UserMode();  // 입력값 + board판에 'O' 찍기
         
                     switch (userModeWin)
@@ -72,7 +83,7 @@ namespace TIC_TAC_TOE
                             UI.PrintFirstUserWin();
                             return;
                           
-                        case COMPUTERWIN: // 컴퓨터가 이겼을 때 UI 출력  return 2;
+                        case COMPUTERWIN: // 유저2가 이겼을 때 UI 출력  return 2;
                             UI.PrintGameOver();
                             UI.PrintSecondUserWin();                           
                             return;
@@ -116,99 +127,131 @@ namespace TIC_TAC_TOE
         }
         private int UserMode() // vs User Mode  유저끼리하는 모드
         {
-            
-                      
+         
             Console.Clear();
-            UI.PrintBoard(gameBoard, 1);  
-            UI.PrintDistinguishUser(1);//User1 BoardUI 출력  
-
-        
-            user1Select = exception.FindValidGameInput(1, gameBoard, 1); //입력값 1~9 사이 정수 (유저정보,보드데이터,게임타입)
-     
-            if (user1Select == 0)                
-                return STOP;
-            
-            gameBoard[user1Select] = 'O';
-            drawCount++;
-
-            Console.Clear();
-            UI.PrintBoard(gameBoard,1);  // BoardUI 출력
-           
-
-            if (CheckWin('O') == WINNER_TRUE) 
+            UI.PrintBoard(gameBoard, 1);
+          
+            if(order == USER1_TYPE)
             {
-                userScoreList[0]++;
-                return WINNER_TRUE;  // USER1 승리시 1리턴
-            }
+                fitIndex = PlayUser(USER1_TYPE, 1, 'O');   // USER1의 입력, 승리 판단
 
-            if (drawCount == DRAWCOUNT) // drawCount가 9가 되면 무승부 처리
-                return DRAW;
+                if (fitIndex != 0)
+                    return fitIndex; //USER1의 승리이면 1를 return
 
-            UI.PrintDistinguishUser(2);
-            user2Select = exception.FindValidGameInput(2, gameBoard,1); // (유저정보,보드데이터,
-       
-            if (user2Select == 0)
-                return STOP;                                                 
-            gameBoard[user2Select] = 'X';
-            drawCount++;
 
-            Console.Clear();
-            UI.PrintBoard(gameBoard, 1);  // BoardUI 출력
+                if (drawCount == DRAWCOUNT) // drawCount가 9가 되면 무승부 처리
+                    return DRAW;
 
-            if (CheckWin('X') == WINNER_TRUE)
-            {
-                userScoreList[1]++;
-                return USERWIN;  //USER2 승리시 2리턴
+
+                fitIndex = PlayUser(USER2_TYPE, 1, 'X'); // USER2의 입력, 승리 판단
+
+                if (fitIndex != 0)
+                    return fitIndex; // USER2의 승리이면 2를 return
+
             }
             else
             {
-                return WINNER_FALSE; // 승리자가 없을떈 0 return
+                fitIndex = PlayUser(USER2_TYPE, 1, 'X');   // USER1의 입력, 승리 판단
+
+                if (fitIndex != 0)
+                    return fitIndex; //USER1의 승리이면 1를 return
+
+
+                if (drawCount == DRAWCOUNT) // drawCount가 9가 되면 무승부 처리
+                    return DRAW;
+
+
+                fitIndex = PlayUser(USER1_TYPE, 1, 'O'); // USER2의 입력, 승리 판단
+
+                if (fitIndex != 0)
+                    return fitIndex; // USER2의 승리이면 2를 return
+
             }
-           
+
+
+            return WINNER_FALSE;
+
         }
+       
+
+        private int PlayUser(int userType, int gameType,char type)
+        {
+            UI.PrintDistinguishUser(userType);//User1 BoardUI 출력       
+            userSelect = exception.FindValidGameInput(userType, gameBoard, gameType); //입력값 1~9 사이 정수 (유저정보,보드데이터,게임타입)
+
+            if (userSelect == 0)
+                return STOP;
+
+            gameBoard[userSelect] = type;
+            drawCount++;
+
+            Console.Clear();
+            UI.PrintBoard(gameBoard, gameType);  // BoardUI 출력
+
+
+            if (CheckWin(type) == WINNER_TRUE)
+            {
+                if (gameType == 1)
+                    userScoreList[userType - 1]++;
+                else
+                    scoreList[userType - 1]++;
+                return userType;  // USER1 승리시 1리턴
+            }
+            else
+                return 0;
+        }
+
         private int ComputerMode() // vs Computer Mode  컴퓨터와 하는 모드
         {
          
 
             Console.Clear();
             UI.PrintBoard(gameBoard, 2);   // (보드데이터, 게임타입)
-            UI.PrintDistinguishUser(1);   //user1 정보 출력
-            user1Select = exception.FindValidGameInput(1, gameBoard,2); //입력값 유효성 검사
-            if (user1Select == 0)           
-                return STOP;
-            
-            gameBoard[user1Select] = 'O'; // board판에 사용자1의 'O'를 입력
-            drawCount++;
-        
 
-            Console.Clear();
-            UI.PrintBoard(gameBoard, 2);  // BoardUI 출력
 
-            if (CheckWin('O') == WINNER_TRUE)
+            if(order == USER1_TYPE) 
             {
-                scoreList[0]++;// User1 승리시 점수 증가                                             
-                return WINNER_TRUE;
-            }
+                fitIndex = PlayUser(USER1_TYPE, 2, 'O');
 
-            if (drawCount == DRAWCOUNT)
-                return DRAW; // 무승부 drawcount가 9일때 무승부
+                if (drawCount == DRAWCOUNT)
+                    return DRAW; // 무승부 drawcount가 9일때 무승부
 
-            ComputerAutoPlay(); // Computer Bot
-            drawCount++;
 
-            Console.Clear();
-            UI.PrintBoard(gameBoard, 2);  // BoardUI 출력
+                ComputerAutoPlay(); // Computer Bot
+                drawCount++;
 
-            if (CheckWin('X') == WINNER_TRUE)
-            {
-                scoreList[1]++; ;// Computer 승리시 점수 증가
-              
-                return COMPUTERWIN;
+                Console.Clear();
+                UI.PrintBoard(gameBoard, 2);  // BoardUI 출력
+
+                if (CheckWin('X') == WINNER_TRUE)
+                {
+                    scoreList[1]++; ;// Computer 승리시 점수 증가
+
+                    return COMPUTERWIN;
+                }
             }
             else
             {
-                return WINNER_FALSE;
+                ComputerAutoPlay(); // Computer Bot
+                drawCount++;
+
+                Console.Clear();
+                UI.PrintBoard(gameBoard, 2);  // BoardUI 출력
+
+                if (CheckWin('X') == WINNER_TRUE)
+                {
+                    scoreList[1]++; ;// Computer 승리시 점수 증가
+
+                    return COMPUTERWIN;
+                }
+
+                if (drawCount == DRAWCOUNT)
+                    return DRAW; // 무승부 drawcount가 9일때 무승부
+                fitIndex = PlayUser(USER1_TYPE, 2, 'O');
             }
+           
+            return WINNER_FALSE;
+            
            
         }
         private void ComputerAutoPlay()
@@ -220,47 +263,25 @@ namespace TIC_TAC_TOE
                 if(AttackAndDepense('O') == 0)//방어할 곳이 없을 때 0 리턴
                 {
                     bestIndex = FindCountResult('X');
-                    if (bestIndex != 0)
-                    {
-                        Console.WriteLine("두줄에 두돌 공격");
-                        Console.ReadLine();
+                    if (bestIndex != 0)            
                         gameBoard[bestIndex] = 'X';
-                    }
                     else
                     {
                         bestIndex = FindCountResult('O');
                         if (bestIndex != 0)
-                        {
-                            Console.WriteLine("두줄에 두돌 방어");
-                            Console.WriteLine(bestIndex);
-                            Console.ReadLine();
                             gameBoard[bestIndex] = 'X';
-                        }
                         else
                         {
                             if (gameBoard[5] != 'X' && gameBoard[5] != 'O')
-                            {
-                                Console.WriteLine("가운데");
-                                Console.ReadLine();
-                                gameBoard[5] = 'X';
-                            }
+                                gameBoard[5] = 'X';                            
                             else
                             {
                                 fitIndex = FindComputerProfitIndex();
                                 if (fitIndex == NO_VALID_VALUE)
-                                {
-                                    Console.WriteLine("랜덤");
-                                    Console.ReadLine();
                                     gameBoard[GetRandom()] = 'X';  // 첫 게임 시작시 랜덤으로 두기
-
-                                }
-                                else
-                                {
-                                    Console.WriteLine("유리한곳");
-                                    Console.ReadLine();
+                                else   
                                     gameBoard[fitIndex] = 'X';  //유리한 곳에 두기
-                                }
-
+                                
                             }
                         }
                     }                                                                     
@@ -512,15 +533,9 @@ namespace TIC_TAC_TOE
                 return 5;
             }
             else
-                return NOT_VALID;
-               
-
+                return NOT_VALID;             
         }
 
-
-
-
+       
     }
-
-
 }

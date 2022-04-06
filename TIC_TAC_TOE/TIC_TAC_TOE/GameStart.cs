@@ -19,8 +19,7 @@ namespace TIC_TAC_TOE
         ValidInput selectMenu;
         static public List<int> scoreList = new List<int> { 0, 0 };
         static public List<int> userScoreList = new List<int> { 0, 0 };
-
-
+      
         char[] gameBoard = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
         public GameStart()
@@ -53,6 +52,8 @@ namespace TIC_TAC_TOE
                 {
 
                     ResetBoard(); // Board 초기화
+                   
+
                     start = new PlayGame(gameBoard);
                     start.GamePlay(gameType);
                 }

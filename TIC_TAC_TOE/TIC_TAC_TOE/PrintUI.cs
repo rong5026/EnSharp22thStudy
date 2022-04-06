@@ -31,7 +31,13 @@ namespace TIC_TAC_TOE
             Console.WriteLine("│            ││            ││           │");
             Console.WriteLine("│            ││            ││           │");
             Console.WriteLine("└---------------------------------------┘");
-
+            Console.WriteLine("┌---------------------------------------┐");
+            Console.Write("│      ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write("If want to go menu, Press 0");
+            Console.ResetColor();
+            Console.WriteLine("      │");
+            Console.WriteLine("└---------------------------------------┘");
             if (gameType == 1)
             {
                 Console.WriteLine("│  USER_1 =  [ O ]      USER_2 = [ X ]  │");
@@ -129,7 +135,13 @@ namespace TIC_TAC_TOE
             Console.WriteLine("│        USER SCORE : " + userScore + "    COMPUTER SOCRE :" + computerScore + "     │");
             Console.WriteLine("└------------------------------------------------┘\n"); 
         }
-       
+        public void PrintUserScore(int user1Score, int user2Score)
+        {
+            Console.WriteLine("┌------------------------------------------------┐");
+            Console.WriteLine("│        USER1 SCORE : " + user1Score + "    USER2 SCORE :" + user2Score + "       │");
+            Console.WriteLine("└------------------------------------------------┘\n");
+        }
+
         public void PrintGameInputError()
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -164,7 +176,37 @@ namespace TIC_TAC_TOE
             Console.WriteLine("       Enter an integer between 0 and 3 !!! \n");
             Console.ResetColor();
         }
-    
 
+
+        public void PrintFindValidNumberError()  // ERROR 프린트
+        {
+           
+            Console.Clear();
+            PrintGameStart();
+            PrintMenu();
+            PrintNumberError();
+        }
+        public void PrintFindValidGameInputError(char[] gameBoard, int gameType, int usernum)  // ERROR 프린트
+        {
+            
+            Console.Clear();
+            PrintBoard(gameBoard, gameType);
+            PrintGameInputError(); // 다른 수 입력 UI
+            PrintDistinguishUser(usernum); // USER 정보 UI
+        }
+        public void PrintWhoUserFirst()
+        {
+            Console.WriteLine("┌------------------------------------------------┐");
+            Console.WriteLine("│        Who First?   1.USER1    2.USER2         │");
+            Console.WriteLine("└------------------------------------------------┘");
+            Console.Write(" Press 1 or 2 : ");
+        }
+        public void PrintWhoComputerFirst()
+        {
+            Console.WriteLine("┌------------------------------------------------┐");
+            Console.WriteLine("│       Who First?   1.USER1    2.COMPUTER       │");
+            Console.WriteLine("└------------------------------------------------┘");
+            Console.Write(" Press 1 or 2 : ");
+        }
     }
 }
