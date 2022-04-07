@@ -19,15 +19,21 @@ namespace Library
         const Boolean PROGRAM_ON = true;
         List<UserVO> userList = new List<UserVO>();
         Login login =new Login();
+        Register register =new Register();  
         bool isLoggedIn;
-        int menuNumber;
+        int menuNumber=1;
 
         public void StartUserMode()
         {
 
             UI.PrintMainUI();
             Console.SetWindowSize(125, 40);  //메인화면
-
+            string idPassword;
+            string name;
+            int age;
+            int phoneNumber;
+            string address;
+          
 
             while (PROGRAM_ON)
             {
@@ -37,7 +43,7 @@ namespace Library
                 {
                     case LOGIN_MODE: // 로그인
                         isLoggedIn = login.UserLogin(userList); // 로그인했으면 true, 안했으면 false
-                        // 여기에 이제 로그인 후 메뉴들 나오는거 해야함
+                        // 여기에 이제 로그인 후 메뉴들 나오는거 해야함 login함수 안에서 해도 되고
                         /*
                              if (isLoggedIn)
                             {
@@ -53,12 +59,11 @@ namespace Library
                          */
                         break;
                     case REGISTER_MODE: // 회원가입
-
+                        register.UserRegister();
                         break;
                     case STOP:
-                        UI.PrintProgramStop();
-                        return;
-                        break;
+                        return; // 뒤로가기
+   
 
                 }
 
