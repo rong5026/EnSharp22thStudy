@@ -10,6 +10,8 @@ namespace Library
     {
 		const Boolean PROGRAM_ON = true;
 		const int WIDTH = 120;
+		const int FIRST_TYPE = 1;
+		
 
 
 		public void PrintMainUI()
@@ -48,10 +50,10 @@ namespace Library
 		}
 
 		
-		public void PrintSelectMainUI(int selectNum)  //1. 로그인 2. 회원가입
+		public void PrintSelectUI(int selectNum,int type)  // type ->1.회원모드,관리자모드   2.로그인,회원가입
 		{
-			string user = selectNum == 1 ? "●" : "○";
-			string manager = selectNum == 2 ? "●" : "○";
+			string selectFirst = selectNum == 1 ? "●" : "○";
+			string selectSecond = selectNum == 2 ? "●" : "○";
 
 			Console.Clear();
 			PrintMainUI();  // main 이미지 출력
@@ -60,12 +62,19 @@ namespace Library
 			Console.WriteLine("                                   │                                                │");
 			Console.Write("                                   │                 ");
 			if (selectNum == 1) Console.ForegroundColor = ConsoleColor.Green;
-			Console.Write("{0}    유저모드", user);
+			if(type == FIRST_TYPE) 
+				Console.Write("{0}    유저모드", selectFirst);
+			else
+				Console.Write("{0}    로그인  ", selectFirst);
 			Console.ResetColor();
 			Console.WriteLine("                 │");
 			Console.Write("                                   │                 ");
 			if (selectNum == 2) Console.ForegroundColor = ConsoleColor.Green;
-			Console.Write("{0}    관리자모드", manager);
+
+			if (type == FIRST_TYPE)
+				Console.Write("{0}    관리자모드", selectSecond);
+			else
+				Console.Write("{0}    회원가입  ", selectSecond);
 			Console.ResetColor();
 			Console.WriteLine("               │");
 			Console.WriteLine("                                   │                                                │");
