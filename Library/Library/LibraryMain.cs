@@ -10,8 +10,8 @@ namespace Library
     {
         static void Main(string[] args)
         {
-            LibraryUI UI = new LibraryUI();
-            UI.PrintMainUI();
+            LibraryStart start = new LibraryStart();
+            start.StartProgram();
         }
     }
 }
