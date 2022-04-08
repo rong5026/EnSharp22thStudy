@@ -149,6 +149,21 @@ namespace Library
 			Console.ResetColor();
 			Console.WriteLine("               │");
 
+			Console.Write("                                   │                 ");
+			if (selectNum == 5)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  회원탈퇴", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
+
+
+
+
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");
 
@@ -246,6 +261,25 @@ namespace Library
 			Console.WriteLine("┌------------------------------------------------┐");
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                정 보 수 정 완 료!              │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│              (ENTER을 눌러주세요 !)            │");
+			Console.WriteLine("└------------------------------------------------┘\n");
+		}
+		public void PrintDeleteUserId()
+        {
+			Console.WriteLine("┌------------------------------------------------┐");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│         회 원 탈 퇴 하 시 겠 습 니 까 ?        │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│           예 : ENTER       아니오 : ESC        │");
+			Console.WriteLine("└------------------------------------------------┘\n");
+		}
+		
+		public void PrintDeleteUserIdSuccess()
+        {
+			Console.WriteLine("┌------------------------------------------------┐");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│                회 원 탈 퇴 완 료               │");
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│              (ENTER을 눌러주세요 !)            │");
 			Console.WriteLine("└------------------------------------------------┘\n");
