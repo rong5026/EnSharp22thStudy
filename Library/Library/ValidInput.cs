@@ -37,14 +37,14 @@ namespace Library
             
         }
        
-        public string EnterId(List<UserVO> list,int x, int y)
+        public string EnterId(int x, int y)
         {
             id = EnterIdOrPassword(x, y);
 
-            for(int index = 0; index < list.Count; index++)
+            for(int index = 0; index <LibraryStart.userList.Count ; index++)
             {
-                if(list[index].Id == id)
-                    return EnterId(list,x,y);
+                if(LibraryStart.userList[index].Id == id)
+                    return EnterId(x,y);
             }
 
             return id;
@@ -61,48 +61,48 @@ namespace Library
         }
 
 
-        public string EnterUserName() // user이름 예외검사
+        public string EnterUserName(int x, int y) // user이름 예외검사
         {
-            Console.SetCursorPosition(41, 10);
+            Console.SetCursorPosition(x, y);
             name = Console.ReadLine();
             if (name != null)
                 check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{2,}$"); // 영어,한글 2글자이상
             if (!check)
-                return EnterUserName();
+                return EnterUserName(x,y);
             return name;
 
         }
-        public string EnterUserAge() // 나이 예외검사
+        public string EnterUserAge(int x, int y) // 나이 예외검사
         {
-            Console.SetCursorPosition(39, 11);
+            Console.SetCursorPosition(x, y);
             age = Console.ReadLine();
             if (age != null)
                 check = Regex.IsMatch(age, @"^1?[0-9]?[0-9]$"); // 0~ 199
             if (!check)
-                return EnterUserAge();
+                return EnterUserAge(x,y);
             return age;
 
            
         }
-        public string EnterUserPhoneNumber() // 휴대폰번호 예외검사
+        public string EnterUserPhoneNumber(int x, int y) // 휴대폰번호 예외검사
         {
-            Console.SetCursorPosition(41, 12);
+            Console.SetCursorPosition(x, y);
             phoneNumber = Console.ReadLine();
             if (phoneNumber != null)
                 check = Regex.IsMatch(phoneNumber, @"01([0-9]{1})-([0-9]{4})-([0-9]{4})$"); // 01로 시작0~9숫자중 한개 오고 0~9 숫자 4개-0~9 숫자4개
             if (!check)
-                return EnterUserPhoneNumber();
+                return EnterUserPhoneNumber(x,y);
             return phoneNumber;
            
         }
-        public string EnterUserAddress() // 주소 예외검사.
+        public string EnterUserAddress(int x, int y) // 주소 예외검사.
         {
-            Console.SetCursorPosition(38, 13);
+            Console.SetCursorPosition(x, y);
             address = Console.ReadLine();
             if (address != null)
                 check = Regex.IsMatch(address, @"[ㄱ-ㅎ가-힣]{3,}$"); //한글+숫자 주소 최소 3단어 이상
             if (!check)
-                return EnterUserAddress();
+                return EnterUserAddress(x,y);
             return phoneNumber;
         }
         
@@ -145,6 +145,17 @@ namespace Library
                // return EnterUserName();
             return name;
         }
-        
+
+        public string EnterBookId()
+        {
+            Console.SetCursorPosition(35, 2); // 커서이동
+            id = Console.ReadLine();
+            if (id != null)
+               check = Regex.IsMatch(id, @"^[0-9]{1,}$"); //  숫자 1개 이상
+            if (!check)
+                return EnterBookId();
+            return id;
+        }
+
     }
 }
