@@ -242,27 +242,80 @@ namespace Library
 			Console.WriteLine(Console.GetCursorPosition());
 			Console.WriteLine("\n");
 			Console.WriteLine("(뒤로가려면 ESC를 눌러주세요)");
-
+			Console.WriteLine("(건너띄려면 p를 위에서 부터 건너띄고자 하는 검색옵션을 한번씩 눌러주세요)");
 
 		}
-		public void PrintBookList()
+		public void PrintBookList(int type,string name,string author, string publisher)
         {
-			
+			int[] validIndex = new int[LibraryStart.bookList.Count];
+			int indexCount = 0;
 
-			for(int index = 0; index<LibraryStart.bookList.Count; index++)
+			
+			for(int index = 0; index < LibraryStart.bookList.Count; index++)
+            {
+				if (name != null && author == null && publisher == null) // O X X 
+                {
+					if(name == LibraryStart.bookList[index].Name )              
+						validIndex[indexCount++] = index;
+                    
+                }
+				else if(name == null && author != null && publisher == null) // X O X
+                {
+					if (author == LibraryStart.bookList[index].Author)
+						validIndex[indexCount++] = index;
+				}
+				else if(name == null && author == null && publisher != null) // X X O
+                {
+					if (publisher == LibraryStart.bookList[index].Publisher)
+						validIndex[indexCount++] = index;
+				}
+				else if(name != null && author != null && publisher == null)//O O X
+                {
+					if (name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author)
+						validIndex[indexCount++] = index;
+				}
+				else if(name == null && author != null && publisher != null)//X O O
+                {
+					if (publisher == LibraryStart.bookList[index].Publisher && author == LibraryStart.bookList[index].Author)
+						validIndex[indexCount++] = index;
+				}
+				else if(name != null && author == null && publisher != null) // O X O
+                {
+					if (publisher == LibraryStart.bookList[index].Publisher && name == LibraryStart.bookList[index].Name)
+						validIndex[indexCount++] = index;
+				}
+				else if(name!=null && author !=null && publisher != null)//O O O
+                {
+					if ( name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author &&
+						publisher == LibraryStart.bookList[index].Publisher)
+						validIndex[indexCount++] = index;
+				}
+				/// X X X  값이 다없을때 
+					
+            }
+
+			if (indexCount == 0)
+			{
+				indexCount = LibraryStart.bookList.Count;
+				for(int index = 0; index < indexCount; index++)
+					validIndex[index] = index;
+			}
+
+			for (int index = 0; index< indexCount; index++)
             {
 				Console.WriteLine();
 				Console.WriteLine("===========================================================================================================================\n");
-				Console.WriteLine("책아이디 : {0} ",LibraryStart.bookList[index].Id);
-				Console.WriteLine("책 제목 : {0} ", LibraryStart.bookList[index].Name);
-				Console.WriteLine("작가 : {0} ", LibraryStart.bookList[index].Author);
-				Console.WriteLine("출판사 : {0} ", LibraryStart.bookList[index].Publisher);
-				Console.WriteLine("수량 : {0} ", LibraryStart.bookList[index].BookCount);
-				Console.WriteLine("가격 : {0} ", LibraryStart.bookList[index].Price);
-				Console.WriteLine("출시일 : {0} ", LibraryStart.bookList[index].Date);
+				Console.WriteLine("책아이디 : {0} ",LibraryStart.bookList[validIndex[index]].Id);
+				Console.WriteLine("책 제목 : {0} ", LibraryStart.bookList[validIndex[index]].Name);
+				Console.WriteLine("작가 : {0} ", LibraryStart.bookList[validIndex[index]].Author);
+				Console.WriteLine("출판사 : {0} ", LibraryStart.bookList[validIndex[index]].Publisher);
+				Console.WriteLine("수량 : {0} ", LibraryStart.bookList[validIndex[index]].BookCount);
+				Console.WriteLine("가격 : {0} ", LibraryStart.bookList[validIndex[index]].Price);
+				Console.WriteLine("출시일 : {0} ", LibraryStart.bookList[validIndex[index]].Date);
 
 
 			}
+
 
 
 
