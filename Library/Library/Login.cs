@@ -17,7 +17,7 @@ namespace Library
         ValidInput validInput =  new ValidInput();
         LibraryUI UI = new LibraryUI();
         ConsoleKeyInfo keyInput;
-
+      
         string id;
         string password;
 
@@ -43,6 +43,9 @@ namespace Library
                     if (list[index].Id == id && list[index].Password == password)
                     {
                         list[LOGIN_INDEX] = list[index]; // 0인덱스에 로그인한 사람의 정보를 넣음
+
+                        Console.Clear();
+                        UI.PrintSuccessLogin();  // 로그인 성공 UI출력
                         return LOGIN_SUCCESS; // 로그인 성공
                     }
                     else           

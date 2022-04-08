@@ -13,6 +13,7 @@ namespace Library
         LibraryUI UI = new LibraryUI();
         ConsoleKeyInfo keyInput;
         ValidInput validInput = new ValidInput();
+        LoginUser loginUser = new LoginUser();
         string name=null;
         string author=null;
         string publisher=null;
@@ -71,7 +72,7 @@ namespace Library
                             LibraryStart.bookList[index].BookCount--; // 해당책의 보유양 1개 감소
                             BookVO.totalBook--;  //도서관에 있는 도서수 1개 감소
 
-                            LibraryStart.userList[SearchLoginUserIndex()].RendtedBookId.Add(index);// Book의 index를 userList의 RentedBookid리스트에 추가
+                            LibraryStart.userList[loginUser.SearchLoginUser()].RendtedBookId.Add(index);// Book의 index를 userList의 RentedBookid리스트에 추가
                             break;                        
 
                         }
@@ -81,36 +82,28 @@ namespace Library
                 Console.SetCursorPosition(0, 0);
                 UI.PrintSuccessRentBook();
                 keyInput = Console.ReadKey(true);
-                if (keyInput.Key == ConsoleKey.Enter)
+                if (keyInput.Key == ConsoleKey.Escape)
                     return; // 뒤로가기 
 
             }
         }
 
-        public void ConfirmRentedBook()
+        public void ConfirmRentedBook() //현재 로그인한 사람의 대여목록 출력
         {
             Console.SetWindowSize(125, 50);
             Console.Clear();
-            UI.PrintRentedBookList(SearchLoginUserIndex());
+            UI.PrintRentedBookList(loginUser.SearchLoginUser());
             keyInput = Console.ReadKey(true);
-            if (keyInput.Key == ConsoleKey.Enter)
+            if (keyInput.Key == ConsoleKey.Escape)
                 return; // 뒤로가기 
 
         }
-        public int SearchLoginUserIndex() // 로그인한 사람의 index를 return함
-        {
 
-            for(int index = 1; index < LibraryStart.userList.Count; index++)
-            {
-                if (LibraryStart.userList[0].Id == LibraryStart.userList[index].Id)
-                    return index;
-            }
-            return -1;
-        }
+      
+        
 
 
-       
-       
+
 
 
 

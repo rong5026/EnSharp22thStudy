@@ -39,14 +39,15 @@ namespace Library
             user = new UserVO("abcd1234", "abcd1234", "피카츄", "21", "010-1234-1234", "서울시 오류동"); // 계정2
             userList.Add(user);
 
-            book = new BookVO(BookVO.totalBook, "자료구조 및 실습", "국형준", "세종대", 2, 14000, "2020-02-02", 0);
+            //int id, string name, string author, string publisher, int bookCount, int price, string date)
+            book = new BookVO(BookVO.totalBook, "자료구조 및 실습", "국형준", "세종대", 2, 14000, "2020-02-02");
 
             bookList.Add(book);
-            book = new BookVO(BookVO.totalBook, "노래방가고싶다", "홍영환", "세종대", 1, 10000, "2020-04-08", 0);
+            book = new BookVO(BookVO.totalBook, "노래방가고싶다", "홍영환", "세종대", 1, 10000, "2020-04-08");
             bookList.Add(book);
-            book = new BookVO(BookVO.totalBook, "너두? 나두", "황기태", "생능출판", 3, 20000, "2021-03-02", 0);
+            book = new BookVO(BookVO.totalBook, "너두? 나두", "황기태", "생능출판", 3, 20000, "2021-03-02");
             bookList.Add(book);
-            book = new BookVO(BookVO.totalBook, "자바스크립트", "고경희", "이지스퍼블리싱", 1, 8000, "2022-11-05", 0);
+            book = new BookVO(BookVO.totalBook, "자바스크립트", "고경희", "이지스퍼블리싱", 1, 8000, "2022-11-05");
             bookList.Add(book);
 
         }
@@ -54,7 +55,7 @@ namespace Library
         {
        
             UI.PrintMainUI();
-            Console.SetWindowSize(125, 40);
+            Console.SetWindowSize(125, 45);
           
             while (PROGRAM_ON)
             {

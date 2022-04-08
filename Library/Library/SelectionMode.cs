@@ -20,6 +20,7 @@ namespace Library
 
         public int SelectMode(int type)
         {
+            
             menuNumber = 1;
             UI.PrintSelectUI(USER_MODE, type);
             while (PROGRAM_ON)

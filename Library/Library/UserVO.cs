@@ -14,7 +14,7 @@ namespace Library
         private string age;
         private string phonenumber;
         private string address;
-
+        private List<int> rentedBookId;
 
         public UserVO()
         {
@@ -22,6 +22,7 @@ namespace Library
         }
         public UserVO(string id, string password, string name, string age, string phonenumber, string address)
         {
+            this.rentedBookId = new List<int>();
             this.id = id;
             this.password = password;
             this.name = name;
@@ -58,6 +59,12 @@ namespace Library
         {
             get { return address; }
             set { address = value; }
+        }
+        public List<int> RendtedBookId
+        {
+            get { return rentedBookId; }
+            set { rentedBookId = value; }
+
         }
        
 

@@ -17,23 +17,20 @@ namespace Library
         LibraryUI UI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
         const Boolean PROGRAM_ON = true;
-        List<UserVO> userList = new List<UserVO>();
-        Login login =new Login();
-        Register register =new Register();  
-        bool isLoggedIn;
-        int menuNumber=1;
+        
+        Login login = new Login();
+        Register register = new Register();
 
-        public void StartUserMode()
+        bool isLoggedIn;
+        int menuNumber = 1;
+
+        UserMenu userMenu = new UserMenu();
+        public void StartUserMode(List<UserVO> userList)
         {
 
             UI.PrintMainUI();
             Console.SetWindowSize(125, 40);  //메인화면
-            string idPassword;
-            string name;
-            int age;
-            int phoneNumber;
-            string address;
-          
+           
 
             while (PROGRAM_ON)
             {
@@ -43,36 +40,36 @@ namespace Library
                 {
                     case LOGIN_MODE: // 로그인
                         isLoggedIn = login.UserLogin(userList); // 로그인했으면 true, 안했으면 false
-                        // 여기에 이제 로그인 후 메뉴들 나오는거 해야함 login함수 안에서 해도 되고
-                        /*
-                             if (isLoggedIn)
-                            {
+                                                                // 여기에 이제 로그인 후 메뉴들 나오는거 해야함 login함수 안에서 해도 되고
+                        if (isLoggedIn)
+                        {
+                           userMenu.StartUserMenu(); // 로그인 성공 시 메뉴 출력
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            UI.PrintLoginFail(); // 로그인 실패 UI
+                            return;
+                        }
 
-                            }
-                            else
-                            {
-                             Console.Clear();
-                                UI.PrintLoginFail(); // 로그인 실패 UI
-                                return;
-                                }
-
-                         */
                         break;
                     case REGISTER_MODE: // 회원가입
-                        register.UserRegister();
+                        register.RegistUser(userList);
                         break;
                     case STOP:
                         return; // 뒤로가기
-   
+
 
                 }
 
-            }
-
             
 
-          
+            }
+
+
+
+
         } // 로그인을 했다면 UserMode 기능 출력, 선택
-        
+
     }
 }

@@ -9,28 +9,19 @@ namespace Library
     internal class Register
 
     {
-        const int EIXT = -1;
-        const int ID =1;
-        const int PASSWORD =2;
-        const int REPASSWORD =3;
-        const int NAME = 4;
-        const int AGE=5;
-        const int PHONE_NUMBER=6;
-        const int ADDRESS =7;
-
+ 
         LibraryUI UI = new LibraryUI();
         ValidInput validInput = new ValidInput();
         UserVO user = new UserVO();
         ConsoleKeyInfo keyInput;
         string id;
-        string password;
         string repassword;
         string name;
         string age;
         string phoneNumber;
         string address;
        
-        string[] userDate = new string[7];
+        string[] userData = new string[7];
 
         public bool RegistUser(List<UserVO> list)
         {
@@ -40,34 +31,34 @@ namespace Library
             Console.SetCursorPosition(38, 7);
 
             //user정보 입력.
-            userDate[0] = EnterUserDate(list,null,"id");
-            userDate[1] = EnterUserDate(list, null, "password");
-            userDate[2] = EnterUserDate(list, userDate[1],"repassword");
-            userDate[3] = EnterUserDate(list, null, "name");
-            userDate[4] = EnterUserDate(list, null, "age");
-            userDate[5] = EnterUserDate(list, null, "phonenumber");
-            userDate[6] = EnterUserDate(list, null, "address");
+            userData[0] = EnterUserDate(null,"id");
+            userData[1] = EnterUserDate( null, "password");
+            userData[2] = EnterUserDate( userData[1],"repassword");
+            userData[3] = EnterUserDate( null, "name");
+            userData[4] = EnterUserDate( null, "age");
+            userData[5] = EnterUserDate( null, "phonenumber");
+            userData[6] = EnterUserDate( null, "address");
 
-            user.Id = userDate[0];
-            user.Password = password;
+            user.Id = userData[0];
+            user.Password = userData[1];
+            user.Name = userData[3];
+            user.Age = userData[4];
+            user.PhoneNumber = userData[5];
+            user.Address = userData[6];
+
             for (int index = 0; index < 7; index++)
             {
-                if(userDate[index] == "EIXT")
+                if(userData[index] == "EIXT")
                     return false;
                 else
                 {
-                    for(int listindex = 0; listindex < list.Count; listindex++)
-                    {
-                        if(list[listindex].Id == userDate[0])
-                        {
-                            UI.PrintIdOverlap(); // 이미 존재하는 id 출력
-                            return false;
-                        }
-                    }
+                    list.Add(user);
+                    Console.Clear();
+                    UI.PrintSuccessRegister(); // 회원가입성공 UI
 
-                    
-
-
+                    keyInput = Console.ReadKey(true);
+                    if (keyInput.Key == ConsoleKey.Enter)
+                        return true;
                 }
             }
 
@@ -77,7 +68,7 @@ namespace Library
             return true;
         }
 
-        public string EnterUserDate(List<UserVO> list,string password,string type)
+        public string EnterUserDate(string password,string type)
         {
            
             keyInput = Console.ReadKey(true);
@@ -85,28 +76,28 @@ namespace Library
                 return "EIXT"; // ESC 누르면 뒤로가기 
             else
             {
-                switch (type)
+                switch (type) 
                 {
                     case "id":
-                        id = validInput.EnterId(list,38, 7);
+                        id = validInput.EnterId(38, 7);
                         return id; 
                     case "password":
-                        password = validInput.EnterIdOrPassword(38, 8);
-                        return password;
+                        repassword = validInput.EnterIdOrPassword(38, 8);
+                        return repassword;
                     case "repassword":
                         repassword = validInput.EnterRepassword(password,38, 9);
                         return password;
                     case "name":
-                        name = validInput.EnterUserName();
+                        name = validInput.EnterUserName(41,10);
                         return name;
                     case "age":
-                        age = validInput.EnterUserAge();
+                        age = validInput.EnterUserAge(39,11);
                         return age;
                     case "phonenumber":
-                        phoneNumber = validInput.EnterUserPhoneNumber();
+                        phoneNumber = validInput.EnterUserPhoneNumber(41,12);
                         return phoneNumber;
                     case "address":
-                        address = validInput.EnterUserAddress();
+                        address = validInput.EnterUserAddress(38,13);
                         return address;
                     default:
                         return "EIXT";

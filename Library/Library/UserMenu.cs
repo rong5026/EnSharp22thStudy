@@ -13,13 +13,23 @@ namespace Library
         const int BOOK_RENT = 2;
         const int BOOK_BORROW_LIST = 3;
         const int USER_EDIT = 4;
-        const int DELETE_ID = 5;
         const int EXIT = -1;
         LibraryUI UI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
+        BookListAndSearch book = new BookListAndSearch();
+        ValidInput validInput = new ValidInput();
+        LoginUser loginUser = new LoginUser();
+        string id;
+        string password;
+        string repassword;
+        string name;
+        string age;
+        string phonenumber;
+        string address;
+        int userid;
 
         int menuNumber;
-
+        ConsoleKeyInfo keyInput;
 
         public void StartUserMenu()
         {
@@ -33,18 +43,18 @@ namespace Library
 
                 switch (menuNumber)
                 {
-                    case BOOK_SEARCH: // 도서찾기
-                        //userMode.StartUserMode(userList);
+                    case BOOK_SEARCH: // 도서찾기                    
+                        book.SearchBook();
                         break;
                     case BOOK_RENT: // 도서대여
+                        book.BorrowBook();
                         break;
                     case BOOK_BORROW_LIST: //대여도서확인
-                        UI.PrintProgramStop();
+                        book.ConfirmRentedBook();
                         break;
                     case USER_EDIT: // 회원정보 수정
-                        break;
-                    case DELETE_ID: // 회원탈퇴
-                        break;                   
+                        EditUserData();
+                        break;                          
                     case EXIT:
                         return;
                     default:
@@ -54,8 +64,48 @@ namespace Library
                 }
 
             }
+        }
 
+        public void EditUserData()
+        {
+            Console.Clear();
+            UI.PrintUserDateEdit();
+            UI.PrintUserData(loginUser.SearchLoginUser());
+
+
+            keyInput = Console.ReadKey(true);
+            if (keyInput.Key == ConsoleKey.Escape)
+                return; // 뒤로가기 
+            else
+            {            
+                id = validInput.EnterId(38, 21);
+                password = validInput.EnterIdOrPassword(38,22);
+                repassword = validInput.EnterRepassword(password, 38,23);
+                name = validInput.EnterUserName(41,24);
+                age = validInput.EnterUserAge(39,25);
+                phonenumber = validInput.EnterUserPhoneNumber(41,26);
+                address = validInput.EnterUserAddress(38,27);
+
+                userid = loginUser.SearchLoginUser();
+
+                LibraryStart.userList[userid].Id = id;
+                LibraryStart.userList[userid].Password = password;
+                LibraryStart.userList[userid].Name = name;
+                LibraryStart.userList[userid].Age =age;
+                LibraryStart.userList[userid].PhoneNumber = phonenumber;
+                LibraryStart.userList[userid].Address = address;
+
+                UI.PrintSuccessEditUserData();
+
+                keyInput = Console.ReadKey(true);
+                if (keyInput.Key == ConsoleKey.Enter)
+                    return; // 뒤로가기 
+            }
+            
 
         }
+
+      
+
     }
 }
