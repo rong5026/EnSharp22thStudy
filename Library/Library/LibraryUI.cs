@@ -232,7 +232,41 @@ namespace Library
 			Console.WriteLine("│              (ENTER을 눌러주세요 !)            │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
+		public void PrintSearchBook()
+        {
+			Console.WriteLine();
+			
+			Console.WriteLine("  제목으로 찾기 : "); // 18,1
+			Console.WriteLine("  작가명으로 찾기 : "); //19,2
+			Console.Write("  출판사로 찾기 : ");//18,3
+			Console.WriteLine(Console.GetCursorPosition());
+			Console.WriteLine("\n");
+			Console.WriteLine("(뒤로가려면 ESC를 눌러주세요)");
 
+
+		}
+		public void PrintBookList()
+        {
+			
+
+			for(int index = 0; index<LibraryStart.bookList.Count; index++)
+            {
+				Console.WriteLine();
+				Console.WriteLine("===========================================================================================================================\n");
+				Console.WriteLine("책아이디 : {0} ",LibraryStart.bookList[index].Id);
+				Console.WriteLine("책 제목 : {0} ", LibraryStart.bookList[index].Name);
+				Console.WriteLine("작가 : {0} ", LibraryStart.bookList[index].Author);
+				Console.WriteLine("출판사 : {0} ", LibraryStart.bookList[index].Publisher);
+				Console.WriteLine("수량 : {0} ", LibraryStart.bookList[index].BookCount);
+				Console.WriteLine("가격 : {0} ", LibraryStart.bookList[index].Price);
+				Console.WriteLine("출시일 : {0} ", LibraryStart.bookList[index].Date);
+
+
+			}
+
+
+
+		}
 		public void PrintCenter(string message)
         {
 			Console.WriteLine(String.Format(message).PadLeft(WIDTH - (WIDTH / 2 - (message.Length / 2))));
