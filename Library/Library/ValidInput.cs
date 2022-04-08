@@ -9,13 +9,6 @@ namespace Library
 {
     internal class ValidInput
     {
-        //private string id;
-        // private string password;
-        //private string name;
-        //private int age;
-        //private int number;
-        //private string address;
-   
  
         string stringInput;
         int integerInput;
@@ -34,13 +27,14 @@ namespace Library
         {
            
             Console.SetCursorPosition(x, y);
-           
             idPassword = Console.ReadLine();
             if (idPassword != null)
                 check = Regex.IsMatch(idPassword, @"^[0-9a-zA-Z]{8,15}$"); // 숫자 영어 8~15글자
-            if (!check)
-                return EnterIdOrPassword(x,y);
+            if (!check)             
+                return EnterIdOrPassword(x, y);           
+                          
             return idPassword;
+            
         }
        
         public string EnterId(List<UserVO> list,int x, int y)
@@ -49,8 +43,8 @@ namespace Library
 
             for(int index = 0; index < list.Count; index++)
             {
-                list[index].Id = id;
-                return EnterId(list,x,y);
+                if(list[index].Id == id)
+                    return EnterId(list,x,y);
             }
 
             return id;
@@ -111,8 +105,46 @@ namespace Library
                 return EnterUserAddress();
             return phoneNumber;
         }
+        
+        /////////////////////////////////////// 책 관련 입력
+        public string EnterBookName() // 책이름 
+        {
+            Console.SetCursorPosition(18, 1);
+            name = Console.ReadLine();
+            if (name == "p")
+                return null;
+           // if (name != null)
+              //  check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
+           // if (!check)
+                //return EnterUserName();
+            return name;
 
-     
+        }
+        public string EnterAuthor() // 저자이름
+        {
+            Console.SetCursorPosition(19, 2);
+            name = Console.ReadLine();
+            if (name == "p")
+                return null;
+           //if (name != null)
+              //  check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
+           // if (!check)
+               // return EnterUserName();
+            return name;
 
+        }
+        public string EnterBookPublisher()// 출판사
+        {
+            Console.SetCursorPosition(18, 3);
+            name = Console.ReadLine();
+            if (name == "p")
+                return null;
+          //  if (name != null)
+               // check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 2글자이상
+           // if (!check)
+               // return EnterUserName();
+            return name;
+        }
+        
     }
 }
