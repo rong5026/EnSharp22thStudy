@@ -8,12 +8,13 @@ namespace Library
 {
     internal class BookListAndSearch
     {
-
+        
    
         LibraryUI UI = new LibraryUI();
         ConsoleKeyInfo keyInput;
         ValidInput validInput = new ValidInput();
         LoginUser loginUser = new LoginUser();
+        UserVO user = new UserVO();
         string name=null;
         string author=null;
         string publisher=null;
@@ -108,6 +109,11 @@ namespace Library
 
                 LibraryStart.bookList[Convert.ToInt16(bookId)].BookCount++; // 해당책의 보유양 1개 증가
 
+
+                LibraryStart.userList[loginUser.SearchLoginUser()].ReturnBookId.Add(Convert.ToInt16(bookId)); // 반납 책 id 저장
+                LibraryStart.userList[loginUser.SearchLoginUser()].ReturnBookTime.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); // 반납 책 시간 저장
+
+
                 Console.Clear();
                 UI.ReturnBookSuccess();
                 keyInput = Console.ReadKey(true);
@@ -115,7 +121,6 @@ namespace Library
                     return; // 뒤로가기 
 
             }
-
         }
         public void ConfirmRentedBook() //현재 로그인한 사람의 대여목록 출력
         {
@@ -129,9 +134,22 @@ namespace Library
 
         }
 
-      
-        
+        public void ConfirmReturnBook() // 반납한 시간, 책 출력
+        {
+            Console.Clear();
+            Console.SetWindowSize(125, 50);
 
+
+            UI.PrintReturnBookTime();
+
+            keyInput = Console.ReadKey(true);
+            if (keyInput.Key == ConsoleKey.Escape)
+                return; // 뒤로가기 
+
+
+        }
+        
+         
 
 
 

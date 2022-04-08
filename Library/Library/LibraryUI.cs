@@ -13,6 +13,9 @@ namespace Library
 		const int FIRST_TYPE = 1;
 		string selectFirst;
 		string selectSecond;
+		int bookIndex;
+		string bookTime;
+		LoginUser loginUser=new LoginUser();
 
 
 		public void PrintMainUI()
@@ -149,8 +152,23 @@ namespace Library
 			Console.ResetColor();
 			Console.WriteLine("                   │");
 
+
 			Console.Write("                                   │                 ");
 			if (selectNum == 5)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서반납내역", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("               │");
+
+
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 6)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -162,7 +180,7 @@ namespace Library
 			Console.WriteLine("               │");
 
 			Console.Write("                                   │                 ");
-			if (selectNum == 6)
+			if (selectNum == 7)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -470,7 +488,36 @@ namespace Library
 		}
 
 
+		public void PrintReturnBookTime()
+        {
+			Console.WriteLine("┌------------------------------------------------┐");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│                반 납 한 책 목 록               │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요)     │");
+			Console.WriteLine("└------------------------------------------------┘\n");
+			Console.WriteLine("\n");
+			
+			for (int index = 0; index < LibraryStart.userList[loginUser.SearchLoginUser()].ReturnBookTime.Count; index++)
+            {
+				bookIndex = LibraryStart.userList[loginUser.SearchLoginUser()].ReturnBookId[index];
+				bookTime = LibraryStart.userList[loginUser.SearchLoginUser()].ReturnBookTime[index];
+				Console.WriteLine("===========================================================================================================================\n");
+				Console.WriteLine("반납시간 : {0} ", bookTime);
+				Console.WriteLine("책아이디 : {0} ", LibraryStart.bookList[bookIndex].Id);
+				Console.WriteLine("책 제목 : {0} ", LibraryStart.bookList[bookIndex].Name);
+				Console.WriteLine("작가 : {0} ", LibraryStart.bookList[bookIndex].Author);
+				Console.WriteLine("출판사 : {0} ", LibraryStart.bookList[bookIndex].Publisher);
+				Console.WriteLine("수량 : {0} ", LibraryStart.bookList[bookIndex].BookCount);
+				Console.WriteLine("가격 : {0} ", LibraryStart.bookList[bookIndex].Price);
+				Console.WriteLine("출시일 : {0} ", LibraryStart.bookList[bookIndex].Date);
 
+			}
+
+
+		}
+
+		
 
 
 

@@ -12,9 +12,10 @@ namespace Library
         const int BOOK_SEARCH = 1;
         const int BOOK_RENT = 2;
         const int BOOK_BORROW_LIST = 3;
-        const int BOOK_RETUREN = 4;
-        const int USER_EDIT = 5;
-        const int DELETE = 6;
+        const int BOOK_RETURN = 4;
+        const int BOOK_RETRUN_HISTORY =5;
+        const int USER_EDIT = 6;
+        const int DELETE = 7;
         const int EXIT = -1;
         LibraryUI UI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
@@ -54,8 +55,11 @@ namespace Library
                     case BOOK_BORROW_LIST: //대여도서확인
                         book.ConfirmRentedBook();
                         break;
-                    case BOOK_RETUREN: // 도서 반납
+                    case BOOK_RETURN: // 도서 반납
                         book.ReturnBook();
+                        break;
+                    case BOOK_RETRUN_HISTORY:
+                        book.ConfirmReturnBook(); // 도서반납확인
                         break;
                     case USER_EDIT: // 회원정보 수정
                         EditUserData();

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 namespace Library
 {
+
     internal class UserVO
     {
         private string id;
@@ -14,15 +15,16 @@ namespace Library
         private string age;
         private string phonenumber;
         private string address;
-        private List<int> rentedBookId;
-
+        private List<int> rentedBookId = new List<int>();
+        private List<string> returnBookTime = new List<string>();
+        private List<int> returnBookId = new List<int>();
         public UserVO()
         {
-
+             
         }
         public UserVO(string id, string password, string name, string age, string phonenumber, string address)
         {
-            this.rentedBookId = new List<int>();
+            
             this.id = id;
             this.password = password;
             this.name = name;
@@ -66,9 +68,22 @@ namespace Library
             set { rentedBookId = value; }
 
         }
-       
+        public List<int> ReturnBookId
+        {
+            get { return returnBookId; }
+            set { returnBookId = value; }
+
+        }
+        public List<string> ReturnBookTime
+        {
+            get { return returnBookTime; }
+            set { returnBookTime = value; }
+
+        }
+
+
 
     }
 
-   
+
 }
