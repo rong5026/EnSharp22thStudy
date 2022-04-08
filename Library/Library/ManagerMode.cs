@@ -21,6 +21,7 @@ namespace Library
         const int BOOK_LIST = 5;
         const int EXIT = -1;
 
+        int bookId;
         string name;
         string author;
         string publisher;
@@ -48,17 +49,15 @@ namespace Library
                         RegisterBook();
                         break;
                     case BOOK_UPDATE: // 도서 수량 수정
-                     
+                        EditBookCount();
                         break;
                     case BOOK_DELETE: //도서 삭제
-                     
+                        DeleteBook();
                         break;
                     case BOOK_SEARCH: // 도서 검색
                         book.SearchBook();
                         break;
-                    case BOOK_LIST: // 도서 출력
-                       
-
+                    case BOOK_LIST: // 도서 출력                     
                         ShowBookList();
                         break;              
                     case EXIT:
@@ -121,6 +120,59 @@ namespace Library
 
             }              
         }
-        
+        public void EditBookCount()
+        {
+
+            Console.Clear();
+            Console.SetWindowSize(125, 60);
+
+            UI.PrintEditBookCount(); // 책수량 선택 UI
+
+            bookId= Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
+            bookCount = Convert.ToInt16(validInput.EnterBookCount(19, 9)); // 책 수량
+
+            for(int index = 0; index < BookVO.totalBook; index++) // 책 id가 같은것을 찾아서 책의 수를 변경
+            {
+                if (bookId == LibraryStart.bookList[index].Id)
+                {
+                    LibraryStart.bookList[index].BookCount = bookCount;
+                    break;
+                }
+            }
+            Console.Clear();
+            UI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
+            keyInput = Console.ReadKey(true);
+          
+        }
+       
+
+        public void DeleteBook()
+        {
+            Console.Clear();
+            Console.SetWindowSize(125, 60);
+
+            UI.PrintDeleteBook(); // 책 삭제 UI
+            bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
+            bookCount = Convert.ToInt16(validInput.EnterBookCount(18, 9)); // 책 수량
+
+            for (int index = 0; index < BookVO.totalBook; index++) // 
+            {
+                if (bookId == LibraryStart.bookList[index].Id)
+                {
+                    LibraryStart.bookList[index].BookCount--;
+                    if (LibraryStart.bookList[index].BookCount == 0)
+                    {                      
+                        LibraryStart.bookList.RemoveAt(index);                  
+                    }
+
+                    break;
+                }
+            }
+
+            Console.Clear();
+            UI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
+            keyInput = Console.ReadKey(true);
+
+        }
     }
 }

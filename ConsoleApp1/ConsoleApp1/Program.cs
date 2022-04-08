@@ -1,11 +1,10 @@
 ﻿char[] arr = { 'O', 'O', 'O', 'O', 'O', '5', '6', 'O', '8', '9' };
 
 
-for (int i = 1; i <= 9; i = i + 3)
-    Console.WriteLine(i);
 
 
-
+//Console.SetCursorPosition(origCol + x, origRow + y);
+Console.WriteLine(Console.GetCursorPosition());
 
 Console.WriteLine("┌---------------------------------------┐");
 Console.WriteLine("│            ││            ││           │");
