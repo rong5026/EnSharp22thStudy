@@ -26,7 +26,7 @@ namespace Library
         SelectionMode mode = new SelectionMode();
         BookListAndSearch book = new BookListAndSearch();
         ValidInput validInput = new ValidInput();
-        LoginUser loginUser = new LoginUser();
+        LoginedUser loginUser = new LoginedUser();
         string id;
         string password;
         string repassword;

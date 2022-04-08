@@ -32,7 +32,8 @@ namespace Library
 
             UI.PrintMainUI();
             Console.SetWindowSize(125, 60);  //메인화면
-           
+
+
 
             while (PROGRAM_ON)
             {

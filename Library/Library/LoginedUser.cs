@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    internal class LoginUser
+    internal class LoginedUser
     {
 
         public int SearchLoginUser() // 로그인한 사람의 index를 return함

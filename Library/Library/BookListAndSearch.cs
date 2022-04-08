@@ -13,7 +13,7 @@ namespace Library
         LibraryUI UI = new LibraryUI();
         ConsoleKeyInfo keyInput;
         ValidInput validInput = new ValidInput();
-        LoginUser loginUser = new LoginUser();
+        LoginedUser loginUser = new LoginedUser();
         UserVO user = new UserVO();
         string name=null;
         string author=null;
@@ -48,7 +48,7 @@ namespace Library
             }
         }
 
-        public void BorrowBook()
+        public void BorrowBook() // 책 대여
         {
             Console.SetWindowSize(125, 60);
 
@@ -89,7 +89,7 @@ namespace Library
 
             }
         }
-        public void ReturnBook()
+        public void ReturnBook() // 책반납
         {
             Console.Clear();
             UI.ReturnBook();

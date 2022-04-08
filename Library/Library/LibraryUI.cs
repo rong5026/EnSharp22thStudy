@@ -15,7 +15,7 @@ namespace Library
 		string selectSecond;
 		int bookIndex;
 		string bookTime;
-		LoginUser loginUser=new LoginUser();
+		LoginedUser loginUser=new LoginedUser();
 
 
 		public void PrintMainUI()
