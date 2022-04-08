@@ -61,7 +61,7 @@ namespace Library
                 return; // ESC 누르면 뒤로가기 
             else
             {
-                bookId = validInput.EnterBookId();
+                bookId = validInput.EnterBookId(35,2);
 
                 for(int index = 0; index < LibraryStart.bookList.Count; index++)
                 {
@@ -87,11 +87,41 @@ namespace Library
 
             }
         }
+        public void ReturnBook()
+        {
+            Console.Clear();
+            UI.ReturnBook();
+            UI.PrintRentedBookList(loginUser.SearchLoginUser());
+            Console.SetCursorPosition(39, 2);
 
+
+            keyInput = Console.ReadKey(true);
+            if (keyInput.Key == ConsoleKey.Escape)
+                return; // ESC 누르면 뒤로가기 
+            else
+            {
+                bookId = validInput.EnterBookId(41,2);
+
+                LibraryStart.userList[loginUser.SearchLoginUser()].RendtedBookId.Remove(Convert.ToInt16(bookId)); // userlist에서 bookid와 같은 책을 가지고 있으면 삭제
+
+                BookVO.totalBook++;  // 도서관 전체 책의 수 +1
+
+                LibraryStart.bookList[Convert.ToInt16(bookId)].BookCount++; // 해당책의 보유양 1개 증가
+
+                Console.Clear();
+                UI.ReturnBookSuccess();
+                keyInput = Console.ReadKey(true);
+                if (keyInput.Key == ConsoleKey.Enter)
+                    return; // 뒤로가기 
+
+            }
+
+        }
         public void ConfirmRentedBook() //현재 로그인한 사람의 대여목록 출력
         {
-            Console.SetWindowSize(125, 50);
             Console.Clear();
+            Console.SetWindowSize(125, 50);
+            
             UI.PrintRentedBookList(loginUser.SearchLoginUser());
             keyInput = Console.ReadKey(true);
             if (keyInput.Key == ConsoleKey.Escape)

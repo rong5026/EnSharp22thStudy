@@ -106,7 +106,11 @@ namespace Library
             return phoneNumber;
         }
         
-        /////////////////////////////////////// 책 관련 입력
+   
+       
+        ///책 관련 입력
+        ///
+
         public string EnterBookName() // 책이름 
         {
             Console.SetCursorPosition(18, 1);
@@ -146,14 +150,14 @@ namespace Library
             return name;
         }
 
-        public string EnterBookId()
+        public string EnterBookId(int x,int y)
         {
-            Console.SetCursorPosition(35, 2); // 커서이동
+            Console.SetCursorPosition(x, y); // 커서이동
             id = Console.ReadLine();
             if (id != null)
                check = Regex.IsMatch(id, @"^[0-9]{1,}$"); //  숫자 1개 이상
             if (!check)
-                return EnterBookId();
+                return EnterBookId(x,y);
             return id;
         }
 

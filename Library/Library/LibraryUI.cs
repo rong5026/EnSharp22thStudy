@@ -145,12 +145,24 @@ namespace Library
 			}
 			else
 				selectFirst = "○";
+			Console.Write("{0}  도서반납", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 5)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
 			Console.Write("{0}  회원정보수정", selectFirst);
 			Console.ResetColor();
 			Console.WriteLine("               │");
 
 			Console.Write("                                   │                 ");
-			if (selectNum == 5)
+			if (selectNum == 6)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -253,7 +265,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│              대 여 하 기 성 공 !!              │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│              (ENTER을 눌러주세요 !)            │");
+			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요      │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintSuccessEditUserData()
@@ -302,7 +314,26 @@ namespace Library
 			Console.WriteLine("│                                                                                                    │");
 			Console.WriteLine("│    빌릴 책의 ID를 입력해 주세요 :                                                                  │"); //35, 2
 			Console.WriteLine("│                                                                                                    │");
+			Console.WriteLine("│    (뒤로가려면 ESC를 눌러주세요)                                                                   │");
 			Console.WriteLine("└----------------------------------------------------------------------------------------------------┘\n");
+		}
+		public void ReturnBook()
+        {
+			Console.WriteLine("┌----------------------------------------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                                                    │");
+			Console.WriteLine("│    반납 할 책의 ID를 입력해 주세요 :                                                               │"); //38 2
+			Console.WriteLine("│                                                                                                    │");
+			Console.WriteLine("│    (뒤로가려면 ESC를 눌러주세요)                                                                   │");
+			Console.WriteLine("└----------------------------------------------------------------------------------------------------┘\n");
+		}
+		public void ReturnBookSuccess()
+        {
+			Console.WriteLine("┌------------------------------------------------┐");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│                   반 납  완 료                 │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요)     │");
+			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintBookList(string name,string author, string publisher) // 이름 저자 출판사로 책 검색해서 출력
         {
@@ -386,7 +417,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                대 여 한 책 목 록               │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│          (뒤로가려면 ESC를 눌러주세요)         │");
+			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요)     │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 
 			for (int index = 0; index < LibraryStart.userList[userIndex].RendtedBookId.Count; index++) // 빌려간 책의 수만큼 반복

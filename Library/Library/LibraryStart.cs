@@ -10,10 +10,8 @@ namespace Library
     internal class LibraryStart
     {
 
-        public static List<UserVO> userList = new List<UserVO>();
-        public static List<BookVO> bookList = new List<BookVO>();
-
-
+        public static List<UserVO> userList; 
+        public static List<BookVO> bookList; 
         LibraryUI UI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
         UserMode userMode = new UserMode();
@@ -21,8 +19,7 @@ namespace Library
         BookVO book;
 
         const Boolean PROGRAM_ON = true;
-        const int USER_MANAGER = 1;
-        const int LOGIN_REGISTER = 2;
+        const int USER_MANAGER = 1;      
         int menuNumber;
         const int USER_MODE = 1;
         const int MANAGE_MODE = 2;
@@ -31,6 +28,8 @@ namespace Library
 
         public LibraryStart()
         {
+            userList= new List<UserVO>();
+            bookList = new List<BookVO>();
             user = new UserVO(null, null, null, null, null, null);  //현재 로그인한 계정
             userList.Add(user);
 
@@ -49,6 +48,7 @@ namespace Library
             bookList.Add(book);
             book = new BookVO(BookVO.totalBook, "자바스크립트", "고경희", "이지스퍼블리싱", 1, 8000, "2022-11-05");
             bookList.Add(book);
+
 
         }
         public void StartProgram()

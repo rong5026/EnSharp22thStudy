@@ -58,16 +58,16 @@ namespace Library
                     case ConsoleKey.UpArrow:
                         menuNumber--;
                         if (menuNumber == -1)
-                            menuNumber = 3;                
-                        UI.PrintUserMenuUI((menuNumber % 4) + 1);
+                            menuNumber = 4;                
+                        UI.PrintUserMenuUI((menuNumber % 5) + 1);
                         break;
 
                     case ConsoleKey.DownArrow:
                         menuNumber++;                  
-                        UI.PrintUserMenuUI((menuNumber % 4) + 1);
+                        UI.PrintUserMenuUI((menuNumber % 5) + 1);
                         break;
                     case ConsoleKey.Enter:
-                        return (menuNumber % 4) + 1;
+                        return (menuNumber % 5) + 1;
                     case ConsoleKey.Escape:
                         return STOP;
                 }

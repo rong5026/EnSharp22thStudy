@@ -8,10 +8,10 @@ namespace Library
 {
     internal class LibraryMain
     {
+        
         static void Main(string[] args)
         {
 
-          
             LibraryStart start = new LibraryStart();
             start.StartProgram();
         }
