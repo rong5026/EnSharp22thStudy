@@ -13,7 +13,9 @@ namespace Library
         const int LOGIN_MODE = 1;
         const int REGISTER_MODE = 2;
         const int STOP = -1;
-
+        const int BACK = -1;
+        const int LOGIN_FAIL = 0;
+        const int LOGIN_SUCCESS = 1;
         LibraryUI UI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
         const Boolean PROGRAM_ON = true;
@@ -21,7 +23,7 @@ namespace Library
         Login login = new Login();
         Register register = new Register();
 
-        bool isLoggedIn;
+        int isLoggedIn;
         int menuNumber = 1;
 
         UserMenu userMenu = new UserMenu();
@@ -41,11 +43,11 @@ namespace Library
                     case LOGIN_MODE: // 로그인
                         isLoggedIn = login.UserLogin(userList); // 로그인했으면 true, 안했으면 false
                                                                 // 여기에 이제 로그인 후 메뉴들 나오는거 해야함 login함수 안에서 해도 되고
-                        if (isLoggedIn)
+                        if (isLoggedIn== LOGIN_SUCCESS)
                         {
                            userMenu.StartUserMenu(); // 
                         }
-                        else
+                        else if(isLoggedIn== LOGIN_FAIL)
                         {
                             Console.Clear();
                             UI.PrintLoginFail(); // 로그인 실패 UI
@@ -56,8 +58,7 @@ namespace Library
                                 return;
                             return;
                         }
-
-                        break;
+                        return;                 
                     case REGISTER_MODE: // 회원가입
                         register.RegistUser(userList);
                         break;

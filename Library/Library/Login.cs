@@ -11,9 +11,9 @@ namespace Library
     {
         
         const int LOGIN_INDEX = 0;
-        const bool BACK = false;
-        const bool LOGIN_FAIL = false;
-        const bool LOGIN_SUCCESS = true;
+        const int BACK = -1;
+        const int LOGIN_FAIL = 0;
+        const int LOGIN_SUCCESS = 1;
         ValidInput validInput =  new ValidInput();
         LibraryUI UI = new LibraryUI();
         ConsoleKeyInfo keyInput;
@@ -23,7 +23,7 @@ namespace Library
         
 
          
-        public bool UserLogin(List<UserVO> list) 
+        public int UserLogin(List<UserVO> list) 
         {
             Console.Clear();
             UI.PrintLogin(); // 위에 로그인 화면 
@@ -48,7 +48,7 @@ namespace Library
                         UI.PrintSuccessLogin();  // 로그인 성공 UI출력
                         keyInput = Console.ReadKey(true);
 
-                        //keyInput.Key == ConsoleKey.Escape;
+                        
                             
                         return LOGIN_SUCCESS; // 로그인 성공
                     }
