@@ -55,7 +55,7 @@ namespace Library
                     list.Add(user);
                     Console.Clear();
                     UI.PrintSuccessRegister(); // 회원가입성공 UI
-
+                   
                     keyInput = Console.ReadKey(true);
                     if (keyInput.Key == ConsoleKey.Enter)
                         return true;

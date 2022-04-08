@@ -303,6 +303,8 @@ namespace Library
 			Console.WriteLine("│        아이디 또는 비밀번호가 틀렸습니다.      │");
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│  (아이디, 비밀번호 8~15자리 영문자+숫자 혼합)  │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요)     │");
 			Console.WriteLine("└------------------------------------------------┘");
 		}
 		public void PrintRegister()
@@ -329,7 +331,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│               회 원 가 입 성 공 !!             │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│              (ENTER을 눌러주세요 !)            │");
+			Console.WriteLine("│             (아무키 1개를 눌러주세요)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintSuccessLogin()
@@ -338,7 +340,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                 로 그 인 성 공 !!              │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│              (ENTER을 눌러주세요 !)            │");
+			Console.WriteLine("│             (아무키 1개를 눌러주세요)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintSuccessRentBook()
@@ -347,7 +349,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│              대 여 하 기 성 공 !!              │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요      │");
+			Console.WriteLine("│             (아무키 1개를 눌러주세요)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintSuccessEditUserData()
@@ -590,8 +592,36 @@ namespace Library
 
 		}
 
-		
+		public void PrintRegisterBook()
+        {
+			Console.WriteLine("┌------------------------------------------------┐");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│                    책 등 록                    │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│     (뒤로가려면 처음에 ESC키를 눌러주세요)     │");
+			Console.WriteLine("└------------------------------------------------┘\n");
 
+			Console.WriteLine();
+			Console.WriteLine(" 책 제목 : ");//11 8
+			Console.WriteLine(" 작가 : "); // 8 9
+			Console.WriteLine(" 출판사 : ");//10 10
+			Console.WriteLine(" 수량 : ");//8 11
+			Console.WriteLine(" 가격 : ");//8,12
+			Console.WriteLine(" 출시일 : "); //10,13
+			
+			Console.SetCursorPosition(11, 8);
+
+
+		}
+		public void PrintRegisterBookSuccess()
+        {
+			Console.WriteLine("┌------------------------------------------------┐");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│                책 등 록 완 료 !                │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│      (뒤로가려면 아무키 1개를 눌러주세요)      │");
+			Console.WriteLine("└------------------------------------------------┘\n");
+		}
 
 
 

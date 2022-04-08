@@ -29,7 +29,7 @@ namespace Library
         {
 
             UI.PrintMainUI();
-            Console.SetWindowSize(125, 40);  //메인화면
+            Console.SetWindowSize(125, 60);  //메인화면
            
 
             while (PROGRAM_ON)
@@ -43,12 +43,17 @@ namespace Library
                                                                 // 여기에 이제 로그인 후 메뉴들 나오는거 해야함 login함수 안에서 해도 되고
                         if (isLoggedIn)
                         {
-                           userMenu.StartUserMenu(); // 로그인 성공 시 메뉴 출력
+                           userMenu.StartUserMenu(); // 
                         }
                         else
                         {
                             Console.Clear();
                             UI.PrintLoginFail(); // 로그인 실패 UI
+                            ConsoleKeyInfo keyInput;
+
+                            keyInput = Console.ReadKey(true);
+                            if (keyInput.Key == ConsoleKey.Enter)
+                                return;
                             return;
                         }
 

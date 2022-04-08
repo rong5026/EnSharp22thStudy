@@ -20,7 +20,7 @@ namespace Library
       
         string id;
         string password;
-
+        
 
          
         public bool UserLogin(List<UserVO> list) 
@@ -46,6 +46,10 @@ namespace Library
 
                         Console.Clear();
                         UI.PrintSuccessLogin();  // 로그인 성공 UI출력
+                        keyInput = Console.ReadKey(true);
+
+                        //keyInput.Key == ConsoleKey.Escape;
+                            
                         return LOGIN_SUCCESS; // 로그인 성공
                     }
                     else           

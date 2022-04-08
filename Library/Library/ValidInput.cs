@@ -105,59 +105,92 @@ namespace Library
                 return EnterUserAddress(x,y);
             return phoneNumber;
         }
-        
-   
-       
+
+
+
         ///책 관련 입력
         ///
-
-        public string EnterBookName() // 책이름 
+        public string EnterBookId(int x, int y) // 책번호
         {
-            Console.SetCursorPosition(18, 1);
+            Console.SetCursorPosition(x, y); // 커서이동
+            name = Console.ReadLine();
+            if (name == "p")
+                return null;
+            // if (name != null)
+            //  check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
+            // if (!check)
+            //return EnterBookId(x,y);
+            return name;
+
+        }
+        public string EnterBookName(int x,int y) // 책이름 
+        {
+            Console.SetCursorPosition(x, y); // 커서이동
             name = Console.ReadLine();
             if (name == "p")
                 return null;
            // if (name != null)
               //  check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
            // if (!check)
-                //return EnterUserName();
+                //return EnterUserName(x,y);
             return name;
 
         }
-        public string EnterAuthor() // 저자이름
+        public string EnterAuthor(int x, int y) // 저자이름
         {
-            Console.SetCursorPosition(19, 2);
+            Console.SetCursorPosition(x, y); // 커서이동
             name = Console.ReadLine();
             if (name == "p")
                 return null;
-           //if (name != null)
-              //  check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
-           // if (!check)
-               // return EnterUserName();
+            //if (name != null)
+            //  check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
+            // if (!check)
+            // return EnterAuthor(x,y);
             return name;
 
         }
-        public string EnterBookPublisher()// 출판사
+        public string EnterBookPublisher(int x, int y)// 출판사
         {
-            Console.SetCursorPosition(18, 3);
+            Console.SetCursorPosition(x, y); // 커서이동
             name = Console.ReadLine();
             if (name == "p")
                 return null;
-          //  if (name != null)
-               // check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 2글자이상
-           // if (!check)
-               // return EnterUserName();
+            //  if (name != null)
+            // check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 2글자이상
+            // if (!check)
+            // return EnterBookPublisher(x,y);
             return name;
         }
 
-        public string EnterBookId(int x,int y)
+ 
+        public string EnterBookCount(int x, int y) // 책 수량
         {
             Console.SetCursorPosition(x, y); // 커서이동
             id = Console.ReadLine();
-            if (id != null)
-               check = Regex.IsMatch(id, @"^[0-9]{1,}$"); //  숫자 1개 이상
-            if (!check)
-                return EnterBookId(x,y);
+           // if (id != null)
+              //  check = Regex.IsMatch(id, @"^[0-9]{1,}$"); //  
+          //  if (!check)
+              //  return EnterBookCount(x, y);
+            return id;
+        }
+        public string EnterBookPrice(int x, int y) // 책 가격
+        {
+            Console.SetCursorPosition(x, y); // 커서이동
+            id = Console.ReadLine();
+           // if (id != null)
+            //    check = Regex.IsMatch(id, @"^[0-9]{1,}$"); // 
+          //  if (!check)
+            //    return EnterBookPrice(x, y);
+            return id;
+        }
+        public string EnterBookDate(int x, int y) // 책 출시 날짜
+        {
+            Console.SetCursorPosition(x, y); // 커서이동
+            id = Console.ReadLine();
+            //if (id != null)
+              //  check = Regex.IsMatch(id, @"^[0-9]{1,}$"); //  
+           // if (!check)
+               // return EnterBookDate(x, y);
             return id;
         }
 

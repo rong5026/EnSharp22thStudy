@@ -21,7 +21,7 @@ namespace Library
         string bookId;
        
 
-        public void SearchBook()
+        public void SearchBook() // 책 검색
         {
             Console.Clear();
             UI.PrintSearchBook();
@@ -34,9 +34,9 @@ namespace Library
             else
             {
               
-                name = validInput.EnterBookName();
-                author = validInput.EnterAuthor();
-                publisher = validInput.EnterBookPublisher();
+                name = validInput.EnterBookName(18,1);
+                author = validInput.EnterAuthor(19,2);
+                publisher = validInput.EnterBookPublisher(18,3);
                 
                 Console.Clear();
                 UI.PrintSearchBook();
