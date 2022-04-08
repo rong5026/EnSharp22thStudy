@@ -13,6 +13,7 @@ namespace Library
         const int BOOK_RENT = 2;
         const int BOOK_BORROW_LIST = 3;
         const int USER_EDIT = 4;
+        const int DELETE = 5;
         const int EXIT = -1;
         LibraryUI UI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
@@ -27,7 +28,7 @@ namespace Library
         string phonenumber;
         string address;
         int userid;
-
+        bool delete;
         int menuNumber;
         ConsoleKeyInfo keyInput;
 
@@ -54,7 +55,12 @@ namespace Library
                         break;
                     case USER_EDIT: // 회원정보 수정
                         EditUserData();
-                        break;                          
+                        break;
+                    case DELETE: // 계정삭제
+                        delete=DeleteUserId();
+                        if (delete)
+                            return;
+                        break;
                     case EXIT:
                         return;
                     default:
@@ -101,10 +107,28 @@ namespace Library
                 if (keyInput.Key == ConsoleKey.Enter)
                     return; // 뒤로가기 
             }
-            
-
+           
         }
+        public bool DeleteUserId()
+        {
+            Console.Clear();
+            UI.PrintDeleteUserId();
 
+            keyInput = Console.ReadKey(true);
+            if (keyInput.Key == ConsoleKey.Escape)
+                return false; // 뒤로가기 
+            else if (keyInput.Key == ConsoleKey.Enter) {
+
+                LibraryStart.userList.RemoveAt(loginUser.SearchLoginUser()); // 로그인한 유저 삭제
+
+                UI.PrintDeleteUserIdSuccess();
+
+                keyInput = Console.ReadKey(true);
+                if (keyInput.Key == ConsoleKey.Enter)
+                    return true; // 뒤로가기 
+            }
+            return false;
+        }
       
 
     }
