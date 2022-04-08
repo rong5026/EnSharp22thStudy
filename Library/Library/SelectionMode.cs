@@ -45,11 +45,13 @@ namespace Library
             }
         }
 
-       public int SelectUserMenu()
+       public int SelectUserOrManagerMenu(string type, int menuCount)
        {
             menuNumber = 0;
-            UI.PrintUserMenuUI(FIND_BOOK);
-
+            if(type == "User")
+                UI.PrintUserMenuUI(FIND_BOOK);
+            else
+                UI.PrintManagerMenuUI(FIND_BOOK);
             while (PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
@@ -58,20 +60,26 @@ namespace Library
                     case ConsoleKey.UpArrow:
                         menuNumber--;
                         if (menuNumber == -1)
-                            menuNumber = 4;                
-                        UI.PrintUserMenuUI((menuNumber % 5) + 1);
+                            menuNumber = menuCount-1;
+                        if (type == "User")
+                            UI.PrintUserMenuUI((menuNumber % menuCount) + 1);
+                        else
+                            UI.PrintManagerMenuUI((menuNumber % menuCount) + 1);                 
                         break;
-
                     case ConsoleKey.DownArrow:
-                        menuNumber++;                  
-                        UI.PrintUserMenuUI((menuNumber % 5) + 1);
+                        menuNumber++;
+                        if (type == "User")
+                            UI.PrintUserMenuUI((menuNumber % menuCount) + 1);
+                        else
+                            UI.PrintManagerMenuUI((menuNumber % menuCount) + 1);
                         break;
                     case ConsoleKey.Enter:
-                        return (menuNumber % 5) + 1;
+                        return (menuNumber % menuCount) + 1;
                     case ConsoleKey.Escape:
                         return STOP;
                 }
             }
-        }
+       }
+
     }
 }

@@ -50,7 +50,8 @@ namespace Library
 
         public void BorrowBook()
         {
-            Console.SetWindowSize(125, 50);
+            Console.SetWindowSize(125, 60);
+
             Console.Clear();
             UI.BorrowBook();
             UI.PrintBookList(null, null, null); //  전체 북리스트 출력.
@@ -125,8 +126,9 @@ namespace Library
         public void ConfirmRentedBook() //현재 로그인한 사람의 대여목록 출력
         {
             Console.Clear();
-            Console.SetWindowSize(125, 50);
-            
+            Console.SetWindowSize(125, 60);
+
+
             UI.PrintRentedBookList(loginUser.SearchLoginUser());
             keyInput = Console.ReadKey(true);
             if (keyInput.Key == ConsoleKey.Escape)
@@ -137,7 +139,8 @@ namespace Library
         public void ConfirmReturnBook() // 반납한 시간, 책 출력
         {
             Console.Clear();
-            Console.SetWindowSize(125, 50);
+            Console.SetWindowSize(125, 60);
+
 
 
             UI.PrintReturnBookTime();

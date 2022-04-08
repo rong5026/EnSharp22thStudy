@@ -15,6 +15,7 @@ namespace Library
         LibraryUI UI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
         UserMode userMode = new UserMode();
+        ManagerMode managerMode = new ManagerMode();    
         UserVO user;
         BookVO book;
 
@@ -53,10 +54,10 @@ namespace Library
         }
         public void StartProgram()
         {
-       
+        
             UI.PrintMainUI();
-            Console.SetWindowSize(125, 45);
-          
+            Console.SetWindowSize(125, 60);
+
             while (PROGRAM_ON)
             {
                 menuNumber = mode.SelectMode(USER_MANAGER); // 회원모드 . 유저모드 선택
@@ -66,6 +67,7 @@ namespace Library
                         userMode.StartUserMode(userList);
                         break;
                     case MANAGE_MODE: // 관리자 모드
+                        managerMode.StartManagerMode();
                         break;
                     case STOP:
                         UI.PrintProgramStop(); // 종료
@@ -75,7 +77,7 @@ namespace Library
                 }
 
             }
-
+        
         }
 
 

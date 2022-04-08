@@ -151,8 +151,6 @@ namespace Library
 			Console.Write("{0}  도서반납", selectFirst);
 			Console.ResetColor();
 			Console.WriteLine("                   │");
-
-
 			Console.Write("                                   │                 ");
 			if (selectNum == 5)
 			{
@@ -164,9 +162,6 @@ namespace Library
 			Console.Write("{0}  도서반납내역", selectFirst);
 			Console.ResetColor();
 			Console.WriteLine("               │");
-
-
-
 			Console.Write("                                   │                 ");
 			if (selectNum == 6)
 			{
@@ -190,15 +185,84 @@ namespace Library
 			Console.Write("{0}  회원탈퇴", selectFirst);
 			Console.ResetColor();
 			Console.WriteLine("                   │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   └------------------------------------------------┘");
+			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
 
 
+		}
+		public void PrintManagerMenuUI(int selectNum)
+        {
+			Console.Clear();
+			PrintMainUI();  // main 이미지 출력
 
+			Console.WriteLine("                                   ┌------------------------------------------------┐");
+			Console.WriteLine("                                   │                                                │");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 1)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서등록", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 2)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서수정", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 3)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서삭제", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 4)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서검색", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 5)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서출력", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
 
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");
 
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
-
 
 		}
 
@@ -314,6 +378,15 @@ namespace Library
 			Console.WriteLine("│              (ENTER을 눌러주세요 !)            │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
+		public void PrintBookList()
+		{
+			Console.WriteLine("┌------------------------------------------------┐");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│                   책 목 록 !!                  │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│      (뒤로가려면 아무키 1개를 눌러주세요)      │");
+			Console.WriteLine("└------------------------------------------------┘\n");
+		}
 		public void PrintSearchBook()
         {
 			Console.WriteLine();
@@ -423,7 +496,7 @@ namespace Library
 
 
 			}
-
+			Console.SetCursorPosition(0, 0);
 
 
 

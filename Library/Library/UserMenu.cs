@@ -8,6 +8,11 @@ namespace Library
 {
     internal class UserMenu
     {
+        public UserMenu()
+        {
+
+
+        }
         const bool PROGRAM_ON = true;
         const int BOOK_SEARCH = 1;
         const int BOOK_RENT = 2;
@@ -39,10 +44,10 @@ namespace Library
             UI.PrintMainUI();
             Console.SetWindowSize(125, 40);
 
-            UI.PrintUserMenuUI(1);
+           // UI.PrintUserMenuUI(1);
             while (PROGRAM_ON)
             {
-                menuNumber = mode.SelectUserMenu();// 도서찾기, 도서대여,대여도서확인,회원정보수정
+                menuNumber = mode.SelectUserOrManagerMenu("User",7);
 
                 switch (menuNumber)
                 {
