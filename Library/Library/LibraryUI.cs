@@ -290,11 +290,20 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                     로 그 인                   │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│          (뒤로가려면 ESC를 눌러주세요)         │");
+			Console.WriteLine("│    (뒤로가려면 아무런 ID,PW값을 넣어 ENTER)    │");		
 			Console.WriteLine("└------------------------------------------------┘");
 			Console.WriteLine("     User ID   : ");
 			Console.Write(" User Password : "); 
 			
+		}
+		public void PrintRealLogin()
+        {
+			Console.WriteLine("┌------------------------------------------------┐");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│          로 그 인  하 시 겠 습 니 까 ?         │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│       예 : ENTER   아니오 :  아무키 1개        │");
+			Console.WriteLine("└------------------------------------------------┘");
 		}
 		public void PrintLoginFail()
         {
@@ -313,7 +322,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                  회 원 가 입                   │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│          (뒤로가려면 ESC를 눌러주세요)         │");
+			Console.WriteLine("│     (뒤로가려면 ESC, 입력하려면 아무키 1개)    │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 			Console.WriteLine(" User ID (8~ 15글자 영어, 숫자포함) : ");//38 7
 			Console.WriteLine(" User PW (8~ 15글자 영어, 숫자포함) : ");//38 8
@@ -349,6 +358,18 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│              대 여 하 기 성 공 !!              │");
 			Console.WriteLine("│                                                │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│             (아무키 1개를 눌러주세요)          │");
+			Console.WriteLine("└------------------------------------------------┘\n");
+		}
+		public void PrintFailRentBook()
+		{
+			Console.WriteLine("┌------------------------------------------------┐");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│              대 여 하 기 실 패 !!              │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│                                                │");
+			Console.WriteLine("│   유요하지않은 ID이거나 책의 수량이 없습니다!  │");
 			Console.WriteLine("│             (아무키 1개를 눌러주세요)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
@@ -358,7 +379,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                정 보 수 정 완 료!              │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│              (ENTER을 눌러주세요 !)            │");
+			Console.WriteLine("│         (아무런 키 1개를 입력하세요 !)         │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintDeleteUserId()
@@ -377,7 +398,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                회 원 탈 퇴 완 료               │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│              (ENTER을 눌러주세요 !)            │");
+			Console.WriteLine("│         (아무런 키 1개를 입력하세요 !)         │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintBookList()
@@ -397,26 +418,36 @@ namespace Library
 			Console.WriteLine("  작가명으로 찾기 : "); //19,2
 			Console.Write("  출판사로 찾기 : ");//18,3
 			Console.WriteLine("\n");
-			Console.WriteLine("(뒤로가려면 ESC를 눌러주세요)");
-			Console.WriteLine("(건너띄려면 p를 위에서 부터 건너띄고자 하는 검색옵션을 한번씩 눌러주세요)");
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine("(뒤로가기 : 처음에 ESC 눌러주세요)");
+			Console.ResetColor();
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("(입력하기 : 아무런 값1개를 입력 후 값을 입력해주세요.)");
+			Console.ResetColor();
+			Console.WriteLine("(건너띄려면 'p'를 위에서 부터 건너띄고자 하는 검색옵션에 넣어 ENTER을 눌러주세요)");
 
 		}
 		public void BorrowBook()
         {
-			Console.WriteLine("┌----------------------------------------------------------------------------------------------------┐");
-			Console.WriteLine("│                                                                                                    │");
-			Console.WriteLine("│    빌릴 책의 ID를 입력해 주세요 :                                                                  │"); //35, 2
-			Console.WriteLine("│                                                                                                    │");
-			Console.WriteLine("│    (뒤로가려면 ESC를 눌러주세요)                                                                   │");
-			Console.WriteLine("└----------------------------------------------------------------------------------------------------┘\n");
+			Console.WriteLine("┌-------------------------------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                                           │");
+			Console.WriteLine("│    빌릴 책의 ID를 입력해 주세요 :                                                         │"); //35, 2
+			Console.WriteLine("│    값의 범위 : 1~ 999                                                                     │");
+			Console.WriteLine("│                                                                                           │");
+			Console.WriteLine("│    뒤로가기 : 처음에 ESC를 눌러주세요                                                     │");
+			Console.WriteLine("│    입력하기: 아무런 값 1개를 입력 후 값을 입력해주세요.                                   │");
+			Console.WriteLine("└-------------------------------------------------------------------------------------------┘\n");
 		}
+
+
 		public void ReturnBook()
         {
 			Console.WriteLine("┌----------------------------------------------------------------------------------------------------┐");
 			Console.WriteLine("│                                                                                                    │");
 			Console.WriteLine("│    반납 할 책의 ID를 입력해 주세요 :                                                               │"); //38 2
 			Console.WriteLine("│                                                                                                    │");
-			Console.WriteLine("│    (뒤로가려면 ESC를 눌러주세요)                                                                   │");
+			Console.WriteLine("│    뒤로가기 : 처음에 ESC를 눌러주세요                                                              │");
+			Console.WriteLine("│    입력하기: 아무런 값 1개를 입력 후 값을 입력해주세요.                                            │");
 			Console.WriteLine("└----------------------------------------------------------------------------------------------------┘\n");
 		}
 		public void ReturnBookSuccess()
@@ -529,15 +560,17 @@ namespace Library
 			}
 
 
+
+
 		}
 		public void PrintUserDateEdit()
         {
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│               개 인 정 보 바 꾸 기             │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│          (뒤로가려면 ESC를 눌러주세요)         │");
-			Console.WriteLine("└------------------------------------------------┘\n");
+			Console.WriteLine("┌------------------------------------------------------┐");
+			Console.WriteLine("│                                                      │");
+			Console.WriteLine("│               개 인 정 보 바 꾸 기                   │");
+			Console.WriteLine("│                                                      │");
+			Console.WriteLine("│ 뒤로가려면 처음에 ESC, 입력하려면 아무런 값 1개 입력 │");
+			Console.WriteLine("└------------------------------------------------------┘\n");
 		}
 
 		public void PrintUserData(int userId)
@@ -594,12 +627,12 @@ namespace Library
 
 		public void PrintRegisterBook()
         {
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                    책 등 록                    │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│     (뒤로가려면 처음에 ESC키를 눌러주세요)     │");
-			Console.WriteLine("└------------------------------------------------┘\n");
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                                 책 등 록                            │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│   뒤로가기 : 처음에 ESC키  입력하기 : 아무런 키 1개 입력 후 입력    │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
 
 			Console.WriteLine();
 			Console.WriteLine(" 책 제목 : ");//11 8
@@ -609,8 +642,20 @@ namespace Library
 			Console.WriteLine(" 가격 : ");//8,12
 			Console.WriteLine(" 출시일 : "); //10,13
 			
-			Console.SetCursorPosition(11, 8);
+			
 
+
+		}
+		public void PrintBookInputType()
+        {
+			Console.WriteLine(" 책 제목 입력 형식 : 모든문자");//11 8
+			Console.WriteLine(" 작가 입력 형식 : 영어,한글 1글자 이상"); // 8 9
+			Console.WriteLine(" 출판사 입력 형식 : 영어,한글 1글자이상");//10 10
+			Console.WriteLine(" 수량 입력 형식 : 1~999");//8 11
+			Console.WriteLine(" 가격 입력 형식 : 1 ~ 9999999");//8,12
+			Console.WriteLine(" 출시일 입력 형식 예시 : 20xx-04-01 or  19xx-12-05 "); //10,13
+
+			Console.SetCursorPosition(11, 8);
 
 		}
 		public void PrintRegisterBookSuccess()
@@ -625,12 +670,12 @@ namespace Library
 
 		public void PrintEditBookCount()
         {
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                 책 수 량 수 정                 │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│      (뒤로가려면 처음에 ESC키를 눌러주세요)    │");
-			Console.WriteLine("└------------------------------------------------┘\n");
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                             책 수 량 수 정                          │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│    뒤로가기 : 처음에 ESC키   입력하기 : 아무키 1개 입력 후 입력)    │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
 			Console.WriteLine();
 			Console.WriteLine(" 수정 할 책 ID : "); // 17 8
 			Console.WriteLine(" 수정 할 책 수량 : "); // 19 9
