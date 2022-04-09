@@ -66,7 +66,7 @@ namespace Library
             Console.SetCursorPosition(x, y);
             name = Console.ReadLine();
             if (name != null)
-                check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{2,}$"); // 영어,한글 2글자이상
+                check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 2글자이상
             if (!check)
                 return EnterUserName(x,y);
             return name;
@@ -116,10 +116,10 @@ namespace Library
             name = Console.ReadLine();
             if (name == "p")
                 return null;
-            // if (name != null)
-            //  check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
-            // if (!check)
-            //return EnterBookId(x,y);
+            if (name != null)
+                check = Regex.IsMatch(name, @"^[1-9]+[0-9]?[0-9]?$"); //1~999까지의 수
+            if (!check)
+                return EnterBookId(x,y);
             return name;
 
         }
@@ -129,10 +129,6 @@ namespace Library
             name = Console.ReadLine();
             if (name == "p")
                 return null;
-           // if (name != null)
-              //  check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
-           // if (!check)
-                //return EnterUserName(x,y);
             return name;
 
         }
@@ -142,10 +138,10 @@ namespace Library
             name = Console.ReadLine();
             if (name == "p")
                 return null;
-            //if (name != null)
-            //  check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
-            // if (!check)
-            // return EnterAuthor(x,y);
+            if (name != null)
+              check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
+            if (!check)
+                return EnterAuthor(x,y);
             return name;
 
         }
@@ -155,10 +151,11 @@ namespace Library
             name = Console.ReadLine();
             if (name == "p")
                 return null;
-            //  if (name != null)
-            // check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 2글자이상
-            // if (!check)
-            // return EnterBookPublisher(x,y);
+            if (name != null)
+
+                check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
+            if (!check)
+                return EnterBookPublisher(x,y);
             return name;
         }
 
@@ -167,30 +164,30 @@ namespace Library
         {
             Console.SetCursorPosition(x, y); // 커서이동
             id = Console.ReadLine();
-           // if (id != null)
-              //  check = Regex.IsMatch(id, @"^[0-9]{1,}$"); //  
-          //  if (!check)
-              //  return EnterBookCount(x, y);
+            if (id != null)
+                check = Regex.IsMatch(id, @"^[1-9]+[0-9]?[0-9]?$"); //  
+            if (!check)
+               return EnterBookCount(x, y);
             return id;
         }
         public string EnterBookPrice(int x, int y) // 책 가격
         {
             Console.SetCursorPosition(x, y); // 커서이동
             id = Console.ReadLine();
-           // if (id != null)
-            //    check = Regex.IsMatch(id, @"^[0-9]{1,}$"); // 
-          //  if (!check)
-            //    return EnterBookPrice(x, y);
+            if (id != null)
+                check = Regex.IsMatch(id, @"^[1-9]+[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?$"); //   1 ~999개
+            if (!check)
+                return EnterBookCount(x, y);
             return id;
         }
         public string EnterBookDate(int x, int y) // 책 출시 날짜
         {
             Console.SetCursorPosition(x, y); // 커서이동
             id = Console.ReadLine();
-            //if (id != null)
-              //  check = Regex.IsMatch(id, @"^[0-9]{1,}$"); //  
-           // if (!check)
-               // return EnterBookDate(x, y);
+            if (id != null)
+                check = Regex.IsMatch(id, @"^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$"); //2010-04-23
+            if (!check)
+                return EnterBookCount(x, y);
             return id;
         }
 

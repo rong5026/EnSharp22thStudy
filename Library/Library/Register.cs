@@ -36,13 +36,13 @@ namespace Library
             else
             {
                 //user정보 입력.
-                userData[0] = EnterUserDate(null, "id");
+                userData[0] = EnterUserDate(null, "id"); // 가입된 사람의 id와 중복되면 안됨.
                 userData[1] = EnterUserDate(null, "password");
-                userData[2] = EnterUserDate(userData[1], "repassword");
-                userData[3] = EnterUserDate(null, "name");
-                userData[4] = EnterUserDate(null, "age");
-                userData[5] = EnterUserDate(null, "phonenumber");
-                userData[6] = EnterUserDate(null, "address");
+                userData[2] = EnterUserDate(userData[1], "repassword"); // 입력한 비밀번호가 같은지 확인
+                userData[3] = EnterUserDate(null, "name"); // 유저이름 : 영어 또는 한글 1글자 이상
+                userData[4] = EnterUserDate(null, "age"); // 0~ 199세 까지 입력
+                userData[5] = EnterUserDate(null, "phonenumber"); // 전화번호 01x-xxxx-xxxx
+                userData[6] = EnterUserDate(null, "address");// 주소 : 한글 + 숫자 최소 3단어 이상
 
                 user.Id = userData[0];
                 user.Password = userData[1];
@@ -51,7 +51,7 @@ namespace Library
                 user.PhoneNumber = userData[5];
                 user.Address = userData[6];
 
-                list.Add(user);
+                list.Add(user); // UserList에 유저정보 추가
                 Console.Clear();
                 UI.PrintSuccessRegister(); // 회원가입성공 UI
 
@@ -64,7 +64,7 @@ namespace Library
 
 
         }
-        public string EnterUserDate(string password, string type)
+        public string EnterUserDate(string password, string type) // 유저의 정보를 입력받음
         {
             switch (type)
             {

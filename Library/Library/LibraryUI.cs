@@ -679,51 +679,78 @@ namespace Library
 			Console.WriteLine();
 			Console.WriteLine(" 수정 할 책 ID : "); // 17 8
 			Console.WriteLine(" 수정 할 책 수량 : "); // 19 9
-			
+			Console.WriteLine(" 수정 할 책 ID 형식 :  1~999 수 입력"); // 17 8
+			Console.WriteLine(" 수정 할 책 수량 형식: 1~999 수 입력 "); // 19 9
+
 			PrintBookList(null, null, null); // 책리스트 출력
 
 			Console.SetCursorPosition(17, 8);
 		}
 		public void PrintEditBookCountSuccess()
 		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│               수 량 수 정 완 료 !              │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│      (뒤로가려면 아무키 1개를 눌러주세요)      │");
-			Console.WriteLine("└------------------------------------------------┘\n");
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                           수 량 수 정 완 료 !                       │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                 (뒤로가려면 아무키 1개를 눌러주세요)                │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
+			PrintBookList(null, null, null); // 책리스트 출력
+			Console.SetCursorPosition(0, 0);
+
+		}
+		public void PrintEditBookCountFail()
+		{
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                      유효한 도서 ID가 아닙니다!                     │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                 (뒤로가려면 아무키 1개를 눌러주세요)                │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
 			PrintBookList(null, null, null); // 책리스트 출력
 			Console.SetCursorPosition(0, 0);
 
 		}
 		public void PrintDeleteBook()
 		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│               삭 제 할 책 선 택                │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│      (뒤로가려면 처음에 ESC키를 눌러주세요)    │");
-			Console.WriteLine("└------------------------------------------------┘\n");
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                            삭 제 할 책 선 택                        │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│    뒤로가기 : 처음에 ESC키   입력하기 : 아무키 1개 입력 후 입력)    │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
 			Console.WriteLine();
 			Console.WriteLine(" 삭제 할 책 ID : "); // 17 8
 			Console.WriteLine(" 삭제 할 책 수량 : ");//18 9
-
+			Console.WriteLine(" 삭제 할 책 ID 형식 :  1~999 수 입력"); // 17 8
+			Console.WriteLine(" 삭제 할 책 수량 형식: 1~999 수 입력 "); // 19 9
 			PrintBookList(null, null, null); // 책리스트 출력
 
 			Console.SetCursorPosition(17, 8);
 		}
 		public void PrintDeleteBookSuccess()
 		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                책 삭 제 완 료 !                │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│      (뒤로가려면 아무키 1개를 눌러주세요)      │");
-			Console.WriteLine("└------------------------------------------------┘\n");
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                              책 삭 제 완 료 !                       │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                 (뒤로가려면 아무키 1개를 눌러주세요)                │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
 
 			PrintBookList(null, null, null); // 책리스트 출력
 
 			Console.SetCursorPosition(0,0);
+		}
+		public void PrintDeleteBookFail()
+		{
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                              책 삭 제 실 패 !                       │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                 (뒤로가려면 아무키 1개를 눌러주세요)                │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
+
+			
+			
 		}
 
 	}

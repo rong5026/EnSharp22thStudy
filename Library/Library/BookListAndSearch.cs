@@ -14,7 +14,7 @@ namespace Library
         ConsoleKeyInfo keyInput;
         ValidInput validInput = new ValidInput();
         LoginedUser loginUser = new LoginedUser();
-        UserVO user = new UserVO();
+      
         string name=null;
         string author=null;
         string publisher=null;
@@ -34,10 +34,10 @@ namespace Library
             else
             {
               
-                name = validInput.EnterBookName(18,1);
-                author = validInput.EnterAuthor(19,2);
-                publisher = validInput.EnterBookPublisher(18,3);
-                
+                name = validInput.EnterBookName(18,1); // 모든 값포함
+                author = validInput.EnterAuthor(19,2); // 영어,한자 1글자 이상
+                publisher = validInput.EnterBookPublisher(18,3); // // 영어,한자 1글자 이상
+
                 Console.Clear();
                 UI.PrintSearchBook();
                 UI.PrintBookList( name, author, publisher);
@@ -63,7 +63,7 @@ namespace Library
                 return; // ESC 누르면 뒤로가기 
             else
             {
-                bookId = validInput.EnterBookId(35,2);
+                bookId = validInput.EnterBookId(35,2); // 책Id 1~999수
 
                 for(int index = 0; index < LibraryStart.bookList.Count; index++)
                 {
@@ -75,17 +75,20 @@ namespace Library
                             BookVO.totalBook--;  //도서관에 있는 도서수 1개 감소
 
                             LibraryStart.userList[loginUser.SearchLoginUser()].RendtedBookId.Add(index);// Book의 index를 userList의 RentedBookid리스트에 추가
-                            break;                        
 
+                            Console.SetCursorPosition(0, 0);
+                            UI.PrintSuccessRentBook();
+                            keyInput = Console.ReadKey(true);                      
+                            return; // 뒤로가기 
                         }
                     }
                 }
-
                 Console.SetCursorPosition(0, 0);
-                UI.PrintSuccessRentBook();
+                UI.PrintFailRentBook();
                 keyInput = Console.ReadKey(true);
-                if (keyInput.Key == ConsoleKey.Escape)
-                    return; // 뒤로가기 
+                return; // 뒤로가기 
+
+
 
             }
         }
@@ -117,9 +120,8 @@ namespace Library
 
                 Console.Clear();
                 UI.ReturnBookSuccess();
-                keyInput = Console.ReadKey(true);
-                if (keyInput.Key == ConsoleKey.Enter)
-                    return; // 뒤로가기 
+                keyInput = Console.ReadKey(true);           
+                return; // 뒤로가기 
 
             }
         }
@@ -130,9 +132,8 @@ namespace Library
 
 
             UI.PrintRentedBookList(loginUser.SearchLoginUser());
-            keyInput = Console.ReadKey(true);
-            if (keyInput.Key == ConsoleKey.Escape)
-                return; // 뒤로가기 
+            keyInput = Console.ReadKey(true);        
+            return; // 뒤로가기 
 
         }
 

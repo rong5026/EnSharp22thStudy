@@ -47,7 +47,7 @@ namespace Library
            // UI.PrintUserMenuUI(1);
             while (PROGRAM_ON)
             {
-                menuNumber = mode.SelectUserOrManagerMenu("User",7);
+                menuNumber = mode.SelectUserOrManagerMenu("User",7); // 유저메뉴 위아래 화살표로 선택하기
 
                 switch (menuNumber)
                 {
@@ -116,9 +116,8 @@ namespace Library
 
                 UI.PrintSuccessEditUserData();
 
-                keyInput = Console.ReadKey(true);
-                if (keyInput.Key == ConsoleKey.Enter)
-                    return; // 뒤로가기 
+                keyInput = Console.ReadKey(true);            
+                return; // 뒤로가기 
             }
            
         }
@@ -137,10 +136,10 @@ namespace Library
                 UI.PrintDeleteUserIdSuccess();
 
                 keyInput = Console.ReadKey(true);
-                if (keyInput.Key == ConsoleKey.Enter)
-                    return true; // 뒤로가기 
+              
+                return true; // 뒤로가기 
             }
-            return false;
+            return DeleteUserId();
         }
       
 

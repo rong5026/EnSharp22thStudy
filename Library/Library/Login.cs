@@ -26,15 +26,17 @@ namespace Library
         public int UserLogin(List<UserVO> list) 
         {
             Console.Clear();
-            UI.PrintLogin(); // 위에 로그인 화면 
-
+            UI.PrintRealLogin(); // 로그인 할건지 묻는 UI
+          
             Console.SetCursorPosition(17, 6);
             keyInput = Console.ReadKey(true);
 
             if (keyInput.Key == ConsoleKey.Escape)
                 return BACK; // ESC 누르면 뒤로가기 
-            else
+            else 
             {
+                Console.Clear();
+                UI.PrintLogin(); // 위에 로그인 화면 
                 id = validInput.EnterIdOrPassword(17,6); // id 입력
                 password = validInput.EnterIdOrPassword(17,7); // password입력
 
@@ -59,6 +61,8 @@ namespace Library
                 return LOGIN_FAIL;
 
             }
+            
+            
         }
     }
 }

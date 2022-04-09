@@ -115,8 +115,8 @@ namespace Library
                 UI.PrintRegisterBookSuccess();             
 
                 keyInput = Console.ReadKey(true);
-                if (keyInput.Key == ConsoleKey.Escape)
-                    return; // ESC 누르면 뒤로가기 
+              
+                return; // ESC 누르면 뒤로가기 
 
             }              
         }
@@ -128,20 +128,32 @@ namespace Library
 
             UI.PrintEditBookCount(); // 책수량 선택 UI
 
-            bookId= Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
-            bookCount = Convert.ToInt16(validInput.EnterBookCount(19, 9)); // 책 수량
-
-            for(int index = 0; index < BookVO.totalBook; index++) // 책 id가 같은것을 찾아서 책의 수를 변경
-            {
-                if (bookId == LibraryStart.bookList[index].Id)
-                {
-                    LibraryStart.bookList[index].BookCount = bookCount;
-                    break;
-                }
-            }
-            Console.Clear();
-            UI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
             keyInput = Console.ReadKey(true);
+            if (keyInput.Key == ConsoleKey.Escape)
+                return; // ESC 누르면 뒤로가기 
+            else
+            {
+                bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
+                bookCount = Convert.ToInt16(validInput.EnterBookCount(19, 9)); // 책 수량
+
+                for (int index = 0; index < BookVO.totalBook; index++) // 책 id가 같은것을 찾아서 책의 수를 변경
+                {
+                    if (bookId == LibraryStart.bookList[index].Id)
+                    {
+                        LibraryStart.bookList[index].BookCount = bookCount;
+                        Console.Clear();
+                        UI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
+                        keyInput = Console.ReadKey(true);
+                        return;
+                    }
+                }
+                UI.PrintEditBookCountFail();
+                keyInput = Console.ReadKey(true);
+                return;
+
+
+
+            }
           
         }
        
@@ -152,26 +164,39 @@ namespace Library
             Console.SetWindowSize(125, 60);
 
             UI.PrintDeleteBook(); // 책 삭제 UI
-            bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
-            bookCount = Convert.ToInt16(validInput.EnterBookCount(18, 9)); // 책 수량
-
-            for (int index = 0; index < BookVO.totalBook; index++) // 
+            if (keyInput.Key == ConsoleKey.Escape)
+                return; // ESC 누르면 뒤로가기 
+            else
             {
-                if (bookId == LibraryStart.bookList[index].Id)
+              
+                bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
+                bookCount = Convert.ToInt16(validInput.EnterBookCount(18, 9)); // 책 수량
+
+                for (int index = 0; index < BookVO.totalBook; index++) // 
                 {
-                    LibraryStart.bookList[index].BookCount--;
-                    if (LibraryStart.bookList[index].BookCount == 0)
-                    {                      
-                        LibraryStart.bookList.RemoveAt(index);                  
+                    if (bookId == LibraryStart.bookList[index].Id)
+                    {
+                        LibraryStart.bookList[index].BookCount--;
+                        if (LibraryStart.bookList[index].BookCount == 0)
+                        {
+                            LibraryStart.bookList.RemoveAt(index);
+                            BookVO.totalBook--;
+                        }
+                        Console.Clear();
+                        UI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
+                        keyInput = Console.ReadKey(true);
+                        return;
                     }
-
-                    break;
                 }
-            }
 
-            Console.Clear();
-            UI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
-            keyInput = Console.ReadKey(true);
+                UI.PrintDeleteBookFail();
+                keyInput = Console.ReadKey(true);
+                return;
+
+
+
+
+            }
 
         }
     }

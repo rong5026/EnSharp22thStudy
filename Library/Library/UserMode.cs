@@ -43,10 +43,10 @@ namespace Library
                 {
                     case LOGIN_MODE: // 로그인
                         isLoggedIn = login.UserLogin(userList); // 로그인했으면 true, 안했으면 false
-                                                                // 여기에 이제 로그인 후 메뉴들 나오는거 해야함 login함수 안에서 해도 되고
+                                                               
                         if (isLoggedIn== LOGIN_SUCCESS)
                         {
-                           userMenu.StartUserMenu(); // 
+                           userMenu.StartUserMenu(); // 로그인 성공 UI
                         }
                         else if(isLoggedIn== LOGIN_FAIL)
                         {
@@ -54,9 +54,7 @@ namespace Library
                             UI.PrintLoginFail(); // 로그인 실패 UI
                             ConsoleKeyInfo keyInput;
 
-                            keyInput = Console.ReadKey(true);
-                            if (keyInput.Key == ConsoleKey.Enter)
-                                return;
+                            keyInput = Console.ReadKey(true);                                                       
                             return;
                         }
                         return;                 
