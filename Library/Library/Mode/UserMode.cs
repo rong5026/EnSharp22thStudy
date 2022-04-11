@@ -13,15 +13,14 @@ namespace Library
         LibraryUI UI = new LibraryUI();
         UserModeUI UserUI = new UserModeUI();
         SelectionMode mode = new SelectionMode();
-        public const Boolean PROGRAM_ON = true;
-        
+        UserMenu userMenu = new UserMenu();            
         Login login = new Login();
         Register register = new Register();
-
+        ConsoleKeyInfo keyInput;
         int isLoggedIn;
         int menuNumber = 1;
 
-        UserMenu userMenu = new UserMenu();
+      
         public void StartUserMode(List<UserVO> userList)
         {
 
@@ -30,7 +29,7 @@ namespace Library
 
 
 
-            while (PROGRAM_ON)
+            while (Const.PROGRAM_ON)
             {
                 menuNumber = mode.SelectMode(Const.LOGIN_REGISTER); // 로그인 . 회원가입 선택
 
@@ -47,8 +46,7 @@ namespace Library
                         {
                             Console.Clear();
                             UserUI.PrintLoginFail(); // 로그인 실패 UI
-                            ConsoleKeyInfo keyInput;
-
+                         
                             keyInput = Console.ReadKey(true);                                                       
                             return;
                         }

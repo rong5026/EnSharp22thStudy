@@ -9,10 +9,8 @@ namespace Library
     internal class SelectionMode
     {
         ConsoleKeyInfo keyInput;
-
- 
         LibraryUI UI = new LibraryUI();
-        public const Boolean PROGRAM_ON = true;
+    
         int menuNumber;
 
         public int SelectMode(int type)
@@ -49,7 +47,7 @@ namespace Library
                 UI.PrintUserMenuUI(Const.FIND_BOOK);
             else
                 UI.PrintManagerMenuUI(Const.FIND_BOOK);
-            while (PROGRAM_ON)
+            while (Const.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 switch (keyInput.Key)

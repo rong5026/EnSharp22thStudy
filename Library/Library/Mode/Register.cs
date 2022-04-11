@@ -10,7 +10,7 @@ namespace Library
 
     {
 
-        LibraryUI UI = new LibraryUI();
+       
         UserModeUI UserUI = new UserModeUI();
         ValidInput validInput = new ValidInput();
         UserVO user = new UserVO();
@@ -63,7 +63,6 @@ namespace Library
                
             }
 
-
         }
         public string EnterUserDate(string password, string type) // 유저의 정보를 입력받음
         {
@@ -88,7 +87,7 @@ namespace Library
                     phoneNumber = validInput.EnterUserPhoneNumber(41, 12);
                     return phoneNumber;
                 case "address":
-                    address = validInput.EnterUserAddress(38, 13);
+                    address = validInput.EnterUserAddress(46, 13);
                     return address;
                 default:
                     return "EIXT";

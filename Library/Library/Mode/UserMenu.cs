@@ -17,7 +17,7 @@ namespace Library
         LibraryUI UI = new LibraryUI();
         UserModeUI UserUI = new UserModeUI();
         SelectionMode mode = new SelectionMode();
-        BookListAndSearch book = new BookListAndSearch();
+        BookSearching book = new BookSearching();
         ValidInput validInput = new ValidInput();
         LoginedUser loginUser = new LoginedUser();
         string id;
@@ -96,7 +96,7 @@ namespace Library
                 name = validInput.EnterUserName(41,24);
                 age = validInput.EnterUserAge(39,25);
                 phonenumber = validInput.EnterUserPhoneNumber(41,26);
-                address = validInput.EnterUserAddress(38,27);
+                address = validInput.EnterUserAddress(46,27);
 
                 userid = loginUser.SearchLoginUser();
 

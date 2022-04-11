@@ -9,8 +9,8 @@ namespace Library
 {
     internal class ValidInput
     {
- 
- 
+
+        UserModeUI UserUI = new UserModeUI();
         bool check;
         string id;
         string repassword;
@@ -34,14 +34,18 @@ namespace Library
             
         }
        
-        public string EnterId(int x, int y)
+        public string EnterId(int x, int y) // 회원가입할때 id가 같은게 있으면 안됨
         {
             id = EnterIdOrPassword(x, y);
 
             for(int index = 0; index <LibraryStart.userList.Count ; index++)
             {
-                if(LibraryStart.userList[index].Id == id)
-                    return EnterId(x,y);
+                if (LibraryStart.userList[index].Id == id)
+                {
+                    UserUI.PrintMessage(x, y, "기존 회원과 중복되는 ID입니다! 다른 ID를 입력해주세요.");
+                   
+                    return EnterId(x, y);
+                }
             }
 
             return id;
@@ -51,8 +55,12 @@ namespace Library
         {
             repassword = EnterIdOrPassword(x, y);
 
-            if(repassword != password)
-                return EnterRepassword(password,x,y);
+            if (repassword != password)
+            {
+                UserUI.PrintMessage(x, y, "입력하신 비밀번호와 일치하지 않습니다! 다시입력해주세요");
+              
+                return EnterRepassword(password, x, y);
+            }
             else
                 return repassword;
         }
@@ -63,9 +71,12 @@ namespace Library
             Console.SetCursorPosition(x, y);
             name = Console.ReadLine();
             if (name != null)
-                check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 2글자이상
+                check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"); // 영어,한글,숫자 1글자이상
             if (!check)
-                return EnterUserName(x,y);
+            {
+                UserUI.PrintMessage(x, y, "영어,한글,숫자 1글자이상 입력해주세요!");
+                return EnterUserName(x, y);
+            }
             return name;
 
         }
@@ -73,8 +84,8 @@ namespace Library
         {
             Console.SetCursorPosition(x, y);
             age = Console.ReadLine();
-            if (age != null)
-                check = Regex.IsMatch(age, @"^1?[0-9]?[0-9]$"); // 0~ 199
+            if (age != null)             
+                   check = Regex.IsMatch(age, @"^1?[0-9]?[0-9]$"); // 0~ 199
             if (!check)
                 return EnterUserAge(x,y);
             return age;
@@ -88,7 +99,10 @@ namespace Library
             if (phoneNumber != null)
                 check = Regex.IsMatch(phoneNumber, @"01([0-9]{1})-([0-9]{4})-([0-9]{4})$"); // 01로 시작0~9숫자중 한개 오고 0~9 숫자 4개-0~9 숫자4개
             if (!check)
-                return EnterUserPhoneNumber(x,y);
+            {
+                UserUI.PrintMessage(x, y, "01x-xxxx-xxxx 형식에 맞게 입력해주세요!");
+                return EnterUserPhoneNumber(x, y);
+            }
             return phoneNumber;
            
         }

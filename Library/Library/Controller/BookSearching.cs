@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    internal class BookListAndSearch
+    internal class BookSearching
     {
         
    
@@ -15,12 +15,17 @@ namespace Library
         ConsoleKeyInfo keyInput;
         ValidInput validInput = new ValidInput();
         LoginedUser loginUser = new LoginedUser();
-      
-        string name=null;
-        string author=null;
-        string publisher=null;
+        string name;
+        string author;
+        string publisher;
         string bookId;
-       
+        public BookSearching()
+        {
+            name = null;
+            author = null;
+            publisher = null;
+            
+        }
 
         public void SearchBook() // 책 검색
         {

@@ -12,8 +12,7 @@ namespace Library
         
         
         ValidInput validInput =  new ValidInput();
-        UserModeUI UserModeUI = new UserModeUI();
-        LibraryUI UI = new LibraryUI();
+        UserModeUI UserModeUI = new UserModeUI();      
         ConsoleKeyInfo keyInput;
       
         string id;

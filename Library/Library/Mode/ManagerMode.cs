@@ -11,7 +11,7 @@ namespace Library
         LibraryUI UI = new LibraryUI();
         ManagerModeUI ManagerUI = new ManagerModeUI();
         SelectionMode mode = new SelectionMode();
-        BookListAndSearch book = new BookListAndSearch();
+        BookSearching book = new BookSearching();
         ValidInput validInput = new ValidInput();
         BookVO bookVO = new BookVO();
       

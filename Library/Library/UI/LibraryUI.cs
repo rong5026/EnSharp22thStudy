@@ -208,10 +208,10 @@ namespace Library
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
 
-			PrintManagerMenuList(selectNum,1, "도서검색");
+			PrintManagerMenuList(selectNum,1, "도서등록");
 			PrintManagerMenuList(selectNum,2, "도서수정");
 			PrintManagerMenuList(selectNum,3, "도서삭제");
-			PrintManagerMenuList(selectNum,4, "도서등록");
+			PrintManagerMenuList(selectNum,4, "도서검색");
 			PrintManagerMenuList(selectNum,5, "도서출력");
 			PrintManagerMenuList(selectNum,6, "회원정보");
 
@@ -282,17 +282,21 @@ namespace Library
 				{
                     if (author != null)
                     {
-						if(publisher == null)                        	//XOX
-							if (author == LibraryStart.bookList[index].Author)
-								validIndex[indexCount++] = index;						
-                        else                      	//XOO
-							if (publisher == LibraryStart.bookList[index].Publisher && author == LibraryStart.bookList[index].Author)
-								validIndex[indexCount++] = index;						
+						if (publisher == null)
+						{               //XOX
+							if (LibraryStart.bookList[index].Author.Contains(author))
+								validIndex[indexCount++] = index;
+						}
+						else
+						{                   //XOO
+							if (LibraryStart.bookList[index].Publisher.Contains(publisher) && LibraryStart.bookList[index].Author.Contains(author))
+								validIndex[indexCount++] = index;
+						}
                     }
                     else
                     {	//XXO
 						if (publisher != null)																
-							if (publisher == LibraryStart.bookList[index].Publisher)
+							if (LibraryStart.bookList[index].Publisher.Contains(publisher))
 								validIndex[indexCount++] = index;						
 					}
 				
@@ -302,26 +306,33 @@ namespace Library
                 {
 					if (author != null)
 					{
-						if (publisher == null)						   //OOX
-							if (name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author)
-								validIndex[indexCount++] = index;					
-						else							//OOO
-							if (name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author &&
-						publisher == LibraryStart.bookList[index].Publisher)
-							validIndex[indexCount++] = index;
-						
-                        
+						if (publisher == null)
+						{               //OOX
+							if (LibraryStart.bookList[index].Name.Contains(name) && LibraryStart.bookList[index].Author.Contains(author))
+								validIndex[indexCount++] = index;
+						}
+						else
+						{                  //OOO
+							if (LibraryStart.bookList[index].Name.Contains(name) && LibraryStart.bookList[index].Author.Contains(author) &&
+						LibraryStart.bookList[index].Publisher.Contains(publisher))
+								validIndex[indexCount++] = index;
+
+						}
 					}
 					else
-					{	//OXX
-						if (publisher == null)						
-							if (name == LibraryStart.bookList[index].Name)
-								validIndex[indexCount++] = index;						
-						else						
-							//OXO
-							if (publisher == LibraryStart.bookList[index].Publisher && name == LibraryStart.bookList[index].Name)
+					{   //OXX
+						if (publisher == null)
+						{
+							if (LibraryStart.bookList[index].Name.Contains(name))
 								validIndex[indexCount++] = index;
-						
+						}
+						else
+						{
+							//OXO
+							if (LibraryStart.bookList[index].Publisher.Contains(publisher) && LibraryStart.bookList[index].Name.Contains(name))
+								validIndex[indexCount++] = index;
+						}
+
 					}
 				}
 
