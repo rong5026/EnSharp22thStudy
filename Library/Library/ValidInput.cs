@@ -10,10 +10,9 @@ namespace Library
     internal class ValidInput
     {
  
-        string stringInput;
+ 
         int integerInput;
         bool check;
-
         string id;
         string passoword;
         string repassword;
@@ -129,7 +128,10 @@ namespace Library
             name = Console.ReadLine();
             if (name == "p")
                 return null;
-            return name;
+            if (name != null)
+                return name;
+            else
+                return null;
 
         }
         public string EnterAuthor(int x, int y) // 저자이름

@@ -13,15 +13,7 @@ namespace Library
 
 
         }
-        const bool PROGRAM_ON = true;
-        const int BOOK_SEARCH = 1;
-        const int BOOK_RENT = 2;
-        const int BOOK_BORROW_LIST = 3;
-        const int BOOK_RETURN = 4;
-        const int BOOK_RETRUN_HISTORY =5;
-        const int USER_EDIT = 6;
-        const int DELETE = 7;
-        const int EXIT = -1;
+      
         LibraryUI UI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
         BookListAndSearch book = new BookListAndSearch();
@@ -45,36 +37,36 @@ namespace Library
             Console.SetWindowSize(125, 40);
 
            // UI.PrintUserMenuUI(1);
-            while (PROGRAM_ON)
+            while (Const.PROGRAM_ON)
             {
                 menuNumber = mode.SelectUserOrManagerMenu("User",7); // 유저메뉴 위아래 화살표로 선택하기
 
                 switch (menuNumber)
                 {
-                    case BOOK_SEARCH: // 도서찾기                    
+                    case Const.BOOK_SEARCH: // 도서찾기                    
                         book.SearchBook();
                         break;
-                    case BOOK_RENT: // 도서대여
+                    case Const.BOOK_RENT: // 도서대여
                         book.BorrowBook();
                         break;
-                    case BOOK_BORROW_LIST: //대여도서확인
+                    case Const.BOOK_BORROW_LIST: //대여도서확인
                         book.ConfirmRentedBook();
                         break;
-                    case BOOK_RETURN: // 도서 반납
+                    case Const.BOOK_RETURN: // 도서 반납
                         book.ReturnBook();
                         break;
-                    case BOOK_RETRUN_HISTORY:
+                    case Const.BOOK_RETRUN_HISTORY:
                         book.ConfirmReturnBook(); // 도서반납확인
                         break;
-                    case USER_EDIT: // 회원정보 수정
+                    case Const.USER_EDIT: // 회원정보 수정
                         EditUserData();
                         break;
-                    case DELETE: // 계정삭제
+                    case Const.DELETE: // 계정삭제
                         delete=DeleteUserId();
                         if (delete)
                             return;
                         break;
-                    case EXIT:
+                    case Const.EXIT:
                         return;
                     default:
                         return;

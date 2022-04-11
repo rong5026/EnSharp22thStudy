@@ -10,37 +10,34 @@ namespace Library
     {
         ConsoleKeyInfo keyInput;
 
-        const int FIND_BOOK = 1;
-        const int USER_MODE = 1;
-        const int MANAGE_MODE = 2;
-        const int STOP = -1;
+ 
         LibraryUI UI = new LibraryUI();
-        const Boolean PROGRAM_ON = true;
+        public const Boolean PROGRAM_ON = true;
         int menuNumber;
 
         public int SelectMode(int type)
         {
             
             menuNumber = 1;
-            UI.PrintSelectUI(USER_MODE, type);
-            while (PROGRAM_ON)
+            UI.PrintSelectUI(Const.USER_MODE, type);
+            while (Const.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 switch (keyInput.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        menuNumber = USER_MODE;
-                        UI.PrintSelectUI(USER_MODE, type);
+                        menuNumber = Const.USER_MODE;
+                        UI.PrintSelectUI(Const.USER_MODE, type);
                         break;
 
                     case ConsoleKey.DownArrow:
-                        menuNumber = MANAGE_MODE;
-                        UI.PrintSelectUI(MANAGE_MODE, type);
+                        menuNumber = Const.MANAGE_MODE;
+                        UI.PrintSelectUI(Const.MANAGE_MODE, type);
                         break;
                     case ConsoleKey.Enter:
                         return menuNumber;
                     case ConsoleKey.Escape:
-                        return STOP;
+                        return Const.STOP;
                 }
             }
         }
@@ -49,9 +46,9 @@ namespace Library
        {
             menuNumber = 0;
             if(type == "User")
-                UI.PrintUserMenuUI(FIND_BOOK);
+                UI.PrintUserMenuUI(Const.FIND_BOOK);
             else
-                UI.PrintManagerMenuUI(FIND_BOOK);
+                UI.PrintManagerMenuUI(Const.FIND_BOOK);
             while (PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
@@ -76,7 +73,7 @@ namespace Library
                     case ConsoleKey.Enter:
                         return (menuNumber % menuCount) + 1;
                     case ConsoleKey.Escape:
-                        return STOP;
+                        return Const.STOP;
                 }
             }
        }

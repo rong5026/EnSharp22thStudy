@@ -8,9 +8,7 @@ namespace Library
 {
     internal class LibraryUI
     {
-		const Boolean PROGRAM_ON = true;
-		const int WIDTH = 120;
-		const int FIRST_TYPE = 1;
+		
 		string selectFirst;
 		string selectSecond;
 		int bookIndex;
@@ -70,7 +68,7 @@ namespace Library
 					Console.ForegroundColor = ConsoleColor.Green;
 				else
 					Console.ForegroundColor = ConsoleColor.Red;
-			if (type == FIRST_TYPE)
+			if (type == Const.FIRST_TYPE)
 				Console.Write("{0}    유저모드", selectFirst);
 			else
 				Console.Write("{0}    로그인  ", selectFirst);
@@ -85,7 +83,7 @@ namespace Library
 				else
 					Console.ForegroundColor = ConsoleColor.Red;
 
-			if (type == FIRST_TYPE)
+			if (type == Const.FIRST_TYPE)
 				Console.Write("{0}    관리자모드", selectSecond);
 			else
 				Console.Write("{0}    회원가입  ", selectSecond);
@@ -207,7 +205,7 @@ namespace Library
 			}
 			else
 				selectFirst = "○";
-			Console.Write("{0}  도서등록", selectFirst);
+			Console.Write("{0}  도서검색", selectFirst);
 			Console.ResetColor();
 			Console.WriteLine("                   │");
 
@@ -243,7 +241,7 @@ namespace Library
 			}
 			else
 				selectFirst = "○";
-			Console.Write("{0}  도서검색", selectFirst);
+			Console.Write("{0}  도서등록", selectFirst);
 			Console.ResetColor();
 			Console.WriteLine("                   │");
 
@@ -258,6 +256,20 @@ namespace Library
 			Console.Write("{0}  도서출력", selectFirst);
 			Console.ResetColor();
 			Console.WriteLine("                   │");
+
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 6)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  회원정보", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
+
 
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");
@@ -752,6 +764,27 @@ namespace Library
 			
 			
 		}
+
+		public void PrintUserList()
+        {
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                             유 저 목 록                             │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                 (뒤로가려면 아무키 1개를 눌러주세요)                │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
+			for (int index = 1; index < LibraryStart.userList.Count; index++)
+            {
+				Console.WriteLine("=====================================================================");
+				Console.WriteLine(" User ID : {0}",LibraryStart.userList[index].Id);//38 21
+				Console.WriteLine(" User PW : {0}", LibraryStart.userList[index].Password);//38 22
+				Console.WriteLine(" User PW : {0}", LibraryStart.userList[index].Password);//38 23
+				Console.WriteLine(" User Name : {0}", LibraryStart.userList[index].Name);//41 24
+				Console.WriteLine(" User Age : {0}", LibraryStart.userList[index].Age);//39 25
+				Console.WriteLine(" User PhoneNumber : {0}", LibraryStart.userList[index].PhoneNumber);//41 26
+				Console.WriteLine(" User Address : {0}", LibraryStart.userList[index].Address);//38 27
+			}
+        }
 
 	}
 }

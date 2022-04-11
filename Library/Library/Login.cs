@@ -10,10 +10,7 @@ namespace Library
     internal class Login
     {
         
-        const int LOGIN_INDEX = 0;
-        const int BACK = -1;
-        const int LOGIN_FAIL = 0;
-        const int LOGIN_SUCCESS = 1;
+        
         ValidInput validInput =  new ValidInput();
         LibraryUI UI = new LibraryUI();
         ConsoleKeyInfo keyInput;
@@ -32,7 +29,7 @@ namespace Library
             keyInput = Console.ReadKey(true);
 
             if (keyInput.Key == ConsoleKey.Escape)
-                return BACK; // ESC 누르면 뒤로가기 
+                return Const.BACK; // ESC 누르면 뒤로가기 
             else 
             {
                 Console.Clear();
@@ -44,7 +41,7 @@ namespace Library
                 {
                     if (list[index].Id == id && list[index].Password == password)
                     {
-                        list[LOGIN_INDEX] = list[index]; // 0인덱스에 로그인한 사람의 정보를 넣음
+                        list[Const.LOGIN_INDEX] = list[index]; // 0인덱스에 로그인한 사람의 정보를 넣음
 
                         Console.Clear();
                         UI.PrintSuccessLogin();  // 로그인 성공 UI출력
@@ -52,13 +49,13 @@ namespace Library
 
                         
                             
-                        return LOGIN_SUCCESS; // 로그인 성공
+                        return Const.LOGIN_SUCCESS; // 로그인 성공
                     }
                     else           
-                        return LOGIN_FAIL; // 로그인 실패
+                        return Const.LOGIN_FAIL; // 로그인 실패
                     
                 }
-                return LOGIN_FAIL;
+                return Const.LOGIN_FAIL;
 
             }
             

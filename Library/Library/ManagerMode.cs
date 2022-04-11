@@ -13,13 +13,7 @@ namespace Library
         BookListAndSearch book = new BookListAndSearch();
         ValidInput validInput = new ValidInput();
         BookVO bookVO = new BookVO();
-        const bool PROGRAM_ON = true;
-        const int BOOK_REGISTRATION = 1;
-        const int BOOK_UPDATE = 2;
-        const int BOOK_DELETE = 3;
-        const int BOOK_SEARCH = 4;
-        const int BOOK_LIST = 5;
-        const int EXIT = -1;
+      
 
         int bookId;
         string name;
@@ -39,28 +33,31 @@ namespace Library
 
 
             UI.PrintManagerMenuUI(1);
-            while (PROGRAM_ON)
+            while (Const.PROGRAM_ON)
             {
-                menuNumber = mode.SelectUserOrManagerMenu("Manager",5);// 위아래 화살표 입력
+                menuNumber = mode.SelectUserOrManagerMenu("Manager",6);// 위아래 화살표 입력
                 Console.SetWindowSize(125, 60);
                 switch (menuNumber)
                 {
-                    case BOOK_REGISTRATION: // 도서 등록        
-                        RegisterBook();
+                    case Const.BOOK_REGISTRATION: // 도서 검색
+                        book.SearchBook();                  
                         break;
-                    case BOOK_UPDATE: // 도서 수량 수정
+                    case Const.BOOK_UPDATE: // 도서 수량 수정
                         EditBookCount();
                         break;
-                    case BOOK_DELETE: //도서 삭제
+                    case Const.BOOK_DELETE: //도서 삭제
                         DeleteBook();
                         break;
-                    case BOOK_SEARCH: // 도서 검색
-                        book.SearchBook();
+                    case Const.BOOK_SEARCH: // 도서 등록
+                        RegisterBook();
                         break;
-                    case BOOK_LIST: // 도서 출력                     
+                    case Const.BOOK_LIST: // 도서 출력                     
                         ShowBookList();
-                        break;              
-                    case EXIT:
+                        break;  
+                    case Const.USER_LIST:
+                        ShowUserList();
+                        break;
+                    case Const.EXIT:
                         return;
                     default:
                         return;
@@ -197,6 +194,16 @@ namespace Library
 
 
             }
+
+        }
+
+        public void ShowUserList()
+        {
+            Console.Clear();
+            UI.PrintUserList();
+            keyInput = Console.ReadKey(true);
+            return;
+        
 
         }
     }

@@ -19,12 +19,9 @@ namespace Library
         UserVO user;
         BookVO book;
 
-        const Boolean PROGRAM_ON = true;
-        const int USER_MANAGER = 1;      
+  
         int menuNumber;
-        const int USER_MODE = 1;
-        const int MANAGE_MODE = 2;
-        const int STOP = -1;
+       
 
 
         public LibraryStart()
@@ -69,18 +66,18 @@ namespace Library
             UI.PrintMainUI();
             Console.SetWindowSize(125, 60);
 
-            while (PROGRAM_ON)
+            while (Const.PROGRAM_ON)
             {
-                menuNumber = mode.SelectMode(USER_MANAGER); // 회원모드 . 유저모드 선택
+                menuNumber = mode.SelectMode(Const.USER_MANAGER); // 회원모드 . 유저모드 선택
                 switch (menuNumber)
                 {
-                    case USER_MODE: // 유저모드 일때
+                    case Const.USER_MODE: // 유저모드 일때
                         userMode.StartUserMode(userList);
                         break;
-                    case MANAGE_MODE: // 관리자 모드
+                    case Const.MANAGE_MODE: // 관리자 모드
                         managerMode.StartManagerMode();
                         break;
-                    case STOP:
+                    case Const.STOP:
                         UI.PrintProgramStop(); // 종료
                         return;
 
