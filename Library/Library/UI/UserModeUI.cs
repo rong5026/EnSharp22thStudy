@@ -56,10 +56,10 @@ namespace Library
 			Console.WriteLine(" User ID (8~ 15글자 영어, 숫자포함) : ");//38 7
 			Console.WriteLine(" User PW (8~ 15글자 영어, 숫자포함) : ");//38 8
 			Console.WriteLine(" User PW  (     Password 확인     ) : ");//38 9
-			Console.WriteLine(" User Name (한글,영어 포함 2글자 이상) : ");//41 10
-			Console.WriteLine(" User Age (   자연수 1세 ~ 200세   ) : ");//39 11
+			Console.WriteLine(" User Name (한글,영어 포함 1글자 이상) : ");//41 10
+			Console.WriteLine(" User Age (   자연수 0세 ~ 200세   ) : ");//39 11
 			Console.WriteLine(" User PhoneNumber (   01x-xxxx-xxxx  ) : ");//41 12
-			Console.Write(" User Address (     한글 주소     ) : ");//38 13
+			Console.Write(" User Address (한글+숫자 최소 3개이상입력 ) : ");//46 13
 
 		}
 
@@ -254,9 +254,18 @@ namespace Library
 			Console.WriteLine(" User Name (한글,영어 포함 2글자 이상) : ");//41 24
 			Console.WriteLine(" User Age (   자연수 1세 ~ 200세   ) : ");//39 25
 			Console.WriteLine(" User PhoneNumber (   01x-xxxx-xxxx  ) : ");//41 26
-			Console.WriteLine(" User Address (     한글 주소     ) : ");//38 27
+			    Console.Write(" User Address (한글+숫자 최소 3개이상입력 ) : ");//46 13
 			Console.SetCursorPosition(38, 21);
 
+		}	
+
+		public void PrintMessage(int x, int y,string message)
+        {
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.SetCursorPosition(x, y);
+			Console.Write("{0}", message);
+			Console.ResetColor();
 		}
 	}
+
 }
