@@ -2,17 +2,8 @@
 char[] arr = { 'O', 'O', 'O', 'O', 'O', '5', '6', 'O', '8', '9' };
 
 
-while (true)
-{
-    string name = Console.ReadLine();
-    bool check;
-    check = Regex.IsMatch(name, @"^[1-9]+[0-9]?[0-9]?$"); //  
-
-    Console.WriteLine(check);
-}
-
-//Console.SetCursorPosition(origCol + x, origRow + y);
-Console.WriteLine(Console.GetCursorPosition());
+Console.SetCursorPosition(5, 3);
+Console.WriteLine(Console.GetCursorPosition().Top);
 
 Console.WriteLine("┌---------------------------------------┐");
 Console.WriteLine("│            ││            ││           │");

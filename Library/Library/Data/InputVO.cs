@@ -24,6 +24,7 @@ namespace Library
         static public int price;
         static public string date;
 
+        static public string error;
       
 
     }

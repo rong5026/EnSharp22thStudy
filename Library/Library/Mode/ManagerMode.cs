@@ -89,8 +89,8 @@ namespace Library
             {
 
                 InputVO.name = validInput.EnterBookName(11,8);  //책 이름
-                InputVO.author = validInput.EnterAuthor(25,9); // 책 저자
-                InputVO.publisher = validInput.EnterBookPublisher(27,10); // 책 출판사
+                InputVO.author = validInput.EnterAuthor(30,9); // 책 저자
+                InputVO.publisher = validInput.EnterBookPublisher(32,10); // 책 출판사
                 InputVO.bookCount = Convert.ToInt16( validInput.EnterBookCount(17,11)); // 책 수량
                 InputVO.price = Convert.ToInt16(validInput.EnterBookPrice(20,12)); // 가격
                 InputVO.date = validInput.EnterBookDate(23, 13); // 출시날짜
