@@ -276,44 +276,56 @@ namespace Library
 			
 			for(int index = 0; index < LibraryStart.bookList.Count; index++)
             {
-				if (name != null && author == null && publisher == null) // O X X 
-                {
-					if(name == LibraryStart.bookList[index].Name )              
-						validIndex[indexCount++] = index;
-                    
-                }
-				else if(name == null && author != null && publisher == null) // X O X
-                {
-					if (author == LibraryStart.bookList[index].Author)
-						validIndex[indexCount++] = index;
+
+			
+				if (name == null) 
+				{
+                    if (author != null)
+                    {
+						if(publisher == null)                        	//XOX
+							if (author == LibraryStart.bookList[index].Author)
+								validIndex[indexCount++] = index;						
+                        else                      	//XOO
+							if (publisher == LibraryStart.bookList[index].Publisher && author == LibraryStart.bookList[index].Author)
+								validIndex[indexCount++] = index;						
+                    }
+                    else
+                    {	//XXO
+						if (publisher != null)																
+							if (publisher == LibraryStart.bookList[index].Publisher)
+								validIndex[indexCount++] = index;						
+					}
+				
 				}
-				else if(name == null && author == null && publisher != null) // X X O
+
+                else
                 {
-					if (publisher == LibraryStart.bookList[index].Publisher)
-						validIndex[indexCount++] = index;
-				}
-				else if(name != null && author != null && publisher == null)//O O X
-                {
-					if (name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author)
-						validIndex[indexCount++] = index;
-				}
-				else if(name == null && author != null && publisher != null)//X O O
-                {
-					if (publisher == LibraryStart.bookList[index].Publisher && author == LibraryStart.bookList[index].Author)
-						validIndex[indexCount++] = index;
-				}
-				else if(name != null && author == null && publisher != null) // O X O
-                {
-					if (publisher == LibraryStart.bookList[index].Publisher && name == LibraryStart.bookList[index].Name)
-						validIndex[indexCount++] = index;
-				}
-				else if(name!=null && author !=null && publisher != null)//O O O
-                {
-					if ( name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author &&
+					if (author != null)
+					{
+						if (publisher == null)						   //OOX
+							if (name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author)
+								validIndex[indexCount++] = index;					
+						else							//OOO
+							if (name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author &&
 						publisher == LibraryStart.bookList[index].Publisher)
-						validIndex[indexCount++] = index;
+							validIndex[indexCount++] = index;
+						
+                        
+					}
+					else
+					{	//OXX
+						if (publisher == null)						
+							if (name == LibraryStart.bookList[index].Name)
+								validIndex[indexCount++] = index;						
+						else						
+							//OXO
+							if (publisher == LibraryStart.bookList[index].Publisher && name == LibraryStart.bookList[index].Name)
+								validIndex[indexCount++] = index;
+						
+					}
 				}
-				/// X X X  값이 다없을때 
+
+				
 					
             }
 
