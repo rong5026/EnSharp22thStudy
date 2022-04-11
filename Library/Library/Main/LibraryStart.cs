@@ -80,7 +80,7 @@ namespace Library
                 switch (menuNumber)
                 {
                     case Const.USER_MODE: // 유저모드 일때
-                        userMode.StartUserMode(userList);
+                        userMode.StartUserMode();
                         break;
                     case Const.MANAGE_MODE: // 관리자 모드
                         managerMode.StartManagerMode();

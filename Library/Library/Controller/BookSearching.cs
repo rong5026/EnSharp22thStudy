@@ -149,12 +149,11 @@ namespace Library
             Console.SetWindowSize(125, 60);
 
 
-
             UserModeUI.PrintReturnBookTime();
 
             keyInput = Console.ReadKey(true);
-            if (keyInput.Key == ConsoleKey.Escape)
-                return; // 뒤로가기 
+     
+            return; // 뒤로가기 
 
 
         }

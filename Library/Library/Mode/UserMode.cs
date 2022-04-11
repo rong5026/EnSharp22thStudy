@@ -21,7 +21,7 @@ namespace Library
         int menuNumber = 1;
 
       
-        public void StartUserMode(List<UserVO> userList)
+        public void StartUserMode()
         {
 
             UI.PrintMainUI();
@@ -36,7 +36,7 @@ namespace Library
                 switch (menuNumber)
                 {
                     case Const.LOGIN_MODE: // 로그인
-                        isLoggedIn = login.UserLogin(userList); // 로그인했으면 true, 안했으면 false
+                        isLoggedIn = login.UserLogin(); // 로그인했으면 true, 안했으면 false
                                                                
                         if (isLoggedIn== Const.LOGIN_SUCCESS)
                         {
@@ -52,7 +52,7 @@ namespace Library
                         }
                         return;                 
                     case Const.REGISTER_MODE: // 회원가입
-                        register.RegistUser(userList);
+                        register.RegistUser();
                         break;
                     case Const.STOP:
                         return; // 뒤로가기

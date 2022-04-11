@@ -20,11 +20,11 @@ namespace Library
 
 			Console.WriteLine();
 			Console.WriteLine(" 책 제목 : ");//11 8
-			Console.WriteLine(" 작가 : "); // 8 9
-			Console.WriteLine(" 출판사 : ");//10 10
-			Console.WriteLine(" 수량 : ");//8 11
-			Console.WriteLine(" 가격 : ");//8,12
-			Console.WriteLine(" 출시일 : "); //10,13
+			Console.WriteLine(" 작가 (영어+한글 1글자 이상) : "); // 25 9
+			Console.WriteLine(" 출판사 (영어+한글 1글자 이상) : ");//10 10
+			Console.WriteLine(" 수량 (1~999 ) : ");//8 11
+			Console.WriteLine(" 가격 (1~9999999) : ");//8,12
+			Console.WriteLine(" 출시일 (2018-03-24) : "); //10,13
 
 
 
@@ -70,6 +70,17 @@ namespace Library
 
 			Console.SetCursorPosition(17, 8);
 		}
+		public void PrintEditBookCountFail()
+        {
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                    삭제할 책의 수량이 더 큽니다!                    │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                 (뒤로가려면 아무키 1개를 눌러주세요)                │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
+			UI.PrintBookList(null, null, null); // 책리스트 출력
+			Console.SetCursorPosition(0, 0);
+		}
 		public void PrintEditBookCountSuccess()
 		{
 			Console.WriteLine("┌---------------------------------------------------------------------┐");
@@ -82,7 +93,7 @@ namespace Library
 			Console.SetCursorPosition(0, 0);
 
 		}
-		public void PrintEditBookCountFail()
+		public void PrintEditBookCountIDFail()
 		{
 			Console.WriteLine("┌---------------------------------------------------------------------┐");
 			Console.WriteLine("│                                                                     │");

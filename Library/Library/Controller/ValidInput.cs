@@ -71,7 +71,7 @@ namespace Library
             Console.SetCursorPosition(x, y);
             name = Console.ReadLine();
             if (name != null)
-                check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"); // 영어,한글,숫자 1글자이상
+                check = Regex.IsMatch(name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글,숫자 1글자이상
             if (!check)
             {
                 UserUI.PrintMessage(x, y, "영어,한글,숫자 1글자이상 입력해주세요!");
@@ -111,7 +111,7 @@ namespace Library
             Console.SetCursorPosition(x, y);
             address = Console.ReadLine();
             if (address != null)
-                check = Regex.IsMatch(address, @"[ㄱ-ㅎ가-힣]{3,}$"); //한글+숫자 주소 최소 3단어 이상
+                check = Regex.IsMatch(address, @"[ㄱ-ㅎ가-힣0-9]{3,}$"); //한글+숫자 주소 최소 3단어 이상
             if (!check)
                 return EnterUserAddress(x,y);
             return phoneNumber;
@@ -128,7 +128,7 @@ namespace Library
             if (name == "p")
                 return null;
             if (name != null)
-                check = Regex.IsMatch(name, @"^[1-9]+[0-9]?[0-9]?$"); //1~999까지의 수
+                check = Regex.IsMatch(name, @"^[1-9]?[0-9]?[0-9]$"); //0~999까지의 수
             if (!check)
                 return EnterBookId(x,y);
             return name;
@@ -199,7 +199,7 @@ namespace Library
             Console.SetCursorPosition(x, y); // 커서이동
             id = Console.ReadLine();
             if (id != null)
-                check = Regex.IsMatch(id, @"^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$"); //2010-04-23
+                check = Regex.IsMatch(id, @"^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[1-2][0-9]|3[0-1])$"); //2010-04-23
             if (!check)
                 return EnterBookCount(x, y);
             return id;

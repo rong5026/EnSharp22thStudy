@@ -24,7 +24,7 @@ namespace Library
 
         string[] userData = new string[7];
 
-        public bool RegistUser(List<UserVO> list)
+        public bool RegistUser()
         {
 
             Console.Clear();
@@ -52,7 +52,7 @@ namespace Library
                 user.PhoneNumber = userData[5];
                 user.Address = userData[6];
 
-                list.Add(user); // UserList에 유저정보 추가
+                LibraryStart.userList.Add(user); // UserList에 유저정보 추가
                 Console.Clear();
                 UserUI.PrintSuccessRegister(); // 회원가입성공 UI
 
