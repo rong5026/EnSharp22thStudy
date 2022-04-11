@@ -159,9 +159,7 @@ namespace Library
 
             Console.SetCursorPosition(x, y); // 커서이동
             InputVO.name = Console.ReadLine();
-          
-            if (InputVO.name == "p")
-                return null;
+                    
             if (InputVO.name != null) 
                 check = Regex.IsMatch(InputVO.name, @"^[1-9]?[0-9]?[0-9]$"); //0~999까지의 수
             if (!check)
@@ -180,7 +178,7 @@ namespace Library
 
             Console.SetCursorPosition(x, y); // 커서이동
             InputVO.name = Console.ReadLine();
-            if (InputVO.name == "p")
+            if (InputVO.name == "?")
                 return null;
             if (InputVO.name != null)
                 check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
@@ -201,7 +199,7 @@ namespace Library
             Console.SetCursorPosition(x, y); // 커서이동
             InputVO.name = Console.ReadLine();
           
-            if (InputVO.name == "p")
+            if (InputVO.name == "?")
                 return null;
             if (InputVO.name != null)
               check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
@@ -221,11 +219,11 @@ namespace Library
             Console.SetCursorPosition(x, y); // 커서이동
             InputVO.name = Console.ReadLine();
         
-            if (InputVO.name == "p")
+            if (InputVO.name == "?")
                 return null;
             if (InputVO.name != null)
-
                 check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"); // 영어,한글,숫자 1글자이상
+
             if (!check)
             {
                 UserUI.PrintMessage(x, y, InputVO.error);
@@ -244,7 +242,7 @@ namespace Library
             InputVO.id = Console.ReadLine();
           
             if (InputVO.id != null)
-                check = Regex.IsMatch(InputVO.id, @"^[1-9]+[0-9]?[0-9]?$"); //  1~999
+                check = Regex.IsMatch(InputVO.id, @"^[1-9]?[0-9]?[0-9]$"); //  1~999
             if (!check)
             {
                 UserUI.PrintMessage(x, y, InputVO.error);
@@ -262,7 +260,7 @@ namespace Library
             InputVO.id = Console.ReadLine();
           
             if (InputVO.id != null)
-                check = Regex.IsMatch(InputVO.id, @"^[1-9]+[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?$"); //   1 ~999개
+                check = Regex.IsMatch(InputVO.id, @"^[1-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]$"); //   1 ~9999999개
             if (!check)
             {
                 UserUI.PrintMessage(x, y, InputVO.error);
