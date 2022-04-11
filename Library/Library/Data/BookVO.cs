@@ -17,6 +17,7 @@ namespace Library
         private int price;
         private string date;
         public static int totalBook=0;
+    
         public BookVO()
         {
 
@@ -67,6 +68,7 @@ namespace Library
             get { return date; }
             set { date = value; }
         }
+   
   
 
     }

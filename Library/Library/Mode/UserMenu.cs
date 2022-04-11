@@ -20,13 +20,7 @@ namespace Library
         BookSearching book = new BookSearching();
         ValidInput validInput = new ValidInput();
         LoginedUser loginUser = new LoginedUser();
-        string id;
-        string password;
-        string repassword;
-        string name;
-        string age;
-        string phonenumber;
-        string address;
+     
         int userid;
         bool delete;
         int menuNumber;
@@ -90,22 +84,23 @@ namespace Library
                 return; // 뒤로가기 
             else
             {            
-                id = validInput.EnterId(38, 21);
-                password = validInput.EnterIdOrPassword(38,22);
-                repassword = validInput.EnterRepassword(password, 38,23);
-                name = validInput.EnterUserName(41,24);
-                age = validInput.EnterUserAge(39,25);
-                phonenumber = validInput.EnterUserPhoneNumber(41,26);
-                address = validInput.EnterUserAddress(46,27);
+               
+                InputVO.id = validInput.EnterId(38, 21);
+                InputVO.password = validInput.EnterIdOrPassword(38,22);
+                InputVO.repassword = validInput.EnterRepassword(InputVO.password, 38,23);
+                InputVO.name = validInput.EnterUserName(41,24);
+                InputVO.age = validInput.EnterUserAge(39,25);
+                InputVO.phoneNumber = validInput.EnterUserPhoneNumber(41,26);
+                InputVO.address = validInput.EnterUserAddress(46,27);
 
                 userid = loginUser.SearchLoginUser();
 
-                LibraryStart.userList[userid].Id = id;
-                LibraryStart.userList[userid].Password = password;
-                LibraryStart.userList[userid].Name = name;
-                LibraryStart.userList[userid].Age =age;
-                LibraryStart.userList[userid].PhoneNumber = phonenumber;
-                LibraryStart.userList[userid].Address = address;
+                LibraryStart.userList[userid].Id = InputVO.id;
+                LibraryStart.userList[userid].Password = InputVO.password;
+                LibraryStart.userList[userid].Name = InputVO.name;
+                LibraryStart.userList[userid].Age = InputVO.age;
+                LibraryStart.userList[userid].PhoneNumber = InputVO.phoneNumber;
+                LibraryStart.userList[userid].Address = InputVO.address;
 
                 UserUI.PrintSuccessEditUserData();
 

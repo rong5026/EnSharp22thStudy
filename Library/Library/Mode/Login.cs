@@ -15,9 +15,7 @@ namespace Library
         UserModeUI UserModeUI = new UserModeUI();      
         ConsoleKeyInfo keyInput;
       
-        string id;
-        string password;
-        
+      
 
          
         public int UserLogin() 
@@ -34,14 +32,14 @@ namespace Library
             {
                 Console.Clear();
                 UserModeUI.PrintLogin(); // 위에 로그인 화면 
-                id = validInput.EnterIdOrPassword(17,6); // id 입력
-                password = validInput.EnterIdOrPassword(17,7); // password입력
+                InputVO.id = validInput.EnterIdOrPassword(17,6); // id 입력
+                InputVO.password = validInput.EnterIdOrPassword(17,7); // password입력
 
                 for (int index = 1; index < LibraryStart.userList.Count; index++) // userList의 0인덱스는 현재 로그인한 사람의 정보
                 {
                    
          
-                    if (LibraryStart.userList[index].Id == id && LibraryStart.userList[index].Password == password)
+                    if (LibraryStart.userList[index].Id == InputVO.id && LibraryStart.userList[index].Password == InputVO.password)
                     {
 
                       

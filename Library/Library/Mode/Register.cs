@@ -15,12 +15,7 @@ namespace Library
         ValidInput validInput = new ValidInput();
         UserVO user = new UserVO();
         ConsoleKeyInfo keyInput;
-        string id;
-        string repassword;
-        string name;
-        string age;
-        string phoneNumber;
-        string address;
+      
 
         string[] userData = new string[7];
 
@@ -69,26 +64,26 @@ namespace Library
             switch (type)
             {
                 case "id":
-                    id = validInput.EnterId(38, 7);
-                    return id;
+                    InputVO.id = validInput.EnterId(38, 7);
+                    return InputVO.id;
                 case "password":
-                    repassword = validInput.EnterIdOrPassword(38, 8);
-                    return repassword;
+                    InputVO.repassword = validInput.EnterIdOrPassword(38, 8);
+                    return InputVO.repassword;
                 case "repassword":
-                    repassword = validInput.EnterRepassword(password, 38, 9);
+                    InputVO.repassword = validInput.EnterRepassword(password, 38, 9);
                     return password;
                 case "name":
-                    name = validInput.EnterUserName(41, 10);
-                    return name;
+                    InputVO.name = validInput.EnterUserName(41, 10);
+                    return InputVO.name;
                 case "age":
-                    age = validInput.EnterUserAge(39, 11);
-                    return age;
+                    InputVO.age = validInput.EnterUserAge(39, 11);
+                    return InputVO.age;
                 case "phonenumber":
-                    phoneNumber = validInput.EnterUserPhoneNumber(41, 12);
-                    return phoneNumber;
+                    InputVO.phoneNumber = validInput.EnterUserPhoneNumber(41, 12);
+                    return InputVO.phoneNumber;
                 case "address":
-                    address = validInput.EnterUserAddress(46, 13);
-                    return address;
+                    InputVO.address = validInput.EnterUserAddress(46, 13);
+                    return InputVO.address;
                 default:
                     return "EIXT";
             }

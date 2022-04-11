@@ -16,13 +16,7 @@ namespace Library
         BookVO bookVO = new BookVO();
       
 
-        int bookId;
-        string name;
-        string author;
-        string publisher;
-        int bookCount;
-        int price;
-        string date;
+       
         ConsoleKeyInfo keyInput;
 
         int menuNumber;
@@ -94,17 +88,17 @@ namespace Library
             else
             {
 
-                name = validInput.EnterBookName(11,8);  //책 이름
-                author = validInput.EnterAuthor(25,9); // 책 저자
-                publisher = validInput.EnterBookPublisher(27,10); // 책 출판사
-                bookCount = Convert.ToInt16( validInput.EnterBookCount(17,11)); // 책 수량
-                price = Convert.ToInt16(validInput.EnterBookPrice(20,12)); // 가격
-                date = validInput.EnterBookDate(23, 13); // 출시날짜
+                InputVO.name = validInput.EnterBookName(11,8);  //책 이름
+                InputVO.author = validInput.EnterAuthor(25,9); // 책 저자
+                InputVO.publisher = validInput.EnterBookPublisher(27,10); // 책 출판사
+                InputVO.bookCount = Convert.ToInt16( validInput.EnterBookCount(17,11)); // 책 수량
+                InputVO.price = Convert.ToInt16(validInput.EnterBookPrice(20,12)); // 가격
+                InputVO.date = validInput.EnterBookDate(23, 13); // 출시날짜
 
 
                 // 책 등록
 
-                bookVO = new BookVO(BookVO.totalBook, name, author, publisher, bookCount, price, date);             
+                bookVO = new BookVO(BookVO.totalBook, InputVO.name, InputVO.author, InputVO.publisher, InputVO.bookCount, InputVO.price, InputVO.date);             
                 LibraryStart.bookList.Add(bookVO); // 책 리스트에 책 추가
 
                 // 등록완료 UI
@@ -130,14 +124,14 @@ namespace Library
                 return; // ESC 누르면 뒤로가기 
             else
             {
-                bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
-                bookCount = Convert.ToInt16(validInput.EnterBookCount(19, 9)); // 책 수량
+                InputVO.bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
+                InputVO.bookCount = Convert.ToInt16(validInput.EnterBookCount(19, 9)); // 책 수량
 
                 for (int index = 0; index < BookVO.totalBook; index++) // 책 id가 같은것을 찾아서 책의 수를 변경
                 {
-                    if (bookId == LibraryStart.bookList[index].Id)
+                    if (InputVO.bookId == LibraryStart.bookList[index].Id)
                     {
-                        LibraryStart.bookList[index].BookCount = bookCount;
+                        LibraryStart.bookList[index].BookCount = InputVO.bookCount;
                         Console.Clear();
                         ManagerUI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
                         keyInput = Console.ReadKey(true);
@@ -167,17 +161,17 @@ namespace Library
                 return; // ESC 누르면 뒤로가기 
             else
             {
-              
-                bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
-                bookCount = Convert.ToInt16(validInput.EnterBookCount(18, 9)); // 책 수량
+
+                InputVO.bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
+                InputVO.bookCount = Convert.ToInt16(validInput.EnterBookCount(18, 9)); // 책 수량
 
                 for (int index = 0; index < LibraryStart.bookList.Count; index++) // 
                 {
-                    if (bookId == LibraryStart.bookList[index].Id)
+                    if (InputVO.bookId == LibraryStart.bookList[index].Id)
                     {
-                        if (LibraryStart.bookList[index].BookCount >= bookCount) // 삭제하려는 책보다 수량이 많을때 
+                        if (LibraryStart.bookList[index].BookCount >= InputVO.bookCount) // 삭제하려는 책보다 수량이 많을때 
                         {
-                            LibraryStart.bookList[index].BookCount -= bookCount; // 책의 수량을 빼짐
+                            LibraryStart.bookList[index].BookCount -= InputVO.bookCount; // 책의 수량을 빼짐
 
                             if (LibraryStart.bookList[index].BookCount == 0)
                             {

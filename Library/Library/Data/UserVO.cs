@@ -62,6 +62,7 @@ namespace Library
             get { return address; }
             set { address = value; }
         }
+        
         public List<int> RendtedBookId
         {
             get { return rentedBookId; }
