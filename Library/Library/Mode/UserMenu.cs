@@ -15,6 +15,7 @@ namespace Library
         }
       
         LibraryUI UI = new LibraryUI();
+        UserModeUI UserUI = new UserModeUI();
         SelectionMode mode = new SelectionMode();
         BookListAndSearch book = new BookListAndSearch();
         ValidInput validInput = new ValidInput();
@@ -80,8 +81,8 @@ namespace Library
         public void EditUserData()
         {
             Console.Clear();
-            UI.PrintUserDateEdit();
-            UI.PrintUserData(loginUser.SearchLoginUser());
+            UserUI.PrintUserDateEdit();
+            UserUI.PrintUserData(loginUser.SearchLoginUser());
 
 
             keyInput = Console.ReadKey(true);
@@ -106,7 +107,7 @@ namespace Library
                 LibraryStart.userList[userid].PhoneNumber = phonenumber;
                 LibraryStart.userList[userid].Address = address;
 
-                UI.PrintSuccessEditUserData();
+                UserUI.PrintSuccessEditUserData();
 
                 keyInput = Console.ReadKey(true);            
                 return; // 뒤로가기 
@@ -116,7 +117,7 @@ namespace Library
         public bool DeleteUserId()
         {
             Console.Clear();
-            UI.PrintDeleteUserId();
+            UserUI.PrintDeleteUserId();
 
             keyInput = Console.ReadKey(true);
             if (keyInput.Key == ConsoleKey.Escape)
@@ -125,7 +126,7 @@ namespace Library
 
                 LibraryStart.userList.RemoveAt(loginUser.SearchLoginUser()); // 로그인한 유저 삭제
 
-                UI.PrintDeleteUserIdSuccess();
+                UserUI.PrintDeleteUserIdSuccess();
 
                 keyInput = Console.ReadKey(true);
               

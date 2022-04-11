@@ -11,6 +11,7 @@ namespace Library
     {
 
         LibraryUI UI = new LibraryUI();
+        UserModeUI UserUI = new UserModeUI();
         ValidInput validInput = new ValidInput();
         UserVO user = new UserVO();
         ConsoleKeyInfo keyInput;
@@ -27,7 +28,7 @@ namespace Library
         {
 
             Console.Clear();
-            UI.PrintRegister();
+            UserUI.PrintRegister();
             Console.SetCursorPosition(38, 7);
 
             keyInput = Console.ReadKey(true);
@@ -53,7 +54,7 @@ namespace Library
 
                 list.Add(user); // UserList에 유저정보 추가
                 Console.Clear();
-                UI.PrintSuccessRegister(); // 회원가입성공 UI
+                UserUI.PrintSuccessRegister(); // 회원가입성공 UI
 
                 keyInput = Console.ReadKey(true);
                 

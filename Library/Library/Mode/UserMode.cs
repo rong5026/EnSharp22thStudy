@@ -11,6 +11,7 @@ namespace Library
 
     
         LibraryUI UI = new LibraryUI();
+        UserModeUI UserUI = new UserModeUI();
         SelectionMode mode = new SelectionMode();
         public const Boolean PROGRAM_ON = true;
         
@@ -45,7 +46,7 @@ namespace Library
                         else if(isLoggedIn== Const.LOGIN_FAIL)
                         {
                             Console.Clear();
-                            UI.PrintLoginFail(); // 로그인 실패 UI
+                            UserUI.PrintLoginFail(); // 로그인 실패 UI
                             ConsoleKeyInfo keyInput;
 
                             keyInput = Console.ReadKey(true);                                                       

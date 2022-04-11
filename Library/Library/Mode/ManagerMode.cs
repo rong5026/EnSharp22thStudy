@@ -9,6 +9,7 @@ namespace Library
     internal class ManagerMode
     {
         LibraryUI UI = new LibraryUI();
+        ManagerModeUI ManagerUI = new ManagerModeUI();
         SelectionMode mode = new SelectionMode();
         BookListAndSearch book = new BookListAndSearch();
         ValidInput validInput = new ValidInput();
@@ -84,7 +85,7 @@ namespace Library
         public void RegisterBook() //책등록
         {
             Console.Clear();
-            UI.PrintRegisterBook();
+            ManagerUI.PrintRegisterBook();
 
 
             keyInput = Console.ReadKey(true);
@@ -109,7 +110,7 @@ namespace Library
 
                 // 등록완료 UI
                 Console.Clear();
-                UI.PrintRegisterBookSuccess();             
+                ManagerUI.PrintRegisterBookSuccess();             
 
                 keyInput = Console.ReadKey(true);
               
@@ -123,7 +124,7 @@ namespace Library
             Console.Clear();
             Console.SetWindowSize(125, 60);
 
-            UI.PrintEditBookCount(); // 책수량 선택 UI
+            ManagerUI.PrintEditBookCount(); // 책수량 선택 UI
 
             keyInput = Console.ReadKey(true);
             if (keyInput.Key == ConsoleKey.Escape)
@@ -139,12 +140,12 @@ namespace Library
                     {
                         LibraryStart.bookList[index].BookCount = bookCount;
                         Console.Clear();
-                        UI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
+                        ManagerUI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
                         keyInput = Console.ReadKey(true);
                         return;
                     }
                 }
-                UI.PrintEditBookCountFail();
+                ManagerUI.PrintEditBookCountFail();
                 keyInput = Console.ReadKey(true);
                 return;
 
@@ -160,7 +161,7 @@ namespace Library
             Console.Clear();
             Console.SetWindowSize(125, 60);
 
-            UI.PrintDeleteBook(); // 책 삭제 UI
+            ManagerUI.PrintDeleteBook(); // 책 삭제 UI
             if (keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
@@ -180,13 +181,13 @@ namespace Library
                             BookVO.totalBook--;
                         }
                         Console.Clear();
-                        UI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
+                        ManagerUI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
                         keyInput = Console.ReadKey(true);
                         return;
                     }
                 }
 
-                UI.PrintDeleteBookFail();
+                ManagerUI.PrintDeleteBookFail();
                 keyInput = Console.ReadKey(true);
                 return;
 
@@ -200,7 +201,7 @@ namespace Library
         public void ShowUserList()
         {
             Console.Clear();
-            UI.PrintUserList();
+            ManagerUI.PrintUserList();
             keyInput = Console.ReadKey(true);
             return;
         

@@ -12,6 +12,7 @@ namespace Library
         
         
         ValidInput validInput =  new ValidInput();
+        UserModeUI UserModeUI = new UserModeUI();
         LibraryUI UI = new LibraryUI();
         ConsoleKeyInfo keyInput;
       
@@ -23,7 +24,7 @@ namespace Library
         public int UserLogin(List<UserVO> list) 
         {
             Console.Clear();
-            UI.PrintRealLogin(); // 로그인 할건지 묻는 UI
+            UserModeUI.PrintRealLogin(); // 로그인 할건지 묻는 UI
           
             Console.SetCursorPosition(17, 6);
             keyInput = Console.ReadKey(true);
@@ -33,7 +34,7 @@ namespace Library
             else 
             {
                 Console.Clear();
-                UI.PrintLogin(); // 위에 로그인 화면 
+                UserModeUI.PrintLogin(); // 위에 로그인 화면 
                 id = validInput.EnterIdOrPassword(17,6); // id 입력
                 password = validInput.EnterIdOrPassword(17,7); // password입력
 
@@ -44,7 +45,7 @@ namespace Library
                         list[Const.LOGIN_INDEX] = list[index]; // 0인덱스에 로그인한 사람의 정보를 넣음
 
                         Console.Clear();
-                        UI.PrintSuccessLogin();  // 로그인 성공 UI출력
+                        UserModeUI.PrintSuccessLogin();  // 로그인 성공 UI출력
                         keyInput = Console.ReadKey(true);
 
                         

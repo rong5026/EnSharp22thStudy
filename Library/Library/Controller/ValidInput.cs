@@ -11,10 +11,8 @@ namespace Library
     {
  
  
-        int integerInput;
         bool check;
         string id;
-        string passoword;
         string repassword;
         string idPassword;
         string name;

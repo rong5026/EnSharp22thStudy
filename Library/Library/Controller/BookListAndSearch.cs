@@ -11,6 +11,7 @@ namespace Library
         
    
         LibraryUI UI = new LibraryUI();
+        UserModeUI UserModeUI = new UserModeUI();   
         ConsoleKeyInfo keyInput;
         ValidInput validInput = new ValidInput();
         LoginedUser loginUser = new LoginedUser();
@@ -53,7 +54,7 @@ namespace Library
             Console.SetWindowSize(125, 60);
 
             Console.Clear();
-            UI.BorrowBook();
+            UserModeUI.BorrowBook();
             UI.PrintBookList(null, null, null); //  전체 북리스트 출력.
             Console.SetCursorPosition(35, 2); // 커서이동
 
@@ -77,14 +78,14 @@ namespace Library
                             LibraryStart.userList[loginUser.SearchLoginUser()].RendtedBookId.Add(index);// Book의 index를 userList의 RentedBookid리스트에 추가
 
                             Console.SetCursorPosition(0, 0);
-                            UI.PrintSuccessRentBook();
+                            UserModeUI.PrintSuccessRentBook();
                             keyInput = Console.ReadKey(true);                      
                             return; // 뒤로가기 
                         }
                     }
                 }
                 Console.SetCursorPosition(0, 0);
-                UI.PrintFailRentBook();
+                UserModeUI.PrintFailRentBook();
                 keyInput = Console.ReadKey(true);
                 return; // 뒤로가기 
 
@@ -95,8 +96,8 @@ namespace Library
         public void ReturnBook() // 책반납
         {
             Console.Clear();
-            UI.ReturnBook();
-            UI.PrintRentedBookList(loginUser.SearchLoginUser());
+            UserModeUI.ReturnBook();
+            UserModeUI.PrintRentedBookList(loginUser.SearchLoginUser());
             Console.SetCursorPosition(39, 2);
 
 
@@ -119,7 +120,7 @@ namespace Library
 
 
                 Console.Clear();
-                UI.ReturnBookSuccess();
+                UserModeUI.ReturnBookSuccess();
                 keyInput = Console.ReadKey(true);           
                 return; // 뒤로가기 
 
@@ -131,7 +132,7 @@ namespace Library
             Console.SetWindowSize(125, 60);
 
 
-            UI.PrintRentedBookList(loginUser.SearchLoginUser());
+            UserModeUI.PrintRentedBookList(loginUser.SearchLoginUser());
             keyInput = Console.ReadKey(true);        
             return; // 뒤로가기 
 
@@ -144,7 +145,7 @@ namespace Library
 
 
 
-            UI.PrintReturnBookTime();
+            UserModeUI.PrintReturnBookTime();
 
             keyInput = Console.ReadKey(true);
             if (keyInput.Key == ConsoleKey.Escape)

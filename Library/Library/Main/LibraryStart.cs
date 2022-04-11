@@ -19,14 +19,15 @@ namespace Library
         UserVO user;
         BookVO book;
 
-  
         int menuNumber;
-       
+
+
 
 
         public LibraryStart()
         {
-            userList= new List<UserVO>();
+           
+            userList = new List<UserVO>();
             bookList = new List<BookVO>();
             user = new UserVO(null, null, null, null, null, null);  //현재 로그인한 계정
             userList.Add(user);
