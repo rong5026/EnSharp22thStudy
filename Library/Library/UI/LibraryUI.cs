@@ -186,6 +186,20 @@ namespace Library
 
 
 		}
+		public void PrintManagerMenuList(int selectNum,int menuNumber ,string menuName)
+        {
+			Console.Write("                                   │                 ");
+			if (selectNum == menuNumber)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  {1}", selectFirst, menuName);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
+		}
 		public void PrintManagerMenuUI(int selectNum)
         {
 			Console.Clear();
@@ -194,79 +208,12 @@ namespace Library
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
 
-			Console.Write("                                   │                 ");
-			if (selectNum == 1)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서검색", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 2)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서수정", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 3)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서삭제", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 4)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서등록", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 5)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서출력", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 6)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  회원정보", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-
+			PrintManagerMenuList(selectNum,1, "도서검색");
+			PrintManagerMenuList(selectNum,2, "도서수정");
+			PrintManagerMenuList(selectNum,3, "도서삭제");
+			PrintManagerMenuList(selectNum,4, "도서등록");
+			PrintManagerMenuList(selectNum,5, "도서출력");
+			PrintManagerMenuList(selectNum,6, "회원정보");
 
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");
