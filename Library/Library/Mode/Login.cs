@@ -20,7 +20,7 @@ namespace Library
         
 
          
-        public int UserLogin(List<UserVO> list) 
+        public int UserLogin() 
         {
             Console.Clear();
             UserModeUI.PrintRealLogin(); // 로그인 할건지 묻는 UI
@@ -37,11 +37,16 @@ namespace Library
                 id = validInput.EnterIdOrPassword(17,6); // id 입력
                 password = validInput.EnterIdOrPassword(17,7); // password입력
 
-                for (int index = 1; index < list.Count; index++) // userList의 0인덱스는 현재 로그인한 사람의 정보
+                for (int index = 1; index < LibraryStart.userList.Count; index++) // userList의 0인덱스는 현재 로그인한 사람의 정보
                 {
-                    if (list[index].Id == id && list[index].Password == password)
+                   
+         
+                    if (LibraryStart.userList[index].Id == id && LibraryStart.userList[index].Password == password)
                     {
-                        list[Const.LOGIN_INDEX] = list[index]; // 0인덱스에 로그인한 사람의 정보를 넣음
+
+                      
+ 
+                        LibraryStart.userList[Const.LOGIN_INDEX] = LibraryStart.userList[index]; // 0인덱스에 로그인한 사람의 정보를 넣음
 
                         Console.Clear();
                         UserModeUI.PrintSuccessLogin();  // 로그인 성공 UI출력
@@ -51,8 +56,7 @@ namespace Library
                             
                         return Const.LOGIN_SUCCESS; // 로그인 성공
                     }
-                    else           
-                        return Const.LOGIN_FAIL; // 로그인 실패
+                   
                     
                 }
                 return Const.LOGIN_FAIL;
