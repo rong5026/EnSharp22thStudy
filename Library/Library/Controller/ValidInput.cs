@@ -138,11 +138,13 @@ namespace Library
         {
             Console.SetCursorPosition(x, y);
             InputVO.address = Console.ReadLine();
+            /*
             if (InputVO.address != null)
                 check = Regex.IsMatch(InputVO.address, @"[ㄱ-ㅎ가-힣]{3,5}\s[ㄱ-ㅎ가-힣]{3,5}?[ㄱ-ㅎ가-힣]{3,5}?
 [ㄱ-ㅎ가-힣]{3,5}?[ㄱ-ㅎ가-힣0-9]{3,}[ㄱ-ㅎ가-힣0-9]{0,}?-?[0-9]{0,}?[ㄱ-ㅎ가-힣]{0,}?[0-9]{0,}?[ㄱ-ㅎ가-힣]?$"); //한글+숫자 주소 최소 3단어 이상
             if (!check)
                 return EnterUserAddress(x,y);
+            */
             return InputVO.address;
         }
 
@@ -173,13 +175,21 @@ namespace Library
         }
         public string EnterBookName(int x,int y) // 책이름 
         {
+            InputVO.error = "영어,한글,숫자 중 1개이상 입력해주세요!";
+            DeleteInput(InputVO.error.Length, x, y);
+
             Console.SetCursorPosition(x, y); // 커서이동
             InputVO.name = Console.ReadLine();
             if (InputVO.name == "p")
                 return null;
             if (InputVO.name != null)
-                return InputVO.name;
-            else
+                check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
+            if (!check)
+            {
+                UserUI.PrintMessage(x, y, InputVO.error);
+                Thread.Sleep(1000);
+                return EnterBookName(x, y);
+            }                   
                 return null;
 
         }

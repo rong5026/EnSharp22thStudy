@@ -46,8 +46,7 @@ namespace Library
                         {
                             Console.Clear();
                             UserUI.PrintLoginFail(); // 로그인 실패 UI
-                         
-                            keyInput = Console.ReadKey(true);                                                       
+                            Thread.Sleep(1000);                                                                              
                             return;
                         }
                         return;                 

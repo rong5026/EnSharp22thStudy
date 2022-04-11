@@ -51,8 +51,8 @@ namespace Library
                 Console.Clear();
                 UserUI.PrintSuccessRegister(); // 회원가입성공 UI
 
-                keyInput = Console.ReadKey(true);
-                
+                Thread.Sleep(1000);
+
                 return true;
 
                

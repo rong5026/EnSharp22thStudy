@@ -42,7 +42,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│  (아이디, 비밀번호 8~15자리 영문자+숫자 혼합)  │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요)     │");
+			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
 			Console.WriteLine("└------------------------------------------------┘");
 		}
 		public void PrintRegister()
@@ -69,7 +69,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│               회 원 가 입 성 공 !!             │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│             (아무키 1개를 눌러주세요)          │");
+			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintSuccessLogin()
@@ -78,7 +78,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                 로 그 인 성 공 !!              │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│             (아무키 1개를 눌러주세요)          │");
+			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintSuccessRentBook()
@@ -88,7 +88,7 @@ namespace Library
 			Console.WriteLine("│              대 여 하 기 성 공 !!              │");
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│             (아무키 1개를 눌러주세요)          │");
+			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintFailRentBook()
@@ -99,7 +99,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│   유요하지않은 ID이거나 책의 수량이 없습니다!  │");
-			Console.WriteLine("│             (아무키 1개를 눌러주세요)          │");
+			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 
@@ -119,7 +119,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                정 보 수 정 완 료!              │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│         (아무런 키 1개를 입력하세요 !)         │");
+			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintDeleteUserId()
@@ -138,7 +138,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                회 원 탈 퇴 완 료               │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│         (아무런 키 1개를 입력하세요 !)         │");
+			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 
@@ -174,7 +174,7 @@ namespace Library
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                   반 납  완 료                 │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요)     │");
+			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 

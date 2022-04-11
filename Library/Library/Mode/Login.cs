@@ -41,17 +41,13 @@ namespace Library
          
                     if (LibraryStart.userList[index].Id == InputVO.id && LibraryStart.userList[index].Password == InputVO.password)
                     {
-
-                      
- 
+                    
                         LibraryStart.userList[Const.LOGIN_INDEX] = LibraryStart.userList[index]; // 0인덱스에 로그인한 사람의 정보를 넣음
 
                         Console.Clear();
                         UserModeUI.PrintSuccessLogin();  // 로그인 성공 UI출력
-                        keyInput = Console.ReadKey(true);
+                        Thread.Sleep(1000);
 
-                        
-                            
                         return Const.LOGIN_SUCCESS; // 로그인 성공
                     }
                    

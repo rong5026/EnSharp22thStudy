@@ -92,9 +92,7 @@ namespace Library
                 InputVO.age = validInput.EnterUserAge(39,25);
                 InputVO.phoneNumber = validInput.EnterUserPhoneNumber(41,26);
                 InputVO.address = validInput.EnterUserAddress(46,27);
-
                 userid = loginUser.SearchLoginUser();
-
                 LibraryStart.userList[userid].Id = InputVO.id;
                 LibraryStart.userList[userid].Password = InputVO.password;
                 LibraryStart.userList[userid].Name = InputVO.name;
