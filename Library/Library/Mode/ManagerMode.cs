@@ -31,7 +31,7 @@ namespace Library
             while (Const.PROGRAM_ON)
             {
                 menuNumber = mode.SelectUserOrManagerMenu("Manager",6);// 위아래 화살표 입력
-                Console.SetWindowSize(125, 60);
+                
                 switch (menuNumber)
                 {
                     case Const.BOOK_REGISTRATION: // 도서 검색
@@ -88,9 +88,9 @@ namespace Library
             else
             {
 
-                InputVO.name = validInput.EnterBookName(11,8);  //책 이름
-                InputVO.author = validInput.EnterAuthor(30,9); // 책 저자
-                InputVO.publisher = validInput.EnterBookPublisher(32,10); // 책 출판사
+                InputVO.name = validInput.EnterBookName(37,8);  //책 이름
+                InputVO.author = validInput.EnterAuthor(29,9); // 책 저자
+                InputVO.publisher = validInput.EnterBookPublisher(34,10); // 책 출판사
                 InputVO.bookCount = Convert.ToInt16( validInput.EnterBookCount(17,11)); // 책 수량
                 InputVO.price = Convert.ToInt16(validInput.EnterBookPrice(20,12)); // 가격
                 InputVO.date = validInput.EnterBookDate(23, 13); // 출시날짜
@@ -111,7 +111,7 @@ namespace Library
 
             }              
         }
-        public void EditBookCount()
+        public void EditBookCount() // 책의 수량을 설정
         {
 
             Console.Clear();
@@ -127,19 +127,26 @@ namespace Library
                 InputVO.bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
                 InputVO.bookCount = Convert.ToInt16(validInput.EnterBookCount(19, 9)); // 책 수량
 
-                for (int index = 0; index < BookVO.totalBook; index++) // 책 id가 같은것을 찾아서 책의 수를 변경
+              
+                for (int index = 0; index < LibraryStart.bookList.Count; index++) // 책 id가 같은것을 찾아서 책의 수를 변경
                 {
                     if (InputVO.bookId == LibraryStart.bookList[index].Id)
                     {
                         LibraryStart.bookList[index].BookCount = InputVO.bookCount;
                         Console.Clear();
                         ManagerUI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
-                        keyInput = Console.ReadKey(true);
+                        Thread.Sleep(1000);                                      // 
                         return;
                     }
                 }
-                ManagerUI.PrintEditBookCountFail();
-                keyInput = Console.ReadKey(true);
+                Console.Clear();
+                if (InputVO.bookId > LibraryStart.bookList.Count - 1)                
+                    ManagerUI.PrintEditBookCountIDFail();
+                
+                else
+                    ManagerUI.PrintEditBookCountFail();
+
+                Thread.Sleep(1000);
                 return;
 
 
@@ -149,14 +156,13 @@ namespace Library
         }
        
 
-        public void DeleteBook()
+        public void DeleteBook() // 책 삭제
         {
             Console.Clear();
             Console.SetWindowSize(125, 60);
-
-
-           // Console.ReadLine();
+         
             ManagerUI.PrintDeleteBook(); // 책 삭제 UI
+
             if (keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
@@ -173,21 +179,21 @@ namespace Library
                         {
                             LibraryStart.bookList[index].BookCount -= InputVO.bookCount; // 책의 수량을 빼짐
 
-                            if (LibraryStart.bookList[index].BookCount == 0)
+                            if (LibraryStart.bookList[index].BookCount == 0) // 책 수량이 0이면 삭제
                             {
-                                LibraryStart.bookList.RemoveAt(index);
-                                //BookVO.totalBook--;
+                                LibraryStart.bookList.RemoveAt(index);                              
                             }
+
                             Console.Clear();
                             ManagerUI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
-                            keyInput = Console.ReadKey(true);
+                            Thread.Sleep(1000);
                             return;
                         }
                         else
                         {
                             Console.Clear();
                             ManagerUI.PrintEditBookCountFail(); // 삭제하려는 책의 수량이 더 커서 삭제실패
-                            keyInput = Console.ReadKey(true);
+                            Thread.Sleep(1000);
                             return;
                             
                         }
@@ -196,7 +202,7 @@ namespace Library
                 }
                 Console.Clear();
                 ManagerUI.PrintEditBookCountIDFail(); // 책의 id가 존재하지않아 삭제실패
-                keyInput = Console.ReadKey(true);
+                Thread.Sleep(1000);
                 return;
 
             }

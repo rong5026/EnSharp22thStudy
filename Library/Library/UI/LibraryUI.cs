@@ -264,7 +264,7 @@ namespace Library
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("(입력하기 : 아무런 값1개를 입력 후 값을 입력해주세요.)");
 			Console.ResetColor();
-			Console.WriteLine("(건너띄려면 'p'를 위에서 부터 건너띄고자 하는 검색옵션에 넣어 ENTER을 눌러주세요)");
+			Console.WriteLine("(건너띄고자 하는 항목에는 ?를 입력해주세요)");
 
 		}
 		
@@ -273,19 +273,24 @@ namespace Library
 			int[] validIndex = new int[LibraryStart.bookList.Count];
 			int indexCount = 0;
 
-			
-			for(int index = 0; index < LibraryStart.bookList.Count; index++)
-            {
+		
 
-			
+			for (int index = 0; index < LibraryStart.bookList.Count; index++)
+            {
+	
 				if (name == null) 
 				{
+					
                     if (author != null)
                     {
+						
 						if (publisher == null)
-						{               //XOX
+						{
+							
 							if (LibraryStart.bookList[index].Author.Contains(author))
+							{						
 								validIndex[indexCount++] = index;
+							}
 						}
 						else
 						{                   //XOO

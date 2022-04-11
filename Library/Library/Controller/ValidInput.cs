@@ -181,7 +181,7 @@ namespace Library
             if (InputVO.name == "?")
                 return null;
             if (InputVO.name != null)
-                check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
+                check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"); // 영어,한글,숫자 1글자이상
             if (!check)
             {
                 UserUI.PrintMessage(x, y, InputVO.error);
@@ -242,7 +242,7 @@ namespace Library
             InputVO.id = Console.ReadLine();
           
             if (InputVO.id != null)
-                check = Regex.IsMatch(InputVO.id, @"^[1-9]?[0-9]?[0-9]$"); //  1~999
+                check = Regex.IsMatch(InputVO.id, @"^[1-9][0-9]{0,2}$"); //  1~999
             if (!check)
             {
                 UserUI.PrintMessage(x, y, InputVO.error);
@@ -260,7 +260,7 @@ namespace Library
             InputVO.id = Console.ReadLine();
           
             if (InputVO.id != null)
-                check = Regex.IsMatch(InputVO.id, @"^[1-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]$"); //   1 ~9999999개
+                check = Regex.IsMatch(InputVO.id, @"^[1-9][0-9]{0,6}$"); //   1 ~9999999개
             if (!check)
             {
                 UserUI.PrintMessage(x, y, InputVO.error);
