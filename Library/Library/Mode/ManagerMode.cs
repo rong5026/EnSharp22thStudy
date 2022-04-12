@@ -8,13 +8,14 @@ namespace Library
 {
     internal class ManagerMode
     {
+        /*
         LibraryUI UI = new LibraryUI();
         ManagerModeUI ManagerUI = new ManagerModeUI();
         SelectionMode mode = new SelectionMode();
         BookSearching book = new BookSearching();
         ValidInput validInput = new ValidInput();
         BookVO bookVO = new BookVO();
-      
+      */
 
        
         ConsoleKeyInfo keyInput;
@@ -22,20 +23,20 @@ namespace Library
         int menuNumber;
         public void StartManagerMode()
         {
-            UI.PrintMainUI();
+            VariableData.UI.PrintMainUI();
             Console.SetWindowSize(125, 60);
 
 
 
-            UI.PrintManagerMenuUI(1);
+            VariableData.UI.PrintManagerMenuUI(1);
             while (Const.PROGRAM_ON)
             {
-                menuNumber = mode.SelectUserOrManagerMenu("Manager",6);// 위아래 화살표 입력
+                menuNumber = VariableData.mode.SelectUserOrManagerMenu("Manager",6);// 위아래 화살표 입력
                 
                 switch (menuNumber)
                 {
                     case Const.BOOK_REGISTRATION: // 도서 검색
-                        book.SearchBook();                  
+                        VariableData.book.SearchBook();                  
                         break;
                     case Const.BOOK_UPDATE: // 도서 수량 수정
                         EditBookCount();
@@ -69,8 +70,8 @@ namespace Library
            
 
             Console.Clear();
-            UI.PrintBookList();
-            UI.PrintBookList(null, null, null);
+            VariableData.UI.PrintBookList();
+            VariableData.UI.PrintBookList(null, null, null);
 
             keyInput = Console.ReadKey(true);
             return;  // 아무키 입력시 뒤로가기
@@ -79,7 +80,7 @@ namespace Library
         public void RegisterBook() //책등록
         {
             Console.Clear();
-            ManagerUI.PrintRegisterBook();
+            VariableData.ManagerUI.PrintRegisterBook();
 
 
             keyInput = Console.ReadKey(true);
@@ -88,22 +89,22 @@ namespace Library
             else
             {
 
-                InputVO.name = validInput.EnterBookName(37,8);  //책 이름
-                InputVO.author = validInput.EnterAuthor(29,9); // 책 저자
-                InputVO.publisher = validInput.EnterBookPublisher(34,10); // 책 출판사
-                InputVO.bookCount = Convert.ToInt16( validInput.EnterBookCount(17,11)); // 책 수량
-                InputVO.price = Convert.ToInt16(validInput.EnterBookPrice(20,12)); // 가격
-                InputVO.date = validInput.EnterBookDate(23, 13); // 출시날짜
+                InputVO.name = VariableData.validInput.EnterBookName(37,8);  //책 이름
+                InputVO.author = VariableData.validInput.EnterAuthor(29,9); // 책 저자
+                InputVO.publisher = VariableData.validInput.EnterBookPublisher(34,10); // 책 출판사
+                InputVO.bookCount = Convert.ToInt16(VariableData.validInput.EnterBookCount(17,11)); // 책 수량
+                InputVO.price = Convert.ToInt16(VariableData.validInput.EnterBookPrice(20,12)); // 가격
+                InputVO.date = VariableData.validInput.EnterBookDate(23, 13); // 출시날짜
 
 
                 // 책 등록
 
-                bookVO = new BookVO(BookVO.totalBook, InputVO.name, InputVO.author, InputVO.publisher, InputVO.bookCount, InputVO.price, InputVO.date);             
-                LibraryStart.bookList.Add(bookVO); // 책 리스트에 책 추가
+                VariableData.bookVO = new BookVO(BookVO.totalBook, InputVO.name, InputVO.author, InputVO.publisher, InputVO.bookCount, InputVO.price, InputVO.date);             
+                LibraryStart.bookList.Add(VariableData.bookVO); // 책 리스트에 책 추가
 
                 // 등록완료 UI
                 Console.Clear();
-                ManagerUI.PrintRegisterBookSuccess();             
+                VariableData.ManagerUI.PrintRegisterBookSuccess();             
 
                 keyInput = Console.ReadKey(true);
               
@@ -117,15 +118,15 @@ namespace Library
             Console.Clear();
             Console.SetWindowSize(125, 60);
 
-            ManagerUI.PrintEditBookCount(); // 책수량 선택 UI
+            VariableData.ManagerUI.PrintEditBookCount(); // 책수량 선택 UI
 
             keyInput = Console.ReadKey(true);
             if (keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
             {
-                InputVO.bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
-                InputVO.bookCount = Convert.ToInt16(validInput.EnterBookCount(19, 9)); // 책 수량
+                InputVO.bookId = Convert.ToInt16(VariableData.validInput.EnterBookId(17, 8)); // 책 id
+                InputVO.bookCount = Convert.ToInt16(VariableData.validInput.EnterBookCount(19, 9)); // 책 수량
 
               
                 for (int index = 0; index < LibraryStart.bookList.Count; index++) // 책 id가 같은것을 찾아서 책의 수를 변경
@@ -134,17 +135,17 @@ namespace Library
                     {
                         LibraryStart.bookList[index].BookCount = InputVO.bookCount;
                         Console.Clear();
-                        ManagerUI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
+                        VariableData.ManagerUI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
                         Thread.Sleep(1000);                                      // 
                         return;
                     }
                 }
                 Console.Clear();
-                if (InputVO.bookId > LibraryStart.bookList.Count - 1)                
-                    ManagerUI.PrintEditBookCountIDFail();
+                if (InputVO.bookId > LibraryStart.bookList.Count - 1)
+                    VariableData.ManagerUI.PrintEditBookCountIDFail();
                 
                 else
-                    ManagerUI.PrintEditBookCountFail();
+                    VariableData.ManagerUI.PrintEditBookCountFail();
 
                 Thread.Sleep(1000);
                 return;
@@ -160,16 +161,16 @@ namespace Library
         {
             Console.Clear();
             Console.SetWindowSize(125, 60);
-         
-            ManagerUI.PrintDeleteBook(); // 책 삭제 UI
+
+            VariableData.ManagerUI.PrintDeleteBook(); // 책 삭제 UI
 
             if (keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
             {
 
-                InputVO.bookId = Convert.ToInt16(validInput.EnterBookId(17, 8)); // 책 id
-                InputVO.bookCount = Convert.ToInt16(validInput.EnterBookCount(18, 9)); // 책 수량
+                InputVO.bookId = Convert.ToInt16(VariableData.validInput.EnterBookId(17, 8)); // 책 id
+                InputVO.bookCount = Convert.ToInt16(VariableData.validInput.EnterBookCount(18, 9)); // 책 수량
 
                 for (int index = 0; index < LibraryStart.bookList.Count; index++) // 
                 {
@@ -185,14 +186,14 @@ namespace Library
                             }
 
                             Console.Clear();
-                            ManagerUI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
+                            VariableData.ManagerUI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
                             Thread.Sleep(1000);
                             return;
                         }
                         else
                         {
                             Console.Clear();
-                            ManagerUI.PrintEditBookCountFail(); // 삭제하려는 책의 수량이 더 커서 삭제실패
+                            VariableData.ManagerUI.PrintEditBookCountFail(); // 삭제하려는 책의 수량이 더 커서 삭제실패
                             Thread.Sleep(1000);
                             return;
                             
@@ -201,7 +202,7 @@ namespace Library
                     
                 }
                 Console.Clear();
-                ManagerUI.PrintEditBookCountIDFail(); // 책의 id가 존재하지않아 삭제실패
+                VariableData.ManagerUI.PrintEditBookCountIDFail(); // 책의 id가 존재하지않아 삭제실패
                 Thread.Sleep(1000);
                 return;
 
@@ -212,7 +213,7 @@ namespace Library
         public void ShowUserList()
         {
             Console.Clear();
-            ManagerUI.PrintUserList();
+            VariableData.ManagerUI.PrintUserList();
             keyInput = Console.ReadKey(true);
             return;
         

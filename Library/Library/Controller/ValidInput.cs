@@ -10,7 +10,7 @@ namespace Library
     internal class ValidInput
     {
 
-        UserModeUI UserUI = new UserModeUI();
+        //UserModeUI UserUI = new UserModeUI();
         bool check;
       
         string idPassword;
@@ -29,7 +29,7 @@ namespace Library
                 check = Regex.IsMatch(idPassword, @"^[0-9a-zA-Z]{8,15}$"); // 숫자 영어 8~15글자
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterIdOrPassword(x, y);
             }
@@ -49,7 +49,7 @@ namespace Library
             {
                 if (LibraryStart.userList[index].Id == InputVO.id)
                 {
-                    UserUI.PrintMessage(x, y, InputVO.error);
+                    VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                     Thread.Sleep(1000);
 
 
@@ -68,7 +68,7 @@ namespace Library
            
             if (InputVO.repassword != password)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterRepassword(password, x, y);
             }
@@ -88,7 +88,7 @@ namespace Library
                 check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글,숫자 1글자이상
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterUserName(x, y);
             }
@@ -107,7 +107,7 @@ namespace Library
                    check = Regex.IsMatch(InputVO.age, @"^1?[0-9]?[0-9]$"); // 0~ 199
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterUserAge(x, y);
 
@@ -127,7 +127,7 @@ namespace Library
                 check = Regex.IsMatch(InputVO.phoneNumber, @"01([0-9]{1})-([0-9]{4})-([0-9]{4})$"); // 01로 시작0~9숫자중 한개 오고 0~9 숫자 4개-0~9 숫자4개
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterUserPhoneNumber(x, y);
             }
@@ -150,7 +150,7 @@ namespace Library
 
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterUserAddress(x, y);
             }
@@ -175,7 +175,7 @@ namespace Library
                 check = Regex.IsMatch(InputVO.name, @"^[1-9]?[0-9]?[0-9]$"); //0~999까지의 수
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterBookId(x, y);
             }
@@ -195,7 +195,7 @@ namespace Library
                 check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"); // 영어,한글,숫자 1글자이상
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterBookName(x, y);
             }                   
@@ -216,7 +216,7 @@ namespace Library
               check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterAuthor(x, y);
             }
@@ -237,7 +237,7 @@ namespace Library
 
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterBookPublisher(x, y);
             }
@@ -256,7 +256,7 @@ namespace Library
                 check = Regex.IsMatch(InputVO.id, @"^[1-9][0-9]{0,2}$"); //  1~999
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterBookCount(x, y);
             }
@@ -274,7 +274,7 @@ namespace Library
                 check = Regex.IsMatch(InputVO.id, @"^[1-9][0-9]{0,6}$"); //   1 ~9999999개
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterBookCount(x, y);
             }   
@@ -292,7 +292,7 @@ namespace Library
                 check = Regex.IsMatch(InputVO.id, @"^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[1-2][0-9]|3[0-1])$"); //2010-04-23
             if (!check)
             {
-                UserUI.PrintMessage(x, y, InputVO.error);
+                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterBookCount(x, y);
             }

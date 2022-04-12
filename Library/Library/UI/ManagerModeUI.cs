@@ -8,7 +8,7 @@ namespace Library
 {
     internal class ManagerModeUI
     {
-		LibraryUI UI = new LibraryUI();
+		//LibraryUI UI = new LibraryUI();
 		public void PrintRegisterBook()
 		{
 			Console.WriteLine("┌---------------------------------------------------------------------┐");
@@ -66,7 +66,7 @@ namespace Library
 			Console.WriteLine(" 수정 할 책 ID 형식 :  1~999 수 입력"); // 17 8
 			Console.WriteLine(" 수정 할 책 수량 형식: 1~999 수 입력 "); // 19 9
 
-			UI.PrintBookList(null, null, null); // 책리스트 출력
+			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
 
 			Console.SetCursorPosition(17, 8);
 		}
@@ -78,7 +78,7 @@ namespace Library
 			Console.WriteLine("│                                                                     │");
 			Console.WriteLine("│                      (1초 후 화면이 넘어갑니다)                     │");
 			Console.WriteLine("└---------------------------------------------------------------------┘\n");
-			UI.PrintBookList(null, null, null); // 책리스트 출력
+			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
 			Console.SetCursorPosition(0, 0);
 		}
 		public void PrintEditBookCountSuccess()
@@ -89,7 +89,7 @@ namespace Library
 			Console.WriteLine("│                                                                     │");
 			Console.WriteLine("│                      (1초 후 화면이 넘어갑니다)                     │");
 			Console.WriteLine("└---------------------------------------------------------------------┘\n");
-			UI.PrintBookList(null, null, null); // 책리스트 출력
+			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
 			Console.SetCursorPosition(0, 0);
 
 		}
@@ -101,7 +101,7 @@ namespace Library
 			Console.WriteLine("│                                                                     │");
 			Console.WriteLine("│                      (1초 후 화면이 넘어갑니다)                     │");
 			Console.WriteLine("└---------------------------------------------------------------------┘\n");
-			UI.PrintBookList(null, null, null); // 책리스트 출력
+			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
 			Console.SetCursorPosition(0, 0);
 
 		}
@@ -118,7 +118,7 @@ namespace Library
 			Console.WriteLine(" 삭제 할 책 수량 : ");//18 9
 			Console.WriteLine(" 삭제 할 책 ID 형식 :  1~999 수 입력"); // 17 8
 			Console.WriteLine(" 삭제 할 책 수량 형식: 1~999 수 입력 "); // 19 9
-			UI.PrintBookList(null, null, null); // 책리스트 출력
+			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
 
 			Console.SetCursorPosition(0, 0);
 		}
@@ -131,7 +131,7 @@ namespace Library
 			Console.WriteLine("│                       (1초 후 화면이 넘어갑니다)                    │");
 			Console.WriteLine("└---------------------------------------------------------------------┘\n");
 
-			UI.PrintBookList(null, null, null); // 책리스트 출력
+			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
 
 			Console.SetCursorPosition(0, 0);
 		}
