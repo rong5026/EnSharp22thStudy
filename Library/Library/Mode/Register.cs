@@ -38,7 +38,11 @@ namespace Library
                 userData[3] = EnterUserDate(null, "name"); // 유저이름 : 영어 또는 한글 1글자 이상
                 userData[4] = EnterUserDate(null, "age"); // 0~ 199세 까지 입력
                 userData[5] = EnterUserDate(null, "phonenumber"); // 전화번호 01x-xxxx-xxxx
-                userData[6] = EnterUserDate(null, "address");// 주소 : 한글 + 숫자 최소 3단어 이상
+                userData[6] = EnterUserDate(null, "address");// 주소  
+                // 광역지방자치단체 + (기초지방자치단체) + (시 군 구) + (읍 면) + (도로명) + (건물번호)
+                // ex) 경기도 + 수원시 + 영통구 + " " + 영통로+124
+                // ex) 서울특별시+ 강남구 +" "+ " "+ 남부순환로 + 지하2744
+                // ex) 서울특별시 +" "+ 구로구+ " " +경인로248-29
 
                 user.Id = userData[0];
                 user.Password = userData[1];
@@ -82,7 +86,7 @@ namespace Library
                     InputVO.phoneNumber = validInput.EnterUserPhoneNumber(41, 12);
                     return InputVO.phoneNumber;
                 case "address":
-                    InputVO.address = validInput.EnterUserAddress(46, 13);
+                    InputVO.address = validInput.EnterUserAddress(39, 13);
                     return InputVO.address;
                 default:
                     return "EIXT";

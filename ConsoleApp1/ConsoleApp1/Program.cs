@@ -7,7 +7,7 @@ while (true)
     string id;
     bool check;
     id = Console.ReadLine();
-    check = Regex.IsMatch(id, @"^[1-9][0-9]{0,2}$"); //  1~999
+    check = Regex.IsMatch(id, @"[ㄱ-ㅎ가-힣]{3,5}\s{0,1}([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣0-9]{2,}\s{0,1}?-?[0-9]{0,}?[ㄱ-ㅎ가-힣]{0,})?([ㄱ-ㅎ가-힣0-9]{1,}\s{0,1}?-?[0-9]{0,})?$");
 
     Console.WriteLine(check);
 }

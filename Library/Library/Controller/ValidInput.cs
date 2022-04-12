@@ -136,15 +136,26 @@ namespace Library
         }
         public string EnterUserAddress(int x, int y) // 주소 예외검사.
         {
+            InputVO.error = "주소형식에 맞게 입력해주세요!";
+            DeleteInput(InputVO.error.Length, x, y);
             Console.SetCursorPosition(x, y);
             InputVO.address = Console.ReadLine();
-            /*
+            
             if (InputVO.address != null)
-                check = Regex.IsMatch(InputVO.address, @"[ㄱ-ㅎ가-힣]{3,5}\s[ㄱ-ㅎ가-힣]{3,5}?[ㄱ-ㅎ가-힣]{3,5}?
-[ㄱ-ㅎ가-힣]{3,5}?[ㄱ-ㅎ가-힣0-9]{3,}[ㄱ-ㅎ가-힣0-9]{0,}?-?[0-9]{0,}?[ㄱ-ㅎ가-힣]{0,}?[0-9]{0,}?[ㄱ-ㅎ가-힣]?$"); //한글+숫자 주소 최소 3단어 이상
+                check = Regex.IsMatch(InputVO.address, @"[ㄱ-ㅎ가-힣]{3,5}\s{0,1}([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣0-9]{2,}\s{0,1}?-?[0-9]{0,}?[ㄱ-ㅎ가-힣]{0,})?([ㄱ-ㅎ가-힣0-9]{1,}\s{0,1}?-?[0-9]{0,})?$"); 
+            // 광역지방자치단체{한글 3~5글자} + (기초지방자치단체){한글3~5글자} + (시 군 구){한글3~5글자) + (읍 면){한글3~5글자) + (도로명){한글2글자 이상,-숫자 + (건물번호){한글숫자 1개이상, -,숫자}
+            // ex) 경기도 + 수원시 + 영통구 + " " + 영통로+124
+            // ex) 서울특별시+ 강남구 +" "+ " "+ 남부순환로 + 지하2744
+            // ex) 서울특별시 +" "+ 구로구+ " " +경인로248-29
+
             if (!check)
-                return EnterUserAddress(x,y);
-            */
+            {
+                UserUI.PrintMessage(x, y, InputVO.error);
+                Thread.Sleep(1000);
+                return EnterUserAddress(x, y);
+            }
+          
+            
             return InputVO.address;
         }
 

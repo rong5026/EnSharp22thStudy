@@ -91,7 +91,7 @@ namespace Library
                 InputVO.name = validInput.EnterUserName(41,24);
                 InputVO.age = validInput.EnterUserAge(39,25);
                 InputVO.phoneNumber = validInput.EnterUserPhoneNumber(41,26);
-                InputVO.address = validInput.EnterUserAddress(46,27);
+                InputVO.address = validInput.EnterUserAddress(39,27);
                 userid = loginUser.SearchLoginUser();
                 LibraryStart.userList[userid].Id = InputVO.id;
                 LibraryStart.userList[userid].Password = InputVO.password;
@@ -100,9 +100,7 @@ namespace Library
                 LibraryStart.userList[userid].PhoneNumber = InputVO.phoneNumber;
                 LibraryStart.userList[userid].Address = InputVO.address;
 
-                UserUI.PrintSuccessEditUserData();
-
-                keyInput = Console.ReadKey(true);            
+                UserUI.PrintSuccessEditUserData();                     
                 return; // 뒤로가기 
             }
            

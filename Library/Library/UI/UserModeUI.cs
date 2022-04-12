@@ -57,7 +57,7 @@ namespace Library
 			Console.WriteLine(" User PW (8~ 15글자 영어, 숫자포함) : ");//38 8
 			Console.WriteLine(" User PW  (     Password 확인     ) : ");//38 9
 			Console.WriteLine(" User Name (한글,영어 포함 1글자 이상) : ");//41 10
-			Console.WriteLine(" User Age (   자연수 0세 ~ 200세   ) : ");//39 11
+			Console.WriteLine(" User Age (  0,자연수 0세 ~ 200세   ) : ");//39 11
 			Console.WriteLine(" User PhoneNumber (   01x-xxxx-xxxx  ) : ");//41 12
 			Console.Write(" User Address (한글+숫자 최소 3개이상입력 ) : ");//46 13
 
@@ -252,9 +252,14 @@ namespace Library
 			Console.WriteLine(" User PW (8~ 15글자 영어, 숫자포함) : ");//38 22
 			Console.WriteLine(" User PW  (     Password 확인     ) : ");//38 23
 			Console.WriteLine(" User Name (한글,영어 포함 2글자 이상) : ");//41 24
-			Console.WriteLine(" User Age (   자연수 1세 ~ 200세   ) : ");//39 25
+			Console.WriteLine(" User Age (  0,자연수 0세 ~ 200세   ) : ");//39 25
 			Console.WriteLine(" User PhoneNumber (   01x-xxxx-xxxx  ) : ");//41 26
-			    Console.Write(" User Address (한글+숫자 최소 3개이상입력 ) : ");//46 13
+			Console.WriteLine(" User Address (도로명 주소 형식 ) : \n");//46 13
+			Console.WriteLine("광역지방자치단체 (기초지방자치단체) (시 군 구) (읍 면) (도로명) (건물번호) ");
+			Console.WriteLine("예시1 : 경기도 수원시 영통구 영통로124 ");
+			Console.WriteLine("예시2 : 서울특별시 강남구 남부순환로 지하2744");
+			Console.WriteLine("예시3 : 서울특별시 구로구 경인로248-29");
+
 			Console.SetCursorPosition(38, 21);
 
 		}	
