@@ -1,0 +1,8 @@
+C:\Users\rong5\Desktop\EnSharp22thStudy\Practice\Practice\obj\Debug\Practice.csproj.AssemblyReference.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\Practice\Practice\obj\Debug\Practice.csproj.SuggestedBindingRedirects.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\Practice\Practice\obj\Debug\Practice.csproj.CoreCompileInputs.cache
+C:\Users\rong5\Desktop\EnSharp22thStudy\Practice\Practice\bin\Debug\Practice.exe.config
+C:\Users\rong5\Desktop\EnSharp22thStudy\Practice\Practice\bin\Debug\Practice.exe
+C:\Users\rong5\Desktop\EnSharp22thStudy\Practice\Practice\bin\Debug\Practice.pdb
+C:\Users\rong5\Desktop\EnSharp22thStudy\Practice\Practice\obj\Debug\Practice.exe
+C:\Users\rong5\Desktop\EnSharp22thStudy\Practice\Practice\obj\Debug\Practice.pdb

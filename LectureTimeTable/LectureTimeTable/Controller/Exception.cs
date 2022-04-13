@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 
 
 namespace LectureTimeTable
 {
     internal class Exception
     {
-
+      
+     
+       
         LoginUI LoginUI =new LoginUI();
         ConsoleKeyInfo keyInput;
         string error;
@@ -21,6 +24,7 @@ namespace LectureTimeTable
         bool check;
         int xPosition;
         int yPosition;
+        POINT pointPosition;
 
 
       
@@ -52,9 +56,9 @@ namespace LectureTimeTable
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
-
-                        xPosition = 150;
-                        yPosition = 16;
+                        GetCursorPos(out pointPosition);
+                        xPosition = pointPosition.x;
+                        yPosition = pointPosition.y;
                         break;
                     }
                 }                
@@ -102,8 +106,9 @@ namespace LectureTimeTable
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
-                        xPosition = 150;
-                        yPosition = 18;
+                        GetCursorPos(out pointPosition);
+                        xPosition = pointPosition.x;
+                        yPosition = pointPosition.y;
                         break;
                     }
                 }
@@ -137,5 +142,15 @@ namespace LectureTimeTable
                 Console.Write("\b \b");
             }
         }
+
+
+        [DllImport("user32")]
+        public static extern Int32 GetCursorPos(out POINT pt);
+        public struct POINT
+        {
+            public Int32 x;
+            public Int32 y;
+        }
+
     }
 }
