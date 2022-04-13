@@ -13,11 +13,12 @@ namespace LectureTimeTable
         int menu;
         int input;
         UserMenuUI userMenuUI = new UserMenuUI();
+        LectureTimeUI lectureTimeUI = new LectureTimeUI();
         //LoginUI loginUI = new LoginUI();
         //Exception exceuption = new Exception();
         ConsoleKeyInfo keyInput;
 
-        public int SelectMenu( int menuCount) // 메뉴 선택
+        public int SelectVerticalMenu( int menuCount,string menuType) // 메뉴 선택
         {
             menuNumber = 0;
           
@@ -27,29 +28,32 @@ namespace LectureTimeTable
                 switch (keyInput.Key)
                 {
                     case ConsoleKey.UpArrow: // 위로가기 키
-                        menuNumber=SetMenuNumber(menuNumber, menuCount, "UP");
+                        menuNumber=SetMenuNumber(menuNumber, menuCount, "UP", menuType);
                         break;
                     case ConsoleKey.DownArrow: // 아래로가기 키
-                        menuNumber=SetMenuNumber(menuNumber, menuCount, "DOWN");
+                        menuNumber=SetMenuNumber(menuNumber, menuCount, "DOWN", menuType);
                         break;
-                    case ConsoleKey.Enter:
+                    case ConsoleKey.Enter: // 메뉴선택
                         return (menuNumber % menuCount) + 1;
-                    case ConsoleKey.Escape:
+                    case ConsoleKey.Escape: // 뒤로가기
                         return Constant.STOP;
                 }
             }
         }
-        private int SetMenuNumber(int menuNumber,int menuCount, string type) // 방향키 입력할때마다 menuCount변경
+        private int SetMenuNumber(int menuNumber,int menuCount, string keyType,string menuType) // 방향키 입력할때마다 menuCount변경
         {
             input = menuNumber;
-            if (type == "UP") { input--; }
+            if (keyType == "UP") { input--; }
             else { input++; }
 
             if(input == -1)
                 input = menuCount - 1;
 
+            if (menuType == "UserMenu")
+                userMenuUI.PrintUserMenu((input % menuCount) + 1);
+            else if (menuType == "LectureTimeMenu")
+                lectureTimeUI.PrintLectureTime((input % menuCount) + 1);
 
-            userMenuUI.PrintUserMenu((input % menuCount) + 1);
 
             return input; 
         }

@@ -10,10 +10,10 @@ namespace LectureTimeTable
     {
         static void Main(string[] args)
         {
-           // LTTStart start = new LTTStart();
-            //start.LTT();
+            LTTStart start = new LTTStart();
+            start.LTT();
 
-           
+           /*
             try
             {
                 // Excel Application 객체 생성
@@ -35,7 +35,7 @@ namespace LectureTimeTable
                 Array data = cellRange.Cells.Value2;
 
                 // 데이터 출력
-                /*
+                
                 Console.WriteLine(data.GetValue(1, 1));
                 Console.WriteLine(data.GetValue(1, 2));
                 Console.WriteLine(data.GetValue(1, 3));
@@ -47,13 +47,13 @@ namespace LectureTimeTable
                 Console.WriteLine(data.GetValue(3, 3));
                 data.SetValue("TWO", 1, 1);
                
-                /*
+                
                 for(int i = 1; i <= 12; i++)
                 {
                     Console.WriteLine(data.GetValue(2,i).GetType());
                     //Console.WriteLine("{0} {1} {2}",  data.GetValue(i, 1).GetType(), data.GetValue(i, 2), data.GetValue(i, 3));
                 }
-                */
+                
                 Console.ReadLine();
                 Console.ReadLine();
                 Console.ReadLine();
@@ -68,6 +68,7 @@ namespace LectureTimeTable
             {
                 Console.WriteLine(e.Message);
             }
+            */
             
 
 

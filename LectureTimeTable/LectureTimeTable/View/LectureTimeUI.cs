@@ -19,13 +19,13 @@ namespace LectureTimeTable
             Console.WriteLine("\n\n\n\n\n\n");
             sort.PrintCenter("ENTER : 선택하기 ESC : 뒤로가기 ", 215);
 
-            sort.PrintCenter("============================== 강의 시간표 조회 ==============================", 143);
+            sort.PrintCenter("======================================== 강의 시간표 조회 ========================================", 143);
             Console.WriteLine("\n\n");
 			PrintLectureTimeUI(selectNum);
             Console.WriteLine("\n\n");
-            sort.PrintCenter("==================================================================================", 150);
-
-        }
+            sort.PrintCenter("===================================================================================================", 151);
+			sort.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", 135);
+		}
 		public void PrintLectureTimeList(int selectNum, int menuNumber, string menuName)
 		{
 
@@ -36,7 +36,8 @@ namespace LectureTimeTable
 			}
 			else
 				selectFirst = "○";
-			Console.WriteLine("                                                               {0}  {1}", selectFirst, menuName);
+			Console.WriteLine("                          {0}  {1}", selectFirst, menuName);
+			Console.WriteLine();
 			Console.ResetColor();
 
 		}
@@ -46,8 +47,9 @@ namespace LectureTimeTable
 			PrintLectureTimeList(selectNum, 1, "개설 학과 전공");
 			PrintLectureTimeList(selectNum, 2, "이수 구분");
 			PrintLectureTimeList(selectNum, 3, "교과목명");
-			PrintLectureTimeList(selectNum, 4, "학년");
-			PrintLectureTimeList(selectNum, 4, "조회");
+			PrintLectureTimeList(selectNum, 4, "교수명");
+			PrintLectureTimeList(selectNum, 5, "학년");
+			PrintLectureTimeList(selectNum, 6, "조회");
 
 
 		}
