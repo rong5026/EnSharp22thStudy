@@ -13,16 +13,23 @@ namespace LTT
         ConsoleKeyInfo keyInput;
 
         string id;
-        string passWord;
+        string password;
         public void UserLogin()
         {
             
             UI.PrintLoginUI();
 
+        
             id = exceuption.EnterId(62,16);
-            passWord = exceuption.EnterPassword(63, 18);
+            if (id == "")    //ESC 누르면 프로그램 종료     
+                return;
+            password = exceuption.EnterPassword(63, 18);
+            if (password == "") // 비밀번호 누르는곳에서 ESC누르면 프로그램 종료
+                return;
 
-           
+
+
+
         }
     }
 }

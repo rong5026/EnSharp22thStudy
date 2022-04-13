@@ -39,22 +39,39 @@ namespace LTT
           
         }
 
-        public void PrintErrorMessage(int x,int y,string errorMessage)
+        public void PrintErrorMessage(int x,int y,string errorMessage)// id,password 예외처리 실패
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(x, y);
             Console.Write(errorMessage);
             Console.ResetColor();
         }
-        public void PrintSuccessMessage(int x, int y, string successMessage)
+        public void PrintSuccessMessage(int x, int y, string successMessage) // id,password 예외처리 성공
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(x, y);
             Console.Write(successMessage);
             Console.ResetColor();
         }
+        public void PrintProgramStop()
+        {
+            Console.Clear();
+            Console.SetWindowSize(120, 30);
 
+            Console.WriteLine("\n\n");
+            PrintCenter("학 사 정 보 시 스 템", 112);
+            PrintCenter("ESC : 프로그램 종료\n", 170);
+            PrintCenter("============================== Sejong University ==============================\n\n", 120);
+            Console.WriteLine("                                        ▣▣▣  ▣▣▣▣   ▣▣▣   ▣▣▣");
+            Console.WriteLine("                                       ▣          ▣     ▣    ▣   ▣   ▣");
+            Console.WriteLine("                                        ▣▣▣     ▣     ▣    ▣   ▣▣▣");
+            Console.WriteLine("                                             ▣    ▣     ▣    ▣   ▣ ");
+            Console.WriteLine("                                        ▣▣▣     ▣      ▣▣▣    ▣       \n\n");
+            PrintCenter("===============================================================================", 120);
 
+        }
+
+        
 
 
 

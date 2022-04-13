@@ -15,13 +15,16 @@ namespace LTT
 
         public void StartLTTProgram()
         {
-         
-            login.UserLogin();
 
+            UI.PrintProgramStop();
+            //login.UserLogin();
+
+            /*
             while (Constant.PROGRAM_ON)
             {
 
             }
+            */
 
         }
     }

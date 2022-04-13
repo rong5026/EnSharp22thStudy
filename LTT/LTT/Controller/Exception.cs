@@ -21,8 +21,11 @@ namespace LTT
         int xPosition;
         int yPosition;
 
-        public string EnterId(int x, int y) // id 입력
+
+      
+        public string EnterId(int x, int y ) // id 입력
         {
+           
             error = "숫자8자리를 입력해주세요!";
             Console.SetCursorPosition(x, y);
             
