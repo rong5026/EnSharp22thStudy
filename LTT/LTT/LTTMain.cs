@@ -10,8 +10,10 @@ namespace LTT
     {
         static void Main(string[] args)
         {
-           LoginUI UI = new LoginUI();
-            UI.PrintLoginUI();
+            LTTStart start = new LTTStart();
+            start.StartLTTProgram();
+            
+            
 
 
 

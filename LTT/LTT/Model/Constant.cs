@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LTT.Model
+namespace LTT
 {
     internal class Constant
     {
+        public const bool PROGRAM_ON = true;
 
-       
     }
 }
