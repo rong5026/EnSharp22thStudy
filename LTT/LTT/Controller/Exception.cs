@@ -53,6 +53,7 @@ namespace LTT
                     {
                         xPosition = Console.GetCursorPosition().Left;
                         yPosition = Console.GetCursorPosition().Top;
+                        Console.WriteLine("{0} {1}", xPosition, yPosition);
                         break;
                     }
                 }                

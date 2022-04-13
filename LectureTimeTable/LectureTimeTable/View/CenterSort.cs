@@ -12,5 +12,6 @@ namespace LectureTimeTable
         {
             Console.WriteLine(String.Format("{0}", data).PadLeft(width - ((width / 2) - (data.Length / 2))));
         }
+        
     }
 }

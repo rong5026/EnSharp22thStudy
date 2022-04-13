@@ -49,15 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Exception.cs" />
+    <Compile Include="Controller\LectureTimeMenu.cs" />
     <Compile Include="Controller\Login.cs" />
     <Compile Include="Controller\SelectionMenu.cs" />
     <Compile Include="Controller\UserMenu.cs" />
     <Compile Include="LTTMain.cs" />
     <Compile Include="LTTStart.cs" />
     <Compile Include="Model\Constant.cs" />
+    <Compile Include="Model\LectureData.cs" />
     <Compile Include="Model\UserVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\CenterSort.cs" />
+    <Compile Include="View\LectureTimeUI.cs" />
     <Compile Include="View\LoginUI.cs" />
     <Compile Include="View\UserMenuUI.cs" />
   </ItemGroup>

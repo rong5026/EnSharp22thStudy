@@ -16,7 +16,8 @@ namespace LectureTimeTable
         //LoginUI loginUI = new LoginUI();
         //Exception exceuption = new Exception();
         ConsoleKeyInfo keyInput;
-        public int SelectUserMenu( int menuCount)
+
+        public int SelectMenu( int menuCount) // 메뉴 선택
         {
             menuNumber = 0;
           
@@ -38,7 +39,7 @@ namespace LectureTimeTable
                 }
             }
         }
-        private int SetMenuNumber(int menuNumber,int menuCount, string type)
+        private int SetMenuNumber(int menuNumber,int menuCount, string type) // 방향키 입력할때마다 menuCount변경
         {
             input = menuNumber;
             if (type == "UP") { input--; }

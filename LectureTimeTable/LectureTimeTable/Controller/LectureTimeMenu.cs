@@ -6,21 +6,19 @@ using System.Threading.Tasks;
 
 namespace LectureTimeTable
 {
-    internal class UserMenu
+    internal class LectureTimeMenu
     {
-      
+        LectureTimeUI lectureTimeUI = new LectureTimeUI();
         SelectionMenu menu = new SelectionMenu();
-        UserMenuUI userMenuUI = new UserMenuUI();
-
         int menuNumber;
-        public void StartUserMenu()
+        public void StartLectureTimeMenu()
         {
-            userMenuUI.PrintUserMenu(1);
+            lectureTimeUI.PrintLectureTime(1);
+
             while (Constant.PROGRAM_ON)
             {
                 Console.CursorVisible = false;
-                menuNumber = menu.SelectMenu(4); // 메뉴의 수 인자
-
+                menuNumber = menu.SelectMenu(6); // 메뉴의 수 인자
 
                 switch (menuNumber)
                 {
@@ -35,12 +33,12 @@ namespace LectureTimeTable
                     case Constant.STOP:
                         return;
 
-                      
+
                 }
 
             }
 
-
         }
-    }   
+
+    }
 }

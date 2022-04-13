@@ -22,9 +22,8 @@ namespace LectureTimeTable
         string password;
         string input;
         bool check;
-        int xPosition;
-        int yPosition;
-        POINT pointPosition;
+   
+     
 
 
       
@@ -56,9 +55,7 @@ namespace LectureTimeTable
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
-                        GetCursorPos(out pointPosition);
-                        xPosition = pointPosition.x;
-                        yPosition = pointPosition.y;
+                   
                         break;
                     }
                 }                
@@ -69,7 +66,7 @@ namespace LectureTimeTable
                 check = Regex.IsMatch(input, @"^[0-9]{8}$"); // 숫자 6개
             if (check==false) //
             {
-                DeleteInput(input.Length, xPosition, yPosition);
+                DeleteInput(72, 149, 16);
                 LoginUI.PrintErrorMessage(x, y+1, error);               
                 return EnterId(x, y);
             }
@@ -106,9 +103,7 @@ namespace LectureTimeTable
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
-                        GetCursorPos(out pointPosition);
-                        xPosition = pointPosition.x;
-                        yPosition = pointPosition.y;
+               
                         break;
                     }
                 }
@@ -121,7 +116,7 @@ namespace LectureTimeTable
 
             if (check == false) //
             {
-                DeleteInput(input.Length, xPosition, yPosition);
+                DeleteInput(71, 149, 18); // 입력했던거 삭제
                 
                 LoginUI.PrintErrorMessage(x, y+1, error);
                
@@ -138,19 +133,12 @@ namespace LectureTimeTable
             Console.SetCursorPosition(x, y);        
             for (int index = 0; index < count; index++)
             {
-             
+         
                 Console.Write("\b \b");
             }
         }
 
 
-        [DllImport("user32")]
-        public static extern Int32 GetCursorPos(out POINT pt);
-        public struct POINT
-        {
-            public Int32 x;
-            public Int32 y;
-        }
-
+        
     }
 }
