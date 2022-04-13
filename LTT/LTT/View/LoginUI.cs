@@ -16,25 +16,25 @@ namespace LTT
        
         public void PrintLoginUI() // 로그인 UI출력
         {
-            Console.SetWindowSize(120, 30);
+            Console.SetWindowSize(150, 40);
 
           
             Console.WriteLine("\n\n");
-            PrintCenter("학 사 정 보 시 스 템", 112);
-            PrintCenter("ESC : 프로그램 종료\n", 170);
-            PrintCenter("============================== Sejong University ==============================\n\n",120);
-            Console.WriteLine("                                    ▣      ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣");
-            Console.WriteLine("                                    ▣     ▣    ▣  ▣          ▣     ▣▣    ▣");
-            Console.WriteLine("                                    ▣     ▣    ▣  ▣   ▣     ▣     ▣  ▣  ▣");
-            Console.WriteLine("                                    ▣     ▣    ▣  ▣    ▣    ▣     ▣    ▣▣");
-            Console.WriteLine("                                    ▣▣▣  ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣\n\n");
+            PrintCenter("학 사 정 보 시 스 템", 142);
+            PrintCenter("ESC : 프로그램 종료\n", 200);
+            PrintCenter("============================== Sejong University ==============================\n\n",150);
+            Console.WriteLine("                                                   ▣      ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣");
+            Console.WriteLine("                                                   ▣     ▣    ▣  ▣          ▣     ▣▣    ▣");
+            Console.WriteLine("                                                   ▣     ▣    ▣  ▣   ▣     ▣     ▣  ▣  ▣");
+            Console.WriteLine("                                                   ▣     ▣    ▣  ▣    ▣    ▣     ▣    ▣▣");
+            Console.WriteLine("                                                   ▣▣▣  ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣\n\n");
         
-            PrintCenter("학번(8자리숫자) : \n", 100); //62 15         
-            PrintCenter("비밀번호(8~14자리) : \n\n", 100); // 63 16
+            PrintCenter("학번(8자리숫자) : \n", 130); //62 15         
+            PrintCenter("비밀번호(8~14자리) : \n\n", 130); // 63 16
 
     
 
-            PrintCenter("===============================================================================", 120);
+            PrintCenter("===============================================================================", 150);
 
           
         }
@@ -56,30 +56,32 @@ namespace LTT
         public void PrintProgramStop() // 프로그램 종료
         {
             Console.Clear();
-            Console.SetWindowSize(120, 30);
+            Console.SetWindowSize(150, 40);
 
             Console.WriteLine("\n\n");
-            PrintCenter("학 사 정 보 시 스 템", 112);
-            PrintCenter("ESC : 프로그램 종료\n", 170);
-            PrintCenter("============================== Sejong University ==============================\n\n", 120);
-            Console.WriteLine("                                        ▣▣▣  ▣▣▣▣   ▣▣▣   ▣▣▣");
-            Console.WriteLine("                                       ▣          ▣     ▣    ▣   ▣   ▣");
-            Console.WriteLine("                                        ▣▣▣     ▣     ▣    ▣   ▣▣▣");
-            Console.WriteLine("                                             ▣    ▣     ▣    ▣   ▣ ");
-            Console.WriteLine("                                        ▣▣▣     ▣      ▣▣▣    ▣       \n\n");
-            PrintCenter("===============================================================================", 120);
+            PrintCenter("학 사 정 보 시 스 템", 142);
+            PrintCenter("ESC : 프로그램 종료\n", 200);
+            PrintCenter("============================== Sejong University ==============================\n\n", 150);
+            Console.WriteLine("                                                       ▣▣▣  ▣▣▣▣   ▣▣▣   ▣▣▣");
+            Console.WriteLine("                                                      ▣          ▣     ▣    ▣   ▣   ▣");
+            Console.WriteLine("                                                       ▣▣▣     ▣     ▣    ▣   ▣▣▣");
+            Console.WriteLine("                                                            ▣    ▣     ▣    ▣   ▣ ");
+            Console.WriteLine("                                                       ▣▣▣     ▣      ▣▣▣    ▣       \n\n");
+            PrintCenter("===============================================================================", 150);
 
         }
-        public void PrintReLogin()
+        public void PrintReLogin() // 틀리거나 존재하지 않는 ID로그인시 
         {
 
             Console.Clear();
             Console.CursorVisible = false;
-            PrintCenter("학 사 정 보 시 스 템", 112);
-            PrintCenter("ESC : 프로그램 종료\n", 170);
-            PrintCenter("============================== Sejong University ==============================\n\n\n\n", 120);
-            PrintCenter(" 종료 : ESC      다시 로그인 : ENTER\n\n\n",120);
-            PrintCenter("===============================================================================", 120);
+            Console.WriteLine("\n\n");
+            PrintCenter("학 사 정 보 시 스 템", 142);
+            PrintCenter("ESC : 프로그램 종료\n", 200);
+            PrintCenter("============================== Sejong University ==============================\n\n\n\n", 150);
+            PrintCenter("존재하지 않는 ID이거나, 비밀번호가 틀립니다!!\n\n",130);
+            PrintCenter(" 종료 : ESC      다시 로그인 : ENTER\n\n\n",140);
+            PrintCenter("===============================================================================", 150);
         }
         
 

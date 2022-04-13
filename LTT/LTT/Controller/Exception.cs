@@ -26,7 +26,7 @@ namespace LTT
         public string EnterId(int x, int y ) // id 입력
         {
            
-            error = "숫자8자리를 입력해주세요!";
+            error = "숫자8자리를 입력해주세요!";   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
             
             input = "";
@@ -40,14 +40,14 @@ namespace LTT
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
                     input += keyInput.KeyChar;
-                    Console.Write(keyInput.KeyChar);
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
                 }
                 else
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");
+                        Console.Write("\b \b");  // 지우기
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -58,7 +58,7 @@ namespace LTT
                 }                
             }
 
-            /////////////////////////////////////
+            // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, @"^[0-9]{8}$"); // 숫자 6개
             if (check==false) //
@@ -74,7 +74,7 @@ namespace LTT
 
         public string EnterPassword(int x, int y) // password입력
         {
-            error = "영어+숫자 8~14자리를 입력해주세요!";
+            error = "영어+숫자 8~14자리를 입력해주세요!"; // 에러문자 출력
 
      
             Console.SetCursorPosition(x, y);
@@ -89,7 +89,7 @@ namespace LTT
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
                     input += keyInput.KeyChar;
-                    Console.Write("*");
+                    Console.Write("*"); // 입력값을 *로 출력
                 }
                 else
                 {
@@ -107,7 +107,8 @@ namespace LTT
                 }
             }
 
-          
+            // 정규식 예외처리
+
             if (input != null)
                 check = Regex.IsMatch(input, @"^[a-zA-Z0-9]{8,14}$"); // 영어 + 숫자 8~14자리
 
@@ -125,7 +126,7 @@ namespace LTT
         }
 
 
-        public void DeleteInput(int count, int x, int y)
+        private void DeleteInput(int count, int x, int y)
         {
             Console.SetCursorPosition(x, y);        
             for (int index = 0; index < count; index++)

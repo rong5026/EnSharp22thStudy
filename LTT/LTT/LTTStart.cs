@@ -10,22 +10,24 @@ namespace LTT
     {
         Login login = new Login();
         List<UserVO> userList = new List<UserVO>();
-        LoginUI LoginUI = new LoginUI();
+        LoginUI loginUI = new LoginUI();
 
         ConsoleKeyInfo keyInput;
         int loginStatus;
 
 
+        UserVO user = new UserVO("19011617","mong5026"); // 고쳐야함
         public void LTT()
 
         {
+            userList.Add(user);   //고쳐야함
             while (Constant.PROGRAM_ON)
             {
                 
                 loginStatus = login.UserLogin(userList);
                 if (loginStatus == Constant.LOGIN_OFF) // 프로그램 종료
                 {
-                    LoginUI.PrintProgramStop();
+                    loginUI.PrintProgramStop();
                     return;
                 }
 
@@ -34,18 +36,12 @@ namespace LTT
                     // 다음 메뉴 페이지로 넘어가면 됨
                 
                 }
-                else
+                else if(loginStatus == Constant.LOGIN_FAIL)
                 {
-                    LoginUI.PrintReLogin();
-                    keyInput = Console.ReadKey(true);
-
-                    if (keyInput.Key == ConsoleKey.Escape)
-                    {
-                        LoginUI.PrintProgramStop();
-                        return;
-                    }
+                    
 
                 }
+                
 
             }
 
