@@ -1,33 +1,17 @@
 ﻿using System.Text.RegularExpressions;
-char[] arr = { 'O', 'O', 'O', 'O', 'O', '5', '6', 'O', '8', '9' };
+
+//Console.SetWindowSize(150, 40);
 
 
 while (true)
 {
-    string id;
-    bool check;
-    id = Console.ReadLine();
-    check = Regex.IsMatch(id, @"[ㄱ-ㅎ가-힣]{3,5}\s{0,1}([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣0-9]{2,}\s{0,1}?-?[0-9]{0,}?[ㄱ-ㅎ가-힣]{0,})?([ㄱ-ㅎ가-힣0-9]{1,}\s{0,1}?-?[0-9]{0,})?$");
+    string id = Console.ReadLine();
 
-    Console.WriteLine(check);
+    Console.WriteLine(Regex.IsMatch(id, @"^[0-9]{6}$")); // 숫자6자리
+
 }
 
-Console.WriteLine("┌---------------------------------------┐");
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│      {0}     ││      {0}     ││     {0}     │", arr[1], arr[2], arr[3]);
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│------------││------------││-----------│");
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│      {0}     ││      {0}     ││     {2}     │", arr[4], arr[5], arr[6]);
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│------------││------------││-----------│");
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│      {0}     ││      {1}     ││     {2}     │", arr[7], arr[8], arr[9]);
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("│            ││            ││           │");
-Console.WriteLine("└---------------------------------------┘");
+//Console.WriteLine(Console.GetCursorPosition()); //
+
+//Console.WindowHeight
+//Console.WindowWidth

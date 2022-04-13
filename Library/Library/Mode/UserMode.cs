@@ -9,15 +9,7 @@ namespace Library
     internal class UserMode
     {
 
-        /*
-        LibraryUI UI = new LibraryUI();
-        UserModeUI UserUI = new UserModeUI();
-        SelectionMode mode = new SelectionMode();
-        UserMenu userMenu = new UserMenu();            
-        Login login = new Login();
-        Register register = new Register();
-        ConsoleKeyInfo keyInput;
-        */
+      
         int isLoggedIn;
         int menuNumber = 1;
 

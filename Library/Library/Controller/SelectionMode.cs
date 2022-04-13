@@ -8,9 +8,7 @@ namespace Library
 {
     internal class SelectionMode
     {
-       // ConsoleKeyInfo keyInput;
-        //LibraryUI UI = new LibraryUI();
-    
+   
         int menuNumber;
 
         public int SelectMode(int type)

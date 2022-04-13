@@ -8,7 +8,7 @@ namespace Library
 {
     internal class ManagerModeUI
     {
-		//LibraryUI UI = new LibraryUI();
+	
 		public void PrintRegisterBook()
 		{
 			Console.WriteLine("┌---------------------------------------------------------------------┐");
@@ -44,12 +44,13 @@ namespace Library
 		}
 		public void PrintRegisterBookSuccess()
 		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                책 등 록 완 료 !                │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│      (뒤로가려면 아무키 1개를 눌러주세요)      │");
-			Console.WriteLine("└------------------------------------------------┘\n");
+			Console.WriteLine("┌---------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                              책 등 록 완 료 !                       │");
+			Console.WriteLine("│                                                                     │");
+			Console.WriteLine("│                       (1초 후 화면이 넘어갑니다)                    │");
+			Console.WriteLine("└---------------------------------------------------------------------┘\n");
+
 		}
 
 		public void PrintEditBookCount()
@@ -116,7 +117,7 @@ namespace Library
 			Console.WriteLine();
 			Console.WriteLine(" 삭제 할 책 ID : "); // 17 8
 			Console.WriteLine(" 삭제 할 책 수량 : ");//18 9
-			Console.WriteLine(" 삭제 할 책 ID 형식 :  1~999 수 입력"); // 17 8
+			Console.WriteLine(" 삭제 할 책 ID 형식 :  0~999 수 입력"); // 17 8
 			Console.WriteLine(" 삭제 할 책 수량 형식: 1~999 수 입력 "); // 19 9
 			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
 

@@ -9,13 +9,7 @@ namespace Library
     internal class BookSearching
     {
         
-   /*
-        LibraryUI UI = new LibraryUI();
-        UserModeUI UserModeUI = new UserModeUI();   
-        ConsoleKeyInfo keyInput;
-        ValidInput validInput = new ValidInput();
-        LoginedUser loginUser = new LoginedUser();
-   */
+ 
         string name;
         string author;
         string publisher;
@@ -114,7 +108,7 @@ namespace Library
             else
             {
                 bookId = VariableData.validInput.EnterBookId(41,2);
-
+               
                 LibraryStart.userList[VariableData.loginUser.SearchLoginUser()].RendtedBookId.Remove(Convert.ToInt16(bookId)); // userlist에서 bookid와 같은 책을 가지고 있으면 삭제
 
                 BookVO.totalBook++;  // 도서관 전체 책의 수 +1

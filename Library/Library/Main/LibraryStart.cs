@@ -16,15 +16,7 @@ namespace Library
         public static List<UserVO> userList; 
         public static List<BookVO> bookList;
 
-       
-       /* LibraryUI UI = new LibraryUI();
-        SelectionMode mode = new SelectionMode();
-        UserMode userMode = new UserMode();
-        ManagerMode managerMode = new ManagerMode();    
-        UserVO user;
-        BookVO bookVO;
-       */
-
+      
         int menuNumber;
 
 

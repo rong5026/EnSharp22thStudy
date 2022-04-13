@@ -10,9 +10,8 @@ namespace Library
     internal class ValidInput
     {
 
-        //UserModeUI UserUI = new UserModeUI();
-        bool check;
-      
+ 
+        bool check;     
         string idPassword;
       
 
@@ -198,8 +197,8 @@ namespace Library
                 VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
                 return EnterBookName(x, y);
-            }                   
-                return null;
+            }
+            return InputVO.name; // 방금 수정
 
         }
         public string EnterAuthor(int x, int y) // 저자이름
@@ -276,7 +275,7 @@ namespace Library
             {
                 VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
-                return EnterBookCount(x, y);
+                return EnterBookPrice(x, y);
             }   
             return InputVO.id;
         }
@@ -294,7 +293,7 @@ namespace Library
             {
                 VariableData.UserUI.PrintMessage(x, y, InputVO.error);
                 Thread.Sleep(1000);
-                return EnterBookCount(x, y);
+                return EnterBookDate(x, y);  
             }
             return InputVO.id;
         }

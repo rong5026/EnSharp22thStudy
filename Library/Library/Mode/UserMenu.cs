@@ -8,31 +8,19 @@ namespace Library
 {
     internal class UserMenu
     {
-        public UserMenu()
-        {
-
-
-        }
+    
       
-        /*
-        LibraryUI UI = new LibraryUI();
-        UserModeUI UserUI = new UserModeUI();
-        SelectionMode mode = new SelectionMode();
-        BookSearching book = new BookSearching();
-        ValidInput validInput = new ValidInput();
-        LoginedUser loginUser = new LoginedUser();
-     */
         int userid;
         bool delete;
         int menuNumber;
-        ConsoleKeyInfo keyInput;
+      
 
         public void StartUserMenu()
         {
             VariableData.UI.PrintMainUI();
             Console.SetWindowSize(125, 40);
 
-           // UI.PrintUserMenuUI(1);
+           
             while (Const.PROGRAM_ON)
             {
                 menuNumber = VariableData.mode.SelectUserOrManagerMenu("User",7); // 유저메뉴 위아래 화살표로 선택하기
@@ -80,8 +68,8 @@ namespace Library
             VariableData.UserUI.PrintUserData(VariableData.loginUser.SearchLoginUser());
 
 
-            keyInput = Console.ReadKey(true);
-            if (keyInput.Key == ConsoleKey.Escape)
+            VariableData.keyInput = Console.ReadKey(true);
+            if (VariableData.keyInput.Key == ConsoleKey.Escape)
                 return; // 뒤로가기 
             else
             {            
@@ -111,17 +99,16 @@ namespace Library
             Console.Clear();
             VariableData.UserUI.PrintDeleteUserId();
 
-            keyInput = Console.ReadKey(true);
-            if (keyInput.Key == ConsoleKey.Escape)
+            VariableData.keyInput = Console.ReadKey(true);
+            if (VariableData.keyInput.Key == ConsoleKey.Escape)
                 return false; // 뒤로가기 
-            else if (keyInput.Key == ConsoleKey.Enter) {
+            else if (VariableData.keyInput.Key == ConsoleKey.Enter) {
 
                 LibraryStart.userList.RemoveAt(VariableData.loginUser.SearchLoginUser()); // 로그인한 유저 삭제
 
                 VariableData.UserUI.PrintDeleteUserIdSuccess();
 
-                keyInput = Console.ReadKey(true);
-              
+                Thread.Sleep(1000);              
                 return true; // 뒤로가기 
             }
             return DeleteUserId();

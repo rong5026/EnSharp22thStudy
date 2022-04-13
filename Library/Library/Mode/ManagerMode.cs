@@ -8,17 +8,8 @@ namespace Library
 {
     internal class ManagerMode
     {
-        /*
-        LibraryUI UI = new LibraryUI();
-        ManagerModeUI ManagerUI = new ManagerModeUI();
-        SelectionMode mode = new SelectionMode();
-        BookSearching book = new BookSearching();
-        ValidInput validInput = new ValidInput();
-        BookVO bookVO = new BookVO();
-      */
 
-       
-        ConsoleKeyInfo keyInput;
+   
 
         int menuNumber;
         public void StartManagerMode()
@@ -73,7 +64,7 @@ namespace Library
             VariableData.UI.PrintBookList();
             VariableData.UI.PrintBookList(null, null, null);
 
-            keyInput = Console.ReadKey(true);
+            VariableData.keyInput = Console.ReadKey(true);
             return;  // 아무키 입력시 뒤로가기
         }
 
@@ -83,8 +74,8 @@ namespace Library
             VariableData.ManagerUI.PrintRegisterBook();
 
 
-            keyInput = Console.ReadKey(true);
-            if (keyInput.Key == ConsoleKey.Escape)
+            VariableData.keyInput = Console.ReadKey(true);
+            if (VariableData.keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
             {
@@ -104,9 +95,8 @@ namespace Library
 
                 // 등록완료 UI
                 Console.Clear();
-                VariableData.ManagerUI.PrintRegisterBookSuccess();             
-
-                keyInput = Console.ReadKey(true);
+                VariableData.ManagerUI.PrintRegisterBookSuccess();
+                Thread.Sleep(1000);         
               
                 return; // 아무키누르면 뒤로나감
 
@@ -120,8 +110,8 @@ namespace Library
 
             VariableData.ManagerUI.PrintEditBookCount(); // 책수량 선택 UI
 
-            keyInput = Console.ReadKey(true);
-            if (keyInput.Key == ConsoleKey.Escape)
+            VariableData.keyInput = Console.ReadKey(true);
+            if (VariableData.keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
             {
@@ -164,7 +154,7 @@ namespace Library
 
             VariableData.ManagerUI.PrintDeleteBook(); // 책 삭제 UI
 
-            if (keyInput.Key == ConsoleKey.Escape)
+            if (VariableData.keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
             {
@@ -214,7 +204,7 @@ namespace Library
         {
             Console.Clear();
             VariableData.ManagerUI.PrintUserList();
-            keyInput = Console.ReadKey(true);
+            VariableData.keyInput = Console.ReadKey(true);
             return;
         
 

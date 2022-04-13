@@ -10,14 +10,7 @@ namespace Library
 
     {
 
-       /*
-        UserModeUI UserUI = new UserModeUI();
-        ValidInput validInput = new ValidInput();
-        UserVO user = new UserVO();
-        ConsoleKeyInfo keyInput;
-       */
-      
-
+ 
         string[] userData = new string[7];
 
         public bool RegistUser()
