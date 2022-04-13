@@ -53,7 +53,7 @@ namespace LTT
             Console.Write(successMessage);
             Console.ResetColor();
         }
-        public void PrintProgramStop()
+        public void PrintProgramStop() // 프로그램 종료
         {
             Console.Clear();
             Console.SetWindowSize(120, 30);
@@ -70,7 +70,17 @@ namespace LTT
             PrintCenter("===============================================================================", 120);
 
         }
+        public void PrintReLogin()
+        {
 
+            Console.Clear();
+            Console.CursorVisible = false;
+            PrintCenter("학 사 정 보 시 스 템", 112);
+            PrintCenter("ESC : 프로그램 종료\n", 170);
+            PrintCenter("============================== Sejong University ==============================\n\n\n\n", 120);
+            PrintCenter(" 종료 : ESC      다시 로그인 : ENTER\n\n\n",120);
+            PrintCenter("===============================================================================", 120);
+        }
         
 
 

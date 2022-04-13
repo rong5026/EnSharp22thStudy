@@ -11,9 +11,10 @@ namespace LTT
         static void Main(string[] args)
         {
             LTTStart start = new LTTStart();
-            start.StartLTTProgram();
-            
-            
+            start.LTT();
+
+
+
 
 
 

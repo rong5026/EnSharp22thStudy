@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LTT.Model
+namespace LTT
 {
     internal class UserVO
     {
