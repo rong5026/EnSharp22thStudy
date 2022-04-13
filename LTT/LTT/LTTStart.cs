@@ -11,6 +11,7 @@ namespace LTT
         Login login = new Login();
         List<UserVO> userList = new List<UserVO>();
         LoginUI loginUI = new LoginUI();
+        UserMenu userMenu = new UserMenu();
 
         ConsoleKeyInfo keyInput;
         int loginStatus;
@@ -24,7 +25,7 @@ namespace LTT
             while (Constant.PROGRAM_ON)
             {
                 
-                loginStatus = login.UserLogin(userList);
+                loginStatus = login.StartUserLogin(userList);
                 if (loginStatus == Constant.LOGIN_OFF) // 프로그램 종료
                 {
                     loginUI.PrintProgramStop();
@@ -33,14 +34,12 @@ namespace LTT
 
                 else if (loginStatus == Constant.LOGIN_SUCCESS) // 로그인 성공
                 {
-                    // 다음 메뉴 페이지로 넘어가면 됨
-                
-                }
-                else if(loginStatus == Constant.LOGIN_FAIL)
-                {
-                    
+
+                    userMenu.StartUserMenu();
 
                 }
+
+              
                 
 
             }

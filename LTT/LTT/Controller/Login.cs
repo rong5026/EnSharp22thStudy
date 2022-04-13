@@ -17,7 +17,7 @@ namespace LTT
 
        
 
-        public int UserLogin(List<UserVO> userList)
+        public int StartUserLogin(List<UserVO> userList)
         {
 
             Console.Clear();
@@ -46,16 +46,16 @@ namespace LTT
            
 
 
-            while (Constant.PROGRAM_ON)
+            while (Constant.PROGRAM_ON) // 다시 로그인할건지, 프로그램종료할건지 입력
             {
                 keyInput = Console.ReadKey(true);
                 if (keyInput.Key == ConsoleKey.Escape)
                 {
-                    loginUI.PrintProgramStop();
+                    loginUI.PrintProgramStop(); // ESC는 프로그램종료
                     return Constant.LOGIN_OFF;
                 }
                 else if (keyInput.Key == ConsoleKey.Enter)
-                    return Constant.LOGIN_FAIL;
+                    return Constant.LOGIN_FAIL; // ENTER은 다시 로그인
             }
 
 

@@ -15,5 +15,16 @@ namespace LTT
         public const int LOGIN_FAIL = 0;
         public const int LOGIN_OFF = -1;
 
+     
+
+        public const int LECTURE_CLASS_CHECK = 1;
+        public const int LECTURE_INTERESTING = 2;
+        public const int LECTURE_SUBSCRIPTION = 3;
+        public const int LECTURE_SUBSCRIPTION_RESULT = 4;
+        public const int STOP = -1;
+
+
+
+
     }
 }
