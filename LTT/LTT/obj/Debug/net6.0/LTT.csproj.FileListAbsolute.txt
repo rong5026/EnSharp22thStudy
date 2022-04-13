@@ -13,3 +13,5 @@ C:\Users\rong5\Desktop\EnSharp22thStudy\LTT\LTT\obj\Debug\net6.0\refint\LTT.dll
 C:\Users\rong5\Desktop\EnSharp22thStudy\LTT\LTT\obj\Debug\net6.0\LTT.pdb
 C:\Users\rong5\Desktop\EnSharp22thStudy\LTT\LTT\obj\Debug\net6.0\LTT.genruntimeconfig.cache
 C:\Users\rong5\Desktop\EnSharp22thStudy\LTT\LTT\obj\Debug\net6.0\ref\LTT.dll
+C:\Users\rong5\Desktop\EnSharp22thStudy\LTT\LTT\bin\Debug\net6.0\Microsoft.Office.Interop.Excel.dll
+C:\Users\rong5\Desktop\EnSharp22thStudy\LTT\LTT\obj\Debug\net6.0\LTT.csproj.CopyComplete
