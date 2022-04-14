@@ -166,7 +166,7 @@ namespace LectureTimeTable
 
             classname = exception.EnterLectureName(82,14);
             Console.CursorVisible = false;
-            FindExcelindex(classname, 2);
+            FindExcelindex(classname, 5);
 
         }
         private void StartProfessorName() // 교수님 이름
@@ -218,7 +218,8 @@ namespace LectureTimeTable
             excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list,yPosition); // y좌표
 
-
+            indexNO.Clear();
+           
             while (Constant.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
