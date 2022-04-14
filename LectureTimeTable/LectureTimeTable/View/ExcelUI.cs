@@ -11,6 +11,7 @@ namespace LectureTimeTable
        
         StringSort sort = new StringSort();
         
+
         public void PrintExcelLectureTime()
         {
              //Console.WriteLine(excelData.Data.GetValue(1, 1));
@@ -52,8 +53,10 @@ namespace LectureTimeTable
             Console.WriteLine();
             sort.PrintCenter("============================================================================================================================================================================ ", 180);
 
-            sort.PrintCenter("ESC : 뒤로 돌아가기",180);
-
+        }
+        public void PrintExcelBack()
+        {      
+            sort.PrintCenter("ESC : 뒤로 돌아가기", 180);
         }
 
         private void PrintExcelElement(int xPosition,int yPosition,  int rowIndex,  int columnIndex)

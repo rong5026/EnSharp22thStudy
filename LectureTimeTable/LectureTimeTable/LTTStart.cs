@@ -14,7 +14,10 @@ namespace LectureTimeTable
         LoginUI loginUI = new LoginUI();
         UserMenu userMenu = new UserMenu();
         ExcelData lectureData = new ExcelData();
+
         public static ExcelData excelData = new ExcelData();
+        public static int applicationCredit = 0;
+
 
         ConsoleKeyInfo keyInput;
         int loginStatus;

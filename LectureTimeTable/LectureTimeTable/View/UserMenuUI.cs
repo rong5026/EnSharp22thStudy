@@ -13,7 +13,7 @@ namespace LectureTimeTable
 
 		public void PrintUserMenu(int selectNum)
         {
-			Console.Clear();
+			Console.SetCursorPosition(0, 0);
 			Console.WriteLine("\n\n\n\n\n\n");
 			sort.PrintCenter("ENTER :선택하기 ESC :뒤로가기 ", Constant.WIDTH + 46);
 

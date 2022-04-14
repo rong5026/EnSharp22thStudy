@@ -230,6 +230,56 @@ namespace LectureTimeTable
             return input;  //  password 리턴
         }
 
+
+        public string EnterLectureNO(int x, int y) {  // 과목 NO
+
+            Console.CursorVisible = true;
+            error = "1~184 사이 자연수를 입력해주세요!";   //예외조건 성립안할때 출력
+            Console.SetCursorPosition(x, y);
+
+            input = "";
+
+            while (Constant.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+                if (input == "")
+                    DeleteInput(121, 179, 19); // 오류메시지 삭제
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return "";
+
+                if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
+                {
+                    input += keyInput.KeyChar;
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
+                }
+                else
+                {
+                    if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
+                    {
+                        input = input.Substring(0, (input.Length - 1));
+                        Console.Write("\b \b");  // 지우기
+                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                    {
+
+                        break;
+                    }
+                }
+            }
+
+            // 정규식 예외처리
+            if (input != null)
+                check = Regex.IsMatch(input, @"^[0-9]{1,3}$"); // 숫자 최대3개
+            if (check == false || ( Convert.ToInt16(input)<1 || Convert.ToInt16(input) >184)) //
+            {
+                DeleteInput(121, 179, 19); // 오류메시지 삭제
+                LoginUI.PrintErrorMessage(x, y, error);
+                return EnterLectureNO(x, y);
+            }
+
+            return input;  // 정수형 id 리턴
+
+        }
         private void DeleteInput(int count, int x, int y)
         {
             Console.SetCursorPosition(x, y);        

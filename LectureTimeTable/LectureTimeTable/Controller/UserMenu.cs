@@ -16,6 +16,8 @@ namespace LectureTimeTable
         int menuNumber;
         public void StartUserMenu()
         {
+
+
             menuNumber = 0;
             while (Constant.PROGRAM_ON)
             {

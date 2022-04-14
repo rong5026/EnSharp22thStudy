@@ -34,7 +34,7 @@ namespace LectureTimeTable
             indexNO = new List<int>();
             menuNumber = 0;
 
-
+                
         }
         public void StartLectureTimeMenu()
         {
@@ -44,7 +44,8 @@ namespace LectureTimeTable
            
             indexNO.Add(1);  // 처음 1번에 있는 테마 정보저장
 
-
+            Console.WriteLine(indexNO.Count);
+            Console.ReadLine();
             while (Constant.PROGRAM_ON)
             {
                 
@@ -80,7 +81,7 @@ namespace LectureTimeTable
             }
 
         }
-        private void StartLectureDepartmentMenu() // 학과 선택 리스트
+        public void StartLectureDepartmentMenu() // 학과 선택 리스트
         {                    
             lectureTimeUI.PrintLectureDepartment(1);
 
@@ -113,7 +114,7 @@ namespace LectureTimeTable
                        
         }    
         
-        private void FindExcelindex(string word,int columnindex) // 검색시에 해당하는 index를 list에 넣음
+        public void FindExcelindex(string word,int columnindex) // 검색시에 해당하는 index를 list에 넣음
         {
             for(int rowIndex = 2; rowIndex <= 185; rowIndex++)
             {
@@ -213,11 +214,13 @@ namespace LectureTimeTable
         }
      
       
-        private void StartLectureCheck(List<int> list, int yPosition) // 조회하기 버튼
+        public void StartLectureCheck(List<int> list, int yPosition) // 조회하기 버튼
         {
             excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list,yPosition); // y좌표
-
+            excelUI.PrintExcelBack(); // 뒤로가기 UI
+            Console.WriteLine(indexNO.Count);
+            Console.ReadLine();
             indexNO.Clear();
            
             while (Constant.PROGRAM_ON)
