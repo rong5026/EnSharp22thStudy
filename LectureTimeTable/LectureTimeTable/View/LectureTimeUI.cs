@@ -73,14 +73,20 @@ namespace LectureTimeTable
 			Console.SetCursorPosition(60, 14);
 			Console.Write("교과목명(1글자이상) : ");
 		}
+		public void PrintProfessorName()
+		{
+			Console.SetCursorPosition(60, 16);
+			Console.Write("교수명(1글자이상) : ");
+		}
+
 		public void PrintLectureClass(int selectNum) // 학년
         {
 			Console.SetCursorPosition(60, 18);
 			PrintLectureHorisionList(selectNum, 1, "전체      ");
 			PrintLectureHorisionList(selectNum, 2, "1학년      ");
 			PrintLectureHorisionList(selectNum, 3, "2학년      ");
-			PrintLectureHorisionList(selectNum, 5, "3학년      ");
-			PrintLectureHorisionList(selectNum, 6, "4학년      ");
+			PrintLectureHorisionList(selectNum, 4, "3학년      ");
+			PrintLectureHorisionList(selectNum, 5, "4학년      ");
 		}
 		
 		public void PrintLectureHorisionList(int selectNum, int menuNumber, string menuName)

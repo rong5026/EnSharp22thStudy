@@ -20,7 +20,7 @@ namespace LectureTimeTable
         int department = 0;
         int division = 0;
         string name="";
-        string progessor="";
+        string professor="";
         int grade=0;
        
         public void StartLectureTimeMenu()
@@ -46,12 +46,13 @@ namespace LectureTimeTable
                         name = StartLectureName();
                         break;
                     case Constant.PROFESSOR: // 교수명
+                        professor = StartProfessorName();
                         break;
                     case Constant.GRADE: // 학년
                         grade = StartLectureClassMenu();
                         break;
                     case Constant.CHECK: // 조회
-                        StartLectureCheck(department, division, name, progessor,grade);
+                        StartLectureCheck(department, division, name, professor, grade);
                         break;
                     case Constant.STOP: // 뒤로가기
                         return;
@@ -87,15 +88,26 @@ namespace LectureTimeTable
         {
             lectureTimeUI.PrintLectureName(); // 이름 입력창
             
-            Console.ReadKey();
+           
             name = exception.EnterLectureName(82,14);
             Console.CursorVisible = false;
             return name;
 
         }
+        private string StartProfessorName() // 교수님 이름
+
+        {
+            lectureTimeUI.PrintProfessorName(); // 이름 입력창
+
+           
+            professor = exception.EnterProfessorfeName(80, 16);
+            Console.CursorVisible = false;
+            return professor;
+
+        }
         private int StartLectureClassMenu() {  // 학년
             lectureTimeUI.PrintLectureClass(1);
-            input = menu.SelectHorisionMenu(4, "LectureClass"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
+            input = menu.SelectHorisionMenu(5, "LectureClass"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
             if (input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 lectureTimeUI.PrintLectureTime(1);

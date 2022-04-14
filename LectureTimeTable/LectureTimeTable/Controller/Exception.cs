@@ -17,7 +17,6 @@ namespace LectureTimeTable
         LoginUI LoginUI =new LoginUI();
         ConsoleKeyInfo keyInput;
         string error;
-        string success = "예외처리 조건에 적합합니다 !!!";
         string id;
         string password;
         string input;
@@ -131,7 +130,7 @@ namespace LectureTimeTable
 
         }
 
-        public string EnterLectureName(int x, int y)
+        public string EnterLectureName(int x, int y) // 수업이름
         {
             Console.CursorVisible = true;
             error = "영어+한글+숫자+특수기호(:,#,+,(, ) 1개이상 입력해주세요!"; // 에러문자 출력
@@ -184,7 +183,7 @@ namespace LectureTimeTable
         public string EnterProfessorfeName(int x, int y)
         {
             Console.CursorVisible = true;
-            error = "영어+한글+숫자+특수기호(:,#,+,(, ) 1개이상 입력해주세요!"; // 에러문자 출력
+            error = "영어+한글 1개이상 입력해주세요!"; // 에러문자 출력
 
             Console.SetCursorPosition(x, y);
             input = "";
@@ -193,7 +192,7 @@ namespace LectureTimeTable
             {
                 keyInput = Console.ReadKey(true);
                 if (input == "")
-                    DeleteInput(Constant.WIDTH - 1 - 82, Constant.WIDTH - 1, 14); // 오류메시지 삭제
+                    DeleteInput(Constant.WIDTH - 1 - 80, Constant.WIDTH - 1, 16); // 오류메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
                     return "";
 
@@ -218,18 +217,19 @@ namespace LectureTimeTable
             // 정규식 예외처리
 
             if (input != null)
-                check = Regex.IsMatch(input, @"^[a-zA-Z0-9가-힣:+#()]{1,}$"); // 영어, 한글, 숫자, 특수문자 :,+,#,(,)
+                check = Regex.IsMatch(input, @"^[a-zA-Z가-힣]{1,}$"); // 영어, 한글, 숫자, 특수문자 :,+,#,(,)
 
             if (check == false) //
             {
-                DeleteInput(Constant.WIDTH - 1 - 82, Constant.WIDTH - 1, 14); // 입력했던거 삭제
+                DeleteInput(Constant.WIDTH - 1 - 80, Constant.WIDTH - 1, 16); // 입력했던거 삭제
 
                 LoginUI.PrintErrorMessage(x, y, error);
 
-                return EnterLectureName(x, y);
+                return EnterProfessorfeName(x, y);
             }
             return input;  //  password 리턴
         }
+
         private void DeleteInput(int count, int x, int y)
         {
             Console.SetCursorPosition(x, y);        
