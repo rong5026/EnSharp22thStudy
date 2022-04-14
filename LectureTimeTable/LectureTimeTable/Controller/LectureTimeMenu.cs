@@ -117,10 +117,11 @@ namespace LectureTimeTable
        
         private void StartLectureCheck(int department, int division, string name, string progessor, int grade) // 조회하기 버튼
         {
-            excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
+            //excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
+            excelUI.PrintExcelData(department, division, name, progessor, grade, 26); // y좌표
 
             //excelUI.PrintExcelData(department, division, name, progessor,grade);
-            excelUI.PrintExcelData("", "", name, progessor,"");
+
         }
     }
 }

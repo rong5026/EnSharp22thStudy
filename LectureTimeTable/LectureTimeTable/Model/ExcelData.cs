@@ -19,7 +19,7 @@ namespace LectureTimeTable
         }
         public ExcelData()
         {
-            /*
+            
             try
             {
                 // Excel Application 객체 생성
@@ -43,15 +43,9 @@ namespace LectureTimeTable
               
                 // 데이터 출력
                 
-                Console.WriteLine(data.GetValue(1, 1));
-                Console.WriteLine(data.GetValue(1, 2));
-                Console.WriteLine(data.GetValue(1, 3));
-                Console.WriteLine(data.GetValue(2, 1));
-                Console.WriteLine(data.GetValue(2, 2));
-                Console.WriteLine(data.GetValue(2, 3));
-                Console.WriteLine(data.GetValue(3, 1));
-                Console.WriteLine(data.GetValue(3, 2));
-                Console.WriteLine(data.GetValue(3, 3));
+                
+                //Console.WriteLine(data.GetValue(1, 1));
+              
                 
 
                 //Console.ReadLine();
@@ -66,7 +60,7 @@ namespace LectureTimeTable
                 Console.WriteLine(e.Message);
                 
             }
-    */
+    
         }
     }
 }
