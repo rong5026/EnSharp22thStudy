@@ -13,14 +13,20 @@ namespace LectureTimeTableExample
         // C#에서 Excel을 사용하는 자세한 방법은 검색을 통해 스스로 공부해봅시다.
         static void Main(string[] args)
         {
-            bool check;
-            while (true)
-            {
-              
-                string input = Console.ReadLine();
-                check = Regex.IsMatch(input, @"^[a-zA-Z0-9가-힣:+#()]{1,}$");
-                Console.WriteLine(check);
-            }
+            List <int> list = new List<int>();
+
+            list.Add(2);
+            list.Add(3);
+            list.Add(4);
+
+
+            for(int i = 0; i< list.Count; i++)
+                Console.WriteLine(list[i]);
+
+            list.Remove(6);
+            for (int i = 0; i < list.Count; i++)
+                Console.WriteLine(list[i]);
+
         }
     }
 }

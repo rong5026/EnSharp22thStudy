@@ -46,14 +46,13 @@ namespace LectureTimeTable
                 // Console.WriteLine(data.GetValue(3, 1));
                 //Console.WriteLine(data.GetValue(3, 2));
                 //Console.WriteLine(data.GetValue(3, 3));
-                // data.SetValue("TWO", 1, 1);
+                //data.SetValue("TWO", 1, 1);
 
-                
-                for(int i = 1; i <= 12; i++)
-                {
-                    Console.Write(" "+ data.GetValue(23, i)+" ");
-                    //Console.WriteLine("{0} {1} {2} {3} {4} {5} {",  data.GetValue(i, 1).GetType(), data.GetValue(i, 2), data.GetValue(i, 3));
-                }
+                //string a = Convert.ToString( data.GetValue(2, 2));
+
+               // Console.WriteLine(a);
+                //Console.WriteLine(data.GetValue(2, 2));
+              
 
                 // 한글은 1개에 2칸 영어는 1칸  숫자는 1칸
 

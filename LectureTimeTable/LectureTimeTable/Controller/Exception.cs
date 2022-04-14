@@ -22,8 +22,7 @@ namespace LectureTimeTable
         string input;
         bool check;
    
-     
-
+   
 
       
         public string EnterId(int x, int y ) // id 입력
@@ -86,6 +85,7 @@ namespace LectureTimeTable
            
             while (Constant.PROGRAM_ON)
             {
+              
                 keyInput = Console.ReadKey(true);
                 if (input == "")
                     DeleteInput(81, 179, 18); // 에러메시지 삭제

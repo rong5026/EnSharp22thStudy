@@ -44,7 +44,7 @@ namespace LectureTimeTable
         public const int THIRD_CLASS = 4;
         public const int FOUR_CLASS = 5;
 
-
+     
 
 
 
