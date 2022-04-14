@@ -14,7 +14,7 @@ namespace LectureTimeTable
         LoginUI loginUI = new LoginUI();
         UserMenu userMenu = new UserMenu();
         ExcelData lectureData = new ExcelData();
-        ExcelData excelData = new ExcelData();
+        public static ExcelData excelData = new ExcelData();
 
         ConsoleKeyInfo keyInput;
         int loginStatus;
@@ -31,8 +31,9 @@ namespace LectureTimeTable
                 loginStatus = login.StartUserLogin(userList);
                 if (loginStatus == Constant.LOGIN_OFF) // 프로그램 종료
                 {
-                    loginUI.PrintProgramStop();
+                    loginUI.PrintProgramStop();                   
                     return;
+                   
                 }
 
                 else if (loginStatus == Constant.LOGIN_SUCCESS) // 로그인 성공

@@ -17,9 +17,9 @@ namespace LectureTimeTable
         {
 			Console.SetCursorPosition(0, 0);
 			Console.WriteLine("\n\n\n\n\n\n");
-            sort.PrintCenter("ENTER : 선택하기 ESC : 뒤로가기 ", 215);
+            sort.PrintCenter("ENTER : 선택하기 ESC : 뒤로가기 ", Constant.WIDTH+65);
 
-            sort.PrintCenter("=========================================== 강의 시간표 조회 ===========================================", 143);
+            sort.PrintCenter("=========================================== 강의 시간표 조회 ===========================================", Constant.WIDTH-7);
             Console.WriteLine();
 			PrintLectureTimeList(selectNum, 1, "개설 학과 전공"); // 50 10 에 이제 리스트 보여주면됨
 			PrintLectureTimeList(selectNum, 2, "이수 구분");
@@ -28,8 +28,8 @@ namespace LectureTimeTable
 			PrintLectureTimeList(selectNum, 5, "학년");
 			PrintLectureTimeList(selectNum, 6, "조회");
 
-			sort.PrintCenter("=========================================================================================================", 151);
-			sort.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", 135);
+			sort.PrintCenter("=========================================================================================================", Constant.WIDTH+1);
+			sort.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", Constant.WIDTH-15);
 		
 
 		}
@@ -43,7 +43,7 @@ namespace LectureTimeTable
 			}
 			else
 				selectFirst = "○";
-			Console.WriteLine("                       {0}  {1}", selectFirst, menuName);
+			Console.WriteLine("                                      {0}  {1}", selectFirst, menuName);
 			Console.WriteLine();
 			Console.ResetColor();
 
@@ -51,7 +51,7 @@ namespace LectureTimeTable
 		
 		public void PrintLectureDepartment(int selectNum)// 학부
         {
-			Console.SetCursorPosition(45, 10);
+			Console.SetCursorPosition(60, 10);
 			PrintLectureHorisionList(selectNum, 1, "전체");
 			PrintLectureHorisionList(selectNum, 2, "컴퓨터공학과");
 			PrintLectureHorisionList(selectNum, 3, "지능기전공학부");
@@ -61,7 +61,7 @@ namespace LectureTimeTable
 		}
 		public void PrintLetureDivision(int selectNum) // 이수구분
         {
-			Console.SetCursorPosition(45, 12);
+			Console.SetCursorPosition(60, 12);
 			PrintLectureHorisionList(selectNum, 1, "전체      ");
 			PrintLectureHorisionList(selectNum, 2, "교양필수      ");
 			PrintLectureHorisionList(selectNum, 3, "전공필수      ");
@@ -70,12 +70,12 @@ namespace LectureTimeTable
 		}
 		public void PrintLectureName()
 		{
-			Console.SetCursorPosition(45, 14);
+			Console.SetCursorPosition(60, 14);
 			Console.Write("교과목명(1글자이상) : ");
 		}
 		public void PrintLectureClass(int selectNum) // 학년
         {
-			Console.SetCursorPosition(45, 18);
+			Console.SetCursorPosition(60, 18);
 			PrintLectureHorisionList(selectNum, 1, "전체      ");
 			PrintLectureHorisionList(selectNum, 2, "1학년      ");
 			PrintLectureHorisionList(selectNum, 3, "2학년      ");

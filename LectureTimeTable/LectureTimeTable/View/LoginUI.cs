@@ -13,25 +13,25 @@ namespace LectureTimeTable
 
         public void PrintLoginUI() // 로그인 UI출력
         {
-            Console.SetWindowSize(150, 40);
+            Console.SetWindowSize(Constant.WIDTH, 40);
 
           
             Console.WriteLine("\n\n");
-            sort.PrintCenter("학 사 정 보 시 스 템", 142);
-            sort.PrintCenter("ESC : 프로그램 종료\n", 200);
-            sort.PrintCenter("============================== Sejong University ==============================\n\n",150);
-            Console.WriteLine("                                                   ▣      ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣");
-            Console.WriteLine("                                                   ▣     ▣    ▣  ▣          ▣     ▣▣    ▣");
-            Console.WriteLine("                                                   ▣     ▣    ▣  ▣   ▣     ▣     ▣  ▣  ▣");
-            Console.WriteLine("                                                   ▣     ▣    ▣  ▣    ▣    ▣     ▣    ▣▣");
-            Console.WriteLine("                                                   ▣▣▣  ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣\n\n");
+            sort.PrintCenter("학 사 정 보 시 스 템", Constant.WIDTH+2);
+            sort.PrintCenter("ESC : 프로그램 종료\n", Constant.WIDTH+60);
+            sort.PrintCenter("============================== Sejong University ==============================\n\n", Constant.WIDTH+10);
+            Console.WriteLine("                                                                       ▣      ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣");
+            Console.WriteLine("                                                                       ▣     ▣    ▣  ▣          ▣     ▣▣    ▣");
+            Console.WriteLine("                                                                       ▣     ▣    ▣  ▣   ▣     ▣     ▣  ▣  ▣");
+            Console.WriteLine("                                                                       ▣     ▣    ▣  ▣    ▣    ▣     ▣    ▣▣");
+            Console.WriteLine("                                                                       ▣▣▣  ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣\n\n");
         
-            sort.PrintCenter("학번(8자리숫자) : \n", 130); //62 15         
-            sort.PrintCenter("비밀번호(8~14자리) : \n\n", 130); // 63 16
+            sort.PrintCenter("학번(8자리숫자) : \n", Constant.WIDTH-10); //62 15         
+            sort.PrintCenter("비밀번호(8~14자리) : \n\n", Constant.WIDTH-10); // 63 16
 
     
 
-            sort.PrintCenter("===============================================================================", 150);
+            sort.PrintCenter("===============================================================================", Constant.WIDTH+10);
 
           
         }
@@ -53,18 +53,18 @@ namespace LectureTimeTable
         public void PrintProgramStop() // 프로그램 종료
         {
             Console.Clear();
-            Console.SetWindowSize(150, 40);
+            
 
             Console.WriteLine("\n\n");
-            sort.PrintCenter("학 사 정 보 시 스 템", 142);
-            sort.PrintCenter("ESC : 프로그램 종료\n", 200);
-            sort.PrintCenter("============================== Sejong University ==============================\n\n", 150);
-            Console.WriteLine("                                                       ▣▣▣  ▣▣▣▣   ▣▣▣   ▣▣▣");
-            Console.WriteLine("                                                      ▣          ▣     ▣    ▣   ▣   ▣");
-            Console.WriteLine("                                                       ▣▣▣     ▣     ▣    ▣   ▣▣▣");
-            Console.WriteLine("                                                            ▣    ▣     ▣    ▣   ▣ ");
-            Console.WriteLine("                                                       ▣▣▣     ▣      ▣▣▣    ▣       \n\n");
-            sort.PrintCenter("===============================================================================", 150);
+            sort.PrintCenter("학 사 정 보 시 스 템", Constant.WIDTH+2);
+            sort.PrintCenter("ESC : 프로그램 종료\n", Constant.WIDTH+60);
+            sort.PrintCenter("============================== Sejong University ==============================\n\n", Constant.WIDTH+10);
+            Console.WriteLine("                                                                      ▣▣▣  ▣▣▣▣   ▣▣▣   ▣▣▣");
+            Console.WriteLine("                                                                     ▣          ▣     ▣    ▣   ▣   ▣");
+            Console.WriteLine("                                                                      ▣▣▣     ▣     ▣    ▣   ▣▣▣");
+            Console.WriteLine("                                                                           ▣    ▣     ▣    ▣   ▣ ");
+            Console.WriteLine("                                                                      ▣▣▣     ▣      ▣▣▣    ▣       \n\n");
+            sort.PrintCenter("===============================================================================", Constant.WIDTH+10);
 
         }
         public void PrintReLogin() // 틀리거나 존재하지 않는 ID로그인시 
@@ -73,12 +73,12 @@ namespace LectureTimeTable
             Console.Clear();
             Console.CursorVisible = false;
             Console.WriteLine("\n\n");
-            sort.PrintCenter("학 사 정 보 시 스 템", 142);
-            sort.PrintCenter("ESC : 프로그램 종료\n", 200);
-            sort.PrintCenter("============================== Sejong University ==============================\n\n\n\n", 150);
-            sort.PrintCenter("존재하지 않는 ID이거나, 비밀번호가 틀립니다!!\n\n",130);
-            sort.PrintCenter(" 종료 : ESC      다시 로그인 : ENTER\n\n\n",140);
-            sort.PrintCenter("===============================================================================", 150);
+            sort.PrintCenter("학 사 정 보 시 스 템", Constant.WIDTH+2);
+            sort.PrintCenter("ESC : 프로그램 종료\n", Constant.WIDTH+60);
+            sort.PrintCenter("============================== Sejong University ==============================\n\n\n\n", Constant.WIDTH+10);
+            sort.PrintCenter("존재하지 않는 ID이거나, 비밀번호가 틀립니다!!\n\n", Constant.WIDTH);
+            sort.PrintCenter(" 종료 : ESC      다시 로그인 : ENTER\n\n\n", Constant.WIDTH);
+            sort.PrintCenter("===============================================================================", Constant.WIDTH+10);
         }
         
 

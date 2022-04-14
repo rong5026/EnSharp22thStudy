@@ -11,7 +11,8 @@ namespace LectureTimeTable
         LectureTimeUI lectureTimeUI = new LectureTimeUI();
         SelectionMenu menu = new SelectionMenu();
         Exception exception = new Exception();
-        StringSort sort = new StringSort();
+        ExcelUI excelUI = new ExcelUI();
+
         int menuNumber;
         int input;
 
@@ -81,11 +82,13 @@ namespace LectureTimeTable
                 lectureTimeUI.PrintLectureTime(1);
             return input;
         }
-        private string StartLectureName()
+        private string StartLectureName() // 수업이름
 
         {
             lectureTimeUI.PrintLectureName(); // 이름 입력창
-            name = exception.EnterLectureName(66,14);
+            
+            Console.ReadKey();
+            name = exception.EnterLectureName(82,14);
             Console.CursorVisible = false;
             return name;
 
@@ -102,9 +105,10 @@ namespace LectureTimeTable
        
         private void StartLectureCheck(int department, int division, string name, string progessor, int grade) // 조회하기 버튼
         {
-            Console.SetCursorPosition(0, 24);
-            sort.PrintCenter("================================================= 2022학년도 1학기 강의 시간표================================================= ", 150);
+            excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
 
+            //excelUI.PrintExcelData(department, division, name, progessor,grade);
+            excelUI.PrintExcelData("", "", name, progessor,"");
         }
     }
 }

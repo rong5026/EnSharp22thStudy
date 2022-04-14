@@ -15,15 +15,15 @@ namespace LectureTimeTable
         {
 			Console.Clear();
 			Console.WriteLine("\n\n\n\n\n\n");
-			sort.PrintCenter("ESC : 뒤로가기 ",215);
+			sort.PrintCenter("ESC : 뒤로가기 ",Constant.WIDTH+60);
 
-			sort.PrintCenter("============================== 강좌조회 및 수강신청 ==============================", 143);
+			sort.PrintCenter("============================== 강좌조회 및 수강신청 ==============================", Constant.WIDTH-8);
 			Console.WriteLine("\n\n");
 			PrintUserMenuUI(selectNum);
 			Console.WriteLine("\n\n");
-			sort.PrintCenter("==================================================================================", 150);
+			sort.PrintCenter("==================================================================================", Constant.WIDTH);
 
-			sort.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.",135);
+			sort.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", Constant.WIDTH-12);
 		}
 
 		public void PrintUserMenuList(int selectNum, int menuNumber, string menuName)
@@ -36,7 +36,7 @@ namespace LectureTimeTable
 			}
 			else
 				selectFirst = "○";
-			Console.WriteLine("                                                               {0}  {1}", selectFirst, menuName);
+			Console.WriteLine("                                                                                {0}  {1}", selectFirst, menuName);
 			Console.ResetColor();
 		
 		}

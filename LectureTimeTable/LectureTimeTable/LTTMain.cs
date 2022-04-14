@@ -14,7 +14,7 @@ namespace LectureTimeTable
 
             LTTStart start = new LTTStart();
             start.LTT();
-            /*Console.SetWindowSize(150, 40);
+            /*
             try
             {
                 // Excel Application 객체 생성

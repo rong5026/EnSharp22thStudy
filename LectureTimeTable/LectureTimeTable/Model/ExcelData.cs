@@ -9,7 +9,7 @@ namespace LectureTimeTable
 {
     internal class ExcelData
     {
-
+        
         private Array data;
 
         public Array Data
@@ -19,6 +19,7 @@ namespace LectureTimeTable
         }
         public ExcelData()
         {
+            /*
             try
             {
                 // Excel Application 객체 생성
@@ -41,7 +42,7 @@ namespace LectureTimeTable
 
               
                 // 데이터 출력
-                /*
+                
                 Console.WriteLine(data.GetValue(1, 1));
                 Console.WriteLine(data.GetValue(1, 2));
                 Console.WriteLine(data.GetValue(1, 3));
@@ -51,7 +52,7 @@ namespace LectureTimeTable
                 Console.WriteLine(data.GetValue(3, 1));
                 Console.WriteLine(data.GetValue(3, 2));
                 Console.WriteLine(data.GetValue(3, 3));
-                */
+                
 
                 //Console.ReadLine();
                 // 모든 워크북 닫기
@@ -65,6 +66,7 @@ namespace LectureTimeTable
                 Console.WriteLine(e.Message);
                 
             }
+    */
         }
     }
 }
