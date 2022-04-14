@@ -23,6 +23,7 @@ namespace LectureTimeTable
                 switch (menuNumber)
                 {
                     case Constant.LECTURE_DEPARTMENT:  // 개설 학과 전공
+                        lectureTimeUI.PrintLectureDepartment(1);
                         break;
                     case Constant.LECTURE_DIVISION: // 이수구분
                         break;
@@ -43,6 +44,8 @@ namespace LectureTimeTable
             }
 
         }
+
+       
 
     }
 }

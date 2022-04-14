@@ -24,10 +24,16 @@ namespace LectureTimeTable
 
         public const int LECTURE_DEPARTMENT = 1; // 개설 학과 전공
         public const int LECTURE_DIVISION = 2; // 이수구분
-        public const int LECTURE_NAME = 3;
-        public const int PROFESSOR = 4;
-        public const int GRADE = 5;
-        public const int CHECK = 6;
+        public const int LECTURE_NAME = 3; // 교과목명
+        public const int PROFESSOR = 4; // 교수명
+        public const int GRADE = 5; // 학년
+        public const int CHECK = 6; // 조회
+
+        public const int LECTURE_ALL = 1;
+        public const int COMPUTER_DEPARTMENT = 1;
+        public const int LECTURE_ALL = 1;
+        public const int LECTURE_ALL = 1;
+        public const int LECTURE_ALL = 1;
 
 
 
