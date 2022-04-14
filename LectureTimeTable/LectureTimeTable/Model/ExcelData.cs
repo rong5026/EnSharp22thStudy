@@ -7,9 +7,17 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace LectureTimeTable
 {
-    internal class LectureData
+    internal class ExcelData
     {
-        public void ExcelData()
+
+        private Array data;
+
+        public Array Data
+        {
+            get { return data; }
+            set { data = value; }
+        }
+        public ExcelData()
         {
             try
             {
@@ -29,8 +37,9 @@ namespace LectureTimeTable
                 Excel.Range cellRange = worksheet.get_Range("A1", "L185") as Excel.Range;
 
                 // 설정한 범위만큼 데이터 담기 (Value2 -셀의 기본 값 제공)
-                Array data = cellRange.Cells.Value2;
+                data = cellRange.Cells.Value2;
 
+              
                 // 데이터 출력
                 /*
                 Console.WriteLine(data.GetValue(1, 1));
@@ -54,6 +63,7 @@ namespace LectureTimeTable
             catch (SystemException e)
             {
                 Console.WriteLine(e.Message);
+                
             }
         }
     }

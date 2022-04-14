@@ -8,12 +8,13 @@ namespace LectureTimeTable
 {
     internal class LTTMain
     {
+        
         static void Main(string[] args)
         {
+
             LTTStart start = new LTTStart();
             start.LTT();
-
-           /*
+            /*Console.SetWindowSize(150, 40);
             try
             {
                 // Excel Application 객체 생성
@@ -29,35 +30,37 @@ namespace LectureTimeTable
                 Excel.Worksheet worksheet = sheets["Sheet1"] as Excel.Worksheet;
 
                 // 범위 설정 (좌측 상단, 우측 하단)
-                Excel.Range cellRange = worksheet.get_Range("A1","L185") as Excel.Range;
+                Excel.Range cellRange = worksheet.get_Range("A1", "L185") as Excel.Range;
 
                 // 설정한 범위만큼 데이터 담기 (Value2 -셀의 기본 값 제공)
                 Array data = cellRange.Cells.Value2;
 
                 // 데이터 출력
-                
-                Console.WriteLine(data.GetValue(1, 1));
-                Console.WriteLine(data.GetValue(1, 2));
-                Console.WriteLine(data.GetValue(1, 3));
-                Console.WriteLine(data.GetValue(2, 1));
-                Console.WriteLine(data.GetValue(2, 2));
-                Console.WriteLine(data.GetValue(2, 3));
-                Console.WriteLine(data.GetValue(3, 1));
-                Console.WriteLine(data.GetValue(3, 2));
-                Console.WriteLine(data.GetValue(3, 3));
-                data.SetValue("TWO", 1, 1);
-               
+
+                // Console.WriteLine(data.GetValue(1, 1));
+                // Console.WriteLine(data.GetValue(1, 2));
+                // Console.WriteLine(data.GetValue(1, 3));
+                //Console.WriteLine(data.GetValue(2, 1));
+                //Console.WriteLine(data.GetValue(2, 2));
+                //Console.WriteLine(data.GetValue(2, 3));
+                // Console.WriteLine(data.GetValue(3, 1));
+                //Console.WriteLine(data.GetValue(3, 2));
+                //Console.WriteLine(data.GetValue(3, 3));
+                // data.SetValue("TWO", 1, 1);
+
                 
                 for(int i = 1; i <= 12; i++)
                 {
-                    Console.WriteLine(data.GetValue(2,i).GetType());
-                    //Console.WriteLine("{0} {1} {2}",  data.GetValue(i, 1).GetType(), data.GetValue(i, 2), data.GetValue(i, 3));
+                    Console.Write(" "+ data.GetValue(23, i)+" ");
+                    //Console.WriteLine("{0} {1} {2} {3} {4} {5} {",  data.GetValue(i, 1).GetType(), data.GetValue(i, 2), data.GetValue(i, 3));
                 }
-                
+
+                // 한글은 1개에 2칸 영어는 1칸  숫자는 1칸
+
                 Console.ReadLine();
                 Console.ReadLine();
                 Console.ReadLine();
-                
+
                 // 모든 워크북 닫기
                 application.Workbooks.Close();
 
@@ -69,7 +72,9 @@ namespace LectureTimeTable
                 Console.WriteLine(e.Message);
             }
             */
-            
+
+
+
 
 
 

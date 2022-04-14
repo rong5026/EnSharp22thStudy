@@ -13,7 +13,8 @@ namespace LectureTimeTable
         List<UserVO> userList = new List<UserVO>();
         LoginUI loginUI = new LoginUI();
         UserMenu userMenu = new UserMenu();
-        LectureData lectureData = new LectureData();
+        ExcelData lectureData = new ExcelData();
+        ExcelData excelData = new ExcelData();
 
         ConsoleKeyInfo keyInput;
         int loginStatus;

@@ -11,6 +11,7 @@ namespace LectureTimeTable
         LectureTimeUI lectureTimeUI = new LectureTimeUI();
         SelectionMenu menu = new SelectionMenu();
         Exception exception = new Exception();
+        StringSort sort = new StringSort();
         int menuNumber;
         int input;
 
@@ -30,7 +31,7 @@ namespace LectureTimeTable
             while (Constant.PROGRAM_ON)
             {
               
-                menuNumber = menu.SelectVerticalMenu(6, "LectureTimeMenu",menuNumber-1); // 수직인 메뉴선택( 선택요소 수, 메뉴타입)
+                menuNumber = menu.SelectVerticalMenu(6, "LectureTimeMenu", menuNumber); // 수직인 메뉴선택( 선택요소 수, 메뉴타입)
 
                 switch (menuNumber)
                 {
@@ -49,12 +50,14 @@ namespace LectureTimeTable
                         grade = StartLectureClassMenu();
                         break;
                     case Constant.CHECK: // 조회
+                        StartLectureCheck(department, division, name, progessor,grade);
                         break;
                     case Constant.STOP: // 뒤로가기
                         return;
 
 
                 }
+                menuNumber--;
 
             }
 
@@ -94,6 +97,14 @@ namespace LectureTimeTable
             if (input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 lectureTimeUI.PrintLectureTime(1);
             return input;
+        }
+
+       
+        private void StartLectureCheck(int department, int division, string name, string progessor, int grade) // 조회하기 버튼
+        {
+            Console.SetCursorPosition(0, 24);
+            sort.PrintCenter("================================================= 2022학년도 1학기 강의 시간표================================================= ", 150);
+
         }
     }
 }

@@ -39,9 +39,9 @@ namespace LectureTimeTable
                 }
             }
         }
-        public int SelectVerticalMenu( int menuCount,string menuType,int menuNumer) // 수직 메뉴 선택
+        public int SelectVerticalMenu( int menuCount,string menuType,int menuNumber) // 수직 메뉴 선택
         {
-            menuNumber = menuNumer;
+            
           
             while (Constant.PROGRAM_ON)
             {
