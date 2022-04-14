@@ -10,7 +10,10 @@ namespace LectureTimeTable
     {
         LectureTimeUI lectureTimeUI = new LectureTimeUI();
         SelectionMenu menu = new SelectionMenu();
+        Exception exception = new Exception();
         int menuNumber;
+        int input;
+
 
         int department = 0;
         int division = 0;
@@ -23,10 +26,11 @@ namespace LectureTimeTable
             Console.Clear();
             lectureTimeUI.PrintLectureTime(1);
             Console.CursorVisible = false;
+            menuNumber = 0;
             while (Constant.PROGRAM_ON)
             {
               
-                menuNumber = menu.SelectVerticalMenu(6, "LectureTimeMenu"); // 수직인 메뉴선택( 선택요소 수, 메뉴타입)
+                menuNumber = menu.SelectVerticalMenu(6, "LectureTimeMenu",menuNumber-1); // 수직인 메뉴선택( 선택요소 수, 메뉴타입)
 
                 switch (menuNumber)
                 {
@@ -37,7 +41,7 @@ namespace LectureTimeTable
                         division = StartLectureDivisionMenu();
                         break;
                     case Constant.LECTURE_NAME: // 교과목명
-                      
+                        name = StartLectureName();
                         break;
                     case Constant.PROFESSOR: // 교수명
                         break;
@@ -58,29 +62,38 @@ namespace LectureTimeTable
         private int StartLectureDepartmentMenu() // 학과 선택 리스트
         {                    
             lectureTimeUI.PrintLectureDepartment(1);
-            
-            menuNumber = menu.SelectHorisionMenu(5, "LectureDepartment"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
-            if(menuNumber == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
+            input = menu.SelectHorisionMenu(5, "LectureDepartment"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
+
+            if(input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 lectureTimeUI.PrintLectureTime(1);
-            return menuNumber;            
+            return input;            
         }    
         private int StartLectureDivisionMenu() // 이수구분 리스트
         {
             lectureTimeUI.PrintLetureDivision(1);
-            menuNumber = menu.SelectHorisionMenu(4, "LectureDivision"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
+            input = menu.SelectHorisionMenu(4, "LectureDivision"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
-            if (menuNumber == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
+            if (input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 lectureTimeUI.PrintLectureTime(1);
-            return menuNumber;
+            return input;
+        }
+        private string StartLectureName()
+
+        {
+            lectureTimeUI.PrintLectureName(); // 이름 입력창
+            name = exception.EnterLectureName(66,14);
+            Console.CursorVisible = false;
+            return name;
+
         }
         private int StartLectureClassMenu() {  // 학년
             lectureTimeUI.PrintLectureClass(1);
-            menuNumber = menu.SelectHorisionMenu(4, "LectureClass"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
+            input = menu.SelectHorisionMenu(4, "LectureClass"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
-            if (menuNumber == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
+            if (input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 lectureTimeUI.PrintLectureTime(1);
-            return menuNumber;
+            return input;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace LectureTimeTable
       
         public string EnterId(int x, int y ) // id 입력
         {
-           
+            Console.CursorVisible = true;
             error = "숫자8자리를 입력해주세요!";   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
             
@@ -38,6 +38,8 @@ namespace LectureTimeTable
             while (Constant.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
+                if(input=="")
+                    DeleteInput(72, 149, 16); // 오류메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
                     return "";
 
@@ -67,10 +69,10 @@ namespace LectureTimeTable
             if (check==false) //
             {
                 DeleteInput(72, 149, 16);
-                LoginUI.PrintErrorMessage(x, y+1, error);               
+                LoginUI.PrintErrorMessage(x, y, error);               
                 return EnterId(x, y);
             }
-            LoginUI.PrintSuccessMessage(x, y + 1, success);
+           
             return input;  // 정수형 id 리턴
 
         }
@@ -86,6 +88,8 @@ namespace LectureTimeTable
             while (Constant.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
+                if (input == "")
+                    DeleteInput(71, 149, 18); // 에러메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
                     return "";
 
@@ -118,15 +122,64 @@ namespace LectureTimeTable
             {
                 DeleteInput(71, 149, 18); // 입력했던거 삭제
                 
-                LoginUI.PrintErrorMessage(x, y+1, error);
+                LoginUI.PrintErrorMessage(x, y, error);
                
                 return EnterPassword(x, y);
             }
-            LoginUI.PrintSuccessMessage(x-1, y + 1, success);
+           
             return input;  //  password 리턴
 
         }
 
+        public string EnterLectureName(int x, int y)
+        {
+            Console.CursorVisible = true;
+            error = "영어+한글+숫자+특수기호(:,#,+,(, ) 1개이상 입력해주세요!"; // 에러문자 출력
+          
+            Console.SetCursorPosition(x, y);
+            input = "";
+
+            while (Constant.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+                if(input =="")
+                    DeleteInput(83, 149, 14); // 오류메시지 삭제
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return "";
+
+                if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
+                {
+                    input += keyInput.KeyChar;
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
+                }
+                else
+                {
+                    if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
+                    {
+                        input = input.Substring(0, (input.Length - 1));
+                        Console.Write("\b \b");
+                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)                   
+                        break;
+                    
+                }
+            }
+
+            // 정규식 예외처리
+
+            if (input != null)
+                check = Regex.IsMatch(input, @"^[a-zA-Z0-9가-힣:+#()]{1,}$"); // 영어, 한글, 숫자, 특수문자 :,+,#,(,)
+
+            if (check == false) //
+            {
+                DeleteInput(83, 149, 14); // 입력했던거 삭제
+
+                LoginUI.PrintErrorMessage(x, y , error);
+
+                return EnterLectureName(x, y);
+            }
+            return input;  //  password 리턴
+        }
 
         private void DeleteInput(int count, int x, int y)
         {

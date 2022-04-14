@@ -49,7 +49,7 @@ namespace LectureTimeTable
 
 		}
 		
-		public void PrintLectureDepartment(int selectNum)
+		public void PrintLectureDepartment(int selectNum)// 학부
         {
 			Console.SetCursorPosition(45, 10);
 			PrintLectureHorisionList(selectNum, 1, "전체");
@@ -59,7 +59,7 @@ namespace LectureTimeTable
 			PrintLectureHorisionList(selectNum, 5, "기계항공우주공학부");
 
 		}
-		public void PrintLetureDivision(int selectNum)
+		public void PrintLetureDivision(int selectNum) // 이수구분
         {
 			Console.SetCursorPosition(45, 12);
 			PrintLectureHorisionList(selectNum, 1, "전체      ");
@@ -68,7 +68,12 @@ namespace LectureTimeTable
 			PrintLectureHorisionList(selectNum, 4, "전공선택      ");
 			
 		}
-		public void PrintLectureClass(int selectNum)
+		public void PrintLectureName()
+		{
+			Console.SetCursorPosition(45, 14);
+			Console.Write("교과목명(1글자이상) : ");
+		}
+		public void PrintLectureClass(int selectNum) // 학년
         {
 			Console.SetCursorPosition(45, 18);
 			PrintLectureHorisionList(selectNum, 1, "전체      ");
@@ -77,6 +82,7 @@ namespace LectureTimeTable
 			PrintLectureHorisionList(selectNum, 5, "3학년      ");
 			PrintLectureHorisionList(selectNum, 6, "4학년      ");
 		}
+		
 		public void PrintLectureHorisionList(int selectNum, int menuNumber, string menuName)
 		{
 
