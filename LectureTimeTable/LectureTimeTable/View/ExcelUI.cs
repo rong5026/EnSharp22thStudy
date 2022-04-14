@@ -10,14 +10,14 @@ namespace LectureTimeTable
     {
        
         StringSort sort = new StringSort();
-        ExcelData excelData = new ExcelData();
+        
         public void PrintExcelLectureTime()
         {
              //Console.WriteLine(excelData.Data.GetValue(1, 1));
 
             Console.SetCursorPosition(0, 26);
             sort.PrintCenter("======================================================================== 2022학년도 1학기 강의 시간표 ======================================================================== ", 172);
-
+            
             
 
         }
@@ -56,7 +56,7 @@ namespace LectureTimeTable
         private void PrintExcelElement(int xPosition,int yPosition, int rowIndex ,int columnIndex)
         {
             Console.SetCursorPosition(xPosition, yPosition);
-            Console.Write(excelData.Data.GetValue(rowIndex, columnIndex));
+            Console.Write(LTTStart.excelData.Data.GetValue(rowIndex, columnIndex));
         }
         
     }

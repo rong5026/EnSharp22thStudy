@@ -49,7 +49,7 @@ namespace LectureTimeTable
 
 		}
 		
-		public void PrintLectureDepartment(int selectNum)// 학부
+		public void PrintLectureDepartment(int selectNum)// 학과
         {
 			Console.SetCursorPosition(60, 10);
 			PrintLectureHorisionList(selectNum, 1, "전체");

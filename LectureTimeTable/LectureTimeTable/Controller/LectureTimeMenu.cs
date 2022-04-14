@@ -17,11 +17,11 @@ namespace LectureTimeTable
         int input;
 
 
-        int department = 0;
-        int division = 0;
+        string department = "";
+        string division = "";
         string name="";
         string professor="";
-        int grade=0;
+        string grade ="";
        
         public void StartLectureTimeMenu()
         {
@@ -52,7 +52,7 @@ namespace LectureTimeTable
                         grade = StartLectureClassMenu();
                         break;
                     case Constant.CHECK: // 조회
-                        StartLectureCheck(department, division, name, professor, grade);
+                       // StartLectureCheck(department, division, name, professor, grade);
                         break;
                     case Constant.STOP: // 뒤로가기
                         return;
@@ -64,7 +64,7 @@ namespace LectureTimeTable
             }
 
         }
-        private int StartLectureDepartmentMenu() // 학과 선택 리스트
+        private string StartLectureDepartmentMenu() // 학과 선택 리스트
         {                    
             lectureTimeUI.PrintLectureDepartment(1);
 
@@ -72,16 +72,42 @@ namespace LectureTimeTable
 
             if(input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 lectureTimeUI.PrintLectureTime(1);
-            return input;            
+
+            switch (input)
+            {
+                case Constant.LECTURE_ALL: // 전체
+                    return "";
+                case Constant.COMPUTER_DEPARTMENT: // 컴퓨터공학과
+                    return "컴퓨터공학과";
+                case Constant.INTELLIGENT_DEPARTMENT: // 지능기전공학부
+                    return "지능기전공학부";
+                case Constant.SOFTWARE_DEPARTMENT: // 소프트웨어학과
+                    return "소프트웨어학과";
+                case Constant.AEROSPACE_DEPARTMENT: // 기계항공우주공학부
+                    return "기계항공우주공학부";
+                default: return "-1";
+            }
+                       
         }    
-        private int StartLectureDivisionMenu() // 이수구분 리스트
+        private string StartLectureDivisionMenu() // 이수구분 리스트
         {
             lectureTimeUI.PrintLetureDivision(1);
             input = menu.SelectHorisionMenu(4, "LectureDivision"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
             if (input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 lectureTimeUI.PrintLectureTime(1);
-            return input;
+            switch (input)
+            {
+                case Constant.LECTURE_ALL: // 전체 1
+                    return "";
+                case Constant.GYOYANG_PILSU_CLASS: // 공통교양필수 2 
+                    return "공통교양필수";
+                case Constant.JEONGONG_PILSU_CLASS: // 전공필수 3 
+                    return "전공필수";
+                case Constant.JEONGONG_SEONTAEG: // 전공선택 4
+                    return "전공선택";
+                default: return "-1";
+            }
         }
         private string StartLectureName() // 수업이름
 
@@ -105,16 +131,34 @@ namespace LectureTimeTable
             return professor;
 
         }
-        private int StartLectureClassMenu() {  // 학년
+        private string StartLectureClassMenu() {  // 학년
             lectureTimeUI.PrintLectureClass(1);
             input = menu.SelectHorisionMenu(5, "LectureClass"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
             if (input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 lectureTimeUI.PrintLectureTime(1);
-            return input;
-        }
 
-       
+            switch (input)
+            {
+                case Constant.LECTURE_ALL: // 전체
+                    return "";
+                case Constant.FIRST_CLASS: // 1학년
+                    return "1";
+                case Constant.SECOND_CLASS: // 2학년
+                    return "2";
+                case Constant.THIRD_CLASS: // 3학년
+                    return "3";
+                case Constant.FOUR_CLASS: // 4학년
+                    return "4";
+                default: return "-1";
+            }
+
+
+
+
+        }
+     
+      
         private void StartLectureCheck(int department, int division, string name, string progessor, int grade) // 조회하기 버튼
         {
             //excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
