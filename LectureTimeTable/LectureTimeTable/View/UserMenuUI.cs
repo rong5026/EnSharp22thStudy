@@ -15,7 +15,7 @@ namespace LectureTimeTable
         {
 			Console.Clear();
 			Console.WriteLine("\n\n\n\n\n\n");
-			sort.PrintCenter("ENTER :선택하기 ESC :뒤로가기 ", Constant.WIDTH + 48);
+			sort.PrintCenter("ENTER :선택하기 ESC :뒤로가기 ", Constant.WIDTH + 46);
 
 			sort.PrintCenter("============================== 강좌조회 및 수강신청 ==============================", Constant.WIDTH-8);
 			Console.WriteLine("\n\n");

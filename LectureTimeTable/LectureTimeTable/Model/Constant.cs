@@ -39,12 +39,48 @@ namespace LectureTimeTable
         public const int JEONGONG_PILSU_CLASS = 3; // 전공필수
         public const int JEONGONG_SEONTAEG = 4; // 전공선택
 
-        public const int FIRST_CLASS = 2;
-        public const int SECOND_CLASS = 3;
-        public const int THIRD_CLASS = 4;
-        public const int FOUR_CLASS = 5;
+        public const int FIRST_CLASS = 2; //1학년
+        public const int SECOND_CLASS = 3;//2학년
+        public const int THIRD_CLASS = 4;//3학년
+        public const int FOUR_CLASS = 5;//4학년
 
-     
+        public const int INTERESTS_LECTURE_SEARCH = 1; //관심 과목 분야별 검색
+        public const int INTERESTS_LECTURE_LIST = 2;// 관심 과목 강의 내역
+        public const int INTERESTS_LECTURE_SCHEDULE = 3; // 관심 과목 시간표
+        public const int INTERESTS_LECTURE_DELETE = 4; // 관심 과목 삭제
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

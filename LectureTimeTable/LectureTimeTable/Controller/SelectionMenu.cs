@@ -14,6 +14,7 @@ namespace LectureTimeTable
         int input;
         UserMenuUI userMenuUI = new UserMenuUI();
         LectureTimeUI lectureTimeUI = new LectureTimeUI();
+        InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
         //LoginUI loginUI = new LoginUI();
         //Exception exceuption = new Exception();
         ConsoleKeyInfo keyInput;
@@ -90,6 +91,9 @@ namespace LectureTimeTable
                     break;
                 case "LectureClass":
                     lectureTimeUI.PrintLectureClass((input % menuCount) + 1);
+                    break;
+                case "InterestLecture":
+                    interestsLectureUI.PrintInterestsLectureMenu((input % menuCount) + 1);
                     break;
 
 

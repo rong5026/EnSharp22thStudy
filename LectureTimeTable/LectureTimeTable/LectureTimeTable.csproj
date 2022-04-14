@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Exception.cs" />
+    <Compile Include="Controller\InterestLectureMenu.cs" />
     <Compile Include="Controller\LectureTimeMenu.cs" />
     <Compile Include="Controller\Login.cs" />
     <Compile Include="Controller\SelectionMenu.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Model\UserVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\ExcelUI.cs" />
+    <Compile Include="View\InterestsLectureUI.cs" />
     <Compile Include="View\StringSort.cs" />
     <Compile Include="View\LectureTimeUI.cs" />
     <Compile Include="View\LoginUI.cs" />
