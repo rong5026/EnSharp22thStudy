@@ -82,6 +82,17 @@ namespace LectureTimeTable
                 case "LectureTimeMenu":
                     lectureTimeUI.PrintLectureTime((input % menuCount) + 1);
                     break;
+                case "LectureDepartment":
+                    lectureTimeUI.PrintLectureDepartment((input % menuCount) + 1);
+                    break;
+                case "LectureDivision":
+                    lectureTimeUI.PrintLetureDivision((input % menuCount) + 1);
+                    break;
+                case "LectureClass":
+                    lectureTimeUI.PrintLectureClass((input % menuCount) + 1);
+                    break;
+
+
 
             }
            

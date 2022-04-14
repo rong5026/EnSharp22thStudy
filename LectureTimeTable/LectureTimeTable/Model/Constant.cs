@@ -29,11 +29,11 @@ namespace LectureTimeTable
         public const int GRADE = 5; // 학년
         public const int CHECK = 6; // 조회
 
-        public const int LECTURE_ALL = 1;
-        public const int COMPUTER_DEPARTMENT = 1;
-        public const int LECTURE_ALL = 1;
-        public const int LECTURE_ALL = 1;
-        public const int LECTURE_ALL = 1;
+        public const int LECTURE_ALL = 1; // 전체학부
+        public const int COMPUTER_DEPARTMENT = 2; // 컴퓨터공학과
+        public const int INTELLIGENT_DEPARTMENT = 3; // 지능기전공학부
+        public const int SOFTWARE_DEPARTMENT = 4; //소프트웨어학과
+        public const int AEROSPACE_DEPARTMENT = 5; //기계항공우주공학부
 
 
 

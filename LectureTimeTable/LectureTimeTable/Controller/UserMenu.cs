@@ -37,7 +37,6 @@ namespace LectureTimeTable
                     case Constant.LECTURE_SUBSCRIPTION_RESULT: // 수강내역조회
                         break;
                     case Constant.STOP:
-
                         return;
 
                       

@@ -9,7 +9,7 @@ namespace LectureTimeTable
     internal class LoginUI
     {
 
-        CenterSort sort = new CenterSort();
+        StringSort sort = new StringSort();
 
         public void PrintLoginUI() // 로그인 UI출력
         {

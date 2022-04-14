@@ -59,7 +59,7 @@
     <Compile Include="Model\LectureData.cs" />
     <Compile Include="Model\UserVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\CenterSort.cs" />
+    <Compile Include="View\StringSort.cs" />
     <Compile Include="View\LectureTimeUI.cs" />
     <Compile Include="View\LoginUI.cs" />
     <Compile Include="View\UserMenuUI.cs" />
