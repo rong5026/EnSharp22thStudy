@@ -14,6 +14,7 @@ namespace LectureTimeTable
         LectureTimeMenu lectureTimeMenu= new LectureTimeMenu();
         LectureTimeUI lectureTimeUI= new LectureTimeUI();
         Exception exception = new Exception();
+        ConsoleKeyInfo keyInput;
         int menuNumber;
         int input;
         
@@ -96,6 +97,7 @@ namespace LectureTimeTable
                         break;
                     case Constant.CHECK: // 조회 및 관심과목신청
                         StartExcelCheck(list, 28);
+                        Console.Clear();
                         return;
                     case Constant.STOP: // 뒤로가기
                         Console.Clear();
@@ -139,7 +141,7 @@ namespace LectureTimeTable
 
             list.Clear();
 
-         
+            SelectInterestLecture(); // 관심과목 선택
 
 
         }
@@ -147,16 +149,40 @@ namespace LectureTimeTable
         {
             string classNO;
 
-            while (Constant.PROGRAM_ON) // 관심과목담을 책선택
+            while (Constant.PROGRAM_ON) // 관심과목 선택
             {
                 classNO = exception.EnterLectureNO(125, 23); // 입력
 
                 if (classNO == "")
                     break;
 
+                for(int index = 0; index < LTTStart.interestList.Count; index++)
+                {
+                    if(  LTTStart.interestList[index] == Convert.ToInt16(classNO)+1) //관심과목List에 같은 No가 있을때
+                    {
+                        interestsLectureUI.PrintFailInterest();
+                        BackESC();
+                        return;
+                    }
+                }
+               
+                LTTStart.interestList.Add(Convert.ToInt16(classNO)+1); // 관심과목에 없으면 추가
+                LTTStart.interestNumber += Convert.ToInt16 (LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO)+1, 8)); // 관심과목 담은 학점
+                interestsLectureUI.PrintSuccessInterest(); // 성공메시지 , 나가기 ESC
+                BackESC();
+                return;
 
-                LTTStart.interestList.Add(Convert.ToInt16(classNO)); // 관심과목에 없으면 
+            }
+        }
+        public void BackESC()
+        {
+            Console.CursorVisible = false;
+            while (Constant.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
 
+                if (keyInput.Key == ConsoleKey.Escape) 
+                     return;
             }
         }
 

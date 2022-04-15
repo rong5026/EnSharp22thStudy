@@ -78,17 +78,19 @@ namespace LectureTimeTable
 		{
 			
 			Console.SetCursorPosition(65, 23);
-			Console.Write( "등록 가능 학점 : {0}      담은 학점 : {1}      담을 과목 NO : ", 24 - LTTStart.applicationCredit, LTTStart.applicationCredit);
+			Console.Write( "등록 가능 학점 : {0}      담은 학점 : {1}      담을 과목 NO : ", 24 - LTTStart.interestNumber, LTTStart.interestNumber);
 		}
 
 		public void PrintSuccessInterest() // 관심과목담기 성공
         {
-
-        }
+			Console.SetCursorPosition(65, 23);
+			Console.Write("성공! 관심과목 리스트에 담겼습니다!!      ESC : 나가기                     ");
+		}
 		public void PrintFailInterest() // 관심과목담기 실패
         {
-
-        }
+			Console.SetCursorPosition(65, 23);
+			Console.Write("실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기               ");
+		}
 
 	}
 }
