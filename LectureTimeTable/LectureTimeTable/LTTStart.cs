@@ -15,9 +15,10 @@ namespace LectureTimeTable
         UserMenu userMenu = new UserMenu();
         ExcelData lectureData = new ExcelData();
 
-        public static ExcelData excelData = new ExcelData();
-        public static int applicationCredit = 0;
-
+        public static ExcelData excelData = new ExcelData(); // 엑셀데이터
+        public static List<int> interestList = new List<int>();
+        public static int applicationCredit = 0; // 동록가능학점
+        // static 안쓰고 고쳐야함
 
         ConsoleKeyInfo keyInput;
         int loginStatus;

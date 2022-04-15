@@ -14,7 +14,7 @@ namespace LectureTimeTable
 
         public void PrintExcelLectureTime()
         {
-             //Console.WriteLine(excelData.Data.GetValue(1, 1));
+            
 
             Console.SetCursorPosition(0, 26);
             sort.PrintCenter("======================================================================== 2022학년도 1학기 강의 시간표 ======================================================================== ", 172);
@@ -27,9 +27,6 @@ namespace LectureTimeTable
         {
             Console.SetCursorPosition(0, yPosition);
           
-           // Console.WriteLine("   NO  개설학과전공       학수번호  분반  교과목명                         이수구분     학년 학점 요일 및 강의시간               강의실        메인교수명                강의언어", 140);
-
-            //Console.SetCursorPosition(0, yPosition+2);
 
             for (int rowIndex = 0; rowIndex < list.Count; rowIndex++)
             {
