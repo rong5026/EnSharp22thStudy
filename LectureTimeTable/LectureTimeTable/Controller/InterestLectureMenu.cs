@@ -12,12 +12,16 @@ namespace LectureTimeTable
         SelectionMenu menu = new SelectionMenu();
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
         LectureTimeMenu lectureTimeMenu = new LectureTimeMenu();
+        LectureTimeUI lectureTimeUI = new LectureTimeUI();
         Exception exception = new Exception();
         int menuNumber;
         int input;
         List<int> indexNO;
         ExcelUI excelUI = new ExcelUI();
         int searchingCount = 0; // 몇번 조건을 찾았는지
+
+        string classNumber;
+        string divisionNumber;
 
         public InterestLectureMenu()
         {
@@ -66,7 +70,7 @@ namespace LectureTimeTable
             Console.CursorVisible = false;
 
             indexNO.Add(1);  // 처음 1번에 있는 테마 정보저장
-
+            menuNumber = 0;
 
             searchingCount = 0;
             while (Constant.PROGRAM_ON)
@@ -80,7 +84,8 @@ namespace LectureTimeTable
                         searchingCount = lectureTimeMenu.StartLectureDepartmentMenu(searchingCount);
                         break;
                     case Constant.LECTURE_DIVISION: // 학수번호/분반
-                        
+                        searchingCount = StartStudyClassNumber(searchingCount);
+
                         break;
                     case Constant.LECTURE_NAME: // 교과목명
                         searchingCount = lectureTimeMenu.StartLectureName(searchingCount);
@@ -104,7 +109,19 @@ namespace LectureTimeTable
             }
 
         }
-        
+        //학수벊로 분반 예외랑 조회 함수 만들어야함
+        public int StartStudyClassNumber(int searchingCount) // 학수번호,분반
+        {
+            lectureTimeUI.PrintStudyNumber(); // 학수번호 입력창
+            classNumber = exception.EnterStudyNumber(80, 12);
+
+            lectureTimeUI.PrintDivisionNumber(); // 분반 입력창 
+            divisionNumber = exception.EnterDivisionNumber(76, 13);
+
+            Console.CursorVisible = false;
+            return lectureTimeMenu.FindExcelindex(indexNO, classNumber, 3, searchingCount);
+
+        }
        
 
 

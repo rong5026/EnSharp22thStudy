@@ -141,9 +141,8 @@ namespace LectureTimeTable
             }
         }
         public int  StartLectureName(int searchingCount) // 수업이름
-
         {
-            lectureTimeUI.PrintLectureName(); // 이름 입력창
+            lectureTimeUI.PrintLectureName(); // 수업이름 입력창
 
 
             classname = exception.EnterLectureName(82,14);
@@ -154,7 +153,7 @@ namespace LectureTimeTable
         public int StartProfessorName(int searchingCount) // 교수님 이름
 
         {
-            lectureTimeUI.PrintProfessorName(); // 이름 입력창
+            lectureTimeUI.PrintProfessorName(); // 교수님이름 입력창
 
             professor = exception.EnterProfessorfeName(80, 16);
             Console.CursorVisible = false;

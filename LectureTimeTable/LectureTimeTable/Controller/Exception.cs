@@ -180,7 +180,7 @@ namespace LectureTimeTable
             return input;  //  password 리턴
         }
 
-        public string EnterProfessorfeName(int x, int y)
+        public string EnterProfessorfeName(int x, int y) // 교수님이름
         {
             Console.CursorVisible = true;
             error = "영어+한글 1개이상 입력해주세요!"; // 에러문자 출력
@@ -275,6 +275,105 @@ namespace LectureTimeTable
                 DeleteInput(121, 179, 19); // 오류메시지 삭제
                 LoginUI.PrintErrorMessage(x, y, error);
                 return EnterLectureNO(x, y);
+            }
+
+            return input;  // 정수형 id 리턴
+
+        }
+
+        public string EnterStudyNumber(int x, int y) // 학수번호 입력
+        {
+            Console.CursorVisible = true;
+            error = "숫자6글자 (0xxxxx)을 입력해주세요!";   //예외조건 성립안할때 출력
+            Console.SetCursorPosition(x, y);
+
+            input = "";
+
+            while (Constant.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+                if (input == "")
+                    DeleteInput(Constant.WIDTH - 1 - 80, Constant.WIDTH - 1, 12); // 오류메시지 삭제
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return "";
+
+                if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
+                {
+                    input += keyInput.KeyChar;
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
+                }
+                else
+                {
+                    if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
+                    {
+                        input = input.Substring(0, (input.Length - 1));
+                        Console.Write("\b \b");  // 지우기
+                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                    {
+
+                        break;
+                    }
+                }
+            }
+
+            // 정규식 예외처리
+            if (input != null)
+                check = Regex.IsMatch(input, @"^0[0-9]{5}$"); // 숫자 6, 앞에 0개
+            if (check == false) //
+            {
+                DeleteInput(Constant.WIDTH - 1 - 80, Constant.WIDTH - 1, 12); // 오류메시지 삭제
+                LoginUI.PrintErrorMessage(x, y, error);
+                return EnterStudyNumber(x, y);
+            }
+
+            return input;  // 정수형 id 리턴
+
+        }
+        public string EnterDivisionNumber(int x, int y) // 분반 입력
+        {
+            Console.CursorVisible = true;
+            error = "숫자3자리 입력";   //예외조건 성립안할때 출력
+            Console.SetCursorPosition(x, y);
+
+            input = "";
+
+            while (Constant.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+                if (input == "")
+                    DeleteInput(Constant.WIDTH - 1 - 76, Constant.WIDTH - 1, 13); // 오류메시지 삭제
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return "";
+
+                if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
+                {
+                    input += keyInput.KeyChar;
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
+                }
+                else
+                {
+                    if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
+                    {
+                        input = input.Substring(0, (input.Length - 1));
+                        Console.Write("\b \b");  // 지우기
+                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                    {
+
+                        break;
+                    }
+                }
+            }
+
+            // 정규식 예외처리
+            if (input != null)
+                check = Regex.IsMatch(input, @"^[0-9]{3}$"); // 숫자 3
+            if (check == false) //
+            {
+                DeleteInput(Constant.WIDTH - 1 - 76, Constant.WIDTH - 1, 13); // 오류메시지 삭제
+                LoginUI.PrintErrorMessage(x, y, error);
+                return EnterDivisionNumber(x, y);
             }
 
             return input;  // 정수형 id 리턴

@@ -68,17 +68,26 @@ namespace LectureTimeTable
 			PrintLectureHorisionList(selectNum, 4, "전공선택      ");
 			
 		}
-		public void PrintLectureName()
+		public void PrintLectureName() // 교과명 입력
 		{
 			Console.SetCursorPosition(60, 14);
 			Console.Write("교과목명(1글자이상) : ");
 		}
-		public void PrintProfessorName()
+		public void PrintProfessorName() // 교수님이름 입력
 		{
 			Console.SetCursorPosition(60, 16);
 			Console.Write("교수명(1글자이상) : ");
 		}
-
+		public void PrintStudyNumber() // 학수번호 입력
+        {
+			Console.SetCursorPosition(60, 12); //좌표
+			Console.Write("학수번호(6자리수) : ");
+		}
+		public void PrintDivisionNumber() // 분반 입력
+		{
+			Console.SetCursorPosition(60, 13);//좌표
+			Console.Write("분반(3자리수) : ");
+		}
 		public void PrintLectureClass(int selectNum) // 학년
         {
 			Console.SetCursorPosition(60, 18);
