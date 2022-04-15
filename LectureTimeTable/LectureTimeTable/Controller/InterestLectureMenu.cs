@@ -25,7 +25,7 @@ namespace LectureTimeTable
 
         string classNumber="";
         string divisionNumber="";
-        int result;
+        bool result;
 
     
         public void StartInterestLectureMenu()
@@ -152,21 +152,18 @@ namespace LectureTimeTable
 
             while (Constant.PROGRAM_ON) // 관심과목 선택
             {
+
                 classNO = exception.EnterLectureNO(125, 23); // 입력
 
                 if (classNO == "")
                     break;
-
-                for(int index = 0; index < LTTStart.interestList.Count; index++)
+                if (LTTStart.interestList.Contains(Convert.ToInt16(classNO)+1))//관심과목List에 같은 No가 있을때
                 {
-                    if(  LTTStart.interestList[index] == Convert.ToInt16(classNO)+1) //관심과목List에 같은 No가 있을때
-                    {
-                        interestsLectureUI.PrintInterestStatus(65,23, "실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //관담 실패!
-                        BackESC();
-                        return;
-                    }
+                    interestsLectureUI.PrintInterestStatus(65, 23, "실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //관담 실패!
+                    BackESC();
+                    return;
                 }
-               
+
                 LTTStart.interestList.Add(Convert.ToInt16(classNO)+1); // 관심과목에 없으면 추가
                 LTTStart.interestNumber += Convert.ToInt16 (LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO)+1, 8)); // 관심과목 담은 학점
                 interestsLectureUI.PrintInterestStatus(65,23, "성공! 관심과목 리스트에 담겼습니다!!      ESC : 나가기                     "); 
@@ -196,18 +193,19 @@ namespace LectureTimeTable
 
             classNumber = exception.EnterLectureNO(109, 5);// 삭제할 NO입력
       
+            if(classNumber !="") 
+                result = LTTStart.interestList.Contains(Convert.ToInt16 (classNumber)+1);
 
-            result = LTTStart.interestList.Find(x=> x == Convert.ToInt16(classNumber));
-
-            if(result == null) // 관심과목에 삭제할 NO가 없을때 
+            if(result == false) // 관심과목에 삭제할 NO가 없을때 
             {
                 //관담 삭제 식패!
                 interestsLectureUI.PrintInterestStatus(65, 23, "실패! 관심과목 리스트 존재하지않는 NO입니다!      ESC: 나가기");
             }
             else 
             { 
-                LTTStart.interestList.Remove(Convert.ToInt16(classNumber)); // 해당 관심과목 삭제
+                LTTStart.interestList.Remove(Convert.ToInt16(classNumber)+1); // 해당 관심과목 삭제
                 interestsLectureUI.PrintInterestStatus(65, 23, "성공! 관심과목 리스트에서 삭제되었습니다!.      ESC: 나가기");
+                LTTStart.interestNumber -= Convert.ToInt16(LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNumber) + 1, 8)); // 관심과목 담은 학점
 
             }
             BackESC();
