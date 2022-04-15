@@ -25,6 +25,7 @@ namespace LectureTimeTable
 
         string classNumber="";
         string divisionNumber="";
+        int result;
 
     
         public void StartInterestLectureMenu()
@@ -47,11 +48,15 @@ namespace LectureTimeTable
                         SearchInterestLecture(indexNO);
                         break;
                     case Constant.INTERESTS_LECTURE_LIST: // 관심 과목 강의 내역
-                        CheckSelectedInterest();
+                        interestsLectureUI.PrintSelectedInterestList();
+                        BackESC();
+                        Console.Clear();
                         break;
                     case Constant.INTERESTS_LECTURE_SCHEDULE: // 관심 과목 시간표
                         break;
                     case Constant.INTERESTS_LECTURE_DELETE: // 관심 과목 삭제
+                        DeleteInterestLecture();
+                        Console.Clear();
                         break;
                     case Constant.STOP:
                         return;
@@ -141,7 +146,7 @@ namespace LectureTimeTable
             list.Clear();
             SelectInterestLecture(); // 조회 후 관심과목번호 입력 후 등록
         }
-        public void SelectInterestLecture() // 조회 후 관심과목번호 입력 후 등록
+        public void SelectInterestLecture() // 조회 , 관심과목번호 입력 후 등록
         {
             string classNO;
 
@@ -156,7 +161,7 @@ namespace LectureTimeTable
                 {
                     if(  LTTStart.interestList[index] == Convert.ToInt16(classNO)+1) //관심과목List에 같은 No가 있을때
                     {
-                        interestsLectureUI.PrintFailInterest();
+                        interestsLectureUI.PrintInterestStatus(65,23, "실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //관담 실패!
                         BackESC();
                         return;
                     }
@@ -164,7 +169,8 @@ namespace LectureTimeTable
                
                 LTTStart.interestList.Add(Convert.ToInt16(classNO)+1); // 관심과목에 없으면 추가
                 LTTStart.interestNumber += Convert.ToInt16 (LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO)+1, 8)); // 관심과목 담은 학점
-                interestsLectureUI.PrintSuccessInterest(); // 성공메시지 , 나가기 ESC
+                interestsLectureUI.PrintInterestStatus(65,23, "성공! 관심과목 리스트에 담겼습니다!!      ESC : 나가기                     "); 
+                // 관담 성공!
                 BackESC();
                 return;
 
@@ -182,11 +188,35 @@ namespace LectureTimeTable
             }
         }
 
-        private void CheckSelectedInterest()
+        public void DeleteInterestLecture() // 관심과목 삭제
         {
-            interestsLectureUI.PrintSelectedInterestList();
+           
+            interestsLectureUI.PrintSelectedInterestList(); // 관심과목 목록 출력
+            interestsLectureUI.PrintInputDeleteLecture(); //관심과목 삭제 입력창
+
+            classNumber = exception.EnterLectureNO(109, 5);// 삭제할 NO입력
+      
+
+            result = LTTStart.interestList.Find(x=> x == Convert.ToInt16(classNumber));
+
+            if(result == null) // 관심과목에 삭제할 NO가 없을때 
+            {
+                //관담 삭제 식패!
+                interestsLectureUI.PrintInterestStatus(65, 23, "실패! 관심과목 리스트 존재하지않는 NO입니다!      ESC: 나가기");
+            }
+            else 
+            { 
+                LTTStart.interestList.Remove(Convert.ToInt16(classNumber)); // 해당 관심과목 삭제
+                interestsLectureUI.PrintInterestStatus(65, 23, "성공! 관심과목 리스트에서 삭제되었습니다!.      ESC: 나가기");
+
+            }
             BackESC();
+
+
         }
+
+
+
 
 
     }

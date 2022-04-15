@@ -75,31 +75,32 @@ namespace LectureTimeTable
 		}
 	
 
-		public void PrintInputInterestLecture()
+		public void PrintInputInterestLecture() // 관심과목 등록 입력창
 		{
 			
 			Console.SetCursorPosition(65, 23);
 			Console.Write( "등록 가능 학점 : {0}      담은 학점 : {1}      담을 과목 NO : ", 24 - LTTStart.interestNumber, LTTStart.interestNumber);
 		}
+		public void PrintInputDeleteLecture() //관심과목 삭제 입력창
+        {
+			Console.SetCursorPosition(65, 5);
+			Console.Write("관심과목 담은 학점 : {0}    삭제할 과목 NO : ", LTTStart.interestNumber);
+		}
 
-		public void PrintSuccessInterest() // 관심과목담기 성공
-        {
-			Console.SetCursorPosition(65, 23);
+		public void PrintInterestStatus(int xPosition, int yPosition, string output) // 관심과목담기 성공,실패
+																			   // 관심과목삭제 성공, 실패
+        {		
+			Console.SetCursorPosition(xPosition,yPosition);
 			Console.CursorVisible = false;
-			Console.Write("성공! 관심과목 리스트에 담겼습니다!!      ESC : 나가기                     ");
+			Console.Write(output);	
 		}
-		public void PrintFailInterest() // 관심과목담기 실패
-        {
-			Console.SetCursorPosition(65, 23);
-			Console.CursorVisible = false;
-			Console.Write("실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기               ");
-		}
-		public void PrintSelectedInterestList()
+		
+		public void PrintSelectedInterestList() // 관심과목 목록 출력
         {
 			Console.Clear();
 			Console.SetCursorPosition(0, 9);
 
-			sort.PrintCenter("============================================================================ 관심 과목 강의 목록 ============================================================================", Constant.WIDTH - 5);
+			sort.PrintCenter("============================================================================ 관심 과목 강의 목록 ============================================================================", Constant.WIDTH - 8);
 
 			excelUI.PrintExcelData(LTTStart.interestList, 10);
 

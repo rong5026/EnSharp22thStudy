@@ -269,7 +269,7 @@ namespace LectureTimeTable
 
             // 정규식 예외처리
             if (input != null)
-                check = Regex.IsMatch(input, @"^1?[0-9]?[1-9]$"); // 숫자 최대3개
+                check = Regex.IsMatch(input, @"^1?[0-9]?[0-9]$"); // 숫자 최대3개
             if (check == false || ( Convert.ToInt16(input)<1 || Convert.ToInt16(input) >184)) //
             {
                 DeleteInput(Constant.WIDTH - x-1, Constant.WIDTH - 1, y); // 오류메시지 삭제
