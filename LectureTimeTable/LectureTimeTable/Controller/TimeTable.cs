@@ -25,7 +25,6 @@ namespace LectureTimeTable
         public void ShowLectureSchedule(List<int> list)
         {
             
-           
 
             for (int index = 1; index < list.Count; index++)
             {
@@ -66,23 +65,23 @@ namespace LectureTimeTable
             {
                 className = Convert.ToString(LTTStart.excelData.Data.GetValue(listNO, 5));
                 classPlace = Convert.ToString(LTTStart.excelData.Data.GetValue(listNO, 10));
-                Console.SetCursorPosition(FindTimeXposition(day), FindTimeYposition(time, 6));
+                Console.SetCursorPosition(FindTimeXposition(day), FindTimeYposition(time, 7+index*2));
                 Console.WriteLine(className);
-                Console.SetCursorPosition(FindTimeXposition(day), FindTimeYposition(time, 6)+1);
+                Console.SetCursorPosition(FindTimeXposition(day), FindTimeYposition(time, 7+index * 2) +1);
                 Console.WriteLine(classPlace);
             }
 
         }
-        public int FindTimeYposition(string time,int initYposition) // 초기 y좌표는 11
+        public int FindTimeYposition(string time,int initYposition) // 초기 y좌표는 7
         {
             startHour = Convert.ToInt16(time.Substring(0, 2));
             startMinute = Convert.ToInt16(time.Substring(2, 2));
 
             if (startMinute == 30)
-                return (startHour - 9) * 4 + 2+ initYposition; // 초기 y좌표에 더해줌
+                return (startHour - 8) * 4 + initYposition; // 초기 y좌표에 더해줌
 
             else
-                return (startHour - 9) * 4+ initYposition;
+                return (startHour - 8) * 4-2+ initYposition;
 
 
         }

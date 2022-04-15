@@ -98,19 +98,19 @@ namespace LectureTimeTable
 		public void PrintSelectedInterestList() // 관심과목 목록 출력
         {
 
-			PrintSelectedInterestListUI();
+			PrintSelectedInterestListUI(0,4);
 			excelUI.PrintExcelData(LTTStart.interestList, 10);
 
 			
 			excelUI.PrintExcelBack(); // 뒤로가기
 		}
 
-		public void PrintSelectedInterestListUI()
+		public void PrintSelectedInterestListUI(int xPosition, int yPosition)
         {
 			Console.Clear();
-			Console.Clear();
-			Console.SetCursorPosition(0, 4);
-
+			Console.SetCursorPosition(xPosition, yPosition);
+			sort.PrintCenter("ESC : 나가기", Constant.WIDTH + 150);
+			Console.WriteLine();
 			sort.PrintCenter("============================================================================ 관심 과목 강의 목록 ============================================================================", Constant.WIDTH - 8);
 		}
 	}

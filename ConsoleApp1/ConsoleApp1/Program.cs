@@ -12,8 +12,10 @@ namespace ConsoleApp1
         
         static void Main(string[] args)
         {
-            aa.PrinTing();
-            aa.list
+            int n = 100;
+
+            Console.WriteLine(n / 4);
+            Console.WriteLine(n % 3);
         }
     }
 }

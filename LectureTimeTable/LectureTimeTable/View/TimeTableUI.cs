@@ -7,17 +7,58 @@ using System.Threading.Tasks;
 namespace LectureTimeTable
 {
 
-
+   
     internal class TimeTableUI
     {
+       
         TimeTable timeTable = new TimeTable();
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
 
-        public void PrintLectureSchedule()
+        int hourOne;
+        int minuteOne;
+        int hourTwo;
+        int minuteTwo;
+        int sum;
+     
+        public void PrintLectureSchedule() // 시간표 출력
+
         {
-            interestsLectureUI.PrintSelectedInterestListUI();  //관심과목 목록 UI
+            Console.Clear();
+            interestsLectureUI.PrintSelectedInterestListUI(0,3);  //관심과목 목록 UI
+            PrintLectureScheduleUI(); // 요일 , 시간UI
             Console.SetCursorPosition(0, 5);
             timeTable.ShowLectureSchedule(LTTStart.interestList); // 관심과목 시간표
+            Console.SetCursorPosition(0, 0);
+            Console.CursorVisible = false;
+        }
+
+
+        public void PrintLectureScheduleUI() // 시간표 주변 UI
+        {
+            hourOne = 8;
+            minuteOne = 30;
+            Console.SetCursorPosition(13, 6);
+            Console.Write("월");
+            Console.SetCursorPosition(46, 6);
+            Console.Write("화");
+            Console.SetCursorPosition(79, 6);
+            Console.Write("수");
+            Console.SetCursorPosition(112, 6);
+            Console.Write("목");
+            Console.SetCursorPosition(145, 6);
+            Console.Write("금");
+            Console.SetCursorPosition(2, 7);
+
+            for(int count = 0; count < 22; count++)
+            {
+                Console.SetCursorPosition(2, 7+2*count);
+                Console.Write("{0}:{1}~", hourOne.ToString("00"), minuteOne.ToString("00"));
+
+                sum  = hourOne*60 + minuteOne+30;
+                hourOne = sum / 60;
+                minuteOne = sum % 60;
+                Console.WriteLine("{0}:{1}\n", hourOne.ToString("00"), minuteOne.ToString("00"));
+            }
         }
     }
 }
