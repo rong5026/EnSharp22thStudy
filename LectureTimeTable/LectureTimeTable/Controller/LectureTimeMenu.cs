@@ -31,21 +31,23 @@ namespace LectureTimeTable
 
         public LectureTimeMenu()
         {
-            indexNO = new List<int>();
-            menuNumber = 0;
 
-                
+
+            menuNumber = 0;
+            indexNO = new List<int>();
+
+
         }
         public void StartLectureTimeMenu()
         {
             Console.Clear();
             lectureTimeUI.PrintLectureTime(1);
             Console.CursorVisible = false;
-           
+            
             indexNO.Add(1);  // 처음 1번에 있는 테마 정보저장
 
-            Console.WriteLine(indexNO.Count);
-            Console.ReadLine();
+           
+            searchingCount = 0;
             while (Constant.PROGRAM_ON)
             {
                 
@@ -81,7 +83,7 @@ namespace LectureTimeTable
             }
 
         }
-        public void StartLectureDepartmentMenu() // 학과 선택 리스트
+        private void StartLectureDepartmentMenu() // 학과 선택 리스트
         {                    
             lectureTimeUI.PrintLectureDepartment(1);
 
@@ -214,15 +216,15 @@ namespace LectureTimeTable
         }
      
       
-        public void StartLectureCheck(List<int> list, int yPosition) // 조회하기 버튼
+        private void StartLectureCheck(List<int> list, int yPosition) // 조회하기 버튼
         {
             excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list,yPosition); // y좌표
             excelUI.PrintExcelBack(); // 뒤로가기 UI
-            Console.WriteLine(indexNO.Count);
-            Console.ReadLine();
+
             indexNO.Clear();
-           
+
+
             while (Constant.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);

@@ -77,7 +77,7 @@ namespace LectureTimeTable
 
             switch (menuType)
             {
-                case "UserMenu":
+                case "UserMenu":                  
                     userMenuUI.PrintUserMenu((input % menuCount) + 1);
                     break;
                 case "LectureTimeMenu":
