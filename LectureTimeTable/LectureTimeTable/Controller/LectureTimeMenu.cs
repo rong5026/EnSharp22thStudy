@@ -56,19 +56,19 @@ namespace LectureTimeTable
                 switch (menuNumber)
                 {
                     case Constant.LECTURE_DEPARTMENT:  // 개설 학과 전공
-                        StartLectureDepartmentMenu();
+                        searchingCount = StartLectureDepartmentMenu(searchingCount);
                         break;
                     case Constant.LECTURE_DIVISION: // 이수구분
-                        StartLectureDivisionMenu();
+                        searchingCount = StartLectureDivisionMenu(searchingCount);
                         break;
                     case Constant.LECTURE_NAME: // 교과목명
-                       StartLectureName();
+                        searchingCount =  StartLectureName(searchingCount);
                         break;
                     case Constant.PROFESSOR: // 교수명
-                        StartProfessorName();
+                        searchingCount = StartLectureName(searchingCount);
                         break;
                     case Constant.GRADE: // 학년
-                        StartLectureClassMenu();
+                        searchingCount = StartLectureName(searchingCount);
                         break;
                     case Constant.CHECK: // 조회                      
                         StartLectureCheck(indexNO, 28);
@@ -83,7 +83,7 @@ namespace LectureTimeTable
             }
 
         }
-        private void StartLectureDepartmentMenu() // 학과 선택 리스트
+        public int StartLectureDepartmentMenu(int searchingCount) // 학과 선택 리스트
         {                    
             lectureTimeUI.PrintLectureDepartment(1);
 
@@ -95,49 +95,28 @@ namespace LectureTimeTable
             switch (input)
             {
                 case Constant.LECTURE_ALL: // 전체
-                    FindExcelindex("", 2);
-                    break;
+                    return FindExcelindex(indexNO,"", 2, searchingCount);
+                   
                 case Constant.COMPUTER_DEPARTMENT: // 컴퓨터공학과
-                    FindExcelindex("컴퓨터공학과", 2);
-                    break;
+                    return FindExcelindex(indexNO,"컴퓨터공학과", 2, searchingCount);
+                    
                 case Constant.INTELLIGENT_DEPARTMENT: // 지능기전공학부
-                    FindExcelindex("지능기전공학부", 2);
-                    break;
+                    return FindExcelindex(indexNO,"지능기전공학부", 2, searchingCount);                 
                 case Constant.SOFTWARE_DEPARTMENT: // 소프트웨어학과
-                    FindExcelindex("소프트웨어학과", 2);
-                    break;
+                    return FindExcelindex(indexNO,"소프트웨어학과", 2, searchingCount);                  
                 case Constant.AEROSPACE_DEPARTMENT: // 기계항공우주공학부
-                    FindExcelindex("기계항공우주공학부", 2);
-                    break;
-                default: break;
+                    return FindExcelindex(indexNO,"기계항공우주공학부", 2, searchingCount);
+                  
+                default: return Constant.STOP;
             }
 
             
                        
         }    
         
-        public void FindExcelindex(string word,int columnindex) // 검색시에 해당하는 index를 list에 넣음
-        {
-            for(int rowIndex = 2; rowIndex <= 185; rowIndex++)
-            {
-                cellValue = Convert.ToString(LTTStart.excelData.Data.GetValue(rowIndex, columnindex));
+  
 
-                if (cellValue.Contains(word) && searchingCount ==0)
-                {
-
-                    indexNO.Add(rowIndex);
-                    
-                }
-                else if (cellValue.Contains(word)==false)
-                {
-                    indexNO.Remove(rowIndex);
-                }
-            }
-            searchingCount++;
-        }
-
-
-        private void StartLectureDivisionMenu() // 이수구분 리스트
+        private int StartLectureDivisionMenu(int searchingCount) // 이수구분 리스트
         {
             lectureTimeUI.PrintLetureDivision(1);
             input = menu.SelectHorisionMenu(4, "LectureDivision"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
@@ -147,21 +126,21 @@ namespace LectureTimeTable
             switch (input)
             {
                 case Constant.LECTURE_ALL: // 전체 1
-                    FindExcelindex("", 6);
-                    break;
+                   return FindExcelindex(indexNO,"", 6, searchingCount);
+                   
                 case Constant.GYOYANG_PILSU_CLASS: // 공통교양필수 2 
-                    FindExcelindex("공통교양필수", 6);
-                    break;
+                    return FindExcelindex(indexNO, "공통교양필수", 6, searchingCount);
+                   
                 case Constant.JEONGONG_PILSU_CLASS: // 전공필수 3 
-                    FindExcelindex("전공필수", 6);
-                    break;
+                    return FindExcelindex(indexNO, "전공필수", 6, searchingCount);
+                    
                 case Constant.JEONGONG_SEONTAEG: // 전공선택 4
-                    FindExcelindex("전공선택", 6);
-                    break;
-                default: break;
+                    return FindExcelindex(indexNO, "전공선택", 6, searchingCount);
+                   
+                default: return Constant.STOP;
             }
         }
-        private void StartLectureName() // 수업이름
+        public int  StartLectureName(int searchingCount) // 수업이름
 
         {
             lectureTimeUI.PrintLectureName(); // 이름 입력창
@@ -169,10 +148,10 @@ namespace LectureTimeTable
 
             classname = exception.EnterLectureName(82,14);
             Console.CursorVisible = false;
-            FindExcelindex(classname, 5);
+            return FindExcelindex(indexNO, classname, 5, searchingCount);
 
         }
-        private void StartProfessorName() // 교수님 이름
+        public int StartProfessorName(int searchingCount) // 교수님 이름
 
         {
             lectureTimeUI.PrintProfessorName(); // 이름 입력창
@@ -180,10 +159,10 @@ namespace LectureTimeTable
             professor = exception.EnterProfessorfeName(80, 16);
             Console.CursorVisible = false;
 
-            FindExcelindex(professor, 11);
+            return  FindExcelindex(indexNO, professor, 11, searchingCount);
 
         }
-        private void StartLectureClassMenu() {  // 학년
+        public int StartLectureClassMenu(int searchingCount) {  // 학년
             lectureTimeUI.PrintLectureClass(1);
             input = menu.SelectHorisionMenu(5, "LectureClass"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
@@ -193,21 +172,21 @@ namespace LectureTimeTable
             switch (input)
             {
                 case Constant.LECTURE_ALL: // 전체
-                    FindExcelindex("", 7);
+                    return FindExcelindex(indexNO, "", 7, searchingCount);
                     break;
                 case Constant.FIRST_CLASS: // 1학년
-                    FindExcelindex("1", 7);
+                    return FindExcelindex(indexNO, "1", 7, searchingCount);
                     break;
                 case Constant.SECOND_CLASS: // 2학년
-                    FindExcelindex("2", 7);
+                    return FindExcelindex(indexNO, "2", 7, searchingCount);
                     break;
                 case Constant.THIRD_CLASS: // 3학년
-                    FindExcelindex("3", 7);
+                    return FindExcelindex(indexNO, "3", 7, searchingCount);
                     break;
                 case Constant.FOUR_CLASS: // 4학년
-                    FindExcelindex("4", 7);
+                    return FindExcelindex(indexNO, "4", 7, searchingCount);
                     break;
-                default: break;
+                default: return Constant.STOP;
             }
 
 
@@ -236,7 +215,27 @@ namespace LectureTimeTable
 
 
         }
+        public int FindExcelindex(List<int> list,string word, int columnindex, int searchingCount) // 검색시에 해당하는 index를 list에 넣음
+        {
+            for (int rowIndex = 2; rowIndex <= 185; rowIndex++)
+            {
+                cellValue = Convert.ToString(LTTStart.excelData.Data.GetValue(rowIndex, columnindex));
 
-       
+                if (cellValue.Contains(word) && searchingCount == 0)
+                {
+
+                    list.Add(rowIndex);
+
+                }
+                else if (cellValue.Contains(word) == false)
+                {
+                    list.Remove(rowIndex);
+                }
+            }
+            return searchingCount + 1;
+        }
+
+
+
     }
 }

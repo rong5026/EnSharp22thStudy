@@ -17,6 +17,7 @@ namespace LectureTimeTable
         int input;
         List<int> indexNO;
         ExcelUI excelUI = new ExcelUI();
+        int searchingCount = 0; // 몇번 조건을 찾았는지
 
         public InterestLectureMenu()
         {
@@ -28,18 +29,19 @@ namespace LectureTimeTable
             indexNO.Add(1);
             menuNumber = 0;
             Console.SetCursorPosition(0, 0);
+            searchingCount = 0;
             while (Constant.PROGRAM_ON)
             {
                 
 
-                interestsLectureUI.PrintInterestsLectureMenu(1);
+                interestsLectureUI.PrintInterestsLectureMenu(1); // 관심과목 담기 메인 메뉴
                 Console.CursorVisible = false;
                 menuNumber = menu.SelectVerticalMenu(4, "InterestLecture", menuNumber); // 수직으로된 메뉴 ( 메뉴목록의 수, 메뉴타입)
 
                 switch (menuNumber)
                 {
                     case Constant.INTERESTS_LECTURE_SEARCH:  // 관심 과목 분야별 검색
-                        SearchInterestLucture();
+                        SearchInterestLecture();
                         break;
                     case Constant.INTERESTS_LECTURE_LIST: // 관심 과목 강의 내역
                         break;
@@ -57,54 +59,53 @@ namespace LectureTimeTable
 
         }
 
-        public void SearchInterestLucture()
+        public void SearchInterestLecture()
         {
-            interestsLectureUI.PrinInterestsDepartment(1);
+            Console.Clear();
+            interestsLectureUI.PrintInterestLecture(1); // 개설학과, 학수번호, 교과목,교수명,학년,조회 리스트
+            Console.CursorVisible = false;
 
-            input = menu.SelectHorisionMenu(5, "LectureDepartment"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
+            indexNO.Add(1);  // 처음 1번에 있는 테마 정보저장
 
-            if (input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
-                interestsLectureUI.PrintInterestsLectureMenu(1);
 
-            switch (input)
+            searchingCount = 0;
+            while (Constant.PROGRAM_ON)
             {
-                case Constant.LECTURE_ALL: // 전체
-                    // 전체 리스트 보여주고 위에 담을과목 NO입력
-                    SelectInterestLecture(indexNO, 22, "");
-                    return;
-                case Constant.COMPUTER_DEPARTMENT: // 컴퓨터공학과
-                    SelectInterestLecture(indexNO, 22, "컴퓨터공학과");
-                    return;
-                case Constant.INTELLIGENT_DEPARTMENT: // 지능기전공학부
-                    SelectInterestLecture(indexNO, 22, "지능기전공학부");                   
-                    break;
-                case Constant.SOFTWARE_DEPARTMENT: // 소프트웨어학과
-                    SelectInterestLecture(indexNO, 22, "소프트웨어학과");
-                    break;
-                case Constant.AEROSPACE_DEPARTMENT: // 기계항공우주공학부
-                    SelectInterestLecture(indexNO, 22, "기계항공우주공학부");
-                    break;
-                default: break;
+
+                menuNumber = menu.SelectVerticalMenu(6, "InterestLectureSearch", menuNumber);// 수직메뉴 // 개설학과,학수번호 ...
+
+                switch (menuNumber)
+                {
+                    case Constant.LECTURE_DEPARTMENT:  // 개설 학과 전공
+                        searchingCount = lectureTimeMenu.StartLectureDepartmentMenu(searchingCount);
+                        break;
+                    case Constant.LECTURE_DIVISION: // 학수번호/분반
+                        
+                        break;
+                    case Constant.LECTURE_NAME: // 교과목명
+                        searchingCount = lectureTimeMenu.StartLectureName(searchingCount);
+                        break;
+                    case Constant.PROFESSOR: // 교수명
+                        searchingCount = lectureTimeMenu.StartLectureName(searchingCount);
+                        break;
+                    case Constant.GRADE: // 학년
+                        searchingCount = lectureTimeMenu.StartLectureName(searchingCount);
+                        break;
+                    case Constant.CHECK: // 조회                          
+                        return;
+                    case Constant.STOP: // 뒤로가기
+                        Console.Clear();
+                        return;
+
+
+                }
+                menuNumber--;
+
             }
+
         }
         
-        public void SelectInterestLecture(List<int> list, int yPosition,string type) // 해당 List 출력
-        {
-            
-            interestsLectureUI.PrintInputInterestLecture();
-            lectureTimeMenu.FindExcelindex(type, 2);  // 학부목록에서 선택한 type목록만 출력
-            excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
-            excelUI.PrintExcelData(list, yPosition); // y좌표
-
-            //담을 과목 입력
-
-            //Console.SetCursorPosition(2, 19);
-            input =  Convert.ToInt16(  exception.EnterLectureNO(2,19));
-
-            indexNO.Clear();
-
        
-        }
 
 
     }

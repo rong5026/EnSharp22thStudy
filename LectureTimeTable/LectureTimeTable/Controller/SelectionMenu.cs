@@ -95,6 +95,9 @@ namespace LectureTimeTable
                 case "InterestLecture":
                     interestsLectureUI.PrintInterestsLectureMenu((input % menuCount) + 1);
                     break;
+                case "InterestLectureSearch":
+                    interestsLectureUI.PrintInterestLecture((input % menuCount) + 1); // 관심과목 분야별 검색
+                    break;
 
 
 
