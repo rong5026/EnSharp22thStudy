@@ -13,9 +13,9 @@ namespace LectureTimeTable
         static void Main(string[] args)
         {
 
-           // LTTStart start = new LTTStart();
-           // start.LTT();
-            
+            LTTStart start = new LTTStart();
+            start.LTT();
+            /*
             try
             {
                 // Excel Application 객체 생성
@@ -68,7 +68,7 @@ namespace LectureTimeTable
             {
                 Console.WriteLine(e.Message);
             }
-            
+            */
 
            
            

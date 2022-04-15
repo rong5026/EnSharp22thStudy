@@ -109,7 +109,7 @@ namespace LectureTimeTable
         {
 			Console.Clear();
 			Console.Clear();
-			Console.SetCursorPosition(0, 9);
+			Console.SetCursorPosition(0, 4);
 
 			sort.PrintCenter("============================================================================ 관심 과목 강의 목록 ============================================================================", Constant.WIDTH - 8);
 		}

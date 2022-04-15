@@ -14,6 +14,7 @@ namespace LectureTimeTable
         LectureTimeMenu lectureTimeMenu= new LectureTimeMenu();
         LectureTimeUI lectureTimeUI= new LectureTimeUI();
         Exception exception = new Exception();
+        TimeTable timeTable = new TimeTable();
         ConsoleKeyInfo keyInput;
         int menuNumber;
         int input;
@@ -53,6 +54,9 @@ namespace LectureTimeTable
                         Console.Clear();
                         break;
                     case Constant.INTERESTS_LECTURE_SCHEDULE: // 관심 과목 시간표
+                        Console.Clear();
+                        timeTable.ShowLectureSchedule(LTTStart.interestList);
+                        Console.ReadLine();
                         break;
                     case Constant.INTERESTS_LECTURE_DELETE: // 관심 과목 삭제
                         DeleteInterestLecture();

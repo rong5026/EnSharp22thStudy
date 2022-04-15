@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 namespace LectureTimeTable
 {
 
-   
+
     internal class TimeTableUI
     {
+        TimeTable timeTable = new TimeTable();
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
 
         public void PrintLectureSchedule()
         {
-           
-            Console.SetCursorPosition(0, 10);
+            interestsLectureUI.PrintSelectedInterestListUI();  //관심과목 목록 UI
+            Console.SetCursorPosition(0, 5);
+            timeTable.ShowLectureSchedule(LTTStart.interestList); // 관심과목 시간표
         }
     }
 }
