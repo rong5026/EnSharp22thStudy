@@ -18,12 +18,12 @@ namespace LectureTimeTable
         {
 
 
-            menuNumber = 0;
+           
             while (Constant.PROGRAM_ON)
             {
                 Console.Clear();
                 userMenuUI.PrintUserMenu(1);
-                
+                menuNumber = 0;
                 Console.CursorVisible = false;
                 menuNumber = menu.SelectVerticalMenu(4, "UserMenu", menuNumber); // 수직으로된 메뉴 ( 메뉴목록의 수, 메뉴타입)
 

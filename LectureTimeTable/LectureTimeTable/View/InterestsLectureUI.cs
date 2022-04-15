@@ -10,6 +10,7 @@ namespace LectureTimeTable
     {
 		StringSort sort = new StringSort();
 		LectureTimeUI lectureTimeUI =new LectureTimeUI();
+		ExcelUI excelUI = new ExcelUI();
 		string selectFirst;
 		public void PrintInterestsLectureMenu(int selectNum)// 관심과목 담기 리스트 출력
 		{
@@ -84,13 +85,26 @@ namespace LectureTimeTable
 		public void PrintSuccessInterest() // 관심과목담기 성공
         {
 			Console.SetCursorPosition(65, 23);
+			Console.CursorVisible = false;
 			Console.Write("성공! 관심과목 리스트에 담겼습니다!!      ESC : 나가기                     ");
 		}
 		public void PrintFailInterest() // 관심과목담기 실패
         {
 			Console.SetCursorPosition(65, 23);
+			Console.CursorVisible = false;
 			Console.Write("실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기               ");
 		}
+		public void PrintSelectedInterestList()
+        {
+			Console.Clear();
+			Console.SetCursorPosition(0, 9);
 
+			sort.PrintCenter("============================================================================ 관심 과목 강의 목록 ============================================================================", Constant.WIDTH - 5);
+
+			excelUI.PrintExcelData(LTTStart.interestList, 10);
+
+			
+			excelUI.PrintExcelBack(); // 뒤로가기
+		}
 	}
 }

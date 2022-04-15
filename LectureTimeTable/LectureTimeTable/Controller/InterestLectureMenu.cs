@@ -36,7 +36,7 @@ namespace LectureTimeTable
             while (Constant.PROGRAM_ON)
             {
            
-
+                
                 interestsLectureUI.PrintInterestsLectureMenu(1); // 관심과목 담기 메인 메뉴
                 Console.CursorVisible = false;
                 menuNumber = menu.SelectVerticalMenu(4, "InterestLecture", menuNumber); // 수직으로된 메뉴 ( 메뉴목록의 수, 메뉴타입)
@@ -47,6 +47,7 @@ namespace LectureTimeTable
                         SearchInterestLecture(indexNO);
                         break;
                     case Constant.INTERESTS_LECTURE_LIST: // 관심 과목 강의 내역
+                        CheckSelectedInterest();
                         break;
                     case Constant.INTERESTS_LECTURE_SCHEDULE: // 관심 과목 시간표
                         break;
@@ -62,7 +63,7 @@ namespace LectureTimeTable
 
         }
 
-        public void SearchInterestLecture(List<int >list )
+        public void SearchInterestLecture(List<int >list ) // 목록 조건 선택
         {
             Console.Clear();
             interestsLectureUI.PrintInterestLecture(1); // 개설학과, 학수번호, 교과목,교수명,학년,조회 리스트
@@ -137,15 +138,10 @@ namespace LectureTimeTable
             interestsLectureUI.PrintInputInterestLecture(); // 담을과목 선택 UI
             excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list, yPosition); // y좌표
-
-
             list.Clear();
-
-            SelectInterestLecture(); // 관심과목 선택
-
-
+            SelectInterestLecture(); // 조회 후 관심과목번호 입력 후 등록
         }
-        public void SelectInterestLecture()
+        public void SelectInterestLecture() // 조회 후 관심과목번호 입력 후 등록
         {
             string classNO;
 
@@ -174,9 +170,9 @@ namespace LectureTimeTable
 
             }
         }
-        public void BackESC()
+        public void BackESC() // 뒤로가기
         {
-            Console.CursorVisible = false;
+            
             while (Constant.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
@@ -186,7 +182,11 @@ namespace LectureTimeTable
             }
         }
 
-
+        private void CheckSelectedInterest()
+        {
+            interestsLectureUI.PrintSelectedInterestList();
+            BackESC();
+        }
 
 
     }
