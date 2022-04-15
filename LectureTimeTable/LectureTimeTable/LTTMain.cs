@@ -41,12 +41,14 @@ namespace LectureTimeTable
             
 
                 string a = Convert.ToString( data.GetValue(21, 9));
-                a = Regex.Replace(a, @"[^가-힣]", "");
+                a = Regex.Replace(a, @"[^0-9]", "");
 
-                
-               
+                int A = Convert.ToInt16(a.Substring(8, 2));
+                int B = Convert.ToInt16(a.Substring(2, 2));
+
                 Console.WriteLine(a);
-                Console.WriteLine(a.Length);
+                Console.WriteLine(A);
+                Console.Write(B);
                 //Console.WriteLine(data.GetValue(2, 2));
               
 
