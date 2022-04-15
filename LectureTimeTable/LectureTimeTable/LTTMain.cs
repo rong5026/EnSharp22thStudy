@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Text.RegularExpressions;
 namespace LectureTimeTable
 {
     internal class LTTMain
@@ -12,9 +13,9 @@ namespace LectureTimeTable
         static void Main(string[] args)
         {
 
-            LTTStart start = new LTTStart();
-            start.LTT();
-            /*
+           // LTTStart start = new LTTStart();
+           // start.LTT();
+            
             try
             {
                 // Excel Application 객체 생성
@@ -37,20 +38,15 @@ namespace LectureTimeTable
 
                 // 데이터 출력
 
-                // Console.WriteLine(data.GetValue(1, 1));
-                // Console.WriteLine(data.GetValue(1, 2));
-                // Console.WriteLine(data.GetValue(1, 3));
-                //Console.WriteLine(data.GetValue(2, 1));
-                //Console.WriteLine(data.GetValue(2, 2));
-                //Console.WriteLine(data.GetValue(2, 3));
-                // Console.WriteLine(data.GetValue(3, 1));
-                //Console.WriteLine(data.GetValue(3, 2));
-                //Console.WriteLine(data.GetValue(3, 3));
-                //data.SetValue("TWO", 1, 1);
+            
 
-                //string a = Convert.ToString( data.GetValue(2, 2));
+                string a = Convert.ToString( data.GetValue(21, 9));
+                a = Regex.Replace(a, @"[^가-힣]", "");
 
-               // Console.WriteLine(a);
+                
+               
+                Console.WriteLine(a);
+                Console.WriteLine(a.Length);
                 //Console.WriteLine(data.GetValue(2, 2));
               
 
@@ -70,8 +66,10 @@ namespace LectureTimeTable
             {
                 Console.WriteLine(e.Message);
             }
-            */
+            
 
+           
+           
 
 
 

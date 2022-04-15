@@ -53,6 +53,7 @@
     <Compile Include="Controller\LectureTimeMenu.cs" />
     <Compile Include="Controller\Login.cs" />
     <Compile Include="Controller\SelectionMenu.cs" />
+    <Compile Include="Controller\TimeTable.cs" />
     <Compile Include="Controller\UserMenu.cs" />
     <Compile Include="LTTMain.cs" />
     <Compile Include="LTTStart.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="View\StringSort.cs" />
     <Compile Include="View\LectureTimeUI.cs" />
     <Compile Include="View\LoginUI.cs" />
+    <Compile Include="View\TimeTableUI.cs" />
     <Compile Include="View\UserMenuUI.cs" />
   </ItemGroup>
   <ItemGroup>
