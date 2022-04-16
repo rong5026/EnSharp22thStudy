@@ -58,14 +58,7 @@ namespace LectureTimeTable
 
 
 		}
-		public void PrintRegisteredInterestList() // 수강과목 목록 출력
-		{
-
-			PrintSelectedRegisterListUI(0, 4);
-			excelUI.PrintExcelData(LTTStart.registerList, 10);
-
-			excelUI.PrintExcelBack(); // 뒤로가기
-		}
+		
 		public void PrintSelectedRegisterListUI(int xPosition, int yPosition)
 		{
 			Console.Clear();
@@ -74,5 +67,7 @@ namespace LectureTimeTable
 			Console.WriteLine();
 			sort.PrintCenter("============================================================================ 수강 과목 강의 목록 ============================================================================", Constant.WIDTH - 8);
 		}
+
+	
 	}
 }

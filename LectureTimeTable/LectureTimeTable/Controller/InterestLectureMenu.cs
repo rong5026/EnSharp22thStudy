@@ -51,7 +51,7 @@ namespace LectureTimeTable
                         SearchInterestLecture(indexNO);
                         break;
                     case Constant.LECTURE_LIST: // 관심 과목 강의 내역
-                        interestsLectureUI.PrintSelectedInterestList();
+                        interestsLectureUI.PrintSelectedList(LTTStart.interestList);
                         BackESC();
                         Console.Clear();
                         break;
@@ -175,8 +175,8 @@ namespace LectureTimeTable
         public void DeleteInterestLecture() // 관심과목 삭제
         {
            
-            interestsLectureUI.PrintSelectedInterestList(); // 관심과목 목록 출력
-            interestsLectureUI.PrintInputDeleteLecture(); //관심과목 삭제 입력창
+            interestsLectureUI.PrintSelectedList(LTTStart.interestList); // 관심과목 목록 출력
+            interestsLectureUI.PrintInputDeleteLecture(LTTStart.interestNumber); //관심과목 삭제 입력창
 
             classNumber = exception.EnterLectureNO(109, 5);// 삭제할 NO입력
 

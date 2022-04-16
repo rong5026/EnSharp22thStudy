@@ -23,13 +23,13 @@ namespace LectureTimeTable
         {
             Console.Clear();
             if (type == "Interest")
-                interestsLectureUI.PrintSelectedInterestListUI(0, 3);  //관심과목 목록 UI
+                interestsLectureUI.PrintSelectedListUI(0, 3);  //관심과목 목록 UI
             else
                 registerationLectureUI.PrintSelectedRegisterListUI(0, 3);
             PrintLectureScheduleUI(); // 요일 , 시간UI
             Console.SetCursorPosition(0, 5);
             timeTable.ShowLectureSchedule(list); // 관심과목 시간표
-            Console.Write("====================================================================================================================================================================================");
+           
             Console.SetCursorPosition(0, 0);
             Console.CursorVisible = false;
         }
@@ -55,12 +55,13 @@ namespace LectureTimeTable
             {
                 Console.SetCursorPosition(2, 7+2*count);
                 Console.Write("{0}:{1}~", hourOne.ToString("00"), minuteOne.ToString("00"));
-
+                
                 sum  = hourOne*60 + minuteOne+30;
                 hourOne = sum / 60;
                 minuteOne = sum % 60;
                 Console.WriteLine("{0}:{1}\n", hourOne.ToString("00"), minuteOne.ToString("00"));
             }
+            Console.Write("  ================================================================================================================================================================================");
         }
     }
 }

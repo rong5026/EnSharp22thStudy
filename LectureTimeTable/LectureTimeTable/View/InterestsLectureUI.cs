@@ -81,10 +81,10 @@ namespace LectureTimeTable
 			Console.SetCursorPosition(xPosition, yPosition);
 			Console.Write( "등록 가능 학점 : {0}      담은 학점 : {1}      담을 과목 NO : ", totalNumber - number, number);
 		}
-		public void PrintInputDeleteLecture() //관심과목 삭제 입력창
+		public void PrintInputDeleteLecture(int number) //관심과목 삭제 입력창
         {
 			Console.SetCursorPosition(65, 5);
-			Console.Write("관심과목 담은 학점 : {0}    삭제할 과목 NO : ", LTTStart.interestNumber);
+			Console.Write("         담은 학점 : {0}    삭제할 과목 NO : ", number);
 		}
 
 		public void PrintInterestStatus(int xPosition, int yPosition, string output) // 관심과목담기 성공,실패
@@ -95,17 +95,17 @@ namespace LectureTimeTable
 			Console.Write(output);	
 		}
 		
-		public void PrintSelectedInterestList() // 관심과목 목록 출력
+		public void PrintSelectedList(List <int> list) // 관심과목 or 수강과목 목록 출력
         {
 
-			PrintSelectedInterestListUI(0,4);
-			excelUI.PrintExcelData(LTTStart.interestList, 10);
-
+			PrintSelectedListUI(0,4);
+			excelUI.PrintExcelData(list, 10) ;
 			
+
 			excelUI.PrintExcelBack(); // 뒤로가기
 		}
 
-		public void PrintSelectedInterestListUI(int xPosition, int yPosition)
+		public void PrintSelectedListUI(int xPosition, int yPosition)
         {
 			Console.Clear();
 			Console.SetCursorPosition(xPosition, yPosition);

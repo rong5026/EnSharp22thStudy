@@ -9,13 +9,15 @@ namespace LectureTimeTable
 {
     internal class TimeTable
     {
-
+   
         string day;
         string time;
         int startHour;
         int startMinute;
         int endtHour;
-        int endMinute;  
+        int endMinute;
+ 
+
         string className;
         string classPlace;
 
