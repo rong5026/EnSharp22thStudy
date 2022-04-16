@@ -40,6 +40,7 @@ namespace LectureTimeTable
             lectureTimeUI.PrintLectureTime(1);
             Console.CursorVisible = false;
             
+          
             indexNO.Add(1);  // 처음 1번에 있는 테마 정보저장
 
            
@@ -167,20 +168,15 @@ namespace LectureTimeTable
             switch (input)
             {
                 case Constant.LECTURE_ALL: // 전체
-                    return FindExcelindex(list, "", 7, searchingCount);
-                    break;
+                    return FindExcelindex(list, "", 7, searchingCount);                 
                 case Constant.FIRST_CLASS: // 1학년
-                    return FindExcelindex(list, "1", 7, searchingCount);
-                    break;
+                    return FindExcelindex(list, "1", 7, searchingCount);              
                 case Constant.SECOND_CLASS: // 2학년
-                    return FindExcelindex(list, "2", 7, searchingCount);
-                    break;
+                    return FindExcelindex(list, "2", 7, searchingCount);                 
                 case Constant.THIRD_CLASS: // 3학년
-                    return FindExcelindex(list, "3", 7, searchingCount);
-                    break;
+                    return FindExcelindex(list, "3", 7, searchingCount);             
                 case Constant.FOUR_CLASS: // 4학년
-                    return FindExcelindex(list, "4", 7, searchingCount);
-                    break;
+                    return FindExcelindex(list, "4", 7, searchingCount);             
                 default: return Constant.STOP;
             }
 
@@ -190,7 +186,7 @@ namespace LectureTimeTable
         }
      
       
-        private void StartLectureCheck(List<int> list, int yPosition) // 조회하기 버튼
+        private void StartLectureCheck(List<int> list, int yPosition) // 조회하기
         {
             excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list,yPosition); // y좌표
@@ -199,18 +195,20 @@ namespace LectureTimeTable
             list.Clear();
 
 
-            while (Constant.PROGRAM_ON)
+            while (Constant.PROGRAM_ON) // ESC키 누르면 뒤로가기
             {
                 keyInput = Console.ReadKey(true);
 
                 if (keyInput.Key == ConsoleKey.Escape)
                     return;
+              
             }
 
 
 
         }
-        public int FindExcelindex(List<int> list,string word, int columnindex, int searchingCount) // 검색시에 해당하는 index를 list에 넣음
+        public int FindExcelindex(List<int> list,string word, int columnindex, int searchingCount) 
+            // 검색시에 해당하는 index를 list에 넣음
         {
             for (int rowIndex = 2; rowIndex <= 185; rowIndex++)
             {

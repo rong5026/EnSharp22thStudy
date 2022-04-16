@@ -24,7 +24,7 @@ namespace LectureTimeTable
         int loginStatus;
 
 
-        UserVO user = new UserVO("19011617","mong5026"); // 고쳐야함
+        UserVO user = new UserVO("19011617","11111111"); // 고쳐야함
         
         public void LTT()
 

@@ -140,16 +140,17 @@ namespace LectureTimeTable
                 return searchingCount + 1;
 
         }
-        private void StartExcelCheck(List<int> list, int yPosition) // 조회하기 버튼
+        private void StartExcelCheck(List<int> list, int yPosition) // 조회하기 
         {
 
             interestsLectureUI.PrintInputInterestLecture(); // 담을과목 선택 UI
             excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list, yPosition); // y좌표
             list.Clear();
-            SelectInterestLecture(); // 조회 후 관심과목번호 입력 후 등록
+            SelectInterestLecture(); //관심과목번호 입력 후 리스트에 추가
+
         }
-        public void SelectInterestLecture() // 조회 , 관심과목번호 입력 후 등록
+        public void SelectInterestLecture() // 관심과목번호 입력 후 리스트에 추가
         {
             string classNO;
 
