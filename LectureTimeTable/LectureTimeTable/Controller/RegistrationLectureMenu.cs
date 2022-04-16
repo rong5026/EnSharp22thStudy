@@ -126,7 +126,7 @@ namespace LectureTimeTable
                 switch (input)
                 {
                     case Constant.LECTURE_DEPARTMENT:  // 개설 학과 전공
-                        searchingCount = lectureTimeMenu.StartLectureDepartmentMenu(list, searchingCount);
+                        searchingCount = lectureTimeMenu.StartLectureDepartmentMenu(list, searchingCount,"Register");
                         break;
                     case Constant.LECTURE_DIVISION: // 학수번호/분반
                         searchingCount = lectureTimeMenu.StartStudyClassNumber(list, searchingCount);
@@ -138,15 +138,15 @@ namespace LectureTimeTable
                         searchingCount = lectureTimeMenu.StartProfessorName(list, searchingCount);
                         break;
                     case Constant.GRADE: // 학년
-                        searchingCount = lectureTimeMenu.StartLectureClassMenu(list, searchingCount);
+                        searchingCount = lectureTimeMenu.StartLectureClassMenu(list, searchingCount, "Register");
                         break;                   
                     case Constant.CHECK: // 수강과목신청
-                        StartRegisterExcelCheck(list, 28);
+                        StartRegisterExcelCheck(list, 30);
                         input = 1;
                         Console.Clear();
                         return;
                     case Constant.Interest: // 관심과목                   
-                        StartRegisterExcelCheck(LTTStart.interestList,28);                                         
+                        StartRegisterExcelCheck(LTTStart.interestList,30);                                         
                         input = 1;
                         Console.Clear();
                         return;
@@ -165,7 +165,7 @@ namespace LectureTimeTable
         private void StartRegisterExcelCheck(List<int> list, int yPosition) // 수강과목신청
         {
 
-           interestsLectureUI.PrintInputInterestLecture(LTTStart.registerNumber,21,65,25); // 담을과목 선택 UI
+           interestsLectureUI.PrintInputInterestLecture(LTTStart.registerNumber,21,65,27); // 담을과목 선택 UI
            excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
            excelUI.PrintExcelData(list, yPosition); // y좌표
           
@@ -180,26 +180,33 @@ namespace LectureTimeTable
             while (Constant.PROGRAM_ON) // 수강과목 선택
             {
 
-                classNO = exception.EnterLectureNO(125, 25); // 입력
+                classNO = exception.EnterLectureNO(125, 27); // 입력
 
                 if (classNO == "")
                     break;
 
+               
                 if (LTTStart.registerList.Contains(Convert.ToInt16(classNO) + 1))//수강신청List에 같은 No가 있을때
                 {
-                    interestsLectureUI.PrintInterestStatus(65, 25, "실패! 이미 수강과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //수강신청실패!
+                    interestsLectureUI.PrintInterestStatus(65, 27, "실패! 이미 수강과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //수강신청실패!
                     interestLectureMenu.BackESC();
                     return;
                 }
                 else if( list.Contains(Convert.ToInt16(classNO) + 1)==false) // 출력된LIST에  해당 No없을때 
                 {
-                    interestsLectureUI.PrintInterestStatus(65, 25, "실패! 리스트에 없는 NO 입니다!!       ESC : 나가기               "); //수강신청실패!
+                    interestsLectureUI.PrintInterestStatus(65, 27, "실패! 리스트에 없는 NO 입니다!!       ESC : 나가기               "); //수강신청실패!
                     interestLectureMenu.BackESC();
                     return;
                 } 
+                else if(LTTStart.registerNumber + Convert.ToInt16(LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO) + 1, 8)) > 24)
+                {
+                    interestsLectureUI.PrintInterestStatus(65, 27, "실패! 최대학점을 넘어섭니다!!       ESC : 나가기               "); //수강신청실패!
+                    interestLectureMenu.BackESC();
+                    return;
+                }
                 LTTStart.registerList.Add(Convert.ToInt16(classNO) + 1); // 수강과목에 없으면 추가
                 LTTStart.registerNumber += Convert.ToInt16(LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO) + 1, 8)); // 수강과목 담은 학점
-                interestsLectureUI.PrintInterestStatus(65, 25, "성공! 수강과목 리스트에 담겼습니다!!      ESC : 나가기                     ");
+                interestsLectureUI.PrintInterestStatus(65, 27, "성공! 수강과목 리스트에 담겼습니다!!      ESC : 나가기                     ");
                 // 수강신청 성공!
                 interestLectureMenu.BackESC();
                 return;

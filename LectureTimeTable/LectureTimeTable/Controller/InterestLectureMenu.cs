@@ -100,7 +100,7 @@ namespace LectureTimeTable
                 {
                     
                     case Constant.LECTURE_DEPARTMENT:  // 개설 학과 전공
-                        searchingCount = lectureTimeMenu.StartLectureDepartmentMenu(list,searchingCount);
+                        searchingCount = lectureTimeMenu.StartLectureDepartmentMenu(list,searchingCount,"Interest");
                         break;
                     case Constant.LECTURE_DIVISION: // 학수번호/분반
                         searchingCount = lectureTimeMenu.StartStudyClassNumber(list,searchingCount);                 
@@ -112,10 +112,10 @@ namespace LectureTimeTable
                         searchingCount = lectureTimeMenu.StartProfessorName(list, searchingCount);
                         break;
                     case Constant.GRADE: // 학년
-                        searchingCount = lectureTimeMenu.StartLectureClassMenu(list, searchingCount);
+                        searchingCount = lectureTimeMenu.StartLectureClassMenu(list, searchingCount, "Interest");
                         break;
                     case Constant.CHECK: // 조회 및 관심과목신청
-                        StartExcelCheck(list, 28);
+                        StartExcelCheck(list, 30);
                        
                         Console.Clear();
                         return;
@@ -134,7 +134,7 @@ namespace LectureTimeTable
         private void StartExcelCheck(List<int> list, int yPosition) // 조회하기 
         {
 
-            interestsLectureUI.PrintInputInterestLecture(LTTStart.interestNumber,24,65,23); // 관심과목 담을과목 선택 UI
+            interestsLectureUI.PrintInputInterestLecture(LTTStart.interestNumber,24,65,25); // 관심과목 담을과목 선택 UI
             excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list, yPosition); // y좌표
             list.Clear();
@@ -148,20 +148,20 @@ namespace LectureTimeTable
             while (Constant.PROGRAM_ON) // 관심과목 선택
             {
 
-                classNO = exception.EnterLectureNO(125, 23); // 입력
+                classNO = exception.EnterLectureNO(125, 25); // 입력
 
                 if (classNO == "")
                     break;
                 if (LTTStart.interestList.Contains(Convert.ToInt16(classNO)+1))//관심과목List에 같은 No가 있을때
                 {
-                    interestsLectureUI.PrintInterestStatus(65, 23, "실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //관담 실패!
+                    interestsLectureUI.PrintInterestStatus(65, 25, "실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //관담 실패!
                     BackESC();
                     return;
                 }
 
                 LTTStart.interestList.Add(Convert.ToInt16(classNO)+1); // 관심과목에 없으면 추가
                 LTTStart.interestNumber += Convert.ToInt16 (LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO)+1, 8)); // 관심과목 담은 학점
-                interestsLectureUI.PrintInterestStatus(65,23, "성공! 관심과목 리스트에 담겼습니다!!      ESC : 나가기                     "); 
+                interestsLectureUI.PrintInterestStatus(65,25, "성공! 관심과목 리스트에 담겼습니다!!      ESC : 나가기                     "); 
                 // 관담 성공!
                 BackESC();
                 return;

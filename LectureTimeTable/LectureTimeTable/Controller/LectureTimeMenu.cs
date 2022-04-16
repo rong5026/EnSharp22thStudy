@@ -9,6 +9,8 @@ namespace LectureTimeTable
     internal class LectureTimeMenu
     {
         LectureTimeUI lectureTimeUI = new LectureTimeUI();
+        RegisterationLectureUI registerationLectureUI = new RegisterationLectureUI();   
+        InterestsLectureUI interestsLectureUI = new InterestsLectureUI();   
         SelectionMenu menu;
         Exception exception;
         ExcelUI excelUI;
@@ -58,10 +60,10 @@ namespace LectureTimeTable
                 switch (menuNumber)
                 {
                     case Constant.LECTURE_DEPARTMENT:  // 개설 학과 전공
-                        searchingCount = StartLectureDepartmentMenu(indexNO,searchingCount);
+                        searchingCount = StartLectureDepartmentMenu(indexNO,searchingCount, "Lecture");
                         break;
                     case Constant.LECTURE_DIVISION: // 이수구분
-                        searchingCount = StartLectureDivisionMenu(indexNO,searchingCount);
+                        searchingCount = StartLectureDivisionMenu(indexNO,searchingCount, "Lecture");
                         break;
                     case Constant.LECTURE_NAME: // 교과목명
                         searchingCount =  StartLectureName(indexNO, searchingCount);
@@ -70,7 +72,7 @@ namespace LectureTimeTable
                         searchingCount = StartProfessorName(indexNO, searchingCount);
                         break;
                     case Constant.GRADE: // 학년
-                        searchingCount = StartLectureClassMenu(indexNO, searchingCount);
+                        searchingCount = StartLectureClassMenu(indexNO, searchingCount, "Lecture");
                         break;
                     case Constant.CHECK: // 조회                      
                         StartLectureCheck(indexNO, 28);
@@ -86,14 +88,21 @@ namespace LectureTimeTable
             }
 
         }
-        public int StartLectureDepartmentMenu(List<int> list,int searchingCount) // 학과 선택 리스트
+        public int StartLectureDepartmentMenu(List<int> list,int searchingCount,string type) // 학과 선택 리스트
         {                    
             lectureTimeUI.PrintLectureDepartment(1);
 
             input = menu.SelectHorisionMenu(5, "LectureDepartment"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
-            if(input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
-                lectureTimeUI.PrintLectureTime(1);
+            if (input == Constant.STOP)
+            { // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
+                if (type == "Lecture")
+                    lectureTimeUI.PrintLectureTime(1);
+                else if (type == "Register")
+                    registerationLectureUI.PrintRegisterationLecture(1);
+                else
+                    interestsLectureUI.PrintInterestLecture(1);
+            }
 
             switch (input)
             {
@@ -119,13 +128,21 @@ namespace LectureTimeTable
         
   
 
-        private int StartLectureDivisionMenu(List<int> list, int searchingCount) // 이수구분 리스트
+        private int StartLectureDivisionMenu(List<int> list, int searchingCount, string type) // 이수구분 리스트
         {
             lectureTimeUI.PrintLetureDivision(1);
             input = menu.SelectHorisionMenu(4, "LectureDivision"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
-            if (input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
-                lectureTimeUI.PrintLectureTime(1);
+            if (input == Constant.STOP)
+            {  // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
+                if (type == "Lecture")
+                    lectureTimeUI.PrintLectureTime(1);
+                else if(type =="Register")
+                    registerationLectureUI.PrintRegisterationLecture(1);
+                else
+                    interestsLectureUI.PrintInterestLecture(1);
+
+            }
             switch (input)
             {
                 case Constant.LECTURE_ALL: // 전체 1
@@ -164,12 +181,19 @@ namespace LectureTimeTable
             return  FindExcelindex(list, professor, 11, searchingCount);
 
         }
-        public int StartLectureClassMenu(List<int> list, int searchingCount) {  // 학년
+        public int StartLectureClassMenu(List<int> list, int searchingCount, string type) {  // 학년
             lectureTimeUI.PrintLectureClass(1);
             input = menu.SelectHorisionMenu(5, "LectureClass"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
-            if (input == Constant.STOP) // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
-                lectureTimeUI.PrintLectureTime(1);
+            if (input == Constant.STOP)
+            {  // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
+                if (type == "Lecture")
+                    lectureTimeUI.PrintLectureTime(1);
+                else if (type == "Register")
+                    registerationLectureUI.PrintRegisterationLecture(1);
+                else
+                    interestsLectureUI.PrintInterestLecture(1);
+            }
 
             switch (input)
             {

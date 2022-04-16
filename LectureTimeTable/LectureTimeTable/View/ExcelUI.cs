@@ -16,7 +16,7 @@ namespace LectureTimeTable
         {
             
 
-            Console.SetCursorPosition(0, 26);
+            Console.SetCursorPosition(0, 28);
             sort.PrintCenter("======================================================================== 2022학년도 1학기 강의 시간표 ======================================================================== ", 172);
             
             

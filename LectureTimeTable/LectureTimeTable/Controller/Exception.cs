@@ -15,8 +15,6 @@ namespace LectureTimeTable
         LoginUI LoginUI =new LoginUI();
         ConsoleKeyInfo keyInput;
         string error;
-        string id;
-        string password;
         string input;
         bool check;
    
