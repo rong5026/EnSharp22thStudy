@@ -69,9 +69,10 @@ namespace LectureTimeTable
 			lectureTimeUI.PrintLectureTimeList(selectNum, 6, "조회");
 
 			sort.PrintCenter("=========================================================================================================", Constant.WIDTH + 1);
-			sort.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", Constant.WIDTH - 15);
+			sort.PrintCenter(" ↑ , ↓ 키로 메뉴를 선택 후  ← 또는 → 키를 이용해 선택하세요.", Constant.WIDTH - 30);
+			sort.PrintCenter("조건을 다 선택 후에는 ↑ , ↓ 키로 이동하여 [ 조회 ] 버튼을 눌러주세요", Constant.WIDTH - 30);
 
-			
+
 		}
 	
 

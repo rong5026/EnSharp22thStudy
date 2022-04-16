@@ -15,9 +15,12 @@ namespace LectureTimeTable
 
             LTTStart start = new LTTStart();
             start.LTT();
-          
-           
-          
+
+            //등록되어있는 ID
+            //ID = 19011617
+            //PW = 11111111
+
+
 
 
         }

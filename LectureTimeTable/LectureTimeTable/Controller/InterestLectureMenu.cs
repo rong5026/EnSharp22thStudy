@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace LectureTimeTable
 {
-    internal class InterestLectureMenu
+    internal class InterestLectureMenu :LectureTimeMenu
     {
 
         SelectionMenu menu= new SelectionMenu();
         InterestsLectureUI interestsLectureUI= new InterestsLectureUI();
         LectureTimeMenu lectureTimeMenu= new LectureTimeMenu();
-        LectureTimeUI lectureTimeUI= new LectureTimeUI();
         Exception exception = new Exception();
         TimeTableUI timeTableUI= new TimeTableUI();
         ConsoleKeyInfo keyInput;
@@ -22,13 +21,13 @@ namespace LectureTimeTable
         ExcelUI excelUI = new ExcelUI();
         int searchingCount; // 몇번 조건을 찾았는지
         string classNumber;
-        string divisionNumber;
+      
         bool result;
 
         public InterestLectureMenu()
         {
             classNumber = "";
-            divisionNumber = "";
+         
         }
         public void StartInterestLectureMenu()
         {
@@ -88,9 +87,10 @@ namespace LectureTimeTable
             {
 
                 input = menu.SelectVerticalMenu(6, "InterestLectureSearch", input);// 수직메뉴 // 개설학과,학수번호 ...
-
+                
                 switch (input)
                 {
+                    
                     case Constant.LECTURE_DEPARTMENT:  // 개설 학과 전공
                         searchingCount = lectureTimeMenu.StartLectureDepartmentMenu(list,searchingCount);
                         break;
