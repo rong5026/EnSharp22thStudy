@@ -14,20 +14,15 @@ namespace LectureTimeTable
         ExcelUI excelUI = new ExcelUI();
 
         int menuNumber;
-        int input;
-        string result ="";
+        int input;       
         string cellValue;
 
-
-        string department = "";
-        string division = "";
-        string classname="";
-        string professor="";
-        string grade ="";
-        string classNumber = "";
-        string divisionNumber = "";
+        string classname;
+        string professor;
+        string classNumber;
+        string divisionNumber;
         ConsoleKeyInfo keyInput;
-        int searchingCount = 0; // 몇번 조건을 찾았는지
+        int searchingCount ; // 몇번 조건을 찾았는지
 
         private List<int> indexNO;
 
@@ -35,6 +30,11 @@ namespace LectureTimeTable
         {
             menuNumber = 0;
             indexNO = new List<int>();
+            searchingCount = 0;
+            classname = "";
+            professor = "";
+            classNumber = "";
+            divisionNumber = "";
         }
         public void StartLectureTimeMenu()
         {

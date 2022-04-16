@@ -18,17 +18,18 @@ namespace LectureTimeTable
         ConsoleKeyInfo keyInput;
         int menuNumber;
         int input;
-        
-   
         List<int> indexNO=new List<int>();
         ExcelUI excelUI = new ExcelUI();
         int searchingCount; // 몇번 조건을 찾았는지
-
-        string classNumber="";
-        string divisionNumber="";
+        string classNumber;
+        string divisionNumber;
         bool result;
 
-    
+        public InterestLectureMenu()
+        {
+            classNumber = "";
+            divisionNumber = "";
+        }
         public void StartInterestLectureMenu()
         {
             

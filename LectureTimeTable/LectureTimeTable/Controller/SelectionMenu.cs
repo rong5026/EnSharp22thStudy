@@ -9,16 +9,15 @@ namespace LectureTimeTable
  
     internal class SelectionMenu
     {
-        int menuNumber;
-        int menu;
-        int input;
+      
         UserMenuUI userMenuUI = new UserMenuUI();
         LectureTimeUI lectureTimeUI = new LectureTimeUI();
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
         RegisterationLectureUI registerationLecture = new RegisterationLectureUI();
-        //LoginUI loginUI = new LoginUI();
-        //Exception exceuption = new Exception();
+     
         ConsoleKeyInfo keyInput;
+        int menuNumber;
+        int input;
 
         public int SelectHorisionMenu(int menuCount, string menuType)
         {

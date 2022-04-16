@@ -20,13 +20,16 @@ namespace LectureTimeTable
         public static int interestNumber = 0; // 관심과목담은 학점
         public static int registerNumber = 0; // 수강신청한 학점
         // static 안쓰고 고쳐야함
-
-        ConsoleKeyInfo keyInput;
+        // 
         int loginStatus;
 
 
-        UserVO user = new UserVO("19011617","11111111"); // 고쳐야함
-        
+        UserVO user;
+        public LTTStart()
+        {
+            user = new UserVO("19011617", "11111111"); // 고쳐야함
+
+        }
         public void LTT()
 
         {

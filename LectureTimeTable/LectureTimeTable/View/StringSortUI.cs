@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LectureTimeTable
 {
-    internal class StringSort
+    internal class StringSortUI
     {
         public void PrintCenter(string data, int width) // 문구 센터에 정렬
         {

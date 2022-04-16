@@ -9,7 +9,7 @@ namespace LectureTimeTable
     internal class ExcelUI
     {
        
-        StringSort sort = new StringSort();
+        StringSortUI sort = new StringSortUI();
         
 
         public void PrintExcelLectureTime()

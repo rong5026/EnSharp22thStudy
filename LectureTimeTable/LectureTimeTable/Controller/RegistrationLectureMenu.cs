@@ -20,7 +20,13 @@ namespace LectureTimeTable
         int menuNumber;
         int input;
         int searchingCount;
-        List<int> indexNO = new List<int>();
+        List<int> indexNO;
+
+        public RegistrationLectureMenu()
+        {
+            indexNO = new List<int>();
+
+        }
         public void StartRegisterationLectureMenu()
 		{
 			menuNumber = 0;

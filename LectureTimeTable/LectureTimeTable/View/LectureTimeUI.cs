@@ -9,7 +9,7 @@ namespace LectureTimeTable
     internal class LectureTimeUI
     {
 
-        StringSort sort = new StringSort();
+        StringSortUI sort = new StringSortUI();
 		string selectFirst;
 
 

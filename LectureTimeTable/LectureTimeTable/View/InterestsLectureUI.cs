@@ -8,7 +8,7 @@ namespace LectureTimeTable
 {
     internal class InterestsLectureUI
     {
-		StringSort sort = new StringSort();
+		StringSortUI sort = new StringSortUI();
 		LectureTimeUI lectureTimeUI =new LectureTimeUI();
 		ExcelUI excelUI = new ExcelUI();
 		string selectFirst;

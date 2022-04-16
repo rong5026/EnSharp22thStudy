@@ -16,8 +16,6 @@ namespace LectureTimeTable
         RegisterationLectureUI registerationLectureUI = new RegisterationLectureUI();
         int hourOne;
         int minuteOne;
-        int hourTwo;
-        int minuteTwo;
         int sum;
      
         public void PrintLectureSchedule(List<int> list,string type) // 시간표 출력
