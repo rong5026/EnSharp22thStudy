@@ -89,13 +89,13 @@ namespace LectureTimeTable
                         searchingCount = lectureTimeMenu.StartLectureClassMenu(list, searchingCount);
                         break;                   
                     case Constant.CHECK: // 수강과목신청
-                        StartRegisterExcelCheck(list, 30);
-                        input = 0;
+                        StartRegisterExcelCheck(list, 28);
+                        input = 1;
                         Console.Clear();
                         return;
-                    case Constant.Interest: // 관심과목
-                        StartRegisterExcelCheck(LTTStart.interestList,30);
-                        input = 0;
+                    case Constant.Interest: // 관심과목                   
+                        StartRegisterExcelCheck(LTTStart.interestList,28);                                         
+                        input = 1;
                         Console.Clear();
                         return;
                     case Constant.STOP: // 뒤로가기
@@ -116,8 +116,8 @@ namespace LectureTimeTable
            interestsLectureUI.PrintInputInterestLecture(LTTStart.registerNumber,21,65,25); // 담을과목 선택 UI
            excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
            excelUI.PrintExcelData(list, yPosition); // y좌표
-           list.Clear();
-            SelectRegisterLecture(list); //수강과목번호 입력 후 리스트에 추가
+          
+           SelectRegisterLecture(list); //수강과목번호 입력 후 리스트에 추가
 
         }
 
@@ -133,13 +133,13 @@ namespace LectureTimeTable
                 if (classNO == "")
                     break;
 
-                if (list.Contains(Convert.ToInt16(classNO) + 1))//List에 같은 No가 있을때
+                if (LTTStart.registerList.Contains(Convert.ToInt16(classNO) + 1))//수강신청List에 같은 No가 있을때
                 {
                     interestsLectureUI.PrintInterestStatus(65, 25, "실패! 이미 수강과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //수강신청실패!
                     interestLectureMenu.BackESC();
                     return;
                 }
-                else if( list.Contains(Convert.ToInt16(classNO) + 1) == false) // LIST에 No없을때 
+                else if( list.Contains(Convert.ToInt16(classNO) + 1)==false) // 출력된LIST에  해당 No없을때 
                 {
                     interestsLectureUI.PrintInterestStatus(65, 25, "실패! 리스트에 없는 NO 입니다!!       ESC : 나가기               "); //수강신청실패!
                     interestLectureMenu.BackESC();
