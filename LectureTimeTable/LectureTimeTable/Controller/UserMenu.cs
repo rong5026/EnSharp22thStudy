@@ -13,6 +13,7 @@ namespace LectureTimeTable
         UserMenuUI userMenuUI = new UserMenuUI();
         LectureTimeMenu lectureTimeMenu = new LectureTimeMenu();
         InterestLectureMenu interestLectureMenu = new InterestLectureMenu();
+        RegistrationLectureMenu registrationLectureMenu = new RegistrationLectureMenu ();
         int menuNumber;
         public void StartUserMenu()
         {
@@ -37,6 +38,7 @@ namespace LectureTimeTable
                         interestLectureMenu.StartInterestLectureMenu();
                         break;
                     case Constant.LECTURE_SUBSCRIPTION: // 수강신청
+                        registrationLectureMenu.StartRegisterationLectureMenu();
                         break;
                     case Constant.LECTURE_SUBSCRIPTION_RESULT: // 수강내역조회
                         break;

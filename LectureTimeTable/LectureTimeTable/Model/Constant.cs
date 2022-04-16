@@ -28,6 +28,7 @@ namespace LectureTimeTable
         public const int PROFESSOR = 4; // 교수명
         public const int GRADE = 5; // 학년
         public const int CHECK = 6; // 조회
+        public const int Interest = 7; // 관심과목
 
         public const int LECTURE_ALL = 1; // 전체학부
         public const int COMPUTER_DEPARTMENT = 2; // 컴퓨터공학과
@@ -44,11 +45,11 @@ namespace LectureTimeTable
         public const int THIRD_CLASS = 4;//3학년
         public const int FOUR_CLASS = 5;//4학년
 
-        public const int INTERESTS_LECTURE_SEARCH = 1; //관심 과목 분야별 검색
-        public const int INTERESTS_LECTURE_LIST = 2;// 관심 과목 강의 내역
-        public const int INTERESTS_LECTURE_SCHEDULE = 3; // 관심 과목 시간표
-        public const int INTERESTS_LECTURE_DELETE = 4; // 관심 과목 삭제
-
+        public const int LECTURE_SEARCH = 1; //과목 분야별 검색
+        public const int LECTURE_LIST = 2;// 과목 강의 내역
+        public const int LECTURE_SCHEDULE = 3; // 과목 시간표
+        public const int LECTURE_DELETE = 4; // 과목 삭제
+       
 
 
 

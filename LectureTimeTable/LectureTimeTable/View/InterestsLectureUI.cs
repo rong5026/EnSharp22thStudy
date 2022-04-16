@@ -75,11 +75,11 @@ namespace LectureTimeTable
 		}
 	
 
-		public void PrintInputInterestLecture() // 관심과목 등록 입력창
+		public void PrintInputInterestLecture(int number,int xPosition, int yPosition) // 관심과목 등록 입력창
 		{
 			
-			Console.SetCursorPosition(65, 23);
-			Console.Write( "등록 가능 학점 : {0}      담은 학점 : {1}      담을 과목 NO : ", 24 - LTTStart.interestNumber, LTTStart.interestNumber);
+			Console.SetCursorPosition(xPosition, yPosition);
+			Console.Write( "등록 가능 학점 : {0}      담은 학점 : {1}      담을 과목 NO : ", 24 - number, number);
 		}
 		public void PrintInputDeleteLecture() //관심과목 삭제 입력창
         {

@@ -15,6 +15,7 @@ namespace LectureTimeTable
         UserMenuUI userMenuUI = new UserMenuUI();
         LectureTimeUI lectureTimeUI = new LectureTimeUI();
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
+        RegisterationLectureUI registerationLecture = new RegisterationLectureUI();
         //LoginUI loginUI = new LoginUI();
         //Exception exceuption = new Exception();
         ConsoleKeyInfo keyInput;
@@ -96,7 +97,13 @@ namespace LectureTimeTable
                     interestsLectureUI.PrintInterestsLectureMenu((input % menuCount) + 1);
                     break;
                 case "InterestLectureSearch":
-                    interestsLectureUI.PrintInterestLecture((input % menuCount) + 1); // 관심과목 분야별 검색
+                    interestsLectureUI.PrintInterestLecture((input % menuCount) + 1); // 관심과목 
+                    break;
+                case "RegisterLecture":
+                    registerationLecture.PrintRegisterationLectureMenu((input % menuCount) + 1);
+                    break;
+                case "RegisterLectureSearch":
+                    registerationLecture.PrintRegisterationLecture((input % menuCount) + 1);
                     break;
 
 

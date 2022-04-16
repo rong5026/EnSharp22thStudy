@@ -24,6 +24,8 @@ namespace LectureTimeTable
         string classname="";
         string professor="";
         string grade ="";
+        string classNumber = "";
+        string divisionNumber = "";
         ConsoleKeyInfo keyInput;
         int searchingCount = 0; // 몇번 조건을 찾았는지
 
@@ -184,8 +186,29 @@ namespace LectureTimeTable
 
 
         }
-     
-      
+
+        //학수벊로 분반 예외랑 조회 함수 만들어야함
+        public int StartStudyClassNumber(List<int> list, int searchingCount) // 학수번호,분반
+        {
+
+            lectureTimeUI.PrintStudyNumber(); // 학수번호 입력창
+            classNumber = exception.EnterStudyNumber(80, 12);
+            Console.CursorVisible = false;//커서 숨김
+            if (classNumber == "")
+                return searchingCount + 1;
+            lectureTimeUI.PrintDivisionNumber(); // 분반 입력창 
+            divisionNumber = exception.EnterDivisionNumber(76, 13);
+
+            Console.CursorVisible = false;//커서 숨김
+            if (classNumber != "" && classNumber != "")
+            {
+                FindExcelindex(list, classNumber, 3, searchingCount);
+                return FindExcelindex(list, divisionNumber, 4, searchingCount);
+            }
+            else
+                return searchingCount + 1;
+
+        }
         private void StartLectureCheck(List<int> list, int yPosition) // 조회하기
         {
             excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
