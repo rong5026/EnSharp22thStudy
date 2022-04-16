@@ -71,6 +71,7 @@ namespace LectureTimeTable
                         break;
                     case Constant.CHECK: // 조회                      
                         StartLectureCheck(indexNO, 28);
+                        menuNumber = 0;
                         return;
                     case Constant.STOP: // 뒤로가기
                         return;

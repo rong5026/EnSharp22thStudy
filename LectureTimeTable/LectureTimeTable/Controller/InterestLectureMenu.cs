@@ -45,6 +45,7 @@ namespace LectureTimeTable
 
                 switch (menuNumber)
                 {
+                    
                     case Constant.LECTURE_SEARCH:  // 관심 과목 분야별 검색
                         SearchInterestLecture(indexNO);
                         break;
@@ -66,7 +67,7 @@ namespace LectureTimeTable
 
 
                 }
-                menuNumber--;
+                menuNumber = 0;
             }
 
         }
@@ -106,6 +107,7 @@ namespace LectureTimeTable
                         break;
                     case Constant.CHECK: // 조회 및 관심과목신청
                         StartExcelCheck(list, 28);
+                       
                         Console.Clear();
                         return;
                     case Constant.STOP: // 뒤로가기
@@ -123,7 +125,7 @@ namespace LectureTimeTable
         private void StartExcelCheck(List<int> list, int yPosition) // 조회하기 
         {
 
-            interestsLectureUI.PrintInputInterestLecture(LTTStart.interestNumber,65,23); // 관심과목 담을과목 선택 UI
+            interestsLectureUI.PrintInputInterestLecture(LTTStart.interestNumber,24,65,23); // 관심과목 담을과목 선택 UI
             excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list, yPosition); // y좌표
             list.Clear();
@@ -176,10 +178,15 @@ namespace LectureTimeTable
             interestsLectureUI.PrintInputDeleteLecture(); //관심과목 삭제 입력창
 
             classNumber = exception.EnterLectureNO(109, 5);// 삭제할 NO입력
-      
-            if(classNumber !="") 
-                result = LTTStart.interestList.Contains(Convert.ToInt16 (classNumber)+1);
 
+            if (classNumber != "")
+                result = LTTStart.interestList.Contains(Convert.ToInt16(classNumber) + 1);
+            else
+            {
+                Console.Clear();
+                return;
+                
+            }
             if(result == false) // 관심과목에 삭제할 NO가 없을때 
             {
                 //관담 삭제 식패!
