@@ -55,7 +55,7 @@ namespace LectureTimeTable
                         Console.Clear();
                         break;
                     case Constant.LECTURE_SCHEDULE: // 관심 과목 시간표                      
-                        timeTableUI.PrintLectureSchedule();
+                        timeTableUI.PrintLectureSchedule(LTTStart.interestList,"Interest");
                         BackESC();
                         Console.Clear();
                         break;

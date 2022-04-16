@@ -31,6 +31,7 @@ namespace LectureTimeTable
 
         {
             interestList.Add(1); // 관심과목 리스트에서 위에 테마 추가
+            registerList.Add(1);
             userList.Add(user);   //고쳐야함
             while (Constant.PROGRAM_ON)
             {

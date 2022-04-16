@@ -13,21 +13,25 @@ namespace LectureTimeTable
        
         TimeTable timeTable = new TimeTable();
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
-
+        RegisterationLectureUI registerationLectureUI = new RegisterationLectureUI();
         int hourOne;
         int minuteOne;
         int hourTwo;
         int minuteTwo;
         int sum;
      
-        public void PrintLectureSchedule() // 시간표 출력
+        public void PrintLectureSchedule(List<int> list,string type) // 시간표 출력
 
         {
             Console.Clear();
-            interestsLectureUI.PrintSelectedInterestListUI(0,3);  //관심과목 목록 UI
+            if (type == "Interest")
+                interestsLectureUI.PrintSelectedInterestListUI(0, 3);  //관심과목 목록 UI
+            else
+                registerationLectureUI.PrintSelectedRegisterListUI(0, 3);
             PrintLectureScheduleUI(); // 요일 , 시간UI
             Console.SetCursorPosition(0, 5);
-            timeTable.ShowLectureSchedule(LTTStart.interestList); // 관심과목 시간표
+            timeTable.ShowLectureSchedule(list); // 관심과목 시간표
+            Console.Write("====================================================================================================================================================================================");
             Console.SetCursorPosition(0, 0);
             Console.CursorVisible = false;
         }

@@ -16,6 +16,7 @@ namespace LectureTimeTable
         InterestLectureMenu interestLectureMenu = new InterestLectureMenu();
         Exception exception = new Exception();
         ExcelUI excelUI = new ExcelUI();
+        TimeTableUI timeTableUI = new TimeTableUI();
         int menuNumber;
         int input;
         int searchingCount;
@@ -23,10 +24,11 @@ namespace LectureTimeTable
         public void StartRegisterationLectureMenu()
 		{
 			menuNumber = 0;
-			Console.SetCursorPosition(0, 0);
+			
+            Console.SetCursorPosition(0, 0);
 			while (Constant.PROGRAM_ON)
 			{
-				registerationLectureUI.PrintRegisterationLectureMenu(1); // 수강신청 메인 메뉴
+				registerationLectureUI.PrintRegisterationLectureMenu(menuNumber+1); // 수강신청 메인 메뉴
 				Console.CursorVisible = false;
 				menuNumber = menu.SelectVerticalMenu(4, "RegisterLecture", menuNumber); // 수직으로된 메뉴 ( 메뉴목록의 수, 메뉴타입)
                 switch (menuNumber)
@@ -35,11 +37,13 @@ namespace LectureTimeTable
                         SearchRegistertLecture(indexNO);
                         break;
                     case Constant.LECTURE_LIST: // 수강 과목 강의 내역
-                      
+                        registerationLectureUI.PrintRegisteredInterestList();
+                        interestLectureMenu.BackESC();
                         Console.Clear();
                         break;
                     case Constant.LECTURE_SCHEDULE: // 수강 과목 시간표                      
-                        
+                        timeTableUI.PrintLectureSchedule(LTTStart.registerList, "Register");
+                        interestLectureMenu.BackESC();
                         Console.Clear();
                         break;
                     case Constant.LECTURE_DELETE: // 수강 과목 삭제

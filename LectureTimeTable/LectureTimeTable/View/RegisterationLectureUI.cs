@@ -11,7 +11,7 @@ namespace LectureTimeTable
 		StringSort sort = new StringSort();
 		InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
 		LectureTimeUI lectureTimeUI = new LectureTimeUI();
-
+		ExcelUI excelUI = new ExcelUI();
 
 		public void PrintRegisterationLectureMenu(int selectNum)// 수강신청 리스트 출력
 		{
@@ -57,6 +57,22 @@ namespace LectureTimeTable
 			sort.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", Constant.WIDTH - 15);
 
 
+		}
+		public void PrintRegisteredInterestList() // 수강과목 목록 출력
+		{
+
+			PrintSelectedRegisterListUI(0, 4);
+			excelUI.PrintExcelData(LTTStart.registerList, 10);
+
+			excelUI.PrintExcelBack(); // 뒤로가기
+		}
+		public void PrintSelectedRegisterListUI(int xPosition, int yPosition)
+		{
+			Console.Clear();
+			Console.SetCursorPosition(xPosition, yPosition);
+			sort.PrintCenter("ESC : 나가기", Constant.WIDTH + 150);
+			Console.WriteLine();
+			sort.PrintCenter("============================================================================ 수강 과목 강의 목록 ============================================================================", Constant.WIDTH - 8);
 		}
 	}
 }
