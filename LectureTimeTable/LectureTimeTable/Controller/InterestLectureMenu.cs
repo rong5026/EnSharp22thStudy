@@ -6,26 +6,34 @@ using System.Threading.Tasks;
 
 namespace LectureTimeTable
 {
-    internal class InterestLectureMenu :LectureTimeMenu
+    internal class InterestLectureMenu 
     {
 
-        SelectionMenu menu= new SelectionMenu();
+       
         InterestsLectureUI interestsLectureUI= new InterestsLectureUI();
-        LectureTimeMenu lectureTimeMenu= new LectureTimeMenu();
-        Exception exception = new Exception();
-        TimeTableUI timeTableUI= new TimeTableUI();
+        TimeTableUI timeTableUI = new TimeTableUI();
+        SelectionMenu menu;
+        Exception exception;
+        ExcelUI excelUI;
+        LectureTimeMenu lectureTimeMenu;
+
         ConsoleKeyInfo keyInput;
         int menuNumber;
         int input;
-        List<int> indexNO=new List<int>();
-        ExcelUI excelUI = new ExcelUI();
+        List<int> indexNO;
         int searchingCount; // 몇번 조건을 찾았는지
         string classNumber;
       
         bool result;
 
-        public InterestLectureMenu()
+       
+        public InterestLectureMenu(SelectionMenu menu, Exception exception, ExcelUI excelUI)
         {
+            indexNO = new List<int>();
+            this.menu = menu;
+            this.exception = exception;
+            this.excelUI = excelUI;
+            lectureTimeMenu = new LectureTimeMenu(menu, exception, excelUI);
             classNumber = "";
          
         }

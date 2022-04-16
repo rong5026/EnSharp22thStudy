@@ -8,15 +8,17 @@ namespace LectureTimeTable
 {
     internal class Login
     {
-        LoginUI loginUI = new LoginUI();
+        LoginUI loginUI;
         Exception exceuption =new Exception();
         ConsoleKeyInfo keyInput;
 
         string id;
         string password;
-
-       
-
+        
+        public Login(LoginUI loginUI)
+        {
+            this.loginUI = loginUI;
+        }
         public int StartUserLogin(List<UserVO> userList)
         {
 

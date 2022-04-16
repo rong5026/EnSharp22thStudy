@@ -12,8 +12,6 @@ namespace LectureTimeTable
     internal class Exception
     {
       
-     
-       
         LoginUI LoginUI =new LoginUI();
         ConsoleKeyInfo keyInput;
         string error;

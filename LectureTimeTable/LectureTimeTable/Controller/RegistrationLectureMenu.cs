@@ -10,22 +10,30 @@ namespace LectureTimeTable
 	internal class RegistrationLectureMenu
     {
 		RegisterationLectureUI registerationLectureUI = new RegisterationLectureUI();
-        LectureTimeMenu lectureTimeMenu = new LectureTimeMenu();
-        SelectionMenu menu = new SelectionMenu();
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
-        InterestLectureMenu interestLectureMenu = new InterestLectureMenu();
-        Exception exception = new Exception();
-        ExcelUI excelUI = new ExcelUI();
         TimeTableUI timeTableUI = new TimeTableUI();
+        SelectionMenu menu;
+        Exception exception;
+        ExcelUI excelUI;
+        LectureTimeMenu lectureTimeMenu;
+        InterestLectureMenu interestLectureMenu;
+  
         int menuNumber;
         int input;
         int searchingCount;
         string classNumber;
         List<int> indexNO;
         bool result;
-        public RegistrationLectureMenu()
+
+       
+        public RegistrationLectureMenu(SelectionMenu menu ,Exception exception, ExcelUI excelUI)
         {
+            this.menu = menu;
+            this.exception = exception;
+            this.excelUI = excelUI;
             indexNO = new List<int>();
+            lectureTimeMenu = new LectureTimeMenu(menu, exception, excelUI);
+            interestLectureMenu = new InterestLectureMenu(menu, exception, excelUI);
 
         }
         public void StartRegisterationLectureMenu()

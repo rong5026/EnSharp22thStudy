@@ -9,33 +9,37 @@ namespace LectureTimeTable
 {
     internal class LTTStart
     {
-        Login login = new Login();
-        List<UserVO> userList = new List<UserVO>();
-        LoginUI loginUI = new LoginUI();
+       
+        List<UserVO> userList;
+        LoginUI loginUI;
+        Login login;
         UserMenu userMenu = new UserMenu();    
 
         public static ExcelData excelData = new ExcelData(); // 엑셀데이터
-        public static List<int> interestList = new List<int>();// 관심과목 리스트
-        public static List<int> registerList = new List<int>();
-        public static int interestNumber = 0; // 관심과목담은 학점
-        public static int registerNumber = 0; // 수강신청한 학점
-        // static 안쓰고 고쳐야함
-        // 
+        public static List<int> interestList;// 관심과목 리스트
+        public static List<int> registerList;
+        public static int interestNumber; // 관심과목담은 학점
+        public static int registerNumber; // 수강신청한 학점
+    
         int loginStatus;
-
-
         UserVO user;
         public LTTStart()
         {
             user = new UserVO("19011617", "11111111"); // 고쳐야함
-
+            loginUI = new LoginUI();
+            login = new Login(loginUI);
+            userList = new List<UserVO>();
+            interestList = new List<int>();
+            registerList = new List<int>();
+            interestNumber = 0;
+            registerNumber = 0;
         }
         public void LTT()
 
         {
             interestList.Add(1); // 관심과목 리스트에서 위에 테마 추가
             registerList.Add(1);
-            userList.Add(user);   //고쳐야함
+            userList.Add(user);  
             while (Constant.PROGRAM_ON)
             {
                 

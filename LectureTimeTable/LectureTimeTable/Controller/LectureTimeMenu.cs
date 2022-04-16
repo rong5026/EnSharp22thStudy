@@ -9,25 +9,28 @@ namespace LectureTimeTable
     internal class LectureTimeMenu
     {
         LectureTimeUI lectureTimeUI = new LectureTimeUI();
-        SelectionMenu menu = new SelectionMenu();
-        Exception exception = new Exception();
-        ExcelUI excelUI = new ExcelUI();
-
+        SelectionMenu menu;
+        Exception exception;
+        ExcelUI excelUI;
         int menuNumber;
-        int input;       
+        int input;
         string cellValue;
-
         string classname;
         string professor;
         string classNumber;
         string divisionNumber;
         ConsoleKeyInfo keyInput;
-        int searchingCount ; // 몇번 조건을 찾았는지
+        private int searchingCount ; // 몇번 조건을 찾았는지
 
         private List<int> indexNO;
 
-        public LectureTimeMenu()
+       
+        public LectureTimeMenu(SelectionMenu menu, Exception exception, ExcelUI excelUI)
         {
+           
+            this.menu = menu;
+            this.exception = exception;
+            this.excelUI = excelUI;
             menuNumber = 0;
             indexNO = new List<int>();
             searchingCount = 0;

@@ -8,13 +8,26 @@ namespace LectureTimeTable
 {
     internal class UserMenu
     {
-      
-        SelectionMenu menu = new SelectionMenu();
-        UserMenuUI userMenuUI = new UserMenuUI();
-        LectureTimeMenu lectureTimeMenu = new LectureTimeMenu();
-        InterestLectureMenu interestLectureMenu = new InterestLectureMenu();
-        RegistrationLectureMenu registrationLectureMenu = new RegistrationLectureMenu ();
+
+        SelectionMenu menu;
+        UserMenuUI userMenuUI;
+        LectureTimeMenu lectureTimeMenu;
+        InterestLectureMenu interestLectureMenu;
+        RegistrationLectureMenu registrationLectureMenu;
+        Exception exception;
+        ExcelUI excelUI;
         int menuNumber;
+
+        public UserMenu()
+        {
+            userMenuUI = new UserMenuUI();
+            menu = new SelectionMenu();
+            excelUI = new ExcelUI();
+            exception = new Exception();
+            lectureTimeMenu = new LectureTimeMenu(menu, exception, excelUI);
+            interestLectureMenu = new InterestLectureMenu(menu, exception, excelUI);
+            registrationLectureMenu = new RegistrationLectureMenu(menu, exception, excelUI);
+        }
         public void StartUserMenu()
         {
 
