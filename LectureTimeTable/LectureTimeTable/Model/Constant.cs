@@ -49,7 +49,9 @@ namespace LectureTimeTable
         public const int LECTURE_LIST = 2;// 과목 강의 내역
         public const int LECTURE_SCHEDULE = 3; // 과목 시간표
         public const int LECTURE_DELETE = 4; // 과목 삭제
-       
+
+        public const int REINPUT = 1;
+        public const int BACK = 0;
 
 
 

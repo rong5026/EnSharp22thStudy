@@ -80,12 +80,12 @@ namespace LectureTimeTable
 		{
 			
 			Console.SetCursorPosition(xPosition, yPosition);
-			Console.Write( "등록 가능 학점 : {0}      담은 학점 : {1}      담을 과목 NO : ", totalNumber - number, number);
+			Console.Write( "등록 가능 학점 : {0}      담은 학점 : {1}      담을 과목 NO :                       ", totalNumber - number, number);
 		}
 		public void PrintInputDeleteLecture(int number) //관심과목 삭제 입력창
         {
 			Console.SetCursorPosition(65, 5);
-			Console.Write("         담은 학점 : {0}    삭제할 과목 NO : ", number);
+			Console.Write("         담은 학점 : {0}    삭제할 과목 NO :                      ", number);
 		}
 
 		public void PrintInterestStatus(int xPosition, int yPosition, string output) // 관심과목담기 성공,실패

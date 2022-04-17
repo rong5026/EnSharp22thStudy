@@ -80,8 +80,15 @@ namespace LectureTimeTable
             }
 
         }
+        private void SearchInterestLectureList(List<int> list)
+        {
+            while (Constant.PROGRAM_ON)
+            {
+                SearchInterestLecture(list);
 
-        public void SearchInterestLecture(List<int >list ) // 목록 조건 선택
+            }
+        }
+        private void SearchInterestLecture(List<int >list ) // 목록 조건 선택
         {
             Console.Clear();
             interestsLectureUI.PrintInterestLecture(1); // 개설학과, 학수번호, 교과목,교수명,학년,조회 리스트
@@ -116,8 +123,7 @@ namespace LectureTimeTable
                         searchingCount = lectureTimeMenu.StartLectureClassMenu(list, searchingCount, "Interest");
                         break;
                     case Constant.CHECK: // 조회 및 관심과목신청
-                        StartExcelCheck(list, 30);
-                       
+                        StartExcelCheck(list, 30);                   
                         Console.Clear();
                         return;
                     case Constant.STOP: // 뒤로가기
@@ -135,38 +141,67 @@ namespace LectureTimeTable
         private void StartExcelCheck(List<int> list, int yPosition) // 조회하기 
         {
 
-            interestsLectureUI.PrintInputInterestLecture(LTTStart.interestNumber,24,65,25); // 관심과목 담을과목 선택 UI
+           
             excelUI.PrintExcelLectureTime(28); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list, yPosition); // y좌표
+           
+            SelectInterestLecture(list); //관심과목번호 입력 후 리스트에 추가
+
             list.Clear();
-            SelectInterestLecture(); //관심과목번호 입력 후 리스트에 추가
+
 
         }
-        private void SelectInterestLecture() // 관심과목번호 입력 후 리스트에 추가
+        private int SelectInterestLecture(List<int> list) // 관심과목번호 입력 후 리스트에 추가
         {
             string classNO;
-
+            int selection;
             while (Constant.PROGRAM_ON) // 관심과목 선택
             {
-
+                interestsLectureUI.PrintInputInterestLecture(LTTStart.interestNumber, 24, 65, 25); // 관심과목 담을과목 선택 UI
                 classNO = exception.EnterLectureNO(125, 25); // 입력
 
                 if (classNO == "")
                     break;
                 if (LTTStart.interestList.Contains(Convert.ToInt16(classNO)+1))//관심과목List에 같은 No가 있을때
                 {
-                    interestsLectureUI.PrintInterestStatus(65, 25, "실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //관담 실패!
-                    BackESC();
-                    return;
+                    interestsLectureUI.PrintInterestStatus(65, 25, "실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기   ENTER : 다시입력             "); //관담 실패!
+                    selection =Reinput();
+                    if (selection == Constant.REINPUT)
+                        return SelectInterestLecture(list);
+                    return Constant.STOP;
+                }
+                else if( list.Contains(Convert.ToInt16(classNO)+1)==false)
+                {
+                    interestsLectureUI.PrintInterestStatus(65, 25, "실패! !! 리스트에 없는 No 입니다!       ESC : 나가기   ENTER : 다시입력         "); //관담 실패!
+                    selection =Reinput();
+                    if (selection == Constant.REINPUT)
+                        return SelectInterestLecture(list);
+                    return Constant.STOP;
                 }
 
                 LTTStart.interestList.Add(Convert.ToInt16(classNO)+1); // 관심과목에 없으면 추가
                 LTTStart.interestNumber += Convert.ToInt16 (LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO)+1, 8)); // 관심과목 담은 학점
-                interestsLectureUI.PrintInterestStatus(65,25, "성공! 관심과목 리스트에 담겼습니다!!      ESC : 나가기                     "); 
+                interestsLectureUI.PrintInterestStatus(65,25, "성공! 관심과목 리스트에 담겼습니다!!       ESC : 나가기   ENTER : 다시입력           ");
                 // 관담 성공!
-                BackESC();
-                return;
+                selection = Reinput();
+                if (selection == Constant.REINPUT)
+                    return SelectInterestLecture(list);             
+                return Constant.STOP;
 
+            }
+            return Constant.STOP;
+
+        }
+        private int Reinput()
+        {
+            while (Constant.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return Constant.BACK;
+                else if (keyInput.Key == ConsoleKey.Enter)
+                    return Constant.REINPUT;
             }
         }
         public void BackESC() // 뒤로가기
