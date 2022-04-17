@@ -40,15 +40,7 @@ namespace LectureTimeTable
                 // 설정한 범위만큼 데이터 담기 (Value2 -셀의 기본 값 제공)
                 data = cellRange.Cells.Value2;
 
-              
-                // 데이터 출력
-                
-                
-                //Console.WriteLine(data.GetValue(1, 1));
-              
-                
-
-                //Console.ReadLine();
+             
                 // 모든 워크북 닫기
                 application.Workbooks.Close();
 

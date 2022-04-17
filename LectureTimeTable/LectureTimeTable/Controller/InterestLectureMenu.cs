@@ -15,6 +15,7 @@ namespace LectureTimeTable
         SelectionMenu menu;
         Exception exception;
         ExcelUI excelUI;
+        TimeTable timeTable = new TimeTable();
         LectureTimeMenu lectureTimeMenu;
 
         ConsoleKeyInfo keyInput;
@@ -174,6 +175,14 @@ namespace LectureTimeTable
                 {
                     interestsLectureUI.PrintInterestStatus(65, 25, "실패! !! 리스트에 없는 No 입니다!       ESC : 나가기   ENTER : 다시입력         "); //관담 실패!
                     selection =Reinput();
+                    if (selection == Constant.REINPUT)
+                        return SelectInterestLecture(list);
+                    return Constant.STOP;
+                }
+                else if(timeTable.CheckTime( Convert.ToString( LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO)+1,9)) , LTTStart.interestList) == 1)
+                {
+                    interestsLectureUI.PrintInterestStatus(65, 25, "실패!  등록하신 시간표와 시간이 겹칩니다!  ESC : 나가기   ENTER : 다시입력         "); //관담 실패!
+                    selection = Reinput();
                     if (selection == Constant.REINPUT)
                         return SelectInterestLecture(list);
                     return Constant.STOP;

@@ -30,13 +30,13 @@ namespace LectureTimeTable
                 FindTimeType( Convert.ToString(LTTStart.excelData.Data.GetValue(list[index], 9)), list[index]);
             }
         }
-        private void FindTimeType(string timeData, int listNO)
+        private void FindTimeType(string timeData, int listNO) // 요일의 타입 3가지
         {
 
            
 
             day = Regex.Replace(timeData, @"[^가-힣]", ""); // 요일만 가져오기
-            time = Regex.Replace(timeData, "[^0-9]", ""); // 숫자만 가져옴
+            time = Regex.Replace(timeData, @"[^0-9]", ""); // 숫자만 가져옴
 
             if (day.Length == 1)
             {
@@ -60,7 +60,7 @@ namespace LectureTimeTable
         {
             
 
-            for (int index = 0; index < FindTimeRepeatCount(time); index++)
+            for (int index = 0; index < FindTimeRepeatCount(time); index++) // 시간표요소 출력
             {
                 className = Convert.ToString(LTTStart.excelData.Data.GetValue(listNO, 5));
                 classPlace = Convert.ToString(LTTStart.excelData.Data.GetValue(listNO, 10));
@@ -71,8 +71,7 @@ namespace LectureTimeTable
             }
 
         }
-        private int FindTimeYposition(string time,int initYposition) // 초기 y좌표는 7
-        {
+        private int FindTimeYposition(string time,int initYposition) {  // 출력해야할 Y좌표를 리턴
             startHour = Convert.ToInt16(time.Substring(0, 2));
             startMinute = Convert.ToInt16(time.Substring(2, 2));
 
@@ -115,7 +114,137 @@ namespace LectureTimeTable
             return ((endtHour - startHour) *60 + endMinute- startMinute)/30; 
 
         }
-      
+        public int CheckTime(string timeData, List<int> list) // 선택한 과목의 시간데이터 ,관심리스트
+        {
+            string oneDay;
+            string onTime;
+            string secondDay;
+            string secondTime;
+            int result;
+            day = Regex.Replace(timeData, @"[^가-힣]", ""); // 요일만 가져오기
+            time = Regex.Replace(timeData, @"[^0-9]", ""); // 숫자만 가져옴
+
+         
+
+            for (int intdex = 1; intdex < list.Count; intdex++) // 관심리스트 전부돌면서 
+            {
+               
+                className = Convert.ToString(LTTStart.excelData.Data.GetValue(list[intdex], 9)); //관심리스트에 있는 시간데이터를 문자형태로 받아옴
+                secondDay = Regex.Replace(className, @"[^가-힣]", ""); // 요일만 가져오기
+                secondTime = Regex.Replace(className, @"[^0-9]", ""); // 숫자만 가져옴
+
+             
+
+                if (day.Length == 1)
+                {
+                  
+
+                    result = FindTime(day[0], time, secondDay, secondTime);
+                    if (result == Constant.OVERLAP)
+                        return Constant.OVERLAP; // 겹침
+                }
+
+                else if (time.Length == 4) //월 090010 30 화 11001130
+                {
+                 
+
+                    result =FindTime(day[0], time.Substring(0, 8), secondDay, secondTime);
+                    if (result == Constant.OVERLAP)
+                        return Constant.OVERLAP; // 겹침
+                    result =FindTime(day[1], time.Substring(8, 8), secondDay, secondTime);
+                    if (result == Constant.OVERLAP)
+                        return Constant.OVERLAP; // 겹침
+                }
+                else
+                {
+               
+
+                    result =FindTime(day[0], time, secondDay, secondTime);
+                    if (result == Constant.OVERLAP)
+                        return Constant.OVERLAP; // 겹침
+                    result =FindTime(day[1], time, secondDay, secondTime);
+                    if (result == Constant.OVERLAP)
+                        return Constant.OVERLAP; // 겹침
+
+                }
+
+            }
+           
+            return 0;
+
+        }
+        public int FindTime(char day,string time, string secondDay, string secondTime)
+        {
+            // 월,화,수
+            // 8자리수 12001230
+            //월화수목
+            //8자리일수도 16자리일수도 
+
+            int result;
+            if (secondDay.Length == 1)
+            {
+           
+
+                result = FindLastResult(day, time, secondDay[0], secondTime);
+                if (result == Constant.OVERLAP)
+                    return Constant.OVERLAP; // 겹침
+            }
+
+            else if (secondTime.Length == 4) //월 09001030 화 11001130
+            {
+                result = FindLastResult(day, time, secondDay[0], secondTime.Substring(0, 8));
+                if (result == Constant.OVERLAP)
+                    return Constant.OVERLAP; // 겹침
+                result = FindLastResult(day, time, secondDay[1], secondTime.Substring(8, 8));
+                if (result == Constant.OVERLAP)
+                    return Constant.OVERLAP; // 겹침
+            }
+            else
+            {
+                result = FindLastResult(day, time, secondDay[0], secondTime);
+                if (result == Constant.OVERLAP)
+                    return Constant.OVERLAP; // 겹침
+                result = FindLastResult(day, time, secondDay[1], secondTime);
+                if (result == Constant.OVERLAP)
+                    return Constant.OVERLAP; // 겹침
+
+            }
+
+            return 0; // 안겹침
+
+        }
+
+        public int FindLastResult(char day1, string time1, char day2, string time2)
+        {
+            // 월  , 화 , 수
+            // 8자리수 10001130
+            // 월, 화 , 수
+            // 8자리수
+
+            if (day1 == day2)
+            {
+                int small1 = ChangeTimeType(time1.Substring(0, 4));// 1000
+                int big1 = ChangeTimeType(time1.Substring(4, 4));//1130
+                int small2 = ChangeTimeType(time2.Substring(0, 4));
+                int big2 = ChangeTimeType(time2.Substring(4, 4));
+
+          
+                if ((small1 < small2 && small2 > big1) || (small1 < big2 && big2 > big1)   || (small2 < small1 && small1 > big2) || (small2 < big1 && big1 > big2) || (small1 == small2 && big1 == big2))
+                {
+                    return Constant.OVERLAP; // 겹침
+                }
+            }
+            return 0; // 안겹침 
+
+        }
+
+        private int ChangeTimeType(string time)
+        {
+            int hour = Convert.ToInt16( time.Substring(0, 2)); 
+            int minute = Convert.ToInt16(time.Substring (2, 2));
+
+            return hour*60+minute;
+        }
        
         
     }
