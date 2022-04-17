@@ -9,15 +9,14 @@ namespace LectureTimeTable
     internal class ExcelUI
     {
        
-        StringSortUI sort = new StringSortUI();
-        
-
+       
+       LectureTimeUI lectureTimeUI = new LectureTimeUI();
         public void PrintExcelLectureTime(int yPosition)
         {
             
 
             Console.SetCursorPosition(0, yPosition);
-            sort.PrintCenter("======================================================================== 2022학년도 1학기 강의 시간표 ======================================================================== ", 172);
+            lectureTimeUI.PrintCenter("======================================================================== 2022학년도 1학기 강의 시간표 ======================================================================== ", 172);
             
             
 
@@ -49,12 +48,12 @@ namespace LectureTimeTable
             }
 
             Console.WriteLine();
-            sort.PrintCenter("============================================================================================================================================================================ ", 180);
+            lectureTimeUI.PrintCenter("============================================================================================================================================================================ ", 180);
 
         }
         public void PrintExcelBack()
-        {      
-            sort.PrintCenter("ESC : 뒤로 돌아가기", 180);
+        {
+            lectureTimeUI.PrintCenter("ESC : 뒤로 돌아가기", 180);
         }
 
         private void PrintExcelElement(int xPosition,int yPosition,  int rowIndex,  int columnIndex)

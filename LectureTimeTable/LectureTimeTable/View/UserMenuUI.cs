@@ -8,22 +8,22 @@ namespace LectureTimeTable
 {
     internal class UserMenuUI
     {
-        StringSortUI sort = new StringSortUI();
+		LectureTimeUI lectureTimeUI = new LectureTimeUI();
 		private string selectFirst;
 
 		public void PrintUserMenu(int selectNum)
         {
 			Console.SetCursorPosition(0, 0);
 			Console.WriteLine("\n\n\n\n\n\n");
-			sort.PrintCenter("ENTER :선택하기 ESC :뒤로가기 ", Constant.WIDTH + 46);
+			lectureTimeUI.PrintCenter("ENTER :선택하기 ESC :뒤로가기 ", Constant.WIDTH + 46);
 
-			sort.PrintCenter("============================== 강좌조회 및 수강신청 ==============================", Constant.WIDTH-8);
+			lectureTimeUI.PrintCenter("============================== 강좌조회 및 수강신청 ==============================", Constant.WIDTH-8);
 			Console.WriteLine("\n\n");
 			PrintUserMenuUI(selectNum);
 			Console.WriteLine("\n\n");
-			sort.PrintCenter("==================================================================================", Constant.WIDTH);
+			lectureTimeUI.PrintCenter("==================================================================================", Constant.WIDTH);
 
-			sort.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", Constant.WIDTH-12);
+			lectureTimeUI.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", Constant.WIDTH-12);
 		}
 
 		public void PrintUserMenuList(int selectNum, int menuNumber, string menuName)

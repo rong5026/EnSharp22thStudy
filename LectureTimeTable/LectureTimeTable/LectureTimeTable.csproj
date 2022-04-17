@@ -65,7 +65,6 @@
     <Compile Include="View\ExcelUI.cs" />
     <Compile Include="View\InterestsLectureUI.cs" />
     <Compile Include="View\RegisterationLectureUI.cs" />
-    <Compile Include="View\StringSortUI.cs" />
     <Compile Include="View\LectureTimeUI.cs" />
     <Compile Include="View\LoginUI.cs" />
     <Compile Include="View\TimeTableUI.cs" />

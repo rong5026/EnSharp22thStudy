@@ -9,7 +9,7 @@ namespace LectureTimeTable
     internal class LoginUI
     {
 
-        StringSortUI sort = new StringSortUI();
+       LectureTimeUI lectureTimeUI = new LectureTimeUI();
 
         public void PrintLoginUI() // 로그인 UI출력
         {
@@ -17,21 +17,21 @@ namespace LectureTimeTable
 
           
             Console.WriteLine("\n\n");
-            sort.PrintCenter("학 사 정 보 시 스 템", Constant.WIDTH+2);
-            sort.PrintCenter("ESC : 프로그램 종료\n", Constant.WIDTH+60);
-            sort.PrintCenter("============================== Sejong University ==============================\n\n", Constant.WIDTH+10);
+            lectureTimeUI.PrintCenter("학 사 정 보 시 스 템", Constant.WIDTH+2);
+            lectureTimeUI.PrintCenter("ESC : 프로그램 종료\n", Constant.WIDTH+60);
+            lectureTimeUI.PrintCenter("============================== Sejong University ==============================\n\n", Constant.WIDTH+10);
             Console.WriteLine("                                                                       ▣      ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣");
             Console.WriteLine("                                                                       ▣     ▣    ▣  ▣          ▣     ▣▣    ▣");
             Console.WriteLine("                                                                       ▣     ▣    ▣  ▣   ▣     ▣     ▣  ▣  ▣");
             Console.WriteLine("                                                                       ▣     ▣    ▣  ▣    ▣    ▣     ▣    ▣▣");
             Console.WriteLine("                                                                       ▣▣▣  ▣▣▣    ▣▣▣  ▣▣▣▣  ▣      ▣\n\n");
         
-            sort.PrintCenter("학번(8자리숫자) : \n", Constant.WIDTH-10); //62 15         
-            sort.PrintCenter("비밀번호(8~14자리) : \n\n", Constant.WIDTH-10); // 63 16
+            lectureTimeUI.PrintCenter("학번(8자리숫자) : \n", Constant.WIDTH-10); //62 15         
+            lectureTimeUI.PrintCenter("비밀번호(8~14자리) : \n\n", Constant.WIDTH-10); // 63 16
 
     
 
-            sort.PrintCenter("===============================================================================", Constant.WIDTH+10);
+            lectureTimeUI.PrintCenter("===============================================================================", Constant.WIDTH+10);
 
           
         }
@@ -56,15 +56,15 @@ namespace LectureTimeTable
             
 
             Console.WriteLine("\n\n");
-            sort.PrintCenter("학 사 정 보 시 스 템", Constant.WIDTH+2);
-            sort.PrintCenter("ESC : 프로그램 종료\n", Constant.WIDTH+60);
-            sort.PrintCenter("============================== Sejong University ==============================\n\n", Constant.WIDTH+10);
+            lectureTimeUI.PrintCenter("학 사 정 보 시 스 템", Constant.WIDTH+2);
+            lectureTimeUI.PrintCenter("ESC : 프로그램 종료\n", Constant.WIDTH+60);
+            lectureTimeUI.PrintCenter("============================== Sejong University ==============================\n\n", Constant.WIDTH+10);
             Console.WriteLine("                                                                      ▣▣▣  ▣▣▣▣   ▣▣▣   ▣▣▣");
             Console.WriteLine("                                                                     ▣          ▣     ▣    ▣   ▣   ▣");
             Console.WriteLine("                                                                      ▣▣▣     ▣     ▣    ▣   ▣▣▣");
             Console.WriteLine("                                                                           ▣    ▣     ▣    ▣   ▣ ");
             Console.WriteLine("                                                                      ▣▣▣     ▣      ▣▣▣    ▣       \n\n");
-            sort.PrintCenter("===============================================================================", Constant.WIDTH+10);
+            lectureTimeUI.PrintCenter("===============================================================================", Constant.WIDTH+10);
 
         }
         public void PrintReLogin() // 틀리거나 존재하지 않는 ID로그인시 
@@ -73,12 +73,12 @@ namespace LectureTimeTable
             Console.Clear();
             Console.CursorVisible = false;
             Console.WriteLine("\n\n");
-            sort.PrintCenter("학 사 정 보 시 스 템", Constant.WIDTH+2);
-            sort.PrintCenter("ESC : 프로그램 종료\n", Constant.WIDTH+60);
-            sort.PrintCenter("============================== Sejong University ==============================\n\n\n\n", Constant.WIDTH+10);
-            sort.PrintCenter("존재하지 않는 ID이거나, 비밀번호가 틀립니다!!\n\n", Constant.WIDTH);
-            sort.PrintCenter(" 종료 : ESC      다시 로그인 : ENTER\n\n\n", Constant.WIDTH);
-            sort.PrintCenter("===============================================================================", Constant.WIDTH+10);
+            lectureTimeUI.PrintCenter("학 사 정 보 시 스 템", Constant.WIDTH+2);
+            lectureTimeUI.PrintCenter("ESC : 프로그램 종료\n", Constant.WIDTH+60);
+            lectureTimeUI.PrintCenter("============================== Sejong University ==============================\n\n\n\n", Constant.WIDTH+10);
+            lectureTimeUI.PrintCenter("존재하지 않는 ID이거나, 비밀번호가 틀립니다!!\n\n", Constant.WIDTH);
+            lectureTimeUI.PrintCenter(" 종료 : ESC      다시 로그인 : ENTER\n\n\n", Constant.WIDTH);
+            lectureTimeUI.PrintCenter("===============================================================================", Constant.WIDTH+10);
         }
         
 
