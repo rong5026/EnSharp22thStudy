@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ExcelSaveMenu.cs" />
     <Compile Include="Controller\Exception.cs" />
     <Compile Include="Controller\InterestLectureMenu.cs" />
     <Compile Include="Controller\LectureTimeMenu.cs" />

@@ -24,8 +24,14 @@ namespace LectureTimeTable
             Console.Clear();
             if (type == "Interest")
                 interestsLectureUI.PrintSelectedListUI(0, 3);  //관심과목 목록 UI
-            else
+            else if(type == "Register")
                 registerationLectureUI.PrintSelectedRegisterListUI(0, 3);
+            else
+            {
+                registerationLectureUI.PrintSelectedRegisterListUI(0, 3);
+                Console.SetCursorPosition(60, 3);
+                Console.Write("ENTER : 엑셀파일로 저장하기(바탕화면 엑셀파일 속 시간표 저장Sheet에 내용이 저장됩니다.) ");
+            }
             PrintLectureScheduleUI(); // 요일 , 시간UI
             Console.SetCursorPosition(0, 5);
             timeTable.ShowLectureSchedule(list); // 관심과목 시간표

@@ -14,6 +14,7 @@ namespace LectureTimeTable
         LectureTimeMenu lectureTimeMenu;
         InterestLectureMenu interestLectureMenu;
         RegistrationLectureMenu registrationLectureMenu;
+        ExcelSaveMenu excelSaveMenu = new ExcelSaveMenu();
         Exception exception;
         ExcelUI excelUI;
         private int menuNumber;
@@ -54,6 +55,7 @@ namespace LectureTimeTable
                         registrationLectureMenu.StartRegisterationLectureMenu();
                         break;
                     case Constant.LECTURE_SUBSCRIPTION_RESULT: // 수강내역조회
+                        excelSaveMenu.StartEnterExcel();
                         break;
                     case Constant.STOP:
                         return;

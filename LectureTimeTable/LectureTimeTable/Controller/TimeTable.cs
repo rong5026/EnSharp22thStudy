@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-
+using Excel = Microsoft.Office.Interop.Excel;
 namespace LectureTimeTable
 {
     internal class TimeTable
@@ -17,6 +17,11 @@ namespace LectureTimeTable
         private int endtHour;
         private int endMinute; // 접근제한자 사용하기
 
+        private int hourOne;
+        private int minuteOne;
+        private int sum;
+        string firstTime;
+        string secondTime;
 
         private string className;
         private string classPlace;
@@ -56,20 +61,21 @@ namespace LectureTimeTable
                
 
         }
+       
+
         private void ShowLectureScheduleUnit(char day, string time, int listNO) // 문자 잘라서 요일 1개, 시간 숫자 8자리 09001030
         {
-            
 
-            for (int index = 0; index < FindTimeRepeatCount(time); index++) // 시간표요소 출력
+            for (int index = 0; index < FindTimeRepeatCount(time); index++)
             {
                 className = Convert.ToString(LTTStart.excelData.Data.GetValue(listNO, 5));
                 classPlace = Convert.ToString(LTTStart.excelData.Data.GetValue(listNO, 10));
-                Console.SetCursorPosition(FindTimeXposition(day), FindTimeYposition(time, 7+index*2));
+                Console.SetCursorPosition(FindTimeXposition(day), FindTimeYposition(time, 7 + index * 2));
                 Console.WriteLine(className);
-                Console.SetCursorPosition(FindTimeXposition(day), FindTimeYposition(time, 7+index * 2) +1);
+                Console.SetCursorPosition(FindTimeXposition(day), FindTimeYposition(time, 7 + index * 2) + 1);
                 Console.WriteLine(classPlace);
             }
-
+            
         }
         private int FindTimeYposition(string time,int initYposition) {  // 출력해야할 Y좌표를 리턴
             startHour = Convert.ToInt16(time.Substring(0, 2));
@@ -83,6 +89,7 @@ namespace LectureTimeTable
 
 
         }
+       
         private int FindTimeXposition(char day) // 날짜로 x좌표 확인
         {
             switch (day)
@@ -101,7 +108,7 @@ namespace LectureTimeTable
                     return 0;
             }
         }
-
+        
         private int FindTimeRepeatCount(string time) // 몇번 반복해서 프린트해야하는지
         {
            
@@ -246,6 +253,135 @@ namespace LectureTimeTable
             return hour*60+minute;
         }
        
-        
+        public void SendExcel()
+        {
+            Excel.Application application = new Excel.Application();
+
+            // Workbook 객체 생성 및 파일 오픈 (바탕화면에 있는 2022년도 1학기 강의시간표.xlsx 가져옴)
+            Excel.Workbook workbook = application.Workbooks.Open(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\2022년도 1학기 강의시간표.xlsx");
+
+            Excel.Worksheet worksheet = workbook.Worksheets.Add();
+            worksheet.Name = "시간표 저장";
+
+
+
+            for (int index = 0; index < LTTStart.registerList.Count; index++)
+            {
+                for (int index2 = 1; index2 <= 12; index2++)
+                {
+                    worksheet.Cells[index + 1, index2] = LTTStart.excelData.Data.GetValue(LTTStart.registerList[index], index2);     
+                }
+            }
+
+            worksheet.Cells[LTTStart.registerList.Count +2, 2] = "월"; // 엑셀에 요일 표시
+            worksheet.Cells[LTTStart.registerList.Count + 2, 3] = "화";
+            worksheet.Cells[LTTStart.registerList.Count + 2, 4] = "수";
+            worksheet.Cells[LTTStart.registerList.Count + 2, 5] = "목";
+            worksheet.Cells[LTTStart.registerList.Count + 2, 6] = "금";
+
+
+            hourOne = 8;
+            minuteOne = 30;
+
+            for (int count = 0; count < 22; count++) // 엑셀에 시간표시
+            {
+                            
+                firstTime = hourOne.ToString("00") +":"+ minuteOne.ToString("00")+"~";              
+
+                sum = hourOne * 60 + minuteOne + 30;
+                hourOne = sum / 60;
+                minuteOne = sum % 60;
+                secondTime = firstTime + hourOne.ToString("00") + ":" + minuteOne.ToString("00");
+
+                worksheet.Cells[LTTStart.registerList.Count + 3 + 2 * count,1 ] = secondTime;
+          
+            }
+
+
+            // 시간표들 엑셀에 입력
+            EnterLectureSchedule(LTTStart.registerList, worksheet);
+
+
+            workbook.Save();
+
+
+
+            // 모든 워크북 닫기
+            application.Workbooks.Close();
+
+            // application 종료
+            application.Quit();
+
+        }
+        public void EnterLectureSchedule(List<int> list, Excel.Worksheet worksheet)
+        {
+
+
+            for (int index = 1; index < list.Count; index++)
+            {
+                EnterFindTimeType(Convert.ToString(LTTStart.excelData.Data.GetValue(list[index], 9)), list[index], worksheet);
+            }
+        }
+        private void EnterFindTimeType(string timeData, int listNO, Excel.Worksheet worksheet) // 요일의 타입 3가지
+        {
+
+
+
+            day = Regex.Replace(timeData, @"[^가-힣]", ""); // 요일만 가져오기
+            time = Regex.Replace(timeData, @"[^0-9]", ""); // 숫자만 가져옴
+
+            if (day.Length == 1)
+            {
+                EnterLectureScheduleUnit(day[0], time, listNO, worksheet);  // 월09001030
+            }
+
+            else if (time.Length == 4) //월 09001030 화 11001130
+            {
+                EnterLectureScheduleUnit(day[0], time.Substring(0, 8), listNO, worksheet);  // 월09001030
+                EnterLectureScheduleUnit(day[1], time.Substring(8, 8), listNO, worksheet);  // 화011001130
+            }
+            else
+            {
+                EnterLectureScheduleUnit(day[0], time, listNO, worksheet);  // 월09001030
+                EnterLectureScheduleUnit(day[1], time, listNO,worksheet);  // 화011001130
+            }
+
+
+        }
+        private void EnterLectureScheduleUnit(char day, string time, int listNO, Excel.Worksheet worksheet)
+        {
+
+
+            for (int index = 0; index < FindTimeRepeatCount(time); index++) // 시간표요소 출력
+            {
+                className = Convert.ToString(LTTStart.excelData.Data.GetValue(listNO, 5));
+                classPlace = Convert.ToString(LTTStart.excelData.Data.GetValue(listNO, 10));
+
+                worksheet.Cells[ FindTimeYposition(time, LTTStart.registerList.Count + 3 + index * 2),     FindExcelTimeXposition(day)    ] = className;
+
+                worksheet.Cells[  FindTimeYposition(time, LTTStart.registerList.Count + 3 + index * 2) + 1,   FindExcelTimeXposition(day)] = classPlace;
+
+
+            }
+
+        }
+        private int FindExcelTimeXposition(char day) // 날짜로 x좌표 확인
+        {
+            switch (day)
+            {
+                case '월':
+                    return 2;
+                case '화':
+                    return 3;
+                case '수':
+                    return 4;
+                case '목':
+                    return 5;
+                case '금':
+                    return 6;
+                default:
+                    return 0;
+            }
+        }
     }
 }

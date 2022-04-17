@@ -19,8 +19,7 @@ namespace LectureTimeTable
             //등록되어있는 ID
             //ID = 19011617
             //PW = 11111111
-
-
+           
 
 
         }
