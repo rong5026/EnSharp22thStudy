@@ -166,6 +166,7 @@ namespace LectureTimeTable
                 if (LTTStart.interestList.Contains(Convert.ToInt16(classNO)+1))//관심과목List에 같은 No가 있을때
                 {
                     interestsLectureUI.PrintInterestStatus(65, 25, "실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기   ENTER : 다시입력             "); //관담 실패!
+
                     selection =Reinput();
                     if (selection == Constant.REINPUT)
                         return SelectInterestLecture(list);
@@ -201,7 +202,7 @@ namespace LectureTimeTable
             return Constant.STOP;
 
         }
-        private int Reinput()
+        public int Reinput()
         {
             while (Constant.PROGRAM_ON)
             {

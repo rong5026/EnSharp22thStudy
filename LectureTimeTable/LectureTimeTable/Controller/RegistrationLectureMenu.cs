@@ -12,6 +12,7 @@ namespace LectureTimeTable
 		RegisterationLectureUI registerationLectureUI = new RegisterationLectureUI();
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
         TimeTableUI timeTableUI = new TimeTableUI();
+        TimeTable timeTable = new TimeTable();
         SelectionMenu menu;
         Exception exception;
         ExcelUI excelUI;
@@ -89,7 +90,7 @@ namespace LectureTimeTable
                 return;
 
             }
-            if (result == false) // 관심과목에 삭제할 NO가 없을때 
+            if (result == false) // 수강과목에 삭제할 NO가 없을때 
             {
                 //수강과목 삭제 식패!
                 interestsLectureUI.PrintInterestStatus(65, 23, "실패! 수강과목 리스트 존재하지않는 NO입니다!      ESC: 나가기");
@@ -165,7 +166,7 @@ namespace LectureTimeTable
         private void StartRegisterExcelCheck(List<int> list, int yPosition) // 수강과목신청
         {
 
-           interestsLectureUI.PrintInputInterestLecture(LTTStart.registerNumber,21,65,27); // 담을과목 선택 UI
+           
            excelUI.PrintExcelLectureTime(28); // 강의시간표 시작 UI
            excelUI.PrintExcelData(list, yPosition); // y좌표
           
@@ -173,13 +174,13 @@ namespace LectureTimeTable
 
         }
 
-        public void SelectRegisterLecture(List<int> list) // 관심목록 및 조건에 맞는 목록
+        private int SelectRegisterLecture(List<int> list) // 수강목록 및 조건에 맞는 목록
         {
             string classNO;
-
+            int selection;
             while (Constant.PROGRAM_ON) // 수강과목 선택
             {
-
+                interestsLectureUI.PrintInputInterestLecture(LTTStart.registerNumber, 21, 65, 27); // 담을과목 선택 UI
                 classNO = exception.EnterLectureNO(125, 27); // 입력
 
                 if (classNO == "")
@@ -188,30 +189,48 @@ namespace LectureTimeTable
                
                 if (LTTStart.registerList.Contains(Convert.ToInt16(classNO) + 1))//수강신청List에 같은 No가 있을때
                 {
-                    interestsLectureUI.PrintInterestStatus(65, 27, "실패! 이미 수강과목 리스트에 담겼있습니다!!       ESC : 나가기               "); //수강신청실패!
-                    interestLectureMenu.BackESC();
-                    return;
+                    interestsLectureUI.PrintInterestStatus(65, 27, "실패! 이미 수강과목 리스트에 담겼있습니다!!       ESC : 나가기   ENTER : 다시입력              "); //수강신청실패!
+                    selection = interestLectureMenu.Reinput();
+                    if (selection == Constant.REINPUT)
+                        return SelectRegisterLecture(list);
+                    return Constant.STOP;
                 }
                 else if( list.Contains(Convert.ToInt16(classNO) + 1)==false) // 출력된LIST에  해당 No없을때 
                 {
-                    interestsLectureUI.PrintInterestStatus(65, 27, "실패! 리스트에 없는 NO 입니다!!       ESC : 나가기               "); //수강신청실패!
-                    interestLectureMenu.BackESC();
-                    return;
+                    interestsLectureUI.PrintInterestStatus(65, 27, "실패! 리스트에 없는 NO 입니다!!       ESC : 나가기   ENTER : 다시입력              "); //수강신청실패!
+                    
+                    selection = interestLectureMenu.Reinput();
+                    if (selection == Constant.REINPUT)
+                        return SelectRegisterLecture(list);
+                    return Constant.STOP;
                 } 
                 else if(LTTStart.registerNumber + Convert.ToInt16(LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO) + 1, 8)) > 24)
                 {
-                    interestsLectureUI.PrintInterestStatus(65, 27, "실패! 최대학점을 넘어섭니다!!       ESC : 나가기               "); //수강신청실패!
-                    interestLectureMenu.BackESC();
-                    return;
+                    interestsLectureUI.PrintInterestStatus(65, 27, "실패! 최대학점을 넘어섭니다!!       ESC : 나가기   ENTER : 다시입력              "); //수강신청실패!
+                    selection = interestLectureMenu.Reinput();
+                    if (selection == Constant.REINPUT)
+                        return SelectRegisterLecture(list);
+                    return Constant.STOP;
                 }
-                LTTStart.registerList.Add(Convert.ToInt16(classNO) + 1); // 수강과목에 없으면 추가
+                else if (timeTable.CheckTime(Convert.ToString(LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO) + 1, 9)), LTTStart.registerList) == 1)
+                {
+                    interestsLectureUI.PrintInterestStatus(65, 27, "실패!  등록하신 시간표와 시간이 겹칩니다!  ESC : 나가기   ENTER : 다시입력         "); //수강신청실패!
+                    selection = interestLectureMenu.Reinput();
+                    if (selection == Constant.REINPUT)
+                        return SelectRegisterLecture(list);
+                    return Constant.STOP;
+                }
+                    LTTStart.registerList.Add(Convert.ToInt16(classNO) + 1); // 수강과목에 없으면 추가
                 LTTStart.registerNumber += Convert.ToInt16(LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO) + 1, 8)); // 수강과목 담은 학점
-                interestsLectureUI.PrintInterestStatus(65, 27, "성공! 수강과목 리스트에 담겼습니다!!      ESC : 나가기                     ");
+                interestsLectureUI.PrintInterestStatus(65, 27, "성공! 수강과목 리스트에 담겼습니다!!      ESC : 나가기   ENTER : 다시입력                   ");
                 // 수강신청 성공!
-                interestLectureMenu.BackESC();
-                return;
+                selection = interestLectureMenu.Reinput();
+                if (selection == Constant.REINPUT)
+                    return SelectRegisterLecture(list);
+                return Constant.STOP;
 
             }
+            return Constant.STOP;
         }
     }
 }

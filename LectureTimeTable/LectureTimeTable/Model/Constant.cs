@@ -53,6 +53,9 @@ namespace LectureTimeTable
         public const int REINPUT = 1;
         public const int BACK = 0;
 
+        public const int OVERLAP = 1; // 시간표 겹칠때
+        public const int NONOVERLAP = 0; // 시간표 안겹칠때
+
 
 
 
