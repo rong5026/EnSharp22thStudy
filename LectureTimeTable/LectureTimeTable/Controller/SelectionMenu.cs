@@ -16,8 +16,8 @@ namespace LectureTimeTable
         RegisterationLectureUI registerationLecture = new RegisterationLectureUI();
      
         ConsoleKeyInfo keyInput;
-        int menuNumber;
-        int input;
+        private int menuNumber;
+        private int input;
 
      
 

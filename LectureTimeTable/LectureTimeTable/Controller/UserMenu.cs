@@ -16,7 +16,7 @@ namespace LectureTimeTable
         RegistrationLectureMenu registrationLectureMenu;
         Exception exception;
         ExcelUI excelUI;
-        int menuNumber;
+        private int menuNumber;
 
         public UserMenu()
         {

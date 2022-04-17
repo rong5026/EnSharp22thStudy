@@ -12,8 +12,8 @@ namespace LectureTimeTable
         Exception exceuption =new Exception();
         ConsoleKeyInfo keyInput;
 
-        string id;
-        string password;
+        private string id;
+        private string password;
         
         public Login(LoginUI loginUI)
         {

@@ -14,13 +14,13 @@ namespace LectureTimeTable
         SelectionMenu menu;
         Exception exception;
         ExcelUI excelUI;
-        int menuNumber;
-        int input;
-        string cellValue;
-        string classname;
-        string professor;
-        string classNumber;
-        string divisionNumber;
+        private int menuNumber;
+        private int input;
+        private string cellValue;
+        private string classname;
+        private string professor;
+        private string classNumber;
+        private string divisionNumber;
         ConsoleKeyInfo keyInput;
         private int searchingCount ; // 몇번 조건을 찾았는지
 
@@ -219,6 +219,7 @@ namespace LectureTimeTable
         public int StartStudyClassNumber(List<int> list, int searchingCount) // 학수번호,분반
         {
 
+            
             lectureTimeUI.PrintStudyNumber(); // 학수번호 입력창
             classNumber = exception.EnterStudyNumber(80, 12);
             Console.CursorVisible = false;//커서 숨김
@@ -228,9 +229,9 @@ namespace LectureTimeTable
             divisionNumber = exception.EnterDivisionNumber(76, 13);
 
             Console.CursorVisible = false;//커서 숨김
-            if (classNumber != "" && classNumber != "")
+            if (classNumber != "" && divisionNumber != "")
             {
-                FindExcelindex(list, classNumber, 3, searchingCount);
+                searchingCount = FindExcelindex(list, classNumber, 3, searchingCount);
                 return FindExcelindex(list, divisionNumber, 4, searchingCount);
             }
             else
@@ -239,7 +240,7 @@ namespace LectureTimeTable
         }
         private void StartLectureCheck(List<int> list, int yPosition) // 조회하기
         {
-            excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
+            excelUI.PrintExcelLectureTime(27); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list,yPosition); // y좌표
             excelUI.PrintExcelBack(); // 뒤로가기 UI
 

@@ -18,24 +18,25 @@ namespace LectureTimeTable
         LectureTimeMenu lectureTimeMenu;
 
         ConsoleKeyInfo keyInput;
-        int menuNumber;
-        int input;
+        private int menuNumber;
+        private int input;
         List<int> indexNO;
-        int searchingCount; // 몇번 조건을 찾았는지
-        string classNumber;
+        private int searchingCount; // 몇번 조건을 찾았는지
       
-        bool result;
 
-       
+
+
+
         public InterestLectureMenu(SelectionMenu menu, Exception exception, ExcelUI excelUI)
         {
+           
+
             indexNO = new List<int>();
             this.menu = menu;
             this.exception = exception;
             this.excelUI = excelUI;
             lectureTimeMenu = new LectureTimeMenu(menu, exception, excelUI);
-            classNumber = "";
-         
+            
         }
         public void StartInterestLectureMenu()
         {
@@ -135,13 +136,13 @@ namespace LectureTimeTable
         {
 
             interestsLectureUI.PrintInputInterestLecture(LTTStart.interestNumber,24,65,25); // 관심과목 담을과목 선택 UI
-            excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
+            excelUI.PrintExcelLectureTime(28); // 강의시간표 시작 UI
             excelUI.PrintExcelData(list, yPosition); // y좌표
             list.Clear();
             SelectInterestLecture(); //관심과목번호 입력 후 리스트에 추가
 
         }
-        public void SelectInterestLecture() // 관심과목번호 입력 후 리스트에 추가
+        private void SelectInterestLecture() // 관심과목번호 입력 후 리스트에 추가
         {
             string classNO;
 
@@ -180,9 +181,11 @@ namespace LectureTimeTable
             }
         }
 
-        public void DeleteInterestLecture() // 관심과목 삭제
+        private void DeleteInterestLecture() // 관심과목 삭제
         {
-           
+            bool result;
+            string classNumber;
+
             interestsLectureUI.PrintSelectedList(LTTStart.interestList); // 관심과목 목록 출력
             interestsLectureUI.PrintInputDeleteLecture(LTTStart.interestNumber); //관심과목 삭제 입력창
 

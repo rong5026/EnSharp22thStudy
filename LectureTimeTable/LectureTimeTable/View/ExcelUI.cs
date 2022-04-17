@@ -12,11 +12,11 @@ namespace LectureTimeTable
         StringSortUI sort = new StringSortUI();
         
 
-        public void PrintExcelLectureTime()
+        public void PrintExcelLectureTime(int yPosition)
         {
             
 
-            Console.SetCursorPosition(0, 28);
+            Console.SetCursorPosition(0, yPosition);
             sort.PrintCenter("======================================================================== 2022학년도 1학기 강의 시간표 ======================================================================== ", 172);
             
             

@@ -11,8 +11,7 @@ namespace LectureTimeTable
 		StringSortUI sort = new StringSortUI();
 		InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
 		LectureTimeUI lectureTimeUI = new LectureTimeUI();
-		ExcelUI excelUI = new ExcelUI();
-
+		
 		public void PrintRegisterationLectureMenu(int selectNum)// 수강신청 리스트 출력
 		{
 

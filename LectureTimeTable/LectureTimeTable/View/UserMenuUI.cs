@@ -9,7 +9,7 @@ namespace LectureTimeTable
     internal class UserMenuUI
     {
         StringSortUI sort = new StringSortUI();
-		string selectFirst;
+		private string selectFirst;
 
 		public void PrintUserMenu(int selectNum)
         {

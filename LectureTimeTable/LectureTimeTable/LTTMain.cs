@@ -14,7 +14,7 @@ namespace LectureTimeTable
         {
 
             LTTStart start = new LTTStart();
-            start.LTT();
+            start.StartLectureTimeTable();
 
             //등록되어있는 ID
             //ID = 19011617

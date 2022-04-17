@@ -18,12 +18,12 @@ namespace LectureTimeTable
         LectureTimeMenu lectureTimeMenu;
         InterestLectureMenu interestLectureMenu;
   
-        int menuNumber;
-        int input;
-        int searchingCount;
-        string classNumber;
+        private int menuNumber;
+        private int input;
+        private int searchingCount;
+        private string classNumber;
         List<int> indexNO;
-        bool result;
+        private bool result;
 
        
         public RegistrationLectureMenu(SelectionMenu menu ,Exception exception, ExcelUI excelUI)
@@ -116,7 +116,7 @@ namespace LectureTimeTable
             list.Clear();
             list.Add(1); // 처음 1번에 있는 테마 정보저장
 
-            input = 0;
+            input = 0; 
             searchingCount = 0;
             while (Constant.PROGRAM_ON)
             {
@@ -166,7 +166,7 @@ namespace LectureTimeTable
         {
 
            interestsLectureUI.PrintInputInterestLecture(LTTStart.registerNumber,21,65,27); // 담을과목 선택 UI
-           excelUI.PrintExcelLectureTime(); // 강의시간표 시작 UI
+           excelUI.PrintExcelLectureTime(28); // 강의시간표 시작 UI
            excelUI.PrintExcelData(list, yPosition); // y좌표
           
            SelectRegisterLecture(list); //수강과목번호 입력 후 리스트에 추가

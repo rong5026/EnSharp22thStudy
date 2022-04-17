@@ -10,7 +10,7 @@ namespace LectureTimeTable
     {
 
         StringSortUI sort = new StringSortUI();
-		string selectFirst;
+		private string selectFirst;
 
 
 		public void PrintLectureTime(int selectNum)

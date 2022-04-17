@@ -10,16 +10,16 @@ namespace LectureTimeTable
     internal class TimeTable
     {
    
-        string day;
-        string time;
-        int startHour;
-        int startMinute;
-        int endtHour;
-        int endMinute;
- 
+        private string day;
+        private string time;
+        private int startHour;
+        private int startMinute;
+        private int endtHour;
+        private int endMinute; // 접근제한자 사용하기
 
-        string className;
-        string classPlace;
+
+        private string className;
+        private string classPlace;
 
         public void ShowLectureSchedule(List<int> list)
         {
@@ -30,7 +30,7 @@ namespace LectureTimeTable
                 FindTimeType( Convert.ToString(LTTStart.excelData.Data.GetValue(list[index], 9)), list[index]);
             }
         }
-        public void FindTimeType(string timeData, int listNO)
+        private void FindTimeType(string timeData, int listNO)
         {
 
            
@@ -56,7 +56,7 @@ namespace LectureTimeTable
                
 
         }
-        public void ShowLectureScheduleUnit(char day, string time, int listNO) // 문자 잘라서 요일 1개, 시간 숫자 8자리 09001030
+        private void ShowLectureScheduleUnit(char day, string time, int listNO) // 문자 잘라서 요일 1개, 시간 숫자 8자리 09001030
         {
             
 
@@ -71,7 +71,7 @@ namespace LectureTimeTable
             }
 
         }
-        public int FindTimeYposition(string time,int initYposition) // 초기 y좌표는 7
+        private int FindTimeYposition(string time,int initYposition) // 초기 y좌표는 7
         {
             startHour = Convert.ToInt16(time.Substring(0, 2));
             startMinute = Convert.ToInt16(time.Substring(2, 2));
@@ -84,7 +84,7 @@ namespace LectureTimeTable
 
 
         }
-        public int FindTimeXposition(char day) // 날짜로 x좌표 확인
+        private int FindTimeXposition(char day) // 날짜로 x좌표 확인
         {
             switch (day)
             {
@@ -103,7 +103,7 @@ namespace LectureTimeTable
             }
         }
 
-        public int FindTimeRepeatCount(string time) // 몇번 반복해서 프린트해야하는지
+        private int FindTimeRepeatCount(string time) // 몇번 반복해서 프린트해야하는지
         {
            
 

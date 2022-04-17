@@ -14,9 +14,9 @@ namespace LectureTimeTable
         TimeTable timeTable = new TimeTable();
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();
         RegisterationLectureUI registerationLectureUI = new RegisterationLectureUI();
-        int hourOne;
-        int minuteOne;
-        int sum;
+        private int hourOne;
+        private int minuteOne;
+        private int sum;
      
         public void PrintLectureSchedule(List<int> list,string type) // 시간표 출력
 
