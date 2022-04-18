@@ -134,7 +134,10 @@ namespace LectureTimeTable
             day = Regex.Replace(timeData, @"[^가-힣]", ""); // 요일만 가져오기
             time = Regex.Replace(timeData, @"[^0-9]", ""); // 숫자만 가져옴
 
-         
+
+            if (timeData == Constants.INPUT_EMPTY)
+                return Constants.NONTIMEOVERLAP;
+
 
             for (int intdex = 1; intdex < list.Count; intdex++) // 수강리스트 전부돌면서 
             {
@@ -143,7 +146,8 @@ namespace LectureTimeTable
                 secondDay = Regex.Replace(className, @"[^가-힣]", ""); // 요일만 가져오기
                 secondTime = Regex.Replace(className, @"[^0-9]", ""); // 숫자만 가져옴
 
-             
+                if(className == Constants.INPUT_EMPTY)
+                    continue;
 
                 if (day.Length == 1)
                 {
@@ -180,7 +184,7 @@ namespace LectureTimeTable
 
             }
            
-            return 0;
+            return Constants.NONTIMEOVERLAP; // 안겹침
 
         }
         public int FindTime(char day,string time, string secondDay, string secondTime)
