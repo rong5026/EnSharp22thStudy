@@ -9,19 +9,21 @@ namespace LibraryMySQL
     internal class Register
 
     {
-
- 
+        ConsoleKeyInfo keyInput;
+        UserModeUI userModeUI = new UserModeUI();
+        UserVO user = new UserVO();
+        ValidInput validInput = new ValidInput();
         string[] userData = new string[7];
 
         public bool RegistUser()
         {
 
             Console.Clear();
-            VariableData.UserUI.PrintRegister();
+            userModeUI.PrintRegister();
             Console.SetCursorPosition(38, 7);
 
-            VariableData.keyInput = Console.ReadKey(true);
-            if (VariableData.keyInput.Key == ConsoleKey.Escape)
+             keyInput = Console.ReadKey(true);
+            if ( keyInput.Key == ConsoleKey.Escape)
                 return false; // ESC 누르면 뒤로가기 
             else
             {
@@ -38,18 +40,18 @@ namespace LibraryMySQL
                 // ex) 서울특별시+ 강남구 +" "+ " "+ 남부순환로 + 지하2744
                 // ex) 서울특별시 +" "+ 구로구+ " " +경인로248-29
 
-                VariableData.user.Id = userData[0];
-                VariableData.user.Password = userData[1];
-                VariableData.user.Name = userData[3];
-                VariableData.user.Age = userData[4];
-                VariableData.user.PhoneNumber = userData[5];
-                VariableData.user.Address = userData[6];
+                 user.Id = userData[0];
+                 user.Password = userData[1];
+                 user.Name = userData[3];
+                 user.Age = userData[4];
+                 user.PhoneNumber = userData[5];
+                 user.Address = userData[6];
 
-                LibraryStart.userList.Add(VariableData.user); // UserList에 유저정보 추가
+                LibraryStart.userList.Add( user); // UserList에 유저정보 추가
                 Console.Clear();
-                VariableData.UserUI.PrintSuccessRegister(); // 회원가입성공 UI
+                userModeUI.PrintSuccessRegister(); // 회원가입성공 UI
 
-                Thread.Sleep(1000);
+             
 
                 return true;
 
@@ -62,25 +64,25 @@ namespace LibraryMySQL
             switch (type)
             {
                 case "id":
-                    InputVO.id = VariableData.validInput.EnterId(38, 7);
+                    InputVO.id =  validInput.EnterId(38, 7);
                     return InputVO.id;
                 case "password":
-                    InputVO.repassword = VariableData.validInput.EnterIdOrPassword(38, 8);
+                    InputVO.repassword =  validInput.EnterIdOrPassword(38, 8);
                     return InputVO.repassword;
                 case "repassword":
-                    InputVO.repassword = VariableData.validInput.EnterRepassword(password, 38, 9);
+                    InputVO.repassword =  validInput.EnterRepassword(password, 38, 9);
                     return password;
                 case "name":
-                    InputVO.name = VariableData.validInput.EnterUserName(41, 10);
+                    InputVO.name =  validInput.EnterUserName(41, 10);
                     return InputVO.name;
                 case "age":
-                    InputVO.age = VariableData.validInput.EnterUserAge(39, 11);
+                    InputVO.age =  validInput.EnterUserAge(39, 11);
                     return InputVO.age;
                 case "phonenumber":
-                    InputVO.phoneNumber = VariableData.validInput.EnterUserPhoneNumber(41, 12);
+                    InputVO.phoneNumber =  validInput.EnterUserPhoneNumber(41, 12);
                     return InputVO.phoneNumber;
                 case "address":
-                    InputVO.address = VariableData.validInput.EnterUserAddress(39, 13);
+                    InputVO.address =  validInput.EnterUserAddress(39, 13);
                     return InputVO.address;
                 default:
                     return "EIXT";

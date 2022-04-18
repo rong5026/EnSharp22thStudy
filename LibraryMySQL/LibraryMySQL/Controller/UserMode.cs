@@ -9,7 +9,12 @@ namespace LibraryMySQL
     internal class UserMode
     {
 
-      
+        LibraryUI UI = new LibraryUI();
+        SelectionMode mode = new SelectionMode();
+        UserMenu userMenu = new UserMenu();
+        Login login = new Login();
+        Register register = new Register();
+        UserModeUI userModeUI = new UserModeUI();
         int isLoggedIn;
         int menuNumber = 1;
 
@@ -17,36 +22,36 @@ namespace LibraryMySQL
         public void StartUserMode()
         {
 
-            VariableData.UI.PrintMainUI();
+             UI.PrintMainUI();
             Console.SetWindowSize(125, 60);  //메인화면
 
 
 
-            while (Const.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
-                menuNumber = VariableData.mode.SelectMode(Const.LOGIN_REGISTER); // 로그인 . 회원가입 선택
+                menuNumber =  mode.SelectMode(Constants.LOGIN_REGISTER); // 로그인 . 회원가입 선택
 
                 switch (menuNumber)
                 {
-                    case Const.LOGIN_MODE: // 로그인
-                        isLoggedIn = VariableData.login.UserLogin(); // 로그인했으면 true, 안했으면 false
+                    case Constants.LOGIN_MODE: // 로그인
+                        isLoggedIn =  login.UserLogin(); // 로그인했으면 true, 안했으면 false
                                                                
-                        if (isLoggedIn== Const.LOGIN_SUCCESS)
+                        if (isLoggedIn== Constants.LOGIN_SUCCESS)
                         {
-                            VariableData.userMenu.StartUserMenu(); // 로그인 성공 UI
+                             userMenu.StartUserMenu(); // 로그인 성공 UI
                         }
-                        else if(isLoggedIn== Const.LOGIN_FAIL)
+                        else if(isLoggedIn== Constants.LOGIN_FAIL)
                         {
                             Console.Clear();
-                            VariableData.UserUI.PrintLoginFail(); // 로그인 실패 UI
-                            Thread.Sleep(1000);                                                                              
+                            userModeUI.PrintLoginFail(); // 로그인 실패 UI
+                                                                                                    
                             return;
                         }
                         return;                 
-                    case Const.REGISTER_MODE: // 회원가입
-                        VariableData.register.RegistUser();
+                    case Constants.REGISTER_MODE: // 회원가입
+                         register.RegistUser();
                         break;
-                    case Const.STOP:
+                    case Constants.STOP:
                         return; // 뒤로가기
 
 

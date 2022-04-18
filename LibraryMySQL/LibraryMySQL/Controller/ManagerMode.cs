@@ -3,48 +3,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Text.RegularExpressions;
 namespace LibraryMySQL
 {
     internal class ManagerMode
     {
 
-   
-
+        LibraryUI UI = new LibraryUI();
+        ConsoleKeyInfo keyInput;
+        SelectionMode mode = new SelectionMode();
+        BookSearching book = new BookSearching();
+        ManagerModeUI ManagerUI = new ManagerModeUI();
+        BookVO bookVO = new BookVO();
+        ValidInput validInput = new ValidInput();
         int menuNumber;
         public void StartManagerMode()
         {
-            VariableData.UI.PrintMainUI();
+             UI.PrintMainUI();
             Console.SetWindowSize(125, 60);
 
 
 
-            VariableData.UI.PrintManagerMenuUI(1);
-            while (Const.PROGRAM_ON)
+             UI.PrintManagerMenuUI(1);
+            while (Constants.PROGRAM_ON)
             {
-                menuNumber = VariableData.mode.SelectUserOrManagerMenu("Manager",6);// 위아래 화살표 입력
+                menuNumber =  mode.SelectUserOrManagerMenu("Manager",6);// 위아래 화살표 입력
                 
                 switch (menuNumber)
                 {
-                    case Const.BOOK_REGISTRATION: // 도서 검색
-                        VariableData.book.SearchBook();                  
+                    case Constants.BOOK_REGISTRATION: // 도서 검색
+                         book.SearchBook();                  
                         break;
-                    case Const.BOOK_UPDATE: // 도서 수량 수정
+                    case Constants.BOOK_UPDATE: // 도서 수량 수정
                         EditBookCount();
                         break;
-                    case Const.BOOK_DELETE: //도서 삭제
+                    case Constants.BOOK_DELETE: //도서 삭제
                         DeleteBook();
                         break;
-                    case Const.BOOK_SEARCH: // 도서 등록
+                    case Constants.BOOK_SEARCH: // 도서 등록
                         RegisterBook();
                         break;
-                    case Const.BOOK_LIST: // 도서 출력                     
+                    case Constants.BOOK_LIST: // 도서 출력                     
                         ShowBookList();
                         break;  
-                    case Const.USER_LIST: // 유저리스트
+                    case Constants.USER_LIST: // 유저리스트
                         ShowUserList();
                         break;
-                    case Const.EXIT:
+                    case Constants.EXIT:
                         return;
                     default:
                         return;
@@ -61,42 +66,42 @@ namespace LibraryMySQL
            
 
             Console.Clear();
-            VariableData.UI.PrintBookList();
-            VariableData.UI.PrintBookList(null, null, null);
+             UI.PrintBookList();
+             UI.PrintBookList(null, null, null);
 
-            VariableData.keyInput = Console.ReadKey(true);
+             keyInput = Console.ReadKey(true);
             return;  // 아무키 입력시 뒤로가기
         }
 
         public void RegisterBook() //책등록
         {
             Console.Clear();
-            VariableData.ManagerUI.PrintRegisterBook();
+             ManagerUI.PrintRegisterBook();
 
 
-            VariableData.keyInput = Console.ReadKey(true);
-            if (VariableData.keyInput.Key == ConsoleKey.Escape)
+             keyInput = Console.ReadKey(true);
+            if ( keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
             {
 
-                InputVO.name = VariableData.validInput.EnterBookName(37,8);  //책 이름
-                InputVO.author = VariableData.validInput.EnterAuthor(29,9); // 책 저자
-                InputVO.publisher = VariableData.validInput.EnterBookPublisher(34,10); // 책 출판사
-                InputVO.bookCount = Convert.ToInt16(VariableData.validInput.EnterBookCount(17,11)); // 책 수량
-                InputVO.price = Convert.ToInt16(VariableData.validInput.EnterBookPrice(20,12)); // 가격
-                InputVO.date = VariableData.validInput.EnterBookDate(23, 13); // 출시날짜
+                InputVO.name =  validInput.EnterBookName(37,8);  //책 이름
+                InputVO.author =  validInput.EnterAuthor(29,9); // 책 저자
+                InputVO.publisher =  validInput.EnterBookPublisher(34,10); // 책 출판사
+                InputVO.bookCount = Convert.ToInt16( validInput.EnterBookCount(17,11)); // 책 수량
+                InputVO.price = Convert.ToInt16( validInput.EnterBookPrice(20,12)); // 가격
+                InputVO.date =  validInput.EnterBookDate(23, 13); // 출시날짜
 
 
                 // 책 등록
 
-                VariableData.bookVO = new BookVO(BookVO.totalBook, InputVO.name, InputVO.author, InputVO.publisher, InputVO.bookCount, InputVO.price, InputVO.date);             
-                LibraryStart.bookList.Add(VariableData.bookVO); // 책 리스트에 책 추가
+                 bookVO = new BookVO(BookVO.totalBook, InputVO.name, InputVO.author, InputVO.publisher, InputVO.bookCount, InputVO.price, InputVO.date);             
+                LibraryStart.bookList.Add( bookVO); // 책 리스트에 책 추가
 
                 // 등록완료 UI
                 Console.Clear();
-                VariableData.ManagerUI.PrintRegisterBookSuccess();
-                Thread.Sleep(1000);         
+                 ManagerUI.PrintRegisterBookSuccess();
+                     
               
                 return; // 아무키누르면 뒤로나감
 
@@ -108,15 +113,15 @@ namespace LibraryMySQL
             Console.Clear();
             Console.SetWindowSize(125, 60);
 
-            VariableData.ManagerUI.PrintEditBookCount(); // 책수량 선택 UI
+             ManagerUI.PrintEditBookCount(); // 책수량 선택 UI
 
-            VariableData.keyInput = Console.ReadKey(true);
-            if (VariableData.keyInput.Key == ConsoleKey.Escape)
+             keyInput = Console.ReadKey(true);
+            if ( keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
             {
-                InputVO.bookId = Convert.ToInt16(VariableData.validInput.EnterBookId(17, 8)); // 책 id
-                InputVO.bookCount = Convert.ToInt16(VariableData.validInput.EnterBookCount(19, 9)); // 책 수량
+                InputVO.bookId = Convert.ToInt16( validInput.EnterBookId(17, 8)); // 책 id
+                InputVO.bookCount = Convert.ToInt16( validInput.EnterBookCount(19, 9)); // 책 수량
 
               
                 for (int index = 0; index < LibraryStart.bookList.Count; index++) // 책 id가 같은것을 찾아서 책의 수를 변경
@@ -125,19 +130,18 @@ namespace LibraryMySQL
                     {
                         LibraryStart.bookList[index].BookCount = InputVO.bookCount;
                         Console.Clear();
-                        VariableData.ManagerUI.PrintEditBookCountSuccess();// 책 수량 변경 완료 UI
-                        Thread.Sleep(1000);                                      // 
+                         ManagerUI.PrintEditBookCountSuccess();// 책 수량 변경 완                                // 
                         return;
                     }
                 }
                 Console.Clear();
                 if (InputVO.bookId > LibraryStart.bookList.Count - 1)
-                    VariableData.ManagerUI.PrintEditBookCountIDFail();
+                     ManagerUI.PrintEditBookCountIDFail();
                 
                 else
-                    VariableData.ManagerUI.PrintEditBookCountFail();
+                     ManagerUI.PrintEditBookCountFail();
 
-                Thread.Sleep(1000);
+                
                 return;
 
 
@@ -152,15 +156,15 @@ namespace LibraryMySQL
             Console.Clear();
             Console.SetWindowSize(125, 60);
 
-            VariableData.ManagerUI.PrintDeleteBook(); // 책 삭제 UI
+             ManagerUI.PrintDeleteBook(); // 책 삭제 UI
 
-            if (VariableData.keyInput.Key == ConsoleKey.Escape)
+            if ( keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             else
             {
 
-                InputVO.bookId = Convert.ToInt16(VariableData.validInput.EnterBookId(17, 8)); // 책 id
-                InputVO.bookCount = Convert.ToInt16(VariableData.validInput.EnterBookCount(18, 9)); // 책 수량
+                InputVO.bookId = Convert.ToInt16( validInput.EnterBookId(17, 8)); // 책 id
+                InputVO.bookCount = Convert.ToInt16( validInput.EnterBookCount(18, 9)); // 책 수량
 
                 for (int index = 0; index < LibraryStart.bookList.Count; index++) // 
                 {
@@ -176,15 +180,15 @@ namespace LibraryMySQL
                             }
 
                             Console.Clear();
-                            VariableData.ManagerUI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
-                            Thread.Sleep(1000);
+                             ManagerUI.PrintDeleteBookSuccess(); // 책 삭제 완료 UI
+                           
                             return;
                         }
                         else
                         {
                             Console.Clear();
-                            VariableData.ManagerUI.PrintEditBookCountFail(); // 삭제하려는 책의 수량이 더 커서 삭제실패
-                            Thread.Sleep(1000);
+                             ManagerUI.PrintEditBookCountFail(); // 삭제하려는 책의 수량이 더 커서 삭제실패
+                           
                             return;
                             
                         }
@@ -192,8 +196,8 @@ namespace LibraryMySQL
                     
                 }
                 Console.Clear();
-                VariableData.ManagerUI.PrintEditBookCountIDFail(); // 책의 id가 존재하지않아 삭제실패
-                Thread.Sleep(1000);
+                 ManagerUI.PrintEditBookCountIDFail(); // 책의 id가 존재하지않아 삭제실패
+              
                 return;
 
             }
@@ -203,8 +207,8 @@ namespace LibraryMySQL
         public void ShowUserList()
         {
             Console.Clear();
-            VariableData.ManagerUI.PrintUserList();
-            VariableData.keyInput = Console.ReadKey(true);
+             ManagerUI.PrintUserList();
+             keyInput = Console.ReadKey(true);
             return;
         
 

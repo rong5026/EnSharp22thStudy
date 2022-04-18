@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace LibraryMySQL
 {
     internal class UserModeUI
-    {
+	{
 	
+		
 		int bookIndex;
 		string bookTime;
-		
-		
+		LoginedUser loginedUser = new LoginedUser();
+
 		public void PrintLogin()
 		{
 			Console.WriteLine("┌------------------------------------------------┐");
@@ -219,10 +220,10 @@ namespace LibraryMySQL
 			Console.WriteLine("└------------------------------------------------┘\n");
 			Console.WriteLine("\n");
 
-			for (int index = 0; index < LibraryStart.userList[VariableData.loginUser.SearchLoginUser()].ReturnBookTime.Count; index++)
+			for (int index = 0; index < LibraryStart.userList[loginedUser.SearchLoginUser()].ReturnBookTime.Count; index++)
 			{
-				bookIndex = LibraryStart.userList[VariableData.loginUser.SearchLoginUser()].ReturnBookId[index];
-				bookTime = LibraryStart.userList[VariableData.loginUser.SearchLoginUser()].ReturnBookTime[index];
+				bookIndex = LibraryStart.userList[loginedUser.SearchLoginUser()].ReturnBookId[index];
+				bookTime = LibraryStart.userList[loginedUser.SearchLoginUser()].ReturnBookTime[index];
 				Console.WriteLine("===========================================================================================================================\n");
 				Console.WriteLine("반납시간 : {0} ", bookTime);
 				Console.WriteLine("책아이디 : {0} ", LibraryStart.bookList[bookIndex].Id);

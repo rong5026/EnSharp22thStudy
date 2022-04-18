@@ -65,7 +65,7 @@ namespace LibraryMySQL
 					Console.ForegroundColor = ConsoleColor.Green;
 				else
 					Console.ForegroundColor = ConsoleColor.Red;
-			if (type == Const.FIRST_TYPE)
+			if (type == Constants.FIRST_TYPE)
 				Console.Write("{0}    유저모드", selectFirst);
 			else
 				Console.Write("{0}    로그인  ", selectFirst);
@@ -80,7 +80,7 @@ namespace LibraryMySQL
 				else
 					Console.ForegroundColor = ConsoleColor.Red;
 
-			if (type == Const.FIRST_TYPE)
+			if (type == Constants.FIRST_TYPE)
 				Console.Write("{0}    관리자모드", selectSecond);
 			else
 				Console.Write("{0}    회원가입  ", selectSecond);

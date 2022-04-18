@@ -8,7 +8,7 @@ namespace LibraryMySQL
 {
     internal class ManagerModeUI
     {
-	
+		LibraryUI UI = new LibraryUI();
 		public void PrintRegisterBook()
 		{
 			Console.WriteLine("┌---------------------------------------------------------------------┐");
@@ -67,7 +67,7 @@ namespace LibraryMySQL
 			Console.WriteLine(" 수정 할 책 ID 형식 :  1~999 수 입력"); // 17 8
 			Console.WriteLine(" 수정 할 책 수량 형식: 1~999 수 입력 "); // 19 9
 
-			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
+			 UI.PrintBookList(null, null, null); // 책리스트 출력
 
 			Console.SetCursorPosition(17, 8);
 		}
@@ -79,7 +79,7 @@ namespace LibraryMySQL
 			Console.WriteLine("│                                                                     │");
 			Console.WriteLine("│                      (1초 후 화면이 넘어갑니다)                     │");
 			Console.WriteLine("└---------------------------------------------------------------------┘\n");
-			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
+			 UI.PrintBookList(null, null, null); // 책리스트 출력
 			Console.SetCursorPosition(0, 0);
 		}
 		public void PrintEditBookCountSuccess()
@@ -90,7 +90,7 @@ namespace LibraryMySQL
 			Console.WriteLine("│                                                                     │");
 			Console.WriteLine("│                      (1초 후 화면이 넘어갑니다)                     │");
 			Console.WriteLine("└---------------------------------------------------------------------┘\n");
-			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
+			 UI.PrintBookList(null, null, null); // 책리스트 출력
 			Console.SetCursorPosition(0, 0);
 
 		}
@@ -102,7 +102,7 @@ namespace LibraryMySQL
 			Console.WriteLine("│                                                                     │");
 			Console.WriteLine("│                      (1초 후 화면이 넘어갑니다)                     │");
 			Console.WriteLine("└---------------------------------------------------------------------┘\n");
-			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
+			 UI.PrintBookList(null, null, null); // 책리스트 출력
 			Console.SetCursorPosition(0, 0);
 
 		}
@@ -119,7 +119,7 @@ namespace LibraryMySQL
 			Console.WriteLine(" 삭제 할 책 수량 : ");//18 9
 			Console.WriteLine(" 삭제 할 책 ID 형식 :  0~999 수 입력"); // 17 8
 			Console.WriteLine(" 삭제 할 책 수량 형식: 1~999 수 입력 "); // 19 9
-			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
+			 UI.PrintBookList(null, null, null); // 책리스트 출력
 
 			Console.SetCursorPosition(0, 0);
 		}
@@ -132,7 +132,7 @@ namespace LibraryMySQL
 			Console.WriteLine("│                       (1초 후 화면이 넘어갑니다)                    │");
 			Console.WriteLine("└---------------------------------------------------------------------┘\n");
 
-			VariableData.UI.PrintBookList(null, null, null); // 책리스트 출력
+			 UI.PrintBookList(null, null, null); // 책리스트 출력
 
 			Console.SetCursorPosition(0, 0);
 		}

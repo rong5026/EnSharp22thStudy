@@ -9,8 +9,8 @@ namespace LibraryMySQL
 {
     internal class ValidInput
     {
+        UserModeUI userModeUI = new UserModeUI();
 
- 
         bool check;     
         string idPassword;
       
@@ -28,8 +28,8 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(idPassword, @"^[0-9a-zA-Z]{8,15}$"); // 숫자 영어 8~15글자
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+                
                 return EnterIdOrPassword(x, y);
             }
                           
@@ -48,7 +48,7 @@ namespace LibraryMySQL
             {
                 if (LibraryStart.userList[index].Id == InputVO.id)
                 {
-                    VariableData.UserUI.PrintMessage(x, y, InputVO.error);
+                    userModeUI.PrintMessage(x, y, InputVO.error);
                     Thread.Sleep(1000);
 
 
@@ -67,8 +67,8 @@ namespace LibraryMySQL
            
             if (InputVO.repassword != password)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+               
                 return EnterRepassword(password, x, y);
             }
             else
@@ -87,8 +87,8 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글,숫자 1글자이상
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+               
                 return EnterUserName(x, y);
             }
             return InputVO.name;
@@ -106,8 +106,8 @@ namespace LibraryMySQL
                    check = Regex.IsMatch(InputVO.age, @"^1?[0-9]?[0-9]$"); // 0~ 199
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+               
                 return EnterUserAge(x, y);
 
             }
@@ -126,8 +126,8 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(InputVO.phoneNumber, @"01([0-9]{1})-([0-9]{4})-([0-9]{4})$"); // 01로 시작0~9숫자중 한개 오고 0~9 숫자 4개-0~9 숫자4개
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+                
                 return EnterUserPhoneNumber(x, y);
             }
             return InputVO.phoneNumber;
@@ -149,8 +149,8 @@ namespace LibraryMySQL
 
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+                
                 return EnterUserAddress(x, y);
             }
           
@@ -174,8 +174,8 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(InputVO.name, @"^[1-9]?[0-9]?[0-9]$"); //0~999까지의 수
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+              
                 return EnterBookId(x, y);
             }
             return InputVO.name;
@@ -194,8 +194,8 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"); // 영어,한글,숫자 1글자이상
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+               
                 return EnterBookName(x, y);
             }
             return InputVO.name; // 방금 수정
@@ -215,8 +215,8 @@ namespace LibraryMySQL
               check = Regex.IsMatch(InputVO.name, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"); // 영어,한글 1글자이상
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+               
                 return EnterAuthor(x, y);
             }
             return InputVO.name;
@@ -236,8 +236,8 @@ namespace LibraryMySQL
 
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+               
                 return EnterBookPublisher(x, y);
             }
             return InputVO.name;
@@ -255,8 +255,8 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(InputVO.id, @"^[1-9][0-9]{0,2}$"); //  1~999
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+                
                 return EnterBookCount(x, y);
             }
             return InputVO.id;
@@ -273,8 +273,8 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(InputVO.id, @"^[1-9][0-9]{0,6}$"); //   1 ~9999999개
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+              
                 return EnterBookPrice(x, y);
             }   
             return InputVO.id;
@@ -291,8 +291,8 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(InputVO.id, @"^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[1-2][0-9]|3[0-1])$"); //2010-04-23
             if (!check)
             {
-                VariableData.UserUI.PrintMessage(x, y, InputVO.error);
-                Thread.Sleep(1000);
+                userModeUI.PrintMessage(x, y, InputVO.error);
+               
                 return EnterBookDate(x, y);  
             }
             return InputVO.id;
