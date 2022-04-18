@@ -16,7 +16,7 @@ namespace LectureTimeTable
             Console.SetCursorPosition(0, 1);
             timeTableUI.PrintLectureSchedule(LTTStart.registerList, "SaveExcel");
 
-            while (Constant.PROGRAM_ON) // ESC키 누르면 뒤로가기
+            while (Constants.PROGRAM_ON) // ESC키 누르면 뒤로가기
             {
                 keyInput = Console.ReadKey(true);
 

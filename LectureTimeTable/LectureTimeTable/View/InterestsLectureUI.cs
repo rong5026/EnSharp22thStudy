@@ -18,9 +18,9 @@ namespace LectureTimeTable
 			
 			Console.SetCursorPosition(0, 0);
 			Console.WriteLine("\n\n\n\n\n\n");
-			lectureTimeUI.PrintCenter("ENTER :선택하기 ESC :뒤로가기 ", Constant.WIDTH + 46);
+			lectureTimeUI.PrintCenter("ENTER :선택하기 ESC :뒤로가기 ", Constants.WIDTH + 46);
 
-			lectureTimeUI.PrintCenter("=========================================== 관심과목 담기 메뉴 ===========================================", Constant.WIDTH - 7);
+			lectureTimeUI.PrintCenter("=========================================== 관심과목 담기 메뉴 ===========================================", Constants.WIDTH - 7);
 			Console.WriteLine("\n\n");
 
 			PrintInterestsLectureMenuList(selectNum, 1, "관심 과목 분야별 검색");
@@ -30,9 +30,9 @@ namespace LectureTimeTable
 		
 
 			Console.WriteLine("\n\n");
-			lectureTimeUI.PrintCenter("=========================================================================================================", Constant.WIDTH + 1);
+			lectureTimeUI.PrintCenter("=========================================================================================================", Constants.WIDTH + 1);
 
-			lectureTimeUI.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", Constant.WIDTH - 12);
+			lectureTimeUI.PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.", Constants.WIDTH - 12);
 		}
 
 		public void PrintInterestsLectureMenuList(int selectNum, int menuNumber, string menuName) // 관심과목 담기 선택시 색변경
@@ -57,9 +57,9 @@ namespace LectureTimeTable
 
 			Console.SetCursorPosition(0, 0);
 			Console.WriteLine("\n\n\n\n\n\n");
-			lectureTimeUI.PrintCenter("ENTER : 선택하기 ESC : 뒤로가기 ", Constant.WIDTH + 65);
+			lectureTimeUI.PrintCenter("ENTER : 선택하기 ESC : 뒤로가기 ", Constants.WIDTH + 65);
 
-			lectureTimeUI.PrintCenter("=========================================== 강의 시간표 조회 ===========================================", Constant.WIDTH - 7);
+			lectureTimeUI.PrintCenter("=========================================== 강의 시간표 조회 ===========================================", Constants.WIDTH - 7);
 			Console.WriteLine();
 			lectureTimeUI.PrintLectureTimeList(selectNum, 1, "개설 학과 전공");
 			lectureTimeUI.PrintLectureTimeList(selectNum, 2, "학수번호 / 분반");
@@ -68,9 +68,9 @@ namespace LectureTimeTable
 			lectureTimeUI.PrintLectureTimeList(selectNum, 5, "학년");
 			lectureTimeUI.PrintLectureTimeList(selectNum, 6, "조회");
 
-			lectureTimeUI.PrintCenter("=========================================================================================================", Constant.WIDTH + 1);
-			lectureTimeUI.PrintCenter(" ↑ , ↓ 키로 메뉴를 선택 후  ← 또는 → 키를 이용해 선택하세요.", Constant.WIDTH - 30);
-			lectureTimeUI.PrintCenter("조건을 다 선택 후에는 ↑ , ↓ 키로 이동하여 [ 조회 ] 버튼을 눌러주세요", Constant.WIDTH - 30);
+			lectureTimeUI.PrintCenter("=========================================================================================================", Constants.WIDTH + 1);
+			lectureTimeUI.PrintCenter(" ↑ , ↓ 키로 메뉴를 선택 후  ← 또는 → 키를 이용해 선택하세요.", Constants.WIDTH - 30);
+			lectureTimeUI.PrintCenter("조건을 다 선택 후에는 ↑ , ↓ 키로 이동하여 [ 조회 ] 버튼을 눌러주세요", Constants.WIDTH - 30);
 
 
 		}
@@ -96,23 +96,26 @@ namespace LectureTimeTable
 			Console.Write(output);	
 		}
 		
-		public void PrintSelectedList(List <int> list) // 관심과목 or 수강과목 목록 출력
+		public void PrintSelectedList(List <int> list,string type) // 관심과목 or 수강과목 목록 출력
         {
 
-			PrintSelectedListUI(0,4);
-			excelUI.PrintExcelData(list, 10) ;
+			PrintSelectedListUI(0,4, type);
+			excelUI.PrintExcelData(list, 10,"Interest") ;
 			
 
 			excelUI.PrintExcelBack(); // 뒤로가기
 		}
 
-		public void PrintSelectedListUI(int xPosition, int yPosition)
+		public void PrintSelectedListUI(int xPosition, int yPosition,string type)
         {
 			Console.Clear();
 			Console.SetCursorPosition(xPosition, yPosition);
-			lectureTimeUI.PrintCenter("ESC : 나가기", Constant.WIDTH + 150);
+			lectureTimeUI.PrintCenter("ESC : 나가기", Constants.WIDTH + 150);
 			Console.WriteLine();
-			lectureTimeUI.PrintCenter("============================================================================ 관심 과목 강의 목록 ============================================================================", Constant.WIDTH - 8);
+			if(type == "Interest")
+				lectureTimeUI.PrintCenter("============================================================================ 관심 과목 강의 목록 ============================================================================", Constants.WIDTH - 8);
+			else
+				lectureTimeUI.PrintCenter("============================================================================ 수강 과목 강의 목록 ============================================================================", Constants.WIDTH - 8);
 		}
 	}
 }

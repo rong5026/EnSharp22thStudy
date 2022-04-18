@@ -24,7 +24,7 @@ namespace LectureTimeTable
         public int SelectHorisionMenu(int menuCount, string menuType)
         {
             menuNumber = 0;
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 switch (keyInput.Key)
@@ -38,7 +38,7 @@ namespace LectureTimeTable
                     case ConsoleKey.Enter: // 메뉴선택
                         return (menuNumber % menuCount) + 1;
                     case ConsoleKey.Escape: // 뒤로가기
-                        return Constant.STOP;
+                        return Constants.STOP;
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace LectureTimeTable
         {
             
           
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 switch (keyInput.Key)
@@ -60,7 +60,7 @@ namespace LectureTimeTable
                     case ConsoleKey.Enter: // 메뉴선택
                         return (menuNumber % menuCount) + 1;
                     case ConsoleKey.Escape: // 뒤로가기
-                        return Constant.STOP;
+                        return Constants.STOP;
                 }
             }
         }

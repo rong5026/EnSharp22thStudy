@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LectureTimeTable
 {
-    internal class Constant
+    internal class Constants
     {
         public const bool PROGRAM_ON = true;
         public const bool PROGRAM_OFF= false;
@@ -17,6 +17,7 @@ namespace LectureTimeTable
 
 
         public const int STOP = -1;
+        public const int CONTINUE = 1;
         public const int LECTURE_TIME_CHECK = 1;
         public const int LECTURE_INTERESTING = 2;
         public const int LECTURE_SUBSCRIPTION = 3;
@@ -28,7 +29,7 @@ namespace LectureTimeTable
         public const int PROFESSOR = 4; // 교수명
         public const int GRADE = 5; // 학년
         public const int CHECK = 6; // 조회
-        public const int Interest = 7; // 관심과목
+        public const int INTEREST = 7; // 관심과목
 
         public const int LECTURE_ALL = 1; // 전체학부
         public const int COMPUTER_DEPARTMENT = 2; // 컴퓨터공학과
@@ -50,11 +51,24 @@ namespace LectureTimeTable
         public const int LECTURE_SCHEDULE = 3; // 과목 시간표
         public const int LECTURE_DELETE = 4; // 과목 삭제
 
+
+        public const int LECTURE_CHECK = 1; //강의 시간표 조회
+        public const int INTEREST_LECTURE_SELECTION = 2;// 관심과목 담기
+        public const int LECTURE_APPLICATION = 3; // 수강신청
+        public const int LECTURE__APPLICATION_LIST = 4; // 과목 삭제
+
+
         public const int REINPUT = 1;
         public const int BACK = 0;
 
-        public const int OVERLAP = 1; // 시간표 겹칠때
-        public const int NONOVERLAP = 0; // 시간표 안겹칠때
+        public const int TIMEOVERLAP = 1; // 시간표 겹칠때
+        public const int NONTIMEOVERLAP = 0; // 시간표 안겹칠때
+
+        public const string INPUT_EMPTY = "";
+
+        public const int COUNT_ZERO = 0;
+
+
 
 
 

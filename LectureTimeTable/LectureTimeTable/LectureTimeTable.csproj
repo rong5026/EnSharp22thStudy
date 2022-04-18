@@ -59,7 +59,7 @@
     <Compile Include="Controller\UserMenu.cs" />
     <Compile Include="LTTMain.cs" />
     <Compile Include="LTTStart.cs" />
-    <Compile Include="Model\Constant.cs" />
+    <Compile Include="Model\Constants.cs" />
     <Compile Include="Model\ExcelData.cs" />
     <Compile Include="Model\UserVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

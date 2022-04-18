@@ -23,7 +23,7 @@ namespace LectureTimeTable
         {
             Console.Clear();
             if (type == "Interest")
-                interestsLectureUI.PrintSelectedListUI(0, 3);  //관심과목 목록 UI
+                interestsLectureUI.PrintSelectedListUI(0, 3,"Interest");  //관심과목 목록 UI
             else if(type == "Register")
                 registerationLectureUI.PrintSelectedRegisterListUI(0, 3);
             else
@@ -57,7 +57,7 @@ namespace LectureTimeTable
             Console.Write("금");
             Console.SetCursorPosition(2, 7);
 
-            for(int count = 0; count < 22; count++)
+            for(int count = 0; count < 24; count++)
             {
                 Console.SetCursorPosition(2, 7+2*count);
                 Console.Write("{0}:{1}~", hourOne.ToString("00"), minuteOne.ToString("00"));

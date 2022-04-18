@@ -31,8 +31,8 @@ namespace LectureTimeTable
             userList = new List<UserVO>();
             interestList = new List<int>();
             registerList = new List<int>();
-            interestNumber = 0;
-            registerNumber = 0;
+            interestNumber = Constants.COUNT_ZERO;
+            registerNumber = Constants.COUNT_ZERO;
         }
         public void StartLectureTimeTable()
 
@@ -44,18 +44,18 @@ namespace LectureTimeTable
           
 
             userList.Add(user);  
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 
                 loginStatus = login.StartUserLogin(userList);
-                if (loginStatus == Constant.LOGIN_OFF) // 프로그램 종료
+                if (loginStatus == Constants.LOGIN_OFF) // 프로그램 종료
                 {
                     loginUI.PrintProgramStop();                   
                     return;
                    
                 }
 
-                else if (loginStatus == Constant.LOGIN_SUCCESS) // 로그인 성공
+                else if (loginStatus == Constants.LOGIN_SUCCESS) // 로그인 성공
                 {
 
                     userMenu.StartUserMenu();

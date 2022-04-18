@@ -27,15 +27,15 @@ namespace LectureTimeTable
             error = "숫자8자리를 입력해주세요!";   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
             
-            input = "";
+            input = Constants.INPUT_EMPTY;
 
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if(input=="")
+                if(input== Constants.INPUT_EMPTY)
                     DeleteInput(82, 179, 16); // 오류메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
-                    return "";
+                    return Constants.INPUT_EMPTY;
 
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
@@ -77,16 +77,16 @@ namespace LectureTimeTable
 
      
             Console.SetCursorPosition(x, y);
-            input = "";
+            input = Constants.INPUT_EMPTY;
            
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
               
                 keyInput = Console.ReadKey(true);
-                if (input == "")
+                if (input == Constants.INPUT_EMPTY)
                     DeleteInput(81, 179, 18); // 에러메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
-                    return "";
+                    return Constants.INPUT_EMPTY;
 
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
@@ -132,15 +132,15 @@ namespace LectureTimeTable
             error = "영어+한글+숫자+특수기호(:,#,+,(, ) 1개이상 입력해주세요!"; // 에러문자 출력
           
             Console.SetCursorPosition(x, y);
-            input = "";
+            input = Constants.INPUT_EMPTY;
 
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if(input =="")
-                    DeleteInput(Constant.WIDTH-1 -82, Constant.WIDTH-1, 14); // 오류메시지 삭제
+                if(input == Constants.INPUT_EMPTY)
+                    DeleteInput(Constants.WIDTH-1 -82, Constants.WIDTH-1, 14); // 오류메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
-                    return "";
+                    return Constants.INPUT_EMPTY;
 
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
@@ -167,7 +167,7 @@ namespace LectureTimeTable
 
             if (check == false) //
             {
-                DeleteInput(Constant.WIDTH - 1 - 82, Constant.WIDTH-1, 14); // 입력했던거 삭제
+                DeleteInput(Constants.WIDTH - 1 - 82, Constants.WIDTH-1, 14); // 입력했던거 삭제
 
                 LoginUI.PrintErrorMessage(x, y , error);
 
@@ -182,15 +182,15 @@ namespace LectureTimeTable
             error = "영어+한글 1개이상 입력해주세요!"; // 에러문자 출력
 
             Console.SetCursorPosition(x, y);
-            input = "";
+            input = Constants.INPUT_EMPTY;
 
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if (input == "")
-                    DeleteInput(Constant.WIDTH - 1 - 80, Constant.WIDTH - 1, 16); // 오류메시지 삭제
+                if (input == Constants.INPUT_EMPTY)
+                    DeleteInput(Constants.WIDTH - 1 - 80, Constants.WIDTH - 1, 16); // 오류메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
-                    return "";
+                    return Constants.INPUT_EMPTY;
 
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
@@ -217,7 +217,7 @@ namespace LectureTimeTable
 
             if (check == false) //
             {
-                DeleteInput(Constant.WIDTH - 1 - 80, Constant.WIDTH - 1, 16); // 입력했던거 삭제
+                DeleteInput(Constants.WIDTH - 1 - 80, Constants.WIDTH - 1, 16); // 입력했던거 삭제
 
                 LoginUI.PrintErrorMessage(x, y, error);
 
@@ -233,15 +233,15 @@ namespace LectureTimeTable
             error = "1~184 사이 자연수를 입력해주세요!";   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
 
-            input = "";
+            input = Constants.INPUT_EMPTY;
 
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if (input == "")
-                    DeleteInput(Constant.WIDTH-x-1, Constant.WIDTH-1, y); // 오류메시지 삭제
+                if (input == Constants.INPUT_EMPTY)
+                    DeleteInput(Constants.WIDTH-x-1, Constants.WIDTH-1, y); // 오류메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
-                    return "";
+                    return Constants.INPUT_EMPTY;
 
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
@@ -268,7 +268,7 @@ namespace LectureTimeTable
                 check = Regex.IsMatch(input, @"^1?[0-9]?[0-9]$"); // 숫자 최대3개
             if (check == false || ( Convert.ToInt16(input)<1 || Convert.ToInt16(input) >184)) //
             {
-                DeleteInput(Constant.WIDTH - x-1, Constant.WIDTH - 1, y); // 오류메시지 삭제
+                DeleteInput(Constants.WIDTH - x-1, Constants.WIDTH - 1, y); // 오류메시지 삭제
                 LoginUI.PrintErrorMessage(x, y, error);
                 return EnterLectureNO(x, y);
             }
@@ -283,15 +283,15 @@ namespace LectureTimeTable
             error = "숫자6글자 (0xxxxx)을 입력해주세요!";   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
 
-            input = "";
+            input = Constants.INPUT_EMPTY;
 
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if (input == "")
-                    DeleteInput(Constant.WIDTH - 1 - 80, Constant.WIDTH - 1, 12); // 오류메시지 삭제
+                if (input == Constants.INPUT_EMPTY)
+                    DeleteInput(Constants.WIDTH - 1 - 80, Constants.WIDTH - 1, 12); // 오류메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
-                    return "";
+                    return Constants.INPUT_EMPTY;
 
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
@@ -318,7 +318,7 @@ namespace LectureTimeTable
                 check = Regex.IsMatch(input, @"^0[0-9]{5}$"); // 숫자 6, 앞에 0개
             if (check == false) //
             {
-                DeleteInput(Constant.WIDTH - 1 - 80, Constant.WIDTH - 1, 12); // 오류메시지 삭제
+                DeleteInput(Constants.WIDTH - 1 - 80, Constants.WIDTH - 1, 12); // 오류메시지 삭제
                 LoginUI.PrintErrorMessage(x, y, error);
                 return EnterStudyNumber(x, y);
             }
@@ -332,15 +332,15 @@ namespace LectureTimeTable
             error = "숫자3자리 입력";   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
 
-            input = "";
+            input = Constants.INPUT_EMPTY;
 
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if (input == "")
-                    DeleteInput(Constant.WIDTH - 1 - 76, Constant.WIDTH - 1, 13); // 오류메시지 삭제
+                if (input == Constants.INPUT_EMPTY)
+                    DeleteInput(Constants.WIDTH - 1 - 76, Constants.WIDTH - 1, 13); // 오류메시지 삭제
                 if (keyInput.Key == ConsoleKey.Escape)
-                    return "";
+                    return Constants.INPUT_EMPTY;
 
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
@@ -367,7 +367,7 @@ namespace LectureTimeTable
                 check = Regex.IsMatch(input, @"^[0-9]{3}$"); // 숫자 3
             if (check == false) //
             {
-                DeleteInput(Constant.WIDTH - 1 - 76, Constant.WIDTH - 1, 13); // 오류메시지 삭제
+                DeleteInput(Constants.WIDTH - 1 - 76, Constants.WIDTH - 1, 13); // 오류메시지 삭제
                 LoginUI.PrintErrorMessage(x, y, error);
                 return EnterDivisionNumber(x, y);
             }

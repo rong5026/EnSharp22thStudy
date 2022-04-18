@@ -22,11 +22,20 @@ namespace LectureTimeTable
 
         }
 
-        public void PrintExcelData(List<int> list,int yPosition)
+        public void PrintExcelData(List<int> list,int yPosition,string type)
         {
             Console.SetCursorPosition(0, yPosition);
           
-
+            if(type == "Register")
+            {
+                for(int index = 1; index < LTTStart.registerList.Count; index++)
+                {
+                    if (list.Contains(LTTStart.registerList[index]))
+                    {
+                        list.Remove(LTTStart.registerList[index]);
+                    }
+                }
+            }
             for (int rowIndex = 0; rowIndex < list.Count; rowIndex++)
             {
                

@@ -14,27 +14,32 @@ namespace LectureTimeTable
         LectureTimeMenu lectureTimeMenu;
         InterestLectureMenu interestLectureMenu;
         RegistrationLectureMenu registrationLectureMenu;
-        ExcelSaveMenu excelSaveMenu = new ExcelSaveMenu();
+        ExcelSaveMenu excelSaveMenu;
         Exception exception;
         ExcelUI excelUI;
+        TimeTableUI timeTableUI;
+        TimeTable timeTable;
         private int menuNumber;
 
         public UserMenu()
         {
+            timeTable = new TimeTable();
+            timeTableUI = new TimeTableUI();
+            excelSaveMenu = new ExcelSaveMenu();
             userMenuUI = new UserMenuUI();
             menu = new SelectionMenu();
             excelUI = new ExcelUI();
             exception = new Exception();
             lectureTimeMenu = new LectureTimeMenu(menu, exception, excelUI);
-            interestLectureMenu = new InterestLectureMenu(menu, exception, excelUI);
-            registrationLectureMenu = new RegistrationLectureMenu(menu, exception, excelUI);
+            interestLectureMenu = new InterestLectureMenu(menu, exception, excelUI, timeTableUI, timeTable);
+            registrationLectureMenu = new RegistrationLectureMenu(menu, exception, excelUI, timeTableUI, timeTable);
         }
         public void StartUserMenu()
         {
 
 
            
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 Console.Clear();
                 userMenuUI.PrintUserMenu(1);
@@ -45,19 +50,19 @@ namespace LectureTimeTable
 
                 switch (menuNumber)
                 {
-                    case Constant.LECTURE_TIME_CHECK:  // 시간표 조회
+                    case Constants.LECTURE_TIME_CHECK:  // 시간표 조회
                         lectureTimeMenu.StartLectureTimeMenu();
                         break;
-                    case Constant.LECTURE_INTERESTING: // 관심과목 담기
+                    case Constants.LECTURE_INTERESTING: // 관심과목 담기
                         interestLectureMenu.StartInterestLectureMenu();
                         break;
-                    case Constant.LECTURE_SUBSCRIPTION: // 수강신청
+                    case Constants.LECTURE_SUBSCRIPTION: // 수강신청
                         registrationLectureMenu.StartRegisterationLectureMenu();
                         break;
-                    case Constant.LECTURE_SUBSCRIPTION_RESULT: // 수강내역조회
+                    case Constants.LECTURE_SUBSCRIPTION_RESULT: // 수강내역조회
                         excelSaveMenu.StartEnterExcel();
                         break;
-                    case Constant.STOP:
+                    case Constants.STOP:
                         return;
 
                       

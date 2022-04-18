@@ -20,9 +20,9 @@ namespace LectureTimeTable
         {
 			Console.SetCursorPosition(0, 0);
 			Console.WriteLine("\n\n\n\n\n\n");
-            PrintCenter("ENTER : 선택하기 ESC : 뒤로가기 ", Constant.WIDTH+65);
+            PrintCenter("ENTER : 선택하기 ESC : 뒤로가기 ", Constants.WIDTH+65);
 
-            PrintCenter("=========================================== 강의 시간표 조회 ===========================================", Constant.WIDTH-7);
+            PrintCenter("=========================================== 강의 시간표 조회 ===========================================", Constants.WIDTH-7);
             Console.WriteLine();
 			PrintLectureTimeList(selectNum, 1, "개설 학과 전공"); // 50 10 에 이제 리스트 보여주면됨
 			PrintLectureTimeList(selectNum, 2, "이수 구분");
@@ -31,9 +31,9 @@ namespace LectureTimeTable
 			PrintLectureTimeList(selectNum, 5, "학년");
 			PrintLectureTimeList(selectNum, 6, "조회");
 
-			PrintCenter("=========================================================================================================", Constant.WIDTH+1);
-			PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴고르고 ← 또는 → 키를 이용해 선택하세요.", Constant.WIDTH-30);
-			PrintCenter("조건을 다 선택 후에는 ↑ , ↓ 키로 이동하여 [ 조회 ] 버튼을 눌러주세요", Constant.WIDTH - 30);
+			PrintCenter("=========================================================================================================", Constants.WIDTH+1);
+			PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴고르고 ← 또는 → 키를 이용해 선택하세요.", Constants.WIDTH-30);
+			PrintCenter("조건을 다 선택 후에는 ↑ , ↓ 키로 이동하여 [ 조회 ] 버튼을 눌러주세요", Constants.WIDTH - 30);
 
 		}
 		public void PrintLectureTimeList(int selectNum, int menuNumber, string menuName)

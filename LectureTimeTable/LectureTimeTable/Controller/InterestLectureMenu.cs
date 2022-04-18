@@ -11,11 +11,11 @@ namespace LectureTimeTable
 
        
         InterestsLectureUI interestsLectureUI= new InterestsLectureUI();
-        TimeTableUI timeTableUI = new TimeTableUI();
+        TimeTableUI timeTableUI;
         SelectionMenu menu;
         Exception exception;
         ExcelUI excelUI;
-        TimeTable timeTable = new TimeTable();
+        TimeTable timeTable;
         LectureTimeMenu lectureTimeMenu;
 
         ConsoleKeyInfo keyInput;
@@ -28,11 +28,13 @@ namespace LectureTimeTable
 
 
 
-        public InterestLectureMenu(SelectionMenu menu, Exception exception, ExcelUI excelUI)
+        public InterestLectureMenu(SelectionMenu menu, Exception exception, ExcelUI excelUI, TimeTableUI timeTableUI, TimeTable timeTable)
         {
            
 
             indexNO = new List<int>();
+            this.timeTable = timeTable;
+            this.timeTableUI = timeTableUI;
             this.menu = menu;
             this.exception = exception;
             this.excelUI = excelUI;
@@ -45,7 +47,7 @@ namespace LectureTimeTable
             menuNumber = 0;
             Console.SetCursorPosition(0, 0);
    
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
            
                 
@@ -56,23 +58,23 @@ namespace LectureTimeTable
                 switch (menuNumber)
                 {
                     
-                    case Constant.LECTURE_SEARCH:  // 관심 과목 분야별 검색
+                    case Constants.LECTURE_SEARCH:  // 관심 과목 분야별 검색
                         SearchInterestLecture(indexNO);
                         break;
-                    case Constant.LECTURE_LIST: // 관심 과목 강의 내역
-                        interestsLectureUI.PrintSelectedList(LTTStart.interestList);
+                    case Constants.LECTURE_LIST: // 관심 과목 강의 내역
+                        interestsLectureUI.PrintSelectedList(LTTStart.interestList,"Interest");
                         BackESC();
                         Console.Clear();
                         break;
-                    case Constant.LECTURE_SCHEDULE: // 관심 과목 시간표                      
+                    case Constants.LECTURE_SCHEDULE: // 관심 과목 시간표                      
                         timeTableUI.PrintLectureSchedule(LTTStart.interestList,"Interest");
                         BackESC();
                         Console.Clear();
                         break;
-                    case Constant.LECTURE_DELETE: // 관심 과목 삭제
+                    case Constants.LECTURE_DELETE: // 관심 과목 삭제
                         DeleteInterestLecture();                       
                         break;
-                    case Constant.STOP:
+                    case Constants.STOP:
                         return;
 
 
@@ -83,7 +85,7 @@ namespace LectureTimeTable
         }
         private void SearchInterestLectureList(List<int> list)
         {
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 SearchInterestLecture(list);
 
@@ -100,7 +102,7 @@ namespace LectureTimeTable
 
             input = 0;
             searchingCount = 0;
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
 
                 input = menu.SelectVerticalMenu(6, "InterestLectureSearch", input);// 수직메뉴 // 개설학과,학수번호 ...
@@ -108,26 +110,26 @@ namespace LectureTimeTable
                 switch (input)
                 {
                     
-                    case Constant.LECTURE_DEPARTMENT:  // 개설 학과 전공
+                    case Constants.LECTURE_DEPARTMENT:  // 개설 학과 전공
                         searchingCount = lectureTimeMenu.StartLectureDepartmentMenu(list,searchingCount,"Interest");
                         break;
-                    case Constant.LECTURE_DIVISION: // 학수번호/분반
+                    case Constants.LECTURE_DIVISION: // 학수번호/분반
                         searchingCount = lectureTimeMenu.StartStudyClassNumber(list,searchingCount);                 
                         break;
-                    case Constant.LECTURE_NAME: // 교과목명
+                    case Constants.LECTURE_NAME: // 교과목명
                         searchingCount = lectureTimeMenu.StartLectureName(list, searchingCount);
                         break;
-                    case Constant.PROFESSOR: // 교수명
+                    case Constants.PROFESSOR: // 교수명
                         searchingCount = lectureTimeMenu.StartProfessorName(list, searchingCount);
                         break;
-                    case Constant.GRADE: // 학년
+                    case Constants.GRADE: // 학년
                         searchingCount = lectureTimeMenu.StartLectureClassMenu(list, searchingCount, "Interest");
                         break;
-                    case Constant.CHECK: // 조회 및 관심과목신청
+                    case Constants.CHECK: // 조회 및 관심과목신청
                         StartExcelCheck(list, 30);                   
                         Console.Clear();
                         return;
-                    case Constant.STOP: // 뒤로가기
+                    case Constants.STOP: // 뒤로가기
                         Console.Clear();
                         return;
 
@@ -144,7 +146,7 @@ namespace LectureTimeTable
 
            
             excelUI.PrintExcelLectureTime(28); // 강의시간표 시작 UI
-            excelUI.PrintExcelData(list, yPosition); // y좌표
+            excelUI.PrintExcelData(list, yPosition,"Interest"); // y좌표
            
             SelectInterestLecture(list); //관심과목번호 입력 후 리스트에 추가
 
@@ -156,7 +158,7 @@ namespace LectureTimeTable
         {
             string classNO;
             int selection;
-            while (Constant.PROGRAM_ON) // 관심과목 선택
+            while (Constants.PROGRAM_ON) // 관심과목 선택
             {
                 interestsLectureUI.PrintInputInterestLecture(LTTStart.interestNumber, 24, 65, 25); // 관심과목 담을과목 선택 UI
                 classNO = exception.EnterLectureNO(125, 25); // 입력
@@ -168,56 +170,57 @@ namespace LectureTimeTable
                     interestsLectureUI.PrintInterestStatus(65, 25, "실패! 이미 관심과목 리스트에 담겼있습니다!!       ESC : 나가기   ENTER : 다시입력             "); //관담 실패!
 
                     selection =Reinput();
-                    if (selection == Constant.REINPUT)
+                    if (selection == Constants.REINPUT)
                         return SelectInterestLecture(list);
-                    return Constant.STOP;
+                    return Constants.STOP;
                 }
                 else if( list.Contains(Convert.ToInt16(classNO)+1)==false)
                 {
                     interestsLectureUI.PrintInterestStatus(65, 25, "실패! !! 리스트에 없는 No 입니다!       ESC : 나가기   ENTER : 다시입력         "); //관담 실패!
                     selection =Reinput();
-                    if (selection == Constant.REINPUT)
+                    if (selection == Constants.REINPUT)
                         return SelectInterestLecture(list);
-                    return Constant.STOP;
+                    return Constants.STOP;
                 }
                 else if(timeTable.CheckTime( Convert.ToString( LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO)+1,9)) , LTTStart.interestList) == 1)
                 {
                     interestsLectureUI.PrintInterestStatus(65, 25, "실패!  등록하신 시간표와 시간이 겹칩니다!  ESC : 나가기   ENTER : 다시입력         "); //관담 실패!
                     selection = Reinput();
-                    if (selection == Constant.REINPUT)
+                    if (selection == Constants.REINPUT)
                         return SelectInterestLecture(list);
-                    return Constant.STOP;
+                    return Constants.STOP;
                 }
 
                 LTTStart.interestList.Add(Convert.ToInt16(classNO)+1); // 관심과목에 없으면 추가
                 LTTStart.interestNumber += Convert.ToInt16 (LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO)+1, 8)); // 관심과목 담은 학점
                 interestsLectureUI.PrintInterestStatus(65,25, "성공! 관심과목 리스트에 담겼습니다!!       ESC : 나가기   ENTER : 다시입력           ");
                 // 관담 성공!
+                
                 selection = Reinput();
-                if (selection == Constant.REINPUT)
+                if (selection == Constants.REINPUT)
                     return SelectInterestLecture(list);             
-                return Constant.STOP;
+                return Constants.STOP;
 
             }
-            return Constant.STOP;
+            return Constants.STOP;
 
         }
         public int Reinput()
         {
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
 
                 if (keyInput.Key == ConsoleKey.Escape)
-                    return Constant.BACK;
+                    return Constants.BACK;
                 else if (keyInput.Key == ConsoleKey.Enter)
-                    return Constant.REINPUT;
+                    return Constants.REINPUT;
             }
         }
         public void BackESC() // 뒤로가기
         {
             
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
 
@@ -231,7 +234,7 @@ namespace LectureTimeTable
             bool result;
             string classNumber;
 
-            interestsLectureUI.PrintSelectedList(LTTStart.interestList); // 관심과목 목록 출력
+            interestsLectureUI.PrintSelectedList(LTTStart.interestList,"Interest"); // 관심과목 목록 출력
             interestsLectureUI.PrintInputDeleteLecture(LTTStart.interestNumber); //관심과목 삭제 입력창
 
             classNumber = exception.EnterLectureNO(109, 5);// 삭제할 NO입력

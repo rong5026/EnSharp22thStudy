@@ -11,6 +11,7 @@ namespace LectureTimeTable
         LectureTimeUI lectureTimeUI = new LectureTimeUI();
         RegisterationLectureUI registerationLectureUI = new RegisterationLectureUI();   
         InterestsLectureUI interestsLectureUI = new InterestsLectureUI();   
+
         SelectionMenu menu;
         Exception exception;
         ExcelUI excelUI;
@@ -36,10 +37,10 @@ namespace LectureTimeTable
             menuNumber = 0;
             indexNO = new List<int>();
             searchingCount = 0;
-            classname = "";
-            professor = "";
-            classNumber = "";
-            divisionNumber = "";
+            classname = Constants.INPUT_EMPTY;
+            professor = Constants.INPUT_EMPTY;
+            classNumber = Constants.INPUT_EMPTY;
+            divisionNumber = Constants.INPUT_EMPTY;
         }
         public void StartLectureTimeMenu()
         {
@@ -52,33 +53,33 @@ namespace LectureTimeTable
 
            
             searchingCount = 0;
-            while (Constant.PROGRAM_ON)
+            while (Constants.PROGRAM_ON)
             {
                 
                 menuNumber = menu.SelectVerticalMenu(6, "LectureTimeMenu", menuNumber); // 수직인 메뉴선택( 선택요소 수, 메뉴타입)
 
                 switch (menuNumber)
                 {
-                    case Constant.LECTURE_DEPARTMENT:  // 개설 학과 전공
+                    case Constants.LECTURE_DEPARTMENT:  // 개설 학과 전공
                         searchingCount = StartLectureDepartmentMenu(indexNO,searchingCount, "Lecture");
                         break;
-                    case Constant.LECTURE_DIVISION: // 이수구분
+                    case Constants.LECTURE_DIVISION: // 이수구분
                         searchingCount = StartLectureDivisionMenu(indexNO,searchingCount, "Lecture");
                         break;
-                    case Constant.LECTURE_NAME: // 교과목명
+                    case Constants.LECTURE_NAME: // 교과목명
                         searchingCount =  StartLectureName(indexNO, searchingCount);
                         break;
-                    case Constant.PROFESSOR: // 교수명
+                    case Constants.PROFESSOR: // 교수명
                         searchingCount = StartProfessorName(indexNO, searchingCount);
                         break;
-                    case Constant.GRADE: // 학년
+                    case Constants.GRADE: // 학년
                         searchingCount = StartLectureClassMenu(indexNO, searchingCount, "Lecture");
                         break;
-                    case Constant.CHECK: // 조회                      
+                    case Constants.CHECK: // 조회                      
                         StartLectureCheck(indexNO, 28);
                         menuNumber = 0;
                         return;
-                    case Constant.STOP: // 뒤로가기
+                    case Constants.STOP: // 뒤로가기
                         return;
 
 
@@ -94,7 +95,7 @@ namespace LectureTimeTable
 
             input = menu.SelectHorisionMenu(5, "LectureDepartment"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
-            if (input == Constant.STOP)
+            if (input == Constants.STOP)
             { // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 if (type == "Lecture")
                     lectureTimeUI.PrintLectureTime(1);
@@ -106,20 +107,20 @@ namespace LectureTimeTable
 
             switch (input)
             {
-                case Constant.LECTURE_ALL: // 전체
+                case Constants.LECTURE_ALL: // 전체
                     return FindExcelindex(list, "", 2, searchingCount);
                    
-                case Constant.COMPUTER_DEPARTMENT: // 컴퓨터공학과
+                case Constants.COMPUTER_DEPARTMENT: // 컴퓨터공학과
                     return FindExcelindex(list, "컴퓨터공학과", 2, searchingCount);
                     
-                case Constant.INTELLIGENT_DEPARTMENT: // 지능기전공학부
+                case Constants.INTELLIGENT_DEPARTMENT: // 지능기전공학부
                     return FindExcelindex(list, "지능기전공학부", 2, searchingCount);                 
-                case Constant.SOFTWARE_DEPARTMENT: // 소프트웨어학과
+                case Constants.SOFTWARE_DEPARTMENT: // 소프트웨어학과
                     return FindExcelindex(list, "소프트웨어학과", 2, searchingCount);                  
-                case Constant.AEROSPACE_DEPARTMENT: // 기계항공우주공학부
+                case Constants.AEROSPACE_DEPARTMENT: // 기계항공우주공학부
                     return FindExcelindex(list, "기계항공우주공학부", 2, searchingCount);
                   
-                default: return Constant.STOP;
+                default: return Constants.STOP;
             }
 
             
@@ -133,7 +134,7 @@ namespace LectureTimeTable
             lectureTimeUI.PrintLetureDivision(1);
             input = menu.SelectHorisionMenu(4, "LectureDivision"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
-            if (input == Constant.STOP)
+            if (input == Constants.STOP)
             {  // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 if (type == "Lecture")
                     lectureTimeUI.PrintLectureTime(1);
@@ -145,19 +146,19 @@ namespace LectureTimeTable
             }
             switch (input)
             {
-                case Constant.LECTURE_ALL: // 전체 1
-                   return FindExcelindex(list, "", 6, searchingCount);
+                case Constants.LECTURE_ALL: // 전체 1
+                   return FindExcelindex(list, Constants.INPUT_EMPTY, 6, searchingCount);
                    
-                case Constant.GYOYANG_PILSU_CLASS: // 공통교양필수 2 
+                case Constants.GYOYANG_PILSU_CLASS: // 공통교양필수 2 
                     return FindExcelindex(list, "공통교양필수", 6, searchingCount);
                    
-                case Constant.JEONGONG_PILSU_CLASS: // 전공필수 3 
+                case Constants.JEONGONG_PILSU_CLASS: // 전공필수 3 
                     return FindExcelindex(list, "전공필수", 6, searchingCount);
                     
-                case Constant.JEONGONG_SEONTAEG: // 전공선택 4
+                case Constants.JEONGONG_SEONTAEG: // 전공선택 4
                     return FindExcelindex(list, "전공선택", 6, searchingCount);
                    
-                default: return Constant.STOP;
+                default: return Constants.STOP;
             }
         }
         public int  StartLectureName(List<int> list, int searchingCount) // 수업이름
@@ -185,7 +186,7 @@ namespace LectureTimeTable
             lectureTimeUI.PrintLectureClass(1);
             input = menu.SelectHorisionMenu(5, "LectureClass"); // 수평인 메뉴선택( 선택요소 수, 메뉴타입)
 
-            if (input == Constant.STOP)
+            if (input == Constants.STOP)
             {  // 학과리스트에서 ESC를 눌렀을 때 출력된 UI삭제;
                 if (type == "Lecture")
                     lectureTimeUI.PrintLectureTime(1);
@@ -197,17 +198,17 @@ namespace LectureTimeTable
 
             switch (input)
             {
-                case Constant.LECTURE_ALL: // 전체
+                case Constants.LECTURE_ALL: // 전체
                     return FindExcelindex(list, "", 7, searchingCount);                 
-                case Constant.FIRST_CLASS: // 1학년
+                case Constants.FIRST_CLASS: // 1학년
                     return FindExcelindex(list, "1", 7, searchingCount);              
-                case Constant.SECOND_CLASS: // 2학년
+                case Constants.SECOND_CLASS: // 2학년
                     return FindExcelindex(list, "2", 7, searchingCount);                 
-                case Constant.THIRD_CLASS: // 3학년
+                case Constants.THIRD_CLASS: // 3학년
                     return FindExcelindex(list, "3", 7, searchingCount);             
-                case Constant.FOUR_CLASS: // 4학년
+                case Constants.FOUR_CLASS: // 4학년
                     return FindExcelindex(list, "4", 7, searchingCount);             
-                default: return Constant.STOP;
+                default: return Constants.STOP;
             }
 
 
@@ -223,13 +224,13 @@ namespace LectureTimeTable
             lectureTimeUI.PrintStudyNumber(); // 학수번호 입력창
             classNumber = exception.EnterStudyNumber(80, 12);
             Console.CursorVisible = false;//커서 숨김
-            if (classNumber == "")
+            if (classNumber == Constants.INPUT_EMPTY)
                 return searchingCount + 1;
             lectureTimeUI.PrintDivisionNumber(); // 분반 입력창 
             divisionNumber = exception.EnterDivisionNumber(76, 13);
 
             Console.CursorVisible = false;//커서 숨김
-            if (classNumber != "" && divisionNumber != "")
+            if (classNumber != Constants.INPUT_EMPTY && divisionNumber != Constants.INPUT_EMPTY)
             {
                 searchingCount = FindExcelindex(list, classNumber, 3, searchingCount);
                 return FindExcelindex(list, divisionNumber, 4, searchingCount);
@@ -241,13 +242,13 @@ namespace LectureTimeTable
         private void StartLectureCheck(List<int> list, int yPosition) // 조회하기
         {
             excelUI.PrintExcelLectureTime(27); // 강의시간표 시작 UI
-            excelUI.PrintExcelData(list,yPosition); // y좌표
+            excelUI.PrintExcelData(list,yPosition,"Lecture"); // y좌표
             excelUI.PrintExcelBack(); // 뒤로가기 UI
 
             list.Clear();
 
 
-            while (Constant.PROGRAM_ON) // ESC키 누르면 뒤로가기
+            while (Constants.PROGRAM_ON) // ESC키 누르면 뒤로가기
             {
                 keyInput = Console.ReadKey(true);
 
