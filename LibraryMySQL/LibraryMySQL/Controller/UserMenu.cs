@@ -34,7 +34,7 @@ namespace LibraryMySQL
 
         public void StartUserMenu()
         {
-             UI.PrintMainUI();
+            UI.PrintMainUI();
             Console.SetWindowSize(125, 40);
 
            

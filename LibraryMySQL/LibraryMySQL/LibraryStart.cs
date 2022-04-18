@@ -16,7 +16,7 @@ namespace LibraryMySQL
         public static List<UserVO> userList; 
         public static List<BookVO> bookList;
 
-        UserVO user;
+       
         BookVO bookVO;
         LibraryUI UI;
         SelectionMode mode;
@@ -31,15 +31,13 @@ namespace LibraryMySQL
         public LibraryStart()
         {
             mysqlData = MySQlData.Instance();
-            mysqlData.InsertUserData("abcd1234", "abcd1234", "피카츄", "21", "010-1234-1234", "서울특별시 오류동");
-
-            user = new UserVO();
+            
+           
             bookVO = new BookVO();
 
             userList = new List<UserVO>();
             bookList = new List<BookVO>();
-             user = new UserVO(null, null, null, null, null, null);  //현재 로그인한 계정
-            userList.Add( user);
+          
             UI = new LibraryUI();
             mode = new SelectionMode(UI);
           
@@ -53,11 +51,12 @@ namespace LibraryMySQL
 
 
             //int id, string name, string author, string publisher, int bookCount, int price, string date
-            /*
+            
              bookVO = new BookVO(BookVO.totalBook, "자료구조 및 실습", "국형준", "세종대", 2, 14000, "2020-02-02");
             bookList.Add( bookVO);
              bookVO = new BookVO(BookVO.totalBook, "노래방가고싶다", "홍영환", "세종대", 1, 10000, "2020-04-08");
             bookList.Add( bookVO);
+            /*
              bookVO = new BookVO(BookVO.totalBook, "너두? 나두", "황기태", "생능출판", 3, 20000, "2021-03-02");
             bookList.Add( bookVO);
              bookVO = new BookVO(BookVO.totalBook, "안드로이드 앱 프로그래밍", "정재곤", "이지스퍼블리싱", 5, 28000, "2021-10-08");

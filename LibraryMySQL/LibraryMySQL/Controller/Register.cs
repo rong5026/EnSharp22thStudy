@@ -11,15 +11,17 @@ namespace LibraryMySQL
     {
         ConsoleKeyInfo keyInput;
         UserModeUI userModeUI;
-        UserVO user;
-        ValidInput validInput;
-        string[] userData = new string[7];
 
-        public Register(UserModeUI userModeUI)
+        ValidInput validInput;
+        private string[] userData = new string[7];
+        MySQlData mySQlData;
+
+        public Register(UserModeUI userModeUI, MySQlData mySQlData)
         {
-            user = new UserVO();
+            
             this.userModeUI = userModeUI;
             validInput = new ValidInput(userModeUI);
+            this.mySQlData = mySQlData;
         }
         public bool RegistUser()
         {
@@ -41,24 +43,18 @@ namespace LibraryMySQL
                 userData[4] = EnterUserDate(null, "age"); // 0~ 199세 까지 입력
                 userData[5] = EnterUserDate(null, "phonenumber"); // 전화번호 01x-xxxx-xxxx
                 userData[6] = EnterUserDate(null, "address");// 주소  
-                // 광역지방자치단체 + (기초지방자치단체) + (시 군 구) + (읍 면) + (도로명) + (건물번호)
-                // ex) 경기도 + 수원시 + 영통구 + " " + 영통로+124
-                // ex) 서울특별시+ 강남구 +" "+ " "+ 남부순환로 + 지하2744
-                // ex) 서울특별시 +" "+ 구로구+ " " +경인로248-29
+                 // 광역지방자치단체 + (기초지방자치단체) + (시 군 구) + (읍 면) + (도로명) + (건물번호)
+                 // ex) 경기도 + 수원시 + 영통구 + " " + 영통로+124
+                 // ex) 서울특별시+ 강남구 +" "+ " "+ 남부순환로 + 지하2744
+                 // ex) 서울특별시 +" "+ 구로구+ " " +경인로248-29
 
-                 user.Id = userData[0];
-                 user.Password = userData[1];
-                 user.Name = userData[3];
-                 user.Age = userData[4];
-                 user.PhoneNumber = userData[5];
-                 user.Address = userData[6];
+                 mySQlData.InsertUserData(userData[0], userData[1], userData[3], userData[4], userData[5], userData[6]); // 회원Data에 추가
 
-                LibraryStart.userList.Add( user); // UserList에 유저정보 추가
+
                 Console.Clear();
                 userModeUI.PrintSuccessRegister(); // 회원가입성공 UI
 
              
-
                 return true;
 
                

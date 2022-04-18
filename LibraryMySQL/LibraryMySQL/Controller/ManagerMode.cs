@@ -79,7 +79,7 @@ namespace LibraryMySQL
 
             Console.Clear();
              UI.PrintBookList();
-             UI.PrintBookList(null, null, null);
+             UI.ShowBookList(null, null, null);
 
              keyInput = Console.ReadKey(true);
             return;  // 아무키 입력시 뒤로가기

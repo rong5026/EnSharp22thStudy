@@ -20,7 +20,7 @@ namespace LibraryMySQL
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                     로 그 인                   │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│    (뒤로가려면 아무런 ID,PW값을 넣어 ENTER)    │");
+			Console.WriteLine("│	     ESC : 뒤로가기  ENTER : 입력하기       │");
 			Console.WriteLine("└------------------------------------------------┘");
 			Console.WriteLine("     User ID   : ");
 			Console.Write(" User Password : ");
@@ -270,6 +270,15 @@ namespace LibraryMySQL
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.SetCursorPosition(x, y);
 			Console.Write("{0}", message);
+			Console.ResetColor();
+		}
+
+
+		public void PrintErrorMessage(int x, int y, string errorMessage)// id,password 예외처리 실패
+		{
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.SetCursorPosition(x, y);
+			Console.Write(errorMessage);
 			Console.ResetColor();
 		}
 	}

@@ -17,10 +17,7 @@ namespace LibraryMySQL
         }
 
 
-
-
-
-        int menuNumber;
+        private int menuNumber;
 
         public int SelectMode(int type)
         {

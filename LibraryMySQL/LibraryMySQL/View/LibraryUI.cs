@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 namespace LibraryMySQL
 {
-    internal class LibraryUI
-    {
-		
+	internal class LibraryUI
+	{
+
 		string selectFirst;
 		string selectSecond;
-		
+
 
 		public void PrintMainUI()
-        {
-			Console.SetCursorPosition(0,0);
+		{
+			Console.SetCursorPosition(0, 0);
 			Console.WriteLine();
 			Console.WriteLine("                                                     @@          @@");
 			Console.WriteLine("                                                  (@@              @@)");
@@ -44,12 +44,12 @@ namespace LibraryMySQL
 			Console.WriteLine("                                                         @@__@@");
 
 			Console.WriteLine("                           ENTER : 선택                                             ESC : 나가기   \n");
-		
-		
+
+
 		}
 
-		
-		public void PrintSelectUI(int selectNum,int type)  // type ->1.회원모드,관리자모드   2.로그인,회원가입
+
+		public void PrintSelectUI(int selectNum, int type)  // type ->1.회원모드,관리자모드   2.로그인,회원가입
 		{
 			selectFirst = selectNum == 1 ? "●" : "○";
 			selectSecond = selectNum == 2 ? "●" : "○";
@@ -60,8 +60,8 @@ namespace LibraryMySQL
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
 			Console.Write("                                   │                 ");
-			if (selectNum == 1) 
-				if(type == 1)
+			if (selectNum == 1)
+				if (type == 1)
 					Console.ForegroundColor = ConsoleColor.Green;
 				else
 					Console.ForegroundColor = ConsoleColor.Red;
@@ -92,7 +92,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
 		}
 		public void PrintUserMenuUI(int selectNum)
-        {
+		{
 			Console.Clear();
 			PrintMainUI();  // main 이미지 출력
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
@@ -186,8 +186,8 @@ namespace LibraryMySQL
 
 
 		}
-		public void PrintManagerMenuList(int selectNum,int menuNumber ,string menuName)
-        {
+		public void PrintManagerMenuList(int selectNum, int menuNumber, string menuName)
+		{
 			Console.Write("                                   │                 ");
 			if (selectNum == menuNumber)
 			{
@@ -201,19 +201,19 @@ namespace LibraryMySQL
 			Console.WriteLine("                   │");
 		}
 		public void PrintManagerMenuUI(int selectNum)
-        {
+		{
 			Console.Clear();
 			PrintMainUI();  // main 이미지 출력
 
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
 
-			PrintManagerMenuList(selectNum,1, "도서등록");
-			PrintManagerMenuList(selectNum,2, "도서수정");
-			PrintManagerMenuList(selectNum,3, "도서삭제");
-			PrintManagerMenuList(selectNum,4, "도서검색");
-			PrintManagerMenuList(selectNum,5, "도서출력");
-			PrintManagerMenuList(selectNum,6, "회원정보");
+			PrintManagerMenuList(selectNum, 1, "도서등록");
+			PrintManagerMenuList(selectNum, 2, "도서수정");
+			PrintManagerMenuList(selectNum, 3, "도서삭제");
+			PrintManagerMenuList(selectNum, 4, "도서검색");
+			PrintManagerMenuList(selectNum, 5, "도서출력");
+			PrintManagerMenuList(selectNum, 6, "회원정보");
 
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");
@@ -223,7 +223,7 @@ namespace LibraryMySQL
 		}
 
 		public void PrintProgramStop()
-        {
+		{
 			Console.Clear();
 			PrintMainUI();  // main 이미지 출력
 
@@ -240,7 +240,7 @@ namespace LibraryMySQL
 
 		}
 
-		
+
 		public void PrintBookList()
 		{
 			Console.WriteLine("┌------------------------------------------------┐");
@@ -251,9 +251,9 @@ namespace LibraryMySQL
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
 		public void PrintSearchBook()
-        {
+		{
 			Console.WriteLine();
-			
+
 			Console.WriteLine("  제목으로 찾기 : "); // 18,1
 			Console.WriteLine("  작가명으로 찾기 : "); //19,2
 			Console.Write("  출판사로 찾기 : ");//18,3
@@ -267,96 +267,68 @@ namespace LibraryMySQL
 			Console.WriteLine("(건너띄고자 하는 항목에는 ?를 입력해주세요)");
 
 		}
-		
-		public void PrintBookList(string name,string author, string publisher) // 이름 저자 출판사로 책 검색해서 출력
-        {
+
+		public void ShowBookList(string name, string author, string publisher) // 이름 저자 출판사로 책 검색해서 출력
+		{
 			int[] validIndex = new int[LibraryStart.bookList.Count];
 			int indexCount = 0;
 
-		
 
 			for (int index = 0; index < LibraryStart.bookList.Count; index++)
-            {
-	
-				if (name == null) 
+			{
+				if (name != null && author == null && publisher == null) // O X X 
 				{
-					
-                    if (author != null)
-                    {
-						
-						if (publisher == null)
-						{
-							
-							if (LibraryStart.bookList[index].Author.Contains(author))
-							{						
-								validIndex[indexCount++] = index;
-							}
-						}
-						else
-						{                   //XOO
-							if (LibraryStart.bookList[index].Publisher.Contains(publisher) && LibraryStart.bookList[index].Author.Contains(author))
-								validIndex[indexCount++] = index;
-						}
-                    }
-                    else
-                    {	//XXO
-						if (publisher != null)																
-							if (LibraryStart.bookList[index].Publisher.Contains(publisher))
-								validIndex[indexCount++] = index;						
-					}
-				
+					if (name == LibraryStart.bookList[index].Name)
+						validIndex[indexCount++] = index;
+
 				}
-
-                else
-                {
-					if (author != null)
-					{
-						if (publisher == null)
-						{               //OOX
-							if (LibraryStart.bookList[index].Name.Contains(name) && LibraryStart.bookList[index].Author.Contains(author))
-								validIndex[indexCount++] = index;
-						}
-						else
-						{                  //OOO
-							if (LibraryStart.bookList[index].Name.Contains(name) && LibraryStart.bookList[index].Author.Contains(author) &&
-						LibraryStart.bookList[index].Publisher.Contains(publisher))
-								validIndex[indexCount++] = index;
-
-						}
-					}
-					else
-					{   //OXX
-						if (publisher == null)
-						{
-							if (LibraryStart.bookList[index].Name.Contains(name))
-								validIndex[indexCount++] = index;
-						}
-						else
-						{
-							//OXO
-							if (LibraryStart.bookList[index].Publisher.Contains(publisher) && LibraryStart.bookList[index].Name.Contains(name))
-								validIndex[indexCount++] = index;
-						}
-
-					}
+				else if (name == null && author != null && publisher == null) // X O X
+				{
+					if (author == LibraryStart.bookList[index].Author)
+						validIndex[indexCount++] = index;
 				}
+				else if (name == null && author == null && publisher != null) // X X O
+				{
+					if (publisher == LibraryStart.bookList[index].Publisher)
+						validIndex[indexCount++] = index;
+				}
+				else if (name != null && author != null && publisher == null)//O O X
+				{
+					if (name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author)
+						validIndex[indexCount++] = index;
+				}
+				else if (name == null && author != null && publisher != null)//X O O
+				{
+					if (publisher == LibraryStart.bookList[index].Publisher && author == LibraryStart.bookList[index].Author)
+						validIndex[indexCount++] = index;
+				}
+				else if (name != null && author == null && publisher != null) // O X O
+				{
+					if (publisher == LibraryStart.bookList[index].Publisher && name == LibraryStart.bookList[index].Name)
+						validIndex[indexCount++] = index;
+				}
+				else if (name != null && author != null && publisher != null)//O O O
+				{
+					if (name == LibraryStart.bookList[index].Name && author == LibraryStart.bookList[index].Author &&
+						publisher == LibraryStart.bookList[index].Publisher)
+						validIndex[indexCount++] = index;
+				}
+				/// X X X  값이 다없을때 
 
-				
-					
-            }
+			}
 
 			if (indexCount == 0)
 			{
 				indexCount = LibraryStart.bookList.Count;
-				for(int index = 0; index < indexCount; index++)
+				for (int index = 0; index < indexCount; index++)
 					validIndex[index] = index;
 			}
 
-			for (int index = 0; index< indexCount; index++)
-            {
+			for (int index = 0; index < indexCount; index++)
+			{
 				Console.WriteLine();
 				Console.WriteLine("===========================================================================================================================\n");
-				Console.WriteLine("책아이디 : {0} ",LibraryStart.bookList[validIndex[index]].Id);
+				Console.WriteLine("책아이디 : {0} ", LibraryStart.bookList[validIndex[index]].Id);
 				Console.WriteLine("책 제목 : {0} ", LibraryStart.bookList[validIndex[index]].Name);
 				Console.WriteLine("작가 : {0} ", LibraryStart.bookList[validIndex[index]].Author);
 				Console.WriteLine("출판사 : {0} ", LibraryStart.bookList[validIndex[index]].Publisher);
@@ -370,15 +342,12 @@ namespace LibraryMySQL
 
 
 
+
+
+
+
+
+
 		}
-
-		
-
-		
-
-
-
-		
-
 	}
 }

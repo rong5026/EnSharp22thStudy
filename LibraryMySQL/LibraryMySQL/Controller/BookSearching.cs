@@ -33,8 +33,8 @@ namespace LibraryMySQL
         public void SearchBook() // 책 검색
         {
             Console.Clear();
-             UI.PrintSearchBook();
-             UI.PrintBookList(null,null,null); //  전체 북리스트 출력.
+            UI.PrintSearchBook();
+            UI.ShowBookList(null,null,null); //  전체 북리스트 출력.
             Console.SetCursorPosition(18, 1); // 커서이동
 
              keyInput = Console.ReadKey(true);
@@ -49,7 +49,7 @@ namespace LibraryMySQL
 
                 Console.Clear();
                  UI.PrintSearchBook();
-                 UI.PrintBookList(name, author, publisher);
+                 UI.ShowBookList(name, author, publisher);
 
                  keyInput = Console.ReadKey(true);
                 if ( keyInput.Key == ConsoleKey.Escape)
@@ -63,7 +63,7 @@ namespace LibraryMySQL
 
             Console.Clear();
              userModeUI.BorrowBook();
-             UI.PrintBookList(null, null, null); //  전체 북리스트 출력.
+             UI.ShowBookList(null, null, null); //  전체 북리스트 출력.
             Console.SetCursorPosition(35, 2); // 커서이동
 
 

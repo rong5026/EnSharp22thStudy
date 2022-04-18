@@ -52,20 +52,16 @@ namespace LibraryMySQL
                 {
                    
                     table.Close();
-                    connection.Close();
-                    Console.ReadLine();
+                    connection.Close();                
                     return Constants.LOGIN_SUCCESS;
                 }
                    
 
             }
-          
-          
-
+                 
             table.Close();
             connection.Close();
-            Console.ReadLine();
-
+   
             return Constants.LOGIN_FAIL;
         }
 
@@ -77,24 +73,6 @@ namespace LibraryMySQL
             string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age, user_phonenumber,user_address) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');", id, password, name, age, phoneNumber, address);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
-
-            try//예외 처리
-            {
-
-                if (command.ExecuteNonQuery() == 1)
-                {
-                    Console.WriteLine("정상적으로 갔다");
-                }
-                else
-                {
-                    Console.WriteLine("비정상 갔다");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
 
             connection.Close();
         }

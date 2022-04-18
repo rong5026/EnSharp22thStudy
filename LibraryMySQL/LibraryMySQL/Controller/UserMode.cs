@@ -23,9 +23,11 @@ namespace LibraryMySQL
         public UserMode(LibraryUI UI, SelectionMode mode,MySQlData mySQlData)
         {
 
-            register = new Register(userModeUI);
+
+            
             userMenu = new UserMenu(UI, mode, userModeUI);
             userModeUI = new UserModeUI();
+            register = new Register(userModeUI, mySQlData);
             login = new Login(userModeUI, mySQlData);
             this.UI = UI;
             this.mode = mode;
@@ -58,8 +60,7 @@ namespace LibraryMySQL
                         else if(isLoggedIn== Constants.LOGIN_FAIL)
                         {
                             Console.Clear();
-                            userModeUI.PrintLoginFail(); // 로그인 실패 UI
-                                                                                                    
+                            userModeUI.PrintLoginFail(); // 로그인 실패 UI                                                                                                    
                             return;
                         }
                         return;                 
