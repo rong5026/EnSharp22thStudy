@@ -13,15 +13,15 @@ namespace LibraryMySQL
 
         bool check;     
         string idPassword;
+       
         public ValidInput()
         {
-            userModeUI= new UserModeUI();
+            userModeUI = new UserModeUI();
         }
         public ValidInput(UserModeUI userModeUI)
         {
-            this.userModeUI = userModeUI;   
+            this.userModeUI = userModeUI;
         }
-       
         public string EnterIdOrPassword(int x,int y) // 좌표
         {
            
@@ -56,7 +56,7 @@ namespace LibraryMySQL
                 if (LibraryStart.userList[index].Id == InputVO.id)
                 {
                     userModeUI.PrintMessage(x, y, InputVO.error);
-                    Thread.Sleep(1000);
+                 
 
 
                     return EnterId(x, y);

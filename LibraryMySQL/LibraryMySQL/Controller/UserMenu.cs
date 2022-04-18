@@ -26,7 +26,7 @@ namespace LibraryMySQL
             this.UI = UI;  
             this.userModeUI = userModeUI;
             this.mode = mode;
-            validInput = new ValidInput();
+            validInput = new ValidInput(userModeUI);
             loginedUser = new LoginedUser();
             book = new BookSearching(validInput,UI);
 

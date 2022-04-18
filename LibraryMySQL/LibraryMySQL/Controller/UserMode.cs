@@ -35,7 +35,7 @@ namespace LibraryMySQL
         public void StartUserMode()
         {
 
-             UI.PrintMainUI();
+            UI.PrintMainUI();
             Console.SetWindowSize(125, 60);  //메인화면
 
 

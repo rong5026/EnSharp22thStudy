@@ -15,7 +15,7 @@ namespace LibraryMySQL
 
 		public void PrintMainUI()
         {
-			
+			Console.SetCursorPosition(0,0);
 			Console.WriteLine();
 			Console.WriteLine("                                                     @@          @@");
 			Console.WriteLine("                                                  (@@              @@)");

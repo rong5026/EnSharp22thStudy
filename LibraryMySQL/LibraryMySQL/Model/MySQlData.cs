@@ -18,10 +18,8 @@ namespace LibraryMySQL
             return mysqlData;
         }
 
-        public void UseDatabase(string type)
+        public MySqlConnection UserConnection()
         {
-
-
             string database = "library";
             string id = "root";
             string password = "0000";
@@ -30,12 +28,24 @@ namespace LibraryMySQL
             MySqlConnection connection =
         new MySqlConnection("Server=localhost;Port=3306;Database=library;Uid=root;Pwd=0000;");
 
-            string insertQuery = string.Format("INSERT INTO user_data (id,password,user_name) VALUES (2,1,\"hong\");");
+            return connection;
+        }
+        public void FindTableData(string tableName)
+        {
+
+            MySqlConnection connection = UserConnection();
+
+
+            //  string insertQuery = string.Format("INSERT INTO user_data (id,password,user_name) VALUES (2,1,\"hong\");");
+
             connection.Open();
+            string insertQuery = string.Format("SELECT * FROM user_data");
+           
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
 
             try//예외 처리
             {
+                
 
                 if (command.ExecuteNonQuery() == 1)
                 {
