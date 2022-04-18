@@ -10,9 +10,16 @@ namespace LibraryMySQL
     internal class Login
     {
 
-        UserModeUI userModeUI = new UserModeUI();
+        UserModeUI userModeUI;
         ConsoleKeyInfo keyInput;
-        ValidInput validInput = new ValidInput();
+        ValidInput validInput ;
+
+        public Login(UserModeUI userModeUI)
+        {
+            this.userModeUI = userModeUI;
+            validInput = new ValidInput(userModeUI);
+            
+        }
         public int UserLogin() 
         {
             Console.Clear();

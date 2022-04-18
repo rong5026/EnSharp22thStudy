@@ -9,14 +9,27 @@ namespace LibraryMySQL
     internal class UserMode
     {
 
-        LibraryUI UI = new LibraryUI();
-        SelectionMode mode = new SelectionMode();
-        UserMenu userMenu = new UserMenu();
-        Login login = new Login();
-        Register register = new Register();
-        UserModeUI userModeUI = new UserModeUI();
+        LibraryUI UI;
+        SelectionMode mode;
+
+        UserMenu userMenu;
+        Login login;
+        Register register;
+        UserModeUI userModeUI;
+
         int isLoggedIn;
         int menuNumber = 1;
+
+        public UserMode(LibraryUI UI, SelectionMode mode)
+        {
+            register = new Register(userModeUI);
+            userMenu = new UserMenu(UI, mode, userModeUI);
+            userModeUI = new UserModeUI();
+            login = new Login(userModeUI);
+            this.UI = UI;
+            this.mode = mode;
+
+        }
 
       
         public void StartUserMode()

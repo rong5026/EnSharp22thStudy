@@ -16,12 +16,12 @@ namespace LibraryMySQL
         public static List<UserVO> userList; 
         public static List<BookVO> bookList;
 
-        UserVO user = new UserVO();
-        BookVO bookVO = new BookVO();
-        LibraryUI UI = new LibraryUI();
-        SelectionMode mode = new SelectionMode();
-        UserMode userMode = new UserMode();
-        ManagerMode managerMode = new ManagerMode();
+        UserVO user;
+        BookVO bookVO;
+        LibraryUI UI;
+        SelectionMode mode;
+        UserMode userMode;
+        ManagerMode managerMode;
         int menuNumber;
 
 
@@ -29,13 +29,22 @@ namespace LibraryMySQL
 
         public LibraryStart()
         {
-           
+            user = new UserVO();
+            bookVO = new BookVO();
+
             userList = new List<UserVO>();
             bookList = new List<BookVO>();
              user = new UserVO(null, null, null, null, null, null);  //현재 로그인한 계정
             userList.Add( user);
+            UI = new LibraryUI();
+            mode = new SelectionMode(UI);
+          
+            userMode = new UserMode(UI,mode);
+            managerMode = new ManagerMode(UI, mode, bookVO);
 
-             user = new UserVO("hong1234", "hong1234", "홍영환", "23", "010-8791-4859", "서울특별시"); // 계정1
+
+
+            user = new UserVO("hong1234", "hong1234", "홍영환", "23", "010-8791-4859", "서울특별시"); // 계정1
             userList.Add( user);
              user = new UserVO("abcd1234", "abcd1234", "피카츄", "21", "010-1234-1234", "서울특별시 오류동"); // 계정2
             userList.Add( user);
@@ -73,7 +82,7 @@ namespace LibraryMySQL
          
              UI.PrintMainUI();
             Console.SetWindowSize(125, 60);
-
+            Console.CursorVisible = false;
             while (Constants.PROGRAM_ON)
             {
                 menuNumber =  mode.SelectMode(Constants.USER_MANAGER); // 회원모드 . 유저모드 선택

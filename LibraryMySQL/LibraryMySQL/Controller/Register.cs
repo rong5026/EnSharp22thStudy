@@ -10,11 +10,17 @@ namespace LibraryMySQL
 
     {
         ConsoleKeyInfo keyInput;
-        UserModeUI userModeUI = new UserModeUI();
-        UserVO user = new UserVO();
-        ValidInput validInput = new ValidInput();
+        UserModeUI userModeUI;
+        UserVO user;
+        ValidInput validInput;
         string[] userData = new string[7];
 
+        public Register(UserModeUI userModeUI)
+        {
+            user = new UserVO();
+            this.userModeUI = userModeUI;
+            validInput = new ValidInput(userModeUI);
+        }
         public bool RegistUser()
         {
 

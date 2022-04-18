@@ -8,15 +8,27 @@ namespace LibraryMySQL
 {
     internal class ManagerMode
     {
-
-        LibraryUI UI = new LibraryUI();
         ConsoleKeyInfo keyInput;
-        SelectionMode mode = new SelectionMode();
-        BookSearching book = new BookSearching();
-        ManagerModeUI ManagerUI = new ManagerModeUI();
-        BookVO bookVO = new BookVO();
-        ValidInput validInput = new ValidInput();
+        LibraryUI UI;       
+        SelectionMode mode;
+        BookVO bookVO;
+
+        BookSearching book;
+        ManagerModeUI ManagerUI;
+
+        ValidInput validInput;
         int menuNumber;
+
+
+        public ManagerMode(LibraryUI UI, SelectionMode mode, BookVO bookVO)
+        {
+            this.UI = UI;
+            this.mode = mode;
+            this.bookVO = bookVO;
+            ManagerUI = new ManagerModeUI(UI);
+            validInput = new ValidInput();
+            book = new BookSearching(validInput, UI);
+        }
         public void StartManagerMode()
         {
              UI.PrintMainUI();

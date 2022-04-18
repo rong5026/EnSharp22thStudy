@@ -9,12 +9,19 @@ namespace LibraryMySQL
 {
     internal class ValidInput
     {
-        UserModeUI userModeUI = new UserModeUI();
+        UserModeUI userModeUI;
 
         bool check;     
         string idPassword;
-      
-
+        public ValidInput()
+        {
+            userModeUI= new UserModeUI();
+        }
+        public ValidInput(UserModeUI userModeUI)
+        {
+            this.userModeUI = userModeUI;   
+        }
+       
         public string EnterIdOrPassword(int x,int y) // 좌표
         {
            

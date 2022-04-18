@@ -8,20 +8,29 @@ namespace LibraryMySQL
 {
     internal class UserMenu
     {
-
-        BookSearching book = new BookSearching();
         ConsoleKeyInfo keyInput;
-        SelectionMode mode = new SelectionMode();
-        LibraryUI UI = new LibraryUI();
-        UserModeUI userModeUI = new UserModeUI();
-        LoginedUser loginedUser = new LoginedUser();
-        ValidInput validInput = new ValidInput();
+        SelectionMode mode;
+        LibraryUI UI;
+        UserModeUI userModeUI;
+
+        BookSearching book;
+        LoginedUser loginedUser;
+        ValidInput validInput;
 
 
         int userid;
         bool delete;
         int menuNumber;
-      
+        public UserMenu(LibraryUI UI ,SelectionMode mode, UserModeUI userModeUI)
+        {
+            this.UI = UI;  
+            this.userModeUI = userModeUI;
+            this.mode = mode;
+            validInput = new ValidInput();
+            loginedUser = new LoginedUser();
+            book = new BookSearching(validInput,UI);
+
+        }
 
         public void StartUserMenu()
         {

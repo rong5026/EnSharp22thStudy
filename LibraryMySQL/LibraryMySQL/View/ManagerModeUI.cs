@@ -8,7 +8,12 @@ namespace LibraryMySQL
 {
     internal class ManagerModeUI
     {
-		LibraryUI UI = new LibraryUI();
+		LibraryUI UI;
+
+		public ManagerModeUI(LibraryUI UI)
+        {
+			this.UI = UI;	
+        }
 		public void PrintRegisterBook()
 		{
 			Console.WriteLine("┌---------------------------------------------------------------------┐");

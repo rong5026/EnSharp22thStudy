@@ -8,9 +8,13 @@ namespace LibraryMySQL
 {
     internal class SelectionMode
     {
-        LibraryUI UI = new LibraryUI();
+        LibraryUI UI;
         ConsoleKeyInfo keyInput;
 
+        public SelectionMode(LibraryUI UI)
+        {
+            this.UI = UI;   
+        }
 
 
 

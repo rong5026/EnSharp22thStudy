@@ -8,21 +8,25 @@ namespace LibraryMySQL
 {
     internal class BookSearching
     {
-        ValidInput validInput = new ValidInput();
-        LibraryUI UI = new LibraryUI();
+        ValidInput validInput;
+        LibraryUI UI;
         ConsoleKeyInfo keyInput;
-        UserModeUI userModeUI = new UserModeUI();
-        LoginedUser loginedUser = new LoginedUser();
+        UserModeUI userModeUI;
+        LoginedUser loginedUser;
         string name;
         string author;
         string publisher;
 
         string bookId;
-        public BookSearching()
+        public BookSearching(ValidInput validInput, LibraryUI UI)
         {
+            loginedUser = new LoginedUser();
+            userModeUI = new UserModeUI();
             name = null;
             author = null;
             publisher = null;
+            this.validInput = validInput;
+            this.UI = UI;
             
         }
 
