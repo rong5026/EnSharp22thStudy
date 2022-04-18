@@ -43,18 +43,13 @@ namespace LibraryMySQL
             UI = new LibraryUI();
             mode = new SelectionMode(UI);
           
-            userMode = new UserMode(UI,mode);
+            userMode = new UserMode(UI,mode, mysqlData);
             managerMode = new ManagerMode(UI, mode, bookVO);
 
 
 
-
           
-            user = new UserVO("hong1234", "hong1234", "홍영환", "23", "010-8791-4859", "서울특별시"); // 계정1
-            userList.Add( user);
-             user = new UserVO("abcd1234", "abcd1234", "피카츄", "21", "010-1234-1234", "서울특별시 오류동"); // 계정2
-            userList.Add( user);
-
+          
 
 
             //int id, string name, string author, string publisher, int bookCount, int price, string date

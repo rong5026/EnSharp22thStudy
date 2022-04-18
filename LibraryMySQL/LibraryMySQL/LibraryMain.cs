@@ -22,13 +22,12 @@ namespace LibraryMySQL
 
             return connection;
         }
-        public void FindTableData(string tableName)
+        public void FindTableData(string tableName) // 전체 데이터 출력
         {
            
             MySqlConnection connection = UserConnection();
            
-
-            //string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age,user_phonenumber,user_address) VALUES (2,1,\"hong\",12,123,12312311);");
+      
             string insertQuery = string.Format("SELECT * FROM user_data");
 
             connection.Open();
@@ -46,7 +45,7 @@ namespace LibraryMySQL
             table.Close();
             connection.Close();
         }
-        public void InsertUserData(string id, string password, string name, string age, string phoneNumber, string address)
+        public void InsertUserData(string id, string password, string name, string age, string phoneNumber, string address) // 회원가입 하는 기능
         {
             MySqlConnection connection = UserConnection();
             connection.Open();
@@ -78,10 +77,10 @@ namespace LibraryMySQL
         static void Main(string[] args)
         {
 
-             LibraryMain main = new LibraryMain();
-             main.InsertUserData("abcd1234", "abcd1234", "피카츄", "21", "010-1234-1234", "서울특별시 오류동");
-            //LibraryStart start = new LibraryStart();
-            // start.StartProgram();
+            // LibraryMain main = new LibraryMain();
+            // main.InsertUserData("abcd1234", "abcd1234", "피카츄", "21", "010-1234-1234", "서울특별시 오류동");
+            LibraryStart start = new LibraryStart();
+             start.StartProgram();
 
 
 

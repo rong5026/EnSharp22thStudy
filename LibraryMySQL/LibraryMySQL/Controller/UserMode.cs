@@ -16,18 +16,20 @@ namespace LibraryMySQL
         Login login;
         Register register;
         UserModeUI userModeUI;
-
+        MySQlData mySQlData;
         int isLoggedIn;
         int menuNumber = 1;
 
-        public UserMode(LibraryUI UI, SelectionMode mode)
+        public UserMode(LibraryUI UI, SelectionMode mode,MySQlData mySQlData)
         {
+
             register = new Register(userModeUI);
             userMenu = new UserMenu(UI, mode, userModeUI);
             userModeUI = new UserModeUI();
-            login = new Login(userModeUI);
+            login = new Login(userModeUI, mySQlData);
             this.UI = UI;
             this.mode = mode;
+            this.mySQlData = mySQlData;
 
         }
 
@@ -47,7 +49,7 @@ namespace LibraryMySQL
                 switch (menuNumber)
                 {
                     case Constants.LOGIN_MODE: // 로그인
-                        isLoggedIn =  login.UserLogin(); // 로그인했으면 true, 안했으면 false
+                        isLoggedIn =  login.LoginUser(); // 로그인했으면 true, 안했으면 false
                                                                
                         if (isLoggedIn== Constants.LOGIN_SUCCESS)
                         {

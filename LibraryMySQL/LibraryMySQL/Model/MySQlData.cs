@@ -30,39 +30,43 @@ namespace LibraryMySQL
 
             return connection;
         }
-        public void FindTableData(string tableName)
+        public int CheckLogin(string id, string passWord) // 전체 데이터 출력
         {
 
             MySqlConnection connection = UserConnection();
 
 
-            //  string insertQuery = string.Format("INSERT INTO user_data (id,password,user_name) VALUES (2,1,\"hong\");");
+            string insertQuery = string.Format("SELECT * FROM user_data");
 
             connection.Open();
-            string insertQuery = string.Format("SELECT * FROM user_data");
-           
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
 
-            try//예외 처리
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
             {
                 
-
-                if (command.ExecuteNonQuery() == 1)
+                if (  (string)table["user_id"] == id && (string)table["user_password"] == passWord)
                 {
-                    Console.WriteLine("정상적으로 갔다");
+                   
+                    table.Close();
+                    connection.Close();
+                    Console.ReadLine();
+                    return Constants.LOGIN_SUCCESS;
                 }
-                else
-                {
-                    Console.WriteLine("비정상 갔다");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+                   
 
+            }
           
+          
+
+            table.Close();
             connection.Close();
+            Console.ReadLine();
+
+            return Constants.LOGIN_FAIL;
         }
 
         public void InsertUserData(string id, string password, string name,string age,string phoneNumber, string address )
@@ -70,7 +74,7 @@ namespace LibraryMySQL
             MySqlConnection connection = UserConnection();
             connection.Open();
 
-            string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age, user_phonenumber,user_address) VALUES ({0},{1},{2},{3},{4},{5});",id,password,name,age,phoneNumber,address);
+            string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age, user_phonenumber,user_address) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');", id, password, name, age, phoneNumber, address);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
 
