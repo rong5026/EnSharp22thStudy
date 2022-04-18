@@ -39,8 +39,8 @@ namespace LibraryMySQL
             {
                 Console.Clear();
                 userModeUI.PrintLogin(); // 위에 로그인 화면 
-                id =  validInput.EnterIdOrPassword(17,6); // id 입력
-                passWord =  validInput.EnterIdOrPassword(17,7); // password입력
+                id =  validInput.EnterLoginID(17,6); // id 입력
+                passWord =  validInput.EnterLoginPassWord(17,7); // password입력
 
      
                 return mySQlData.CheckLogin(id, passWord); //회원가입 성공시 1리턴 실패시 0리턴

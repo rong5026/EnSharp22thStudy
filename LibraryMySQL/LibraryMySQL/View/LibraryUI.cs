@@ -91,101 +91,7 @@ namespace LibraryMySQL
 
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
 		}
-		public void PrintUserMenuUI(int selectNum)
-		{
-			Console.Clear();
-			PrintMainUI();  // main 이미지 출력
-			Console.WriteLine("                                   ┌------------------------------------------------┐");
-			Console.WriteLine("                                   │                                                │");
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 1)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서찾기", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 2)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서대여", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 3)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서대여확인", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("               │");
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 4)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서반납", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-			Console.Write("                                   │                 ");
-			if (selectNum == 5)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  도서반납내역", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("               │");
-			Console.Write("                                   │                 ");
-			if (selectNum == 6)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  회원정보수정", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("               │");
-
-			Console.Write("                                   │                 ");
-			if (selectNum == 7)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				selectFirst = "●";
-			}
-			else
-				selectFirst = "○";
-			Console.Write("{0}  회원탈퇴", selectFirst);
-			Console.ResetColor();
-			Console.WriteLine("                   │");
-			Console.WriteLine("                                   │                                                │");
-			Console.WriteLine("                                   └------------------------------------------------┘");
-			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
-
-
-		}
+		
 		public void PrintManagerMenuList(int selectNum, int menuNumber, string menuName)
 		{
 			Console.Write("                                   │                 ");
@@ -200,27 +106,7 @@ namespace LibraryMySQL
 			Console.ResetColor();
 			Console.WriteLine("                   │");
 		}
-		public void PrintManagerMenuUI(int selectNum)
-		{
-			Console.Clear();
-			PrintMainUI();  // main 이미지 출력
-
-			Console.WriteLine("                                   ┌------------------------------------------------┐");
-			Console.WriteLine("                                   │                                                │");
-
-			PrintManagerMenuList(selectNum, 1, "도서등록");
-			PrintManagerMenuList(selectNum, 2, "도서수정");
-			PrintManagerMenuList(selectNum, 3, "도서삭제");
-			PrintManagerMenuList(selectNum, 4, "도서검색");
-			PrintManagerMenuList(selectNum, 5, "도서출력");
-			PrintManagerMenuList(selectNum, 6, "회원정보");
-
-			Console.WriteLine("                                   │                                                │");
-			Console.WriteLine("                                   └------------------------------------------------┘");
-
-			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
-
-		}
+	
 
 		public void PrintProgramStop()
 		{
@@ -241,33 +127,7 @@ namespace LibraryMySQL
 		}
 
 
-		public void PrintBookList()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                   책 목 록 !!                  │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│      (뒤로가려면 아무키 1개를 눌러주세요)      │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-		}
-		public void PrintSearchBook()
-		{
-			Console.WriteLine();
-
-			Console.WriteLine("  제목으로 찾기 : "); // 18,1
-			Console.WriteLine("  작가명으로 찾기 : "); //19,2
-			Console.Write("  출판사로 찾기 : ");//18,3
-			Console.WriteLine("\n");
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("(뒤로가기 : 처음에 ESC 눌러주세요)");
-			Console.ResetColor();
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine("(입력하기 : 아무런 값1개를 입력 후 값을 입력해주세요.)");
-			Console.ResetColor();
-			Console.WriteLine("(건너띄고자 하는 항목에는 ?를 입력해주세요)");
-
-		}
-
+		
 		public void ShowBookList(string name, string author, string publisher) // 이름 저자 출판사로 책 검색해서 출력
 		{
 			int[] validIndex = new int[LibraryStart.bookList.Count];

@@ -50,7 +50,9 @@ namespace LibraryMySQL
 
         //LibraryStart
         public const int USER_MANAGER = 1;
-  
+
+
+        public const string INPUT_EMPTY = "";
 
 
 

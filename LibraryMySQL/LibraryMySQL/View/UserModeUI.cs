@@ -12,7 +12,7 @@ namespace LibraryMySQL
 		
 		int bookIndex;
 		string bookTime;
-		LoginedUser loginedUser = new LoginedUser();
+		
 
 		public void PrintLogin()
 		{
@@ -146,124 +146,8 @@ namespace LibraryMySQL
 
 
 
-		public void BorrowBook()
-		{
-			Console.WriteLine("┌-------------------------------------------------------------------------------------------┐");
-			Console.WriteLine("│                                                                                           │");
-			Console.WriteLine("│    빌릴 책의 ID를 입력해 주세요 :                                                         │"); //35, 2
-			Console.WriteLine("│    값의 범위 : 0~ 999                                                                     │");
-			Console.WriteLine("│                                                                                           │");
-			Console.WriteLine("│    뒤로가기 : 처음에 ESC를 눌러주세요                                                     │");
-			Console.WriteLine("│    입력하기: 아무런 값 1개를 입력 후 값을 입력해주세요.                                   │");
-			Console.WriteLine("└-------------------------------------------------------------------------------------------┘\n");
-		}
-
-
-		public void ReturnBook()
-		{
-			Console.WriteLine("┌----------------------------------------------------------------------------------------------------┐");
-			Console.WriteLine("│                                                                                                    │");
-			Console.WriteLine("│    반납 할 책의 ID를 입력해 주세요 :                                                               │"); //38 2
-			Console.WriteLine("│                                                                                                    │");
-			Console.WriteLine("│    뒤로가기 : 처음에 ESC를 눌러주세요                                                              │");
-			Console.WriteLine("│    입력하기: 아무런 값 1개를 입력 후 값을 입력해주세요.                                            │");
-			Console.WriteLine("└----------------------------------------------------------------------------------------------------┘\n");
-		}
-		public void ReturnBookSuccess()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                   반 납  완 료                 │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-		}
-
-		public void PrintRentedBookList(int userIndex)
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                대 여 한 책 목 록               │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요)     │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-
-			for (int index = 0; index < LibraryStart.userList[userIndex].RendtedBookId.Count; index++) // 빌려간 책의 수만큼 반복
-			{
-				Console.WriteLine();
-				Console.WriteLine("===========================================================================================================================\n");
-				Console.WriteLine("책아이디 : {0} ", LibraryStart.bookList[LibraryStart.userList[userIndex].RendtedBookId[index]].Id);
-				Console.WriteLine("책 제목 : {0} ", LibraryStart.bookList[LibraryStart.userList[userIndex].RendtedBookId[index]].Name);
-				Console.WriteLine("작가 : {0} ", LibraryStart.bookList[LibraryStart.userList[userIndex].RendtedBookId[index]].Author);
-				Console.WriteLine("출판사 : {0} ", LibraryStart.bookList[LibraryStart.userList[userIndex].RendtedBookId[index]].Publisher);
-				Console.WriteLine("수량 : {0} ", LibraryStart.bookList[LibraryStart.userList[userIndex].RendtedBookId[index]].BookCount);
-				Console.WriteLine("가격 : {0} ", LibraryStart.bookList[LibraryStart.userList[userIndex].RendtedBookId[index]].Price);
-				Console.WriteLine("출시일 : {0} ", LibraryStart.bookList[LibraryStart.userList[userIndex].RendtedBookId[index]].Date);
-
-
-			}
-
-
-
-
-		}
+		
 	
-
-
-		public void PrintReturnBookTime()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                반 납 한 책 목 록               │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│       (뒤로가려면 아무키 1개를 눌러주세요)     │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-			Console.WriteLine("\n");
-
-			for (int index = 0; index < LibraryStart.userList[loginedUser.SearchLoginUser()].ReturnBookTime.Count; index++)
-			{
-				bookIndex = LibraryStart.userList[loginedUser.SearchLoginUser()].ReturnBookId[index];
-				bookTime = LibraryStart.userList[loginedUser.SearchLoginUser()].ReturnBookTime[index];
-				Console.WriteLine("===========================================================================================================================\n");
-				Console.WriteLine("반납시간 : {0} ", bookTime);
-				Console.WriteLine("책아이디 : {0} ", LibraryStart.bookList[bookIndex].Id);
-				Console.WriteLine("책 제목 : {0} ", LibraryStart.bookList[bookIndex].Name);
-				Console.WriteLine("작가 : {0} ", LibraryStart.bookList[bookIndex].Author);
-				Console.WriteLine("출판사 : {0} ", LibraryStart.bookList[bookIndex].Publisher);
-				Console.WriteLine("수량 : {0} ", LibraryStart.bookList[bookIndex].BookCount);
-				Console.WriteLine("가격 : {0} ", LibraryStart.bookList[bookIndex].Price);
-				Console.WriteLine("출시일 : {0} ", LibraryStart.bookList[bookIndex].Date);
-
-			}
-
-
-		}
-		public void PrintUserData(int userId)
-		{
-			Console.WriteLine("        ◈현재 등록되어 있는 정보◈\n\n");
-			Console.WriteLine(" User ID (8~ 15글자 영어, 숫자포함) : {0}", LibraryStart.userList[userId].Id);
-			Console.WriteLine(" User PW (8~ 15글자 영어, 숫자포함) : {0}", LibraryStart.userList[userId].Password);
-			Console.WriteLine(" User Name (한글,영어 포함 2글자 이상) : {0}", LibraryStart.userList[userId].Name);
-			Console.WriteLine(" User Age (   자연수 1세 ~ 200세   ) : {0}", LibraryStart.userList[userId].Age);
-			Console.WriteLine(" User PhoneNumber (   01x-xxxx-xxxx  ) : {0}", LibraryStart.userList[userId].PhoneNumber);
-			Console.Write(" User Address (     한글 주소     ) : {0}", LibraryStart.userList[userId].Address);
-			Console.WriteLine("\n\n");
-			Console.WriteLine("           ◈변경 할 정보 입력 ◈\n\n");
-			Console.WriteLine(" User ID (8~ 15글자 영어, 숫자포함) : ");//38 21
-			Console.WriteLine(" User PW (8~ 15글자 영어, 숫자포함) : ");//38 22
-			Console.WriteLine(" User PW  (     Password 확인     ) : ");//38 23
-			Console.WriteLine(" User Name (한글,영어 포함 2글자 이상) : ");//41 24
-			Console.WriteLine(" User Age (  0,자연수 0세 ~ 200세   ) : ");//39 25
-			Console.WriteLine(" User PhoneNumber (   01x-xxxx-xxxx  ) : ");//41 26
-			Console.WriteLine(" User Address (도로명 주소 형식 ) : \n");//46 13
-			Console.WriteLine("광역지방자치단체 (기초지방자치단체) (시 군 구) (읍 면) (도로명) (건물번호) ");
-			Console.WriteLine("예시1 : 경기도 수원시 영통구 영통로124 ");
-			Console.WriteLine("예시2 : 서울특별시 강남구 남부순환로 지하2744");
-			Console.WriteLine("예시3 : 서울특별시 구로구 경인로248-29");
-
-			Console.SetCursorPosition(38, 21);
-
-		}	
 
 		public void PrintMessage(int x, int y,string message)
         {

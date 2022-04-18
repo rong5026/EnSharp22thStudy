@@ -9,6 +9,7 @@ namespace LibraryMySQL
     internal class Register
 
     {
+
         ConsoleKeyInfo keyInput;
         UserModeUI userModeUI;
 

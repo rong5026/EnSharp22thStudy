@@ -9,7 +9,7 @@ namespace LibraryMySQL
 {
     internal class LibraryMain
     {
-
+        /*
         public MySqlConnection UserConnection()
         {
             string database = "library";
@@ -74,6 +74,7 @@ namespace LibraryMySQL
 
             connection.Close();
         }
+        */
         static void Main(string[] args)
         {
 
