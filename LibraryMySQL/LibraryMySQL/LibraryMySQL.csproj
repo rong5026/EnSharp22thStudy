@@ -86,18 +86,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\BookSearching.cs" />
+    <Compile Include="Controller\Login.cs" />
+    <Compile Include="Controller\LoginedUser.cs" />
+    <Compile Include="Controller\ManagerMode.cs" />
+    <Compile Include="Controller\Register.cs" />
+    <Compile Include="Controller\SelectionMode.cs" />
+    <Compile Include="Controller\UserMenu.cs" />
+    <Compile Include="Controller\UserMode.cs" />
+    <Compile Include="Controller\ValidInput.cs" />
+    <Compile Include="LibraryMain.cs" />
+    <Compile Include="LibraryStart.cs" />
+    <Compile Include="Model\BookVO.cs" />
+    <Compile Include="Model\Const.cs" />
     <Compile Include="Model\Constants.cs" />
+    <Compile Include="Model\InputVO.cs" />
     <Compile Include="Model\MySQlData.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Model\UserVO.cs" />
+    <Compile Include="Model\VariableData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\LibraryUI.cs" />
+    <Compile Include="View\ManagerModeUI.cs" />
+    <Compile Include="View\UserModeUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
