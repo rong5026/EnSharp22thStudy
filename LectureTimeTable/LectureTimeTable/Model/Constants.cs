@@ -25,6 +25,7 @@ namespace LectureTimeTable
 
         public const int LECTURE_DEPARTMENT = 1; // 개설 학과 전공
         public const int LECTURE_DIVISION = 2; // 이수구분
+        public const int LECTURE_CLASSNUMBER = 2; // 학수번호,분반
         public const int LECTURE_NAME = 3; // 교과목명
         public const int PROFESSOR = 4; // 교수명
         public const int GRADE = 5; // 학년
@@ -67,6 +68,25 @@ namespace LectureTimeTable
         public const string INPUT_EMPTY = "";
 
         public const int COUNT_ZERO = 0;
+
+        public const int MONDAY = 13; // 요일
+        public const int TUESDAY = 46;
+        public const int WEDNESDAY = 79;
+        public const int THURSDAY = 112;
+        public const int FRIDAY = 145;
+
+        public const int TIMETABLE_MONDAY = 2; // 시간표 엑셀에 넣을 때 요일
+        public const int TIMETABLE_TUESDAY = 3;
+        public const int TIMETABLE_WEDNESDAY = 4;
+        public const int TIMETABLE_THURSDAY = 5;
+        public const int TIMETABLE_FRIDAY = 6;
+
+        public const int FIRST_TIMETYPE = 1;
+        public const int SECOND_TIMETYPE = 4;
+        public const int THIRD_TIMETYPE = 2;
+
+
+
 
 
 

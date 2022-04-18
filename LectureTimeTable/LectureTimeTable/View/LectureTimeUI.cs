@@ -24,12 +24,12 @@ namespace LectureTimeTable
 
             PrintCenter("=========================================== 강의 시간표 조회 ===========================================", Constants.WIDTH-7);
             Console.WriteLine();
-			PrintLectureTimeList(selectNum, 1, "개설 학과 전공"); // 50 10 에 이제 리스트 보여주면됨
-			PrintLectureTimeList(selectNum, 2, "이수 구분");
-			PrintLectureTimeList(selectNum, 3, "교과목명");
-			PrintLectureTimeList(selectNum, 4, "교수명");
-			PrintLectureTimeList(selectNum, 5, "학년");
-			PrintLectureTimeList(selectNum, 6, "조회");
+			PrintLectureTimeList(selectNum, Constants.LECTURE_DEPARTMENT, "개설 학과 전공"); // 50 10 에 이제 리스트 보여주면됨
+			PrintLectureTimeList(selectNum, Constants.LECTURE_DIVISION, "이수 구분");
+			PrintLectureTimeList(selectNum, Constants.LECTURE_NAME, "교과목명");
+			PrintLectureTimeList(selectNum, Constants.PROFESSOR, "교수명");
+			PrintLectureTimeList(selectNum, Constants.GRADE, "학년");
+			PrintLectureTimeList(selectNum, Constants.CHECK, "조회");
 
 			PrintCenter("=========================================================================================================", Constants.WIDTH+1);
 			PrintCenter(" ↑ 또는 ↓ 키를 눌러 메뉴고르고 ← 또는 → 키를 이용해 선택하세요.", Constants.WIDTH-30);
@@ -55,20 +55,20 @@ namespace LectureTimeTable
 		public void PrintLectureDepartment(int selectNum)// 학과
         {
 			Console.SetCursorPosition(60, 10);
-			PrintLectureHorisionList(selectNum, 1, "전체");
-			PrintLectureHorisionList(selectNum, 2, "컴퓨터공학과");
-			PrintLectureHorisionList(selectNum, 3, "지능기전공학부");
-			PrintLectureHorisionList(selectNum, 4, "소프트웨어학과");
-			PrintLectureHorisionList(selectNum, 5, "기계항공우주공학부");
+			PrintLectureHorisionList(selectNum, Constants.LECTURE_ALL, "전체");
+			PrintLectureHorisionList(selectNum, Constants.COMPUTER_DEPARTMENT, "컴퓨터공학과");
+			PrintLectureHorisionList(selectNum, Constants.INTELLIGENT_DEPARTMENT, "지능기전공학부");
+			PrintLectureHorisionList(selectNum, Constants.SOFTWARE_DEPARTMENT, "소프트웨어학과");
+			PrintLectureHorisionList(selectNum, Constants.AEROSPACE_DEPARTMENT, "기계항공우주공학부");
 
 		}
 		public void PrintLetureDivision(int selectNum) // 이수구분
         {
 			Console.SetCursorPosition(60, 12);
-			PrintLectureHorisionList(selectNum, 1, "전체      ");
-			PrintLectureHorisionList(selectNum, 2, "교양필수      ");
-			PrintLectureHorisionList(selectNum, 3, "전공필수      ");
-			PrintLectureHorisionList(selectNum, 4, "전공선택      ");
+			PrintLectureHorisionList(selectNum, Constants.LECTURE_ALL, "전체      ");
+			PrintLectureHorisionList(selectNum, Constants.GYOYANG_PILSU_CLASS, "교양필수      ");
+			PrintLectureHorisionList(selectNum, Constants.JEONGONG_PILSU_CLASS, "전공필수      ");
+			PrintLectureHorisionList(selectNum, Constants.JEONGONG_SEONTAEG, "전공선택      ");
 			
 		}
 		public void PrintLectureName() // 교과명 입력
@@ -94,11 +94,11 @@ namespace LectureTimeTable
 		public void PrintLectureClass(int selectNum) // 학년
         {
 			Console.SetCursorPosition(60, 18);
-			PrintLectureHorisionList(selectNum, 1, "전체      ");
-			PrintLectureHorisionList(selectNum, 2, "1학년      ");
-			PrintLectureHorisionList(selectNum, 3, "2학년      ");
-			PrintLectureHorisionList(selectNum, 4, "3학년      ");
-			PrintLectureHorisionList(selectNum, 5, "4학년      ");
+			PrintLectureHorisionList(selectNum, Constants.LECTURE_ALL, "전체      ");
+			PrintLectureHorisionList(selectNum, Constants.FIRST_CLASS, "1학년      ");
+			PrintLectureHorisionList(selectNum, Constants.SECOND_CLASS, "2학년      ");
+			PrintLectureHorisionList(selectNum, Constants.THIRD_CLASS, "3학년      ");
+			PrintLectureHorisionList(selectNum, Constants.FOUR_CLASS, "4학년      ");
 		}
 		
 		public void PrintLectureHorisionList(int selectNum, int menuNumber, string menuName)

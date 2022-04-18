@@ -39,7 +39,7 @@ namespace LectureTimeTable
             for (int rowIndex = 0; rowIndex < list.Count; rowIndex++)
             {
                
-                PrintExcelElement(3,yPosition+ rowIndex, list[rowIndex], 1);
+                PrintExcelElement(3,yPosition+ rowIndex, list[rowIndex], 1); // x,y좌표값이라 매직넘버 처리는안했습니다
                 PrintExcelElement(7, yPosition+ rowIndex, list[rowIndex], 2);
                 PrintExcelElement(26, yPosition+ rowIndex, list[rowIndex], 3);
                 PrintExcelElement(36, yPosition + rowIndex, list[rowIndex], 4);

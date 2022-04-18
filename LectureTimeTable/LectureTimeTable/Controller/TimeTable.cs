@@ -98,17 +98,17 @@ namespace LectureTimeTable
             switch (day)
             {
                 case '월':
-                    return 13; 
+                    return Constants.MONDAY; 
                 case '화':
-                    return 46;
+                    return Constants.TUESDAY;
                 case '수':
-                    return 79;
+                    return Constants.WEDNESDAY;
                 case '목':
-                    return 112;
+                    return Constants.THURSDAY;
                 case '금':
-                    return 145;
+                    return Constants.FRIDAY;
                 default:
-                    return 0;
+                    return Constants.BACK;
             }
         }
         
@@ -149,7 +149,8 @@ namespace LectureTimeTable
                 if(className == Constants.INPUT_EMPTY)
                     continue;
 
-                if (day.Length == 1)
+              
+                if (day.Length == Constants.FIRST_TIMETYPE)
                 {
                   
 
@@ -158,7 +159,7 @@ namespace LectureTimeTable
                         return Constants.TIMEOVERLAP; // 겹침
                 }
 
-                else if (time.Length == 4) //월 090010 30 화 11001130
+                else if (time.Length == Constants.SECOND_TIMETYPE) //월 090010 30 화 11001130
                 {
                  
 
@@ -195,7 +196,7 @@ namespace LectureTimeTable
             //8자리일수도 16자리일수도 
 
             int result;
-            if (secondDay.Length == 1)
+            if (secondDay.Length == Constants.FIRST_TIMETYPE)
             {
            
 
@@ -204,7 +205,7 @@ namespace LectureTimeTable
                     return Constants.TIMEOVERLAP; // 겹침
             }
 
-            else if (secondTime.Length == 4) //월 09001030 화 11001130
+            else if (secondTime.Length == Constants.SECOND_TIMETYPE) //월 09001030 화 11001130
             {
                 result = FindLastResult(day, time, secondDay[0], secondTime.Substring(0, 8));
                 if (result == Constants.TIMEOVERLAP)
@@ -337,12 +338,12 @@ namespace LectureTimeTable
             day = Regex.Replace(timeData, @"[^가-힣]", ""); // 요일만 가져오기
             time = Regex.Replace(timeData, @"[^0-9]", ""); // 숫자만 가져옴
 
-            if (day.Length == 1)
+            if (day.Length == Constants.FIRST_TIMETYPE)
             {
                 EnterLectureScheduleUnit(day[0], time, listNO, worksheet);  // 월09001030
             }
 
-            else if (time.Length == 4) //월 09001030 화 11001130
+            else if (time.Length == Constants.SECOND_TIMETYPE) //월 09001030 화 11001130
             {
                 EnterLectureScheduleUnit(day[0], time.Substring(0, 8), listNO, worksheet);  // 월09001030
                 EnterLectureScheduleUnit(day[1], time.Substring(8, 8), listNO, worksheet);  // 화011001130
@@ -377,17 +378,17 @@ namespace LectureTimeTable
             switch (day)
             {
                 case '월':
-                    return 2;
+                    return Constants.TIMETABLE_MONDAY;
                 case '화':
-                    return 3;
+                    return Constants.TIMETABLE_TUESDAY;
                 case '수':
-                    return 4;
+                    return Constants.TIMETABLE_WEDNESDAY;
                 case '목':
-                    return 5;
+                    return Constants.TIMETABLE_THURSDAY;
                 case '금':
-                    return 6;
+                    return Constants.TIMETABLE_FRIDAY;
                 default:
-                    return 0;
+                    return Constants.BACK;
             }
         }
     }

@@ -23,10 +23,10 @@ namespace LectureTimeTable
 			lectureTimeUI.PrintCenter("=========================================== 관심과목 담기 메뉴 ===========================================", Constants.WIDTH - 7);
 			Console.WriteLine("\n\n");
 
-			PrintInterestsLectureMenuList(selectNum, 1, "관심 과목 분야별 검색");
-			PrintInterestsLectureMenuList(selectNum, 2, "관심 과목 강의 내역");
-			PrintInterestsLectureMenuList(selectNum, 3, "관심 과목 시간표");
-			PrintInterestsLectureMenuList(selectNum, 4, "관심 과목 삭제하기");
+			PrintInterestsLectureMenuList(selectNum, Constants.LECTURE_SEARCH, "관심 과목 분야별 검색");
+			PrintInterestsLectureMenuList(selectNum, Constants.LECTURE_LIST, "관심 과목 강의 내역");
+			PrintInterestsLectureMenuList(selectNum, Constants.LECTURE_SCHEDULE, "관심 과목 시간표");
+			PrintInterestsLectureMenuList(selectNum, Constants.LECTURE_DELETE, "관심 과목 삭제하기");
 		
 
 			Console.WriteLine("\n\n");
@@ -61,12 +61,12 @@ namespace LectureTimeTable
 
 			lectureTimeUI.PrintCenter("=========================================== 강의 시간표 조회 ===========================================", Constants.WIDTH - 7);
 			Console.WriteLine();
-			lectureTimeUI.PrintLectureTimeList(selectNum, 1, "개설 학과 전공");
-			lectureTimeUI.PrintLectureTimeList(selectNum, 2, "학수번호 / 분반");
-			lectureTimeUI.PrintLectureTimeList(selectNum, 3, "교과목명");
-			lectureTimeUI.PrintLectureTimeList(selectNum, 4, "교수명");
-			lectureTimeUI.PrintLectureTimeList(selectNum, 5, "학년");
-			lectureTimeUI.PrintLectureTimeList(selectNum, 6, "조회");
+			lectureTimeUI.PrintLectureTimeList(selectNum, Constants.LECTURE_DEPARTMENT, "개설 학과 전공");
+			lectureTimeUI.PrintLectureTimeList(selectNum, Constants.LECTURE_DIVISION, "학수번호 / 분반");
+			lectureTimeUI.PrintLectureTimeList(selectNum, Constants.LECTURE_NAME, "교과목명");
+			lectureTimeUI.PrintLectureTimeList(selectNum, Constants.PROFESSOR, "교수명");
+			lectureTimeUI.PrintLectureTimeList(selectNum, Constants.GRADE, "학년");
+			lectureTimeUI.PrintLectureTimeList(selectNum, Constants.CHECK, "조회");
 
 			lectureTimeUI.PrintCenter("=========================================================================================================", Constants.WIDTH + 1);
 			lectureTimeUI.PrintCenter(" ↑ , ↓ 키로 메뉴를 선택 후  ← 또는 → 키를 이용해 선택하세요.", Constants.WIDTH - 30);

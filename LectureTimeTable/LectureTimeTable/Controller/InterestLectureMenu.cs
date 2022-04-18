@@ -190,6 +190,14 @@ namespace LectureTimeTable
                         return SelectInterestLecture(list);
                     return Constants.STOP;
                 }
+                else if ( LTTStart.interestNumber + Convert.ToInt16(LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO) + 1, 8)) >24)
+                {
+                    interestsLectureUI.PrintInterestStatus(65, 25, "실패!  최대로 담을 수 있는 학점을 초과합니다!  ESC : 나가기   ENTER : 다시입력         "); //관담 실패!
+                    selection = Reinput();
+                    if (selection == Constants.REINPUT)
+                        return SelectInterestLecture(list);
+                    return Constants.STOP;
+                }
 
                 LTTStart.interestList.Add(Convert.ToInt16(classNO)+1); // 관심과목에 없으면 추가
                 LTTStart.interestNumber += Convert.ToInt16 (LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO)+1, 8)); // 관심과목 담은 학점

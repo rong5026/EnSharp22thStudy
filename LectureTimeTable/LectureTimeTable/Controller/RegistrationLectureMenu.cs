@@ -224,6 +224,14 @@ namespace LectureTimeTable
                         return SelectRegisterLecture(list);
                     return Constants.STOP;
                 }
+                else if(LTTStart.registerNumber + Convert.ToInt16(LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO) + 1, 8))>21)
+                {
+                    interestsLectureUI.PrintInterestStatus(65, 27, "실패!  최대로 담을 수 있는 학점을 초과합니다!  ESC : 나가기   ENTER : 다시입력         "); //관담 실패!
+                    selection = interestLectureMenu.Reinput();
+                    if (selection == Constants.REINPUT)
+                        return SelectRegisterLecture(list);
+                    return Constants.STOP;
+                }
                     LTTStart.registerList.Add(Convert.ToInt16(classNO) + 1); // 수강과목에 없으면 추가
                 LTTStart.registerNumber += Convert.ToInt16(LTTStart.excelData.Data.GetValue(Convert.ToInt16(classNO) + 1, 8)); // 수강과목 담은 학점
                 interestsLectureUI.PrintInterestStatus(65, 27, "성공! 수강과목 리스트에 담겼습니다!!      ESC : 나가기   ENTER : 다시입력                   ");
