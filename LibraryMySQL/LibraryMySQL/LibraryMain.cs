@@ -24,24 +24,43 @@ namespace LibraryMySQL
         }
         public void FindTableData(string tableName)
         {
-
+           
             MySqlConnection connection = UserConnection();
+           
 
-
-            //  string insertQuery = string.Format("INSERT INTO user_data (id,password,user_name) VALUES (2,1,\"hong\");");
+            //string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age,user_phonenumber,user_address) VALUES (2,1,\"hong\",12,123,12312311);");
+            string insertQuery = string.Format("SELECT * FROM user_data");
 
             connection.Open();
-            string insertQuery = string.Format("SELECT * FROM {0}",tableName);
+          
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             MySqlDataReader table = command.ExecuteReader();
+
+            while (table.Read())
+            {
+                Console.WriteLine("{0} {1}", table["user_id"].GetType().Name, table["user_password"]);
+            }
+            
+            Console.ReadLine();
+            table.Close();
+            connection.Close();
+        }
+        public void InsertUserData(string id, string password, string name, string age, string phoneNumber, string address)
+        {
+            MySqlConnection connection = UserConnection();
+            connection.Open();
+
+            string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age, user_phonenumber,user_address) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');", id, password, name, age, phoneNumber, address);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+
             try//예외 처리
             {
 
-
                 if (command.ExecuteNonQuery() == 1)
                 {
-                    Console.WriteLine("{0} {1}",table["user_id"]);
+                    Console.WriteLine("정상적으로 갔다");
                 }
                 else
                 {
@@ -52,17 +71,18 @@ namespace LibraryMySQL
             {
                 Console.WriteLine(ex.Message);
             }
-
             Console.ReadLine();
+
             connection.Close();
         }
         static void Main(string[] args)
         {
 
-            LibraryMain main = new LibraryMain();
+             LibraryMain main = new LibraryMain();
+             main.InsertUserData("abcd1234", "abcd1234", "피카츄", "21", "010-1234-1234", "서울특별시 오류동");
             //LibraryStart start = new LibraryStart();
             // start.StartProgram();
-            main.FindTableData("user_data");
+
 
 
         }

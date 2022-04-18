@@ -22,6 +22,7 @@ namespace LibraryMySQL
         SelectionMode mode;
         UserMode userMode;
         ManagerMode managerMode;
+        MySQlData mysqlData;
         int menuNumber;
 
 
@@ -29,6 +30,9 @@ namespace LibraryMySQL
 
         public LibraryStart()
         {
+            mysqlData = MySQlData.Instance();
+            mysqlData.InsertUserData("abcd1234", "abcd1234", "피카츄", "21", "010-1234-1234", "서울특별시 오류동");
+
             user = new UserVO();
             bookVO = new BookVO();
 
@@ -44,12 +48,17 @@ namespace LibraryMySQL
 
 
 
+
+          
             user = new UserVO("hong1234", "hong1234", "홍영환", "23", "010-8791-4859", "서울특별시"); // 계정1
             userList.Add( user);
              user = new UserVO("abcd1234", "abcd1234", "피카츄", "21", "010-1234-1234", "서울특별시 오류동"); // 계정2
             userList.Add( user);
 
+
+
             //int id, string name, string author, string publisher, int bookCount, int price, string date
+            /*
              bookVO = new BookVO(BookVO.totalBook, "자료구조 및 실습", "국형준", "세종대", 2, 14000, "2020-02-02");
             bookList.Add( bookVO);
              bookVO = new BookVO(BookVO.totalBook, "노래방가고싶다", "홍영환", "세종대", 1, 10000, "2020-04-08");
@@ -70,7 +79,7 @@ namespace LibraryMySQL
             bookList.Add( bookVO);
              bookVO = new BookVO(BookVO.totalBook, "LG가 사장을 만드는 법", "이웅범", "세이코리아", 1, 17700, "2017-06-05");
             bookList.Add( bookVO);
-
+            */
 
         }
       
@@ -80,7 +89,7 @@ namespace LibraryMySQL
 
 
          
-             UI.PrintMainUI();
+            UI.PrintMainUI();
             Console.SetWindowSize(125, 60);
             Console.CursorVisible = false;
             while (Constants.PROGRAM_ON)
