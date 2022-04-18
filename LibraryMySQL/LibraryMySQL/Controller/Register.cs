@@ -67,25 +67,25 @@ namespace LibraryMySQL
             switch (type)
             {
                 case "id":
-                    InputVO.id =  validInput.EnterId(38, 7);
+                   // InputVO.id =  validInput.EnterId(38, 7);
                     return InputVO.id;
                 case "password":
-                    InputVO.repassword =  validInput.EnterIdOrPassword(38, 8);
+                  //  InputVO.repassword =  validInput.EnterIdOrPassword(38, 8);
                     return InputVO.repassword;
                 case "repassword":
-                    InputVO.repassword =  validInput.EnterRepassword(password, 38, 9);
+                   // InputVO.repassword =  validInput.EnterRepassword(password, 38, 9);
                     return password;
                 case "name":
-                    InputVO.name =  validInput.EnterUserName(41, 10);
+                    //InputVO.name =  validInput.EnterUserName(41, 10);
                     return InputVO.name;
                 case "age":
-                    InputVO.age =  validInput.EnterUserAge(39, 11);
+                   // InputVO.age =  validInput.EnterUserAge(39, 11);
                     return InputVO.age;
                 case "phonenumber":
-                    InputVO.phoneNumber =  validInput.EnterUserPhoneNumber(41, 12);
+                   // InputVO.phoneNumber =  validInput.EnterUserPhoneNumber(41, 12);
                     return InputVO.phoneNumber;
                 case "address":
-                    InputVO.address =  validInput.EnterUserAddress(39, 13);
+                   // InputVO.address =  validInput.EnterUserAddress(39, 13);
                     return InputVO.address;
                 default:
                     return "EIXT";

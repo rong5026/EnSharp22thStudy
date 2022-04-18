@@ -10,47 +10,48 @@ namespace LibraryMySQL
     internal class Login
     {
 
-        UserModeUI userModeUI;
+        UserModeUI userModeUI = new UserModeUI();
         ConsoleKeyInfo keyInput;
-        ValidInput validInput ;
+        ValidInput validInput =new ValidInput();
         MySQlData mySQlData;
 
         private string id;
         private string passWord;
-        public Login(UserModeUI userModeUI, MySQlData mySQlData)
+        public Login(MySQlData mySQlData)
         {
-            this.userModeUI = userModeUI;
-            this.mySQlData = mySQlData;
-            validInput = new ValidInput(userModeUI);
+       
+           this.mySQlData = mySQlData;
             
         }
-        public int LoginUser() 
+        public int LoginUser()
         {
-
             Console.Clear();
-            userModeUI.PrintRealLogin(); // 로그인 할건지 묻는 UI
-          
-            Console.SetCursorPosition(17, 6);
-            keyInput = Console.ReadKey(true);
 
-            if ( keyInput.Key == ConsoleKey.Escape)
-                return Constants.BACK; // ESC 누르면 뒤로가기 
-            else 
+            Console.SetCursorPosition(0, 0);
+
+           
+            userModeUI.PrintLogin(); // 위에 로그인 화면
+                                     // 
+            id = validInput.EnterLoginID(17, 6); // id 입력
+            if (id == "")                      
+                return Constants.BACK;
+            
+            passWord = validInput.EnterLoginPassWord(17, 7); // password입력
+            if (passWord == "")
+                return Constants.BACK;
+
+            if (mySQlData.CheckLogin(id, passWord) == Constants.LOGIN_SUCCESS)
             {
-                Console.Clear();
-                userModeUI.PrintLogin(); // 위에 로그인 화면 
-                id =  validInput.EnterLoginID(17,6); // id 입력
-                passWord =  validInput.EnterLoginPassWord(17,7); // password입력
 
-     
-                return mySQlData.CheckLogin(id, passWord); //회원가입 성공시 1리턴 실패시 0리턴
-              
-
-            
             }
+            else
+                return LoginUser();
+
+
             
-            
+            return Constants.BACK;
+
         }
-      
+
     }
 }

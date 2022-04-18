@@ -20,21 +20,13 @@ namespace LibraryMySQL
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                     로 그 인                   │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│	     ESC : 뒤로가기  ENTER : 입력하기       │");
+			Console.WriteLine("│	   ESC : 뒤로가기  ENTER : 입력하기      │");
 			Console.WriteLine("└------------------------------------------------┘");
 			Console.WriteLine("     User ID   : ");
-			Console.Write(" User Password : ");
+			Console.WriteLine(" User Password : ");
 
 		}
-		public void PrintRealLogin()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│          로 그 인  하 시 겠 습 니 까 ?         │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│       예 : ENTER   아니오 :  아무키 1개        │");
-			Console.WriteLine("└------------------------------------------------┘");
-		}
+	
 		public void PrintLoginFail()
 		{
 			Console.WriteLine("┌------------------------------------------------┐");

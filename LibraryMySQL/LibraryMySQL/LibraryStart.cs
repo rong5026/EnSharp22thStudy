@@ -17,11 +17,10 @@ namespace LibraryMySQL
         public static List<BookVO> bookList;
 
        
-        BookVO bookVO;
+      
         LibraryUI UI;
-        SelectionMode mode;
+        SelectionMode mode = new SelectionMode ();
         UserMode userMode;
-        //ManagerMode managerMode;
         MySQlData mysqlData;
         int menuNumber;
 
@@ -31,23 +30,15 @@ namespace LibraryMySQL
         public LibraryStart()
         {
             mysqlData = MySQlData.Instance();
-            
-           
-            bookVO = new BookVO();
-
+                      
             userList = new List<UserVO>();
             bookList = new List<BookVO>();
-          
             UI = new LibraryUI();
-            mode = new SelectionMode(UI);
-          
-            userMode = new UserMode(UI,mode, mysqlData);
-          
 
+            userMode =  new UserMode(mysqlData);
 
-         
+          
            
-
         }
       
 
@@ -58,6 +49,8 @@ namespace LibraryMySQL
          
             UI.PrintMainUI();
             Console.SetWindowSize(125, 60);
+           
+            
             Console.CursorVisible = false;
             while (Constants.PROGRAM_ON)
             {
@@ -65,7 +58,7 @@ namespace LibraryMySQL
                 switch (menuNumber)
                 {
                     case Constants.USER_MODE: // 유저모드 일때
-                         userMode.StartUserMode();
+                        userMode.StartUserMode();
                         break;
                     case Constants.MANAGE_MODE: // 관리자 모드
                          //managerMode.StartManagerMode();

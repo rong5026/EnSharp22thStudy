@@ -54,7 +54,7 @@ namespace LibraryMySQL
 			selectFirst = selectNum == 1 ? "●" : "○";
 			selectSecond = selectNum == 2 ? "●" : "○";
 
-			Console.Clear();
+			//Console.Clear();
 			PrintMainUI();  // main 이미지 출력
 
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
