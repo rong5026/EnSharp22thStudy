@@ -27,24 +27,14 @@ namespace LibraryMySQL
 
 		}
 	
-		public void PrintLoginFail()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│        아이디 또는 비밀번호가 틀렸습니다.      │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│  (아이디, 비밀번호 8~15자리 영문자+숫자 혼합)  │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
-			Console.WriteLine("└------------------------------------------------┘");
-		}
+
 		public void PrintRegister()
 		{
 			Console.WriteLine("┌------------------------------------------------┐");
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│                  회 원 가 입                   │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│     (뒤로가려면 ESC, 입력하려면 아무키 1개)    │");
+			Console.WriteLine("│	   ESC : 뒤로가기  ENTER : 입력하기      │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 			Console.WriteLine(" User ID (8~ 15글자 영어, 숫자포함) : ");//38 7
 			Console.WriteLine(" User PW (8~ 15글자 영어, 숫자포함) : ");//38 8
@@ -62,18 +52,10 @@ namespace LibraryMySQL
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│               회 원 가 입 성 공 !!             │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
+			Console.WriteLine("│	          ESC : 뒤로가기                 │ ");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
-		public void PrintSuccessLogin()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                 로 그 인 성 공 !!              │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-		}
+	
 		public void PrintSuccessRentBook()
 		{
 			Console.WriteLine("┌------------------------------------------------┐");

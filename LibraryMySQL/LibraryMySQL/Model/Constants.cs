@@ -53,6 +53,8 @@ namespace LibraryMySQL
 
 
         public const string INPUT_EMPTY = "";
+        public const bool REGISTER_FAIL = false;
+        public const bool REGISTER_SUCCESS = true;
 
 
 

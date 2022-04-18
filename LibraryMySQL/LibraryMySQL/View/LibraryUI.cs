@@ -106,28 +106,107 @@ namespace LibraryMySQL
 			Console.ResetColor();
 			Console.WriteLine("                   │");
 		}
-	
 
-		public void PrintProgramStop()
+
+
+		public void PrintUserMenuUI(int selectNum)
 		{
 			Console.Clear();
 			PrintMainUI();  // main 이미지 출력
-
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
-			Console.Write("                                   │                   ");
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.Write("Program STOP");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 1)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서찾기", selectFirst);
 			Console.ResetColor();
+			Console.WriteLine("                   │");
+
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 2)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서대여", selectFirst);
 			Console.ResetColor();
-			Console.WriteLine("                 │");
+			Console.WriteLine("                   │");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 3)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서대여확인", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("               │");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 4)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서반납", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
+			Console.Write("                                   │                 ");
+			if (selectNum == 5)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  도서반납내역", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("               │");
+			Console.Write("                                   │                 ");
+			if (selectNum == 6)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  회원정보수정", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("               │");
+
+			Console.Write("                                   │                 ");
+			if (selectNum == 7)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  회원탈퇴", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("                   │");
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");
+			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
+
 
 		}
 
 
-		
+
 		public void ShowBookList(string name, string author, string publisher) // 이름 저자 출판사로 책 검색해서 출력
 		{
 			int[] validIndex = new int[LibraryStart.bookList.Count];
@@ -136,18 +215,18 @@ namespace LibraryMySQL
 
 			for (int index = 0; index < LibraryStart.bookList.Count; index++)
 			{
-				if (name != null && author == null && publisher == null) // O X X 
+				if (name != Constants.INPUT_EMPTY && author == Constants.INPUT_EMPTY && publisher == Constants.INPUT_EMPTY) // O X X 
 				{
 					if (name == LibraryStart.bookList[index].Name)
 						validIndex[indexCount++] = index;
 
 				}
-				else if (name == null && author != null && publisher == null) // X O X
+				else if (name == Constants.INPUT_EMPTY && author != Constants.INPUT_EMPTY && publisher == Constants.INPUT_EMPTY) // X O X
 				{
 					if (author == LibraryStart.bookList[index].Author)
 						validIndex[indexCount++] = index;
 				}
-				else if (name == null && author == null && publisher != null) // X X O
+				else if (name == Constants.INPUT_EMPTY && author == Constants.INPUT_EMPTY && publisher != Constants.INPUT_EMPTY) // X X O
 				{
 					if (publisher == LibraryStart.bookList[index].Publisher)
 						validIndex[indexCount++] = index;
@@ -209,5 +288,24 @@ namespace LibraryMySQL
 
 
 		}
+
+		public void PrintSearchBook() // 책찾기 
+		{
+			Console.WriteLine();
+
+			Console.WriteLine("  제목으로 찾기 : "); // 18,1
+			Console.WriteLine("  작가명으로 찾기 : "); //19,2
+			Console.Write("  출판사로 찾기 : ");//18,3
+			Console.WriteLine("\n");
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine(" ESC : 뒤로가기");
+			Console.ResetColor();
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine(" ENTER : 입력하기");
+			Console.ResetColor();
+			Console.WriteLine(" 건너뛰고자 하는 목록은 ENTER을 눌러주세요");
+
+		}
+
 	}
 }

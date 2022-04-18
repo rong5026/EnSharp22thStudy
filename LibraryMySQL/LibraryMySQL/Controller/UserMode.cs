@@ -14,12 +14,14 @@ namespace LibraryMySQL
         int menuNumber = 1;
         LibraryUI UI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
+        Register register;
         Login login;
         MySQlData mysqlData;
         public UserMode(MySQlData mysqlData)
         {
+            register = new Register(mysqlData);
             this.mysqlData = mysqlData;
-             login= new Login(mysqlData);
+           login= new Login(mysqlData);
         }
         public void StartUserMode()
         {
@@ -37,10 +39,11 @@ namespace LibraryMySQL
                 {
                     case Constants.LOGIN_MODE: // 로그인
                         login.LoginUser(); //
-                        Console.Clear();                  // 
+                        Console.Clear(); 
                         break;                
                     case Constants.REGISTER_MODE: // 회원가입
-                        //VariableData.register.RegistUser();
+                        register.RegistUser();
+                        Console.Clear();
                         break;
                     case Constants.STOP:
                         return; // 뒤로가기
@@ -57,5 +60,6 @@ namespace LibraryMySQL
 
         } // 로그인을 했다면 UserMode 기능 출력, 선택
 
+      
     }
 }

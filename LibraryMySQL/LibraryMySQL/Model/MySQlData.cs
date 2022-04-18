@@ -65,7 +65,7 @@ namespace LibraryMySQL
             return Constants.LOGIN_FAIL;
         }
 
-        public void InsertUserData(string id, string password, string name,string age,string phoneNumber, string address )
+        public void InsertUserData(string id, string password, string name,string age,string phoneNumber, string address ) // 유저정보 삽입
         {
             MySqlConnection connection = UserConnection();
             connection.Open();
@@ -73,8 +73,43 @@ namespace LibraryMySQL
             string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age, user_phonenumber,user_address) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');", id, password, name, age, phoneNumber, address);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
-
+           
             connection.Close();
+        }
+
+        public int CheckUserId(string id) // 회원가입시 유저 정보가 겹치는지 확인
+        {
+
+            MySqlConnection connection = UserConnection();
+
+
+            string insertQuery = string.Format("SELECT * FROM user_data");
+
+            connection.Open();
+
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+
+                if ((string)table["user_id"] == id)
+                {
+
+                    table.Close();
+                    connection.Close();
+                    return Constants.LOGIN_FAIL;
+                }
+
+
+            }
+
+            table.Close();
+            connection.Close();
+
+            return Constants.LOGIN_SUCCESS;
         }
     }
 }

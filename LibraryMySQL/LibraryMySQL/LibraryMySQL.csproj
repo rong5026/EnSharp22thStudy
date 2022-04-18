@@ -86,9 +86,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\BookSearching.cs" />
     <Compile Include="Controller\Login.cs" />
     <Compile Include="Controller\Register.cs" />
     <Compile Include="Controller\SelectionMode.cs" />
+    <Compile Include="Controller\UserMenu.cs" />
     <Compile Include="Controller\UserMode.cs" />
     <Compile Include="Controller\ValidInput.cs" />
     <Compile Include="LibraryMain.cs" />
