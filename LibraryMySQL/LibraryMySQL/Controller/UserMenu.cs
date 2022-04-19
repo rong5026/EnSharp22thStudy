@@ -25,20 +25,23 @@ namespace LibraryMySQL
         }
         public void StartUserMenu()
         {
-           // libraryUI.PrintMainUI();
+            libraryUI.PrintMainUI();
             Console.SetWindowSize(125, 40);
 
             while (Constants.PROGRAM_ON)
             {
-                menuNumber = mode.SelectUserManagerMenu("User", 7); // 유저메뉴 위아래 화살표로 선택하기
+               menuNumber = mode.SelectUserManagerMenu("User", 7); // 유저메뉴 위아래 화살표로 선택하기
                 
                 switch (menuNumber)
                 {
                     case Constants.BOOK_SEARCH: // 도서찾기                    
                         bookSearching.SearchBook();
+                        Console.Clear();
                         break;
                     case Constants.BOOK_RENT: // 도서대여
+                      
                         bookSearching.BorrowBook();
+                        Console.Clear();
                         break;
                     case Constants.BOOK_BORROW_LIST: //대여도서확인
                         //VariableData.book.ConfirmRentedBook();

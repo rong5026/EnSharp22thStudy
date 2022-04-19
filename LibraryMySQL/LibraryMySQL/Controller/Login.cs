@@ -44,6 +44,7 @@ namespace LibraryMySQL
 
             if (mySQlData.CheckLogin(id, passWord) == Constants.LOGIN_SUCCESS)
             {
+                Console.Clear();
                 userMenu.StartUserMenu(); // 유저메뉴 입장
             }
             else

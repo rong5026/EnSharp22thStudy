@@ -24,6 +24,7 @@ namespace LibraryMySQL
 		}
 		public void PrintMainUI()
 		{
+			Console.SetWindowSize(125, 60);
 			Console.SetCursorPosition(0, 0);
 			Console.WriteLine();
 			Console.WriteLine("                                                     @@          @@");
@@ -120,7 +121,8 @@ namespace LibraryMySQL
 
 		public void PrintUserMenuUI(int selectNum)
 		{
-			Console.Clear();
+			//Console.Clear();
+			//Console.SetCursorPosition(0,0);
 			PrintMainUI();  // main 이미지 출력
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
