@@ -111,11 +111,11 @@ namespace LibraryMySQL
 
             return Constants.LOGIN_SUCCESS;
         }
-        public int CheckTableDataCount()
+        public int CheckTableDataCount(string tableType) // 데이터 수 리턴
         {
             MySqlConnection connection = UserConnection();
             connection.Open();
-            string insertQuery = string.Format("SELECT COUNT(*) from user_data;");
+            string insertQuery = string.Format("SELECT COUNT(*) from {0};", tableType);
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
 
 
@@ -126,6 +126,68 @@ namespace LibraryMySQL
             return count;
 
 
+        }
+        public bool CheckBookList(string data, string type) // 책검색할때 조건에 맞는지 확인
+        {
+
+            MySqlConnection connection = UserConnection();
+
+
+            string insertQuery = string.Format("SELECT * FROM book_data");
+
+            connection.Open();
+
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+                if ((string)table[type] == data)
+                {
+                    table.Close();
+                    connection.Close();
+                    return Constants.BOOK_EXIST;
+                }
+
+            }
+            table.Close();
+            connection.Close();
+
+            return Constants.BOOK_NOT_EXIST;
+        }
+        public string CheckBookUnit(int bookId,string type)
+        {
+            MySqlConnection connection = UserConnection();
+
+
+            string insertQuery = string.Format("SELECT * FROM book_data");
+
+            connection.Open();
+
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+             
+                if ((string)table["book_id"] == bookId.ToString())
+                {
+
+                    string result = table[type].ToString();
+                    table.Close();
+                    connection.Close();
+                    return result;
+                }
+                
+            }
+            table.Close();
+            connection.Close();
+
+            return Constants.INPUT_EMPTY;
         }
     }
 }

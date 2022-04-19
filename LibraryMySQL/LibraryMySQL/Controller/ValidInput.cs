@@ -451,11 +451,158 @@ namespace LibraryMySQL
             return input;
 
         }
+        public string EnterBookName(int x, int y) // 책이름 입력
+        {
+            Console.CursorVisible = true;
+            error = "영어,한글,숫자 중 1개이상 입력해주세요!";  //예외조건 성립안할때 출력
+            Console.SetCursorPosition(x, y);
 
+            input = Constants.INPUT_EMPTY;
 
-        // 책 입력
+            while (Constants.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+                if (input == Constants.INPUT_EMPTY)
+                   return Constants.INPUT_EMPTY;
 
+                if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
+                    return Constants.BACKMENU;
 
+                if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
+                {
+                    input += keyInput.KeyChar;
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
+                }
+                else
+                {
+                    if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
+                    {
+                        input = input.Substring(0, (input.Length - 1));
+                        Console.Write("\b \b");  // 지우기
+                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                    {
+
+                        break;
+                    }
+                }
+            }
+
+            // 정규식 예외처리
+            if (input != null)
+                check = Regex.IsMatch(input, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"); // 영어,한글,숫자 1글자이상
+            if (check == false) //
+            {
+                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+                userModeUI.PrintErrorMessage(x, y, error);
+                return EnterBookName(x, y);
+            }
+
+            return input;
+
+        }
+
+        public string EnterAuthor(int x, int y) // 저자 입력
+        {
+            Console.CursorVisible = true;
+            error = "영어,한글 1글자 이상입력해주세요!";  //예외조건 성립안할때 출력
+            Console.SetCursorPosition(x, y);
+
+            input = Constants.INPUT_EMPTY;
+
+            while (Constants.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+                if (input == Constants.INPUT_EMPTY)
+                    return Constants.INPUT_EMPTY;
+
+                if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
+                    return Constants.BACKMENU;
+
+                if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
+                {
+                    input += keyInput.KeyChar;
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
+                }
+                else
+                {
+                    if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
+                    {
+                        input = input.Substring(0, (input.Length - 1));
+                        Console.Write("\b \b");  // 지우기
+                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                    {
+
+                        break;
+                    }
+                }
+            }
+
+            // 정규식 예외처리
+            if (input != null)
+                check = Regex.IsMatch(input, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$");  // 영어,한글 1글자이상
+            if (check == false) //
+            {
+                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+                userModeUI.PrintErrorMessage(x, y, error);
+                return EnterAuthor(x, y);
+            }
+
+            return input;
+
+        }
+
+        public string EnterBookPublisher(int x, int y) // 출판사 입력
+        {
+            Console.CursorVisible = true;
+            error = "영어,한글,숫자 1글자 이상 입력해주세요!";  //예외조건 성립안할때 출력
+            Console.SetCursorPosition(x, y);
+
+            input = Constants.INPUT_EMPTY;
+
+            while (Constants.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+                if (input == Constants.INPUT_EMPTY)
+                    return Constants.INPUT_EMPTY;
+
+                if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
+                    return Constants.BACKMENU;
+
+                if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
+                {
+                    input += keyInput.KeyChar;
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
+                }
+                else
+                {
+                    if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
+                    {
+                        input = input.Substring(0, (input.Length - 1));
+                        Console.Write("\b \b");  // 지우기
+                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                    {
+
+                        break;
+                    }
+                }
+            }
+
+            // 정규식 예외처리
+            if (input != null)
+                check = Regex.IsMatch(input, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$");  // 영어,한글 1글자이상
+            if (check == false) //
+            {
+                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+                userModeUI.PrintErrorMessage(x, y, error);
+                return EnterBookPublisher(x, y);
+            }
+
+            return input;
+
+        }
         private void DeleteInput(int count, int x, int y)
         {
             Console.SetCursorPosition(x, y);

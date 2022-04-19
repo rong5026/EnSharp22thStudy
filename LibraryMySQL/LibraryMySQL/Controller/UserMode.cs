@@ -12,14 +12,14 @@ namespace LibraryMySQL
       
         int isLoggedIn;
         int menuNumber = 1;
-        LibraryUI UI;
+        LibraryUI libraryUI;
         SelectionMode mode = new SelectionMode();
         Register register;
         Login login;
         MySQlData mysqlData;
         public UserMode(MySQlData mysqlData)
         {
-            UI = new LibraryUI(mysqlData);
+            libraryUI = new LibraryUI(mysqlData);
             register = new Register(mysqlData);
             this.mysqlData = mysqlData;
            login= new Login(mysqlData);
@@ -27,7 +27,7 @@ namespace LibraryMySQL
         public void StartUserMode()
         {
 
-            UI.PrintMainUI();
+            libraryUI.PrintMainUI();
             Console.SetWindowSize(125, 60);  //메인화면
             Console.CursorVisible = false;
 

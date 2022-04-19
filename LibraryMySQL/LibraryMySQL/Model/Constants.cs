@@ -56,7 +56,9 @@ namespace LibraryMySQL
         public const bool REGISTER_FAIL = false;
         public const bool REGISTER_SUCCESS = true;
 
-
+        public const bool BOOK_EXIST = true;
+        public const bool BOOK_NOT_EXIST = false;
+        public const string BACKMENU = "back";
 
 
 

@@ -11,9 +11,14 @@ namespace LibraryMySQL
    
         int menuNumber;
         UserModeUI userModeUI = new UserModeUI();
-        LibraryUI libraryUI = new LibraryUI();
+        LibraryUI libraryUI;
         ConsoleKeyInfo keyInput;
 
+        public SelectionMode()
+        {
+            libraryUI = new LibraryUI();
+
+        }
         public int SelectMode(int type)
         {
             

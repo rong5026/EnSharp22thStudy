@@ -9,7 +9,7 @@ namespace LibraryMySQL
     internal class UserMenu
     {
 
-        LibraryUI libraryUI = new LibraryUI();
+        LibraryUI libraryUI;
         SelectionMode mode = new SelectionMode();
         BookSearching bookSearching;
         MySQlData mySQlData;
@@ -20,7 +20,8 @@ namespace LibraryMySQL
         public UserMenu(MySQlData mySQlData)
         {
             this.mySQlData = mySQlData;
-           // bookSearching = new BookSearching(mySQlData);
+            bookSearching = new BookSearching(mySQlData);
+            libraryUI = new LibraryUI(mySQlData);
         }
         public void StartUserMenu()
         {
@@ -34,25 +35,25 @@ namespace LibraryMySQL
                 switch (menuNumber)
                 {
                     case Constants.BOOK_SEARCH: // 도서찾기                    
-                        book.SearchBook();
+                        bookSearching.SearchBook();
                         break;
                     case Constants.BOOK_RENT: // 도서대여
-                        VariableData.book.BorrowBook();
+                        //VariableData.book.BorrowBook();
                         break;
                     case Constants.BOOK_BORROW_LIST: //대여도서확인
-                        VariableData.book.ConfirmRentedBook();
+                        //VariableData.book.ConfirmRentedBook();
                         break;
                     case Constants.BOOK_RETURN: // 도서 반납
-                        VariableData.book.ReturnBook();
+                       // VariableData.book.ReturnBook();
                         break;
                     case Constants.BOOK_RETRUN_HISTORY:
-                        VariableData.book.ConfirmReturnBook(); // 도서반납확인
+                       // VariableData.book.ConfirmReturnBook(); // 도서반납확인
                         break;
                     case Constants.USER_EDIT: // 회원정보 수정
-                        EditUserData();
+                       //EditUserData();
                         break;
                     case Constants.DELETE: // 계정삭제
-                        delete = DeleteUserId();
+                        //delete = DeleteUserId();
                         if (delete)
                             return;
                         break;

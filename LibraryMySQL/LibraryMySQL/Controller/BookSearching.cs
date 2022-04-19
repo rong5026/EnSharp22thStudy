@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace LibraryMySQL { 
     internal class BookSearching
     {
-        
-        LibraryUI libraryUI = new LibraryUI();
+        ConsoleKeyInfo keyInput;
+        LibraryUI libraryUI;
         ValidInput validInput = new ValidInput();
         MySQlData mySQlData;
         private string name;
@@ -18,6 +18,7 @@ namespace LibraryMySQL {
         public BookSearching(MySQlData mySQlData)
         {
             this.mySQlData = mySQlData;
+            libraryUI = new LibraryUI(mySQlData);
         }
         public void SearchBook() // 책 검색
         {
@@ -29,15 +30,21 @@ namespace LibraryMySQL {
             Console.SetCursorPosition(18, 1); // 커서이동
 
             name = validInput.EnterBookName(18, 1); // 영어,한글 1글자이상
+            if (name == Constants.BACKMENU)
+                return;
             author = validInput.EnterAuthor(19, 2); // 영어,한글 1글자 이상
+            if (author == Constants.BACKMENU)
+                return;
             publisher = validInput.EnterBookPublisher(18, 3); // // 영어,한글, 숫자 1글자 이상
+            if (publisher == Constants.BACKMENU)
+                return;
 
             Console.Clear();
-            VariableData.UI.PrintSearchBook();
-            VariableData.UI.PrintBookList(name, author, publisher);
+            libraryUI.PrintSearchBook();
+            libraryUI.ShowBookList(name, author, publisher);
 
-            VariableData.keyInput = Console.ReadKey(true);
-            if (VariableData.keyInput.Key == ConsoleKey.Escape)
+            keyInput = Console.ReadKey(true);
+            if (keyInput.Key == ConsoleKey.Escape)
                 return; // ESC 누르면 뒤로가기 
             
 

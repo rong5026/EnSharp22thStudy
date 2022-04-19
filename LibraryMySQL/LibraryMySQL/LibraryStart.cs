@@ -18,7 +18,7 @@ namespace LibraryMySQL
 
        
       
-        LibraryUI UI;
+        LibraryUI libraryUI;
         SelectionMode mode = new SelectionMode ();
         UserMode userMode;
         MySQlData mysqlData;
@@ -29,6 +29,7 @@ namespace LibraryMySQL
 
         public LibraryStart()
         {
+            libraryUI = new LibraryUI ();
             mysqlData = MySQlData.Instance();
                       
             userList = new List<UserVO>();
@@ -46,8 +47,8 @@ namespace LibraryMySQL
         {
 
 
-         
-            UI.PrintMainUI();
+
+            libraryUI.PrintMainUI();
             Console.SetWindowSize(125, 60);
            
             
