@@ -130,7 +130,7 @@ namespace LibraryMySQL
         public void CheckBookList(List<BookVO> list) // 책리스트를 리턴
         {
            
-            BookVO book = new BookVO();
+           
             MySqlConnection connection = UserConnection();
             string insertQuery = string.Format("SELECT * FROM book_data");
             connection.Open();
@@ -140,9 +140,9 @@ namespace LibraryMySQL
    
             while (table.Read())
             {
-
-              
-                book.Id = (int)table["book_id"]; 
+                BookVO book = new BookVO();
+               
+                book.Id = (int)table["book_id"];
                 book.Name = (string)table["book_name"];
                 book.Author = (string)table["book_author"];
                 book.Publisher = (string)table["book_publisher"];
@@ -151,7 +151,7 @@ namespace LibraryMySQL
                 book.Date = (string)table["book_date"];
                 list.Add(book);
 
-
+               
             }
             table.Close();
             connection.Close();

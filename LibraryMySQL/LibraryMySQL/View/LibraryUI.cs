@@ -226,11 +226,7 @@ namespace LibraryMySQL
 			int[] validIndex = new int[list.Count];
 			int indexCount = 0;
 
-			for (int i = 0; i < list.Count; i++)
-				Console.WriteLine("{0} {1}", list[i].Name, list[i].Author);
 		
-
-			Console.ReadLine();
 	
 			for (int index = 0; index < list.Count; index++)
 			{
