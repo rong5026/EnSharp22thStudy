@@ -9,9 +9,9 @@ namespace LibraryMySQL {
     {
         ConsoleKeyInfo keyInput;
         LibraryUI libraryUI;
-        ValidInput validInput = new ValidInput();
+        ValidInput validInput;
         MySQlData mySQlData;
-        UserModeUI userModeUI = new UserModeUI();
+        UserModeUI userModeUI;
         private string name;
         private string author;
         private string publisher;
@@ -20,6 +20,8 @@ namespace LibraryMySQL {
         {
             this.mySQlData = mySQlData;
             libraryUI = new LibraryUI(mySQlData);
+            userModeUI = new UserModeUI();
+            validInput = new ValidInput();
         }
         public void SearchBook() // 책 검색
         {
@@ -27,7 +29,7 @@ namespace LibraryMySQL {
             while (Constants.PROGRAM_ON)
             {
                 Console.Clear();
-                libraryUI.PrintSearchBook();
+                libraryUI.PrintSearchBook("Start");
                 libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
                 Console.SetCursorPosition(18, 1); // 커서이동
 
@@ -43,8 +45,9 @@ namespace LibraryMySQL {
 
 
                 Console.Clear();
-                libraryUI.PrintSearchBook();
+                libraryUI.PrintSearchBook("Return");
                 libraryUI.ShowBookList(name, author, publisher);
+
 
                 while (Constants.PROGRAM_ON)
                 {
@@ -76,32 +79,7 @@ namespace LibraryMySQL {
                 bookId = validInput.EnterBookId(35, 2); // 책Id 1~999수
                 if (bookId == Constants.INPUT_EMPTY)
                     return;
-                /*for (int index = 0; index < bookList.Count; index++)
-                {
-                    if (bookList[index].Id == Convert.ToInt16(bookId)) // 책의 id가 같으면
-                    {
-                        if (bookList[index].BookCount >= 1) ; // 책이 1개이상 있을때
-                        {
-                            bookList[index].BookCount--; // 해당책의 보유양 1개 감소
-                            BookVO.totalBook--;  //도서관에 있는 도서수 1개 감소
-
-                            LibraryStart.userList[loginUser.SearchLoginUser()].RendtedBookId.Add(index);// Book의 index를 userList의 RentedBookid리스트에 추가
-
-                            Console.SetCursorPosition(0, 0);
-                            userModeUI.PrintSuccessRentBook();
-                           keyInput = Console.ReadKey(true);
-                            return; // 뒤로가기 
-                        }
-                    }
-
-                    Console.SetCursorPosition(0, 0);
-                    userModeUI.PrintFailRentBook();
-                    keyInput = Console.ReadKey(true);
-                    return; // 뒤로가기 
-
-
-
-                }*/
+               
             }
         }
 

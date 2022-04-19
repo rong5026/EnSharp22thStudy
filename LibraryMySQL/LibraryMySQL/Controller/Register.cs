@@ -11,7 +11,7 @@ namespace LibraryMySQL
     {
 
         ConsoleKeyInfo keyInput;
-        UserModeUI userModeUI = new UserModeUI();
+        UserModeUI userModeUI;
         
         ValidInput validInput;
         private string[] userData = new string[7];
@@ -27,10 +27,12 @@ namespace LibraryMySQL
         string address;
 
 
-        public Register( MySQlData mySQlData)
-        {                
-            validInput = new ValidInput(userModeUI);
+        public Register( MySQlData mySQlData,UserModeUI userModeUI, ValidInput validInput)
+        {
+            this.userModeUI = userModeUI;         
             this.mySQlData = mySQlData;
+            this.validInput = validInput;
+           
         }
         public bool RegistUser()
         {

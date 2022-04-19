@@ -302,7 +302,7 @@ namespace LibraryMySQL
 
 		}
 
-		public void PrintSearchBook() // 책찾기 
+		public void PrintSearchBook(string type) // 책찾기 
 		{
 			Console.SetCursorPosition(0, 0);
 			Console.WriteLine();
@@ -317,7 +317,14 @@ namespace LibraryMySQL
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine(" ENTER : 입력하기");
 			Console.ResetColor();
-			Console.WriteLine(" 건너뛰고자 하는 목록은 ENTER을 눌러주세요");
+			if (type != "Return")
+				Console.WriteLine(" 건너뛰고자 하는 목록은 ENTER을 눌러주세요");
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine(" ENTER : 다시 검색하기   ESC : 뒤로가기");
+				Console.ResetColor();
+			}
 
 		}
 

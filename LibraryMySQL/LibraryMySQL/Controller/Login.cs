@@ -10,20 +10,21 @@ namespace LibraryMySQL
     internal class Login
     {
 
-        UserModeUI userModeUI = new UserModeUI();
-        ConsoleKeyInfo keyInput;
+        UserModeUI userModeUI;
+     
         ValidInput validInput;
         MySQlData mySQlData;
         UserMenu userMenu;
 
         private string id;
         private string passWord;
-        public Login(MySQlData mySQlData)
+        public Login(MySQlData mySQlData, UserModeUI userModeUI, ValidInput validInput)
         {
-            validInput = new ValidInput();
-          
+                  
             userMenu = new UserMenu(mySQlData);
-             this.mySQlData = mySQlData;
+            this.validInput = validInput;
+            this.mySQlData = mySQlData;
+            this.userModeUI = userModeUI;
         }
         public int LoginUser()
         {

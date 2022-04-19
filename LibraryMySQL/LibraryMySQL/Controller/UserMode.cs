@@ -10,19 +10,27 @@ namespace LibraryMySQL
     {
 
       
-        int isLoggedIn;
+       
         int menuNumber = 1;
         LibraryUI libraryUI;
-        SelectionMode mode = new SelectionMode();
+        SelectionMode mode;
         Register register;
         Login login;
+        UserModeUI userModeUI;
         MySQlData mysqlData;
-        public UserMode(MySQlData mysqlData)
+        ValidInput validInput;
+        public UserMode(MySQlData mysqlData, SelectionMode mode)
         {
-            libraryUI = new LibraryUI(mysqlData);
-            register = new Register(mysqlData);
             this.mysqlData = mysqlData;
-           login= new Login(mysqlData);
+            this.mode = mode;
+            validInput = new ValidInput();
+            userModeUI = new UserModeUI();
+            libraryUI = new LibraryUI(mysqlData);
+            login = new Login(mysqlData, userModeUI, validInput);
+            register = new Register(mysqlData, userModeUI, validInput);
+           
+        
+           
         }
         public void StartUserMode()
         {

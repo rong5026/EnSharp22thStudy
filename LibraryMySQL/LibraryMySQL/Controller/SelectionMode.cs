@@ -9,15 +9,15 @@ namespace LibraryMySQL
     internal class SelectionMode
     {
    
-        int menuNumber;
-        UserModeUI userModeUI = new UserModeUI();
+      
+        UserModeUI userModeUI;
         LibraryUI libraryUI;
         ConsoleKeyInfo keyInput;
-
-        public SelectionMode()
+        private int menuNumber;
+        public SelectionMode(LibraryUI libraryUI)
         {
-            libraryUI = new LibraryUI();
-
+            this.libraryUI  = libraryUI;
+            userModeUI = new UserModeUI();
         }
         public int SelectMode(int type)
         {
