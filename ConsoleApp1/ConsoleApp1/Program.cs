@@ -88,14 +88,47 @@ namespace ConsoleApp1
           
           
             connection.Close();
-            return a;
+           
           
           
+        }
+        public bool CheckBookList(string data, string type, int bookId) // 책검색할때 조건에 맞는지 확인
+        {
+
+            MySqlConnection connection = UserConnection();
+
+
+            string insertQuery = string.Format("SELECT * FROM book_data");
+
+            connection.Open();
+
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+
+                if (table[type].ToString().Contains(data))
+                {
+
+                    table.Close();
+                    connection.Close();
+
+                    return Constants.BOOK_EXIST;
+                }
+
+            }
+            table.Close();
+            connection.Close();
+
+            return Constants.BOOK_NOT_EXIST;
         }
         static void Main(string[] args)
         {
             Program main = new Program();
-            main.CheckTableDataCount();
+            main.CheckBookList();
         }
     }
 }
