@@ -54,8 +54,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -104,8 +108,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -155,8 +163,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -213,8 +225,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -270,8 +286,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -321,8 +341,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -372,8 +396,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -423,8 +451,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -476,8 +508,13 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(   input[input.Length-1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$")) 
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
+                       
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -528,8 +565,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -580,8 +621,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
@@ -633,8 +678,12 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
                         input = input.Substring(0, (input.Length - 1));
-                        Console.Write("\b \b");  // 지우기
+
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
                     {
