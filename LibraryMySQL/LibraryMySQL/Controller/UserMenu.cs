@@ -38,7 +38,7 @@ namespace LibraryMySQL
                         bookSearching.SearchBook();
                         break;
                     case Constants.BOOK_RENT: // 도서대여
-                        //VariableData.book.BorrowBook();
+                        bookSearching.BorrowBook();
                         break;
                     case Constants.BOOK_BORROW_LIST: //대여도서확인
                         //VariableData.book.ConfirmRentedBook();

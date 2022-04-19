@@ -46,83 +46,28 @@ namespace LibraryMySQL
 
 		}
 
+		public void BorrowBook()
+		{
+			Console.WriteLine("┌-------------------------------------------------------------------------------------------┐");
+			Console.WriteLine("│                                                                                           │");
+			Console.WriteLine("│    빌릴 책의 ID를 입력해 주세요 :                                                         │"); //35, 2
+			Console.WriteLine("│    값의 범위 : 0~ 999                                                                     │");
+			Console.WriteLine("│                                                                                           │");
+			Console.WriteLine("│    뒤로가기 : 처음에 ESC를 눌러주세요                                                     │");
+			Console.WriteLine("│    입력하기: 아무런 값 1개를 입력 후 값을 입력해주세요.                                   │");
+			Console.WriteLine("└-------------------------------------------------------------------------------------------┘\n");
+		}
+
+
 		public void PrintSuccessRegister()
 		{
 			Console.WriteLine("┌------------------------------------------------┐");
 			Console.WriteLine("│                                                │");
 			Console.WriteLine("│               회 원 가 입 성 공 !!             │");
 			Console.WriteLine("│                                                │");
-			Console.WriteLine("│	          ESC : 뒤로가기                 │ ");
+			Console.WriteLine("│                ENTER을 눌러주세요           │");
 			Console.WriteLine("└------------------------------------------------┘\n");
 		}
-	
-		public void PrintSuccessRentBook()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│              대 여 하 기 성 공 !!              │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-		}
-		public void PrintFailRentBook()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│              대 여 하 기 실 패 !!              │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│   유요하지않은 ID이거나 책의 수량이 없습니다!  │");
-			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-		}
-
-		public void PrintUserDateEdit()
-		{
-			Console.WriteLine("┌------------------------------------------------------┐");
-			Console.WriteLine("│                                                      │");
-			Console.WriteLine("│               개 인 정 보 바 꾸 기                   │");
-			Console.WriteLine("│                                                      │");
-			Console.WriteLine("│ 뒤로가려면 처음에 ESC, 입력하려면 아무런 값 1개 입력 │");
-			Console.WriteLine("└------------------------------------------------------┘\n");
-		}
-
-		public void PrintSuccessEditUserData()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                정 보 수 정 완 료!              │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-		}
-		public void PrintDeleteUserId()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│         회 원 탈 퇴 하 시 겠 습 니 까 ?        │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│           예 : ENTER       아니오 : ESC        │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-		}
-
-		public void PrintDeleteUserIdSuccess()
-		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                회 원 탈 퇴 완 료               │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│            (1초 후 화면이 넘어갑니다)          │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-		}
-
-
-
-
-		
-	
-
 		public void PrintMessage(int x, int y,string message)
         {
 			Console.ForegroundColor = ConsoleColor.Red;

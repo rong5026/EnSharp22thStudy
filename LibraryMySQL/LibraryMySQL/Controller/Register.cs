@@ -77,7 +77,7 @@ namespace LibraryMySQL
             while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if (keyInput.Key == ConsoleKey.Escape)
+                if (keyInput.Key == ConsoleKey.Enter)
                     return Constants.REGISTER_SUCCESS;
             }
 
@@ -113,7 +113,7 @@ namespace LibraryMySQL
                     phoneNumber =  validInput.EnterUserPhoneNumber(41, 12);
                     return phoneNumber;
                 case "address":
-                   address =  validInput.EnterUserAddress(39, 13);
+                   address =  validInput.EnterUserAddress(46, 13);
                     return address;
                 default:
                     return "EIXT";
