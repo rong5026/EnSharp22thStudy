@@ -9,7 +9,7 @@ namespace LibraryMySQL
     internal class UserMenu
     {
 
-       // LibraryUI libraryUI = new LibraryUI();
+        LibraryUI libraryUI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
         BookSearching bookSearching;
         MySQlData mySQlData;
@@ -30,7 +30,7 @@ namespace LibraryMySQL
             while (Constants.PROGRAM_ON)
             {
                 menuNumber = mode.SelectUserManagerMenu("User", 7); // 유저메뉴 위아래 화살표로 선택하기
-                /*
+                
                 switch (menuNumber)
                 {
                     case Constants.BOOK_SEARCH: // 도서찾기                    
@@ -63,7 +63,7 @@ namespace LibraryMySQL
 
 
                 }
-                */
+                
 
             }
         }

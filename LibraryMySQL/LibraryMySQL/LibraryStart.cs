@@ -33,7 +33,7 @@ namespace LibraryMySQL
                       
             userList = new List<UserVO>();
             bookList = new List<BookVO>();
-            UI = new LibraryUI();
+          //  UI = new LibraryUI();
 
             userMode =  new UserMode(mysqlData);
 
@@ -64,7 +64,7 @@ namespace LibraryMySQL
                          //managerMode.StartManagerMode();
                         break;
                     case Constants.STOP:
-                         UI.PrintProgramStop(); // 종료
+                       // UI.PrintProgramStop(); // 종료
                         return;
 
 

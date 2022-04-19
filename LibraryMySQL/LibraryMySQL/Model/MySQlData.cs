@@ -111,5 +111,21 @@ namespace LibraryMySQL
 
             return Constants.LOGIN_SUCCESS;
         }
+        public int CheckTableDataCount()
+        {
+            MySqlConnection connection = UserConnection();
+            connection.Open();
+            string insertQuery = string.Format("SELECT COUNT(*) from user_data;");
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+
+
+            int count = Convert.ToInt32(command.ExecuteScalar());
+
+
+            connection.Close();
+            return count;
+
+
+        }
     }
 }

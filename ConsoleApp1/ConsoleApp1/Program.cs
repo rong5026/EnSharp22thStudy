@@ -83,30 +83,13 @@ namespace ConsoleApp1
 
            
             int a = Convert.ToInt32(command.ExecuteScalar());
-           // MySqlDataReader table = command.ExecuteReader();
+          
             Console.WriteLine(a);
-            // int cnt = Convert.ToInt32(table["count(*)"].ToString());
-            try//예외 처리
-            {
-
-                if (command.ExecuteNonQuery() == 1)
-                {
-                    Console.WriteLine(a);
-                    //table.Close();
-                    connection.Close();
-                }
-                else
-                {
-                    Console.WriteLine("비정상 갔다");
-                }
-                Console.ReadLine();
-               // table.Close();
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+          
+          
+            connection.Close();
+            return a;
+          
           
         }
         static void Main(string[] args)
