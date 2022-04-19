@@ -144,10 +144,13 @@ namespace LibraryMySQL
 
             while (table.Read())
             {
-                if ((string)table[type] == data)
+               
+                if (table[type].ToString().Contains(data))
                 {
+                    
                     table.Close();
                     connection.Close();
+
                     return Constants.BOOK_EXIST;
                 }
 

@@ -462,8 +462,7 @@ namespace LibraryMySQL
             while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if (input == Constants.INPUT_EMPTY)
-                   return Constants.INPUT_EMPTY;
+               
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.BACKMENU;
@@ -491,6 +490,8 @@ namespace LibraryMySQL
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"); // 영어,한글,숫자 1글자이상
+            if (input == Constants.INPUT_EMPTY)
+                return Constants.INPUT_EMPTY;
             if (check == false) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
@@ -513,8 +514,7 @@ namespace LibraryMySQL
             while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if (input == Constants.INPUT_EMPTY)
-                    return Constants.INPUT_EMPTY;
+             
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.BACKMENU;
@@ -542,6 +542,8 @@ namespace LibraryMySQL
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$");  // 영어,한글 1글자이상
+            if (input == Constants.INPUT_EMPTY)
+                return Constants.INPUT_EMPTY;
             if (check == false) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
@@ -564,8 +566,7 @@ namespace LibraryMySQL
             while (Constants.PROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if (input == Constants.INPUT_EMPTY)
-                    return Constants.INPUT_EMPTY;
+              
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.BACKMENU;
@@ -593,6 +594,8 @@ namespace LibraryMySQL
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$");  // 영어,한글 1글자이상
+            if (input == Constants.INPUT_EMPTY)
+                return Constants.INPUT_EMPTY;
             if (check == false) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제

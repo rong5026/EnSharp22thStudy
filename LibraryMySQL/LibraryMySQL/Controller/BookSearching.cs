@@ -39,13 +39,17 @@ namespace LibraryMySQL {
             if (publisher == Constants.BACKMENU)
                 return;
 
+
             Console.Clear();
             libraryUI.PrintSearchBook();
             libraryUI.ShowBookList(name, author, publisher);
 
-            keyInput = Console.ReadKey(true);
-            if (keyInput.Key == ConsoleKey.Escape)
-                return; // ESC 누르면 뒤로가기 
+            while (Constants.PROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return; // ESC 누르면 뒤로가기 
+            }
             
 
 

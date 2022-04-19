@@ -303,6 +303,7 @@ namespace LibraryMySQL
 
 		public void PrintSearchBook() // 책찾기 
 		{
+			Console.SetCursorPosition(0, 0);
 			Console.WriteLine();
 
 			Console.WriteLine("  제목으로 찾기 : "); // 18,1
