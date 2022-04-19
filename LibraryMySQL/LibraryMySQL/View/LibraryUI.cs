@@ -218,59 +218,66 @@ namespace LibraryMySQL
 
 		public void ShowBookList(string name, string author, string publisher) // 이름 저자 출판사로 책 검색해서 출력
 		{
-			int tableCount = mySQlData.CheckTableDataCount("book_data");
 
-			int[] validIndex = new int[tableCount];
+			List<BookVO> list = new List<BookVO>();
+
+			mySQlData.CheckBookList(list); // list에 책 목록 넣음
+
+			int[] validIndex = new int[list.Count];
 			int indexCount = 0;
-			
 
+			for (int i = 0; i < list.Count; i++)
+				Console.WriteLine("{0} {1}", list[i].Name, list[i].Author);
+		
 
-			for (int index = 0; index < tableCount; index++)
+			Console.ReadLine();
+	
+			for (int index = 0; index < list.Count; index++)
 			{
 				if (name != Constants.INPUT_EMPTY && author == Constants.INPUT_EMPTY && publisher == Constants.INPUT_EMPTY) // O X X 
 				{
-					if(mySQlData.CheckBookList(name,"book_name"))
+					if ( list[index].Name.Contains(name))
 						validIndex[indexCount++] = index;
-					
+
 				}
 				else if (name == Constants.INPUT_EMPTY && author != Constants.INPUT_EMPTY && publisher == Constants.INPUT_EMPTY) // X O X
 				{
-					if (mySQlData.CheckBookList(author, "book_author"))
-						validIndex[indexCount++] = index;					
+					if (list[index].Author.Contains(author))
+						validIndex[indexCount++] = index;
 				}
 				else if (name == Constants.INPUT_EMPTY && author == Constants.INPUT_EMPTY && publisher != Constants.INPUT_EMPTY) // X X O
 				{
-					if (mySQlData.CheckBookList(publisher, "book_publisher"))
-						validIndex[indexCount++] = index;					
+					if (list[index].Publisher.Contains(publisher))
+						validIndex[indexCount++] = index;
 				}
 				else if (name != Constants.INPUT_EMPTY && author != Constants.INPUT_EMPTY && publisher == Constants.INPUT_EMPTY)//O O X
 				{
-					if(mySQlData.CheckBookList(name, "book_name") && mySQlData.CheckBookList(author, "book_author"))
+					if (list[index].Name.Contains(name) && list[index].Author.Contains(author))
 						validIndex[indexCount++] = index;
 				}
 				else if (name == Constants.INPUT_EMPTY && author != Constants.INPUT_EMPTY && publisher != Constants.INPUT_EMPTY)//X O O
 				{
-					if (mySQlData.CheckBookList(author, "book_author") && mySQlData.CheckBookList(publisher, "book_publisher"))
+					if (list[index].Publisher.Contains(publisher) && list[index].Author.Contains(author))
 						validIndex[indexCount++] = index;
 				}
 				else if (name != Constants.INPUT_EMPTY && author == Constants.INPUT_EMPTY && publisher != Constants.INPUT_EMPTY) // O X O
 				{
-					if (mySQlData.CheckBookList(publisher, "book_publisher") && mySQlData.CheckBookList(name, "book_name"))
+					if (list[index].Publisher.Contains(publisher) && list[index].Name.Contains(name))
 						validIndex[indexCount++] = index;
 				}
 				else if (name != Constants.INPUT_EMPTY && author != Constants.INPUT_EMPTY && publisher != Constants.INPUT_EMPTY)//O O O
 				{
-					if (mySQlData.CheckBookList(name, "book_name") && mySQlData.CheckBookList(author, "book_author") &&
-						mySQlData.CheckBookList(publisher, "book_publisher"))
+					if (list[index].Name.Contains(name) && list[index].Author.Contains(author) &&
+						list[index].Publisher.Contains(publisher))
 						validIndex[indexCount++] = index;
 				}
 				/// X X X  값이 다없을때 
 
 			}
-			
+
 			if (indexCount == 0)
 			{
-				indexCount = tableCount;
+				indexCount = list.Count;
 				for (int index = 0; index < indexCount; index++)
 					validIndex[index] = index;
 			}
@@ -279,21 +286,17 @@ namespace LibraryMySQL
 			{
 				Console.WriteLine();
 				Console.WriteLine("===========================================================================================================================\n");
-				Console.WriteLine("책아이디 : {0} ", mySQlData.CheckBookUnit(validIndex[index],"book_id"));
-				Console.WriteLine("책 제목 : {0} ", mySQlData.CheckBookUnit(validIndex[index], "book_name"));
-				Console.WriteLine("작가 : {0} ", mySQlData.CheckBookUnit(validIndex[index], "book_author"));
-				Console.WriteLine("출판사 : {0} ", mySQlData.CheckBookUnit(validIndex[index], "book_publisher"));
-				Console.WriteLine("수량 : {0} ", mySQlData.CheckBookUnit(validIndex[index], "book_count"));
-				Console.WriteLine("가격 : {0} ", mySQlData.CheckBookUnit(validIndex[index], "book_price"));
-				Console.WriteLine("출시일 : {0} ", mySQlData.CheckBookUnit(validIndex[index], "book_date"));
+				Console.WriteLine("책아이디 : {0} ", list[validIndex[index]].Id);
+				Console.WriteLine("책 제목 : {0} ", list[validIndex[index]].Name);
+				Console.WriteLine("작가 : {0} ", list[validIndex[index]].Author);
+				Console.WriteLine("출판사 : {0} ", list[validIndex[index]].Publisher);
+				Console.WriteLine("수량 : {0} ", list[validIndex[index]].BookCount);
+				Console.WriteLine("가격 : {0} ", list[validIndex[index]].Price);
+				Console.WriteLine("출시일 : {0} ", list[validIndex[index]].Date);
 
 
 			}
 			Console.SetCursorPosition(0, 0);
-
-
-
-
 
 
 

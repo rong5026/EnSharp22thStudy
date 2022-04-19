@@ -127,38 +127,35 @@ namespace LibraryMySQL
 
 
         }
-        public bool CheckBookList(string data, string type) // 책검색할때 조건에 맞는지 확인
+        public void CheckBookList(List<BookVO> list) // 책리스트를 리턴
         {
-
+           
+            BookVO book = new BookVO();
             MySqlConnection connection = UserConnection();
-
-
             string insertQuery = string.Format("SELECT * FROM book_data");
-
             connection.Open();
-
-
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             MySqlDataReader table = command.ExecuteReader();
 
-
+   
             while (table.Read())
             {
-               
-                if (table[type].ToString().Contains(data))
-                {
-                    
-                    table.Close();
-                    connection.Close();
 
-                    return Constants.BOOK_EXIST;
-                }
+              
+                book.Id = (int)table["book_id"]; 
+                book.Name = (string)table["book_name"];
+                book.Author = (string)table["book_author"];
+                book.Publisher = (string)table["book_publisher"];
+                book.BookCount = (int)table["book_count"];
+                book.Price = (int)table["book_price"];
+                book.Date = (string)table["book_date"];
+                list.Add(book);
+
 
             }
             table.Close();
             connection.Close();
 
-            return Constants.BOOK_NOT_EXIST;
         }
         public string CheckBookUnit(int bookId,string type)
         {
