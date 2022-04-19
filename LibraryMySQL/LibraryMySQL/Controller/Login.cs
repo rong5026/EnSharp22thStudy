@@ -12,17 +12,18 @@ namespace LibraryMySQL
 
         UserModeUI userModeUI = new UserModeUI();
         ConsoleKeyInfo keyInput;
-        ValidInput validInput =new ValidInput();
+        ValidInput validInput;
         MySQlData mySQlData;
-        UserMenu userMenu = new UserMenu();
+        UserMenu userMenu;
 
         private string id;
         private string passWord;
         public Login(MySQlData mySQlData)
         {
-       
-           this.mySQlData = mySQlData;
-            
+            validInput = new ValidInput();
+          
+            userMenu = new UserMenu(mySQlData);
+             this.mySQlData = mySQlData;
         }
         public int LoginUser()
         {

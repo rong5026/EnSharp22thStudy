@@ -9,24 +9,32 @@ namespace LibraryMySQL
     internal class UserMenu
     {
 
-        LibraryUI libraryUI = new LibraryUI();
+       // LibraryUI libraryUI = new LibraryUI();
         SelectionMode mode = new SelectionMode();
+        BookSearching bookSearching;
+        MySQlData mySQlData;
         int userid;
         bool delete;
         int menuNumber;
+
+        public UserMenu(MySQlData mySQlData)
+        {
+            this.mySQlData = mySQlData;
+           // bookSearching = new BookSearching(mySQlData);
+        }
         public void StartUserMenu()
         {
-            libraryUI.PrintMainUI();
+           // libraryUI.PrintMainUI();
             Console.SetWindowSize(125, 40);
 
             while (Constants.PROGRAM_ON)
             {
                 menuNumber = mode.SelectUserManagerMenu("User", 7); // 유저메뉴 위아래 화살표로 선택하기
-
+                /*
                 switch (menuNumber)
                 {
                     case Constants.BOOK_SEARCH: // 도서찾기                    
-                        VariableData.book.SearchBook();
+                        book.SearchBook();
                         break;
                     case Constants.BOOK_RENT: // 도서대여
                         VariableData.book.BorrowBook();
@@ -55,7 +63,9 @@ namespace LibraryMySQL
 
 
                 }
+                */
 
             }
         }
+    }
 }

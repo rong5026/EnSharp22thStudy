@@ -8,11 +8,15 @@ namespace LibraryMySQL
 {
 	internal class LibraryUI
 	{
+		MySQlData mySQlData;
+		private string selectFirst;
+		private string selectSecond;
 
-		string selectFirst;
-		string selectSecond;
+		public LibraryUI(MySQlData mySQlData)
+        {
+			this.mySQlData = mySQlData;
 
-
+		}
 		public void PrintMainUI()
 		{
 			Console.SetCursorPosition(0, 0);
@@ -209,10 +213,10 @@ namespace LibraryMySQL
 
 		public void ShowBookList(string name, string author, string publisher) // 이름 저자 출판사로 책 검색해서 출력
 		{
-			int[] validIndex = new int[LibraryStart.bookList.Count];
+			int[] validIndex = new int[8];
 			int indexCount = 0;
-
-
+			
+			/*
 			for (int index = 0; index < LibraryStart.bookList.Count; index++)
 			{
 				if (name != Constants.INPUT_EMPTY && author == Constants.INPUT_EMPTY && publisher == Constants.INPUT_EMPTY) // O X X 
@@ -255,7 +259,7 @@ namespace LibraryMySQL
 				/// X X X  값이 다없을때 
 
 			}
-
+			*/
 			if (indexCount == 0)
 			{
 				indexCount = LibraryStart.bookList.Count;

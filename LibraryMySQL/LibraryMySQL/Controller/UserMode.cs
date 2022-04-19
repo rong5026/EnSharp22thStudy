@@ -12,13 +12,14 @@ namespace LibraryMySQL
       
         int isLoggedIn;
         int menuNumber = 1;
-        LibraryUI UI = new LibraryUI();
+        LibraryUI UI;
         SelectionMode mode = new SelectionMode();
         Register register;
         Login login;
         MySQlData mysqlData;
         public UserMode(MySQlData mysqlData)
         {
+            UI = new LibraryUI(mysqlData);
             register = new Register(mysqlData);
             this.mysqlData = mysqlData;
            login= new Login(mysqlData);
