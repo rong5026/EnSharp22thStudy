@@ -24,7 +24,7 @@ namespace LibraryMySQL
             
             menuNumber = 1;
             libraryUI.PrintSelectUI(Constants.USER_MODE, type);
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                keyInput = Console.ReadKey(true);
                 switch (keyInput.Key)
@@ -50,8 +50,8 @@ namespace LibraryMySQL
             menuNumber = 0;
             if (type == "User")
                 libraryUI.PrintUserMenuUI(Constants.FIND_BOOK);
-    
-            while (Constants.PROGRAM_ON)
+            Console.CursorVisible = false;
+            while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 switch (keyInput.Key)

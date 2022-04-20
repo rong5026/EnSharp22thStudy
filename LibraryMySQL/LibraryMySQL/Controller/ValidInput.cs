@@ -36,7 +36,7 @@ namespace LibraryMySQL
 
             input = Constants.INPUT_EMPTY;
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 if (input == Constants.INPUT_EMPTY)
@@ -91,7 +91,7 @@ namespace LibraryMySQL
 
             input = Constants.INPUT_EMPTY;
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 if (input == Constants.INPUT_EMPTY)
@@ -147,7 +147,7 @@ namespace LibraryMySQL
 
             input = Constants.INPUT_EMPTY;
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 if (input == Constants.INPUT_EMPTY)
@@ -210,7 +210,7 @@ namespace LibraryMySQL
 
             input = Constants.INPUT_EMPTY;
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 if (input == Constants.INPUT_EMPTY)
@@ -274,7 +274,7 @@ namespace LibraryMySQL
 
             input = Constants.INPUT_EMPTY;
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                
@@ -331,7 +331,7 @@ namespace LibraryMySQL
 
             input = Constants.INPUT_EMPTY;
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
              
@@ -387,7 +387,7 @@ namespace LibraryMySQL
 
             input = Constants.INPUT_EMPTY;
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
               
@@ -443,7 +443,7 @@ namespace LibraryMySQL
 
             input = Constants.INPUT_EMPTY;
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
                 if (input == Constants.INPUT_EMPTY)

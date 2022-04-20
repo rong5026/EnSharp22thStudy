@@ -40,7 +40,7 @@ namespace LibraryMySQL
           
 
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 Console.CursorVisible = false;
                 menuNumber = mode.SelectMode(Constants.LOGIN_REGISTER); // 로그인 . 회원가입 선택

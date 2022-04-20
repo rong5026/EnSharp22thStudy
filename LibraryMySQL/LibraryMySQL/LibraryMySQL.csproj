@@ -96,9 +96,11 @@
     <Compile Include="LibraryMain.cs" />
     <Compile Include="LibraryStart.cs" />
     <Compile Include="Model\BookVO.cs" />
+    <Compile Include="Model\ConnectionData.cs" />
     <Compile Include="Model\Constants.cs" />
     <Compile Include="Controller\MySQlData.cs" />
     <Compile Include="Model\ErrorMessage.cs" />
+    <Compile Include="Model\QueryData.cs" />
     <Compile Include="Model\RegularExpression.cs" />
     <Compile Include="Model\UserVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryMySQL.Model
+namespace LibraryMySQL
 {
     internal class QueryData
     {

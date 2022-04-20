@@ -36,7 +36,7 @@ namespace LibraryMySQL
            
             
             Console.CursorVisible = false;
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 menuNumber =  mode.SelectMode(Constants.USER_MANAGER); // 회원모드 . 유저모드 선택
                 switch (menuNumber)

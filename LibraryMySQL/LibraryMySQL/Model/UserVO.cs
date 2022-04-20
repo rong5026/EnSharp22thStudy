@@ -15,9 +15,7 @@ namespace LibraryMySQL
         private string age;
         private string phonenumber;
         private string address;
-        private List<int> rentedBookId = new List<int>();
-        private List<string> returnBookTime = new List<string>();
-        private List<int> returnBookId = new List<int>();
+      
         public UserVO()
         {
              
@@ -63,24 +61,7 @@ namespace LibraryMySQL
             set { address = value; }
         }
         
-        public List<int> RendtedBookId
-        {
-            get { return rentedBookId; }
-            set { rentedBookId = value; }
-
-        }
-        public List<int> ReturnBookId
-        {
-            get { return returnBookId; }
-            set { returnBookId = value; }
-
-        }
-        public List<string> ReturnBookTime
-        {
-            get { return returnBookTime; }
-            set { returnBookTime = value; }
-
-        }
+      
 
 
 

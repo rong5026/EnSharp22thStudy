@@ -18,7 +18,7 @@ namespace LibraryMySQL
         public const int LOGIN_SUCCESS = 1;
 
         //UserMenu
-        public const bool PROGRAM_ON = true;
+        public const bool isPROGRAM_ON = true;
         public const int BOOK_SEARCH = 1;
         public const int BOOK_RENT = 2;
         public const int BOOK_BORROW_LIST = 3;
@@ -54,11 +54,10 @@ namespace LibraryMySQL
 
         public const string INPUT_EMPTY = "";
         public const string INPUT_BACK = "-1";
-        public const bool REGISTER_FAIL = false;
-        public const bool REGISTER_SUCCESS = true;
+        public const bool isREGISTER_FAIL = false;
+        public const bool isREGISTER_SUCCESS = true;
 
-        public const bool BOOK_EXIST = true;
-        public const bool BOOK_NOT_EXIST = false;
+      
         public const string BACKMENU = "back";
 
 

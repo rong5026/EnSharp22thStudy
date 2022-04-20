@@ -28,8 +28,9 @@ namespace LibraryMySQL
             libraryUI.PrintMainUI();
             Console.SetWindowSize(125, 40);
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
+               
                menuNumber = mode.SelectUserManagerMenu("User", 7); // 유저메뉴 위아래 화살표로 선택하기
                 
                 switch (menuNumber)

@@ -10,7 +10,7 @@ namespace LibraryMySQL
     {
 
         private static MySQlData mysqlData;
-
+        private UserVO user;
         public static MySQlData Instance()
         {
             if (mysqlData == null)
@@ -18,28 +18,25 @@ namespace LibraryMySQL
             return mysqlData;
         }
 
-        public MySqlConnection UserConnection()
+        public MySqlConnection ConnectMySQL()
         {
-            string database = "library";
-            string id = "root";
-            string password = "0000";
-            string server = "localhost";
-            int port = 3306;
+            string database = ConnectionData.DATABASE_NAME;
+            string id = ConnectionData.ID;
+            string password = ConnectionData.PASSWROD;
+            string server = ConnectionData.SERVER;
+            int port = ConnectionData.PORT;
             MySqlConnection connection =
         new MySqlConnection("Server=localhost;Port=3306;Database=library;Uid=root;Pwd=0000;");
 
             return connection;
         }
-        public int CheckLogin(string id, string passWord) // 전체 데이터 출력
+        public void SendUserList(List<UserVO> list) // 회원정보 보내줌
         {
-
-            MySqlConnection connection = UserConnection();
-
-
+         
+            MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format("SELECT * FROM user_data");
 
             connection.Open();
-
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             MySqlDataReader table = command.ExecuteReader();
@@ -47,27 +44,23 @@ namespace LibraryMySQL
 
             while (table.Read())
             {
-                
-                if (  (string)table["user_id"] == id && (string)table["user_password"] == passWord)
-                {
-                   
-                    table.Close();
-                    connection.Close();                
-                    return Constants.LOGIN_SUCCESS;
-                }
-                   
-
+                user = new UserVO( (string)table["user_id"],
+                    (string)table["user_password"],
+                    (string)table["user_name"],
+                    (string)table["user_age"],
+                    (string)table["user_phonenumber"],
+                    (string)table["user_address"]);
+                list.Add(user);
             }
                  
             table.Close();
             connection.Close();
-   
-            return Constants.LOGIN_FAIL;
+       
         }
 
         public void InsertUserData(string id, string password, string name,string age,string phoneNumber, string address ) // 유저정보 삽입
         {
-            MySqlConnection connection = UserConnection();
+            MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
             string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age, user_phonenumber,user_address) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');", id, password, name, age, phoneNumber, address);
@@ -81,7 +74,7 @@ namespace LibraryMySQL
         public int CheckUserId(string id) // 회원가입시 유저 정보가 겹치는지 확인
         {
 
-            MySqlConnection connection = UserConnection();
+            MySqlConnection connection = ConnectMySQL();
 
 
             string insertQuery = string.Format("SELECT * FROM user_data");
@@ -114,7 +107,7 @@ namespace LibraryMySQL
         }
         public int CheckTableDataCount(string tableType) // 데이터 수 리턴
         {
-            MySqlConnection connection = UserConnection();
+            MySqlConnection connection = ConnectMySQL();
             connection.Open();
             string insertQuery = string.Format("SELECT COUNT(*) from {0};", tableType);
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
@@ -132,7 +125,7 @@ namespace LibraryMySQL
         {
            
            
-            MySqlConnection connection = UserConnection();
+            MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format("SELECT * FROM book_data");
             connection.Open();
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
@@ -160,7 +153,7 @@ namespace LibraryMySQL
         }
         public string CheckBookUnit(int bookId,string type)
         {
-            MySqlConnection connection = UserConnection();
+            MySqlConnection connection = ConnectMySQL();
 
 
             string insertQuery = string.Format("SELECT * FROM book_data");

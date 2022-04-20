@@ -26,7 +26,7 @@ namespace LibraryMySQL {
         public void SearchBook() // 책 검색
         {
 
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
                 libraryUI.PrintSearchBook("Start");
@@ -48,8 +48,8 @@ namespace LibraryMySQL {
                 libraryUI.PrintSearchBook("Return");
                 libraryUI.ShowBookList(name, author, publisher);
 
-
-                while (Constants.PROGRAM_ON)
+                Console.CursorVisible = false;
+                while (Constants.isPROGRAM_ON)
                 {
                     keyInput = Console.ReadKey(true);
                     if (keyInput.Key == ConsoleKey.Escape)
@@ -74,7 +74,7 @@ namespace LibraryMySQL {
             Console.SetCursorPosition(35, 2); // 커서이동
 
             mySQlData.CheckBookList(bookList);
-            while (Constants.PROGRAM_ON)
+            while (Constants.isPROGRAM_ON)
             {
                 bookId = validInput.EnterBookId(35, 2); // 책Id 1~999수
                 if (bookId == Constants.INPUT_EMPTY)
