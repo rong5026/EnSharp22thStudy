@@ -10,7 +10,7 @@ namespace LibraryMySQL
     internal class ValidInput
     {
         UserModeUI userModeUI;
-
+        MySQlData mySQlData;
         private bool check;     
         private string idPassword;
         private string error;
@@ -20,9 +20,11 @@ namespace LibraryMySQL
         public ValidInput()
         {
             userModeUI = new UserModeUI();
+            mySQlData = MySQlData.Instance();
         }
         public ValidInput(UserModeUI userModeUI)
         {
+             mySQlData = MySQlData.Instance();
             this.userModeUI = userModeUI;
         }
 
@@ -40,7 +42,7 @@ namespace LibraryMySQL
             {
                 keyInput = Console.ReadKey(true);
                 if (input == Constants.INPUT_EMPTY)
-                    DeleteInput(107, 124, y); // 오류메시지 삭제
+                    DeleteInput(124-x, 124, y); // 오류메시지 삭제
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.INPUT_EMPTY;
@@ -74,7 +76,7 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(input, @"^[0-9a-zA-Z]{8,15}$"); // 숫자 영어 8~15글자
             if (check == false) //
             {
-                DeleteInput(107, 124, y);
+                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
                 return EnterLoginID(x, y);
             }
@@ -137,7 +139,7 @@ namespace LibraryMySQL
 
         }
 
-        public string EnterRegisterID(int x, int y, MySQlData mySQlData) // 회원가입 ID 입력
+        public string EnterRegisterID(int x, int y) // 회원가입 ID 입력
         {
             Console.CursorVisible = true;
             error = "숫자+영어 8~15글자를 입력해주세요!";   //예외조건 성립안할때 출력
@@ -185,21 +187,21 @@ namespace LibraryMySQL
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
-                return EnterRegisterID(x, y, mySQlData);
+                return EnterRegisterID(x, y);
             }
             if(mySQlData.CheckUserId(input) == Constants.LOGIN_FAIL)
             {
                 error = "기존 회원과 중복되는 ID입니다! 다른 ID를 입력해주세요.";
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
-                return EnterRegisterID(x, y, mySQlData);
+                return EnterRegisterID(x, y);
             }
             
             return input;  // 문자형 id,password 리턴
 
         }
 
-        public string EnterRePassWord(string password, int x, int y, MySQlData mySQlData) // password 다시입력 후 확인
+        public string EnterRePassWord(string password, int x, int y) // password 다시입력 후 확인
         {
             Console.CursorVisible = true;
             error = "숫자+영어 8~15글자를 입력해주세요!";   //예외조건 성립안할때 출력
@@ -246,14 +248,14 @@ namespace LibraryMySQL
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
-                return EnterRePassWord(password,x, y, mySQlData);
+                return EnterRePassWord(password,x, y);
             }
             if (password != input)// 비밀번호가 같지않다면
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 error = "입력하신 비밀번호와 일치하지 않습니다! 다시입력해주세요";
                 userModeUI.PrintErrorMessage(x, y, error);
-                return EnterRePassWord(password, x, y, mySQlData);
+                return EnterRePassWord(password, x, y);
             }
 
             return input;  // 문자형 id,password 리턴

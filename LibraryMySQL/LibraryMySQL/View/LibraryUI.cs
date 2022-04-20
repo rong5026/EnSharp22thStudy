@@ -8,20 +8,16 @@ namespace LibraryMySQL
 {
 	internal class LibraryUI
 	{
-		MySQlData mySQlData;
+		MySQlData mySQlData; 
 		private string selectFirst;
 		private string selectSecond;
 
 
 		public LibraryUI()
         {
-			mySQlData = new MySQlData();
-        }
-		public LibraryUI(MySQlData mySQlData)
-        {
-			this.mySQlData = mySQlData;
-
+			mySQlData = MySQlData.Instance();
 		}
+	
 		public void PrintMainUI()
 		{
 			Console.SetWindowSize(125, 60);

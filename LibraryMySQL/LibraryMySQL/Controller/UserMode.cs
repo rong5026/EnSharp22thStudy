@@ -17,17 +17,17 @@ namespace LibraryMySQL
         Register register;
         Login login;
         UserModeUI userModeUI;
-        MySQlData mysqlData;
+    
         ValidInput validInput;
-        public UserMode(MySQlData mysqlData, SelectionMode mode)
+        public UserMode( SelectionMode mode)
         {
-            this.mysqlData = mysqlData;
+          
             this.mode = mode;
             validInput = new ValidInput();
             userModeUI = new UserModeUI();
-            libraryUI = new LibraryUI(mysqlData);
-            login = new Login(mysqlData, userModeUI, validInput);
-            register = new Register(mysqlData, userModeUI, validInput);
+            libraryUI = new LibraryUI();
+            login = new Login(userModeUI, validInput);
+            register = new Register( userModeUI, validInput);
            
         
            

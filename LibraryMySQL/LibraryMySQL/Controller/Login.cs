@@ -18,12 +18,12 @@ namespace LibraryMySQL
 
         private string id;
         private string passWord;
-        public Login(MySQlData mySQlData, UserModeUI userModeUI, ValidInput validInput)
+        public Login( UserModeUI userModeUI, ValidInput validInput)
         {
                   
-            userMenu = new UserMenu(mySQlData);
+            userMenu = new UserMenu();
             this.validInput = validInput;
-            this.mySQlData = mySQlData;
+            mySQlData= MySQlData.Instance();
             this.userModeUI = userModeUI;
         }
         public int LoginUser()
@@ -35,11 +35,11 @@ namespace LibraryMySQL
            
             userModeUI.PrintLogin(); // 위에 로그인 화면
                                      // 
-            id = validInput.EnterLoginID(17, 6); // id 입력
+            id = validInput.EnterLoginID(52, 34); // id 입력
             if (id == Constants.INPUT_EMPTY)                      
                 return Constants.BACK;
             
-            passWord = validInput.EnterLoginPassWord(17, 7); // password입력
+            passWord = validInput.EnterLoginPassWord(52, 35); // password입력
             if (passWord == Constants.INPUT_EMPTY)
                 return Constants.BACK;
 

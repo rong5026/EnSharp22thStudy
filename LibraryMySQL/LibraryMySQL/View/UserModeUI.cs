@@ -10,40 +10,47 @@ namespace LibraryMySQL
 	{
 	
 		
-		int bookIndex;
-		string bookTime;
+		LibraryUI libraryUI = new LibraryUI();
 		
 
 		public void PrintLogin()
 		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                     로 그 인                   │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│	   ESC : 뒤로가기  ENTER : 입력하기      │");
-			Console.WriteLine("└------------------------------------------------┘");
-			Console.WriteLine("     User ID   : ");
-			Console.WriteLine(" User Password : ");
+			libraryUI.PrintMainUI();
+			Console.WriteLine("                                   ┌------------------------------------------------┐");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                     로 그 인                   │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │	    ESC : 뒤로가기  ENTER : 입력하기        │");
+			Console.WriteLine("                                   └------------------------------------------------┘");
+			Console.WriteLine("                                        User ID   : ");
+			Console.WriteLine("                                    User Password : ");
 
 		}
 	
 
 		public void PrintRegister()
 		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                  회 원 가 입                   │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│	   ESC : 뒤로가기  ENTER : 입력하기      │");
-			Console.WriteLine("└------------------------------------------------┘\n");
-			Console.WriteLine(" User ID (8~ 15글자 영어, 숫자포함) : ");//38 7
-			Console.WriteLine(" User PW (8~ 15글자 영어, 숫자포함) : ");//38 8
-			Console.WriteLine(" User PW  (     Password 확인     ) : ");//38 9
-			Console.WriteLine(" User Name (한글,영어 포함 1글자 이상) : ");//41 10
-			Console.WriteLine(" User Age (  0,자연수 0세 ~ 200세   ) : ");//39 11
-			Console.WriteLine(" User PhoneNumber (   01x-xxxx-xxxx  ) : ");//41 12
-			Console.Write(" User Address (한글+숫자 최소 3개이상입력 ) : ");//46 13
+			libraryUI.PrintMainUI();
+			Console.WriteLine("                                   ┌------------------------------------------------┐");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                     회 원 가 입                │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │	      ESC : 뒤로가기  ENTER : 입력하기      │");
+			Console.WriteLine("                                   └------------------------------------------------┘\n");
+			Console.WriteLine("                                    User ID (8~ 15글자 영어, 숫자포함) : ");//38 7
+			Console.WriteLine("                                    User PW (8~ 15글자 영어, 숫자포함) : ");//38 8
+			Console.WriteLine("                                    User PW  (     Password 확인     ) : ");//38 9
+			Console.WriteLine("                                    User Name (한글,영어 포함 1글자 이상) : ");//41 10
+			Console.WriteLine("                                    User Age (  0,자연수 0세 ~ 200세   ) : ");//39 11
+			Console.WriteLine("                                    User PhoneNumber (   01x-xxxx-xxxx  ) : ");//41 12
+			Console.WriteLine("                                    User Address (  도로명 주소 - OO시 OO구  ) : ");//46 13
 
+			Console.ForegroundColor = ConsoleColor.Red;
+		
+			Console.WriteLine("                                    ex) 경기도 수원시 영통구 영통로124");
+			Console.WriteLine("                                    ex) 서울특별시 강남구 남부순환로 지하2744");
+			Console.WriteLine("                                    ex) 서울특별시 구로구 경인로248-29");
+			Console.ResetColor();
 		}
 
 		public void BorrowBook()

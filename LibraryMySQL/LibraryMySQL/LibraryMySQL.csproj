@@ -97,8 +97,7 @@
     <Compile Include="LibraryStart.cs" />
     <Compile Include="Model\BookVO.cs" />
     <Compile Include="Model\Constants.cs" />
-    <Compile Include="Model\InputVO.cs" />
-    <Compile Include="Model\MySQlData.cs" />
+    <Compile Include="Controller\MySQlData.cs" />
     <Compile Include="Model\UserVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\LibraryUI.cs" />

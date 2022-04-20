@@ -14,12 +14,9 @@ namespace LibraryMySQL
         static void Main(string[] args)
         {
 
-          
+
             LibraryStart start = new LibraryStart();
             start.StartProgram();
-
-
-
 
         }
     }

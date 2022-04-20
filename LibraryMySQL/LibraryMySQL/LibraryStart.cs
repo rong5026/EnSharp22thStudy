@@ -13,39 +13,24 @@ namespace LibraryMySQL
 
     {
 
-        public static List<UserVO> userList; 
-        public static List<BookVO> bookList;
-
-       
-      
         LibraryUI libraryUI;
         SelectionMode mode;
         UserMode userMode;
-        MySQlData mysqlData;
         int menuNumber;
-
-
-      
 
         public LibraryStart()
         {
             libraryUI = new LibraryUI ();
-            mysqlData = MySQlData.Instance();
-            mode = new SelectionMode(libraryUI);
-            userList = new List<UserVO>();
-            bookList = new List<BookVO>();     
-            userMode =  new UserMode(mysqlData, mode);
-
-          
            
+            mode = new SelectionMode(libraryUI);       
+            userMode =  new UserMode( mode);
         }
       
 
         public void StartProgram()
         {
 
-
-
+         
             libraryUI.PrintMainUI();
             Console.SetWindowSize(125, 60);
            

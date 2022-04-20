@@ -27,10 +27,10 @@ namespace LibraryMySQL
         string address;
 
 
-        public Register( MySQlData mySQlData,UserModeUI userModeUI, ValidInput validInput)
+        public Register( UserModeUI userModeUI, ValidInput validInput)
         {
             this.userModeUI = userModeUI;         
-            this.mySQlData = mySQlData;
+
             this.validInput = validInput;
            
         }
@@ -42,25 +42,25 @@ namespace LibraryMySQL
             Console.SetCursorPosition(38, 7);
 
             //user정보 입력.
-            userData[0] = EnterUserData("", "id", mySQlData); // 가입된 사람의 id와 중복되면 안됨.
+            userData[0] = EnterUserData("", "id"); // 가입된 사람의 id와 중복되면 안됨.
             if (userData[0] == Constants.INPUT_EMPTY)
                 return Constants.REGISTER_FAIL;
-            userData[1] = EnterUserData("", "password", mySQlData);
+            userData[1] = EnterUserData("", "password");
             if (userData[1] == Constants.INPUT_EMPTY)
                 return Constants.REGISTER_FAIL;
-            userData[2] = EnterUserData(userData[1], "repassword", mySQlData); // 입력한 비밀번호가 같은지 확인
+            userData[2] = EnterUserData(userData[1], "repassword"); // 입력한 비밀번호가 같은지 확인
             if (userData[2] == Constants.INPUT_EMPTY)
                 return Constants.REGISTER_FAIL;
-            userData[3] = EnterUserData("", "name", mySQlData); // 유저이름 : 영어 또는 한글 1글자 이상
+            userData[3] = EnterUserData("", "name"); // 유저이름 : 영어 또는 한글 1글자 이상
             if (userData[3] == Constants.INPUT_EMPTY)
                 return Constants.REGISTER_FAIL;
-            userData[4] = EnterUserData("", "age", mySQlData); // 0~ 199세 까지 입력
+            userData[4] = EnterUserData("", "age"); // 0~ 199세 까지 입력
             if (userData[4] == Constants.INPUT_EMPTY)
                 return Constants.REGISTER_FAIL;
-            userData[5] = EnterUserData("", "phonenumber", mySQlData); // 전화번호 01x-xxxx-xxxx
+            userData[5] = EnterUserData("", "phonenumber"); // 전화번호 01x-xxxx-xxxx
             if (userData[5] == Constants.INPUT_EMPTY)
                 return Constants.REGISTER_FAIL;
-            userData[6] = EnterUserData("", "address", mySQlData);// 주소  
+            userData[6] = EnterUserData("", "address");// 주소  
             if (userData[6] == Constants.INPUT_EMPTY)
                 return Constants.REGISTER_FAIL;
 
@@ -92,30 +92,30 @@ namespace LibraryMySQL
 
 
         }
-        private string EnterUserData(string password, string type, MySQlData mySQlData) // 유저의 정보를 입력받음
+        private string EnterUserData(string password, string type) // 유저의 정보를 입력받음
         {
             switch (type)
             {
                 case "id":
-                  id =  validInput.EnterRegisterID(38, 7, mySQlData);
+                  id =  validInput.EnterRegisterID(74, 35);
                     return id;
                 case "password":
-                    repassword =  validInput.EnterLoginPassWord(38, 8);
+                    repassword =  validInput.EnterLoginPassWord(74, 36);
                     return repassword;
                 case "repassword":
-                  repassword =  validInput.EnterRePassWord(password, 38, 9, mySQlData);
+                  repassword =  validInput.EnterRePassWord(password, 74, 37 );
                     return repassword;
                 case "name":
-                    name =  validInput.EnterUserName(41, 10);
+                    name =  validInput.EnterUserName(77, 38);
                     return name;
                 case "age":
-                   age =  validInput.EnterUserAge(39, 11);
+                   age =  validInput.EnterUserAge(75, 39);
                     return age;
                 case "phonenumber":
-                    phoneNumber =  validInput.EnterUserPhoneNumber(41, 12);
+                    phoneNumber =  validInput.EnterUserPhoneNumber(77, 40);
                     return phoneNumber;
                 case "address":
-                   address =  validInput.EnterUserAddress(46, 13);
+                   address =  validInput.EnterUserAddress(82, 41);
                     return address;
                 default:
                     return "EIXT";

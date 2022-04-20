@@ -16,10 +16,10 @@ namespace LibraryMySQL {
         private string author;
         private string publisher;
         private string bookId;
-        public BookSearching(MySQlData mySQlData)
+        public BookSearching()
         {
-            this.mySQlData = mySQlData;
-            libraryUI = new LibraryUI(mySQlData);
+          
+            libraryUI = new LibraryUI();
             userModeUI = new UserModeUI();
             validInput = new ValidInput();
         }
