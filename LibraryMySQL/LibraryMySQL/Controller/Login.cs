@@ -46,18 +46,31 @@ namespace LibraryMySQL
                 return Constants.BACK;
 
 
-            if (mySQlData.CheckLogin(id, passWord) == Constants.LOGIN_SUCCESS)
+            if (CheckUser(id,passWord) == Constants.LOGIN_SUCCESS) // 로그인 성공
             {
                 Console.Clear();
                 userMenu.StartUserMenu(); // 유저메뉴 입장
             }
-            else
+            else // 로그인 실패
                 return LoginUser();
 
 
             
             return Constants.BACK;
 
+        }
+        private int CheckUser(string id, string passWord)
+        {
+            List <UserVO> userList = new List <UserVO>();
+
+            mySQlData.SendUserList(userList); // 회원정보를 다가져옴
+
+            for(int index = 0; index < userList.Count; index++)
+            {
+                if(userList[index].Id == id && userList[index].Password == passWord)
+                    return Constants.LOGIN_SUCCESS;
+            }
+            return Constants.LOGIN_FAIL;
         }
 
     }
