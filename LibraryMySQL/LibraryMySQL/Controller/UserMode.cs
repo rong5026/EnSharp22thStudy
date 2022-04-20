@@ -37,11 +37,12 @@ namespace LibraryMySQL
 
             libraryUI.PrintMainUI();
             Console.SetWindowSize(125, 60);  //메인화면
-            Console.CursorVisible = false;
+          
 
 
             while (Constants.PROGRAM_ON)
             {
+                Console.CursorVisible = false;
                 menuNumber = mode.SelectMode(Constants.LOGIN_REGISTER); // 로그인 . 회원가입 선택
 
                 switch (menuNumber)

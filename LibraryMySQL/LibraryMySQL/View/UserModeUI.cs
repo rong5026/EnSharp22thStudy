@@ -68,12 +68,14 @@ namespace LibraryMySQL
 
 		public void PrintSuccessRegister()
 		{
-			Console.WriteLine("┌------------------------------------------------┐");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│               회 원 가 입 성 공 !!             │");
-			Console.WriteLine("│                                                │");
-			Console.WriteLine("│                ENTER을 눌러주세요              │");
-			Console.WriteLine("└------------------------------------------------┘\n");
+			Console.CursorVisible = false;
+			libraryUI.PrintMainUI();
+			Console.WriteLine("                                   ┌------------------------------------------------┐");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │               회 원 가 입 성 공 !!             │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                ENTER을 눌러주세요              │");
+			Console.WriteLine("                                   └------------------------------------------------┘\n");
 		}
 		public void PrintMessage(int x, int y,string message)
         {

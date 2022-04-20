@@ -73,7 +73,8 @@ namespace LibraryMySQL
             string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age, user_phonenumber,user_address) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');", id, password, name, age, phoneNumber, address);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
-           
+            command.ExecuteNonQuery();
+
             connection.Close();
         }
 

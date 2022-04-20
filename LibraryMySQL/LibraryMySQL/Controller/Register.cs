@@ -13,26 +13,24 @@ namespace LibraryMySQL
         ConsoleKeyInfo keyInput;
         UserModeUI userModeUI;
         
-        ValidInput validInput;
-        private string[] userData = new string[7];
+        ValidInput validInput;     
         MySQlData mySQlData;
 
 
-        string id;
-        string password;
-        string repassword;
-        string name;
-        string age;
-        string phoneNumber;
-        string address;
+        private string id;
+        private string password;
+        private string repassword;
+        private string name;
+        private string age;
+        private string phoneNumber;
+        private string address;
 
 
         public Register( UserModeUI userModeUI, ValidInput validInput)
         {
-            this.userModeUI = userModeUI;         
-
+            this.userModeUI = userModeUI;       
             this.validInput = validInput;
-           
+            mySQlData = MySQlData.Instance();
         }
         public bool RegistUser()
         {
@@ -42,26 +40,31 @@ namespace LibraryMySQL
             Console.SetCursorPosition(38, 7);
 
             //user정보 입력.
-            userData[0] = EnterUserData("", "id"); // 가입된 사람의 id와 중복되면 안됨.
-            if (userData[0] == Constants.INPUT_EMPTY)
+            id = validInput.EnterRegisterID(74, 35); // 가입된 사람의 id와 중복되면 안됨.
+            if (id == Constants.INPUT_BACK)
                 return Constants.REGISTER_FAIL;
-            userData[1] = EnterUserData("", "password");
-            if (userData[1] == Constants.INPUT_EMPTY)
+
+            password = validInput.EnterInput(74, 36, ErrorMessage.PASSWORD, RegularExpression.PASSWORD);
+            if (password == Constants.INPUT_BACK)
                 return Constants.REGISTER_FAIL;
-            userData[2] = EnterUserData(userData[1], "repassword"); // 입력한 비밀번호가 같은지 확인
-            if (userData[2] == Constants.INPUT_EMPTY)
+
+            repassword = validInput.EnterRePassWord(password, 74, 37); // 입력한 비밀번호가 같은지 확인
+            if (repassword == Constants.INPUT_BACK)
                 return Constants.REGISTER_FAIL;
-            userData[3] = EnterUserData("", "name"); // 유저이름 : 영어 또는 한글 1글자 이상
-            if (userData[3] == Constants.INPUT_EMPTY)
+
+            name = validInput.EnterInput(77, 38, ErrorMessage.USER_NAME, RegularExpression.USER_NAME);  // 유저이름 : 영어 또는 한글 1글자 이상      
+            if (name == Constants.INPUT_BACK)
                 return Constants.REGISTER_FAIL;
-            userData[4] = EnterUserData("", "age"); // 0~ 199세 까지 입력
-            if (userData[4] == Constants.INPUT_EMPTY)
+
+            age = validInput.EnterInput(75, 39, ErrorMessage.USER_AGE, RegularExpression.USER_AGE); // 0~ 199세 까지 입력
+            if (age == Constants.INPUT_BACK)
                 return Constants.REGISTER_FAIL;
-            userData[5] = EnterUserData("", "phonenumber"); // 전화번호 01x-xxxx-xxxx
-            if (userData[5] == Constants.INPUT_EMPTY)
+
+            phoneNumber= validInput.EnterInput(77, 40, ErrorMessage.USER_PHONE, RegularExpression.USER_PHONE); // 전화번호 01x-xxxx-xxxx
+            if (phoneNumber == Constants.INPUT_BACK)
                 return Constants.REGISTER_FAIL;
-            userData[6] = EnterUserData("", "address");// 주소  
-            if (userData[6] == Constants.INPUT_EMPTY)
+            address = validInput.EnterInput(82, 41, ErrorMessage.USER_ADDRESS, RegularExpression.USER_ADDRESS);// 주소  
+            if (address == Constants.INPUT_BACK)
                 return Constants.REGISTER_FAIL;
 
             // 광역지방자치단체 + (기초지방자치단체) + (시 군 구) + (읍 면) + (도로명) + (건물번호)
@@ -69,7 +72,7 @@ namespace LibraryMySQL
             // ex) 서울특별시+ 강남구 +" "+ " "+ 남부순환로 + 지하2744
             // ex) 서울특별시 +" "+ 구로구+ " " +경인로248-29
 
-            mySQlData.InsertUserData(userData[0], userData[1], userData[3], userData[4], userData[5], userData[6]); // 회원Data에 추가
+            mySQlData.InsertUserData(id, password, name, age, phoneNumber, address); // 회원Data에 추가
 
 
             Console.Clear();
@@ -99,23 +102,23 @@ namespace LibraryMySQL
                 case "id":
                   id =  validInput.EnterRegisterID(74, 35);
                     return id;
-                case "password":
-                    repassword =  validInput.EnterLoginPassWord(74, 36);
+                case "password":              
+                    repassword = validInput.EnterInput(74, 36, ErrorMessage.PASSWORD, RegularExpression.PASSWORD);
                     return repassword;
                 case "repassword":
                   repassword =  validInput.EnterRePassWord(password, 74, 37 );
                     return repassword;
                 case "name":
-                    name =  validInput.EnterUserName(77, 38);
+                    name =  validInput.EnterInput(77, 38,ErrorMessage.USER_NAME, RegularExpression.USER_NAME);
                     return name;
-                case "age":
-                   age =  validInput.EnterUserAge(75, 39);
+                case "age":                 
+                    age = validInput.EnterInput(75, 39, ErrorMessage.USER_AGE, RegularExpression.USER_AGE);
                     return age;
-                case "phonenumber":
-                    phoneNumber =  validInput.EnterUserPhoneNumber(77, 40);
+                case "phonenumber":                 
+                    phoneNumber = validInput.EnterInput(77, 40, ErrorMessage.USER_PHONE, RegularExpression.USER_PHONE);
                     return phoneNumber;
-                case "address":
-                   address =  validInput.EnterUserAddress(82, 41);
+                case "address":                 
+                    address= validInput.EnterInput(82, 41, ErrorMessage.USER_ADDRESS, RegularExpression.USER_ADDRESS);
                     return address;
                 default:
                     return "EIXT";
