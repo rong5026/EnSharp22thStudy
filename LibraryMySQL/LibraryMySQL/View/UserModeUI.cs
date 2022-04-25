@@ -53,6 +53,35 @@ namespace LibraryMySQL
 			Console.ResetColor();
 		}
 
+		public void PrintUserDataEdit()
+		{
+			Console.WriteLine("                                   ┌------------------------------------------------------┐");
+			Console.WriteLine("                                   │                                                      │");
+			Console.WriteLine("                                   │                개 인 정 보 바 꾸 기                  │");
+			Console.WriteLine("                                   │                                                      │");
+			Console.WriteLine("                                   │           ESC : 뒤로가기     ENTER : 선택하기        │");
+			Console.WriteLine("                                   └------------------------------------------------------┘\n");
+
+
+		}
+
+
+		public void PrintLoginedUserData(UserVO userVO)
+		{
+			Console.WriteLine("                                                  ◈현재 등록되어 있는 정보◈\n\n");
+			Console.WriteLine("                             User ID (8~ 15글자 영어, 숫자포함) : {0}", userVO.Id);
+			Console.WriteLine("                             User PW (8~ 15글자 영어, 숫자포함) : {0}", userVO.Password);
+			Console.WriteLine("                             User Name (한글,영어 포함 2글자 이상) : {0}", userVO.Name);
+			Console.WriteLine("                             User Age (   자연수 1세 ~ 200세   ) : {0}", userVO.Age);
+			Console.WriteLine("                             User PhoneNumber (   01x-xxxx-xxxx  ) : {0}", userVO.PhoneNumber);
+			Console.WriteLine("                             User Address (     한글 주소     ) : {0}", userVO.Address);
+			Console.WriteLine("\n\n");
+			Console.WriteLine("                                                  ◈변경 할 정보 입력 ◈\n\n");
+
+		}
+
+
+
 		public void BorrowBook()
 		{
 			Console.WriteLine("┌-------------------------------------------------------------------------------------------┐");

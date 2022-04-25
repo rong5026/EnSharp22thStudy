@@ -44,12 +44,14 @@ namespace LibraryMySQL
 
             while (table.Read())
             {
-                user = new UserVO( (string)table["user_id"],
+                user = new UserVO( 
+                    (string)table["user_id"],
                     (string)table["user_password"],
                     (string)table["user_name"],
                     (string)table["user_age"],
                     (string)table["user_phonenumber"],
-                    (string)table["user_address"]);
+                    (string)table["user_address"]
+                    );
                 list.Add(user);
             }
                  
@@ -71,7 +73,49 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        
+        public void CheckLoginedUser(UserVO userVO, string loginedUser) // 현재 로그인중인 유저정보 리턴
+        {
+
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format("SELECT * FROM user_data");
+
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+                if (loginedUser == (string)table["user_id"])
+                {
+                    userVO.Id = (string)table["user_id"];
+                    userVO.Password = (string)table["user_password"];
+                    userVO.Name = (string)table["user_name"];
+                    userVO.Age = (string)table["user_age"];
+                    userVO.PhoneNumber = (string)table["user_phonenumber"];
+                    userVO.Address = (string)table["user_address"];
+
+                    table.Close();
+                    connection.Close();
+                    return;
+                }
+            }
+        }
+
+        public void UpdateUserData(string id, string password, string name, string age, string phoneNumber, string address ) // 회원정보 변경
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format("UPDATE user_data SET user_id ='{0}' ,user_password = '{1}', user_name='{2}',user_age='{3}', user_phonenumber='{4}', user_address='{5}' WHERE user_id = '{6}'",id,password,name,age,password,address,  LibraryStart.loginedUser);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+
         public int CheckTableDataCount(string tableType) // 데이터 수 리턴
         {
             MySqlConnection connection = ConnectMySQL();
@@ -118,6 +162,7 @@ namespace LibraryMySQL
             connection.Close();
 
         }
+       
         public string CheckBookUnit(int bookId,string type)
         {
             MySqlConnection connection = ConnectMySQL();

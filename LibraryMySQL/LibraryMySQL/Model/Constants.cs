@@ -68,7 +68,7 @@ namespace LibraryMySQL
         public const int USER_AGE = 4;
         public const int USER_PHONE = 5;
         public const int USER_ADDRESS = 6;
-
+        public const int EDIT = 7;
 
 
 

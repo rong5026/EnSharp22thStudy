@@ -51,7 +51,7 @@ namespace LibraryMySQL
             if (menuType == "User")
                 libraryUI.PrintUserMenuUI(Constants.FIND_BOOK);
             else if(menuType == "Edit")
-
+                libraryUI.PrintEditUI(Constants.USER_ID);
 
 
 
