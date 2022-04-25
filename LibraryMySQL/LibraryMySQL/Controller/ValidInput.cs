@@ -131,7 +131,7 @@ namespace LibraryMySQL
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
-                return EnterRegisterID(x, y);
+                return EnterLoginPassWprd(x, y);
             }
           
 
