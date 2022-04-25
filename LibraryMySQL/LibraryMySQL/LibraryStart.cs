@@ -17,6 +17,7 @@ namespace LibraryMySQL
         SelectionMode mode;
         UserMode userMode;
         int menuNumber;
+        
 
         public LibraryStart()
         {

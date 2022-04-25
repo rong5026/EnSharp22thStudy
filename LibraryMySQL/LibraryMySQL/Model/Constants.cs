@@ -61,6 +61,15 @@ namespace LibraryMySQL
         public const string BACKMENU = "back";
 
 
+        //EditUserData
+        public const int USER_ID = 1;
+        public const int USER_PW = 2;
+        public const int USER_NAME = 3;
+        public const int USER_AGE = 4;
+        public const int USER_PHONE = 5;
+        public const int USER_ADDRESS = 6;
+
+
 
 
     }

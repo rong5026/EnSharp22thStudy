@@ -71,40 +71,7 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public int CheckUserId(string id) // 회원가입시 유저 정보가 겹치는지 확인
-        {
-
-            MySqlConnection connection = ConnectMySQL();
-
-
-            string insertQuery = string.Format("SELECT * FROM user_data");
-
-            connection.Open();
-
-
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            MySqlDataReader table = command.ExecuteReader();
-
-
-            while (table.Read())
-            {
-
-                if ((string)table["user_id"] == id)
-                {
-
-                    table.Close();
-                    connection.Close();
-                    return Constants.LOGIN_FAIL;
-                }
-
-
-            }
-
-            table.Close();
-            connection.Close();
-
-            return Constants.LOGIN_SUCCESS;
-        }
+        
         public int CheckTableDataCount(string tableType) // 데이터 수 리턴
         {
             MySqlConnection connection = ConnectMySQL();

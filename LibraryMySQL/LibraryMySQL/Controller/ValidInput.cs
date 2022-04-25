@@ -190,7 +190,7 @@ namespace LibraryMySQL
                 userModeUI.PrintErrorMessage(x, y, error);
                 return EnterRegisterID(x, y);
             }
-            if(mySQlData.CheckUserId(input) == Constants.LOGIN_FAIL)
+            if(CheckUserId(input) == Constants.LOGIN_FAIL)
             {
                 error = "기존 회원과 중복되는 ID입니다!";
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
@@ -201,7 +201,19 @@ namespace LibraryMySQL
             return input;  // 문자형 id,password 리턴
 
         }
+        private int CheckUserId(string id) // 회원가입시 이미 가입한 회원과 ID가 겹치는지 확인
+        {
+            List<UserVO> userList = new List<UserVO>();
+            mySQlData.SendUserList(userList);
 
+            for(int index = 0; index < userList.Count; index++)
+            {
+                if (userList[index].Id == id)
+                    return Constants.LOGIN_FAIL;
+            }
+            return Constants.LOGIN_SUCCESS;
+
+        }
         public string EnterRePassWord(string password, int x, int y) // password 다시입력 후 확인
         {
             Console.CursorVisible = true;

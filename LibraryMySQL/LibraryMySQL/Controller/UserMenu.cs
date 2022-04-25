@@ -72,5 +72,14 @@ namespace LibraryMySQL
 
             }
         }
+
+        private void EditUserData()
+        {
+
+            while (Constants.isPROGRAM_ON)
+            {
+
+            }
+        }
     }
 }

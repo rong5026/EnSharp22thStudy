@@ -83,10 +83,9 @@ namespace LibraryMySQL
             {
                 keyInput = Console.ReadKey(true);
                 if (keyInput.Key == ConsoleKey.Enter)
-                    return Constants.isREGISTER_SUCCESS;
+                    return Constants.isREGISTER_SUCCESS; // 엔터누르면 이제 뒤로돌아가짐
             }
 
-          
           
 
         }

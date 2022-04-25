@@ -45,11 +45,16 @@ namespace LibraryMySQL
                 }
             }
         }
-        public int SelectUserManagerMenu(string type, int menuCount) // 유저메뉴, 관리자 메뉴 상하 이동
+        public int SelectUserManagerMenu(string menuType, int menuCount) // 유저메뉴, 관리자 메뉴 상하 이동
         {
             menuNumber = 0;
-            if (type == "User")
+            if (menuType == "User")
                 libraryUI.PrintUserMenuUI(Constants.FIND_BOOK);
+            else if(menuType == "Edit")
+
+
+
+
             Console.CursorVisible = false;
             while (Constants.isPROGRAM_ON)
             {
@@ -58,17 +63,14 @@ namespace LibraryMySQL
                 {
                     case ConsoleKey.UpArrow:
                         menuNumber--;
-                        if (menuNumber == -1)
+                        if (menuNumber == -1)                      
                             menuNumber = menuCount - 1;
-                        if (type == "User")
-                            libraryUI.PrintUserMenuUI((menuNumber % menuCount) + 1);
-                     
+                        SelectMenuType(menuType, menuCount);                   
                         break;
                     case ConsoleKey.DownArrow:
                         menuNumber++;
-                        if (type == "User")
-                            libraryUI.PrintUserMenuUI((menuNumber % menuCount) + 1);
-                     
+                        SelectMenuType(menuType, menuCount);
+                                        
                         break;
                     case ConsoleKey.Enter:
                         return (menuNumber % menuCount) + 1;
@@ -76,6 +78,22 @@ namespace LibraryMySQL
                         return Constants.STOP;
                 }
             }
+        }
+
+        private void SelectMenuType(string menuType,int menuCount)
+        {
+            switch (menuType)
+            {
+                case "User":
+                    libraryUI.PrintUserMenuUI((menuNumber % menuCount) + 1);
+                    break;
+                case "Edit":
+                    libraryUI.PrintEditUI((menuNumber % menuCount) + 1);
+                    break;
+                default:
+                    return;
+            }
+
         }
 
 
