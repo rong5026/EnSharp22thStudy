@@ -83,14 +83,25 @@ namespace LibraryMySQL
         private void EditUserData() // 회원정보 변경
         {
             int menuNumber;
-           
+            string id;
+            string password;
+            string name;
+            string age;
+            string phonenumber;
+            string address;
 
             UserVO userVO = new UserVO();
            
             Console.Clear();
 
+            mySQlData.CheckLoginedUser(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
+            id = userVO.Id;
+            password = userVO.Password;
+            name = userVO.Name;
+            age = userVO.Age;
+            phonenumber = userVO.PhoneNumber;
+            address = userVO.Address;
 
-     
             while (Constants.isPROGRAM_ON)
             {
                 Console.SetCursorPosition(0, 0);    
@@ -98,31 +109,31 @@ namespace LibraryMySQL
                 mySQlData.CheckLoginedUser(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
                 userModeUI.PrintLoginedUserData(userVO); // 기존 회원정보 프린트
 
-
+                
                 menuNumber = mode.SelectUserManagerMenu("Edit", 7);
 
                 switch (menuNumber)
                 {
                     case Constants.BOOK_SEARCH: // 유저 ID                 
-                        userVO.Id = validInput.EnterRegisterID(71, 22);                      
+                        id = validInput.EnterRegisterID(71, 22);                      
                         break;
                     case Constants.BOOK_RENT: // 유저 PW
-                        userVO.Password = validInput.EnterInput(71, 23, ErrorMessage.PASSWORD, RegularExpression.PASSWORD);
+                        password = validInput.EnterInput(71, 23, ErrorMessage.PASSWORD, RegularExpression.PASSWORD);
                         break;
                     case Constants.BOOK_BORROW_LIST: //유저 이름
-                        userVO.Name = validInput.EnterInput(74, 24, ErrorMessage.USER_NAME, RegularExpression.USER_NAME);
+                        name = validInput.EnterInput(74, 24, ErrorMessage.USER_NAME, RegularExpression.USER_NAME);
                         break;
                     case Constants.BOOK_RETURN: // 유저 나이
-                        userVO.Age = validInput.EnterInput(73, 25, ErrorMessage.USER_AGE, RegularExpression.USER_AGE);
+                        age = validInput.EnterInput(73, 25, ErrorMessage.USER_AGE, RegularExpression.USER_AGE);
                         break;
                     case Constants.BOOK_RETRUN_HISTORY: // 유저 휴대폰
-                        userVO.PhoneNumber = validInput.EnterInput(74, 26, ErrorMessage.USER_PHONE, RegularExpression.USER_PHONE);
+                        phonenumber = validInput.EnterInput(74, 26, ErrorMessage.USER_PHONE, RegularExpression.USER_PHONE);
                         break;
                     case Constants.USER_EDIT: // 유저 주소
-                        userVO.Address = validInput.EnterInput(69, 27, ErrorMessage.USER_ADDRESS, RegularExpression.USER_ADDRESS);// 주소  
+                        address = validInput.EnterInput(69, 27, ErrorMessage.USER_ADDRESS, RegularExpression.USER_ADDRESS);// 주소  
                         break;
-                    case Constants.EDIT: // 변경하기 버튼
-                        mySQlData.UpdateUserData(userVO.Id, userVO.Password, userVO.Name, userVO.Age, userVO.PhoneNumber, userVO.Address);
+                    case Constants.EDIT: // 변경하기 버튼                    
+                        mySQlData.UpdateUserData(id, password, name, age, phonenumber, address);
                         break;
                     case Constants.EXIT:
                         return;
