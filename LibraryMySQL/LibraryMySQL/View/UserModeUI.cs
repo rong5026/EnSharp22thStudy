@@ -82,18 +82,29 @@ namespace LibraryMySQL
 
 
 
-		public void BorrowBook()
+		public void PrintBorrowBook()
 		{
-			Console.WriteLine("┌-------------------------------------------------------------------------------------------┐");
-			Console.WriteLine("│                                                                                           │");
-			Console.WriteLine("│    빌릴 책의 ID를 입력해 주세요 :                                                         │"); //35, 2
-			Console.WriteLine("│    값의 범위 : 0~ 999                                                                     │");
-			Console.WriteLine("│                                                                                           │");
-			Console.WriteLine("│    뒤로가기 : 처음에 ESC를 눌러주세요                                                     │");
-			Console.WriteLine("│    입력하기: 아무런 값 1개를 입력 후 값을 입력해주세요.                                   │");
-			Console.WriteLine("└-------------------------------------------------------------------------------------------┘\n");
+			Console.WriteLine("                                                                                           ");
+			Console.WriteLine("                                                                                            ");
+			Console.WriteLine("     빌릴 책의 ID를 입력해 주세요 :                                                         "); //35, 2
+			Console.WriteLine("     값의 범위 : 0~ 999                                                                     ");
+			Console.WriteLine("                                                                                            ");
+			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
+			Console.WriteLine("     ENTER : 입력하기                                                                        ");
+			Console.WriteLine("                                                                                           \n");
 		}
 
+		public void PrintBorrowBookMessage(string message)
+		{
+			Console.WriteLine("                                                                                           ");
+			Console.WriteLine("                                                                                            ");
+			Console.WriteLine("     {0}                                                                    ",message); //35, 2
+			Console.WriteLine("                                                                                              ");
+			Console.WriteLine("                                                                                            ");
+			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
+			Console.WriteLine("     ENTER : 다른책 빌리기                                                                    ");
+			Console.WriteLine("                                                                                           \n");
+		}
 
 		public void PrintSuccessRegister()
 		{

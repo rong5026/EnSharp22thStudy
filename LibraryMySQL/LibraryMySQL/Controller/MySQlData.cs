@@ -165,38 +165,38 @@ namespace LibraryMySQL
             connection.Close();
 
         }
-       
-        public string CheckBookUnit(int bookId,string type)
+        public void UpdateBookCount(int bookCount,int bookId) // 책 수량 수정
         {
+
+
+
             MySqlConnection connection = ConnectMySQL();
-
-
-            string insertQuery = string.Format("SELECT * FROM book_data");
-
             connection.Open();
 
+            string insertQuery = string.Format("UPDATE book_data SET book_count = {0} WHERE book_id = {1}",bookCount,bookId);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            MySqlDataReader table = command.ExecuteReader();
+            command.ExecuteNonQuery();
+          
 
-
-            while (table.Read())
-            {
-             
-                if ((string)table["book_id"] == bookId.ToString())
-                {
-
-                    string result = table[type].ToString();
-                    table.Close();
-                    connection.Close();
-                    return result;
-                }
-                
-            }
-            table.Close();
             connection.Close();
-
-            return Constants.INPUT_EMPTY;
         }
+
+
+        public void InsertRentBook(int bookId,string date) // 빌린책 저장
+        {
+
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format("INSERT INTO user_rented_book (user_id,book_id,time) VALUES ('{0}',{1},'{2}')", LibraryStart.loginedUser,bookId,date);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+
     }
 }

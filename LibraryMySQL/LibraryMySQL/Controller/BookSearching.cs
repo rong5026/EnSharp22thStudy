@@ -22,6 +22,7 @@ namespace LibraryMySQL {
             libraryUI = new LibraryUI();
             userModeUI = new UserModeUI();
             validInput = new ValidInput();
+            mySQlData = MySQlData.Instance();
         }
         public void SearchBook() // 책 검색
         {
@@ -63,23 +64,78 @@ namespace LibraryMySQL {
 
         }
 
-        public void BorrowBook() // 책 대여
+        public int BorrowBook() // 책 대여
         {
             List<BookVO> bookList = new List<BookVO>();
             Console.SetWindowSize(125, 50);
 
             Console.Clear();
-            userModeUI.BorrowBook();
+            userModeUI.PrintBorrowBook();
             libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
-            Console.SetCursorPosition(35, 2); // 커서이동
+           
 
-            mySQlData.CheckBookList(bookList);
+            mySQlData.CheckBookList(bookList); // 저장된 책 list받아옴
+
             while (Constants.isPROGRAM_ON)
             {
                 bookId = validInput.EnterBookId(35, 2); // 책Id 1~999수
-                if (bookId == Constants.INPUT_EMPTY)
-                    return;
-               
+
+                if (bookId == Constants.INPUT_EMPTY)//ESC 누르면 뒤로가기
+                    return Constants.BACK;
+
+                for(int index = 0; index < bookList.Count; index++)
+                {
+                    if(bookList[index].Id == Convert.ToInt16(bookId))// 책의 id가 같을때
+                    {
+                        if (bookList[index].BookCount >= 1)// 책이 1개 이상있을때
+                        {
+                            // 책 수량1개감소 
+                            mySQlData.UpdateBookCount(bookList[index].BookCount - 1, bookList[index].Id);   
+                            // 빌린 유저에 책정보 저장
+                            mySQlData.InsertRentBook(bookList[index].Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                            //대여 성공 메시지 출력
+                            Console.SetCursorPosition(0, 0);
+                            Console.CursorVisible = false;
+                            userModeUI.PrintBorrowBookMessage("책 빌리기 성공!");
+
+                            if (EnterBack() == Constants.RESTART)
+                                return BorrowBook();         
+                               
+                            return Constants.BACK;
+
+                        }
+                    }
+                }
+                // 책 대여 실패
+                Console.SetCursorPosition(0, 0);
+                Console.CursorVisible = false;
+                userModeUI.PrintBorrowBookMessage("책 빌리기 실패! ");
+
+                if (EnterBack() == Constants.RESTART)
+                    return BorrowBook();
+
+                return Constants.BACK;
+            }
+        }
+
+
+        private int EnterBack() // 뒤로갈지 다시 입력할지
+        {
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+
+                if (keyInput.Key == ConsoleKey.Enter) // 대여 다시하기
+                {
+                    Console.SetCursorPosition(0, 0);
+                    userModeUI.PrintBorrowBook();
+                    libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
+                    return Constants.RESTART;
+                }
+                else if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
+                    return Constants.BACK;
+
             }
         }
 

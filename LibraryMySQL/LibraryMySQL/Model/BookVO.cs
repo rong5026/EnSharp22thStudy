@@ -16,7 +16,7 @@ namespace LibraryMySQL
         private int bookCount;
         private int price;
         private string date;
-        public static int totalBook=0;
+     
     
         public BookVO()
         {
@@ -31,7 +31,7 @@ namespace LibraryMySQL
             this.bookCount = bookCount;
             this.price = price;
             this.date = date;
-            totalBook++;
+          
         }
         public int Id
         {

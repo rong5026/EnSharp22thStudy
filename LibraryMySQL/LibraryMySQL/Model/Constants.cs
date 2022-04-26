@@ -13,6 +13,7 @@ namespace LibraryMySQL
         public const int LOGIN_MODE = 1;
         public const int REGISTER_MODE = 2;
         public const int STOP = -1;
+        public const int RESTART = 1;
         public const int BACK = -1;
         public const int LOGIN_FAIL = 0;
         public const int LOGIN_SUCCESS = 1;
