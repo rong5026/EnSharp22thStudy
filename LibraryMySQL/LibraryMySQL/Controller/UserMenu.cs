@@ -36,7 +36,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-               
+               //book_id   book_name  book_author  book_publisher  book_count  book_price  book_date  
                menuNumber = mode.SelectUserManagerMenu("User", 7); // 유저메뉴 위아래 화살표로 선택하기
                 
                 switch (menuNumber)
@@ -50,7 +50,7 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.BOOK_BORROW_LIST: //대여도서확인
-                        //VariableData.book.ConfirmRentedBook();
+                       // book.ConfirmRentedBook();
                         break;
                     case Constants.BOOK_RETURN: // 도서 반납
                        // VariableData.book.ReturnBook();

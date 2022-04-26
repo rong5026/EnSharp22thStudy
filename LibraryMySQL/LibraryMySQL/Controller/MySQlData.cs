@@ -183,17 +183,45 @@ namespace LibraryMySQL
         }
 
 
-        public void InsertRentBook(int bookId,string date) // 빌린책 저장
+        public void InsertRentBook(string rentTime,BookVO bookVO) // 빌린책 저장
         {
 
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("INSERT INTO user_rented_book (user_id,book_id,time) VALUES ('{0}',{1},'{2}')", LibraryStart.loginedUser,bookId,date);
+            string insertQuery = string.Format("INSERT INTO user_rented_book (user_id, book_id, book_name, book_author, book_publisher,book_price, book_date, book_rent_time) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}')", LibraryStart.loginedUser,bookVO.Id,bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.Price,bookVO.Date, rentTime);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
 
+            connection.Close();
+        }
+
+        public void CheckUserRentBook()
+        {
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format("SELECT * FROM user_rented_book");
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+                BookVO book = new BookVO();
+
+                book.Id = (int)table["book_id"];
+                book.Name = (string)table["book_name"];
+                book.Author = (string)table["book_author"];
+                book.Publisher = (string)table["book_publisher"];
+                book.BookCount = (int)table["book_count"];
+                book.Price = (int)table["book_price"];
+                book.Date = (string)table["book_date"];
+               // list.Add(book);
+
+
+            }
+            table.Close();
             connection.Close();
         }
 

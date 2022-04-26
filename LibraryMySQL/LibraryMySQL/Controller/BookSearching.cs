@@ -92,7 +92,7 @@ namespace LibraryMySQL {
                             // 책 수량1개감소 
                             mySQlData.UpdateBookCount(bookList[index].BookCount - 1, bookList[index].Id);   
                             // 빌린 유저에 책정보 저장
-                            mySQlData.InsertRentBook(bookList[index].Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            mySQlData.InsertRentBook(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), bookList[index]);
 
                             //대여 성공 메시지 출력
                             Console.SetCursorPosition(0, 0);
@@ -107,10 +107,10 @@ namespace LibraryMySQL {
                         }
                     }
                 }
-                // 책 대여 실패
+                // 책 빌리기 실패
                 Console.SetCursorPosition(0, 0);
                 Console.CursorVisible = false;
-                userModeUI.PrintBorrowBookMessage("책 빌리기 실패! ");
+                userModeUI.PrintBorrowBookMessage("책 빌리기 실패! 수량이 없거나 유효하지 않은 책 ID 입니다!");
 
                 if (EnterBack() == Constants.RESTART)
                     return BorrowBook();
@@ -120,7 +120,7 @@ namespace LibraryMySQL {
         }
 
 
-        private int EnterBack() // 뒤로갈지 다시 입력할지
+        private int EnterBack()
         {
             while (Constants.isPROGRAM_ON)
             {
@@ -139,5 +139,9 @@ namespace LibraryMySQL {
             }
         }
 
+        public void ConfirmRentedBook() // 빌린책 확인
+        {
+
+        }
     }
 }

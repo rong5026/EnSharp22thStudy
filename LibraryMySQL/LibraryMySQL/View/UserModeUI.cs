@@ -86,7 +86,7 @@ namespace LibraryMySQL
 		{
 			Console.WriteLine("                                                                                           ");
 			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("     빌릴 책의 ID를 입력해 주세요 :                                                         "); //35, 2
+			Console.WriteLine("     빌릴 책의 ID를 입력해 주세요 :                                                         "); 
 			Console.WriteLine("     값의 범위 : 0~ 999                                                                     ");
 			Console.WriteLine("                                                                                            ");
 			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
@@ -98,7 +98,7 @@ namespace LibraryMySQL
 		{
 			Console.WriteLine("                                                                                           ");
 			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("     {0}                                                                    ",message); //35, 2
+			Console.WriteLine("     {0}                                                                              ",message);
 			Console.WriteLine("                                                                                              ");
 			Console.WriteLine("                                                                                            ");
 			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
