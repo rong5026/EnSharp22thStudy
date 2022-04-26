@@ -66,7 +66,7 @@ namespace LibraryMySQL {
         public void BorrowBook() // 책 대여
         {
             List<BookVO> bookList = new List<BookVO>();
-            Console.SetWindowSize(125, 60);
+            Console.SetWindowSize(125, 50);
 
             Console.Clear();
             userModeUI.BorrowBook();

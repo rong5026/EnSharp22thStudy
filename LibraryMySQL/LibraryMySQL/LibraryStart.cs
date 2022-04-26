@@ -34,7 +34,7 @@ namespace LibraryMySQL
 
          
             libraryUI.PrintMainUI();
-            Console.SetWindowSize(125, 60);
+            Console.SetWindowSize(125, 50);
            
             
             Console.CursorVisible = false;

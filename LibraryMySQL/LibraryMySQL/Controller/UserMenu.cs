@@ -114,26 +114,39 @@ namespace LibraryMySQL
 
                 switch (menuNumber)
                 {
-                    case Constants.BOOK_SEARCH: // 유저 ID                 
-                        id = validInput.EnterRegisterID(71, 22);                      
+                    case Constants.USER_ID: // 유저 ID                 
+                        id = validInput.EnterRegisterID(71, 22);
+                        if (id == Constants.INPUT_BACK)
+                            id = userVO.Id;
                         break;
-                    case Constants.BOOK_RENT: // 유저 PW
+                    case Constants.USER_PW: // 유저 PW
                         password = validInput.EnterInput(71, 23, ErrorMessage.PASSWORD, RegularExpression.PASSWORD);
+                        if (password == Constants.INPUT_BACK)
+                            password = userVO.Password;
                         break;
-                    case Constants.BOOK_BORROW_LIST: //유저 이름
+                    case Constants.USER_NAME: //유저 이름
                         name = validInput.EnterInput(74, 24, ErrorMessage.USER_NAME, RegularExpression.USER_NAME);
+                        if(name == Constants.INPUT_BACK)
+                            name = userVO.Name;
                         break;
-                    case Constants.BOOK_RETURN: // 유저 나이
+                    case Constants.USER_AGE: // 유저 나이
                         age = validInput.EnterInput(73, 25, ErrorMessage.USER_AGE, RegularExpression.USER_AGE);
+                        if (age == Constants.INPUT_BACK)
+                            age = userVO.Age;
                         break;
-                    case Constants.BOOK_RETRUN_HISTORY: // 유저 휴대폰
+                    case Constants.USER_PHONE: // 유저 휴대폰
                         phonenumber = validInput.EnterInput(74, 26, ErrorMessage.USER_PHONE, RegularExpression.USER_PHONE);
+                        if (phonenumber == Constants.INPUT_BACK)
+                            phonenumber = userVO.PhoneNumber;
                         break;
-                    case Constants.USER_EDIT: // 유저 주소
-                        address = validInput.EnterInput(69, 27, ErrorMessage.USER_ADDRESS, RegularExpression.USER_ADDRESS);// 주소  
+                    case Constants.USER_ADDRESS: // 유저 주소
+                        address = validInput.EnterInput(69, 27, ErrorMessage.USER_ADDRESS, RegularExpression.USER_ADDRESS);// 주소
+                        if(address == Constants.INPUT_BACK)
+                            address = userVO.Address;
                         break;
                     case Constants.EDIT: // 변경하기 버튼                    
                         mySQlData.UpdateUserData(id, password, name, age, phonenumber, address);
+                        Console.Clear();
                         break;
                     case Constants.EXIT:
                         return;

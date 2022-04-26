@@ -20,7 +20,7 @@ namespace LibraryMySQL
 	
 		public void PrintMainUI()
 		{
-			Console.SetWindowSize(125, 60);
+			Console.SetWindowSize(125, 50);
 			Console.SetCursorPosition(0, 0);
 			Console.WriteLine();
 			Console.WriteLine("                                                     @@          @@");
@@ -241,9 +241,9 @@ namespace LibraryMySQL
 
 
 
-			Console.WriteLine("                                 ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
-			Console.WriteLine("                              변경하고자 하는 항목을 선택 후 변경해주세요.");
-			Console.WriteLine("                            회원정보 수정하기 항목을 클릭하면 변경이 완료됩니다.");
+			Console.WriteLine("                                            ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
+			Console.WriteLine("                                         변경하고자 하는 항목을 선택 후 변경해주세요.");
+			Console.WriteLine("                                       회원정보 수정하기 항목을 클릭하면 변경이 완료됩니다.");
 		}
 
 
