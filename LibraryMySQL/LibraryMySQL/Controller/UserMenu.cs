@@ -66,8 +66,7 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.DELETE: // 계정삭제
-                        //delete = DeleteUserId();
-                        if (delete)
+                        if(DeleteUserId())
                             return;
                         break;
                     case Constants.EXIT:
@@ -81,7 +80,38 @@ namespace LibraryMySQL
 
             }
         }
+        private bool DeleteUserId() // 회원탈퇴
+        {
+            ConsoleKeyInfo keyInput;
 
+            libraryUI.PrintMainUI();
+            userModeUI.PrintDeleteID();
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return Constants.isDELETE_ID_FAIL; // ESC 누르면 뒤로가기 
+                else if (keyInput.Key == ConsoleKey.Enter)
+                {
+
+                    if (mySQlData.LoginedUserRentBookCount())
+                    {
+                        while (Constants.isPROGRAM_ON)
+                        {
+                            libraryUI.PrintMainUI();
+                            userModeUI.PrintDeleteIDFail();
+                            keyInput = Console.ReadKey(true);
+                            if (keyInput.Key == ConsoleKey.Escape)
+                                return Constants.isDELETE_ID_FAIL; ; // ESC 누르면 뒤로가기 
+                        }                      
+                    }
+                    mySQlData.DeleteUserID();
+                    return Constants.isDELETE_ID_SUCCESS;
+                }
+                    
+            }
+        }
         private void EditUserData() // 회원정보 변경
         {
             int menuNumber;

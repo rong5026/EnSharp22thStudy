@@ -117,8 +117,47 @@ namespace LibraryMySQL
            
             connection.Close();
         }
+        public void DeleteUserID() // 회원정보 삭제
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format("DELETE FROM user_data WHERE user_id = '{0}';", LibraryStart.loginedUser);
 
 
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+        
+        public bool LoginedUserRentBookCount()
+        {
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format("SELECT * FROM user_rented_book");
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+
+                if (LibraryStart.loginedUser == (string)table["user_id"])
+                {
+                    table.Close();
+                    connection.Close();
+                    return Constants.isRENTBOOK_EXIST;
+                }
+
+
+            }
+
+
+            table.Close();
+            connection.Close();
+            return Constants.isRENTBOOK_NOT_EXIST;
+        }
         public int CheckTableDataCount(string tableType) // 데이터 수 리턴
         {
             MySqlConnection connection = ConnectMySQL();

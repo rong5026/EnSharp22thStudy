@@ -65,7 +65,38 @@ namespace LibraryMySQL
 
 		}
 
-
+		public void PrintDeleteID()
+        {
+			Console.WriteLine("                                   ┌------------------------------------------------┐");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │             회원탈퇴 하시겠습니까?             │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │            ENTER : 예   ESC : 아니오           │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   └------------------------------------------------┘");
+			Console.WriteLine("                                                                                                      ");
+			Console.WriteLine("                                                                                                      ");
+			Console.WriteLine("                                                                                                      ");
+		}
+		public void PrintDeleteIDFail()
+		{
+			Console.WriteLine("                                   ┌------------------------------------------------┐");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │    대여중인 도서가 있어 탈퇴가 불가능합니다 !  │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                 ESC : 뒤로가기                 │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   └------------------------------------------------┘");
+			Console.WriteLine("                                                                                                      ");
+			Console.WriteLine("                                                                                                      ");
+			Console.WriteLine("                                                                                                      ");
+		}
 		public void PrintLoginedUserData(UserVO userVO)
 		{
 			Console.WriteLine("                                                  ◈현재 등록되어 있는 정보◈\n\n");
@@ -81,7 +112,7 @@ namespace LibraryMySQL
 		}
 
 
-
+	
 		public void PrintBorrowBook()
 		{
 			Console.WriteLine("                                                                                           ");

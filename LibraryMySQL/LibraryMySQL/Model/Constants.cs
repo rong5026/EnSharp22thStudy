@@ -57,8 +57,12 @@ namespace LibraryMySQL
         public const string INPUT_BACK = "-1";
         public const bool isREGISTER_FAIL = false;
         public const bool isREGISTER_SUCCESS = true;
+        public const bool isDELETE_ID_SUCCESS = true;
+        public const bool isDELETE_ID_FAIL = false;
+        public const bool isRENTBOOK_EXIST = true;
+        public const bool isRENTBOOK_NOT_EXIST = false;
 
-      
+
         public const string BACKMENU = "back";
 
 
