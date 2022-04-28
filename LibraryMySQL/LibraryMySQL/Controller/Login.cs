@@ -11,11 +11,10 @@ namespace LibraryMySQL
     {
 
         UserModeUI userModeUI;
-     
         ValidInput validInput;
         MySQlData mySQlData;
         UserMenu userMenu;
-        AdminMode adminMode;
+        AdminMenu adminMenu;
         private string id;
         private string passWord;
         
@@ -23,12 +22,14 @@ namespace LibraryMySQL
         public Login( UserModeUI userModeUI, ValidInput validInput)
         {
                   
-            userMenu = new UserMenu();
-            adminMode = new AdminMode();
-            this.validInput = validInput;
-            mySQlData= MySQlData.Instance();
-            this.userModeUI = userModeUI;
+         
 
+            this.validInput = validInput;          
+            this.userModeUI = userModeUI;
+            mySQlData = MySQlData.Instance();
+
+            userMenu = new UserMenu(validInput, userModeUI);
+            adminMenu = new AdminMenu(validInput, userModeUI);
         }
         public int LoginUser(string type)
         {
@@ -60,7 +61,7 @@ namespace LibraryMySQL
                     userMenu.StartUserMenu(); // 유저메뉴 입장
                 }
                 else
-                    adminMode.StartAdminMenu();
+                    adminMenu.StartAdminMenu();
              
             }
             else // 로그인 실패

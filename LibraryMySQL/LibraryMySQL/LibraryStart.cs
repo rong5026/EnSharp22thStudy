@@ -14,20 +14,28 @@ namespace LibraryMySQL
     {
 
         LibraryUI libraryUI;
+      
+        ValidInput validInput;
+        UserModeUI userModeUI;
+        Login login;
         SelectionMode mode;
         UserMode userMode;
         AdminMode adminMode;
+       
         int menuNumber;
 
         public static string loginedUser;
 
         public LibraryStart()
         {
+
             libraryUI = new LibraryUI ();
-           
+            validInput = new ValidInput ();
+            userModeUI = new UserModeUI ();
+            login = new Login(userModeUI,validInput);
             mode = new SelectionMode(libraryUI);       
-            userMode =  new UserMode( mode);
-            adminMode = new AdminMode();
+            userMode =  new UserMode(validInput,login, mode,libraryUI, userModeUI);
+            adminMode = new AdminMode(validInput, login, mode, libraryUI, userModeUI);
         }
       
 
