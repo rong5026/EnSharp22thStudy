@@ -246,20 +246,21 @@ namespace LibraryMySQL
 			Console.WriteLine("                                       회원정보 수정하기 항목을 클릭하면 변경이 완료됩니다.");
 		}
 
-		public void ShowRentedBookList(List<BookVO> list)
-        {
+	
+		public void ShowBorrowedBookList(List<BookVO> list,string type)
+		{
 			for (int index = 0; index < list.Count; index++)
 			{
 				Console.WriteLine();
 				Console.WriteLine("===========================================================================================================================\n");
-				Console.WriteLine("책아이디 : {0} ", list[index].Id);
-				Console.WriteLine("책 제목 : {0} ", list[index].Name);
-				Console.WriteLine("작가 : {0} ", list[index].Author);
-				Console.WriteLine("출판사 : {0} ", list[index].Publisher);
-				Console.WriteLine("수량 : {0} ", list[index].BookCount);
-				Console.WriteLine("가격 : {0} ", list[index].Price);
-				Console.WriteLine("출시일 : {0} ", list[index].Date);
-				Console.WriteLine("빌린 시간 : {0} ", list[index].Time);
+				Console.WriteLine("책아이디  : {0} ", list[index].Id);
+				Console.WriteLine("책 제목   : {0} ", list[index].Name);
+				Console.WriteLine("작가      : {0} ", list[index].Author);
+				Console.WriteLine("출판사    : {0} ", list[index].Publisher);
+				Console.WriteLine("수량      : {0} ", list[index].BookCount);
+				Console.WriteLine("가격      : {0} ", list[index].Price);
+				Console.WriteLine("출시일    : {0} ", list[index].Date);
+				Console.WriteLine("{0} 시간  : {1} ",type, list[index].Time);
 
 
 			}
@@ -333,12 +334,12 @@ namespace LibraryMySQL
 				Console.WriteLine();
 				Console.WriteLine("===========================================================================================================================\n");
 				Console.WriteLine("책아이디 : {0} ", list[validIndex[index]].Id);
-				Console.WriteLine("책 제목 : {0} ", list[validIndex[index]].Name);
-				Console.WriteLine("작가 : {0} ", list[validIndex[index]].Author);
-				Console.WriteLine("출판사 : {0} ", list[validIndex[index]].Publisher);
-				Console.WriteLine("수량 : {0} ", list[validIndex[index]].BookCount);
-				Console.WriteLine("가격 : {0} ", list[validIndex[index]].Price);
-				Console.WriteLine("출시일 : {0} ", list[validIndex[index]].Date);
+				Console.WriteLine("책 제목  : {0} ", list[validIndex[index]].Name);
+				Console.WriteLine("작가     : {0} ", list[validIndex[index]].Author);
+				Console.WriteLine("출판사   : {0} ", list[validIndex[index]].Publisher);
+				Console.WriteLine("수량     : {0} ", list[validIndex[index]].BookCount);
+				Console.WriteLine("가격     : {0} ", list[validIndex[index]].Price);
+				Console.WriteLine("출시일   : {0} ", list[validIndex[index]].Date);
 
 
 			}

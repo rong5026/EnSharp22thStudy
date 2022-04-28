@@ -58,7 +58,8 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.BOOK_RETRUN_HISTORY:
-                       // VariableData.book.ConfirmReturnBook(); // 도서반납확인
+                        bookSearching.ConfirmReturnBook(); // 도서반납확인
+                        Console.Clear();
                         break;
                     case Constants.USER_EDIT: // 회원정보 수정
                         EditUserData();

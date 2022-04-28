@@ -125,7 +125,7 @@ namespace LibraryMySQL {
             Console.Clear();
             userModeUI.PrintReturnBook();
             mySQlData.CheckRentBook(bookList);
-            libraryUI.ShowRentedBookList(bookList);
+            libraryUI.ShowBorrowedBookList(bookList,"반납");
 
             while (Constants.isPROGRAM_ON)
             {
@@ -196,17 +196,37 @@ namespace LibraryMySQL {
 
             mySQlData.CheckRentBook(list); //로그인된 사람의 빌린책
 
-            libraryUI.ShowRentedBookList(list);
+            libraryUI.ShowBorrowedBookList(list,"빌린");
             while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
 
-                if (keyInput.Key == ConsoleKey.Escape) // 대여 다시하기           
+                if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기           
                     return;
                 
             }
         }
-     
+        public void ConfirmReturnBook()  //반납책 확인
+        {
+            Console.Clear();
+            userModeUI.PrintReturnedBook(); // 반납책 UI 출력
+
+            List<BookVO> list = new List<BookVO>();
+
+            mySQlData.CheckReturnedBook(list); //로그인된 사람의 빌린책
+
+            libraryUI.ShowBorrowedBookList(list,"반납");
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+
+                if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기           
+                    return;
+
+            }
+        }
+
+
 
 
 

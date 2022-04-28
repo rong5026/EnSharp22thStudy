@@ -254,7 +254,38 @@ namespace LibraryMySQL
             connection.Close();
 
         }
+        public void CheckReturnedBook(List<BookVO> list) // 해당아이디의 반납책 리스트 리턴
+        {
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format("SELECT * FROM user_returned_book");
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
 
+
+            while (table.Read())
+            {
+
+                if (LibraryStart.loginedUser == (string)table["user_id"])
+                {
+                    BookVO book = new BookVO();
+                    book.Id = (int)table["book_id"];
+                    book.Name = (string)table["book_name"];
+                    book.Author = (string)table["book_author"];
+                    book.Publisher = (string)table["book_publisher"];
+                    book.BookCount = (int)table["book_count"];
+                    book.Price = (int)table["book_price"];
+                    book.Date = (string)table["book_date"];
+                    book.Time = (string)table["book_return_time"];
+                    list.Add(book);
+                }
+
+
+            }
+            table.Close();
+            connection.Close();
+
+        }
         public void DeleteRentBook(int bookId) // 로그인된 유저와 bookid가 같을때 삭제
         {
             MySqlConnection connection = ConnectMySQL();
