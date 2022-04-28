@@ -189,7 +189,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("INSERT INTO user_rented_book (user_id, book_id, book_name, book_author, book_publisher,book_price, book_date, book_rent_time) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}')", LibraryStart.loginedUser,bookVO.Id,bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.Price,bookVO.Date, rentTime);
+            string insertQuery = string.Format("INSERT INTO user_rented_book (user_id, book_id, book_name, book_author, book_publisher,book_count,book_price, book_date, book_rent_time) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}')", LibraryStart.loginedUser,bookVO.Id,bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.BookCount,bookVO.Price,bookVO.Date, rentTime);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
@@ -197,7 +197,7 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public void CheckUserRentBook()
+        public void CheckRentBook(List<BookVO> list) // 해당아이디의 빌린책 리스트 리턴
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format("SELECT * FROM user_rented_book");
@@ -208,22 +208,29 @@ namespace LibraryMySQL
 
             while (table.Read())
             {
-                BookVO book = new BookVO();
 
-                book.Id = (int)table["book_id"];
-                book.Name = (string)table["book_name"];
-                book.Author = (string)table["book_author"];
-                book.Publisher = (string)table["book_publisher"];
-                book.BookCount = (int)table["book_count"];
-                book.Price = (int)table["book_price"];
-                book.Date = (string)table["book_date"];
-               // list.Add(book);
+                if (LibraryStart.loginedUser == (string)table["user_id"])
+                {
+                    BookVO book = new BookVO();
+                    book.Id = (int)table["book_id"];
+                    book.Name = (string)table["book_name"];
+                    book.Author = (string)table["book_author"];
+                    book.Publisher = (string)table["book_publisher"];
+                    book.BookCount = (int)table["book_count"];
+                    book.Price = (int)table["book_price"];
+                    book.Date = (string)table["book_date"];
+                    book.Time = (string)table["book_rent_time"];
+                    list.Add(book);
+                }
 
 
             }
             table.Close();
             connection.Close();
+
         }
+
+        
 
 
     }

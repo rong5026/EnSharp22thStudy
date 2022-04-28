@@ -246,7 +246,26 @@ namespace LibraryMySQL
 			Console.WriteLine("                                       회원정보 수정하기 항목을 클릭하면 변경이 완료됩니다.");
 		}
 
+		public void ShowRentedBookList(List<BookVO> list)
+        {
+			for (int index = 0; index < list.Count; index++)
+			{
+				Console.WriteLine();
+				Console.WriteLine("===========================================================================================================================\n");
+				Console.WriteLine("책아이디 : {0} ", list[index].Id);
+				Console.WriteLine("책 제목 : {0} ", list[index].Name);
+				Console.WriteLine("작가 : {0} ", list[index].Author);
+				Console.WriteLine("출판사 : {0} ", list[index].Publisher);
+				Console.WriteLine("수량 : {0} ", list[index].BookCount);
+				Console.WriteLine("가격 : {0} ", list[index].Price);
+				Console.WriteLine("출시일 : {0} ", list[index].Date);
+				Console.WriteLine("빌린 시간 : {0} ", list[index].Time);
 
+
+			}
+			Console.SetCursorPosition(0, 0);
+
+		}
 		public void ShowBookList(string name, string author, string publisher) // 이름 저자 출판사로 책 검색해서 출력
 		{
 

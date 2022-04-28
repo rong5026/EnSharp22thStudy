@@ -120,7 +120,7 @@ namespace LibraryMySQL {
         }
 
 
-        private int EnterBack()
+        private int EnterBack() // 다시 할지 뒤로갈지 선택
         {
             while (Constants.isPROGRAM_ON)
             {
@@ -141,7 +141,22 @@ namespace LibraryMySQL {
 
         public void ConfirmRentedBook() // 빌린책 확인
         {
+            Console.Clear();
+            userModeUI.PrintRentedBook(); // 빌린책 UI 출력
 
+            List<BookVO> list = new List<BookVO>();
+
+            mySQlData.CheckRentBook(list); //로그인된 사람의 빌린책
+
+            libraryUI.ShowRentedBookList(list);
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+
+                if (keyInput.Key == ConsoleKey.Escape) // 대여 다시하기           
+                    return;
+                
+            }
         }
     }
 }

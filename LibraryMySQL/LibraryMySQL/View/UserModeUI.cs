@@ -105,7 +105,17 @@ namespace LibraryMySQL
 			Console.WriteLine("     ENTER : 다른책 빌리기                                                                    ");
 			Console.WriteLine("                                                                                           \n");
 		}
-
+		public void PrintRentedBook()
+		{
+			Console.WriteLine("                                                                                           ");
+			Console.WriteLine("                                                                                            ");
+			Console.WriteLine("     빌린 책의 리스트                                                                     ");
+			Console.WriteLine("                                                                                        ");
+			Console.WriteLine("                                                                                            ");
+			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
+			Console.WriteLine("     ENTER : 입력하기                                                                        ");
+			Console.WriteLine("                                                                                           \n");
+		}
 		public void PrintSuccessRegister()
 		{
 			Console.CursorVisible = false;

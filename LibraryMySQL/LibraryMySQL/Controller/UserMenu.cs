@@ -50,7 +50,7 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.BOOK_BORROW_LIST: //대여도서확인
-                       // book.ConfirmRentedBook();
+                        bookSearching.ConfirmRentedBook();
                         break;
                     case Constants.BOOK_RETURN: // 도서 반납
                        // VariableData.book.ReturnBook();
