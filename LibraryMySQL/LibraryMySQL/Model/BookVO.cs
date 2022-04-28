@@ -16,7 +16,7 @@ namespace LibraryMySQL
         private int bookCount;
         private int price;
         private string date;
-     
+        private string time;
     
         public BookVO()
         {
@@ -32,6 +32,17 @@ namespace LibraryMySQL
             this.price = price;
             this.date = date;
           
+        }
+        public BookVO(int id, string name, string author, string publisher, int bookCount, int price, string date,string time)
+        {
+            this.id = id;
+            this.name = name;
+            this.author = author;
+            this.publisher = publisher;
+            this.bookCount = bookCount;
+            this.price = price;
+            this.date = date;
+            this.time = time;
         }
         public int Id
         {
@@ -68,8 +79,14 @@ namespace LibraryMySQL
             get { return date; }
             set { date = value; }
         }
-   
-  
+        public string Time
+        {
+            get { return time; }
+            set { time = value; }
+        }
+
+
+
 
     }
 }

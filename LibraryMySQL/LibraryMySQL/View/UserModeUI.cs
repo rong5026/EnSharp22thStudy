@@ -99,7 +99,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                                                                           ");
 			Console.WriteLine("                                                                                            ");
 			Console.WriteLine("     {0}                                                                              ",message);
-			Console.WriteLine("                                                                                              ");
+			Console.WriteLine("                                                                                            ");
 			Console.WriteLine("                                                                                            ");
 			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
 			Console.WriteLine("     ENTER : 다른책 빌리기                                                                    ");
