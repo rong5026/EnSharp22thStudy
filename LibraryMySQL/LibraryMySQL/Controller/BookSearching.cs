@@ -125,7 +125,7 @@ namespace LibraryMySQL {
             Console.Clear();
             userModeUI.PrintReturnBook();
             mySQlData.CheckRentBook(bookList);
-            libraryUI.ShowBorrowedBookList(bookList,"반납");
+            libraryUI.ShowBorrowedBookList(bookList,"반납책");
 
             while (Constants.isPROGRAM_ON)
             {
@@ -141,7 +141,7 @@ namespace LibraryMySQL {
                         // 빌린책 목록에서 삭제
                         mySQlData.DeleteRentBook(Convert.ToInt16 (bookId));
                         // 도서관 책 수량 1개 증가
-                        mySQlData.UpdateBookCount(bookList[index].BookCount + 1, bookList[index].Id);
+                        mySQlData.UpdateBookCount(mySQlData.CheckBookCount(Convert.ToInt16(bookId)), bookList[index].Id);
                         //반납 리스트에 추가
                         mySQlData.InsertReturnBook(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), bookList[index]);
 

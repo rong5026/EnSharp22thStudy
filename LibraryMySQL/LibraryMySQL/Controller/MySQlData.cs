@@ -207,7 +207,28 @@ namespace LibraryMySQL
             connection.Close();
         }
 
+        public int CheckBookCount(int bookId) // 책의 수량을 리턴
+        {
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format("SELECT * FROM book_data");
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
 
+
+            while (table.Read())
+            {
+                if (bookId == (int)table["book_id"])
+                {
+               
+                    return (int)table["book_count"];
+                }
+
+            }
+            table.Close();
+            connection.Close();
+            return Constants.BACK;
+        }
         public void InsertRentBook(string rentTime,BookVO bookVO) // 빌린책 저장
         {
 

@@ -260,7 +260,8 @@ namespace LibraryMySQL
 				Console.WriteLine("수량      : {0} ", list[index].BookCount);
 				Console.WriteLine("가격      : {0} ", list[index].Price);
 				Console.WriteLine("출시일    : {0} ", list[index].Date);
-				Console.WriteLine("{0} 시간  : {1} ",type, list[index].Time);
+				if(type !="반납책")
+					Console.WriteLine("{0} 시간  : {1} ",type, list[index].Time);
 
 
 			}
