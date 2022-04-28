@@ -136,21 +136,35 @@ namespace LibraryMySQL {
 
                 for (int index = 0; index < bookList.Count; index++)
                 {
-                    if (bookList[index].Id == Convert.ToInt16(bookId))// 책의 id가 같을때
+                    if (bookList[index].Id == Convert.ToInt16(bookId)) // 책의 id가 같을때
                     {
-
                         // 빌린책 목록에서 삭제
                         mySQlData.DeleteRentBook(Convert.ToInt16 (bookId));
-                            // 도서관 책 수량 1개 증가
-                            mySQlData.InsertRentBook(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), bookList[index]);
-                            
-                            //반납 리스트에 추가
-                         
+                        // 도서관 책 수량 1개 증가
+                        mySQlData.UpdateBookCount(bookList[index].BookCount + 1, bookList[index].Id);
+                        //반납 리스트에 추가
+                        mySQlData.InsertReturnBook(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), bookList[index]);
 
-                        
+                        //반납 성공 메시지 출력
+                        Console.SetCursorPosition(0, 0);
+                        Console.CursorVisible = false;
+                        userModeUI.PrintBorrowBookMessage("책 반납 성공!");
+
+                        if (EnterBack() == Constants.RESTART)
+                            return ReturnBook();
+
+                        return Constants.BACK;
                     }
                 }
+                // 책 빌리기 실패
+                Console.SetCursorPosition(0, 0);
+                Console.CursorVisible = false;
+                userModeUI.PrintBorrowBookMessage("책 반납 실패! 대여하지 않은 책 ID 입니다!");
 
+                if (EnterBack() == Constants.RESTART)
+                    return ReturnBook();
+
+                return Constants.BACK;
             }
         }
 

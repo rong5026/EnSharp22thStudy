@@ -230,7 +230,35 @@ namespace LibraryMySQL
 
         }
 
-        
+        public void DeleteRentBook(int bookId) // 로그인된 유저와 bookid가 같을때 삭제
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format("DELETE FROM user_rented_book WHERE user_id = '{0}' AND book_id = '{1}';", LibraryStart.loginedUser, bookId);
+         
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public void InsertReturnBook(string returnTime, BookVO bookVO) // 반납책 저장
+        {
+
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format("INSERT INTO user_returned_book (user_id, book_id, book_name, book_author, book_publisher,book_count,book_price, book_date, book_return_time) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}')", LibraryStart.loginedUser, bookVO.Id, bookVO.Name, bookVO.Author, bookVO.Publisher, bookVO.BookCount, bookVO.Price, bookVO.Date, returnTime);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+
 
 
     }

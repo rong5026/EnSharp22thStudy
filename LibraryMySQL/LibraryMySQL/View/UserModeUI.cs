@@ -116,6 +116,19 @@ namespace LibraryMySQL
 			Console.WriteLine("     ENTER : 입력하기                                                                        ");
 			Console.WriteLine("                                                                                           \n");
 		}
+		public void PrintReturnBook()
+		{
+			Console.WriteLine("                                                                                           ");
+			Console.WriteLine("                                                                                            ");
+			Console.WriteLine("     반납 책의 ID를 입력해 주세요 :                                                         ");
+			Console.WriteLine("     값의 범위 : 0~ 999                                                                     ");
+			Console.WriteLine("                                                                                            ");
+			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
+			Console.WriteLine("     ENTER : 입력하기                                                                        ");
+			Console.WriteLine("                                                                                           \n");
+		}
+
+
 		public void PrintSuccessRegister()
 		{
 			Console.CursorVisible = false;
