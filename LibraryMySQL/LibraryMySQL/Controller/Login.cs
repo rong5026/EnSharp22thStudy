@@ -15,18 +15,22 @@ namespace LibraryMySQL
         ValidInput validInput;
         MySQlData mySQlData;
         UserMenu userMenu;
-
+        AdminMode adminMode;
         private string id;
         private string passWord;
+        
+        
         public Login( UserModeUI userModeUI, ValidInput validInput)
         {
                   
             userMenu = new UserMenu();
+            adminMode = new AdminMode();
             this.validInput = validInput;
             mySQlData= MySQlData.Instance();
             this.userModeUI = userModeUI;
+
         }
-        public int LoginUser()
+        public int LoginUser(string type)
         {
             Console.Clear();
 
@@ -49,12 +53,18 @@ namespace LibraryMySQL
             if (CheckUser(id,passWord) == Constants.LOGIN_SUCCESS) // 로그인 성공
             {
                 Console.Clear();
-                LibraryStart.loginedUser = id;   // 현재 로그인된 유저id 
-                userMenu.StartUserMenu(); // 유저메뉴 입장
+
+                if (type == "User")
+                {
+                    LibraryStart.loginedUser = id;   // 현재 로그인된 유저id 
+                    userMenu.StartUserMenu(); // 유저메뉴 입장
+                }
+                else
+                    adminMode.StartAdminMenu();
              
             }
             else // 로그인 실패
-                return LoginUser();
+                return LoginUser(type);
 
 
             

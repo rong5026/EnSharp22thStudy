@@ -48,7 +48,7 @@ namespace LibraryMySQL
                 switch (menuNumber)
                 {
                     case Constants.LOGIN_MODE: // 로그인
-                        login.LoginUser(); //
+                        login.LoginUser("User"); //
                         Console.Clear(); 
                         break;                
                     case Constants.REGISTER_MODE: // 회원가입

@@ -70,7 +70,8 @@ namespace LibraryMySQL {
    
             Console.SetWindowSize(125, 50);
 
-            Console.Clear();
+          
+            Console.SetCursorPosition(0, 0);
             userModeUI.PrintReturnRentBook("빌릴");
             libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
            
@@ -169,17 +170,15 @@ namespace LibraryMySQL {
             }
         }
 
-        private int EnterBack() // 반납다시 할지 뒤로갈지 선택
+        private int EnterBack() // 다시 할지 뒤로갈지 선택
         {
             while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
 
-                if (keyInput.Key == ConsoleKey.Enter) // 대여 다시하기
+                if (keyInput.Key == ConsoleKey.Enter) // 다시하기
                 {
-                    Console.SetCursorPosition(0, 0);
-                    userModeUI.PrintReturnRentBook("반납");
-                    libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
+                                  
                     return Constants.RESTART;
                 }
                 else if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기

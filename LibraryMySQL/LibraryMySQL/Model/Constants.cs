@@ -32,7 +32,7 @@ namespace LibraryMySQL
         //SelectionMode
         public const int FIND_BOOK = 1;
         public const int USER_MODE = 1;
-        public const int MANAGE_MODE = 2;
+        public const int ADMIN_MODE = 2;
       
 
 

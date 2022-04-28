@@ -46,14 +46,15 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.BOOK_RENT: // 도서대여                   
+                        Console.Clear();
                         bookSearching.BorrowBook();
                         Console.Clear();
                         break;
-                    case Constants.BOOK_BORROW_LIST: //대여도서확인
+                    case Constants.BOOK_BORROW_LIST: //대여도서확인                  
                         bookSearching.ConfirmRentedBook();
                         Console.Clear();
                         break;
-                    case Constants.BOOK_RETURN: // 도서 반납
+                    case Constants.BOOK_RETURN: // 도서 반납                      
                         bookSearching.ReturnBook();
                         Console.Clear();
                         break;

@@ -98,7 +98,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
 		}
 		
-		public void PrintManagerMenuList(int selectNum, int menuNumber, string menuName)
+		public void PrintAdminMenuList(int selectNum, int menuNumber, string menuName)
 		{
 			Console.Write("                                   │                 ");
 			if (selectNum == menuNumber)
@@ -127,12 +127,31 @@ namespace LibraryMySQL
 			Console.ResetColor();
 
 		}
+		public void PrintAdminMenuUI(int selectNum)
+		{
+			Console.Clear();
+			PrintMainUI();  // main 이미지 출력
 
-		
+			Console.WriteLine("                                   ┌------------------------------------------------┐");
+			Console.WriteLine("                                   │                                                │");
+
+			PrintAdminMenuList(selectNum, 1, "도서찾기");
+			PrintAdminMenuList(selectNum, 2, "도서추가");
+			PrintAdminMenuList(selectNum, 3, "도서삭제");
+			PrintAdminMenuList(selectNum, 4, "도서수정");
+			PrintAdminMenuList(selectNum, 5, "회원관리");
+			PrintAdminMenuList(selectNum, 6, "대여상황");
+
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   └------------------------------------------------┘");
+
+			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
+
+		}
+
 		public void PrintUserMenuUI(int selectNum)
 		{
-			//Console.Clear();
-			//Console.SetCursorPosition(0,0);
+		
 			PrintMainUI();  // main 이미지 출력
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
@@ -245,6 +264,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                         변경하고자 하는 항목을 선택 후 변경해주세요.");
 			Console.WriteLine("                                       회원정보 수정하기 항목을 클릭하면 변경이 완료됩니다.");
 		}
+
 
 	
 		public void ShowBorrowedBookList(List<BookVO> list,string type)

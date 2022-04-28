@@ -35,8 +35,8 @@ namespace LibraryMySQL
                         break;
 
                     case ConsoleKey.DownArrow:
-                        menuNumber = Constants.MANAGE_MODE;
-                        libraryUI.PrintSelectUI(Constants.MANAGE_MODE, type);
+                        menuNumber = Constants.ADMIN_MODE;
+                        libraryUI.PrintSelectUI(Constants.ADMIN_MODE, type);
                         break;
                     case ConsoleKey.Enter:
                         return menuNumber;
@@ -48,10 +48,21 @@ namespace LibraryMySQL
         public int SelectUserManagerMenu(string menuType, int menuCount) // 유저메뉴, 관리자 메뉴 상하 이동
         {
             menuNumber = 0;
-            if (menuType == "User")
-                libraryUI.PrintUserMenuUI(Constants.FIND_BOOK);
-            else if(menuType == "Edit")
-                libraryUI.PrintEditUI(Constants.USER_ID);
+
+            switch (menuType)
+            {
+                case "User":
+                    libraryUI.PrintUserMenuUI(Constants.FIND_BOOK);
+                    break;
+                case "Edit":
+                    libraryUI.PrintEditUI(Constants.USER_ID);
+                    break;
+                case "Admin":
+                    libraryUI.PrintAdminMenuUI(Constants.FIND_BOOK);
+                    break;
+
+            }
+         
 
 
 
@@ -89,6 +100,9 @@ namespace LibraryMySQL
                     break;
                 case "Edit":
                     libraryUI.PrintEditUI((menuNumber % menuCount) + 1);
+                    break;
+                case "Admin":
+                    libraryUI.PrintAdminMenuUI((menuNumber % menuCount) + 1);
                     break;
                 default:
                     return;
