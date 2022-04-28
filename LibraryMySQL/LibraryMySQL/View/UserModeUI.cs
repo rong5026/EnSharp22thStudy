@@ -113,60 +113,48 @@ namespace LibraryMySQL
 
 
 	
-		public void PrintBorrowBook()
-		{
-			Console.WriteLine("                                                                                           ");
-			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("     빌릴 책의 ID를 입력해 주세요 :                                                         "); 
-			Console.WriteLine("     값의 범위 : 0~ 999                                                                     ");
-			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
-			Console.WriteLine("     ENTER : 입력하기                                                                        ");
-			Console.WriteLine("                                                                                           \n");
-		}
+		
 
 		public void PrintBorrowBookMessage(string message)
 		{
 			Console.WriteLine("                                                                                           ");
-			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("     {0}                                                                              ",message);
-			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("                                                                                            ");
+			Console.WriteLine("                                                                                             ");
+			Console.WriteLine("     {0}                                                                                                       ",message);
+			Console.WriteLine("                                                                                                              ");
+			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
-			Console.WriteLine("     ENTER : 다른책 빌리기                                                                    ");
-			Console.WriteLine("                                                                                           \n");
-		}
-		public void PrintRentedBook()
-		{
-			Console.WriteLine("                                                                                           ");
-			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("     빌린 책의 리스트                                                                     ");
-			Console.WriteLine("                                                                                        ");
-			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
+			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("     ENTER : 입력하기                                                                        ");
+			Console.ResetColor();
 			Console.WriteLine("                                                                                           \n");
 		}
-		public void PrintReturnBook()
+		
+		public void PrintReturnRentBook(string type)
 		{
+		
 			Console.WriteLine("                                                                                           ");
 			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("     반납 책의 ID를 입력해 주세요 :                                                         ");
+			Console.WriteLine("     {0} 책의 ID를 입력해 주세요 :                                                         ",type);
 			Console.WriteLine("     값의 범위 : 0~ 999                                                                     ");
 			Console.WriteLine("                                                                                            ");
+			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
+			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("     ENTER : 입력하기                                                                        ");
+			Console.ResetColor();
 			Console.WriteLine("                                                                                           \n");
 		}
-		public void PrintReturnedBook()
+		public void PrintReturnRentBookList(string type)
 		{
 			Console.WriteLine("                                                                                           ");
 			Console.WriteLine("                                                                                            ");
-			Console.WriteLine("     반납 책의 리스트                                                                     ");
+			Console.WriteLine("     {0} 책의 리스트                                                                     ",type);
 			Console.WriteLine("                                                                                        ");
 			Console.WriteLine("                                                                                            ");
+			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
-			Console.WriteLine("     ENTER : 입력하기                                                                        ");
+			Console.ResetColor();
+			Console.WriteLine("                                                                                      ");
 			Console.WriteLine("                                                                                           \n");
 		}
 

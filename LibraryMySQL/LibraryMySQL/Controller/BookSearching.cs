@@ -71,7 +71,7 @@ namespace LibraryMySQL {
             Console.SetWindowSize(125, 50);
 
             Console.Clear();
-            userModeUI.PrintBorrowBook();
+            userModeUI.PrintReturnRentBook("빌릴");
             libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
            
 
@@ -111,7 +111,7 @@ namespace LibraryMySQL {
                 // 책 빌리기 실패
                 Console.SetCursorPosition(0, 0);
                 Console.CursorVisible = false;
-                userModeUI.PrintBorrowBookMessage("책 빌리기 실패! 수량이 없거나 유효하지 않은 책 ID 또는 이미 빌린 책 입니다!");
+                userModeUI.PrintBorrowBookMessage("실패! 수량이 없거나 유효하지 않은 책 ID 또는 이미 빌린 책 입니다!");
 
                 if (EnterBack() == Constants.RESTART)
                     return BorrowBook();
@@ -124,7 +124,7 @@ namespace LibraryMySQL {
             List<BookVO> bookList = new List<BookVO>();
 
             Console.Clear();
-            userModeUI.PrintReturnBook();
+            userModeUI.PrintReturnRentBook("반납");
             mySQlData.CheckRentBook(bookList);
             libraryUI.ShowBorrowedBookList(bookList,"반납책");
 
@@ -169,7 +169,7 @@ namespace LibraryMySQL {
             }
         }
 
-        private int EnterBack() // 다시 할지 뒤로갈지 선택
+        private int EnterBack() // 반납다시 할지 뒤로갈지 선택
         {
             while (Constants.isPROGRAM_ON)
             {
@@ -178,7 +178,7 @@ namespace LibraryMySQL {
                 if (keyInput.Key == ConsoleKey.Enter) // 대여 다시하기
                 {
                     Console.SetCursorPosition(0, 0);
-                    userModeUI.PrintBorrowBook();
+                    userModeUI.PrintReturnRentBook("반납");
                     libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
                     return Constants.RESTART;
                 }
@@ -191,7 +191,7 @@ namespace LibraryMySQL {
         public void ConfirmRentedBook() // 빌린책 확인
         {
             Console.Clear();
-            userModeUI.PrintRentedBook(); // 빌린책 UI 출력
+            userModeUI.PrintReturnRentBookList("빌린"); // 빌린책 UI 출력
 
             List<BookVO> list = new List<BookVO>();
 
@@ -210,7 +210,7 @@ namespace LibraryMySQL {
         public void ConfirmReturnBook()  //반납책 확인
         {
             Console.Clear();
-            userModeUI.PrintReturnedBook(); // 반납책 UI 출력
+            userModeUI.PrintReturnRentBookList("반납"); // 반납책 UI 출력
 
             List<BookVO> list = new List<BookVO>();
 

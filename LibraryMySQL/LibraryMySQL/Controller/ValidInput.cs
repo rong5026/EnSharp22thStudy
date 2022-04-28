@@ -54,7 +54,7 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
-                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), RegularExpression.KOREAN))
                             Console.Write("\b \b\b \b");  // 지우기
                         else
                             Console.Write("\b \b");  // 지우기
@@ -86,7 +86,7 @@ namespace LibraryMySQL
         public string EnterLoginPassWprd(int x, int y) // 로그인 비밀번호입력
         {
             Console.CursorVisible = true;
-            error = "숫자+영어 8~15글자를 입력해주세요!";   //예외조건 성립안할때 출력
+           
             Console.SetCursorPosition(x, y);
 
             input = Constants.INPUT_EMPTY;
@@ -109,7 +109,7 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
-                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), RegularExpression.KOREAN))
                             Console.Write("\b \b\b \b");  // 지우기
                         else
                             Console.Write("\b \b");  // 지우기
@@ -126,11 +126,11 @@ namespace LibraryMySQL
 
             // 정규식 예외처리
             if (input != null)
-                check = Regex.IsMatch(input, @"^[0-9a-zA-Z]{8,15}$"); // 숫자 영어 8~15글자
+                check = Regex.IsMatch(input, RegularExpression.PASSWORD); // 숫자 영어 8~15글자
             if (check == false) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
-                userModeUI.PrintErrorMessage(x, y, error);
+                userModeUI.PrintErrorMessage(x, y, ErrorMessage.PASSWORD);
                 return EnterLoginPassWprd(x, y);
             }
           
@@ -142,7 +142,7 @@ namespace LibraryMySQL
         public string EnterRegisterID(int x, int y) // 회원가입 ID 입력
         {
             Console.CursorVisible = true;
-            error = "숫자+영어 8~15글자를 입력해주세요!";   //예외조건 성립안할때 출력
+            error = ErrorMessage.ID;   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
 
             input = Constants.INPUT_EMPTY;
@@ -166,7 +166,7 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
-                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), RegularExpression.KOREAN))
                             Console.Write("\b \b\b \b");  // 지우기
                         else
                             Console.Write("\b \b");  // 지우기
@@ -183,7 +183,7 @@ namespace LibraryMySQL
 
             // 정규식 예외처리
             if (input != null)
-                check = Regex.IsMatch(input, @"^[0-9a-zA-Z]{8,15}$"); // 숫자 영어 8~15글자
+                check = Regex.IsMatch(input, RegularExpression.ID); // 숫자 영어 8~15글자
             if (check == false) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
@@ -192,7 +192,7 @@ namespace LibraryMySQL
             }
             if(CheckUserId(input) == Constants.LOGIN_FAIL)
             {
-                error = "기존 회원과 중복되는 ID입니다!";
+                error = ErrorMessage.ID_EXIST;
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
                 return EnterRegisterID(x, y);
@@ -217,7 +217,7 @@ namespace LibraryMySQL
         public string EnterRePassWord(string password, int x, int y) // password 다시입력 후 확인
         {
             Console.CursorVisible = true;
-            error = "숫자+영어 8~15글자를 입력해주세요!";   //예외조건 성립안할때 출력
+            error = ErrorMessage.PASSWORD;   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
 
             input = Constants.INPUT_EMPTY;
@@ -240,7 +240,7 @@ namespace LibraryMySQL
                 {
                     if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
                     {
-                        if (Regex.IsMatch(input[input.Length - 1].ToString(), @"^[ㄱ-ㅎ가-힣]{1,}$"))
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), RegularExpression.KOREAN))
                             Console.Write("\b \b\b \b");  // 지우기
                         else
                             Console.Write("\b \b");  // 지우기
@@ -256,7 +256,7 @@ namespace LibraryMySQL
 
             // 정규식 예외처리
             if (input != null)
-                check = Regex.IsMatch(input, @"^[0-9a-zA-Z]{8,15}$"); // 숫자 영어 8~15글자
+                check = Regex.IsMatch(input, RegularExpression.PASSWORD); // 숫자 영어 8~15글자
             if (check == false) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
@@ -266,7 +266,7 @@ namespace LibraryMySQL
             if (password != input)// 비밀번호가 같지않다면
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
-                error = "입력하신 비밀번호와 일치하지 않습니다! 다시입력해주세요";
+                error = ErrorMessage.PASSWORD_NO_CORRECT;
                 userModeUI.PrintErrorMessage(x, y, error);
                 return EnterRePassWord(password, x, y);
             }
@@ -276,6 +276,9 @@ namespace LibraryMySQL
         }
 
       
+
+
+
 
 
         public string EnterBookName(int x, int y) // 책이름 입력
@@ -447,7 +450,7 @@ namespace LibraryMySQL
 
         }
 
-        public string EnterBookId(int x, int y) // 유저나이 입력
+        public string EnterBookId(int x, int y) // 책ID 입력
         {
             Console.CursorVisible = true;
             error = "0~999범위 안의 수를 입력해주세요!";  //예외조건 성립안할때 출력
@@ -501,7 +504,7 @@ namespace LibraryMySQL
             return input;
 
         }
-        private void DeleteInput(int count, int x, int y)
+        private void DeleteInput(int count, int x, int y) // 입력값 삭제
         {
             Console.SetCursorPosition(x, y);
             for (int index = 0; index < count; index++)
