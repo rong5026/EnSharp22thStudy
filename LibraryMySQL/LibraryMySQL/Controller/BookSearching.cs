@@ -118,7 +118,41 @@ namespace LibraryMySQL {
                 return Constants.BACK;
             }
         }
+        public int ReturnBook()// 도서반납
+        {
+            List<BookVO> bookList = new List<BookVO>();
 
+            Console.Clear();
+            userModeUI.PrintReturnBook();
+            mySQlData.CheckRentBook(bookList);
+            libraryUI.ShowRentedBookList(bookList);
+
+            while (Constants.isPROGRAM_ON)
+            {
+                bookId = validInput.EnterBookId(35, 2); // 책Id 1~999수
+
+                if (bookId == Constants.INPUT_EMPTY)//ESC 누르면 뒤로가기
+                    return Constants.BACK;
+
+                for (int index = 0; index < bookList.Count; index++)
+                {
+                    if (bookList[index].Id == Convert.ToInt16(bookId))// 책의 id가 같을때
+                    {
+
+                        // 빌린책 목록에서 삭제
+                        mySQlData.DeleteRentBook(Convert.ToInt16 (bookId));
+                            // 도서관 책 수량 1개 증가
+                            mySQlData.InsertRentBook(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), bookList[index]);
+                            
+                            //반납 리스트에 추가
+                         
+
+                        
+                    }
+                }
+
+            }
+        }
 
         private int EnterBack() // 다시 할지 뒤로갈지 선택
         {
@@ -158,5 +192,11 @@ namespace LibraryMySQL {
                 
             }
         }
+     
+
+
+
+
     }
+
 }
