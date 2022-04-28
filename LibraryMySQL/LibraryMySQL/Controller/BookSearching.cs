@@ -85,7 +85,7 @@ namespace LibraryMySQL {
 
                 for(int index = 0; index < bookList.Count; index++)
                 {
-                    if(bookList[index].Id == Convert.ToInt16(bookId))// 책의 id가 같을때
+                    if(bookList[index].Id == Convert.ToInt16(bookId)  &&  mySQlData.ConfrimUserRentBook(Convert.ToInt16(bookId))== Constants.BOOK_NOT_EXIST )// 책의 id가 같을때, 이미 빌린책이 아닐때
                     {
                         if (bookList[index].BookCount >= 1)// 책이 1개 이상있을때
                         {
@@ -110,7 +110,7 @@ namespace LibraryMySQL {
                 // 책 빌리기 실패
                 Console.SetCursorPosition(0, 0);
                 Console.CursorVisible = false;
-                userModeUI.PrintBorrowBookMessage("책 빌리기 실패! 수량이 없거나 유효하지 않은 책 ID 입니다!");
+                userModeUI.PrintBorrowBookMessage("책 빌리기 실패! 수량이 없거나 유효하지 않은 책 ID 또는 이미 빌린 책 입니다!");
 
                 if (EnterBack() == Constants.RESTART)
                     return BorrowBook();

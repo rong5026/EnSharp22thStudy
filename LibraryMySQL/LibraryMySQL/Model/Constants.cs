@@ -72,6 +72,9 @@ namespace LibraryMySQL
         public const int EDIT = 7;
 
 
+        public const int BOOK_EXIST = 1;
+        public const int BOOK_NOT_EXIST = 0;
+
 
     }
 }

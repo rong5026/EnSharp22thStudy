@@ -165,6 +165,31 @@ namespace LibraryMySQL
             connection.Close();
 
         }
+
+        public int ConfrimUserRentBook(int bookId)  // 유저가 이미 빌린책이면 1, 안빌린책이면 0 리턴
+        {
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format("SELECT * FROM user_rented_book");
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+                if(LibraryStart.loginedUser == (string)table["user_id"] && bookId == (int)table["book_id"]) // 빌린책에 똑같은 책이 있다면
+                {
+                    table.Close();
+                    connection.Close();                
+                    return Constants.BOOK_EXIST;
+                }
+                       
+            }
+            table.Close();
+            connection.Close();
+     
+            return Constants.BOOK_NOT_EXIST;
+        }
         public void UpdateBookCount(int bookCount,int bookId) // 책 수량 수정
         {
 
