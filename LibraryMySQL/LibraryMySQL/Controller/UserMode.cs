@@ -18,6 +18,7 @@ namespace LibraryMySQL
         Login login;
         UserModeUI userModeUI;
         ValidInput validInput;
+        UserMenu userMenu;
 
         public UserMode(ValidInput validInput,  Login login,SelectionMode mode,LibraryUI libraryUI,UserModeUI userModeUI)
         {
@@ -27,6 +28,7 @@ namespace LibraryMySQL
             this.libraryUI = libraryUI;
             this.validInput = validInput;
             this.login = login;
+            userMenu = new UserMenu(validInput, userModeUI);
             register = new Register( userModeUI, validInput);
           
 
@@ -48,7 +50,8 @@ namespace LibraryMySQL
                 switch (menuNumber)
                 {
                     case Constants.LOGIN_MODE: // 로그인
-                        login.LoginUser("User"); //
+                       if( login.LoginUser("User") == Constants.USER_MODE)
+                            userMenu.StartUserMenu();
                         Console.Clear(); 
                         break;                
                     case Constants.REGISTER_MODE: // 회원가입

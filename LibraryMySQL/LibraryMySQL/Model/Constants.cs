@@ -36,12 +36,12 @@ namespace LibraryMySQL
       
 
 
-        //ManagerMode  
-        public const int BOOK_REGISTRATION = 4;
-        public const int BOOK_UPDATE = 2;
-        public const int BOOK_DELETE = 3;    
-        public const int BOOK_LIST = 5;
-        public const int USER_LIST = 6;
+        //AdminMode  
+        public const int BOOK_ADD = 2;
+        public const int BOOK_DELETE = 3;
+        public const int BOOK_EDIT = 4;    
+        public const int USER_CARE = 5;
+        public const int TOTAL_USER_RENTBOOK = 6;
 
         //Login
         public const int LOGIN_INDEX = 0;

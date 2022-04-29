@@ -11,11 +11,10 @@ namespace LibraryMySQL
         LibraryUI libraryUI;
         SelectionMode mode;
         BookSearching bookSearching;
-
         UserModeUI userModeUI;
         ValidInput validInput;
         MySQlData mySQlData;
-
+        Login login;
         public AdminMenu(ValidInput validInput, UserModeUI userModeUI)
         {
             this.validInput = validInput;
@@ -24,6 +23,22 @@ namespace LibraryMySQL
             libraryUI = new LibraryUI();
             mode = new SelectionMode(libraryUI);
             mySQlData = MySQlData.Instance();
+            login = new Login(userModeUI, validInput);
+        }
+
+        public void StartAdminMode()
+        {
+            int input;
+            while (Constants.isPROGRAM_ON)
+            {
+                input = login.LoginUser("Admin");
+
+                if (input == Constants.ADMIN_MODE)
+                    StartAdminMenu();
+                else if (input == Constants.BACK)
+                    return;
+
+            }
         }
         public void StartAdminMenu()
         {
