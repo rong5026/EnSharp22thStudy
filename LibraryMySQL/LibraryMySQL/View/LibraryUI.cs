@@ -129,7 +129,7 @@ namespace LibraryMySQL
 		}
 		public void PrintAdminMenuUI(int selectNum)
 		{
-			Console.Clear();
+			
 			PrintMainUI();  // main 이미지 출력
 
 			Console.WriteLine("                                   ┌------------------------------------------------┐");

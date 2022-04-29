@@ -20,6 +20,7 @@ namespace LibraryMySQL
         Login login;
         SelectionMode mode;
         UserMode userMode;
+        AdminMenu adminMenu;
       
        
         int menuNumber;
@@ -35,7 +36,9 @@ namespace LibraryMySQL
             login = new Login(userModeUI,validInput);
             mode = new SelectionMode(libraryUI);       
             userMode =  new UserMode(validInput,login, mode,libraryUI, userModeUI);
-            
+            adminMenu = new AdminMenu(validInput, userModeUI);
+
+
         }
       
 
@@ -57,7 +60,7 @@ namespace LibraryMySQL
                         userMode.StartUserMode();
                         break;
                     case Constants.ADMIN_MODE: // 관리자 모드
-                        userMode
+                        adminMenu.StartAdminMode();
                         break;
                     case Constants.STOP:
                      

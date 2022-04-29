@@ -11,21 +11,20 @@ namespace LibraryMySQL
 
         LibraryUI libraryUI;
         SelectionMode mode;
-        BookSearching bookSearching;   
-        
+        BookSearching bookSearching;         
         UserModeUI userModeUI;
         ValidInput validInput;
         MySQlData mySQlData;
 
-        private bool delete;
+     
         
 
         public UserMenu(ValidInput validInput, UserModeUI userModeUI)
         {
             this.validInput = validInput;
             this.userModeUI = userModeUI;
-            bookSearching = new BookSearching();
-            libraryUI = new LibraryUI( );
+            libraryUI = new LibraryUI();
+            bookSearching = new BookSearching(validInput, libraryUI);          
             mode = new SelectionMode(libraryUI);
             mySQlData = MySQlData.Instance();
         }

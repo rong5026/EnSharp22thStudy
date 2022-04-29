@@ -16,12 +16,12 @@ namespace LibraryMySQL {
         private string author;
         private string publisher;
         private string bookId;
-        public BookSearching()
+        public BookSearching(ValidInput validInput, LibraryUI libraryUI)
         {
           
-            libraryUI = new LibraryUI();
-            userModeUI = new UserModeUI();
-            validInput = new ValidInput();
+            this.validInput = validInput;
+            this.libraryUI = libraryUI;
+            userModeUI = new UserModeUI();         
             mySQlData = MySQlData.Instance();
         }
         public void SearchBook() // 책 검색

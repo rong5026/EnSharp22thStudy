@@ -15,12 +15,13 @@ namespace LibraryMySQL
         ValidInput validInput;
         MySQlData mySQlData;
         Login login;
+     
         public AdminMenu(ValidInput validInput, UserModeUI userModeUI)
         {
             this.validInput = validInput;
             this.userModeUI = userModeUI;
-            bookSearching = new BookSearching();
             libraryUI = new LibraryUI();
+            bookSearching = new BookSearching(validInput, libraryUI);        
             mode = new SelectionMode(libraryUI);
             mySQlData = MySQlData.Instance();
             login = new Login(userModeUI, validInput);
@@ -53,7 +54,8 @@ namespace LibraryMySQL
                 switch (menuNumber)
                 {
                     case Constants.BOOK_SEARCH: //도서찾기                  
-
+                        bookSearching.SearchBook();
+                        Console.Clear();
                         break;
                     case Constants.BOOK_ADD: // 도서추가             
 
