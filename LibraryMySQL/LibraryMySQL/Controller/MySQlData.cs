@@ -20,13 +20,9 @@ namespace LibraryMySQL
 
         public MySqlConnection ConnectMySQL()
         {
-            string database = ConnectionData.DATABASE_NAME;
-            string id = ConnectionData.ID;
-            string password = ConnectionData.PASSWROD;
-            string server = ConnectionData.SERVER;
-            int port = ConnectionData.PORT;
+            
             MySqlConnection connection =
-        new MySqlConnection("Server=localhost;Port=3306;Database=library;Uid=root;Pwd=0000;");
+        new MySqlConnection("Server="+ ConnectionData.DATABASE_NAME+"; Port="+ ConnectionData.PORT + ";Database="+ ConnectionData.DATABASE_NAME+";Uid="+ ConnectionData.ID + ";Pwd="+ ConnectionData.PASSWROD + ";");
 
             return connection;
         }
@@ -167,7 +163,7 @@ namespace LibraryMySQL
             while (table.Read())
             {
 
-                if (userId == (string)table["user_id"])
+                if (LibraryStart.loginedUser == (string)table["user_id"])
                 {
                     table.Close();
                     connection.Close();

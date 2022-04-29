@@ -8,5 +8,7 @@ namespace LibraryMySQL
 {
     internal class QueryData
     {
+
+
     }
 }

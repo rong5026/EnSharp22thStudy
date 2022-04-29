@@ -12,7 +12,7 @@ namespace LibraryMySQL
         public const string ID = "root";
         public const string PASSWROD = "0000";
         public const string SERVER = "localhost";
-        public const int PORT = 3306;
+        public const string PORT = "3306";
 
 
     }
