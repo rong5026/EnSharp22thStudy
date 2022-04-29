@@ -14,7 +14,6 @@ namespace LibraryMySQL
     {
 
         LibraryUI libraryUI;
-      
         ValidInput validInput;
         UserModeUI userModeUI;
         Login login;
@@ -50,7 +49,7 @@ namespace LibraryMySQL
             Console.SetWindowSize(125, 50);
            
             
-            Console.CursorVisible = false;
+            Console.CursorVisible = Constants.isNONVISIBLE;
             while (Constants.isPROGRAM_ON)
             {
                 menuNumber =  mode.SelectMode(Constants.USER_MANAGER); // 회원모드 . 유저모드 선택

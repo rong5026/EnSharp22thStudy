@@ -12,7 +12,6 @@ namespace LibraryMySQL
 
         ConsoleKeyInfo keyInput;
         UserModeUI userModeUI;
-        
         ValidInput validInput;     
         MySQlData mySQlData;
 

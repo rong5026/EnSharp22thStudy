@@ -19,13 +19,13 @@ namespace LibraryMySQL
      
         
 
-        public UserMenu(ValidInput validInput, UserModeUI userModeUI)
+        public UserMenu(ValidInput validInput, UserModeUI userModeUI,LibraryUI libraryUI,SelectionMode mode)
         {
             this.validInput = validInput;
             this.userModeUI = userModeUI;
-            libraryUI = new LibraryUI();
-            bookSearching = new BookSearching(validInput, libraryUI);          
-            mode = new SelectionMode(libraryUI);
+            this.libraryUI = libraryUI;        
+            this.mode = mode;
+            bookSearching = new BookSearching(validInput, libraryUI, userModeUI);          
             mySQlData = MySQlData.Instance();
         }
         public void StartUserMenu()

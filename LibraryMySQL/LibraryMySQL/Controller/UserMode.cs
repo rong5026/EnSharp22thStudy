@@ -28,7 +28,7 @@ namespace LibraryMySQL
             this.libraryUI = libraryUI;
             this.validInput = validInput;
             this.login = login;
-            userMenu = new UserMenu(validInput, userModeUI);
+            userMenu = new UserMenu(validInput, userModeUI, libraryUI, mode);
             register = new Register( userModeUI, validInput);
           
 
@@ -63,16 +63,8 @@ namespace LibraryMySQL
 
 
                 }
-
-            
-
+          
             }
-
-
-
-
-        } // 로그인을 했다면 UserMode 기능 출력, 선택
-
-      
+        }     
     }
 }
