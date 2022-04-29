@@ -22,7 +22,7 @@ namespace LibraryMySQL
         AdminMenu adminMenu;
       
        
-        int menuNumber;
+        private int menuNumber;
 
         public static string loginedUser;
 
@@ -41,7 +41,7 @@ namespace LibraryMySQL
         }
       
 
-        public void StartProgram()
+        public void StartLibrary()
         {
 
          

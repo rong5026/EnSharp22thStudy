@@ -16,12 +16,12 @@ namespace LibraryMySQL {
         private string author;
         private string publisher;
         private string bookId;
-        public BookSearching(ValidInput validInput, LibraryUI libraryUI)
+        public BookSearching(ValidInput validInput, LibraryUI libraryUI,UserModeUI userModeUI)
         {
           
             this.validInput = validInput;
             this.libraryUI = libraryUI;
-            userModeUI = new UserModeUI();         
+            this.userModeUI = userModeUI;
             mySQlData = MySQlData.Instance();
         }
         public void SearchBook() // 책 검색
@@ -35,6 +35,7 @@ namespace LibraryMySQL {
                 libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
                 Console.SetCursorPosition(18, 1); // 커서이동
 
+                // 책 조건 입력
                 name = validInput.EnterBookSearch(18, 1,ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
                 if (name == Constants.BACKMENU)
                     return;
@@ -50,10 +51,10 @@ namespace LibraryMySQL {
                 libraryUI.PrintSearchBook("Return");
                 libraryUI.ShowBookList(name, author, publisher, bookList);
 
-                Console.CursorVisible = false;
+                Console.CursorVisible = Constants.isNONVISIBLE;
                 while (Constants.isPROGRAM_ON)
                 {
-                    keyInput = Console.ReadKey(true);
+                    keyInput = Console.ReadKey(Constants.KEY_INPUT);
                     if (keyInput.Key == ConsoleKey.Escape)
                         return; // ESC 누르면 뒤로가기 
                     else if (keyInput.Key == ConsoleKey.Enter)
@@ -78,8 +79,6 @@ namespace LibraryMySQL {
             libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
 
 
-         
-
             while (Constants.isPROGRAM_ON)
             {
                 bookId = validInput.EnterInput(35, 2,ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID); // 책Id 1~999수
@@ -100,7 +99,7 @@ namespace LibraryMySQL {
 
                             //대여 성공 메시지 출력
                             Console.SetCursorPosition(0, 0);
-                            Console.CursorVisible = false;
+                            Console.CursorVisible = Constants.isNONVISIBLE;
                             userModeUI.PrintBorrowBookMessage("책 빌리기 성공!","다시 입력하기");
 
                             if (EnterBack() == Constants.RESTART)
@@ -113,7 +112,7 @@ namespace LibraryMySQL {
                 }
                 // 책 빌리기 실패
                 Console.SetCursorPosition(0, 0);
-                Console.CursorVisible = false;
+                Console.CursorVisible = Constants.isNONVISIBLE;
                 userModeUI.PrintBorrowBookMessage("실패! 수량이 없거나 유효하지 않은 책 ID 또는 이미 빌린 책 입니다!","다시 입력하기");
 
                 if (EnterBack() == Constants.RESTART)
@@ -151,7 +150,7 @@ namespace LibraryMySQL {
 
                         //반납 성공 메시지 출력
                         Console.SetCursorPosition(0, 0);
-                        Console.CursorVisible = false;
+                        Console.CursorVisible = Constants.isNONVISIBLE;
                         userModeUI.PrintBorrowBookMessage("책 반납 성공!","다시 입력하기");
 
                         if (EnterBack() == Constants.RESTART)
@@ -162,7 +161,7 @@ namespace LibraryMySQL {
                 }
                 // 책 빌리기 실패
                 Console.SetCursorPosition(0, 0);
-                Console.CursorVisible = false;
+                Console.CursorVisible = Constants.isNONVISIBLE;
                 userModeUI.PrintBorrowBookMessage("책 반납 실패! 대여하지 않은 책 ID 입니다!","다시 입력하기");
 
                 if (EnterBack() == Constants.RESTART)
@@ -176,13 +175,11 @@ namespace LibraryMySQL {
         {
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
 
-                if (keyInput.Key == ConsoleKey.Enter) // 다시하기
-                {
-                                  
+                if (keyInput.Key == ConsoleKey.Enter) // 다시하기                                               
                     return Constants.RESTART;
-                }
+                
                 else if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.BACK;
 
@@ -201,7 +198,7 @@ namespace LibraryMySQL {
             libraryUI.ShowBorrowedBookList(list,"빌린");
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기           
                     return;
@@ -220,7 +217,7 @@ namespace LibraryMySQL {
             libraryUI.ShowBorrowedBookList(list,"반납");
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기           
                     return;

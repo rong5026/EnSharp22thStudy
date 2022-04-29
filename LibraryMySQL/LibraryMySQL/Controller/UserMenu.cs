@@ -15,10 +15,6 @@ namespace LibraryMySQL
         UserModeUI userModeUI;
         ValidInput validInput;
         MySQlData mySQlData;
-
-     
-        
-
         public UserMenu(ValidInput validInput, UserModeUI userModeUI,LibraryUI libraryUI,SelectionMode mode)
         {
             this.validInput = validInput;
@@ -31,13 +27,11 @@ namespace LibraryMySQL
         public void StartUserMenu()
         {
             int menuNumber;
-
             libraryUI.PrintMainUI();
             Console.SetWindowSize(125, 40);
 
             while (Constants.isPROGRAM_ON)
-            {
-               //book_id   book_name  book_author  book_publisher  book_count  book_price  book_date  
+            {              
                menuNumber = mode.SelectUserManagerMenu("User", 7); // 유저메뉴 위아래 화살표로 선택하기
                 
                 switch (menuNumber)
@@ -76,10 +70,7 @@ namespace LibraryMySQL
                     default:
                         return;
 
-
-                }
-                
-
+                }                
             }
         }
         private bool DeleteUserId() // 회원탈퇴
@@ -91,7 +82,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
                 if (keyInput.Key == ConsoleKey.Escape)
                     return Constants.isDELETE_ID_FAIL; // ESC 누르면 뒤로가기 
                 else if (keyInput.Key == ConsoleKey.Enter)
@@ -103,7 +94,7 @@ namespace LibraryMySQL
                         {
                             libraryUI.PrintMainUI();
                             userModeUI.PrintDeleteIDFail();
-                            keyInput = Console.ReadKey(true);
+                            keyInput = Console.ReadKey(Constants.KEY_INPUT);
                             if (keyInput.Key == ConsoleKey.Escape)
                                 return Constants.isDELETE_ID_FAIL; ; // ESC 누르면 뒤로가기 
                         }                      

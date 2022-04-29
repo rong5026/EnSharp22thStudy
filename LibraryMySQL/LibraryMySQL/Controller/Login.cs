@@ -19,20 +19,15 @@ namespace LibraryMySQL
         
         
         public Login( UserModeUI userModeUI, ValidInput validInput)
-        {
-                        
+        {                        
             this.validInput = validInput;          
             this.userModeUI = userModeUI;
-            mySQlData = MySQlData.Instance();
-
-           
+            mySQlData = MySQlData.Instance();         
         }
         public int LoginUser(string type)
         {
             Console.Clear();
-
             Console.SetCursorPosition(0, 0);
-
            
             userModeUI.PrintLogin(); // 위에 로그인 화면
                                                                         
@@ -41,14 +36,14 @@ namespace LibraryMySQL
             if (id == Constants.INPUT_BACK)                      
                 return Constants.BACK;
             
-            passWord = validInput.EnterLoginPassWprd(52, 35); 
+            passWord = validInput.EnterLoginPassWord(52, 35); 
             //password 입력
             if (passWord == Constants.INPUT_BACK)
                 return Constants.BACK;
 
             if (type == "User")
             {
-                if (CheckUser(id, passWord) == Constants.LOGIN_SUCCESS) // 로그인 성공
+                if (CheckUser(id, passWord) == Constants.LOGIN_SUCCESS) // 유저 로그인
                 {
                     Console.Clear();               
                     LibraryStart.loginedUser = id;   // 현재 로그인된 유저id
@@ -59,7 +54,7 @@ namespace LibraryMySQL
             }
             else
             {
-                if(CheckAdmin(id,passWord) == Constants.LOGIN_SUCCESS)
+                if(CheckAdmin(id,passWord) == Constants.LOGIN_SUCCESS) // 관리자 로그인
                 {
                     Console.Clear();
                     return Constants.ADMIN_MODE;
@@ -71,7 +66,7 @@ namespace LibraryMySQL
             return Constants.BACK;
 
         }
-        private int CheckUser(string id, string passWord)
+        private int CheckUser(string id, string passWord)//유저 로그인확인
         {
             List<UserVO> userList = new List<UserVO>();
 
@@ -84,7 +79,7 @@ namespace LibraryMySQL
             }
             return Constants.LOGIN_FAIL;
         }
-        private int CheckAdmin(string id, string passWord)
+        private int CheckAdmin(string id, string passWord) // 관리자 로그인확인
         {
             List<UserVO> adminList = new List<UserVO>();
 

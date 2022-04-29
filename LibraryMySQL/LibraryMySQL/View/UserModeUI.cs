@@ -115,7 +115,7 @@ namespace LibraryMySQL
 	
 		
 
-		public void PrintBorrowBookMessage(string message,string reEnter)
+		public void PrintBorrowBookMessage(string message,string reEnter) // 반납, 대여 main UI
 		{
 			Console.WriteLine("                                                                                           ");
 			Console.WriteLine("                                                                                             ");
@@ -160,7 +160,7 @@ namespace LibraryMySQL
 
 		public void PrintSuccessRegister() // 회원가입 성공 메시지 출력
 		{
-			Console.CursorVisible = false;
+			Console.CursorVisible = Constants.isNONVISIBLE;
 			libraryUI.PrintMainUI();
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");

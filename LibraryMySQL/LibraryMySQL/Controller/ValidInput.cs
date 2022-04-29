@@ -37,7 +37,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.INPUT_BACK;
@@ -73,7 +73,7 @@ namespace LibraryMySQL
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, regular);
-            if (check == false) //
+            if (check == Constants.NON_INPUT) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
@@ -84,7 +84,7 @@ namespace LibraryMySQL
         }
 
 
-        public string EnterLoginPassWprd(int x, int y) // 로그인 비밀번호입력
+        public string EnterLoginPassWord(int x, int y) // 로그인 비밀번호입력
         {
             Console.CursorVisible = true;
 
@@ -94,7 +94,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
                 if (input == Constants.INPUT_EMPTY)
                     DeleteInput(124 - x, 124, y); // 오류메시지 삭제
 
@@ -113,31 +113,27 @@ namespace LibraryMySQL
                         if (Regex.IsMatch(input[input.Length - 1].ToString(), RegularExpression.KOREAN))
                             Console.Write("\b \b\b \b");  // 지우기
                         else
-                            Console.Write("\b \b");  // 지우기
+                            Console.Write("\b \b");  
                         input = input.Substring(0, (input.Length - 1));
 
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
-                    {
-
                         break;
-                    }
+                    
                 }
             }
 
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, RegularExpression.PASSWORD); // 숫자 영어 8~15글자
-            if (check == false) //
+            if (check == Constants.NON_INPUT) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, ErrorMessage.PASSWORD);
-                return EnterLoginPassWprd(x, y);
+                return EnterLoginPassWord(x, y);
             }
 
-
-            return input;  // 문자형 id,password 리턴
-
+            return input;  
         }
 
         public string EnterRegisterID(int x, int y) // 회원가입 ID 입력
@@ -150,7 +146,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
                 if (input == Constants.INPUT_EMPTY)
                     DeleteInput(124 - x, 124, y); // 오류메시지 삭제
 
@@ -161,7 +157,6 @@ namespace LibraryMySQL
                 {
                     input += keyInput.KeyChar;
                     Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
-
                 }
                 else
                 {
@@ -174,32 +169,28 @@ namespace LibraryMySQL
                         input = input.Substring(0, (input.Length - 1));
 
                     }
-                    else if (keyInput.Key == ConsoleKey.Enter)
-                    {
-
-                        break;
-                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)                   
+                        break;                    
                 }
             }
 
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, RegularExpression.ID); // 숫자 영어 8~15글자
-            if (check == false) //
+            if (check == Constants.NON_INPUT) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
                 return EnterRegisterID(x, y);
             }
             if (CheckUserId(input) == Constants.LOGIN_FAIL)
-            {
-                error = ErrorMessage.ID_EXIST;
+            {               
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
-                userModeUI.PrintErrorMessage(x, y, error);
+                userModeUI.PrintErrorMessage(x, y, ErrorMessage.ID_EXIST);
                 return EnterRegisterID(x, y);
             }
 
-            return input;  // 문자형 id,password 리턴
+            return input; 
 
         }
         private int CheckUserId(string id) // 회원가입시 이미 가입한 회원과 ID가 겹치는지 확인
@@ -225,7 +216,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
                 if (input == Constants.INPUT_EMPTY)
                     DeleteInput(124 - x, 124, y); // 오류메시지 삭제
 
@@ -248,17 +239,16 @@ namespace LibraryMySQL
                         input = input.Substring(0, (input.Length - 1));
 
                     }
-                    else if (keyInput.Key == ConsoleKey.Enter)
-                    {
+                    else if (keyInput.Key == ConsoleKey.Enter)                   
                         break;
-                    }
+                    
                 }
             }
 
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, RegularExpression.PASSWORD); // 숫자 영어 8~15글자
-            if (check == false) //
+            if (check == Constants.NON_INPUT) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
@@ -272,7 +262,7 @@ namespace LibraryMySQL
                 return EnterRePassWord(password, x, y);
             }
 
-            return input;  // 문자형 id,password 리턴
+            return input;  
 
         }
 
@@ -290,7 +280,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
 
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
@@ -317,10 +307,7 @@ namespace LibraryMySQL
 
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
-                    {
-
                         break;
-                    }
                 }
             }
 
@@ -328,7 +315,7 @@ namespace LibraryMySQL
             if (input != null)
                 check = Regex.IsMatch(input, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
           
-            if (check == false) //
+            if (check == Constants.NON_INPUT) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
@@ -368,7 +355,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
 
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
@@ -403,7 +390,7 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(input, RegularExpression.BOOK_SEARCH);  // 영어,한글 1글자이상
             if (input == Constants.INPUT_EMPTY)
                 return Constants.INPUT_EMPTY;
-            if (check == false) //
+            if (check == Constants.NON_INPUT) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
@@ -425,7 +412,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.INPUT_BACK;
@@ -451,27 +438,23 @@ namespace LibraryMySQL
 
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
-                    {
-
                         break;
-                    }
                 }
             }
 
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, regular);
-            if (check == false) //
+            if (check == Constants.NON_INPUT) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
                 return EnterDeleteBookID(x, y, errorMessage, regular);
             }
             if (CheckBookId(input) == Constants.BOOK_NOT_EXIST)
-            {
-                error = ErrorMessage.BOOK_NOT_EXIST;
+            {            
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
-                userModeUI.PrintErrorMessage(x, y, error);
+                userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_NOT_EXIST);
                 return EnterDeleteBookID(x, y, errorMessage, regular);
             }
 
@@ -503,7 +486,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.INPUT_BACK;
@@ -537,7 +520,7 @@ namespace LibraryMySQL
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, regular);
-            if (check == false || CheckUserID(input) == Constants.USER_NOT_EXIST ) //유저가 존재하지않을때
+            if (check == Constants.NON_INPUT || CheckUserID(input) == Constants.USER_NOT_EXIST ) //유저가 존재하지않을때
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
@@ -569,11 +552,9 @@ namespace LibraryMySQL
         private void DeleteInput(int count, int x, int y) // 입력값 삭제
         {
             Console.SetCursorPosition(x, y);
-            for (int index = 0; index < count; index++)
-            {
-
+            for (int index = 0; index < count; index++)         
                 Console.Write("\b \b");
-            }
+            
         }
 
 

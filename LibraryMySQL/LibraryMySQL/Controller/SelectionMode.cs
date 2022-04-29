@@ -26,7 +26,7 @@ namespace LibraryMySQL
             libraryUI.PrintSelectUI(Constants.USER_MODE, type);
             while (Constants.isPROGRAM_ON)
             {
-               keyInput = Console.ReadKey(true);
+               keyInput = Console.ReadKey(Constants.KEY_INPUT);
                 switch (keyInput.Key)
                 {
                     case ConsoleKey.UpArrow:
@@ -48,7 +48,6 @@ namespace LibraryMySQL
         public int SelectUserManagerMenu(string menuType, int menuCount) // 유저메뉴, 관리자 메뉴 상하 이동
         {
             menuNumber = 0;
-
             switch (menuType)
             {
                 case "User":
@@ -64,17 +63,13 @@ namespace LibraryMySQL
                     libraryUI.PrintAdminBookEditUI(Constants.BOOK_NAME);
                     break;
 
-
-
             }
          
 
-
-
-            Console.CursorVisible = false;
+            Console.CursorVisible = Constants.isNONVISIBLE;
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
                 switch (keyInput.Key)
                 {
                     case ConsoleKey.UpArrow:
@@ -112,7 +107,6 @@ namespace LibraryMySQL
                 case "BookEdit":
                     libraryUI.PrintAdminBookEditUI((menuNumber % menuCount) + 1);
                     break;
-
                 default:
                     return;
             }

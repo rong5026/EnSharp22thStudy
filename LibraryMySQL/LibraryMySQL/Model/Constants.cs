@@ -90,7 +90,11 @@ namespace LibraryMySQL
 
         public const int USER_EXIST = 1;
         public const int USER_NOT_EXIST = 0;
-       
+
+
+        public const bool isNONVISIBLE = false;
+        public const bool KEY_INPUT = true;
+        public const bool NON_INPUT = false;
 
     }
 }

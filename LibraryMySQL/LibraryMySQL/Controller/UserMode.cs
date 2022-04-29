@@ -11,7 +11,7 @@ namespace LibraryMySQL
 
        
        
-        int menuNumber = 1;
+        private int menuNumber;
         LibraryUI libraryUI;
         SelectionMode mode;
         Register register;
@@ -30,21 +30,17 @@ namespace LibraryMySQL
             this.login = login;
             userMenu = new UserMenu(validInput, userModeUI, libraryUI, mode);
             register = new Register( userModeUI, validInput);
-          
-
-
+            menuNumber = 1;
         }
         public void StartUserMode()
         {
 
             libraryUI.PrintMainUI();
-            Console.SetWindowSize(125, 50);  //메인화면
-          
-
+            Console.SetWindowSize(125, 50);  //메인화면        
 
             while (Constants.isPROGRAM_ON)
             {
-                Console.CursorVisible = false;
+                Console.CursorVisible = Constants.isNONVISIBLE;
                 menuNumber = mode.SelectMode(Constants.LOGIN_REGISTER); // 로그인 . 회원가입 선택
 
                 switch (menuNumber)

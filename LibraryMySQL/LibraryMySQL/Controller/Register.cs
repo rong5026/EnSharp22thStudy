@@ -77,21 +77,14 @@ namespace LibraryMySQL
             Console.Clear();
             userModeUI.PrintSuccessRegister(); // 회원가입성공 UI
 
-
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true);
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
                 if (keyInput.Key == ConsoleKey.Enter)
                     return Constants.isREGISTER_SUCCESS; // 엔터누르면 이제 뒤로돌아가짐
-            }
-
-          
-
+            }        
         }
-        
-
-       
-
+           
     }
         
 }

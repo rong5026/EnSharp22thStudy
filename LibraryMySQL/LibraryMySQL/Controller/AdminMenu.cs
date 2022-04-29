@@ -24,7 +24,7 @@ namespace LibraryMySQL
             this.userModeUI = userModeUI;
             libraryUI = new LibraryUI();
             adminModeUI = new AdminModeUI();
-            bookSearching = new BookSearching(validInput, libraryUI);        
+            bookSearching = new BookSearching(validInput, libraryUI, userModeUI);        
             mode = new SelectionMode(libraryUI);
             mySQlData = MySQlData.Instance();
             login = new Login(userModeUI, validInput);
@@ -41,9 +41,7 @@ namespace LibraryMySQL
                     StartAdminMenu();
                 else if (input == Constants.BACK)               
                     return;
-                   
-                
-
+                            
             }
         }
         public void StartAdminMenu()
@@ -147,11 +145,11 @@ namespace LibraryMySQL
                 Console.Clear();
                 adminModeUI.PrintAdminMenuMessage("도서추가","다시추가");
                 adminModeUI.PrintAddBookSuccess();
-                Console.CursorVisible = false;
+                Console.CursorVisible = Constants.isNONVISIBLE;
 
                 while (Constants.isPROGRAM_ON)
                 {
-                    keyInput = Console.ReadKey(true); // ESC 뒤로가기
+                    keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
                     if (keyInput.Key == ConsoleKey.Escape)
                         return;
                     else if (keyInput.Key == ConsoleKey.Enter)
@@ -199,11 +197,11 @@ namespace LibraryMySQL
                 mySQlData.DeleteBook(Convert.ToInt32(bookId)); // 데이터베이스에서 책 삭제
                 Console.SetCursorPosition(0, 0);
                 adminModeUI.PrintAdminMenuMessage("책 삭제 완료!","다시삭제");
-                Console.CursorVisible = false;
+                Console.CursorVisible = Constants.isNONVISIBLE;
 
                 while (Constants.isPROGRAM_ON)
                 {
-                    keyInput = Console.ReadKey(true); // ESC 뒤로가기
+                    keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
                     if (keyInput.Key == ConsoleKey.Escape)
                         return;
                     else if (keyInput.Key == ConsoleKey.Enter)
@@ -353,7 +351,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {
-                keyInput = Console.ReadKey(true); // ESC 뒤로가기
+                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
                 if (keyInput.Key == ConsoleKey.Escape)
                     return;
                
@@ -388,7 +386,7 @@ namespace LibraryMySQL
                 while (Constants.isPROGRAM_ON)
                 {
                   
-                    keyInput = Console.ReadKey(true);
+                    keyInput = Console.ReadKey(Constants.KEY_INPUT);
                     if (keyInput.Key == ConsoleKey.Escape)
                         return;
                     else if (keyInput.Key == ConsoleKey.Enter)
