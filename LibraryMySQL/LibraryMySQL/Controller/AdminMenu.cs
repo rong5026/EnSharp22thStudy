@@ -16,7 +16,8 @@ namespace LibraryMySQL
         ValidInput validInput;
         MySQlData mySQlData;
         Login login;
-     
+        ConsoleKeyInfo keyInput;
+
         public AdminMenu(ValidInput validInput, UserModeUI userModeUI)
         {
             this.validInput = validInput;
@@ -66,7 +67,8 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.BOOK_DELETE: //도서삭제         
-
+                        DeleteBook();
+                        Console.Clear();
                         break;
                     case Constants.BOOK_EDIT: // 도서수정                
 
@@ -91,7 +93,7 @@ namespace LibraryMySQL
 
         }
 
-        private void AddBook()
+        private void AddBook() // 도서 추가
         {
             
             string name;
@@ -100,20 +102,95 @@ namespace LibraryMySQL
             string count;
             string price;
             string date;
+            BookVO bookVO;
+
             Console.Clear();
             while (Constants.isPROGRAM_ON)
             {
-                adminModeUI.PrintAdminMenuMessage("도서찾기");
+                adminModeUI.PrintAdminMenuMessage("도서추가");
                 adminModeUI.PrtinInputAddBook();
-                Console.ReadLine();
+              
 
-                name = validInput.EnterBookName(71, 22); // 책 이름 입력           
-                author = validInput.EnterInput(71, 22,ErrorMessage.BOOK_AUTHOR,RegularExpression.BOOK_AUTHOR); // 저자 입력
-                publisher = validInput.EnterInput(71, 22,ErrorMessage.BOOK_PUBISHER,RegularExpression.BOOK_PUBISHER); // 출판사
-                count = validInput.EnterInput(71, 22,ErrorMessage.BOOK_COUNT,RegularExpression.BOOK_PUBISHER); // 책 수량
-                price = validInput.EnterInput(71, 22,ErrorMessage.BOOK_PRICE,RegularExpression.BOOK_PRICE); // 책 가격
-                date = validInput.EnterInput(71, 22,ErrorMessage.BOOK_DATE,RegularExpression.BOOK_DATE); // 책 출판날짜
+                name = validInput.EnterBookName(44, 15); // 책 이름 입력
+                if (name == Constants.INPUT_BACK)
+                    break;
+                author = validInput.EnterInput(44, 16,ErrorMessage.BOOK_AUTHOR,RegularExpression.BOOK_AUTHOR); // 저자 입력
+                if (author == Constants.INPUT_BACK)
+                    break;
+                publisher = validInput.EnterInput(44, 17,ErrorMessage.BOOK_PUBISHER,RegularExpression.BOOK_PUBISHER); // 출판사
+                if (publisher == Constants.INPUT_BACK)
+                    break;
+                count = validInput.EnterInput(44, 18,ErrorMessage.BOOK_COUNT,RegularExpression.BOOK_COUNT); // 책 수량
+                if (count == Constants.INPUT_BACK)
+                    break;
+                price = validInput.EnterInput(44, 19,ErrorMessage.BOOK_PRICE,RegularExpression.BOOK_PRICE); // 책 가격
+                if (price == Constants.INPUT_BACK)
+                    break;
+                date = validInput.EnterInput(44, 20,ErrorMessage.BOOK_DATE,RegularExpression.BOOK_DATE); // 책 출판날짜
+                if (date == Constants.INPUT_BACK)
+                    break;
+                bookVO =new BookVO();
 
+                bookVO.Name = name;
+                bookVO.Author = author;
+                bookVO.Publisher = publisher;
+                bookVO.BookCount = Convert.ToInt16( count);
+                bookVO.Price = Convert.ToInt32( price );
+                bookVO.Date = date;
+
+                mySQlData.InsertBook(bookVO); // 데이터베이스에 책 추가
+
+                Console.Clear();
+                adminModeUI.PrintAdminMenuMessage("도서추가");
+                adminModeUI.PrintAddBookSuccess();
+
+                while (Constants.isPROGRAM_ON)
+                {
+                    keyInput = Console.ReadKey(true); // ESC 뒤로가기
+                    if (keyInput.Key == ConsoleKey.Escape)
+                        return;
+                }
+
+            }
+        }
+
+        private void DeleteBook()
+        {
+            string name;
+            string author;
+            string publisher;
+
+            while (Constants.isPROGRAM_ON)
+            {
+                Console.Clear();
+                libraryUI.PrintSearchBook("Start");
+                libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
+                Console.SetCursorPosition(18, 1); // 커서이동
+
+                name = validInput.EnterBookSearch(18, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
+                if (name == Constants.BACKMENU)
+                    return;
+                author = validInput.EnterBookSearch(19, 2, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자 이상
+                if (author == Constants.BACKMENU)
+                    return;
+                publisher = validInput.EnterBookSearch(18, 3, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // // 영어,한글  1글자 이상
+                if (publisher == Constants.BACKMENU)
+                    return;
+
+
+                Console.Clear();
+                adminModeUI.PrintAdminMenuMessage("삭제할 책 ID : ");
+                libraryUI.ShowBookList(name, author, publisher); // 검색리스트 출력
+
+              
+                while (Constants.isPROGRAM_ON)
+                {
+                    keyInput = Console.ReadKey(true);
+                    if (keyInput.Key == ConsoleKey.Escape)
+                        return; // ESC 누르면 뒤로가기 
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                        break;
+                }
 
             }
         }

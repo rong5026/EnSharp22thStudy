@@ -13,12 +13,22 @@ namespace Library
         static void Main(string[] args)
         {
 
-            LibraryStart start = new LibraryStart();
-            start.StartProgram();
+            //LibraryStart start = new LibraryStart();
+            //start.StartProgram();
 
-      
+            while (true)
+            {
+                string input = Console.ReadLine();
 
-           
+                if (Regex.IsMatch(input, @"^[1-9][0-9]{0,6}?$"))
+                    Console.WriteLine("맞음");
+                else
+                    Console.WriteLine("아님");
+            }
+
+
+
+
         }
     }
 }

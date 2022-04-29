@@ -29,8 +29,7 @@ namespace LibraryMySQL
 
         public string EnterInput(int x, int y, string errorMessage, string regular)
         {
-            Console.CursorVisible = true;
-            Console.CursorVisible = true;
+            Console.CursorVisible = true;        
             error = errorMessage;   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
 
@@ -39,11 +38,13 @@ namespace LibraryMySQL
             while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(true);
-                if (input == Constants.INPUT_EMPTY)
-                    DeleteInput(124 - x, 124, y); // 오류메시지 삭제
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.INPUT_BACK;
+
+                if (input == Constants.INPUT_EMPTY)
+                    DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+
 
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
@@ -279,7 +280,7 @@ namespace LibraryMySQL
 
         // 책
 
-        public string EnterBookName(int x, int y) // 책이름 입력
+        public string EnterBookName(int x, int y) // 책추가 기능 -이름 입력
         {
             Console.CursorVisible = true;
             error = ErrorMessage.BOOK_NAME;  //예외조건 성립안할때 출력
@@ -293,7 +294,10 @@ namespace LibraryMySQL
 
 
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
-                    return Constants.BACKMENU;
+                    return Constants.INPUT_BACK;
+
+                if (input == Constants.INPUT_EMPTY)
+                    DeleteInput(124 - x, 124, y); // 오류메시지 삭제
 
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
@@ -323,8 +327,7 @@ namespace LibraryMySQL
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
-            if (input == Constants.INPUT_EMPTY)
-                return Constants.INPUT_EMPTY;
+          
             if (check == false) //
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
@@ -336,7 +339,7 @@ namespace LibraryMySQL
                 error = ErrorMessage.BOOK_EXIST;
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
-                return EnterRegisterID(x, y);
+                return EnterBookName(x, y);
             }
 
             return input;

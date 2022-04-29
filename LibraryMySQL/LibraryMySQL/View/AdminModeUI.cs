@@ -12,11 +12,11 @@ namespace LibraryMySQL
         public void PrintAdminMenuMessage(string message) // Admin Main UI
         {
             Console.WriteLine("                                     ■■■■■■■■■■■■■■■■■■■■■■■■■■");
-            Console.WriteLine("                                     ■                                                ■");
-            Console.WriteLine("                                     ■                                                ■");
-            Console.WriteLine("                                     ■                     {0}                   ■", message);
-            Console.WriteLine("                                     ■                                                ■");
-            Console.WriteLine("                                     ■                                                ■");
+            Console.WriteLine("                                                                                     ");
+            Console.WriteLine("                                                                                     ");
+            Console.WriteLine("                                                          {0}                   ", message);
+            Console.WriteLine("                                                                                     ");
+            Console.WriteLine("                                                                                     ");
             Console.WriteLine("                                     ■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
             Console.WriteLine("                                            ENTER : 확인          ESC : 뒤로가기  \n\n\n");
 
@@ -45,6 +45,17 @@ namespace LibraryMySQL
             // 책 제목 중복 안됨 , 작가 중복 가능 , 출판사 중복 가능, 수량 중복가능, 가격 중복가능, 출시일 중복가능
             
         }
-
+        public void PrintAddBookSuccess() // 책 추가 성공UI
+        {
+            Console.WriteLine("                                ------------------------------------------------------------\n");
+            Console.WriteLine("                                                                                                   ");
+            Console.WriteLine("                                                                                                 ");
+            Console.WriteLine("                                                     **  책 추가 성공 !  **                               ");
+            Console.WriteLine("                                                                                                ");
+            Console.WriteLine("                                                                                               ");
+            Console.WriteLine("                                                                                                   \n");
+            Console.WriteLine("                                ------------------------------------------------------------\n");
+        }
+       
     }
 }

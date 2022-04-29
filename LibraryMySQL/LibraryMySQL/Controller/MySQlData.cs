@@ -375,6 +375,18 @@ namespace LibraryMySQL
             connection.Close();
         }
 
+        public void InsertBook(BookVO bookVO)
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format("INSERT INTO book_data ( book_name, book_author, book_publisher, book_count, book_price, book_date) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')",bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.BookCount,bookVO.Price,bookVO.Date);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
 
 
 

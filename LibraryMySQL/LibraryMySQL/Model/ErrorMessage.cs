@@ -24,12 +24,12 @@ namespace LibraryMySQL
 
         //책이름 에러
         public const string BOOK_ID = "0~999범위 안의 수를 입력해주세요!";
-        public const string BOOK_EXIST = "이미 등록되어 있는 책 이름입니다!.";
+        public const string BOOK_EXIST = "이미 등록되어 있는 책 이름입니다!";
         public const string BOOK_NAME = "영어,한글,숫자 중 1개이상 입력해주세요!";    
         public const string BOOK_AUTHOR = "영어,한글 1글자 이상입력해주세요!";
         public const string BOOK_PUBISHER = "영어,한글,숫자 1글자 이상 입력해주세요!";
         public const string BOOK_COUNT = "1~999 범위 내에서 입력해주세요!";
         public const string BOOK_PRICE = "1~9999999 범위 내에서 입력해주세요!";
-        public const string BOOK_DATE = "19xx or 20xx-xx-xx 형식으로 입력해주세요";
+        public const string BOOK_DATE = "19xx or 20xx-xx-xx 형식으로 입력해주세요!";
     }
 }

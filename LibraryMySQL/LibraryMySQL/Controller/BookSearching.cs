@@ -34,13 +34,13 @@ namespace LibraryMySQL {
                 libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
                 Console.SetCursorPosition(18, 1); // 커서이동
 
-                name = validInput.EnterInput(18, 1,ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
+                name = validInput.EnterBookSearch(18, 1,ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
                 if (name == Constants.BACKMENU)
                     return;
-                author = validInput.EnterInput(19, 2, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자 이상
+                author = validInput.EnterBookSearch(19, 2, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자 이상
                 if (author == Constants.BACKMENU)
                     return;
-                publisher = validInput.EnterInput(18, 3, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // // 영어,한글  1글자 이상
+                publisher = validInput.EnterBookSearch(18, 3, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // // 영어,한글  1글자 이상
                 if (publisher == Constants.BACKMENU)
                     return;
 
@@ -82,7 +82,7 @@ namespace LibraryMySQL {
             {
                 bookId = validInput.EnterInput(35, 2,ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID); // 책Id 1~999수
 
-                if (bookId == Constants.INPUT_EMPTY)//ESC 누르면 뒤로가기
+                if (bookId == Constants.INPUT_BACK)//ESC 누르면 뒤로가기
                     return Constants.BACK;
 
                 for(int index = 0; index < bookList.Count; index++)
@@ -133,7 +133,7 @@ namespace LibraryMySQL {
             {
                 bookId = validInput.EnterInput(35, 2, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID); // 책Id 1~999수
 
-                if (bookId == Constants.INPUT_EMPTY)//ESC 누르면 뒤로가기
+                if (bookId == Constants.INPUT_BACK)//ESC 누르면 뒤로가기
                     return Constants.BACK;
 
                 for (int index = 0; index < bookList.Count; index++)
