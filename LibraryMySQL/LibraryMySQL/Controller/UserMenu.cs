@@ -150,7 +150,6 @@ namespace LibraryMySQL
                 {
                     case Constants.USER_ID: // 유저 ID                 
                         id = validInput.EnterRegisterID(71, 22);
-                        if (id == Constants.INPUT_BACK)
                             id = userVO.Id;
                         break;
                     case Constants.USER_PW: // 유저 PW

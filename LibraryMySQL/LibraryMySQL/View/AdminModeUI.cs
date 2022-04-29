@@ -42,7 +42,7 @@ namespace LibraryMySQL
             Console.WriteLine("                                            출시일  - 19xx or 20xx-xx-xx \n");
             Console.ResetColor();
             Console.WriteLine("                                ------------------------------------------------------------\n");
-         
+            // 책 제목 중복 안됨 , 작가 중복 가능 , 출판사 중복 가능, 수량 중복가능, 가격 중복가능, 출시일 중복가능
             
         }
 

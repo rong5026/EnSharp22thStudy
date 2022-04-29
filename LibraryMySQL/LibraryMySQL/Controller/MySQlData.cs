@@ -60,6 +60,7 @@ namespace LibraryMySQL
        
         }
 
+
         public void InsertUserData(string id, string password, string name,string age,string phoneNumber, string address ) // 유저정보 삽입
         {
             MySqlConnection connection = ConnectMySQL();
@@ -204,7 +205,7 @@ namespace LibraryMySQL
             connection.Close();
 
         }
-
+        
         public int ConfrimUserRentBook(int bookId)  // 유저가 이미 빌린책이면 1, 안빌린책이면 0 리턴
         {
             MySqlConnection connection = ConnectMySQL();

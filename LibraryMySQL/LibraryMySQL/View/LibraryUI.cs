@@ -96,6 +96,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                   └------------------------------------------------┘");
 
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
+			Console.WriteLine("                                                                                    ");
 		}
 		
 		public void PrintAdminMenuList(int selectNum, int menuNumber, string menuName)

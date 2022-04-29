@@ -38,8 +38,10 @@ namespace LibraryMySQL
 
                 if (input == Constants.ADMIN_MODE)
                     StartAdminMenu();
-                else if (input == Constants.BACK)
+                else if (input == Constants.BACK)               
                     return;
+                   
+                
 
             }
         }
@@ -76,6 +78,7 @@ namespace LibraryMySQL
 
                         break;
                     case Constants.EXIT:
+                        Console.Clear();
                         return;
                     default:
                         return;
@@ -90,7 +93,7 @@ namespace LibraryMySQL
 
         private void AddBook()
         {
-            string id;
+            
             string name;
             string author;
             string publisher;
@@ -104,8 +107,14 @@ namespace LibraryMySQL
                 adminModeUI.PrtinInputAddBook();
                 Console.ReadLine();
 
-               
-                
+                name = validInput.EnterBookName(71, 22); // 책 이름 입력           
+                author = validInput.EnterInput(71, 22,ErrorMessage.BOOK_AUTHOR,RegularExpression.BOOK_AUTHOR); // 저자 입력
+                publisher = validInput.EnterInput(71, 22,ErrorMessage.BOOK_PUBISHER,RegularExpression.BOOK_PUBISHER); // 출판사
+                count = validInput.EnterInput(71, 22,ErrorMessage.BOOK_COUNT,RegularExpression.BOOK_PUBISHER); // 책 수량
+                price = validInput.EnterInput(71, 22,ErrorMessage.BOOK_PRICE,RegularExpression.BOOK_PRICE); // 책 가격
+                date = validInput.EnterInput(71, 22,ErrorMessage.BOOK_DATE,RegularExpression.BOOK_DATE); // 책 출판날짜
+
+
             }
         }
     }
