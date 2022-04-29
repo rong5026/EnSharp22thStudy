@@ -30,7 +30,7 @@ namespace LibraryMySQL
         {
          
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM user_data");
+            string insertQuery = string.Format(QueryData.SELECT_USERLIST);
 
             connection.Open();
 
@@ -58,7 +58,7 @@ namespace LibraryMySQL
         public void SendAdminList(List<UserVO> list)// 관리자 정보 보내줌
         {
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM admin_data");
+            string insertQuery = string.Format(QueryData.SELECT_ADMINLIST);
 
             connection.Open();
 
@@ -84,7 +84,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("INSERT INTO user_data (user_id,user_password,user_name,user_age, user_phonenumber,user_address) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');", id, password, name, age, phoneNumber, address);
+            string insertQuery = string.Format(QueryData.INSERT_USER, id, password, name, age, phoneNumber, address);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
@@ -96,7 +96,7 @@ namespace LibraryMySQL
         {
 
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM user_data");
+            string insertQuery = string.Format(QueryData.SELECT_USERLIST);
 
             connection.Open();
 
@@ -127,7 +127,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("UPDATE user_data SET user_id ='{0}' ,user_password = '{1}', user_name='{2}',user_age='{3}', user_phonenumber='{4}', user_address='{5}' WHERE user_id = '{6}'",id,password,name,age, phoneNumber, address,  LibraryStart.loginedUser);
+            string insertQuery = string.Format(QueryData.UPDATE_USERDATA, id,password,name,age, phoneNumber, address,  LibraryStart.loginedUser);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
@@ -142,7 +142,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("DELETE FROM user_data WHERE user_id = '{0}';", userId);
+            string insertQuery = string.Format(QueryData.DELETE_USER, userId);
 
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
@@ -154,7 +154,7 @@ namespace LibraryMySQL
         public bool LoginedUserRentBookCount(string userId)
         {
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM user_rented_book");
+            string insertQuery = string.Format(QueryData.RENT_BOOK);
             connection.Open();
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             MySqlDataReader table = command.ExecuteReader();
@@ -173,33 +173,17 @@ namespace LibraryMySQL
 
             }
 
-
             table.Close();
             connection.Close();
             return Constants.isRENTBOOK_NOT_EXIST;
         }
-        public int CheckTableDataCount(string tableType) // 데이터 수 리턴
-        {
-            MySqlConnection connection = ConnectMySQL();
-            connection.Open();
-            string insertQuery = string.Format("SELECT COUNT(*) from {0};", tableType);
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-
-
-            int count = Convert.ToInt32(command.ExecuteScalar());
-
-
-            connection.Close();
-            return count;
-
-
-        }
+      
         public List<BookVO> CheckBookList() // 책리스트를 리턴
         {
            
             List<BookVO> list = new List<BookVO>();
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM book_data");
+            string insertQuery = string.Format(QueryData.SELECT_BOOKLIST);
             connection.Open();
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             MySqlDataReader table = command.ExecuteReader();
@@ -216,9 +200,7 @@ namespace LibraryMySQL
                 book.BookCount = (int)table["book_count"];
                 book.Price = (int)table["book_price"];
                 book.Date = (string)table["book_date"];
-                list.Add(book);
-
-               
+                list.Add(book);               
             }
             table.Close();
             connection.Close();
@@ -230,7 +212,7 @@ namespace LibraryMySQL
         public int ConfrimUserRentBook(int bookId)  // 유저가 이미 빌린책이면 1, 안빌린책이면 0 리턴
         {
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM user_rented_book");
+            string insertQuery = string.Format(QueryData.RENT_BOOK);
             connection.Open();
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             MySqlDataReader table = command.ExecuteReader();
@@ -259,7 +241,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("UPDATE book_data SET book_count = {0} WHERE book_id = {1}",bookCount,bookId);
+            string insertQuery = string.Format(QueryData.UPDATE_BOOK_COUNT, bookCount,bookId);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
@@ -271,20 +253,16 @@ namespace LibraryMySQL
         public int CheckBookCount(int bookId) // 책의 수량을 리턴
         {
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM book_data");
+            string insertQuery = string.Format(QueryData.SELECT_BOOKLIST);
             connection.Open();
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             MySqlDataReader table = command.ExecuteReader();
 
-
             while (table.Read())
             {
-                if (bookId == (int)table["book_id"])
-                {
-               
+                if (bookId == (int)table["book_id"])                        
                     return (int)table["book_count"];
-                }
-
+               
             }
             table.Close();
             connection.Close();
@@ -296,7 +274,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("INSERT INTO user_rented_book (user_id, book_id, book_name, book_author, book_publisher,book_count,book_price, book_date, book_rent_time) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}')", LibraryStart.loginedUser,bookVO.Id,bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.BookCount,bookVO.Price,bookVO.Date, rentTime);
+            string insertQuery = string.Format(QueryData.INSERT_RENT_BOOK, LibraryStart.loginedUser,bookVO.Id,bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.BookCount,bookVO.Price,bookVO.Date, rentTime);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
@@ -307,7 +285,7 @@ namespace LibraryMySQL
         public void CheckRentBook(List<BookVO> list,string userId) // 해당아이디의 빌린책 리스트 리턴
         {
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM user_rented_book");
+            string insertQuery = string.Format(QueryData.RENT_BOOK);
             connection.Open();
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             MySqlDataReader table = command.ExecuteReader();
@@ -339,11 +317,10 @@ namespace LibraryMySQL
         public void CheckReturnedBook(List<BookVO> list) // 해당아이디의 반납책 리스트 리턴
         {
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM user_returned_book");
+            string insertQuery = string.Format(QueryData.RETURN_BOOK);
             connection.Open();
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             MySqlDataReader table = command.ExecuteReader();
-
 
             while (table.Read())
             {
@@ -373,7 +350,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("DELETE FROM user_rented_book WHERE user_id = '{0}' AND book_id = '{1}';", LibraryStart.loginedUser, bookId);
+            string insertQuery = string.Format(QueryData.DELETE_RENT_BOOK, LibraryStart.loginedUser, bookId);
          
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
@@ -388,7 +365,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("INSERT INTO user_returned_book (user_id, book_id, book_name, book_author, book_publisher,book_count,book_price, book_date, book_return_time) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}')", LibraryStart.loginedUser, bookVO.Id, bookVO.Name, bookVO.Author, bookVO.Publisher, bookVO.BookCount, bookVO.Price, bookVO.Date, returnTime);
+            string insertQuery = string.Format(QueryData.INSERT_RETURN_BOOK, LibraryStart.loginedUser, bookVO.Id, bookVO.Name, bookVO.Author, bookVO.Publisher, bookVO.BookCount, bookVO.Price, bookVO.Date, returnTime);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
@@ -401,7 +378,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("INSERT INTO book_data ( book_name, book_author, book_publisher, book_count, book_price, book_date) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')",bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.BookCount,bookVO.Price,bookVO.Date);
+            string insertQuery = string.Format(QueryData.INSERT_BOOK, bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.BookCount,bookVO.Price,bookVO.Date);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
@@ -413,7 +390,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("DELETE FROM book_data WHERE book_id = '{0}';", bookId);
+            string insertQuery = string.Format(QueryData.DELETE_BOOK, bookId);
 
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
@@ -426,7 +403,7 @@ namespace LibraryMySQL
         {
 
             MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format("SELECT * FROM book_data");
+            string insertQuery = string.Format(QueryData.SELECT_BOOKLIST);
 
             connection.Open();
 
@@ -458,7 +435,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("UPDATE book_data SET book_name ='{0}' , book_author = '{1}' , book_publisher = '{2}',book_count = '{3}',book_price='{4}', book_date='{5}' WHERE book_id ='{6}'", name, author, publisher, count, price, date,bookId);
+            string insertQuery = string.Format(QueryData.UPDATE_BOOK, name, author, publisher, count, price, date,bookId);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
