@@ -9,7 +9,7 @@ namespace LibraryMySQL
     internal class AdminModeUI
     {
 
-        public void PrintAdminMenuMessage(string message)
+        public void PrintAdminMenuMessage(string message) // Admin Main UI
         {
             Console.WriteLine("                                     ■■■■■■■■■■■■■■■■■■■■■■■■■■");
             Console.WriteLine("                                     ■                                                ■");
@@ -17,9 +17,33 @@ namespace LibraryMySQL
             Console.WriteLine("                                     ■                     {0}                   ■", message);
             Console.WriteLine("                                     ■                                                ■");
             Console.WriteLine("                                     ■                                                ■");
-            Console.WriteLine("                                     ■■■■■■■■■■■■■■■■■■■■■■■■■■");
-            Console.WriteLine("                                            ENTER : 확인          ESC : 뒤로가기  ");
+            Console.WriteLine("                                     ■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
+            Console.WriteLine("                                            ENTER : 확인          ESC : 뒤로가기  \n\n\n");
 
+        }
+        public void PrtinInputAddBook() // 책 입력 UI
+        {
+            Console.WriteLine("                                ------------------------------------------------------------\n");        
+            Console.WriteLine("                                책 제목   : ");
+            Console.WriteLine("                                작가      : ");
+            Console.WriteLine("                                출판사    : ");
+            Console.WriteLine("                                수량      : ");
+            Console.WriteLine("                                가격      : ");
+            Console.WriteLine("                                출시일    : \n");
+            Console.WriteLine("                                ------------------------------------------------------------\n");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            Console.WriteLine("                                            책 제목 - 영어, 한글, 숫자 중 1개 이상 ");
+            Console.WriteLine("                                            작가    - 영어, 한글 1글자 이상");
+            Console.WriteLine("                                            출판사  - 영어, 한글, 숫자 중 1개 이상");
+            Console.WriteLine("                                            수량    - 1~999 사이의 자연수");
+            Console.WriteLine("                                            가격    - 1~9999999 사이의 자연수");
+            Console.WriteLine("                                            출시일  - 19xx or 20xx-xx-xx \n");
+            Console.ResetColor();
+            Console.WriteLine("                                ------------------------------------------------------------\n");
+         
+            
         }
 
     }

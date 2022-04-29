@@ -90,11 +90,18 @@ namespace LibraryMySQL
 
         private void AddBook()
         {
+            string id;
+            string name;
+            string author;
+            string publisher;
+            string count;
+            string price;
+            string date;
             Console.Clear();
             while (Constants.isPROGRAM_ON)
             {
                 adminModeUI.PrintAdminMenuMessage("도서찾기");
-
+                adminModeUI.PrtinInputAddBook();
                 Console.ReadLine();
 
                
