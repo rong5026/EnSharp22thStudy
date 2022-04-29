@@ -52,7 +52,7 @@ namespace LibraryMySQL
             while (Constants.isPROGRAM_ON)
             {
 
-                menuNumber = mode.SelectUserManagerMenu("Admin", 6); // 유저메뉴 위아래 화살표로 선택하기
+                menuNumber = mode.SelectUserManagerMenu("Admin", 6); //메뉴선택
 
                 switch (menuNumber)
                 {

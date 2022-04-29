@@ -20,9 +20,9 @@ namespace LibraryMySQL
 
         public MySqlConnection ConnectMySQL()
         {
-            
-            MySqlConnection connection =
-        new MySqlConnection("Server="+ ConnectionData.DATABASE_NAME+"; Port="+ ConnectionData.PORT + ";Database="+ ConnectionData.DATABASE_NAME+";Uid="+ ConnectionData.ID + ";Pwd="+ ConnectionData.PASSWROD + ";");
+
+            MySqlConnection connection = new MySqlConnection("Server="+ ConnectionData.SERVER+"; Port="+ ConnectionData.PORT + ";Database="+ ConnectionData.DATABASE_NAME+";Uid="+ ConnectionData.ID + ";Pwd="+ ConnectionData.PASSWROD + ";");
+           // MySqlConnection connection = new MySqlConnection("Server=localhost;Port=3306;Database=library;Uid=root;Pwd=0000;");
 
             return connection;
         }
