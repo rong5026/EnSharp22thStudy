@@ -12,6 +12,7 @@ namespace LibraryMySQL
         SelectionMode mode;
         BookSearching bookSearching;
         UserModeUI userModeUI;
+        AdminModeUI adminModeUI;
         ValidInput validInput;
         MySQlData mySQlData;
         Login login;
@@ -21,6 +22,7 @@ namespace LibraryMySQL
             this.validInput = validInput;
             this.userModeUI = userModeUI;
             libraryUI = new LibraryUI();
+            adminModeUI = new AdminModeUI();
             bookSearching = new BookSearching(validInput, libraryUI);        
             mode = new SelectionMode(libraryUI);
             mySQlData = MySQlData.Instance();
@@ -58,7 +60,8 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.BOOK_ADD: // 도서추가             
-
+                        AddBook();
+                        Console.Clear();
                         break;
                     case Constants.BOOK_DELETE: //도서삭제         
 
@@ -83,6 +86,20 @@ namespace LibraryMySQL
 
             }
 
+        }
+
+        private void AddBook()
+        {
+            Console.Clear();
+            while (Constants.isPROGRAM_ON)
+            {
+                adminModeUI.PrintAdminMenuMessage("도서찾기");
+
+                Console.ReadLine();
+
+               
+                
+            }
         }
     }
 }

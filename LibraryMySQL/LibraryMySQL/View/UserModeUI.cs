@@ -158,7 +158,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                                                                           \n");
 		}
 
-		public void PrintSuccessRegister()
+		public void PrintSuccessRegister() // 회원가입 성공 메시지 출력
 		{
 			Console.CursorVisible = false;
 			libraryUI.PrintMainUI();
@@ -169,7 +169,10 @@ namespace LibraryMySQL
 			Console.WriteLine("                                   │                ENTER을 눌러주세요              │");
 			Console.WriteLine("                                   └------------------------------------------------┘\n");
 		}
-		public void PrintMessage(int x, int y,string message)
+
+
+
+		public void PrintMessage(int x, int y,string message) // 메세지 출력
         {
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.SetCursorPosition(x, y);
