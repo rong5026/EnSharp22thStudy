@@ -20,7 +20,7 @@ namespace LibraryMySQL
         public const string BOOK_SEARCH = @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"; // 영어 한글 1개 이상
         //관리자모드
 
-        public const string BOOK_ID = @"^[1-9]?[0-9]?[0-9]$"; // 0~ 999
+        public const string BOOK_ID = @"^[1-9][0-9]?[0-9]?$"; // 1~ 999
         public const string BOOK_NAME = @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$";  // 영어 , 한글, 숫자 1글자 이상
         public const string BOOK_AUTHOR = @"^[a-zA-Zㄱ-ㅎ가-힣]{1,}$"; // 영어,한글 1글자 이상
         public const string BOOK_PUBISHER = @"^[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"; // 영어, 한글, 숫자 1글자 이상

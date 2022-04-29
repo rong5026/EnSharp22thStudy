@@ -72,7 +72,7 @@ namespace LibraryMySQL {
 
           
             Console.SetCursorPosition(0, 0);
-            userModeUI.PrintReturnRentBook("빌릴");
+            userModeUI.PrintReturnRentBook("빌릴","입력하기");
             libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
            
 
@@ -99,7 +99,7 @@ namespace LibraryMySQL {
                             //대여 성공 메시지 출력
                             Console.SetCursorPosition(0, 0);
                             Console.CursorVisible = false;
-                            userModeUI.PrintBorrowBookMessage("책 빌리기 성공!");
+                            userModeUI.PrintBorrowBookMessage("책 빌리기 성공!","다시 입력하기");
 
                             if (EnterBack() == Constants.RESTART)
                                 return BorrowBook();         
@@ -112,7 +112,7 @@ namespace LibraryMySQL {
                 // 책 빌리기 실패
                 Console.SetCursorPosition(0, 0);
                 Console.CursorVisible = false;
-                userModeUI.PrintBorrowBookMessage("실패! 수량이 없거나 유효하지 않은 책 ID 또는 이미 빌린 책 입니다!");
+                userModeUI.PrintBorrowBookMessage("실패! 수량이 없거나 유효하지 않은 책 ID 또는 이미 빌린 책 입니다!","다시 입력하기");
 
                 if (EnterBack() == Constants.RESTART)
                     return BorrowBook();
@@ -125,7 +125,7 @@ namespace LibraryMySQL {
             List<BookVO> bookList = new List<BookVO>();
 
             Console.Clear();
-            userModeUI.PrintReturnRentBook("반납");
+            userModeUI.PrintReturnRentBook("반납","입력하기");
             mySQlData.CheckRentBook(bookList);
             libraryUI.ShowBorrowedBookList(bookList,"반납책");
 
@@ -150,7 +150,7 @@ namespace LibraryMySQL {
                         //반납 성공 메시지 출력
                         Console.SetCursorPosition(0, 0);
                         Console.CursorVisible = false;
-                        userModeUI.PrintBorrowBookMessage("책 반납 성공!");
+                        userModeUI.PrintBorrowBookMessage("책 반납 성공!","다시 입력하기");
 
                         if (EnterBack() == Constants.RESTART)
                             return ReturnBook();
@@ -161,7 +161,7 @@ namespace LibraryMySQL {
                 // 책 빌리기 실패
                 Console.SetCursorPosition(0, 0);
                 Console.CursorVisible = false;
-                userModeUI.PrintBorrowBookMessage("책 반납 실패! 대여하지 않은 책 ID 입니다!");
+                userModeUI.PrintBorrowBookMessage("책 반납 실패! 대여하지 않은 책 ID 입니다!","다시 입력하기");
 
                 if (EnterBack() == Constants.RESTART)
                     return ReturnBook();

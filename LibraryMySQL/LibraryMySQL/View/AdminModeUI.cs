@@ -9,7 +9,7 @@ namespace LibraryMySQL
     internal class AdminModeUI
     {
 
-        public void PrintAdminMenuMessage(string message) // Admin Main UI
+        public void PrintAdminMenuMessage(string message,string reEnter) // Admin Main UI
         {
             Console.WriteLine("                                     ■■■■■■■■■■■■■■■■■■■■■■■■■■");
             Console.WriteLine("                                                                                     ");
@@ -18,7 +18,7 @@ namespace LibraryMySQL
             Console.WriteLine("                                                                                     ");
             Console.WriteLine("                                                                                     ");
             Console.WriteLine("                                     ■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");
-            Console.WriteLine("                                            ENTER : 확인          ESC : 뒤로가기  \n\n\n");
+            Console.WriteLine("                                            ENTER : {0}          ESC : 뒤로가기  \n\n\n", reEnter);
 
         }
         public void PrtinInputAddBook() // 책 입력 UI

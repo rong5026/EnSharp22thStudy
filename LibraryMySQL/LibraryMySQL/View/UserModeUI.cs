@@ -115,7 +115,7 @@ namespace LibraryMySQL
 	
 		
 
-		public void PrintBorrowBookMessage(string message)
+		public void PrintBorrowBookMessage(string message,string reEnter)
 		{
 			Console.WriteLine("                                                                                           ");
 			Console.WriteLine("                                                                                             ");
@@ -124,12 +124,12 @@ namespace LibraryMySQL
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
 			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine("     ENTER : 입력하기                                                                        ");
+			Console.WriteLine("     ENTER : {0}                                                                        ",reEnter);
 			Console.ResetColor();
 			Console.WriteLine("                                                                                           \n");
 		}
 		
-		public void PrintReturnRentBook(string type)
+		public void PrintReturnRentBook(string type, string reEnter)
 		{
 		
 			Console.WriteLine("                                                                                           ");
@@ -140,7 +140,7 @@ namespace LibraryMySQL
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("     ESC : 뒤로가기                                                                         ");
 			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine("     ENTER : 입력하기                                                                        ");
+			Console.WriteLine("     ENTER : {0}                                                                        ", reEnter);
 			Console.ResetColor();
 			Console.WriteLine("                                                                                           \n");
 		}

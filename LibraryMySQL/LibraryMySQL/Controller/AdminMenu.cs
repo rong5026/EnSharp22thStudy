@@ -104,10 +104,11 @@ namespace LibraryMySQL
             string date;
             BookVO bookVO;
 
-            Console.Clear();
+            
             while (Constants.isPROGRAM_ON)
             {
-                adminModeUI.PrintAdminMenuMessage("도서추가");
+                Console.Clear();
+                adminModeUI.PrintAdminMenuMessage("도서추가","확인");
                 adminModeUI.PrtinInputAddBook();
               
 
@@ -141,7 +142,7 @@ namespace LibraryMySQL
                 mySQlData.InsertBook(bookVO); // 데이터베이스에 책 추가
 
                 Console.Clear();
-                adminModeUI.PrintAdminMenuMessage("도서추가");
+                adminModeUI.PrintAdminMenuMessage("도서추가","다시추가");
                 adminModeUI.PrintAddBookSuccess();
 
                 while (Constants.isPROGRAM_ON)
@@ -149,6 +150,8 @@ namespace LibraryMySQL
                     keyInput = Console.ReadKey(true); // ESC 뒤로가기
                     if (keyInput.Key == ConsoleKey.Escape)
                         return;
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                        break;
                 }
 
             }
@@ -159,7 +162,7 @@ namespace LibraryMySQL
             string name;
             string author;
             string publisher;
-
+            string bookId;
             while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
@@ -179,15 +182,23 @@ namespace LibraryMySQL
 
 
                 Console.Clear();
-                adminModeUI.PrintAdminMenuMessage("삭제할 책 ID : ");
+                adminModeUI.PrintAdminMenuMessage("삭제할 책 ID :","확인");
                 libraryUI.ShowBookList(name, author, publisher); // 검색리스트 출력
 
-              
+                bookId = validInput.EnterDeleteBookID(18, 4, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID);// 삭제할 책 ID 입력
+                if (bookId == Constants.INPUT_BACK)
+                    break;
+
+                mySQlData.DeleteBook(Convert.ToInt32(bookId)); // 데이터베이스에서 책 삭제
+                Console.SetCursorPosition(0, 0);
+                adminModeUI.PrintAdminMenuMessage("책 삭제 완료!","다시삭제");
+
+
                 while (Constants.isPROGRAM_ON)
                 {
-                    keyInput = Console.ReadKey(true);
+                    keyInput = Console.ReadKey(true); // ESC 뒤로가기
                     if (keyInput.Key == ConsoleKey.Escape)
-                        return; // ESC 누르면 뒤로가기 
+                        return;
                     else if (keyInput.Key == ConsoleKey.Enter)
                         break;
                 }

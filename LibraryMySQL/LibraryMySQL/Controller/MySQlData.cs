@@ -375,7 +375,7 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public void InsertBook(BookVO bookVO)
+        public void InsertBook(BookVO bookVO) // 책 등록
         {
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
@@ -387,7 +387,19 @@ namespace LibraryMySQL
 
             connection.Close();
         }
+        public void DeleteBook(int bookId)
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
 
+            string insertQuery = string.Format("DELETE FROM book_data WHERE book_id = '{0}';", bookId);
+
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
 
 
     }

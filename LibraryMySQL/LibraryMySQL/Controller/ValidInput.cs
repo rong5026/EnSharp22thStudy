@@ -414,9 +414,84 @@ namespace LibraryMySQL
 
         }
 
-      
 
-       
+        public string EnterDeleteBookID(int x, int y, string errorMessage, string regular)
+        {
+            Console.CursorVisible = true;
+            error = errorMessage;   //예외조건 성립안할때 출력
+            Console.SetCursorPosition(x, y);
+
+            input = Constants.INPUT_EMPTY;
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true);
+
+                if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
+                    return Constants.INPUT_BACK;
+
+                if (input == Constants.INPUT_EMPTY)
+                    DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+
+
+                if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
+                {
+                    input += keyInput.KeyChar;
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
+                }
+                else
+                {
+                    if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
+                    {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), RegularExpression.KOREAN))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
+                        input = input.Substring(0, (input.Length - 1));
+
+                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                    {
+
+                        break;
+                    }
+                }
+            }
+
+            // 정규식 예외처리
+            if (input != null)
+                check = Regex.IsMatch(input, regular);
+            if (check == false) //
+            {
+                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+                userModeUI.PrintErrorMessage(x, y, error);
+                return EnterInput(x, y, errorMessage, regular);
+            }
+            if (CheckBookId(input) == Constants.BOOK_NOT_EXIST)
+            {
+                error = ErrorMessage.BOOK_NOT_EXIST;
+                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+                userModeUI.PrintErrorMessage(x, y, error);
+                return EnterDeleteBookID(x, y, errorMessage, regular);
+            }
+
+            return input;  // 문자형 id,password 리턴
+        }
+
+        private int CheckBookId(string bookId) // 책 이미 등록되어있는지 확인
+        {
+            List<BookVO> bookList = new List<BookVO>();
+            mySQlData.CheckBookList(bookList);
+
+            for (int index = 0; index < bookList.Count; index++)
+            {
+                if (bookList[index].Id == Convert.ToInt32( bookId))
+                    return Constants.BOOK_EXIST;
+            }
+            return Constants.BOOK_NOT_EXIST;
+
+        }
+
         private void DeleteInput(int count, int x, int y) // 입력값 삭제
         {
             Console.SetCursorPosition(x, y);
