@@ -60,6 +60,11 @@ namespace LibraryMySQL
                 case "Admin":
                     libraryUI.PrintAdminMenuUI(Constants.FIND_BOOK);
                     break;
+                case "BookEdit":
+                    libraryUI.PrintAdminBookEditUI(Constants.BOOK_NAME);
+                    break;
+
+
 
             }
          
@@ -104,6 +109,10 @@ namespace LibraryMySQL
                 case "Admin":
                     libraryUI.PrintAdminMenuUI((menuNumber % menuCount) + 1);
                     break;
+                case "BookEdit":
+                    libraryUI.PrintAdminBookEditUI((menuNumber % menuCount) + 1);
+                    break;
+
                 default:
                     return;
             }

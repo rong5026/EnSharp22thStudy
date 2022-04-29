@@ -415,7 +415,7 @@ namespace LibraryMySQL
         }
 
 
-        public string EnterDeleteBookID(int x, int y, string errorMessage, string regular)
+        public string EnterDeleteBookID(int x, int y, string errorMessage, string regular) // 삭제할 책 ID
         {
             Console.CursorVisible = true;
             error = errorMessage;   //예외조건 성립안할때 출력

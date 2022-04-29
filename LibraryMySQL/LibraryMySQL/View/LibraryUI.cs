@@ -149,7 +149,25 @@ namespace LibraryMySQL
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
 
 		}
+		
+		public void PrintAdminBookEditUI(int selectNum)
+		{
 
+			Console.SetCursorPosition(0, 27);
+			PrintEditMenuList(selectNum, 1, " 책 제목 (영어, 한글, 숫자 1개 이상) :");
+			PrintEditMenuList(selectNum, 2, " 작가 (   영어, 한글 1글자 이상  )   :");
+			PrintEditMenuList(selectNum, 3, " 출판사 (영어, 한글, 숫자 1개 이상)  :");
+			PrintEditMenuList(selectNum, 4, " 수량 (    1~999 사이의 자연수   )   :");
+			PrintEditMenuList(selectNum, 5, " 가격 (   1~9999999 사이의 자연수  ) :");
+			PrintEditMenuList(selectNum, 6, " 출시일 (    19xx or 20xx-xx-xx    ) :");
+			PrintEditMenuList(selectNum, 7, "     ** 책 정보 수정하기 ** \n");
+
+
+
+			Console.WriteLine("                                            ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
+			Console.WriteLine("                                         변경하고자 하는 항목을 선택 후 변경해주세요.");
+			Console.WriteLine("                                       회원정보 수정하기 항목을 클릭하면 변경이 완료됩니다.");
+		}
 		public void PrintUserMenuUI(int selectNum)
 		{
 		
@@ -251,11 +269,11 @@ namespace LibraryMySQL
 
 			Console.SetCursorPosition(0, 22);
 			PrintEditMenuList(selectNum, 1, " User ID (8~ 15글자 영어, 숫자포함) :");
-			PrintEditMenuList(selectNum, 2, " User PW (8~ 15글자 영어, 숫자포함) : ");
-			PrintEditMenuList(selectNum, 3, " User Name (한글,영어 포함 2글자 이상) : ");
-			PrintEditMenuList(selectNum, 4, " User Age (  0,자연수 0세 ~ 200세   ) : ");
-			PrintEditMenuList(selectNum, 5, " User PhoneNumber (   01x-xxxx-xxxx  ) : ");
-			PrintEditMenuList(selectNum, 6, " User Address (도로명 주소 형식 ) : ");
+			PrintEditMenuList(selectNum, 2, " User PW (8~ 15글자 영어, 숫자포함) :");
+			PrintEditMenuList(selectNum, 3, " User Name (한글,영어 포함 2글자 이상) :");
+			PrintEditMenuList(selectNum, 4, " User Age (  0,자연수 0세 ~ 200세   ) :");
+			PrintEditMenuList(selectNum, 5, " User PhoneNumber (   01x-xxxx-xxxx  ) :");
+			PrintEditMenuList(selectNum, 6, " User Address (도로명 주소 형식 ) :");
 			PrintEditMenuList(selectNum, 7, "     ** 회원정보 수정하기 ** \n");
 
 

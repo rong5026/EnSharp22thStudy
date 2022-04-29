@@ -246,6 +246,88 @@ namespace LibraryMySQL
                     break;
 
 
+                Console.Clear();               
+                SelectEditBookUnit(Convert.ToInt32( bookId));
+
+            }
+        }
+        private void SelectEditBookUnit(int bookId)
+        {
+            int menuNumber;
+            string name;
+            string author;
+            string publisher;
+            string count;
+            string price;
+            string date;
+
+            BookVO bookVO = new BookVO();
+
+            Console.Clear();
+
+            mySQlData.CheckSelectedBook(bookVO, bookId); // 수정하고자하는 책 정보 가져옮
+            name = bookVO.Name;
+            author = bookVO.Author;
+            publisher = bookVO.Publisher;
+            count = Convert.ToString(bookVO.BookCount);
+            price = Convert.ToString(bookVO.Price);
+            date = bookVO.Date;
+
+            while (Constants.isPROGRAM_ON)
+            {
+                Console.SetCursorPosition(0, 0);
+                adminModeUI.PrintAdminMenuMessage("책 수정", "확인");
+                mySQlData.CheckSelectedBook(bookVO, bookId); // 수정하고자하는 책 정보 가져옮
+                adminModeUI.PrintRegisteredBook(bookVO); // 기존 책정보 프린트
+
+                
+
+                menuNumber = mode.SelectUserManagerMenu("BookEdit", 7);
+
+                switch (menuNumber)
+                {
+                    case Constants.BOOK_NAME: // 책 이름                  
+                        name = validInput.EnterBookName(72, 27);
+                        if (name == Constants.INPUT_BACK)
+                            name = bookVO.Name;
+                        break;
+                    case Constants.BOOK_AUTHOR: // 책 저자
+                        author = validInput.EnterInput(72, 28, ErrorMessage.BOOK_AUTHOR, RegularExpression.BOOK_AUTHOR);
+                        if (author == Constants.INPUT_BACK)
+                            author = bookVO.Author;
+                        break;
+                    case Constants.BOOK_PUBLISHER: // 출판사
+                        publisher = validInput.EnterInput(72, 29, ErrorMessage.BOOK_PUBISHER, RegularExpression.BOOK_PUBISHER);
+                        if(publisher == Constants.INPUT_BACK)
+                            publisher = bookVO.Publisher;
+                        break;
+                    case Constants.BOOK_COUNT: // 책 수량
+                        count = validInput.EnterInput(72, 30, ErrorMessage.BOOK_COUNT, RegularExpression.BOOK_COUNT);
+                        if (count == Constants.INPUT_BACK)
+                            count = Convert.ToString(bookVO.BookCount);
+                        break;
+                    case Constants.BOOK_PRICE: // 책 가격
+                        price = validInput.EnterInput(72, 31, ErrorMessage.BOOK_PRICE, RegularExpression.BOOK_PRICE);
+                        if (price == Constants.INPUT_BACK)
+                            price = Convert.ToString(bookVO.Price);
+                        break;
+                    case Constants.BOOK_DATE: // 출판날짜
+                        date = validInput.EnterInput(72, 32, ErrorMessage.BOOK_DATE, RegularExpression.BOOK_DATE);
+                        if (date == Constants.INPUT_BACK)
+                            date = bookVO.Date;
+                        break;
+                    case Constants.EDIT: // 변경하기 버튼                                         
+                        mySQlData.UpdateBookDate(name, author, publisher, Convert.ToInt32(count), Convert.ToInt32(price), date, bookId);
+                        Console.Clear();
+                        break;
+                    case Constants.EXIT:
+                        return;
+                    default:
+                        return;
+
+
+                }
+
 
             }
         }

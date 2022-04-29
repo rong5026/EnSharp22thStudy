@@ -20,7 +20,7 @@ namespace LibraryMySQL
         public const string USER_ADDRESS = "주소형식에 맞게 입력해주세요!";
 
         //책검색
-        public const string BOOK_SEARCH = "영어,한글 1개 이상 입력해주세요!";
+        public const string BOOK_SEARCH = "영어,한글, 숫자 1개 이상 입력해주세요!";
 
         //책이름 에러
         public const string BOOK_ID = "1~999범위 안의 수를 입력해주세요!";

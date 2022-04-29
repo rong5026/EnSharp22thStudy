@@ -118,6 +118,7 @@ namespace LibraryMySQL
            
             connection.Close();
         }
+       
         public void DeleteUserID() // 회원정보 삭제
         {
             MySqlConnection connection = ConnectMySQL();
@@ -389,7 +390,7 @@ namespace LibraryMySQL
 
             connection.Close();
         }
-        public void DeleteBook(int bookId)
+        public void DeleteBook(int bookId) // 책 삭제
         {
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
@@ -403,6 +404,50 @@ namespace LibraryMySQL
             connection.Close();
         }
 
+        public void CheckSelectedBook(BookVO bookVO, int bookId) // 수정하고자 하는 책 정보 리턴
+        {
+
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format("SELECT * FROM book_data");
+
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+                if (bookId == (int)table["book_id"])
+                {
+                    bookVO.Id = (int)table["book_id"];
+                    bookVO.Name= (string)table["book_name"];
+                    bookVO.Author = (string)table["book_author"];
+                    bookVO.Publisher = (string)table["book_publisher"];
+                    bookVO.BookCount = (int)table["book_count"];
+                    bookVO.Price = (int)table["book_price"];
+                    bookVO.Date = (string)table["book_date"];
+                    
+                    table.Close();
+                    connection.Close();
+                    return;
+                }
+            }
+        }
+        public void UpdateBookDate(string name, string author, string publisher, int count, int price, string date,int bookId) // 책정보 변경
+        {
+
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format("UPDATE book_data SET book_name ='{0}' , book_author = '{1}' , book_publisher = '{2}',book_count = '{3}',book_price='{4}', book_date='{5}' WHERE book_id ='{6}'", name, author, publisher, count, price, date,bookId);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+
+            connection.Close();
+        }
 
     }
 }

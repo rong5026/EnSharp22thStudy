@@ -80,6 +80,14 @@ namespace LibraryMySQL
         public const int BOOK_NOT_EXIST = 0;
 
 
+        //EditBookData
+        public const int BOOK_NAME = 1;
+        public const int BOOK_AUTHOR = 2;
+        public const int BOOK_PUBLISHER = 3;
+        public const int BOOK_COUNT = 4;
+        public const int BOOK_PRICE = 5;
+        public const int BOOK_DATE = 6;
+
        
 
     }

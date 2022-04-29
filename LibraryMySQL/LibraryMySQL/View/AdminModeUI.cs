@@ -56,6 +56,17 @@ namespace LibraryMySQL
             Console.WriteLine("                                                                                                   \n");
             Console.WriteLine("                                ------------------------------------------------------------\n");
         }
-       
+        public void PrintRegisteredBook(BookVO bookVO)
+        {
+            Console.WriteLine("                                                  ◈현재 등록되어 있는 정보◈\n\n");
+            Console.WriteLine("                             책 제목 (영어, 한글, 숫자 1개 이상) : {0}",bookVO.Name );
+            Console.WriteLine("                             작가 (   영어, 한글 1글자 이상  )   : {0}",bookVO.Author );
+            Console.WriteLine("                             출판사 (영어, 한글, 숫자 1개 이상)  : {0}",bookVO.Publisher );
+            Console.WriteLine("                             수량 (    1~999 사이의 자연수   )   : {0}",bookVO.BookCount );
+            Console.WriteLine("                             가격 (   1~9999999 사이의 자연수  ) : {0}",bookVO.Price );
+            Console.WriteLine("                             출시일 (    19xx or 20xx-xx-xx    ) : {0}",bookVO.Date );
+            Console.WriteLine("\n");
+            Console.WriteLine("                                                  ◈변경 할 정보 입력 ◈\n\n");
+        }
     }
 }
