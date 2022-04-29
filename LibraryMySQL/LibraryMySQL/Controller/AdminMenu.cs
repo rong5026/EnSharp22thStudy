@@ -159,7 +159,7 @@ namespace LibraryMySQL
             }
         }
 
-        private void DeleteBook()
+        private void DeleteBook() // 책 삭제
         {
             string name;
             string author;
@@ -211,7 +211,7 @@ namespace LibraryMySQL
             }
         }
 
-        private void EditBook()
+        private void EditBook() // 책 수정
         {
             string name;
             string author;
@@ -251,7 +251,7 @@ namespace LibraryMySQL
 
             }
         }
-        private void SelectEditBookUnit(int bookId)
+        private void SelectEditBookUnit(int bookId) // 수정하고자하는 책 옵션 선택
         {
             int menuNumber;
             string name;

@@ -291,7 +291,7 @@ namespace LibraryMySQL
 			for (int index = 0; index < list.Count; index++)
 			{
 				Console.WriteLine();
-				Console.WriteLine("===========================================================================================================================\n");
+				Console.WriteLine("============================================================================================================================\n");
 				Console.WriteLine("책아이디  : {0} ", list[index].Id);
 				Console.WriteLine("책 제목   : {0} ", list[index].Name);
 				Console.WriteLine("작가      : {0} ", list[index].Author);

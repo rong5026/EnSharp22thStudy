@@ -46,24 +46,26 @@ namespace LibraryMySQL
             if (passWord == Constants.INPUT_BACK)
                 return Constants.BACK;
 
-
-            if (CheckUser(id,passWord) == Constants.LOGIN_SUCCESS) // 로그인 성공
+            if (type == "User")
             {
-                Console.Clear();
-
-                if (type == "User")
+                if (CheckUser(id, passWord) == Constants.LOGIN_SUCCESS) // 로그인 성공
                 {
+                    Console.Clear();               
                     LibraryStart.loginedUser = id;   // 현재 로그인된 유저id
-                    return Constants.USER_MODE;
-                  
+                    return Constants.USER_MODE;            
                 }
-                else
-                   return Constants.ADMIN_MODE;
-             
+                else // 로그인 실패
+                    return LoginUser(type);
             }
-            else // 로그인 실패
+            else
+            {
+                if(CheckAdmin(id,passWord) == Constants.LOGIN_SUCCESS)
+                {
+                    Console.Clear();
+                    return Constants.ADMIN_MODE;
+                }
                 return LoginUser(type);
-
+            }
 
             
             return Constants.BACK;
@@ -71,13 +73,26 @@ namespace LibraryMySQL
         }
         private int CheckUser(string id, string passWord)
         {
-            List <UserVO> userList = new List <UserVO>();
+            List<UserVO> userList = new List<UserVO>();
 
             mySQlData.SendUserList(userList); // 회원정보를 다가져옴
 
-            for(int index = 0; index < userList.Count; index++)
+            for (int index = 0; index < userList.Count; index++)
             {
-                if(userList[index].Id == id && userList[index].Password == passWord)
+                if (userList[index].Id == id && userList[index].Password == passWord)
+                    return Constants.LOGIN_SUCCESS;
+            }
+            return Constants.LOGIN_FAIL;
+        }
+        private int CheckAdmin(string id, string passWord)
+        {
+            List<UserVO> adminList = new List<UserVO>();
+
+            mySQlData.SendAdminList(adminList); // 회원정보를 다가져옴
+
+            for (int index = 0; index < adminList.Count; index++)
+            {
+                if (adminList[index].Id == id && adminList[index].Password == passWord)
                     return Constants.LOGIN_SUCCESS;
             }
             return Constants.LOGIN_FAIL;

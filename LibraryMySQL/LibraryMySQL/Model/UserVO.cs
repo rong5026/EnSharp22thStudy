@@ -18,7 +18,12 @@ namespace LibraryMySQL
       
         public UserVO()
         {
-             
+
+        }
+        public UserVO(string id, string password)
+        {
+            this.id = id;
+            this.password = password;
         }
         public UserVO(string id, string password, string name, string age, string phonenumber, string address)
         {

@@ -59,7 +59,29 @@ namespace LibraryMySQL
             connection.Close();
        
         }
+        public void SendAdminList(List<UserVO> list)// 관리자 정보 보내줌
+        {
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format("SELECT * FROM admin_data");
 
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+                user = new UserVO(
+                    (string)table["id"],
+                    (string)table["password"]                 
+                    );
+                list.Add(user);
+            }
+
+            table.Close();
+            connection.Close();
+        }
 
         public void InsertUserData(string id, string password, string name,string age,string phoneNumber, string address ) // 유저정보 삽입
         {
