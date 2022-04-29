@@ -175,10 +175,10 @@ namespace LibraryMySQL
 
 
         }
-        public void CheckBookList(List<BookVO> list) // 책리스트를 리턴
+        public List<BookVO> CheckBookList() // 책리스트를 리턴
         {
            
-           
+            List<BookVO> list = new List<BookVO>();
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format("SELECT * FROM book_data");
             connection.Open();
@@ -203,6 +203,8 @@ namespace LibraryMySQL
             }
             table.Close();
             connection.Close();
+
+            return list;
 
         }
         

@@ -71,7 +71,8 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.BOOK_EDIT: // 도서수정                
-
+                        EditBook();
+                        Console.Clear();
                         break;
                     case Constants.USER_CARE: // 회원관리
 
@@ -144,6 +145,7 @@ namespace LibraryMySQL
                 Console.Clear();
                 adminModeUI.PrintAdminMenuMessage("도서추가","다시추가");
                 adminModeUI.PrintAddBookSuccess();
+                Console.CursorVisible = false;
 
                 while (Constants.isPROGRAM_ON)
                 {
@@ -163,11 +165,13 @@ namespace LibraryMySQL
             string author;
             string publisher;
             string bookId;
+            List<BookVO> bookList;
             while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
                 libraryUI.PrintSearchBook("Start");
-                libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
+                bookList = mySQlData.CheckBookList();
+                libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
                 Console.SetCursorPosition(18, 1); // 커서이동
 
                 name = validInput.EnterBookSearch(18, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
@@ -183,16 +187,17 @@ namespace LibraryMySQL
 
                 Console.Clear();
                 adminModeUI.PrintAdminMenuMessage("삭제할 책 ID :","확인");
-                libraryUI.ShowBookList(name, author, publisher); // 검색리스트 출력
+               
+                libraryUI.ShowBookList(name, author, publisher, bookList); // 검색한 책 리스트 출력
 
-                bookId = validInput.EnterDeleteBookID(18, 4, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID);// 삭제할 책 ID 입력
+                bookId = validInput.EnterDeleteBookID(73, 3, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID);// 삭제할 책 ID 입력
                 if (bookId == Constants.INPUT_BACK)
                     break;
 
                 mySQlData.DeleteBook(Convert.ToInt32(bookId)); // 데이터베이스에서 책 삭제
                 Console.SetCursorPosition(0, 0);
                 adminModeUI.PrintAdminMenuMessage("책 삭제 완료!","다시삭제");
-
+                Console.CursorVisible = false;
 
                 while (Constants.isPROGRAM_ON)
                 {
@@ -202,6 +207,45 @@ namespace LibraryMySQL
                     else if (keyInput.Key == ConsoleKey.Enter)
                         break;
                 }
+
+            }
+        }
+
+        private void EditBook()
+        {
+            string name;
+            string author;
+            string publisher;
+            string bookId;
+            List<BookVO> bookList;
+            while (Constants.isPROGRAM_ON)
+            {
+                Console.Clear();
+                libraryUI.PrintSearchBook("Start");
+                bookList = mySQlData.CheckBookList();
+                libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
+                Console.SetCursorPosition(18, 1); // 커서이동
+
+                name = validInput.EnterBookSearch(18, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
+                if (name == Constants.BACKMENU)
+                    return;
+                author = validInput.EnterBookSearch(19, 2, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자 이상
+                if (author == Constants.BACKMENU)
+                    return;
+                publisher = validInput.EnterBookSearch(18, 3, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // // 영어,한글  1글자 이상
+                if (publisher == Constants.BACKMENU)
+                    return;
+
+
+                Console.Clear();
+                adminModeUI.PrintAdminMenuMessage("수정할 책 ID :", "확인");
+                libraryUI.ShowBookList(name, author, publisher, bookList); // 검색한 책 리스트 출력
+
+                bookId = validInput.EnterDeleteBookID(73, 3, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID);// 삭제할 책 ID 입력
+                if (bookId == Constants.INPUT_BACK)
+                    break;
+
+
 
             }
         }

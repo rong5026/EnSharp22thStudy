@@ -26,12 +26,13 @@ namespace LibraryMySQL {
         }
         public void SearchBook() // 책 검색
         {
-
+            List<BookVO> bookList;
             while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
                 libraryUI.PrintSearchBook("Start");
-                libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
+                bookList = mySQlData.CheckBookList();
+                libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
                 Console.SetCursorPosition(18, 1); // 커서이동
 
                 name = validInput.EnterBookSearch(18, 1,ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
@@ -47,7 +48,7 @@ namespace LibraryMySQL {
 
                 Console.Clear();
                 libraryUI.PrintSearchBook("Return");
-                libraryUI.ShowBookList(name, author, publisher);
+                libraryUI.ShowBookList(name, author, publisher, bookList);
 
                 Console.CursorVisible = false;
                 while (Constants.isPROGRAM_ON)
@@ -66,17 +67,18 @@ namespace LibraryMySQL {
 
         public int BorrowBook() // 책 대여
         {
-            List<BookVO> bookList = new List<BookVO>();
+            List<BookVO> bookList;
    
             Console.SetWindowSize(125, 50);
 
           
             Console.SetCursorPosition(0, 0);
             userModeUI.PrintReturnRentBook("빌릴","입력하기");
-            libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY); //  전체 북리스트 출력.
-           
+            bookList = mySQlData.CheckBookList(); // 저장된 책 list받아옴
+            libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
 
-            mySQlData.CheckBookList(bookList); // 저장된 책 list받아옴
+
+         
 
             while (Constants.isPROGRAM_ON)
             {

@@ -23,7 +23,7 @@ namespace LibraryMySQL
         public const string BOOK_SEARCH = "영어,한글 1개 이상 입력해주세요!";
 
         //책이름 에러
-        public const string BOOK_ID = "0~999범위 안의 수를 입력해주세요!";
+        public const string BOOK_ID = "1~999범위 안의 수를 입력해주세요!";
         public const string BOOK_EXIST = "이미 등록되어 있는 책 이름입니다!";
         public const string BOOK_NOT_EXIST = "등록되어 있지 않은 책ID 입니다!";
         public const string BOOK_NAME = "영어,한글,숫자 중 1개이상 입력해주세요!";    

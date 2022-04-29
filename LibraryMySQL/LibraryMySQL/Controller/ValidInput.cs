@@ -347,8 +347,8 @@ namespace LibraryMySQL
         }
         private int CheckBookName(string bookName) // 책 이미 등록되어있는지 확인
         {
-            List<BookVO> bookList = new List<BookVO>();
-            mySQlData.CheckBookList(bookList);
+            List<BookVO> bookList;
+            bookList = mySQlData.CheckBookList();
 
             for (int index = 0; index < bookList.Count; index++)
             {
@@ -480,8 +480,8 @@ namespace LibraryMySQL
 
         private int CheckBookId(string bookId) // 책 이미 등록되어있는지 확인
         {
-            List<BookVO> bookList = new List<BookVO>();
-            mySQlData.CheckBookList(bookList);
+            List<BookVO> bookList;
+            bookList = mySQlData.CheckBookList();
 
             for (int index = 0; index < bookList.Count; index++)
             {

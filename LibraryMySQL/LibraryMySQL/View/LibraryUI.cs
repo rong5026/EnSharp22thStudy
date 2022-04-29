@@ -289,12 +289,9 @@ namespace LibraryMySQL
 			Console.SetCursorPosition(0, 0);
 
 		}
-		public void ShowBookList(string name, string author, string publisher) // 이름 저자 출판사로 책 검색해서 출력
+		public void ShowBookList(string name, string author, string publisher,List<BookVO> list) // 이름 저자 출판사로 책 검색해서 출력
 		{
-
-			List<BookVO> list = new List<BookVO>();
-
-			mySQlData.CheckBookList(list); // list에 책 목록 넣음
+			
 
 			int[] validIndex = new int[list.Count];
 			int indexCount = 0;
