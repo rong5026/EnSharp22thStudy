@@ -56,7 +56,7 @@ namespace LibraryMySQL
             Console.WriteLine("                                                                                                   \n");
             Console.WriteLine("                                ------------------------------------------------------------\n");
         }
-        public void PrintRegisteredBook(BookVO bookVO)
+        public void PrintRegisteredBook(BookVO bookVO) // 선택한 책 정보 출력
         {
             Console.WriteLine("                                                  ◈현재 등록되어 있는 정보◈\n\n");
             Console.WriteLine("                             책 제목 (영어, 한글, 숫자 1개 이상) : {0}",bookVO.Name );
@@ -67,6 +67,15 @@ namespace LibraryMySQL
             Console.WriteLine("                             출시일 (    19xx or 20xx-xx-xx    ) : {0}",bookVO.Date );
             Console.WriteLine("\n");
             Console.WriteLine("                                                  ◈변경 할 정보 입력 ◈\n\n");
+        }
+
+        public void PrintUserData(string userName) // 유저 이름 출력
+        {
+            Console.WriteLine("============================================================================================================================\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(" User Name  : {0}", userName);
+            Console.ResetColor();
+          
         }
     }
 }

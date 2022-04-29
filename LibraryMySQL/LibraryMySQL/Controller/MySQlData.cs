@@ -308,7 +308,7 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public void CheckRentBook(List<BookVO> list) // 해당아이디의 빌린책 리스트 리턴
+        public void CheckRentBook(List<BookVO> list,string userId) // 해당아이디의 빌린책 리스트 리턴
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format("SELECT * FROM user_rented_book");
@@ -320,7 +320,7 @@ namespace LibraryMySQL
             while (table.Read())
             {
 
-                if (LibraryStart.loginedUser == (string)table["user_id"])
+                if (userId == (string)table["user_id"])
                 {
                     BookVO book = new BookVO();
                     book.Id = (int)table["book_id"];

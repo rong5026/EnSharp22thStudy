@@ -78,7 +78,8 @@ namespace LibraryMySQL
 
                         break;
                     case Constants.TOTAL_USER_RENTBOOK: // 대여상황보기
-
+                        ShowTotalRentUser();
+                        Console.Clear();
                         break;
                     case Constants.EXIT:
                         Console.Clear();
@@ -330,6 +331,35 @@ namespace LibraryMySQL
 
 
             }
+        }
+        private void ShowTotalRentUser() // 대여상황
+        {
+            List<UserVO> userList = new List<UserVO>();
+            List<BookVO> bookList = new List<BookVO>();
+
+            Console.Clear();
+            mySQlData.SendUserList(userList); // 유저들 리스트 
+            adminModeUI.PrintAdminMenuMessage("전체회원 대여상황", "확인");
+
+            for(int index = 0; index < userList.Count; index++)
+            {
+                adminModeUI.PrintUserData(userList[index].Id); // 유저ID 출력
+                mySQlData.CheckRentBook(bookList, userList[index].Id);  // 유저가 빌린 책 리스트 
+                libraryUI.ShowBorrowedBookList(bookList, "빌린");
+
+            }
+            Console.SetCursorPosition(0, 0);
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(true); // ESC 뒤로가기
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return;
+               
+            }
+
+
+
         }
     }
 }

@@ -304,7 +304,7 @@ namespace LibraryMySQL
 
 
 			}
-			Console.SetCursorPosition(0, 0);
+			//Console.SetCursorPosition(0, 0);
 
 		}
 		public void ShowBookList(string name, string author, string publisher,List<BookVO> list) // 이름 저자 출판사로 책 검색해서 출력

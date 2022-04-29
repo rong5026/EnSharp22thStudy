@@ -128,7 +128,7 @@ namespace LibraryMySQL {
 
             Console.Clear();
             userModeUI.PrintReturnRentBook("반납","입력하기");
-            mySQlData.CheckRentBook(bookList);
+            mySQlData.CheckRentBook(bookList,LibraryStart.loginedUser);
             libraryUI.ShowBorrowedBookList(bookList,"반납책");
 
             while (Constants.isPROGRAM_ON)
@@ -196,7 +196,7 @@ namespace LibraryMySQL {
 
             List<BookVO> list = new List<BookVO>();
 
-            mySQlData.CheckRentBook(list); //로그인된 사람의 빌린책
+            mySQlData.CheckRentBook(list,LibraryStart.loginedUser); //로그인된 사람의 빌린책
 
             libraryUI.ShowBorrowedBookList(list,"빌린");
             while (Constants.isPROGRAM_ON)
