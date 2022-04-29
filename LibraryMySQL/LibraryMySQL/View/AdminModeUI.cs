@@ -69,13 +69,24 @@ namespace LibraryMySQL
             Console.WriteLine("                                                  ◈변경 할 정보 입력 ◈\n\n");
         }
 
-        public void PrintUserData(string userName) // 유저 이름 출력
+        public void PrintUserName(string userName) // 유저 이름 출력
         {
             Console.WriteLine("============================================================================================================================\n");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(" User Name  : {0}", userName);
             Console.ResetColor();
           
+        }
+        public void PrintUserData(UserVO userVO) // 유저 정보 출력
+        {
+            Console.WriteLine("============================================================================================================================\n");
+
+            Console.WriteLine(" 유저 ID   : {0}",userVO.Id);
+            Console.WriteLine(" 유저 이름 : {0}", userVO.Name);
+            Console.WriteLine(" 유저 나이 : {0}", userVO.Age);
+            Console.WriteLine(" 유저 번호 : {0}", userVO.PhoneNumber);
+            Console.WriteLine(" 유저 주소 : {0}\n\n", userVO.Address);
+
         }
     }
 }

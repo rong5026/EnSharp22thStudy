@@ -88,6 +88,8 @@ namespace LibraryMySQL
         public const int BOOK_PRICE = 5;
         public const int BOOK_DATE = 6;
 
+        public const int USER_EXIST = 1;
+        public const int USER_NOT_EXIST = 0;
        
 
     }

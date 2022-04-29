@@ -8,7 +8,7 @@ namespace LibraryMySQL
 {
     internal class ErrorMessage
     {
-
+       
         // 에러메시지
         public const string ID = "숫자+영어 8~15글자를 입력해주세요!";
         public const string ID_EXIST = "기존 회원과 중복되는 ID입니다!";
@@ -18,7 +18,8 @@ namespace LibraryMySQL
         public const string USER_AGE = "0~199까지 수를 입력해주세요!";
         public const string USER_PHONE = "01x-xxxx-xxxx 형식에 맞게 입력해주세요!";
         public const string USER_ADDRESS = "주소형식에 맞게 입력해주세요!";
-
+        public const string USER_NOT_EXIST = "존재하지 않는 유저ID 입니다!";
+        public const string USER_EXIST_RENT_BOOK = "대출 중인 도서가 있어 삭제가 불가능합니다!";
         //책검색
         public const string BOOK_SEARCH = "영어,한글, 숫자 1개 이상 입력해주세요!";
 

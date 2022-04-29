@@ -141,12 +141,12 @@ namespace LibraryMySQL
             connection.Close();
         }
        
-        public void DeleteUserID() // 회원정보 삭제
+        public void DeleteUserID(string userId) // 회원정보 삭제
         {
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format("DELETE FROM user_data WHERE user_id = '{0}';", LibraryStart.loginedUser);
+            string insertQuery = string.Format("DELETE FROM user_data WHERE user_id = '{0}';", userId);
 
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
@@ -155,7 +155,7 @@ namespace LibraryMySQL
             connection.Close();
         }
         
-        public bool LoginedUserRentBookCount()
+        public bool LoginedUserRentBookCount(string userId)
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format("SELECT * FROM user_rented_book");
@@ -167,7 +167,7 @@ namespace LibraryMySQL
             while (table.Read())
             {
 
-                if (LibraryStart.loginedUser == (string)table["user_id"])
+                if (userId == (string)table["user_id"])
                 {
                     table.Close();
                     connection.Close();

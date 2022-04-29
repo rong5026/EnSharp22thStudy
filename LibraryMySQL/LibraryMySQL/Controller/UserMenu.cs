@@ -97,7 +97,7 @@ namespace LibraryMySQL
                 else if (keyInput.Key == ConsoleKey.Enter)
                 {
 
-                    if (mySQlData.LoginedUserRentBookCount())
+                    if (mySQlData.LoginedUserRentBookCount(LibraryStart.loginedUser))
                     {
                         while (Constants.isPROGRAM_ON)
                         {
@@ -108,7 +108,7 @@ namespace LibraryMySQL
                                 return Constants.isDELETE_ID_FAIL; ; // ESC 누르면 뒤로가기 
                         }                      
                     }
-                    mySQlData.DeleteUserID();
+                    mySQlData.DeleteUserID(LibraryStart.loginedUser);
                     return Constants.isDELETE_ID_SUCCESS;
                 }
                     

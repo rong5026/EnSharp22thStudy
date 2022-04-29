@@ -75,7 +75,8 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.USER_CARE: // 회원관리
-
+                        ControlUsers();
+                        Console.Clear();
                         break;
                     case Constants.TOTAL_USER_RENTBOOK: // 대여상황보기
                         ShowTotalRentUser();
@@ -343,7 +344,7 @@ namespace LibraryMySQL
 
             for(int index = 0; index < userList.Count; index++)
             {
-                adminModeUI.PrintUserData(userList[index].Id); // 유저ID 출력
+                adminModeUI.PrintUserName(userList[index].Id); // 유저ID 출력
                 mySQlData.CheckRentBook(bookList, userList[index].Id);  // 유저가 빌린 책 리스트 
                 libraryUI.ShowBorrowedBookList(bookList, "빌린");
 
@@ -358,7 +359,42 @@ namespace LibraryMySQL
                
             }
 
+        }
+        private void ControlUsers() // 회원관리
+        {
+            string id;
+            
+            while (Constants.isPROGRAM_ON)
+            {
+                Console.Clear();
+                List<UserVO> userList = new List<UserVO>();
+                mySQlData.SendUserList(userList); // 유저들 리스트 
 
+                adminModeUI.PrintAdminMenuMessage("삭제할 유저ID 입력 :", "확인");
+
+                for (int index = 0; index < userList.Count; index++)
+                {
+                    adminModeUI.PrintUserData(userList[index]);
+                }
+
+                id = validInput.EnterDeleteUserID(79, 3, ErrorMessage.USER_NOT_EXIST, RegularExpression.USER_NOT_EXIST);
+                if (id == Constants.INPUT_BACK)
+                    break;
+
+                mySQlData.DeleteUserID(id);
+
+                Console.SetCursorPosition(0, 0);
+                adminModeUI.PrintAdminMenuMessage("ID삭제완료!", "다른 ID 지우기");
+                while (Constants.isPROGRAM_ON)
+                {
+                  
+                    keyInput = Console.ReadKey(true);
+                    if (keyInput.Key == ConsoleKey.Escape)
+                        return;
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                        break;
+                }
+            }
 
         }
     }

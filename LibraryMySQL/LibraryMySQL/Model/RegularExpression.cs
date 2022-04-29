@@ -15,7 +15,7 @@ namespace LibraryMySQL
         public const string USER_AGE = @"^1?[0-9]?[0-9]$";
         public const string USER_PHONE = @"01([0-9]{1})-([0-9]{4})-([0-9]{4})$";
         public const string USER_ADDRESS = @"[ㄱ-ㅎ가-힣]{3,5}\s{0,1}[ㄱ-ㅎ가-힣]{3,5}\s{0,1}?([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣]{3,5}\s{0,1})?([ㄱ-ㅎ가-힣0-9]{2,}\s{0,1}?-?[0-9]{0,}?[ㄱ-ㅎ가-힣]{0,})?([ㄱ-ㅎ가-힣0-9]{1,}\s{0,1}?-?[0-9]{0,})?$";
-
+        public const string USER_NOT_EXIST = @"^[0-9a-zA-Z]{8,15}$";
         //책 검색
         public const string BOOK_SEARCH = @"^[a-zA-Zㄱ-ㅎ가-힣0-9\s]{1,}?[a-zA-Zㄱ-ㅎ가-힣0-9]{1,}$"; // 영어 한글 1개 이상
         //관리자모드
