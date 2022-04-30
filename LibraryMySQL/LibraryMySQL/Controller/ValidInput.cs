@@ -313,7 +313,7 @@ namespace LibraryMySQL
 
             // 정규식 예외처리
             if (input != null)
-                check = Regex.IsMatch(input, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
+                check = Regex.IsMatch(input, RegularExpression.BOOK_NAME); // 영어,한글 1글자이상
           
             if (check == Constants.NON_INPUT) //
             {
@@ -361,6 +361,8 @@ namespace LibraryMySQL
                 if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
                     return Constants.BACKMENU;
 
+                if (input == Constants.INPUT_EMPTY)
+                    DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
                     input += keyInput.KeyChar;
