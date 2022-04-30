@@ -34,7 +34,7 @@ namespace LibraryMySQL
 
             Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.WriteLine("                                            책 제목 - 영어, 한글, 숫자 중 1개 이상 ");
+            Console.WriteLine("                                            책 제목 - 영어,한글,숫자,?!+= 1개 이상 ");
             Console.WriteLine("                                            작가    - 영어, 한글 1글자 이상");
             Console.WriteLine("                                            출판사  - 영어, 한글, 숫자 중 1개 이상");
             Console.WriteLine("                                            수량    - 1~999 사이의 자연수");
@@ -59,7 +59,7 @@ namespace LibraryMySQL
         public void PrintRegisteredBook(BookVO bookVO) // 선택한 책 정보 출력
         {
             Console.WriteLine("                                                  ◈현재 등록되어 있는 정보◈\n\n");
-            Console.WriteLine("                             책 제목 (영어, 한글, 숫자 1개 이상) : {0}",bookVO.Name );
+            Console.WriteLine("                             책제목(영어,한글,숫자,?!+= 1개 이상): {0}",bookVO.Name );
             Console.WriteLine("                             작가 (   영어, 한글 1글자 이상  )   : {0}",bookVO.Author );
             Console.WriteLine("                             출판사 (영어, 한글, 숫자 1개 이상)  : {0}",bookVO.Publisher );
             Console.WriteLine("                             수량 (    1~999 사이의 자연수   )   : {0}",bookVO.BookCount );

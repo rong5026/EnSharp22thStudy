@@ -8,16 +8,16 @@ namespace LibraryMySQL
 {
 	internal class LibraryUI
 	{
-		MySQlData mySQlData; 
+		MySQlData mySQlData;
 		private string selectFirst;
 		private string selectSecond;
 
 
 		public LibraryUI()
-        {
+		{
 			mySQlData = MySQlData.Instance();
 		}
-	
+
 		public void PrintMainUI()
 		{
 			Console.SetWindowSize(125, 50);
@@ -98,7 +98,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
 			Console.WriteLine("                                                                                    ");
 		}
-		
+
 		public void PrintAdminMenuList(int selectNum, int menuNumber, string menuName)
 		{
 			Console.Write("                                   │                 ");
@@ -116,7 +116,7 @@ namespace LibraryMySQL
 
 		public void PrintEditMenuList(int selectNum, int menuNumber, string menuName)
 		{
-			
+
 			if (selectNum == menuNumber)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
@@ -130,7 +130,7 @@ namespace LibraryMySQL
 		}
 		public void PrintAdminMenuUI(int selectNum)
 		{
-			
+
 			PrintMainUI();  // main 이미지 출력
 
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
@@ -149,7 +149,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
 
 		}
-		
+
 		public void PrintAdminBookEditUI(int selectNum)
 		{
 
@@ -170,7 +170,7 @@ namespace LibraryMySQL
 		}
 		public void PrintUserMenuUI(int selectNum)
 		{
-		
+
 			PrintMainUI();  // main 이미지 출력
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
@@ -265,7 +265,7 @@ namespace LibraryMySQL
 		}
 
 		public void PrintEditUI(int selectNum)
-        {
+		{
 
 			Console.SetCursorPosition(0, 22);
 			PrintEditMenuList(selectNum, 1, " User ID (8~ 15글자 영어, 숫자포함) :");
@@ -285,8 +285,8 @@ namespace LibraryMySQL
 		}
 
 
-	
-		public void ShowBorrowedBookList(List<BookVO> list,string type)
+
+		public void ShowBorrowedBookList(List<BookVO> list, string type)
 		{
 			for (int index = 0; index < list.Count; index++)
 			{
@@ -299,94 +299,95 @@ namespace LibraryMySQL
 				Console.WriteLine("수량      : {0} ", list[index].BookCount);
 				Console.WriteLine("가격      : {0} ", list[index].Price);
 				Console.WriteLine("출시일    : {0} ", list[index].Date);
-				if(type !="반납책")
-					Console.WriteLine("{0} 시간  : {1} ",type, list[index].Time);
+				if (type != "반납책")
+					Console.WriteLine("{0} 시간  : {1} ", type, list[index].Time);
 
 
 			}
 			//Console.SetCursorPosition(0, 0);
 
 		}
-		public void ShowBookList(string name, string author, string publisher,List<BookVO> list) // 이름 저자 출판사로 책 검색해서 출력
+		public List<int> ShowBookList(string name, string author, string publisher, List<BookVO> list) // 이름 저자 출판사로 책 검색해서 출력
 		{
-			
 
-			int[] validIndex = new int[list.Count];
-			int indexCount = 0;
+			List<int> validIndex = new List<int>();
 
 		
-	
+
+
+
 			for (int index = 0; index < list.Count; index++)
 			{
 				if (name != Constants.INPUT_EMPTY && author == Constants.INPUT_EMPTY && publisher == Constants.INPUT_EMPTY) // O X X 
 				{
-					if ( list[index].Name.Contains(name))
-						validIndex[indexCount++] = index;
+					if (list[index].Name.Contains(name))
+						validIndex.Add(index);
 
 				}
 				else if (name == Constants.INPUT_EMPTY && author != Constants.INPUT_EMPTY && publisher == Constants.INPUT_EMPTY) // X O X
 				{
 					if (list[index].Author.Contains(author))
-						validIndex[indexCount++] = index;
+						validIndex.Add(index);
 				}
 				else if (name == Constants.INPUT_EMPTY && author == Constants.INPUT_EMPTY && publisher != Constants.INPUT_EMPTY) // X X O
 				{
 					if (list[index].Publisher.Contains(publisher))
-						validIndex[indexCount++] = index;
+						validIndex.Add(index);
 				}
 				else if (name != Constants.INPUT_EMPTY && author != Constants.INPUT_EMPTY && publisher == Constants.INPUT_EMPTY)//O O X
 				{
 					if (list[index].Name.Contains(name) && list[index].Author.Contains(author))
-						validIndex[indexCount++] = index;
+						validIndex.Add(index);
 				}
 				else if (name == Constants.INPUT_EMPTY && author != Constants.INPUT_EMPTY && publisher != Constants.INPUT_EMPTY)//X O O
 				{
 					if (list[index].Publisher.Contains(publisher) && list[index].Author.Contains(author))
-						validIndex[indexCount++] = index;
+						validIndex.Add(index);
 				}
 				else if (name != Constants.INPUT_EMPTY && author == Constants.INPUT_EMPTY && publisher != Constants.INPUT_EMPTY) // O X O
 				{
 					if (list[index].Publisher.Contains(publisher) && list[index].Name.Contains(name))
-						validIndex[indexCount++] = index;
+						validIndex.Add(index);
 				}
 				else if (name != Constants.INPUT_EMPTY && author != Constants.INPUT_EMPTY && publisher != Constants.INPUT_EMPTY)//O O O
 				{
 					if (list[index].Name.Contains(name) && list[index].Author.Contains(author) &&
 						list[index].Publisher.Contains(publisher))
-						validIndex[indexCount++] = index;
+						validIndex.Add(index);
 				}
 				/// X X X  값이 다없을때 
 
 			}
-
-			if (indexCount == 0)
+			
+			if (validIndex.Count == 0)
 			{
-				indexCount = list.Count;
-				for (int index = 0; index < indexCount; index++)
-					validIndex[index] = index;
+				for (int index = 0; index < list.Count; index++)
+					validIndex.Add(index);
 			}
 
-			for (int index = 0; index < indexCount; index++)
+			for (int Index = 0; Index < validIndex.Count; Index++)
 			{
 				Console.WriteLine();
 				Console.WriteLine("===========================================================================================================================\n");
-				Console.WriteLine("책아이디 : {0} ", list[validIndex[index]].Id);
-				Console.WriteLine("책 제목  : {0} ", list[validIndex[index]].Name);
-				Console.WriteLine("작가     : {0} ", list[validIndex[index]].Author);
-				Console.WriteLine("출판사   : {0} ", list[validIndex[index]].Publisher);
-				Console.WriteLine("수량     : {0} ", list[validIndex[index]].BookCount);
-				Console.WriteLine("가격     : {0} ", list[validIndex[index]].Price);
-				Console.WriteLine("출시일   : {0} ", list[validIndex[index]].Date);
+				Console.WriteLine("책아이디 : {0} ", list[validIndex[Index]].Id);
+				Console.WriteLine("책 제목  : {0} ", list[validIndex[Index]].Name);
+				Console.WriteLine("작가     : {0} ", list[validIndex[Index]].Author);
+				Console.WriteLine("출판사   : {0} ", list[validIndex[Index]].Publisher);
+				Console.WriteLine("수량     : {0} ", list[validIndex[Index]].BookCount);
+				Console.WriteLine("가격     : {0} ", list[validIndex[Index]].Price);
+				Console.WriteLine("출시일   : {0} ", list[validIndex[Index]].Date);
 
 
 			}
 			Console.SetCursorPosition(0, 0);
 
 
-
-
+			return validIndex;
 
 		}
+
+
+
 
 		public void PrintSearchBook(string type) // 책찾기 
 		{
@@ -416,3 +417,4 @@ namespace LibraryMySQL
 
 	}
 }
+

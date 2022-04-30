@@ -165,6 +165,7 @@ namespace LibraryMySQL
             string author;
             string publisher;
             string bookId;
+            List<int> bookIndex;
             List<BookVO> bookList;
             while (Constants.isPROGRAM_ON)
             {
@@ -187,10 +188,10 @@ namespace LibraryMySQL
 
                 Console.Clear();
                 adminModeUI.PrintAdminMenuMessage("삭제할 책 ID :","확인");
-               
-                libraryUI.ShowBookList(name, author, publisher, bookList); // 검색한 책 리스트 출력
 
-                bookId = validInput.EnterDeleteBookID(73, 3, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID);// 삭제할 책 ID 입력
+                bookIndex =libraryUI.ShowBookList(name, author, publisher, bookList); // 검색한 책 리스트 출력
+
+                bookId = validInput.EnterDeleteBookID(73, 3, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID,bookIndex,bookList);// 삭제할 책 ID 입력
                 if (bookId == Constants.INPUT_BACK)
                     break;
 
@@ -217,6 +218,7 @@ namespace LibraryMySQL
             string author;
             string publisher;
             string bookId;
+            List<int> bookIndex;
             List<BookVO> bookList;
             while (Constants.isPROGRAM_ON)
             {
@@ -239,9 +241,9 @@ namespace LibraryMySQL
 
                 Console.Clear();
                 adminModeUI.PrintAdminMenuMessage("수정할 책 ID :", "확인");
-                libraryUI.ShowBookList(name, author, publisher, bookList); // 검색한 책 리스트 출력
+                bookIndex = libraryUI.ShowBookList(name, author, publisher, bookList); // 검색한 책 리스트 출력
 
-                bookId = validInput.EnterDeleteBookID(73, 3, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID);// 삭제할 책 ID 입력
+                bookId = validInput.EnterDeleteBookID(73, 3, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID, bookIndex, bookList);// 수정할 책 ID 입력            
                 if (bookId == Constants.INPUT_BACK)
                     break;
 

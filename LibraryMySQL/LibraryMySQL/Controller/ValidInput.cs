@@ -404,7 +404,7 @@ namespace LibraryMySQL
         }
 
 
-        public string EnterDeleteBookID(int x, int y, string errorMessage, string regular) // 삭제할 책 ID
+        public string EnterDeleteBookID(int x, int y, string errorMessage, string regular,List<int> bookInedex, List<BookVO> bookList) // 삭제할 책 ID
         {
             Console.CursorVisible = true;
             error = errorMessage;   //예외조건 성립안할때 출력
@@ -451,13 +451,18 @@ namespace LibraryMySQL
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
-                return EnterDeleteBookID(x, y, errorMessage, regular);
+                return EnterDeleteBookID(x, y, errorMessage, regular, bookInedex, bookList);
             }
-            if (CheckBookId(input) == Constants.BOOK_NOT_EXIST)
+            if (CheckBookId(input) == Constants.BOOK_NOT_EXIST) // 책이 존재하지 않을 때
             {            
-                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+                DeleteInput(124 - x, 124, y); 
                 userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_NOT_EXIST);
-                return EnterDeleteBookID(x, y, errorMessage, regular);
+                return EnterDeleteBookID(x, y, errorMessage, regular, bookInedex, bookList);
+            }
+            else if(CheckBookListID(input, bookInedex, bookList )==Constants.BOOK_NOT_EXIST){
+                DeleteInput(124 - x, 124, y);
+                userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_NOT_EXIST_IN_LIST);
+                return EnterDeleteBookID(x, y, errorMessage, regular, bookInedex, bookList);
             }
 
 
@@ -476,6 +481,21 @@ namespace LibraryMySQL
             }
             return Constants.BOOK_NOT_EXIST;
 
+        }
+        private int CheckBookListID(string bookId,List<int> bookInedex, List<BookVO> bookList) // 검색한 책리스트에 있는 책인지
+        {
+
+          
+            for (int index = 0; index < bookInedex.Count; index++)
+            {
+              
+                if(Convert.ToInt32( bookId) == bookList[bookInedex[index]].Id)
+                {
+                    return Constants.BOOK_EXIST;
+                }
+              
+            }
+            return Constants.BOOK_NOT_EXIST;
         }
 
         public string EnterDeleteUserID(int x, int y, string errorMessage, string regular)  // 삭제할 유저ID 입력
