@@ -16,6 +16,7 @@ namespace LibraryMySQL
         ValidInput validInput;
         MySQlData mySQlData;
         Login login;
+        NaverSearching naver;
         ConsoleKeyInfo keyInput;
 
         public AdminMenu(ValidInput validInput, UserModeUI userModeUI)
@@ -28,6 +29,7 @@ namespace LibraryMySQL
             mode = new SelectionMode(libraryUI);
             mySQlData = MySQlData.Instance();
             login = new Login(userModeUI, validInput);
+            naver = new NaverSearching();
         }
 
         public void StartAdminMode()
@@ -79,6 +81,9 @@ namespace LibraryMySQL
                     case Constants.TOTAL_USER_RENTBOOK: // 대여상황보기
                         ShowTotalRentUser();
                         Console.Clear();
+                        break;
+                    case Constants.NAVER_SEARCHIN:
+                        naver.SearchInNaver()
                         break;
                     case Constants.EXIT:
                         Console.Clear();

@@ -88,5 +88,23 @@ namespace LibraryMySQL
             Console.WriteLine(" 유저 주소 : {0}\n\n", userVO.Address);
 
         }
+
+        public void PrintNaverBookList(List<BookVO> list)
+        {
+            Console.WriteLine();
+
+            for (int index = 0; index < list.Count; index++)
+            {
+                Console.WriteLine("===========================================================================================================================\n");
+                Console.WriteLine("책아이디 : {0} ", list[index].Id);
+                Console.WriteLine("책 제목  : {0} ", list[index].Name);
+                Console.WriteLine("작가     : {0} ", list[index].Author);
+                Console.WriteLine("출판사   : {0} ", list[index].Publisher);
+                Console.WriteLine("수량     : {0} ", list[index].BookCount);
+                Console.WriteLine("가격     : {0} ", list[index].Price);
+                Console.WriteLine("출시일   : {0} ", list[index].Date);
+            }
+
+        }
     }
 }
