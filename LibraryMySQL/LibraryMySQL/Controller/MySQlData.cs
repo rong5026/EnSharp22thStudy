@@ -18,7 +18,7 @@ namespace LibraryMySQL
             return mysqlData;
         }
 
-        public MySqlConnection ConnectMySQL()
+        private MySqlConnection ConnectMySQL()
         {
 
             MySqlConnection connection = new MySqlConnection("Server="+ ConnectionData.SERVER+"; Port="+ ConnectionData.PORT + ";Database="+ ConnectionData.DATABASE_NAME+";Uid="+ ConnectionData.ID + ";Pwd="+ ConnectionData.PASSWROD + ";");
@@ -26,7 +26,7 @@ namespace LibraryMySQL
 
             return connection;
         }
-        public void SendUserList(List<UserVO> list) // 회원정보 보내줌
+        public void SendUserList(List<UserVO> list) // 회원정보 보내줌    send->get
         {
          
             MySqlConnection connection = ConnectMySQL();
