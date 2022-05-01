@@ -92,6 +92,7 @@
     <Compile Include="Controller\AdminMenu.cs" />
     <Compile Include="Controller\BookSearching.cs" />
     <Compile Include="Controller\Login.cs" />
+    <Compile Include="Controller\NaverSearching.cs" />
     <Compile Include="Controller\Register.cs" />
     <Compile Include="Controller\SelectionMode.cs" />
     <Compile Include="Controller\UserMenu.cs" />
