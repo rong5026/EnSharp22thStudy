@@ -86,8 +86,9 @@ namespace LibraryMySQL
                         naver.SearchInNaver();
                         Console.Clear();
                         break;
-                    case Constants.LOGIN_FAIL:
-
+                    case Constants.LOG: // 로그관리
+                        ControlLog();
+                        break;
                     case Constants.EXIT:
                         Console.Clear();
                         return;
@@ -101,7 +102,41 @@ namespace LibraryMySQL
             }
 
         }
+        private void ControlLog()
+        {
+            int menuNumber;
 
+            libraryUI.PrintMainUI();
+            while (Constants.isPROGRAM_ON)
+            {
+
+                menuNumber = mode.SelectUserManagerMenu("Admin", 8); //메뉴선택
+
+                switch (menuNumber)
+                {
+                    case Constants.BOOK_SEARCH: //로그수정            
+                    
+                        break;
+                    case Constants.BOOK_ADD: // 로그파일저장             
+                      
+                        break;
+                    case Constants.BOOK_DELETE: //로그파일삭제        
+                      
+                        break;
+                    case Constants.BOOK_EDIT: // 로그초기화               
+                       
+                        break;
+                               
+                    case Constants.EXIT:
+                        Console.Clear();
+                        return;
+                    default:
+                        return;
+                }
+
+
+            }
+        }
         private void AddBook() // 도서 추가
         {
             
