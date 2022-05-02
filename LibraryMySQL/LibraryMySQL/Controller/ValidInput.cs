@@ -542,13 +542,13 @@ namespace LibraryMySQL
             // 정규식 예외처리
             if (input != null)
                 check = Regex.IsMatch(input, regular);
-            if (check == Constants.NON_INPUT || CheckUserID(input) == Constants.USER_NOT_EXIST ) //유저가 존재하지않을때
+            if (check == Constants.NON_INPUT || CheckUserNumber(input) == Constants.USER_NOT_EXIST ) //유저가 존재하지않을때
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, error);
                 return EnterDeleteUserID(x, y, errorMessage, regular);
             }
-            if(mySQlData.LoginedUserRentBookCount(input))// 대출한책이 있을때 
+            if(mySQlData.LoginedUserRentBookCount( mySQlData.GetUserIdFromNumber( input)))// 대출한책이 있을 
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, ErrorMessage.USER_EXIST_RENT_BOOK);
@@ -558,14 +558,18 @@ namespace LibraryMySQL
 
             return input;  // 문자형 id,password 리턴
         }
-        private int CheckUserID(string userId) // 존재하는 유저ID인지 확인
+        private int CheckUserNumber(string userNumber) // 존재하는 유저Number인지 확인
         {
             List<UserVO> userList=new List<UserVO>();
             mySQlData.GetUserList(userList); // 유저 리스트 
 
+            Console.WriteLine(userList.Count);
+            Console.ReadLine    ();
             for (int index = 0; index < userList.Count; index++)
             {
-                if (userList[index].Id == userId)
+                Console.WriteLine(userList[index].Number);
+
+                if (userList[index].Number == Convert.ToInt32( userNumber))
                     return Constants.USER_EXIST;
             }
             return Constants.USER_NOT_EXIST;

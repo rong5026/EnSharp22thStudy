@@ -19,6 +19,7 @@ namespace LibraryMySQL
         public const string INSERT_USER = "INSERT INTO user_data (user_id,user_password,user_name,user_age, user_phonenumber,user_address) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');"; // 유저정보삽입
         public const string UPDATE_USERDATA = "UPDATE user_data SET user_id ='{0}' ,user_password = '{1}', user_name='{2}',user_age='{3}', user_phonenumber='{4}', user_address='{5}' WHERE user_id = '{6}'"; // 유저정보 수정
         public const string DELETE_USER = "DELETE FROM user_data WHERE user_id = '{0}';"; // 유저정보 삭제
+        public const string DELETE_USER_NUMBER = "DELETE FROM user_data WHERE user_number = '{0}';"; // 유저정보 삭제
 
 
         public const string RENT_BOOK = "SELECT * FROM user_rented_book"; // 빌린책 정보

@@ -155,6 +155,19 @@ namespace LibraryMySQL
 
             connection.Close();
         }
+        public void DeleteUserNumber(string userNumber) // 유저number엣 해당하는 유저삭제
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format(QueryData.DELETE_USER_NUMBER, Convert.ToInt32(userNumber));
+
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
         
         public bool LoginedUserRentBookCount(string userId) // 로그인한 유저의 빌린책 수
         {
@@ -174,15 +187,39 @@ namespace LibraryMySQL
                     connection.Close();
                     return Constants.isRENTBOOK_EXIST;
                 }
-
-
             }
-
             table.Close();
             connection.Close();
             return Constants.isRENTBOOK_NOT_EXIST;
         }
-      
+        public string GetUserIdFromNumber(string userIuserNumber) // number에 해당하는 유저ID 리턴
+        {
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format(QueryData.SELECT_USERLIST);
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+
+                if (userIuserNumber == (string)table["user_number"])
+                {
+                    table.Close();
+                    connection.Close();
+                    return (string)table["user_id"];
+                }
+            }
+            table.Close();
+            connection.Close();
+            return Constants.INPUT_EMPTY;
+
+        }
+
+       
+
+
         public List<BookVO> GetBookList() // 책리스트를 리턴
         {
            
