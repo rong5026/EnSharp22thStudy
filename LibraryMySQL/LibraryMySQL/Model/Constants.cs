@@ -102,7 +102,8 @@ namespace LibraryMySQL
         public const int LOG_SAVE_FILE = 2;
         public const int LOG_DELETE_FILE = 3;
         public const int LOG_RESET = 4;
-
+        public const int LOG_EXISTS = 1;
+        public const int LOG_NOT_EXISTS = 0;
 
     }
 }

@@ -32,6 +32,7 @@ namespace LibraryMySQL
         public const string INSERT_LOG_DATA = "INSERT INTO log_data (log_time,log_user,log_information, log_action) VALUES ('{0}','{1}','{2}','{3}');"; // 로그정보삽입
         public const string DELETE_LOG_DATA = "DELETE FROM log_data WHERE log_id = '{0}';";
 
-
+        public const string SELECT_LOGLIST = "SELECT * FROM log_data"; // 모든 로그 리턴
+        public const string DELETE_ALL_LOG = "DELETE FROM log_data;"; // 모든로그 삭제
     }
 }

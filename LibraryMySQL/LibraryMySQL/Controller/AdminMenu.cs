@@ -103,7 +103,7 @@ namespace LibraryMySQL
             }
 
         }
-        private void ControlLog()
+        private void ControlLog() // 로그관리
         {
             int menuNumber;
             Console.Clear();
@@ -117,7 +117,8 @@ namespace LibraryMySQL
                 switch (menuNumber)
                 {
                     case Constants.LOG_EDIT: //로그수정            
-                        
+                        EditLog();
+                        Console.Clear();
                         break;
                     case Constants.LOG_SAVE_FILE: // 로그파일저장             
                       
@@ -126,7 +127,8 @@ namespace LibraryMySQL
                       
                         break;
                     case Constants.LOG_RESET: // 로그초기화               
-                       
+                        ResetLogData();
+                        Console.Clear();
                         break;
                                
                     case Constants.EXIT:
@@ -140,8 +142,70 @@ namespace LibraryMySQL
             }
         }
 
-        private void EditLog()
+        private void EditLog() // 로그수정
         {
+            string logId;
+
+
+            while (Constants.isPROGRAM_ON)
+            {
+                Console.Clear();
+
+                adminModeUI.PrintAdminMenuMessage("삭제하려는 로그ID :", "확인하기");
+                List<LogVO> list = mySQlData.CheckLogList(); // 전체 로그 가져옴
+                adminModeUI.PrintLogData(list);// 전체로그 출력
+
+                logId = validInput.EnterLogId(78, 3, ErrorMessage.LOG_ID, RegularExpression.LOG_ID);
+
+                if (logId == Constants.INPUT_BACK)
+                    return;
+
+                mySQlData.DeleteLogData(Convert.ToInt32(logId)); // 로그정보 삭제
+                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", logId, "로그삭제"); // 로그저장
+
+                Console.SetCursorPosition(0, 0);
+                adminModeUI.PrintAdminMenuMessage("로그 삭제 완료!", "다시삭제");
+                Console.CursorVisible = Constants.isNONVISIBLE;
+
+                while (Constants.isPROGRAM_ON)
+                {
+                    keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                    if (keyInput.Key == ConsoleKey.Escape)
+                        return;
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                        break;
+                }
+            }
+
+
+        }
+
+        private void ResetLogData() // 모든 로그정보 삭제
+        {
+            Console.Clear();
+
+            adminModeUI.PrintAdminMenuMessage("로그를 초기화 시키겠습니까?", "초기화하기");
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return;
+                else if (keyInput.Key == ConsoleKey.Enter)
+                {
+                    mySQlData.DeleteALlLog();
+                    Console.SetCursorPosition(0, 0);
+                    adminModeUI.PrintAdminMenuMessage("로그정보가 초기화되었습니다", "확인하기");
+
+                    while (Constants.isPROGRAM_ON)
+                    {
+                        keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                        if (keyInput.Key == ConsoleKey.Escape)
+                            return;
+                        
+                    }
+                }
+            }
 
         }
         private void AddBook() // 도서 추가

@@ -117,10 +117,21 @@ namespace LibraryMySQL
             Console.WriteLine("책 설명  : {0} ", description);
             Console.WriteLine("");
 
-
-
-
         }
-        
+        public void PrintLogData(List<LogVO> list) // 로그 정보 출력
+        {
+
+            for (int index = 0; index < list.Count; index++)
+            {
+                Console.WriteLine("============================================================================================================================\n");
+
+                Console.WriteLine(" 로그 ID     : {0}", list[index].Id);
+                Console.WriteLine(" 로그 시간   : {0}", list[index].Time);
+                Console.WriteLine(" 로그 사용자 : {0}", list[index].User);
+                Console.WriteLine(" 로그 정보   : {0}", list[index].Information);
+                Console.WriteLine(" 로그 행동   : {0}\n\n", list[index].Action);
+            }
+        }
+
     }
 }

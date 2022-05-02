@@ -91,6 +91,8 @@ namespace LibraryMySQL
 
             connection.Close();
         }
+
+        
         public void InsertLogData(string time, string user, string information, string action) // 로그정보 삽입
         {
             MySqlConnection connection = ConnectMySQL();
@@ -114,7 +116,55 @@ namespace LibraryMySQL
             command.ExecuteNonQuery();
 
             connection.Close();
+
         }
+        public List<LogVO> CheckLogList() // 전체로그 리스트 리턴
+        {
+            List<LogVO> list = new List<LogVO>();
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format(QueryData.SELECT_LOGLIST);
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+
+            while (table.Read())
+            {
+                LogVO log = new LogVO();
+
+                log.Id = (int)table["log_id"];
+                log.Time = (string)table["log_time"];
+                log.User = (string)table["log_user"];
+                log.Information = (string)table["log_information"];
+                log.Action = (string)table["log_action"];
+
+                list.Add(log);
+            }
+            table.Close();
+            connection.Close();
+
+            return list;
+        }
+
+        public void DeleteALlLog() // 모든 로그정보 삭제
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format(QueryData.DELETE_ALL_LOG);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+
+
+
+
+
+
         public void CheckLoginedUser(UserVO userVO, string loginedUser) // 현재 로그인중인 유저정보 리턴
         {
 

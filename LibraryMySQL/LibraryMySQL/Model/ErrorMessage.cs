@@ -37,5 +37,9 @@ namespace LibraryMySQL
 
         //naver
         public const string BOOK_SEARCHING_COUNT = "1~100사이의 수를 입력해주세요!";
+
+        //log
+        public const string LOG_ID = "1 ~ 99999 사이 자연수를 입력하세요";
+        public const string LOG_NOT_EXIST = "유요한 로그ID가 아닙니다!";
     }
 }
