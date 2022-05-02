@@ -55,10 +55,10 @@ namespace LibraryMySQL
 		}
 
 
-		public void PrintSelectUI(int selectNum, int type)  // type ->1.회원모드,관리자모드   2.로그인,회원가입
+		public void PrintSelectUI(int selectNumber, int type)  // type ->1.회원모드,관리자모드   2.로그인,회원가입
 		{
-			selectFirst = selectNum == 1 ? "●" : "○";
-			selectSecond = selectNum == 2 ? "●" : "○";
+			selectFirst = selectNumber == 1 ? "●" : "○";
+			selectSecond = selectNumber == 2 ? "●" : "○";
 
 			//Console.Clear();
 			PrintMainUI();  // main 이미지 출력
@@ -66,7 +66,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
 			Console.Write("                                   │                 ");
-			if (selectNum == 1)
+			if (selectNumber == 1)
 				if (type == 1)
 					Console.ForegroundColor = ConsoleColor.Green;
 				else
@@ -80,7 +80,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                 │");
 			Console.Write("                                   │                 ");
 
-			if (selectNum == 2)
+			if (selectNumber == 2)
 				if (type == 1)
 					Console.ForegroundColor = ConsoleColor.Green;
 				else
@@ -99,10 +99,10 @@ namespace LibraryMySQL
 			Console.WriteLine("                                                                                    ");
 		}
 
-		public void PrintAdminMenuList(int selectNum, int menuNumber, string menuName)
+		public void PrintAdminMenuList(int selectNumber, int menuNumber, string menuName)
 		{
 			Console.Write("                                   │                 ");
-			if (selectNum == menuNumber)
+			if (selectNumber == menuNumber)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -114,10 +114,10 @@ namespace LibraryMySQL
 			Console.WriteLine("                  │");
 		}
 
-		public void PrintEditMenuList(int selectNum, int menuNumber, string menuName)
+		public void PrintEditMenuList(int selectNumber, int menuNumber, string menuName)
 		{
 
-			if (selectNum == menuNumber)
+			if (selectNumber == menuNumber)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -128,7 +128,7 @@ namespace LibraryMySQL
 			Console.ResetColor();
 
 		}
-		public void PrintAdminMenuUI(int selectNum)
+		public void PrintAdminMenuUI(int selectNumber)
 		{
 
 			PrintMainUI();  // main 이미지 출력
@@ -136,14 +136,14 @@ namespace LibraryMySQL
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
 
-			PrintAdminMenuList(selectNum, 1, "도서찾기 ");
-			PrintAdminMenuList(selectNum, 2, "도서추가 ");
-			PrintAdminMenuList(selectNum, 3, "도서삭제 ");
-			PrintAdminMenuList(selectNum, 4, "도서수정 ");
-			PrintAdminMenuList(selectNum, 5, "회원관리 ");
-			PrintAdminMenuList(selectNum, 6, "대여상황 ");
-			PrintAdminMenuList(selectNum, 7, "NAVER검색");
-			PrintAdminMenuList(selectNum, 8, "로그관리 ");
+			PrintAdminMenuList(selectNumber, 1, "도서찾기 ");
+			PrintAdminMenuList(selectNumber, 2, "도서추가 ");
+			PrintAdminMenuList(selectNumber, 3, "도서삭제 ");
+			PrintAdminMenuList(selectNumber, 4, "도서수정 ");
+			PrintAdminMenuList(selectNumber, 5, "회원관리 ");
+			PrintAdminMenuList(selectNumber, 6, "대여상황 ");
+			PrintAdminMenuList(selectNumber, 7, "NAVER검색");
+			PrintAdminMenuList(selectNumber, 8, "로그관리 ");
 
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");
@@ -151,7 +151,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
 
 		}
-		public void PrintLogMenuUI(int selectNum)
+		public void PrintLogMenuUI(int selectNumber)
 		{
 
 			PrintMainUI();  // main 이미지 출력
@@ -159,10 +159,10 @@ namespace LibraryMySQL
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
 
-			PrintAdminMenuList(selectNum, 1, "로그수정 ");
-			PrintAdminMenuList(selectNum, 2, "로그저장 ");
-			PrintAdminMenuList(selectNum, 3, "로그삭제 ");
-			PrintAdminMenuList(selectNum, 4, "로그리셋 ");
+			PrintAdminMenuList(selectNumber, 1, "로그수정 ");
+			PrintAdminMenuList(selectNumber, 2, "로그저장 ");
+			PrintAdminMenuList(selectNumber, 3, "로그삭제 ");
+			PrintAdminMenuList(selectNumber, 4, "로그리셋 ");
 			
 
 			Console.WriteLine("                                   │                                                │");
@@ -172,17 +172,17 @@ namespace LibraryMySQL
 
 		}
 
-		public void PrintAdminBookEditUI(int selectNum)
+		public void PrintAdminBookEditUI(int selectNumber)
 		{
 
 			Console.SetCursorPosition(0, 27);
-			PrintEditMenuList(selectNum, 1, " 책 제목 (영어, 한글, 숫자 1개 이상) :");
-			PrintEditMenuList(selectNum, 2, " 작가 (   영어, 한글 1글자 이상  )   :");
-			PrintEditMenuList(selectNum, 3, " 출판사 (영어, 한글, 숫자 1개 이상)  :");
-			PrintEditMenuList(selectNum, 4, " 수량 (    1~999 사이의 자연수   )   :");
-			PrintEditMenuList(selectNum, 5, " 가격 (   1~9999999 사이의 자연수  ) :");
-			PrintEditMenuList(selectNum, 6, " 출시일 (    19xx or 20xx-xx-xx    ) :");
-			PrintEditMenuList(selectNum, 7, "     ** 책 정보 수정하기 ** \n");
+			PrintEditMenuList(selectNumber, 1, " 책 제목 (영어, 한글, 숫자 1개 이상) :");
+			PrintEditMenuList(selectNumber, 2, " 작가 (   영어, 한글 1글자 이상  )   :");
+			PrintEditMenuList(selectNumber, 3, " 출판사 (영어, 한글, 숫자 1개 이상)  :");
+			PrintEditMenuList(selectNumber, 4, " 수량 (    1~999 사이의 자연수   )   :");
+			PrintEditMenuList(selectNumber, 5, " 가격 (   1~9999999 사이의 자연수  ) :");
+			PrintEditMenuList(selectNumber, 6, " 출시일 (    19xx or 20xx-xx-xx    ) :");
+			PrintEditMenuList(selectNumber, 7, "     ** 책 정보 수정하기 ** \n");
 
 
 
@@ -190,7 +190,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                         변경하고자 하는 항목을 선택 후 변경해주세요.");
 			Console.WriteLine("                                       회원정보 수정하기 항목을 클릭하면 변경이 완료됩니다.");
 		}
-		public void PrintUserMenuUI(int selectNum)
+		public void PrintUserMenuUI(int selectNumber)
 		{
 
 			PrintMainUI();  // main 이미지 출력
@@ -198,7 +198,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                   │                                                │");
 
 			Console.Write("                                   │                 ");
-			if (selectNum == 1)
+			if (selectNumber == 1)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -211,7 +211,7 @@ namespace LibraryMySQL
 
 
 			Console.Write("                                   │                 ");
-			if (selectNum == 2)
+			if (selectNumber == 2)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -223,7 +223,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                   │");
 
 			Console.Write("                                   │                 ");
-			if (selectNum == 3)
+			if (selectNumber == 3)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -235,7 +235,7 @@ namespace LibraryMySQL
 			Console.WriteLine("               │");
 
 			Console.Write("                                   │                 ");
-			if (selectNum == 4)
+			if (selectNumber == 4)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -246,7 +246,7 @@ namespace LibraryMySQL
 			Console.ResetColor();
 			Console.WriteLine("                   │");
 			Console.Write("                                   │                 ");
-			if (selectNum == 5)
+			if (selectNumber == 5)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -257,7 +257,7 @@ namespace LibraryMySQL
 			Console.ResetColor();
 			Console.WriteLine("               │");
 			Console.Write("                                   │                 ");
-			if (selectNum == 6)
+			if (selectNumber == 6)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -269,7 +269,7 @@ namespace LibraryMySQL
 			Console.WriteLine("               │");
 
 			Console.Write("                                   │                 ");
-			if (selectNum == 7)
+			if (selectNumber == 7)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				selectFirst = "●";
@@ -286,17 +286,17 @@ namespace LibraryMySQL
 
 		}
 
-		public void PrintEditUI(int selectNum)
+		public void PrintEditUI(int selectNumber)
 		{
 
 			Console.SetCursorPosition(0, 22);
-			PrintEditMenuList(selectNum, 1, " User ID (8~ 15글자 영어, 숫자포함) :");
-			PrintEditMenuList(selectNum, 2, " User PW (8~ 15글자 영어, 숫자포함) :");
-			PrintEditMenuList(selectNum, 3, " User Name (한글,영어 포함 2글자 이상) :");
-			PrintEditMenuList(selectNum, 4, " User Age (  0,자연수 0세 ~ 200세   ) :");
-			PrintEditMenuList(selectNum, 5, " User PhoneNumber (   01x-xxxx-xxxx  ) :");
-			PrintEditMenuList(selectNum, 6, " User Address (도로명 주소 형식 ) :");
-			PrintEditMenuList(selectNum, 7, "     ** 회원정보 수정하기 ** \n");
+			PrintEditMenuList(selectNumber, 1, " User ID (8~ 15글자 영어, 숫자포함) :");
+			PrintEditMenuList(selectNumber, 2, " User PW (8~ 15글자 영어, 숫자포함) :");
+			PrintEditMenuList(selectNumber, 3, " User Name (한글,영어 포함 2글자 이상) :");
+			PrintEditMenuList(selectNumber, 4, " User Age (  0,자연수 0세 ~ 200세   ) :");
+			PrintEditMenuList(selectNumber, 5, " User PhoneNumber (   01x-xxxx-xxxx  ) :");
+			PrintEditMenuList(selectNumber, 6, " User Address (도로명 주소 형식 ) :");
+			PrintEditMenuList(selectNumber, 7, "     ** 회원정보 수정하기 ** \n");
 
 
 
