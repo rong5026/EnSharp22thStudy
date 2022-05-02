@@ -20,13 +20,16 @@ namespace LibraryMySQL
         private string bookCount;
         public void SearchInNaver()
         {
+            List<BookVO> bookList;
 
             while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
-                adminModeUI.PrtinInputNaverBook("입력하기"); //책 , 수량 입력
+               
+                adminModeUI.PrtinInputNaverBook("입력하기","뒤로가기"); //책 , 수량 입력
 
-                name = validInput.EnterBookSearch(16, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 책이름 입력
+              
+                name = validInput.EnterInput(16, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 책이름 입력
                 if (name == Constants.BACKMENU)
                     return;
                 bookCount = validInput.EnterInput(16, 2, ErrorMessage.BOOK_SEARCHING_COUNT, RegularExpression.BOOK_SEARCHING_COUNT); // 수량입력
@@ -34,20 +37,64 @@ namespace LibraryMySQL
                     return;
 
                 Console.SetCursorPosition(0, 5);
-                SearchNaverBook(Convert.ToInt32(bookCount), name);
-
+                bookList = SearchNaverBook(Convert.ToInt32(bookCount), name); // 검색결과를 리스트에 넣음
                 Console.CursorVisible = Constants.isNONVISIBLE;
 
-                adminModeUI.PrtinInputNaverBook("다시 입력하기"); //책 , 수량 입력
+              
+
                 while (Constants.isPROGRAM_ON)
                 {
+                    Console.SetCursorPosition(0, 0);
+                    adminModeUI.PrtinInputNaverBook("도서 추가하기", "뒤로가기"); //책 , 수량 입력
+
                     keyInput = Console.ReadKey(Constants.KEY_INPUT);
                     if (keyInput.Key == ConsoleKey.Escape)
                         return; // ESC 누르면 뒤로가기 
                     else if (keyInput.Key == ConsoleKey.Enter)
-                        break;
+                    {
+                        Console.SetCursorPosition(0, 0);
+                        adminModeUI.PrintInputNaverISBN("책 ISBN","확인하기", "뒤로가기");
+
+                        string isbn = validInput.EnterBookISBN(16, 1, bookList); // 책 isbn
+                        if (isbn == Constants.INPUT_BACK)
+                            break;
+
+                        BookVO bookVO = new BookVO();
+                        bookVO = GetSameIsbnBook(isbn, bookList); // isbn이 같은 책의 정보를 가져옴
+
+                        Console.WriteLine(bookVO.Information.Length);
+                        Console.ReadLine();
+                        mySQlData.InsertBook(bookVO); // 책 추가
+
+                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", bookVO.Name, "네이버도서추가"); // 로그저장
+
+                        Console.SetCursorPosition(0, 0);
+                        adminModeUI.PrintInputNaverISBN("추가성공!","다시추가하기", "뒤로가기");
+
+                        while (Constants.isPROGRAM_ON)
+                        {
+                            keyInput = Console.ReadKey(Constants.KEY_INPUT);
+                            if (keyInput.Key == ConsoleKey.Escape)
+                                return; // ESC 누르면 뒤로가기 
+                            else if (keyInput.Key == ConsoleKey.Enter)
+                                break;
+
+
+                        }
+
+                    }                   
                 }
             }
+        }
+        private BookVO GetSameIsbnBook(string isbn, List<BookVO> list)
+        {
+            for(int index = 0; index < list.Count; index++)
+            {
+                if(isbn == list[index].Isbn)
+                    return list[index];
+            }
+
+            return list[0];
         }
         public List<BookVO> SearchNaverBook(int displayCount, string content )
         {
@@ -84,13 +131,15 @@ namespace LibraryMySQL
                 book.BookCount = 10;
                 book.Price = Convert.ToInt32(items[index]["price"].ToString());
                 book.Date = items[index]["pubdate"].ToString();
-
+                book.Isbn = items[index]["isbn"].ToString();
+                book.Information = items[index]["description"].ToString().Replace("<b>", "").Replace("</b>", "");
+                
                 adminModeUI.PrintNaverBookList(items[index]["isbn"].ToString(), book.Name, book.Author, book.Price, book.Publisher, book.Date, items[index]["description"].ToString().Replace("<b>", "").Replace("</b>", ""));
                 bookVOs.Add(book);
             }
             Console.SetCursorPosition(0, 0);
 
-
+          
             response.Close();
             reader.Close();
             return bookVOs;

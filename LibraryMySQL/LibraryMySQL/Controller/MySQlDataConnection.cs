@@ -440,6 +440,7 @@ namespace LibraryMySQL
 
             connection.Close();
         }
+        
         public void DeleteBook(int bookId) // 책 삭제
         {
             MySqlConnection connection = ConnectMySQL();

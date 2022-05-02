@@ -93,17 +93,30 @@ namespace LibraryMySQL
             Console.WriteLine(" 유저 주소  : {0}\n\n", userVO.Address);
 
         }
-        public void PrtinInputNaverBook(string returnMessage)
+        public void PrtinInputNaverBook(string enterMessage,string escMessage)
         {
             Console.WriteLine();
             Console.WriteLine("   책 이름    :");
             Console.WriteLine(" 찾을 책 수량 :\n");
             
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(" ESC : 뒤로가기");
+            Console.WriteLine(" ESC : {0}                 ", escMessage);
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(" ENTER : {0}", returnMessage);
+            Console.WriteLine(" ENTER : {0}              ", enterMessage);
+            Console.ResetColor();
+        }
+        public void PrintInputNaverISBN(string mainMessage,string enterMessage, string escMessage)
+        {
+            Console.WriteLine();
+           // Console.WriteLine("   책 ISBN    :");
+            Console.WriteLine("   {0}    :                                                    ", mainMessage);
+            Console.WriteLine("                                               \n ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(" ESC : {0}                   ", escMessage);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(" ENTER : {0}                  ", enterMessage);
             Console.ResetColor();
         }
         

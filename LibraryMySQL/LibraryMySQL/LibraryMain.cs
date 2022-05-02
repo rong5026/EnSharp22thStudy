@@ -15,15 +15,14 @@ namespace LibraryMySQL
             LibraryStart start = new LibraryStart();
             start.StartLibrary();
 
-            /*while (true)
-            {
-                string n = Console.ReadLine();
-                if (Regex.IsMatch(n, @"^[a-zA-Z0-9ㄱ-ㅎ가-힣\s@#$%^&~,.<>*!?+-]{1,}$"))
+            /*while (true) {
 
+                string n = Console.ReadLine();
+                if (Regex.IsMatch(n, @"^([a-zA-Zㄱ-ㅎ가-힣0-9!?+-]{1,}\s{0,}){0,}[a-zA-Zㄱ-ㅎ가-힣0-9!?+-]{1,}$"))
                     Console.WriteLine("맞음");
                 else
-                    Console.WriteLine("틀림");
-               
+                            Console.WriteLine("틀림");
+
             }*/
            
         }
