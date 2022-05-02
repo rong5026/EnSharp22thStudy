@@ -69,19 +69,39 @@ namespace LibraryMySQL {
         public int BorrowBook() // 책 대여
         {
             List<BookVO> bookList;
-   
+            List<int> bookIndex;
             Console.SetWindowSize(125, 50);
-
-          
             Console.SetCursorPosition(0, 0);
-            userModeUI.PrintReturnRentBook("빌릴","입력하기");
-            bookList = mySQlData.GetBookList(); // 저장된 책 list받아옴
-            libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
-
-
+      
             while (Constants.isPROGRAM_ON)
             {
-                bookId = validInput.EnterInput(35, 2,ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID); // 책Id 1~999수
+
+                Console.Clear();
+                libraryUI.PrintSearchBook("Start");
+                bookList = mySQlData.GetBookList();
+                libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
+                Console.SetCursorPosition(18, 1); // 커서이동
+
+
+                // 책이름, 저자, 출판사 검색
+                name = validInput.EnterBookSearch(18, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
+                if (name == Constants.BACKMENU)
+                    return Constants.BACK;
+                author = validInput.EnterBookSearch(19, 2, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자 이상
+                if (author == Constants.BACKMENU)
+                    return Constants.BACK;
+                publisher = validInput.EnterBookSearch(18, 3, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // // 영어,한글  1글자 이상
+                if (publisher == Constants.BACKMENU)
+                    return Constants.BACK;
+
+
+                //빌릴책 입력
+                Console.Clear();
+                Console.SetCursorPosition(0, 0);
+                userModeUI.PrintReturnRentBook("빌릴", "입력하기");
+                bookIndex = libraryUI.ShowBookList(name, author, publisher, bookList); // 검색한 책 리스트 출력
+     
+                bookId = validInput.EnterDeleteBookID(35, 2,ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID,bookIndex,bookList); // 책Id 1~999수
 
                 if (bookId == Constants.INPUT_BACK)//ESC 누르면 뒤로가기
                     return Constants.BACK;
@@ -121,6 +141,8 @@ namespace LibraryMySQL {
 
                 return Constants.BACK;
             }
+
+            return Constants.BACK;
         }
         public int ReturnBook()// 도서반납
         {

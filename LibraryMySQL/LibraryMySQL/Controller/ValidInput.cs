@@ -497,7 +497,7 @@ namespace LibraryMySQL
             }
             return Constants.BOOK_NOT_EXIST;
         }
-
+      
         public string EnterDeleteUserID(int x, int y, string errorMessage, string regular)  // 삭제할 유저ID 입력
         {
             Console.CursorVisible = true;

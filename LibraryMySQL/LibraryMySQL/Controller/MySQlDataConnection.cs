@@ -204,8 +204,8 @@ namespace LibraryMySQL
 
             while (table.Read())
             {
-                Console.WriteLine(table["user_id"]);
                 
+        
                 if (userNumber == (int)table["user_number"])
                 {
 
