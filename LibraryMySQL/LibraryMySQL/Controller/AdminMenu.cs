@@ -82,8 +82,8 @@ namespace LibraryMySQL
                         ShowTotalRentUser();
                         Console.Clear();
                         break;
-                    case Constants.NAVER_SEARCHING:
-                      //  naver.SearchInNaver();
+                    case Constants.NAVER_SEARCHING: // 네이버 검색
+                        naver.SearchInNaver();
                         break;
                     case Constants.EXIT:
                         Console.Clear();

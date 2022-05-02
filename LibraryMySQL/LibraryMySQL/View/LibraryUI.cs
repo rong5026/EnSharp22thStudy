@@ -142,7 +142,7 @@ namespace LibraryMySQL
 			PrintAdminMenuList(selectNum, 4, "도서수정 ");
 			PrintAdminMenuList(selectNum, 5, "회원관리 ");
 			PrintAdminMenuList(selectNum, 6, "대여상황 ");
-			PrintAdminMenuList(selectNum, 6, "NAVER검색");
+			PrintAdminMenuList(selectNum, 7, "NAVER검색");
 
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");

@@ -28,6 +28,7 @@ namespace LibraryMySQL
         public const string DELETE_BOOK = "DELETE FROM book_data WHERE book_id = '{0}';"; // 책 삭제
         public const string UPDATE_BOOK = "UPDATE book_data SET book_name ='{0}' , book_author = '{1}' , book_publisher = '{2}',book_count = '{3}',book_price='{4}', book_date='{5}' WHERE book_id ='{6}'"; // 책정보 변경
 
+       
 
     }
 }

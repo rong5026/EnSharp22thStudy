@@ -11,7 +11,24 @@ namespace LibraryMySQL
 {
     internal class NaverSearching
     {
-        public List<BookVO> SearchInNaver(int displayCount, string content )
+
+        AdminModeUI adminModeUI = new AdminModeUI();
+        ValidInput validInput = new ValidInput();
+        private string name;
+        private string bookCount;
+        public void SearchInNaver()
+        {
+            Console.Clear();
+            adminModeUI.PrtinInputNaverBook(); //책 , 수량 입력
+
+            name = validInput.EnterBookSearch(16, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH);
+            bookCount = validInput.EnterInput(16, 2, ErrorMessage.BOOK_SEARCHING_COUNT, RegularExpression.BOOK_SEARCHING_COUNT);
+           
+            SearchNaverBook(Convert.ToInt32(bookCount), name);
+
+            Console.ReadLine();
+        }
+        public List<BookVO> SearchNaverBook(int displayCount, string content )
         {
             string display = Convert.ToString(displayCount);
             string query = content; // 검색할 문자열
@@ -41,15 +58,20 @@ namespace LibraryMySQL
             for (int index = 0; index < items.Count(); index++)
             {
                 BookVO book = new BookVO();
-                book.Name = items[index]["title"].ToString().Replace("<b>","");
+                book.Name = items[index]["title"].ToString().Replace("<b>"+ query + "</b>", "");
                 book.Author = items[index]["author"].ToString();
                 book.Publisher = items[index]["publisher"].ToString();
                 book.BookCount = 10;
                 book.Price = Convert.ToInt32(items[index]["price"].ToString());
                 book.Date = items[index]["pubdate"].ToString();
+
+                adminModeUI.PrintNaverBookList(items[index]["isbn"].ToString(), book.Name, book.Author, book.Price, book.Publisher, book.Date, items[index]["description"].ToString().Replace("<b>" + query + "</b>", ""));
                 bookVOs.Add(book);
             }
 
+
+            response.Close();
+            reader.Close();
             return bookVOs;
 
 

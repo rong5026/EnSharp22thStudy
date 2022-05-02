@@ -88,25 +88,39 @@ namespace LibraryMySQL
             Console.WriteLine(" 유저 주소 : {0}\n\n", userVO.Address);
 
         }
-        /*
-        public void PrintNaverBookList(string name, string author, int price, string date,) // 네이버에서 찾은책 줄력
+        public void PrtinInputNaverBook()
+        {
+            Console.WriteLine();
+            Console.WriteLine("   책 이름    :");
+            Console.WriteLine(" 찾을 책 수량 :\n");
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(" ESC : 뒤로가기");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(" ENTER : 입력하기");
+            Console.ResetColor();
+        }
+        
+        public void PrintNaverBookList(string isbn,string title, string author, int price, string publisher, string pubdate, string description) // 네이버에서 찾은책 줄력
         {
             Console.WriteLine();
 
-            for (int index = 0; index < list.Count; index++)
-            {
-                Console.WriteLine("===========================================================================================================================\n");
-                Console.WriteLine("책아이디 : {0} ", list[index].Id);
-                Console.WriteLine("책 제목  : {0} ", list[index].Name);
-                Console.WriteLine("작가     : {0} ", list[index].Author);
-                Console.WriteLine("출판사   : {0} ", list[index].Publisher);
-                Console.WriteLine("수량     : {0} ", list[index].BookCount);
-                Console.WriteLine("가격     : {0} ", list[index].Price);
-                Console.WriteLine("출시일   : {0} ", list[index].Date);
-                Console.WriteLine("")
-            }
+            Console.WriteLine("===========================================================================================================================\n");
+      
+            Console.WriteLine("책 ISBN  : {0} ", isbn);
+            Console.WriteLine("책 제목  : {0} ", title);
+            Console.WriteLine("작가     : {0} ", author);
+            Console.WriteLine("가격     : {0} ", price);
+            Console.WriteLine("출판사   : {0} ", publisher);
+            Console.WriteLine("출시일   : {0} ", pubdate);
+            Console.WriteLine("책 설명  : {0} ", description);
+            Console.WriteLine("");
+
+
+
 
         }
-        */
+        
     }
 }

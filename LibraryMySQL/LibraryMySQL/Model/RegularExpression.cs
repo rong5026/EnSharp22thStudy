@@ -18,7 +18,7 @@ namespace LibraryMySQL
 ㄱ-ㅎ가-힣0-9]{1,}\s{0,1}?-?[0-9]{0,})?$";
         public const string USER_NOT_EXIST = @"^[0-9a-zA-Z]{8,15}$";
         //책 검색
-        public const string BOOK_SEARCH = @"^([a-zA-Zㄱ-ㅎ가-힣0-9!?+-]{1,}\s{0,}){0,}[a-zA-Zㄱ-ㅎ가-힣0-9!?+-]{1,}$"; // 영어 한글 1개 이상
+        public const string BOOK_SEARCH = @"^([a-zA-Zㄱ-ㅎ가-힣0-9!?+-]{1,}\s{0,}){0,}[a-zA-Zㄱ-ㅎ가-힣0-9!?+-]{1,}$"; // 영어 한글 ?!+-1개 이상
         //관리자모드
 
         public const string BOOK_ID = @"^[1-9][0-9]?[0-9]?$"; // 1~ 999
@@ -28,5 +28,6 @@ namespace LibraryMySQL
         public const string BOOK_COUNT = @"^[1-9][0-9]?[0-9]?$"; // 1~999 
         public const string BOOK_PRICE = @"^[1-9][0-9]{0,6}?$";//   1 ~9999999개
         public const string BOOK_DATE = @"^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[1-2][0-9]|3[0-1])$"; 
+        public const string BOOK_SEARCHING_COUNT = @"^[1-9]?[0-9]{1}$|^100$"; // 1~100 사이의 수
     }
 }
