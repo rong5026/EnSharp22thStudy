@@ -54,7 +54,7 @@ namespace LibraryMySQL
             while (Constants.isPROGRAM_ON)
             {
 
-                menuNumber = mode.SelectUserManagerMenu("Admin", 6); //메뉴선택
+                menuNumber = mode.SelectUserManagerMenu("Admin", 7); //메뉴선택
 
                 switch (menuNumber)
                 {
@@ -82,8 +82,8 @@ namespace LibraryMySQL
                         ShowTotalRentUser();
                         Console.Clear();
                         break;
-                    case Constants.NAVER_SEARCHIN:
-                        naver.SearchInNaver()
+                    case Constants.NAVER_SEARCHING:
+                      //  naver.SearchInNaver();
                         break;
                     case Constants.EXIT:
                         Console.Clear();

@@ -42,7 +42,7 @@ namespace LibraryMySQL
         public const int BOOK_EDIT = 4;    
         public const int USER_CARE = 5;
         public const int TOTAL_USER_RENTBOOK = 6;
-
+        public const int NAVER_SEARCHING = 7;
         //Login
         public const int LOGIN_INDEX = 0;
 

@@ -111,7 +111,7 @@ namespace LibraryMySQL
 				selectFirst = "○";
 			Console.Write("{0}  {1}", selectFirst, menuName);
 			Console.ResetColor();
-			Console.WriteLine("                   │");
+			Console.WriteLine("                  │");
 		}
 
 		public void PrintEditMenuList(int selectNum, int menuNumber, string menuName)
@@ -136,12 +136,13 @@ namespace LibraryMySQL
 			Console.WriteLine("                                   ┌------------------------------------------------┐");
 			Console.WriteLine("                                   │                                                │");
 
-			PrintAdminMenuList(selectNum, 1, "도서찾기");
-			PrintAdminMenuList(selectNum, 2, "도서추가");
-			PrintAdminMenuList(selectNum, 3, "도서삭제");
-			PrintAdminMenuList(selectNum, 4, "도서수정");
-			PrintAdminMenuList(selectNum, 5, "회원관리");
-			PrintAdminMenuList(selectNum, 6, "대여상황");
+			PrintAdminMenuList(selectNum, 1, "도서찾기 ");
+			PrintAdminMenuList(selectNum, 2, "도서추가 ");
+			PrintAdminMenuList(selectNum, 3, "도서삭제 ");
+			PrintAdminMenuList(selectNum, 4, "도서수정 ");
+			PrintAdminMenuList(selectNum, 5, "회원관리 ");
+			PrintAdminMenuList(selectNum, 6, "대여상황 ");
+			PrintAdminMenuList(selectNum, 6, "NAVER검색");
 
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");

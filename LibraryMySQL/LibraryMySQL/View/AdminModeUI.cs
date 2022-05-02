@@ -88,8 +88,8 @@ namespace LibraryMySQL
             Console.WriteLine(" 유저 주소 : {0}\n\n", userVO.Address);
 
         }
-
-        public void PrintNaverBookList(List<BookVO> list)
+        /*
+        public void PrintNaverBookList(string name, string author, int price, string date,) // 네이버에서 찾은책 줄력
         {
             Console.WriteLine();
 
@@ -103,8 +103,10 @@ namespace LibraryMySQL
                 Console.WriteLine("수량     : {0} ", list[index].BookCount);
                 Console.WriteLine("가격     : {0} ", list[index].Price);
                 Console.WriteLine("출시일   : {0} ", list[index].Date);
+                Console.WriteLine("")
             }
 
         }
+        */
     }
 }
