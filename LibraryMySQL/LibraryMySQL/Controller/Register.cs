@@ -73,7 +73,7 @@ namespace LibraryMySQL
 
             mySQlData.InsertUserData(id, password, name, age, phoneNumber, address); // 회원Data에 추가
 
-
+            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", id, "회원가입"); // 로그기록
             Console.Clear();
             userModeUI.PrintSuccessRegister(); // 회원가입성공 UI
 

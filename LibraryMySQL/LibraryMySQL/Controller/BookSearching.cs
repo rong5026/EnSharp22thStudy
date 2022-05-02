@@ -102,6 +102,7 @@ namespace LibraryMySQL {
                             Console.CursorVisible = Constants.isNONVISIBLE;
                             userModeUI.PrintBorrowBookMessage("책 빌리기 성공!","다시 입력하기");
 
+                            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), LibraryStart.loginedUser, bookList[index].Name, "도서대여"); // 로그기록
                             if (EnterBack() == Constants.RESTART)
                                 return BorrowBook();         
                                
@@ -148,6 +149,7 @@ namespace LibraryMySQL {
                         //반납 리스트에 추가
                         mySQlData.InsertReturnBook(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), bookList[index]);
 
+                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), LibraryStart.loginedUser, bookList[index].Name, "도서반납"); // 로그저장
                         //반납 성공 메시지 출력
                         Console.SetCursorPosition(0, 0);
                         Console.CursorVisible = Constants.isNONVISIBLE;
@@ -196,6 +198,8 @@ namespace LibraryMySQL {
             mySQlData.CheckRentBook(list,LibraryStart.loginedUser); //로그인된 사람의 빌린책
 
             libraryUI.ShowBorrowedBookList(list,"빌린");
+
+            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저",LibraryStart.loginedUser, "대여도서확인"); // 로그저장
             while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(Constants.KEY_INPUT);
@@ -215,6 +219,8 @@ namespace LibraryMySQL {
             mySQlData.CheckReturnedBook(list); //로그인된 사람의 빌린책
 
             libraryUI.ShowBorrowedBookList(list,"반납");
+
+            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", LibraryStart.loginedUser, "반납도서확인"); // 로그저장
             while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(Constants.KEY_INPUT);

@@ -38,6 +38,7 @@ namespace LibraryMySQL
                 {
                     case Constants.BOOK_SEARCH: // 도서찾기                    
                         bookSearching.SearchBook();
+                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), LibraryStart.loginedUser, "도서찾기", "도서찾기");
                         Console.Clear();
                         break;
                     case Constants.BOOK_RENT: // 도서대여                   
@@ -100,6 +101,7 @@ namespace LibraryMySQL
                         }                      
                     }
                     mySQlData.DeleteUserID(LibraryStart.loginedUser);
+                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", LibraryStart.loginedUser, "회원탈퇴"); // 로그저장
                     return Constants.isDELETE_ID_SUCCESS;
                 }
                     
@@ -171,6 +173,7 @@ namespace LibraryMySQL
                         break;
                     case Constants.EDIT: // 변경하기 버튼                    
                         mySQlData.UpdateUserData(id, password, name, age, phonenumber, address);
+                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", LibraryStart.loginedUser, "회원정보변경"); // 로그저장
                         Console.Clear();
                         break;
                     case Constants.EXIT:

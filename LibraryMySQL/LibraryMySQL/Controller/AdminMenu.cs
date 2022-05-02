@@ -60,6 +60,7 @@ namespace LibraryMySQL
                 {
                     case Constants.BOOK_SEARCH: //도서찾기                  
                         bookSearching.SearchBook();
+                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "관리자", "도서찾기"); // 로그저장
                         Console.Clear();
                         break;
                     case Constants.BOOK_ADD: // 도서추가             
@@ -111,20 +112,20 @@ namespace LibraryMySQL
             while (Constants.isPROGRAM_ON)
             {
 
-                menuNumber = mode.SelectUserManagerMenu("Log", 4); //메뉴선택
+                menuNumber = mode.SelectUserManagerMenu("Log", Constants.LOG_MENU_COUNT); //메뉴선택
 
                 switch (menuNumber)
                 {
-                    case Constants.BOOK_SEARCH: //로그수정            
+                    case Constants.LOG_EDIT: //로그수정            
                         
                         break;
-                    case Constants.BOOK_ADD: // 로그파일저장             
+                    case Constants.LOG_SAVE_FILE: // 로그파일저장             
                       
                         break;
-                    case Constants.BOOK_DELETE: //로그파일삭제        
+                    case Constants.LOG_DELETE_FILE: //로그파일삭제        
                       
                         break;
-                    case Constants.BOOK_EDIT: // 로그초기화               
+                    case Constants.LOG_RESET: // 로그초기화               
                        
                         break;
                                
@@ -137,6 +138,11 @@ namespace LibraryMySQL
 
 
             }
+        }
+
+        private void EditLog()
+        {
+
         }
         private void AddBook() // 도서 추가
         {
@@ -185,7 +191,7 @@ namespace LibraryMySQL
                 bookVO.Date = date;
 
                 mySQlData.InsertBook(bookVO); // 데이터베이스에 책 추가
-
+                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", name, "도서추가"); // 로그저장
                 Console.Clear();
                 adminModeUI.PrintAdminMenuMessage("도서추가","다시추가");
                 adminModeUI.PrintAddBookSuccess();
@@ -240,6 +246,7 @@ namespace LibraryMySQL
                     break;
 
                 mySQlData.DeleteBook(Convert.ToInt32(bookId)); // 데이터베이스에서 책 삭제
+                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", bookId, "도서삭제"); // 로그저장
                 Console.SetCursorPosition(0, 0);
                 adminModeUI.PrintAdminMenuMessage("책 삭제 완료!","다시삭제");
                 Console.CursorVisible = Constants.isNONVISIBLE;
@@ -364,6 +371,7 @@ namespace LibraryMySQL
                         break;
                     case Constants.EDIT: // 변경하기 버튼                                         
                         mySQlData.UpdateBookDate(name, author, publisher, Convert.ToInt32(count), Convert.ToInt32(price), date, bookId);
+                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", name, "도서수정"); // 로그저장
                         Console.Clear();
                         break;
                     case Constants.EXIT:
@@ -394,7 +402,7 @@ namespace LibraryMySQL
 
             }
             Console.SetCursorPosition(0, 0);
-
+            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "관리자", "대여상황"); // 로그저장
             while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
@@ -413,7 +421,7 @@ namespace LibraryMySQL
                 Console.Clear();
                 List<UserVO> userList = new List<UserVO>();
                 mySQlData.SendUserList(userList); // 유저들 리스트 
-
+                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "관리자", "회원관리"); // 로그저장
                 adminModeUI.PrintAdminMenuMessage("삭제할 유저ID 입력 :", "확인");
 
                 for (int index = 0; index < userList.Count; index++)
@@ -429,6 +437,7 @@ namespace LibraryMySQL
 
                 Console.SetCursorPosition(0, 0);
                 adminModeUI.PrintAdminMenuMessage("ID삭제완료!", "다른 ID 지우기");
+                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", id, "회원삭제"); // 로그저장
                 while (Constants.isPROGRAM_ON)
                 {
                   

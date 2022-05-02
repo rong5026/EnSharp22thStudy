@@ -91,7 +91,30 @@ namespace LibraryMySQL
 
             connection.Close();
         }
+        public void InsertLogData(string time, string user, string information, string action) // 로그정보 삽입
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
 
+            string insertQuery = string.Format(QueryData.INSERT_LOG_DATA, time, user, information, action);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+        public void DeleteLogData(int logId) // 로그정보 삭제 
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format(QueryData.DELETE_LOG_DATA, logId);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
         public void CheckLoginedUser(UserVO userVO, string loginedUser) // 현재 로그인중인 유저정보 리턴
         {
 

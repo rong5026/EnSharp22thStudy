@@ -40,13 +40,14 @@ namespace LibraryMySQL
             //password 입력
             if (passWord == Constants.INPUT_BACK)
                 return Constants.BACK;
-
+           
             if (type == "User")
             {
                 if (CheckUser(id, passWord) == Constants.LOGIN_SUCCESS) // 유저 로그인
                 {
                     Console.Clear();               
                     LibraryStart.loginedUser = id;   // 현재 로그인된 유저id
+                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", id, "로그인");
                     return Constants.USER_MODE;            
                 }
                 else // 로그인 실패
@@ -57,6 +58,7 @@ namespace LibraryMySQL
                 if(CheckAdmin(id,passWord) == Constants.LOGIN_SUCCESS) // 관리자 로그인
                 {
                     Console.Clear();
+                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "관리자", "로그인");
                     return Constants.ADMIN_MODE;
                 }
                 return LoginUser(type);

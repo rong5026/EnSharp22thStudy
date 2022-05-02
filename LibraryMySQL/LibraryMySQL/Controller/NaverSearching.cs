@@ -14,6 +14,7 @@ namespace LibraryMySQL
 
         AdminModeUI adminModeUI = new AdminModeUI();
         ValidInput validInput = new ValidInput();
+        MySQlData mySQlData = new MySQlData();
         ConsoleKeyInfo keyInput;
         private string name;
         private string bookCount;
@@ -26,7 +27,11 @@ namespace LibraryMySQL
                 adminModeUI.PrtinInputNaverBook("입력하기"); //책 , 수량 입력
 
                 name = validInput.EnterBookSearch(16, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 책이름 입력
+                if (name == Constants.BACKMENU)
+                    return;
                 bookCount = validInput.EnterInput(16, 2, ErrorMessage.BOOK_SEARCHING_COUNT, RegularExpression.BOOK_SEARCHING_COUNT); // 수량입력
+                if (bookCount == Constants.INPUT_BACK)
+                    return;
 
                 Console.SetCursorPosition(0, 5);
                 SearchNaverBook(Convert.ToInt32(bookCount), name);
@@ -46,8 +51,8 @@ namespace LibraryMySQL
         }
         public List<BookVO> SearchNaverBook(int displayCount, string content )
         {
-           
 
+            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", content, "네이버 검색"); // 로그저장
             string display = Convert.ToString(displayCount); // 검색할 책 수량
             string query = content; // 검색할 문자열
             string url = "https://openapi.naver.com/v1/search/book?query=" + query + "&display=" + display; // 결과가 JSON 포맷
