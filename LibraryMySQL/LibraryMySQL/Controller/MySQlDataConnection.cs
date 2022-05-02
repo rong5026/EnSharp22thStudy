@@ -160,7 +160,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format(QueryData.DELETE_USER_NUMBER, Convert.ToInt32(userNumber));
+            string insertQuery = string.Format(QueryData.DELETE_USER_NUMBER, userNumber);
 
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
@@ -192,8 +192,9 @@ namespace LibraryMySQL
             connection.Close();
             return Constants.isRENTBOOK_NOT_EXIST;
         }
-        public string GetUserIdFromNumber(string userIuserNumber) // number에 해당하는 유저ID 리턴
+        public string GetUserIdFromNumber(int userNumber) // number에 해당하는 유저ID 리턴
         {
+            string userId;
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.SELECT_USERLIST);
             connection.Open();
@@ -203,14 +204,19 @@ namespace LibraryMySQL
 
             while (table.Read())
             {
-
-                if (userIuserNumber == (string)table["user_number"])
+                Console.WriteLine(table["user_id"]);
+                
+                if (userNumber == (int)table["user_number"])
                 {
+
+                    userId = (string)table["user_id"];
                     table.Close();
                     connection.Close();
-                    return (string)table["user_id"];
+                    return userId;
                 }
             }
+
+          
             table.Close();
             connection.Close();
             return Constants.INPUT_EMPTY;

@@ -576,7 +576,7 @@ namespace LibraryMySQL
                 }
                 Console.SetCursorPosition(0, 0);
 
-                id = validInput.EnterDeleteUserID(82, 3, ErrorMessage.USER_NOT_EXIST, RegularExpression.USER_NOT_EXIST);  // 삭제할 유저 Number입력
+                id = validInput.EnterDeleteUserID(82, 3, ErrorMessage.USER_NOT_EXIST, RegularExpression.USER_NUMBER_NOT_EXIST);  // 삭제할 유저 Number입력
                 if (id == Constants.INPUT_BACK)
                     break;
 

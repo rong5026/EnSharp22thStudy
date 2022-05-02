@@ -548,7 +548,7 @@ namespace LibraryMySQL
                 userModeUI.PrintErrorMessage(x, y, error);
                 return EnterDeleteUserID(x, y, errorMessage, regular);
             }
-            if(mySQlData.LoginedUserRentBookCount( mySQlData.GetUserIdFromNumber( input)))// 대출한책이 있을 
+            if(mySQlData.LoginedUserRentBookCount( mySQlData.GetUserIdFromNumber( Convert.ToInt32(input))))// 대출한책이 있을 
             {
                 DeleteInput(124 - x, 124, y); // 오류메시지 삭제
                 userModeUI.PrintErrorMessage(x, y, ErrorMessage.USER_EXIST_RENT_BOOK);
@@ -563,11 +563,8 @@ namespace LibraryMySQL
             List<UserVO> userList=new List<UserVO>();
             mySQlData.GetUserList(userList); // 유저 리스트 
 
-            Console.WriteLine(userList.Count);
-            Console.ReadLine    ();
             for (int index = 0; index < userList.Count; index++)
-            {
-                Console.WriteLine(userList[index].Number);
+            {             
 
                 if (userList[index].Number == Convert.ToInt32( userNumber))
                     return Constants.USER_EXIST;
