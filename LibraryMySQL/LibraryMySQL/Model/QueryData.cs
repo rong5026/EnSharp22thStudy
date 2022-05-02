@@ -26,10 +26,10 @@ namespace LibraryMySQL
         public const string RETURN_BOOK = "SELECT * FROM user_returned_book"; // 반납책 정보
         public const string SELECT_BOOKLIST = "SELECT * FROM book_data"; // 도서관 책 리스트
         public const string UPDATE_BOOK_COUNT = "UPDATE book_data SET book_count = {0} WHERE book_id = {1}"; // 책 수량 변경
-        public const string INSERT_RENT_BOOK = "INSERT INTO user_rented_book (user_id, book_id, book_name, book_author, book_publisher,book_count,book_price, book_date, book_rent_time) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}')"; // 빌린책 저장
+        public const string INSERT_RENT_BOOK = "INSERT INTO user_rented_book (user_id, book_id, book_name, book_author, book_publisher,book_count,book_price, book_date, book_rent_time,book_isbn,book_information) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')"; // 빌린책 저장
         public const string DELETE_RENT_BOOK = "DELETE FROM user_rented_book WHERE user_id = '{0}' AND book_id = '{1}';"; // 빌린책  삭제
-        public const string INSERT_RETURN_BOOK = "INSERT INTO user_returned_book (user_id, book_id, book_name, book_author, book_publisher,book_count,book_price, book_date, book_return_time) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}')"; // 반납 책 삽입
-        public const string INSERT_BOOK = "INSERT INTO book_data ( book_name, book_author, book_publisher, book_count, book_price, book_date) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')"; // 책 삽입
+        public const string INSERT_RETURN_BOOK = "INSERT INTO user_returned_book (user_id, book_id, book_name, book_author, book_publisher,book_count,book_price, book_date, book_return_time,book_isbn,book_information) VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')"; // 반납 책 삽입
+        public const string INSERT_BOOK = "INSERT INTO book_data ( book_name, book_author, book_publisher, book_count, book_price, book_date,book_isbn,book_information) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')"; // 책 삽입
 
         public const string DELETE_BOOK = "DELETE FROM book_data WHERE book_id = '{0}';"; // 책 삭제
         public const string UPDATE_BOOK = "UPDATE book_data SET book_name ='{0}' , book_author = '{1}' , book_publisher = '{2}',book_count = '{3}',book_price='{4}', book_date='{5}' WHERE book_id ='{6}'"; // 책정보 변경

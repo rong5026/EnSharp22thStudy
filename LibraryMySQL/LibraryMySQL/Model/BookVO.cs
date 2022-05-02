@@ -17,6 +17,8 @@ namespace LibraryMySQL
         private int price;
         private string date;
         private string time;
+        private string isbn;
+        private string information;
     
         public BookVO()
         {
@@ -43,6 +45,16 @@ namespace LibraryMySQL
             this.price = price;
             this.date = date;
             this.time = time;
+        }
+        public string Isbn
+        {
+            get { return isbn; }
+            set { isbn = value; }
+        }
+        public string Information
+        {
+            get { return information; }
+            set { information = value; }
         }
         public int Id
         {

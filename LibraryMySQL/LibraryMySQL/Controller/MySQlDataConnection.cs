@@ -241,6 +241,7 @@ namespace LibraryMySQL
             {
                 BookVO book = new BookVO();
                
+
                 book.Id = (int)table["book_id"];
                 book.Name = (string)table["book_name"];
                 book.Author = (string)table["book_author"];
@@ -248,6 +249,8 @@ namespace LibraryMySQL
                 book.BookCount = (int)table["book_count"];
                 book.Price = (int)table["book_price"];
                 book.Date = (string)table["book_date"];
+                book.Isbn = (string)table["book_isbn"];
+                book.Information = (string)table["book_information"];
                 list.Add(book);               
             }
             table.Close();
@@ -322,7 +325,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format(QueryData.INSERT_RENT_BOOK, LibraryStart.loginedUser,bookVO.Id,bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.BookCount,bookVO.Price,bookVO.Date, rentTime);
+            string insertQuery = string.Format(QueryData.INSERT_RENT_BOOK, LibraryStart.loginedUser,bookVO.Id,bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.BookCount,bookVO.Price,bookVO.Date, rentTime,bookVO.Isbn,bookVO.Information);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
@@ -353,6 +356,8 @@ namespace LibraryMySQL
                     book.Price = (int)table["book_price"];
                     book.Date = (string)table["book_date"];
                     book.Time = (string)table["book_rent_time"];
+                    book.Isbn = (string)table["book_isbn"];
+                    book.Information = (string)table["book_information"];
                     list.Add(book);
                 }
 
@@ -384,6 +389,8 @@ namespace LibraryMySQL
                     book.Price = (int)table["book_price"];
                     book.Date = (string)table["book_date"];
                     book.Time = (string)table["book_return_time"];
+                    book.Isbn = (string)table["book_isbn"];
+                    book.Information = (string)table["book_information"];
                     list.Add(book);
                 }
 
@@ -413,7 +420,7 @@ namespace LibraryMySQL
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
 
-            string insertQuery = string.Format(QueryData.INSERT_RETURN_BOOK, LibraryStart.loginedUser, bookVO.Id, bookVO.Name, bookVO.Author, bookVO.Publisher, bookVO.BookCount, bookVO.Price, bookVO.Date, returnTime);
+            string insertQuery = string.Format(QueryData.INSERT_RETURN_BOOK, LibraryStart.loginedUser, bookVO.Id, bookVO.Name, bookVO.Author, bookVO.Publisher, bookVO.BookCount, bookVO.Price, bookVO.Date, returnTime,bookVO.Isbn,bookVO.Information);
 
             MySqlCommand command = new MySqlCommand(insertQuery, connection);
             command.ExecuteNonQuery();
@@ -470,7 +477,8 @@ namespace LibraryMySQL
                     bookVO.BookCount = (int)table["book_count"];
                     bookVO.Price = (int)table["book_price"];
                     bookVO.Date = (string)table["book_date"];
-                    
+                    bookVO.Isbn = (string)table["book_isbn"];
+                    bookVO.Information = (string)table["book_information"];
                     table.Close();
                     connection.Close();
                     return;
