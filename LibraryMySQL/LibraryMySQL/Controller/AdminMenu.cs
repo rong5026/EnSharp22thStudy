@@ -54,7 +54,7 @@ namespace LibraryMySQL
             while (Constants.isPROGRAM_ON)
             {
 
-                menuNumber = mode.SelectUserManagerMenu("Admin", 7); //메뉴선택
+                menuNumber = mode.SelectUserManagerMenu("Admin", 8); //메뉴선택
 
                 switch (menuNumber)
                 {
@@ -84,7 +84,10 @@ namespace LibraryMySQL
                         break;
                     case Constants.NAVER_SEARCHING: // 네이버 검색
                         naver.SearchInNaver();
+                        Console.Clear();
                         break;
+                    case Constants.LOGIN_FAIL:
+
                     case Constants.EXIT:
                         Console.Clear();
                         return;

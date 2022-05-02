@@ -88,7 +88,7 @@ namespace LibraryMySQL
             Console.WriteLine(" 유저 주소 : {0}\n\n", userVO.Address);
 
         }
-        public void PrtinInputNaverBook()
+        public void PrtinInputNaverBook(string returnMessage)
         {
             Console.WriteLine();
             Console.WriteLine("   책 이름    :");
@@ -98,7 +98,7 @@ namespace LibraryMySQL
             Console.WriteLine(" ESC : 뒤로가기");
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(" ENTER : 입력하기");
+            Console.WriteLine(" ENTER : {0}", returnMessage);
             Console.ResetColor();
         }
         
