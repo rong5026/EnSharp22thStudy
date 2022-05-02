@@ -31,7 +31,7 @@ namespace LibraryMySQL {
             {
                 Console.Clear();
                 libraryUI.PrintSearchBook("Start");
-                bookList = mySQlData.CheckBookList();
+                bookList = mySQlData.GetBookList();
                 libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
                 Console.SetCursorPosition(18, 1); // 커서이동
 
@@ -75,7 +75,7 @@ namespace LibraryMySQL {
           
             Console.SetCursorPosition(0, 0);
             userModeUI.PrintReturnRentBook("빌릴","입력하기");
-            bookList = mySQlData.CheckBookList(); // 저장된 책 list받아옴
+            bookList = mySQlData.GetBookList(); // 저장된 책 list받아옴
             libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
 
 
@@ -128,7 +128,7 @@ namespace LibraryMySQL {
 
             Console.Clear();
             userModeUI.PrintReturnRentBook("반납","입력하기");
-            mySQlData.CheckRentBook(bookList,LibraryStart.loginedUser);
+            mySQlData.GetRentBook(bookList,LibraryStart.loginedUser);
             libraryUI.ShowBorrowedBookList(bookList,"반납책");
 
             while (Constants.isPROGRAM_ON)
@@ -145,7 +145,7 @@ namespace LibraryMySQL {
                         // 빌린책 목록에서 삭제
                         mySQlData.DeleteRentBook(Convert.ToInt16 (bookId));
                         // 도서관 책 수량 1개 증가
-                        mySQlData.UpdateBookCount(mySQlData.CheckBookCount(Convert.ToInt16(bookId))+1 , bookList[index].Id);
+                        mySQlData.UpdateBookCount(mySQlData.GetBookCount(Convert.ToInt16(bookId))+1 , bookList[index].Id);
                         //반납 리스트에 추가
                         mySQlData.InsertReturnBook(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), bookList[index]);
 
@@ -195,7 +195,7 @@ namespace LibraryMySQL {
 
             List<BookVO> list = new List<BookVO>();
 
-            mySQlData.CheckRentBook(list,LibraryStart.loginedUser); //로그인된 사람의 빌린책
+            mySQlData.GetRentBook(list,LibraryStart.loginedUser); //로그인된 사람의 빌린책
 
             libraryUI.ShowBorrowedBookList(list,"빌린");
 
@@ -216,7 +216,7 @@ namespace LibraryMySQL {
 
             List<BookVO> list = new List<BookVO>();
 
-            mySQlData.CheckReturnedBook(list); //로그인된 사람의 빌린책
+            mySQlData.GetReturnedBook(list); //로그인된 사람의 빌린책
 
             libraryUI.ShowBorrowedBookList(list,"반납");
 

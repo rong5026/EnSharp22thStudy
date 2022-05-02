@@ -196,7 +196,7 @@ namespace LibraryMySQL
         private int CheckUserId(string id) // 회원가입시 이미 가입한 회원과 ID가 겹치는지 확인
         {
             List<UserVO> userList = new List<UserVO>();
-            mySQlData.SendUserList(userList);
+            mySQlData.GetUserList(userList);
 
             for (int index = 0; index < userList.Count; index++)
             {
@@ -335,7 +335,7 @@ namespace LibraryMySQL
         private int CheckBookName(string bookName) // 책 이미 등록되어있는지 확인
         {
             List<BookVO> bookList;
-            bookList = mySQlData.CheckBookList();
+            bookList = mySQlData.GetBookList();
 
             for (int index = 0; index < bookList.Count; index++)
             {
@@ -459,7 +459,7 @@ namespace LibraryMySQL
                 userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_NOT_EXIST);
                 return EnterDeleteBookID(x, y, errorMessage, regular, bookInedex, bookList);
             }
-            else if(CheckBookListID(input, bookInedex, bookList )==Constants.BOOK_NOT_EXIST){
+            else if(GetBookListID(input, bookInedex, bookList )==Constants.BOOK_NOT_EXIST){
                 DeleteInput(124 - x, 124, y);
                 userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_NOT_EXIST_IN_LIST);
                 return EnterDeleteBookID(x, y, errorMessage, regular, bookInedex, bookList);
@@ -472,7 +472,7 @@ namespace LibraryMySQL
         private int CheckBookId(string bookId) // 책 이미 등록되어있는지 확인
         {
             List<BookVO> bookList;
-            bookList = mySQlData.CheckBookList();
+            bookList = mySQlData.GetBookList();
 
             for (int index = 0; index < bookList.Count; index++)
             {
@@ -482,7 +482,7 @@ namespace LibraryMySQL
             return Constants.BOOK_NOT_EXIST;
 
         }
-        private int CheckBookListID(string bookId,List<int> bookInedex, List<BookVO> bookList) // 검색한 책리스트에 있는 책인지
+        private int GetBookListID(string bookId,List<int> bookInedex, List<BookVO> bookList) // 검색한 책리스트에 있는 책인지
         {
 
           
@@ -561,7 +561,7 @@ namespace LibraryMySQL
         private int CheckUserID(string userId) // 존재하는 유저ID인지 확인
         {
             List<UserVO> userList=new List<UserVO>();
-            mySQlData.SendUserList(userList); // 유저 리스트 
+            mySQlData.GetUserList(userList); // 유저 리스트 
 
             for (int index = 0; index < userList.Count; index++)
             {
@@ -634,7 +634,7 @@ namespace LibraryMySQL
 
         private int CheckLogID(int logId) // 존재하는 로그ID인지 확인
         {
-            List<LogVO> logList = mySQlData.CheckLogList();
+            List<LogVO> logList = mySQlData.GetLogList();
          
             for (int index = 0; index < logList.Count; index++)
             {

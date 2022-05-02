@@ -72,7 +72,7 @@ namespace LibraryMySQL
         {
             List<UserVO> userList = new List<UserVO>();
 
-            mySQlData.SendUserList(userList); // 회원정보를 다가져옴
+            mySQlData.GetUserList(userList); // 회원정보를 다가져옴
 
             for (int index = 0; index < userList.Count; index++)
             {
@@ -85,7 +85,7 @@ namespace LibraryMySQL
         {
             List<UserVO> adminList = new List<UserVO>();
 
-            mySQlData.SendAdminList(adminList); // 회원정보를 다가져옴
+            mySQlData.GetAdminList(adminList); // 회원정보를 다가져옴
 
             for (int index = 0; index < adminList.Count; index++)
             {

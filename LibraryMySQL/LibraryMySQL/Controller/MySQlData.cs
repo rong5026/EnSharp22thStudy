@@ -26,7 +26,7 @@ namespace LibraryMySQL
 
             return connection;
         }
-        public void SendUserList(List<UserVO> list) // 회원정보 보내줌    send->get
+        public void GetUserList(List<UserVO> list) // 회원정보 보내줌    send->get
         {
          
             MySqlConnection connection = ConnectMySQL();
@@ -55,7 +55,7 @@ namespace LibraryMySQL
             connection.Close();
        
         }
-        public void SendAdminList(List<UserVO> list)// 관리자 정보 보내줌
+        public void GetAdminList(List<UserVO> list)// 관리자 정보 보내줌
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.SELECT_ADMINLIST);
@@ -118,7 +118,7 @@ namespace LibraryMySQL
             connection.Close();
 
         }
-        public List<LogVO> CheckLogList() // 전체로그 리스트 리턴
+        public List<LogVO> GetLogList() // 전체로그 리스트 리턴
         {
             List<LogVO> list = new List<LogVO>();
             MySqlConnection connection = ConnectMySQL();
@@ -165,7 +165,7 @@ namespace LibraryMySQL
 
 
 
-        public void CheckLoginedUser(UserVO userVO, string loginedUser) // 현재 로그인중인 유저정보 리턴
+        public void GetLoginedUserLogList(UserVO userVO, string loginedUser) // 현재 로그인중인 유저정보 리턴
         {
 
             MySqlConnection connection = ConnectMySQL();
@@ -224,7 +224,7 @@ namespace LibraryMySQL
             connection.Close();
         }
         
-        public bool LoginedUserRentBookCount(string userId)
+        public bool LoginedUserRentBookCount(string userId) // 로그인한 유저의 빌린책 수
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.RENT_BOOK);
@@ -251,7 +251,7 @@ namespace LibraryMySQL
             return Constants.isRENTBOOK_NOT_EXIST;
         }
       
-        public List<BookVO> CheckBookList() // 책리스트를 리턴
+        public List<BookVO> GetBookList() // 책리스트를 리턴
         {
            
             List<BookVO> list = new List<BookVO>();
@@ -323,7 +323,7 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public int CheckBookCount(int bookId) // 책의 수량을 리턴
+        public int GetBookCount(int bookId) // 책의 수량을 리턴
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.SELECT_BOOKLIST);
@@ -355,7 +355,7 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public void CheckRentBook(List<BookVO> list,string userId) // 해당아이디의 빌린책 리스트 리턴
+        public void GetRentBook(List<BookVO> list,string userId) // 해당아이디의 빌린책 리스트 리턴
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.RENT_BOOK);
@@ -387,7 +387,7 @@ namespace LibraryMySQL
             connection.Close();
 
         }
-        public void CheckReturnedBook(List<BookVO> list) // 해당아이디의 반납책 리스트 리턴
+        public void GetReturnedBook(List<BookVO> list) // 해당아이디의 반납책 리스트 리턴
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.RETURN_BOOK);
@@ -472,7 +472,7 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public void CheckSelectedBook(BookVO bookVO, int bookId) // 수정하고자 하는 책 정보 리턴
+        public void GetSelectedBook(BookVO bookVO, int bookId) // 수정하고자 하는 책 정보 리턴
         {
 
             MySqlConnection connection = ConnectMySQL();

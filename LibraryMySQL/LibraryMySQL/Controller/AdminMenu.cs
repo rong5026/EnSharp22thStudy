@@ -196,7 +196,7 @@ namespace LibraryMySQL
                     return;
                 else if (keyInput.Key == ConsoleKey.Enter)
                 {
-                    list = mySQlData.CheckLogList(); //로그데이터 가져옴
+                    list = mySQlData.GetLogList(); //로그데이터 가져옴
 
                     for(int index = 0; index < list.Count; index++)
                     {
@@ -226,7 +226,7 @@ namespace LibraryMySQL
                 Console.Clear();
 
                 adminModeUI.PrintAdminMenuMessage("삭제하려는 로그ID :", "확인하기");
-                List<LogVO> list = mySQlData.CheckLogList(); // 전체 로그 가져옴
+                List<LogVO> list = mySQlData.GetLogList(); // 전체 로그 가져옴
 
              
                 adminModeUI.PrintLogData(list);// 전체로그 출력
@@ -363,7 +363,7 @@ namespace LibraryMySQL
             {
                 Console.Clear();
                 libraryUI.PrintSearchBook("Start");
-                bookList = mySQlData.CheckBookList();
+                bookList = mySQlData.GetBookList();
                 libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
                 Console.SetCursorPosition(18, 1); // 커서이동
 
@@ -417,7 +417,7 @@ namespace LibraryMySQL
             {
                 Console.Clear();
                 libraryUI.PrintSearchBook("Start");
-                bookList = mySQlData.CheckBookList();
+                bookList = mySQlData.GetBookList();
                 libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
                 Console.SetCursorPosition(18, 1); // 커서이동
 
@@ -460,7 +460,7 @@ namespace LibraryMySQL
 
             Console.Clear();
 
-            mySQlData.CheckSelectedBook(bookVO, bookId); // 수정하고자하는 책 정보 가져옮
+            mySQlData.GetSelectedBook(bookVO, bookId); // 수정하고자하는 책 정보 가져옮
             name = bookVO.Name;
             author = bookVO.Author;
             publisher = bookVO.Publisher;
@@ -472,7 +472,7 @@ namespace LibraryMySQL
             {
                 Console.SetCursorPosition(0, 0);
                 adminModeUI.PrintAdminMenuMessage("책 수정", "확인");
-                mySQlData.CheckSelectedBook(bookVO, bookId); // 수정하고자하는 책 정보 가져옮
+                mySQlData.GetSelectedBook(bookVO, bookId); // 수정하고자하는 책 정보 가져옮
                 adminModeUI.PrintRegisteredBook(bookVO); // 기존 책정보 프린트
 
                 
@@ -533,13 +533,13 @@ namespace LibraryMySQL
             List<BookVO> bookList = new List<BookVO>();
 
             Console.Clear();
-            mySQlData.SendUserList(userList); // 유저들 리스트 
+            mySQlData.GetUserList(userList); // 유저들 리스트 
             adminModeUI.PrintAdminMenuMessage("전체회원 대여상황", "확인");
 
             for(int index = 0; index < userList.Count; index++)
             {
                 adminModeUI.PrintUserName(userList[index].Id); // 유저ID 출력
-                mySQlData.CheckRentBook(bookList, userList[index].Id);  // 유저가 빌린 책 리스트 
+                mySQlData.GetRentBook(bookList, userList[index].Id);  // 유저가 빌린 책 리스트 
                 libraryUI.ShowBorrowedBookList(bookList, "빌린");
 
             }
@@ -562,7 +562,7 @@ namespace LibraryMySQL
             {
                 Console.Clear();
                 List<UserVO> userList = new List<UserVO>();
-                mySQlData.SendUserList(userList); // 유저들 리스트 
+                mySQlData.GetUserList(userList); // 유저들 리스트 
                 mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "관리자", "회원관리"); // 로그저장
                 adminModeUI.PrintAdminMenuMessage("삭제할 유저ID 입력 :", "확인");
 

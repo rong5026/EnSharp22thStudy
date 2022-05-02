@@ -121,7 +121,7 @@ namespace LibraryMySQL
            
             Console.Clear();
 
-            mySQlData.CheckLoginedUser(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
+            mySQlData.GetLoginedUserLogList(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
             id = userVO.Id;
             password = userVO.Password;
             name = userVO.Name;
@@ -133,7 +133,7 @@ namespace LibraryMySQL
             {
                 Console.SetCursorPosition(0, 0);    
                 userModeUI.PrintUserDataEdit();  //유저 정보 변경 UI
-                mySQlData.CheckLoginedUser(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
+                mySQlData.GetLoginedUserLogList(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
                 userModeUI.PrintLoginedUserData(userVO); // 기존 회원정보 프린트
 
                 
