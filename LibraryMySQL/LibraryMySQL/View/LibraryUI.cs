@@ -151,6 +151,26 @@ namespace LibraryMySQL
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
 
 		}
+		public void PrintLogMenuUI(int selectNum)
+		{
+
+			PrintMainUI();  // main 이미지 출력
+
+			Console.WriteLine("                                   ┌------------------------------------------------┐");
+			Console.WriteLine("                                   │                                                │");
+
+			PrintAdminMenuList(selectNum, 1, "로그수정 ");
+			PrintAdminMenuList(selectNum, 2, "로그저장 ");
+			PrintAdminMenuList(selectNum, 3, "로그삭제 ");
+			PrintAdminMenuList(selectNum, 4, "로그리셋 ");
+			
+
+			Console.WriteLine("                                   │                                                │");
+			Console.WriteLine("                                   └------------------------------------------------┘");
+
+			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");
+
+		}
 
 		public void PrintAdminBookEditUI(int selectNum)
 		{

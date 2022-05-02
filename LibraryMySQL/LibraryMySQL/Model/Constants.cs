@@ -97,5 +97,10 @@ namespace LibraryMySQL
         public const bool KEY_INPUT = true;
         public const bool NON_INPUT = false;
 
+        public const int LOG_EDIT = 1;
+        public const int LOG_SAVE_FILE = 2;
+        public const int LOG_DELETE_FILE = 3;
+        public const int LOG_RESET = 4;
+
     }
 }

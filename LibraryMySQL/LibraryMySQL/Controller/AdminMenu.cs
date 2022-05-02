@@ -105,17 +105,18 @@ namespace LibraryMySQL
         private void ControlLog()
         {
             int menuNumber;
-
+            Console.Clear();
             libraryUI.PrintMainUI();
+            
             while (Constants.isPROGRAM_ON)
             {
 
-                menuNumber = mode.SelectUserManagerMenu("Admin", 8); //메뉴선택
+                menuNumber = mode.SelectUserManagerMenu("Log", 4); //메뉴선택
 
                 switch (menuNumber)
                 {
                     case Constants.BOOK_SEARCH: //로그수정            
-                    
+                        
                         break;
                     case Constants.BOOK_ADD: // 로그파일저장             
                       
