@@ -33,7 +33,7 @@ namespace LibraryMySQL
             error = errorMessage;   //예외조건 성립안할때 출력
             Console.SetCursorPosition(x, y);
 
-            input = Constants.INPUT_EMPTY;
+            input = Constants.INPUT_EMPTY; //공백인 상태로
 
             while (Constants.isPROGRAM_ON)
             {
@@ -63,10 +63,7 @@ namespace LibraryMySQL
 
                     }
                     else if (keyInput.Key == ConsoleKey.Enter)
-                    {
-
                         break;
-                    }
                 }
             }
 

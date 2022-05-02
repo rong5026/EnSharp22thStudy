@@ -31,6 +31,9 @@ namespace LibraryMySQL
         public const string BOOK_DATE = @"^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[1-2][0-9]|3[0-1])$"; 
         public const string BOOK_SEARCHING_COUNT = @"^[1-9]?[0-9]{1}$|^100$"; // 1~100 사이의 수
 
+        public const string BOOK_ISBN = @"^[0-9]{9}[a-zA-Z]{1}\s[0-9]{13}$";  //정수9 + 영어1 + 공백 + 정수13
+        public const string BOOK_INFORMATION = @"^[a-zA-Z0-9ㄱ-ㅎ가-힣\s@#$%^&~,.<>*!?+-]{1,}$";               //"최소1개의 문자(공백포함)";
+
         public const string LOG_ID = @"^[1-9][0-9]{0,4}?$"; // 1 ~ 99999번
     }
 }

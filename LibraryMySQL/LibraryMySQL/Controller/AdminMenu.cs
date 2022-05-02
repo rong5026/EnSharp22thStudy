@@ -296,6 +296,8 @@ namespace LibraryMySQL
             string count;
             string price;
             string date;
+            string isbn;
+            string information;
             BookVO bookVO;
 
             
@@ -325,6 +327,13 @@ namespace LibraryMySQL
                 if (date == Constants.INPUT_BACK)
                     break;
 
+                isbn = validInput.EnterInput(44, 21, ErrorMessage.BOOK_ISBN, RegularExpression.BOOK_ISBN); // 책 isbn
+                if (isbn == Constants.INPUT_BACK)
+                    break;
+                information = validInput.EnterInput(44, 22, ErrorMessage.BOOK_INFORMATION, RegularExpression.BOOK_INFORMATION); // 책 정보
+                if (information == Constants.INPUT_BACK)
+                    break;
+
                 bookVO =new BookVO();
                 bookVO.Name = name;  // 입력값을 넣어야해서 생성자에서 초기화를 못했어요
                 bookVO.Author = author;
@@ -332,6 +341,9 @@ namespace LibraryMySQL
                 bookVO.BookCount = Convert.ToInt16( count);
                 bookVO.Price = Convert.ToInt32( price );
                 bookVO.Date = date;
+                bookVO.Isbn = isbn;
+                bookVO.Information = information;
+
 
                 mySQlData.InsertBook(bookVO); // 데이터베이스에 책 추가
                 mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", name, "도서추가"); // 로그저장

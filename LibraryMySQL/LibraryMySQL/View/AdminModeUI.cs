@@ -29,7 +29,9 @@ namespace LibraryMySQL
             Console.WriteLine("                                출판사    : ");
             Console.WriteLine("                                수량      : ");
             Console.WriteLine("                                가격      : ");
-            Console.WriteLine("                                출시일    : \n");
+            Console.WriteLine("                                출시일    : ");
+            Console.WriteLine("                                ISBN      : ");
+            Console.WriteLine("                                정보      : \n");
             Console.WriteLine("                                ------------------------------------------------------------\n");
 
             Console.ForegroundColor = ConsoleColor.Green;
@@ -39,7 +41,9 @@ namespace LibraryMySQL
             Console.WriteLine("                                            출판사  - 영어, 한글, 숫자 중 1개 이상");
             Console.WriteLine("                                            수량    - 1~999 사이의 자연수");
             Console.WriteLine("                                            가격    - 1~9999999 사이의 자연수");
-            Console.WriteLine("                                            출시일  - 19xx or 20xx-xx-xx \n");
+            Console.WriteLine("                                            출시일  - 19xx or 20xx-xx-xx ");
+            Console.WriteLine("                                            ISBN    - 정수9개 + 영어1개 + 공백 + 정수13개");
+            Console.WriteLine("                                            정보    - 최소1개의 문자(공백포함)\n");
             Console.ResetColor();
             Console.WriteLine("                                ------------------------------------------------------------\n");
           

@@ -393,13 +393,13 @@ namespace LibraryMySQL
 			{
 				Console.WriteLine();
 				Console.WriteLine("===========================================================================================================================\n");
-				Console.WriteLine("책아이디 : {0} ", list[validIndex[Index]].Id);
-				Console.WriteLine("책 제목  : {0} ", list[validIndex[Index]].Name);
-				Console.WriteLine("작가     : {0} ", list[validIndex[Index]].Author);
-				Console.WriteLine("출판사   : {0} ", list[validIndex[Index]].Publisher);
-				Console.WriteLine("수량     : {0} ", list[validIndex[Index]].BookCount);
-				Console.WriteLine("가격     : {0} ", list[validIndex[Index]].Price);
-				Console.WriteLine("출시일   : {0} ", list[validIndex[Index]].Date);
+				Console.WriteLine("책아이디  : {0} ", list[validIndex[Index]].Id);
+				Console.WriteLine("책 제목   : {0} ", list[validIndex[Index]].Name);
+				Console.WriteLine("작가      : {0} ", list[validIndex[Index]].Author);
+				Console.WriteLine("출판사    : {0} ", list[validIndex[Index]].Publisher);
+				Console.WriteLine("수량      : {0} ", list[validIndex[Index]].BookCount);
+				Console.WriteLine("가격      : {0} ", list[validIndex[Index]].Price);
+				Console.WriteLine("출시일    : {0} ", list[validIndex[Index]].Date);
 				Console.WriteLine("ISBN      : {0} ", list[validIndex[Index]].Isbn);
 				Console.WriteLine("책 정보   : {0} ", list[validIndex[Index]].Information);
 
