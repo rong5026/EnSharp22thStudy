@@ -10,7 +10,7 @@ namespace LibraryMySQL {
         ConsoleKeyInfo keyInput;
         LibraryUI libraryUI;
         ValidInput validInput;
-        MySQlData mySQlData;
+        MySQlDataConnection mySQlData;
         UserModeUI userModeUI;
         private string name;
         private string author;
@@ -22,7 +22,7 @@ namespace LibraryMySQL {
             this.validInput = validInput;
             this.libraryUI = libraryUI;
             this.userModeUI = userModeUI;
-            mySQlData = MySQlData.Instance();
+            mySQlData = MySQlDataConnection.Instance();
         }
         public void SearchBook() // 책 검색
         {

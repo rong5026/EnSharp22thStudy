@@ -12,7 +12,7 @@ namespace LibraryMySQL
 
         UserModeUI userModeUI;
         ValidInput validInput;
-        MySQlData mySQlData;
+        MySQlDataConnection mySQlData;
     
         private string id;
         private string passWord;
@@ -22,7 +22,7 @@ namespace LibraryMySQL
         {                        
             this.validInput = validInput;          
             this.userModeUI = userModeUI;
-            mySQlData = MySQlData.Instance();         
+            mySQlData = MySQlDataConnection.Instance();         
         }
         public int LoginUser(string type)
         {

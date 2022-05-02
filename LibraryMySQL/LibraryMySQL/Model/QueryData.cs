@@ -8,6 +8,11 @@ namespace LibraryMySQL
 {
     internal class QueryData
     {
+        public const string DATABASE_NAME = "hongyeonghwan";
+        public const string ID = "root";
+        public const string PASSWROD = "0000";
+        public const string SERVER = "localhost";
+        public const string PORT = "3306";
 
         public const string SELECT_USERLIST = "SELECT * FROM user_data"; // 모든 유저
         public const string SELECT_ADMINLIST = "SELECT * FROM admin_data"; // 모든 관리자

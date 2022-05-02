@@ -10,7 +10,7 @@ namespace LibraryMySQL
     internal class ValidInput
     {
         UserModeUI userModeUI;
-        MySQlData mySQlData;
+        MySQlDataConnection mySQlData;
         private bool check;
         private string error;
         private string input;
@@ -19,11 +19,11 @@ namespace LibraryMySQL
         public ValidInput()
         {
             userModeUI = new UserModeUI();
-            mySQlData = MySQlData.Instance();
+            mySQlData = MySQlDataConnection.Instance();
         }
         public ValidInput(UserModeUI userModeUI)
         {
-            mySQlData = MySQlData.Instance();
+            mySQlData = MySQlDataConnection.Instance();
             this.userModeUI = userModeUI;
         }
 
@@ -226,7 +226,7 @@ namespace LibraryMySQL
                 if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
                 {
                     input += keyInput.KeyChar;
-                    Console.Write(keyInput.KeyChar);
+                    Console.Write("*");
                 }
                 else
                 {
@@ -459,7 +459,7 @@ namespace LibraryMySQL
                 userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_NOT_EXIST);
                 return EnterDeleteBookID(x, y, errorMessage, regular, bookInedex, bookList);
             }
-            else if(GetBookListID(input, bookInedex, bookList )==Constants.BOOK_NOT_EXIST){
+            else if(CheckBookListID(input, bookInedex, bookList )==Constants.BOOK_NOT_EXIST){
                 DeleteInput(124 - x, 124, y);
                 userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_NOT_EXIST_IN_LIST);
                 return EnterDeleteBookID(x, y, errorMessage, regular, bookInedex, bookList);
@@ -482,7 +482,7 @@ namespace LibraryMySQL
             return Constants.BOOK_NOT_EXIST;
 
         }
-        private int GetBookListID(string bookId,List<int> bookInedex, List<BookVO> bookList) // 검색한 책리스트에 있는 책인지
+        private int CheckBookListID(string bookId,List<int> bookInedex, List<BookVO> bookList) // 검색한 책리스트에 있는 책인지
         {
 
           

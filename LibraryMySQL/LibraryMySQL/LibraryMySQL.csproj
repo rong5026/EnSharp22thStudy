@@ -101,9 +101,8 @@
     <Compile Include="LibraryMain.cs" />
     <Compile Include="LibraryStart.cs" />
     <Compile Include="Model\BookVO.cs" />
-    <Compile Include="Model\ConnectionData.cs" />
     <Compile Include="Model\Constants.cs" />
-    <Compile Include="Controller\MySQlData.cs" />
+    <Compile Include="Controller\MySQlDataConnection.cs" />
     <Compile Include="Model\ErrorMessage.cs" />
     <Compile Include="Model\LogVO.cs" />
     <Compile Include="Model\QueryData.cs" />

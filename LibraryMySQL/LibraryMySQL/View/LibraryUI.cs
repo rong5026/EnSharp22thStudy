@@ -8,14 +8,14 @@ namespace LibraryMySQL
 {
 	internal class LibraryUI
 	{
-		MySQlData mySQlData;
+		MySQlDataConnection mySQlData;
 		private string selectFirst;
 		private string selectSecond;
 
 
 		public LibraryUI()
 		{
-			mySQlData = MySQlData.Instance();
+			mySQlData = MySQlDataConnection.Instance();
 		}
 
 		public void PrintMainUI()

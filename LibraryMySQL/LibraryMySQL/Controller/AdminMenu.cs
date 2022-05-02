@@ -15,7 +15,7 @@ namespace LibraryMySQL
         UserModeUI userModeUI;
         AdminModeUI adminModeUI;
         ValidInput validInput;
-        MySQlData mySQlData;
+        MySQlDataConnection mySQlData;
         Login login;
         NaverSearching naver;
         ConsoleKeyInfo keyInput;
@@ -28,12 +28,12 @@ namespace LibraryMySQL
             adminModeUI = new AdminModeUI();
             bookSearching = new BookSearching(validInput, libraryUI, userModeUI);        
             mode = new SelectionMode(libraryUI);
-            mySQlData = MySQlData.Instance();
+            mySQlData = MySQlDataConnection.Instance();
             login = new Login(userModeUI, validInput);
             naver = new NaverSearching();
         }
 
-        public void StartAdminMode()
+        public void StartAdminMode() // 관리자 모드 시작
         {
             int input;
             while (Constants.isPROGRAM_ON)
@@ -47,7 +47,7 @@ namespace LibraryMySQL
                             
             }
         }
-        public void StartAdminMenu()
+        public void StartAdminMenu() // 관리자 메뉴
         {
             int menuNumber;
 
@@ -97,9 +97,7 @@ namespace LibraryMySQL
                     default:
                         return;
 
-
                 }
-
 
             }
 
@@ -144,6 +142,7 @@ namespace LibraryMySQL
 
             }
         }
+      
         private void DeleteLogFile() // 로그텍스트파일 삭제
         {
             Console.Clear();
@@ -168,7 +167,7 @@ namespace LibraryMySQL
                     else
                     {
                         Console.SetCursorPosition(0, 0);
-                        adminModeUI.PrintAdminMenuMessage("삭제할 파일이 존재하지 않습니다", "확인하기");
+                        adminModeUI.PrintAdminMenuMessage("삭제할 파일이 존재하지 않습니다", "확인하기"); // 로그파일 삭제 실패
                     }
                     while (Constants.isPROGRAM_ON)
                     {
@@ -202,7 +201,8 @@ namespace LibraryMySQL
                     {
                         log += "순서: " + list[index].Id.ToString() + " / 시간: " + list[index].Time + " / 사용자 :" + list[index].User + " / 내용 :" + list[index].Information + " / 명령 :" + list[index].Action+"\n";
                     }
-                    File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Library로그기록.txt", log);
+                    File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Library로그기록.txt", log); // 로그text파일 생성
+
                     Console.SetCursorPosition(0, 0);
                     adminModeUI.PrintAdminMenuMessage("로그파일로 저장되었습니다", "확인하기");
                     mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "Librart로그기록.txt ", "로그파일저장"); // 로그저장
@@ -231,7 +231,7 @@ namespace LibraryMySQL
              
                 adminModeUI.PrintLogData(list);// 전체로그 출력
 
-                logId = validInput.EnterLogId(78, 3, ErrorMessage.LOG_ID, RegularExpression.LOG_ID);
+                logId = validInput.EnterLogId(78, 3, ErrorMessage.LOG_ID, RegularExpression.LOG_ID); // 수정할 로그 Id입력
 
                 if (logId == Constants.INPUT_BACK)
                     return;
@@ -323,9 +323,9 @@ namespace LibraryMySQL
                 date = validInput.EnterInput(44, 20,ErrorMessage.BOOK_DATE,RegularExpression.BOOK_DATE); // 책 출판날짜
                 if (date == Constants.INPUT_BACK)
                     break;
-                bookVO =new BookVO();
 
-                bookVO.Name = name;
+                bookVO =new BookVO();
+                bookVO.Name = name;  // 입력값을 넣어야해서 생성자에서 초기화를 못했어요
                 bookVO.Author = author;
                 bookVO.Publisher = publisher;
                 bookVO.BookCount = Convert.ToInt16( count);
@@ -367,6 +367,8 @@ namespace LibraryMySQL
                 libraryUI.ShowBookList(Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, Constants.INPUT_EMPTY, bookList); //  전체 북리스트 출력.
                 Console.SetCursorPosition(18, 1); // 커서이동
 
+
+                // 책이름, 저자, 출판사 입력
                 name = validInput.EnterBookSearch(18, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 영어,한글 1글자이상
                 if (name == Constants.BACKMENU)
                     return;
@@ -389,6 +391,7 @@ namespace LibraryMySQL
 
                 mySQlData.DeleteBook(Convert.ToInt32(bookId)); // 데이터베이스에서 책 삭제
                 mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", bookId, "도서삭제"); // 로그저장
+
                 Console.SetCursorPosition(0, 0);
                 adminModeUI.PrintAdminMenuMessage("책 삭제 완료!","다시삭제");
                 Console.CursorVisible = Constants.isNONVISIBLE;

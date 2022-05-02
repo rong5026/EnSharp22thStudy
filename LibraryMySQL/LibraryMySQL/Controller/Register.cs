@@ -13,7 +13,7 @@ namespace LibraryMySQL
         ConsoleKeyInfo keyInput;
         UserModeUI userModeUI;
         ValidInput validInput;     
-        MySQlData mySQlData;
+        MySQlDataConnection mySQlData;
 
 
         private string id;
@@ -29,7 +29,7 @@ namespace LibraryMySQL
         {
             this.userModeUI = userModeUI;       
             this.validInput = validInput;
-            mySQlData = MySQlData.Instance();
+            mySQlData = MySQlDataConnection.Instance();
         }
         public bool RegistUser()
         {
@@ -43,7 +43,7 @@ namespace LibraryMySQL
             if (id == Constants.INPUT_BACK)
                 return Constants.isREGISTER_FAIL;
 
-            password = validInput.EnterInput(74, 36, ErrorMessage.PASSWORD, RegularExpression.PASSWORD);
+            password = validInput.EnterLoginPassWord(74, 36);
             if (password == Constants.INPUT_BACK)
                 return Constants.isREGISTER_FAIL;
 

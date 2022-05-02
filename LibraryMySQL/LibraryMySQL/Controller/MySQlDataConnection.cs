@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 namespace LibraryMySQL
 {
-    internal class MySQlData
+    internal class MySQlDataConnection
     {
 
-        private static MySQlData mysqlData;
+        private static MySQlDataConnection mysqlData;
         private UserVO user;
-        public static MySQlData Instance()
+        public static MySQlDataConnection Instance()
         {
             if (mysqlData == null)
-                mysqlData = new MySQlData();
+                mysqlData = new MySQlDataConnection();
             return mysqlData;
         }
 
         private MySqlConnection ConnectMySQL()
         {
 
-            MySqlConnection connection = new MySqlConnection("Server="+ ConnectionData.SERVER+"; Port="+ ConnectionData.PORT + ";Database="+ ConnectionData.DATABASE_NAME+";Uid="+ ConnectionData.ID + ";Pwd="+ ConnectionData.PASSWROD + ";");
+            MySqlConnection connection = new MySqlConnection("Server="+ QueryData.SERVER+"; Port="+ QueryData.PORT + ";Database="+ QueryData.DATABASE_NAME+";Uid="+ QueryData.ID + ";Pwd="+ QueryData.PASSWROD + ";");
           
 
             return connection;
