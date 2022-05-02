@@ -41,6 +41,7 @@ namespace LibraryMySQL
             while (table.Read())
             {
                 user = new UserVO( 
+                    (int)table["user_number"],
                     (string)table["user_id"],
                     (string)table["user_password"],
                     (string)table["user_name"],
@@ -111,6 +112,7 @@ namespace LibraryMySQL
             {
                 if (loginedUser == (string)table["user_id"])
                 {
+                    userVO.Number = (int)table["user_number"]; 
                     userVO.Id = (string)table["user_id"];
                     userVO.Password = (string)table["user_password"];
                     userVO.Name = (string)table["user_name"];

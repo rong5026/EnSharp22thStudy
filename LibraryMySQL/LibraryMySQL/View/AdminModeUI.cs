@@ -81,11 +81,12 @@ namespace LibraryMySQL
         {
             Console.WriteLine("============================================================================================================================\n");
 
-            Console.WriteLine(" 유저 ID   : {0}",userVO.Id);
-            Console.WriteLine(" 유저 이름 : {0}", userVO.Name);
-            Console.WriteLine(" 유저 나이 : {0}", userVO.Age);
-            Console.WriteLine(" 유저 번호 : {0}", userVO.PhoneNumber);
-            Console.WriteLine(" 유저 주소 : {0}\n\n", userVO.Address);
+            Console.WriteLine(" 유저Number : {0}", userVO.Number);
+            Console.WriteLine(" 유저 ID    : {0}",userVO.Id);
+            Console.WriteLine(" 유저 이름  : {0}", userVO.Name);
+            Console.WriteLine(" 유저 나이  : {0}", userVO.Age);
+            Console.WriteLine(" 유저 번호  : {0}", userVO.PhoneNumber);
+            Console.WriteLine(" 유저 주소  : {0}\n\n", userVO.Address);
 
         }
         public void PrtinInputNaverBook(string returnMessage)

@@ -568,14 +568,14 @@ namespace LibraryMySQL
                 List<UserVO> userList = new List<UserVO>();
                 mySQlData.GetUserList(userList); // 유저들 리스트 
               
-                adminModeUI.PrintAdminMenuMessage("삭제할 유저ID 입력 :", "확인");
+                adminModeUI.PrintAdminMenuMessage("삭제할 유저Number 입력 :", "확인");
 
                 for (int index = 0; index < userList.Count; index++)
                 {
                     adminModeUI.PrintUserData(userList[index]);
                 }
 
-                id = validInput.EnterDeleteUserID(79, 3, ErrorMessage.USER_NOT_EXIST, RegularExpression.USER_NOT_EXIST);  // 삭제할 유저 ID입력
+                id = validInput.EnterDeleteUserID(82, 3, ErrorMessage.USER_NOT_EXIST, RegularExpression.USER_NOT_EXIST);  // 삭제할 유저 ID입력
                 if (id == Constants.INPUT_BACK)
                     break;
 

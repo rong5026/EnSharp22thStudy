@@ -15,6 +15,7 @@ namespace LibraryMySQL
         private string age;
         private string phonenumber;
         private string address;
+        private int number;
       
         public UserVO()
         {
@@ -25,15 +26,21 @@ namespace LibraryMySQL
             this.id = id;
             this.password = password;
         }
-        public UserVO(string id, string password, string name, string age, string phonenumber, string address)
+        public UserVO(int number,string id, string password, string name, string age, string phonenumber, string address)
         {
-            
+            this.number = number;
             this.id = id;
             this.password = password;
             this.name = name;
             this.age = age;
             this.phonenumber = phonenumber;
             this.address = address;
+        }
+       
+        public int Number
+        {
+            get { return number; }
+            set { number = value; }
         }
         public string Id
         {
