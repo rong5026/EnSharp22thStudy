@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace LibraryMySQL
@@ -121,10 +122,12 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.LOG_SAVE_FILE: // 로그파일저장             
-                      
+                        SaveLog();
+                        Console.Clear();
                         break;
                     case Constants.LOG_DELETE_FILE: //로그파일삭제        
-                      
+                        DeleteLogFile();
+                        Console.Clear();
                         break;
                     case Constants.LOG_RESET: // 로그초기화               
                         ResetLogData();
@@ -141,7 +144,78 @@ namespace LibraryMySQL
 
             }
         }
+        private void DeleteLogFile() // 로그텍스트파일 삭제
+        {
+            Console.Clear();
 
+            adminModeUI.PrintAdminMenuMessage("로그 텍스트파일 삭제", "삭제하기");
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return;
+                else if (keyInput.Key == ConsoleKey.Enter)
+                {
+                    string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Library로그기록.txt";
+                    if (File.Exists(path))
+                    {
+                        File.Delete(path); // 로그파일 삭제
+                        Console.SetCursorPosition(0, 0);
+                        adminModeUI.PrintAdminMenuMessage("로그파일이 삭제되었습니다", "확인하기");
+                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "Librart로그기록.txt ", "로그파일삭제"); // 로그저장
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(0, 0);
+                        adminModeUI.PrintAdminMenuMessage("삭제할 파일이 존재하지 않습니다", "확인하기");
+                    }
+                    while (Constants.isPROGRAM_ON)
+                    {
+                        keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                        if (keyInput.Key == ConsoleKey.Escape)
+                            return;
+
+                    }
+                }
+            }
+        }
+        private void SaveLog() // 로그 text파일로 저장
+        {
+            List<LogVO> list;
+            string log = "";
+            Console.Clear();
+           
+
+            adminModeUI.PrintAdminMenuMessage("text파일에 저장하시겠습니까?", "저장하기");
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return;
+                else if (keyInput.Key == ConsoleKey.Enter)
+                {
+                    list = mySQlData.CheckLogList(); //로그데이터 가져옴
+
+                    for(int index = 0; index < list.Count; index++)
+                    {
+                        log += "순서: " + list[index].Id.ToString() + " / 시간: " + list[index].Time + " / 사용자 :" + list[index].User + " / 내용 :" + list[index].Information + " / 명령 :" + list[index].Action+"\n";
+                    }
+                    File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Library로그기록.txt", log);
+                    Console.SetCursorPosition(0, 0);
+                    adminModeUI.PrintAdminMenuMessage("로그파일로 저장되었습니다", "확인하기");
+                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "Librart로그기록.txt ", "로그파일저장"); // 로그저장
+                    while (Constants.isPROGRAM_ON)
+                    {
+                        keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                        if (keyInput.Key == ConsoleKey.Escape)
+                            return;
+
+                    }
+                }
+            }
+        }
         private void EditLog() // 로그수정
         {
             string logId;
@@ -153,6 +227,8 @@ namespace LibraryMySQL
 
                 adminModeUI.PrintAdminMenuMessage("삭제하려는 로그ID :", "확인하기");
                 List<LogVO> list = mySQlData.CheckLogList(); // 전체 로그 가져옴
+
+             
                 adminModeUI.PrintLogData(list);// 전체로그 출력
 
                 logId = validInput.EnterLogId(78, 3, ErrorMessage.LOG_ID, RegularExpression.LOG_ID);
@@ -165,6 +241,8 @@ namespace LibraryMySQL
 
                 Console.SetCursorPosition(0, 0);
                 adminModeUI.PrintAdminMenuMessage("로그 삭제 완료!", "다시삭제");
+                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", logId, "선택로그삭제"); // 로그저장
+
                 Console.CursorVisible = Constants.isNONVISIBLE;
 
                 while (Constants.isPROGRAM_ON)
@@ -196,7 +274,7 @@ namespace LibraryMySQL
                     mySQlData.DeleteALlLog();
                     Console.SetCursorPosition(0, 0);
                     adminModeUI.PrintAdminMenuMessage("로그정보가 초기화되었습니다", "확인하기");
-
+                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "초기화", "로그초기화"); // 로그저장
                     while (Constants.isPROGRAM_ON)
                     {
                         keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
