@@ -286,6 +286,7 @@ namespace LibraryMySQL
             }
 
         }
+
         private void AddBook() // 도서 추가
         {
             
@@ -566,7 +567,7 @@ namespace LibraryMySQL
                 Console.Clear();
                 List<UserVO> userList = new List<UserVO>();
                 mySQlData.GetUserList(userList); // 유저들 리스트 
-                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "관리자", "회원관리"); // 로그저장
+              
                 adminModeUI.PrintAdminMenuMessage("삭제할 유저ID 입력 :", "확인");
 
                 for (int index = 0; index < userList.Count; index++)
@@ -574,11 +575,12 @@ namespace LibraryMySQL
                     adminModeUI.PrintUserData(userList[index]);
                 }
 
-                id = validInput.EnterDeleteUserID(79, 3, ErrorMessage.USER_NOT_EXIST, RegularExpression.USER_NOT_EXIST);
+                id = validInput.EnterDeleteUserID(79, 3, ErrorMessage.USER_NOT_EXIST, RegularExpression.USER_NOT_EXIST);  // 삭제할 유저 ID입력
                 if (id == Constants.INPUT_BACK)
                     break;
 
                 mySQlData.DeleteUserID(id);
+
 
                 Console.SetCursorPosition(0, 0);
                 adminModeUI.PrintAdminMenuMessage("ID삭제완료!", "다른 ID 지우기");
