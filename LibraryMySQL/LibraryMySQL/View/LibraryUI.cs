@@ -321,8 +321,10 @@ namespace LibraryMySQL
 				Console.WriteLine("수량      : {0} ", list[index].BookCount);
 				Console.WriteLine("가격      : {0} ", list[index].Price);
 				Console.WriteLine("출시일    : {0} ", list[index].Date);
+				Console.WriteLine("ISBN      : {0} ", list[index].Isbn);
+				Console.WriteLine("책 정보   : {0} ", list[index].Information);
 				if (type != "반납책")
-					Console.WriteLine("{0} 시간  : {1} ", type, list[index].Time);
+					Console.WriteLine("{0} 시간 : {1} ", type, list[index].Time);
 
 
 			}
@@ -398,6 +400,8 @@ namespace LibraryMySQL
 				Console.WriteLine("수량     : {0} ", list[validIndex[Index]].BookCount);
 				Console.WriteLine("가격     : {0} ", list[validIndex[Index]].Price);
 				Console.WriteLine("출시일   : {0} ", list[validIndex[Index]].Date);
+				Console.WriteLine("ISBN      : {0} ", list[validIndex[Index]].Isbn);
+				Console.WriteLine("책 정보   : {0} ", list[validIndex[Index]].Information);
 
 
 			}
