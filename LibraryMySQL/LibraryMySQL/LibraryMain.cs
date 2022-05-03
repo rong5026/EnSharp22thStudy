@@ -13,17 +13,7 @@ namespace LibraryMySQL
         static void Main(string[] args)
         {
             LibraryStart start = new LibraryStart();
-            start.StartLibrary();
-
-            /*while (true) {
-
-                string n = Console.ReadLine();
-                if (Regex.IsMatch(n, @"^([a-zA-Zㄱ-ㅎ가-힣0-9!?+-]{1,}\s{0,}){0,}[a-zA-Zㄱ-ㅎ가-힣0-9!?+-]{1,}$"))
-                    Console.WriteLine("맞음");
-                else
-                            Console.WriteLine("틀림");
-
-            }*/
+            start.StartLibrary();       
            
         }
     }

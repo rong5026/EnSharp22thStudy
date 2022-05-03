@@ -643,7 +643,7 @@ namespace LibraryMySQL
         public string EnterBookISBN(int x, int y,List<BookVO> list) // 책 ISBN입력
         {
             Console.CursorVisible = true;
-            error = ErrorMessage.BOOK_ISBN;   //예외조건 성립안할때 출력
+         
             Console.SetCursorPosition(x, y);
 
             input = Constants.INPUT_EMPTY;
@@ -683,8 +683,8 @@ namespace LibraryMySQL
                 check = Regex.IsMatch(input, RegularExpression.BOOK_ISBN); 
             if (check == Constants.NON_INPUT) // 정규식에 어긋날때
             {
-                DeleteInput(124 - x, 124, y); 
-                userModeUI.PrintErrorMessage(x, y, error);
+                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+                userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_ISBN);
                 return EnterBookISBN(x, y, list);
             }
             if (CheckISBNInBookList(input) == Constants.BOOK_EXIST) // 이미 등록된 책일때
@@ -699,6 +699,7 @@ namespace LibraryMySQL
                 userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_NOT_EXIST_IN_LIST);
                 return EnterBookISBN(x, y, list);
             }
+          
 
             return input;
 

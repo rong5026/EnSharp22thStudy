@@ -35,7 +35,7 @@ namespace LibraryMySQL
         public const string BOOK_PRICE = "1~9999999 범위 내에서 입력해주세요!";
         public const string BOOK_DATE = "19xx or 20xx-xx-xx 형식으로 입력해주세요!";
 
-        public const string BOOK_ISBN = "정수9개+ 영어또는정수1개 + 공백 +정수 13개";
+        public const string BOOK_ISBN = "숫자,영어 5개이상";
         public const string BOOK_INFORMATION = "최소1개의 문자(공백포함)";
         public const string BOOK_ISBN_EXISTS = "이미 등록되어 있는 책ISBN 입니다!";
         

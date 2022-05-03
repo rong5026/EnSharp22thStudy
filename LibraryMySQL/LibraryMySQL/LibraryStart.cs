@@ -39,12 +39,9 @@ namespace LibraryMySQL
 
 
         }
-      
-
+     
         public void StartLibrary()
-        {
-
-         
+        { 
             libraryUI.PrintMainUI();
             Console.SetWindowSize(125, 50);
            
