@@ -109,7 +109,7 @@ namespace LibraryMySQL
         public void PrintInputNaverISBN(string mainMessage,string enterMessage, string escMessage)
         {
             Console.WriteLine();
-           // Console.WriteLine("   책 ISBN    :");
+         
             Console.WriteLine("   {0}    :                                                    ", mainMessage);
             Console.WriteLine("                                               \n ");
             Console.ForegroundColor = ConsoleColor.Green;

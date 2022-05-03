@@ -133,8 +133,9 @@ namespace LibraryMySQL
                 book.Date = items[index]["pubdate"].ToString();
                 book.Isbn = items[index]["isbn"].ToString();
                 book.Information = items[index]["description"].ToString().Replace("<b>", "").Replace("</b>", "");
-                
-                adminModeUI.PrintNaverBookList(items[index]["isbn"].ToString(), book.Name, book.Author, book.Price, book.Publisher, book.Date, items[index]["description"].ToString().Replace("<b>", "").Replace("</b>", ""));
+
+
+                adminModeUI.PrintNaverBookList(items[index]["isbn"].ToString(), book.Name, book.Author, book.Price, book.Publisher, book.Date, book.Information);
                 bookVOs.Add(book);
             }
             Console.SetCursorPosition(0, 0);
