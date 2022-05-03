@@ -110,13 +110,13 @@ namespace LibraryMySQL
         {
             Console.WriteLine();
          
-            Console.WriteLine("   {0}    :                                                    ", mainMessage);
+            Console.WriteLine("   {0}    :                                                   ", mainMessage);
             Console.WriteLine("                                               \n ");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(" ESC : {0}                   ", escMessage);
+            Console.WriteLine(" ESC : {0}                                                                                                     ", escMessage);
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(" ENTER : {0}                  ", enterMessage);
+            Console.WriteLine(" ENTER : {0}                                                                       ", enterMessage);
             Console.ResetColor();
         }
         

@@ -710,7 +710,7 @@ namespace LibraryMySQL
 
             for (int index = 0; index < bookList.Count; index++)
             {
-                if (bookList[index].Isbn == isbn)
+                if (bookList[index].Isbn == isbn || bookList[index].Isbn.Contains(isbn))
                     return Constants.BOOK_EXIST;
             }
             return Constants.BOOK_NOT_EXIST;
@@ -719,7 +719,7 @@ namespace LibraryMySQL
         {
             for (int index = 0; index < list.Count; index++)
             {
-                if (list[index].Isbn == isbn)
+                if (list[index].Isbn == isbn || list[index].Isbn.Contains(isbn))
                     return Constants.BOOK_EXIST;
             }
             return Constants.BOOK_NOT_EXIST;
