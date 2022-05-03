@@ -30,7 +30,7 @@ namespace LibraryMySQL
 
               
                 name = validInput.EnterInput(16, 1, ErrorMessage.BOOK_SEARCH, RegularExpression.BOOK_SEARCH); // 책이름 입력
-                if (name == Constants.BACKMENU)
+                if (name == Constants.INPUT_BACK)
                     return;
                 bookCount = validInput.EnterInput(16, 2, ErrorMessage.BOOK_SEARCHING_COUNT, RegularExpression.BOOK_SEARCHING_COUNT); // 수량입력
                 if (bookCount == Constants.INPUT_BACK)
@@ -40,20 +40,20 @@ namespace LibraryMySQL
                 bookList = SearchNaverBook(Convert.ToInt32(bookCount), name); // 검색결과를 리스트에 넣음
                 Console.CursorVisible = Constants.isNONVISIBLE;
 
-              
 
-                while (Constants.isPROGRAM_ON)
+                Console.SetCursorPosition(0, 0);
+                adminModeUI.PrtinInputNaverBook("도서 추가하기", "뒤로가기"); //책 , 수량 입력
+
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return; // ESC 누르면 뒤로가기 
+                else if (keyInput.Key == ConsoleKey.Enter)
                 {
-                    Console.SetCursorPosition(0, 0);
-                    adminModeUI.PrtinInputNaverBook("도서 추가하기", "뒤로가기"); //책 , 수량 입력
 
-                    keyInput = Console.ReadKey(Constants.KEY_INPUT);
-                    if (keyInput.Key == ConsoleKey.Escape)
-                        return; // ESC 누르면 뒤로가기 
-                    else if (keyInput.Key == ConsoleKey.Enter)
+                    while (Constants.isPROGRAM_ON)
                     {
                         Console.SetCursorPosition(0, 0);
-                        adminModeUI.PrintInputNaverISBN("책 ISBN","확인하기", "뒤로가기");
+                        adminModeUI.PrintInputNaverISBN("책 ISBN", "확인하기", "뒤로가기");
 
                         string isbn = validInput.EnterBookISBN(16, 1, bookList); // 책 isbn
                         if (isbn == Constants.INPUT_BACK)
@@ -69,7 +69,7 @@ namespace LibraryMySQL
                         mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", bookVO.Name, "네이버도서추가"); // 로그저장
 
                         Console.SetCursorPosition(0, 0);
-                        adminModeUI.PrintInputNaverISBN("추가성공!","다시추가하기", "뒤로가기");
+                        adminModeUI.PrintInputNaverISBN("추가성공!", "다시추가하기", "뒤로가기");
 
                         while (Constants.isPROGRAM_ON)
                         {
@@ -81,9 +81,10 @@ namespace LibraryMySQL
 
 
                         }
+                    }
 
-                    }                   
                 }
+              
             }
         }
         private BookVO GetSameIsbnBook(string isbn, List<BookVO> list)
