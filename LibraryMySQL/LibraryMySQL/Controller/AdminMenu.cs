@@ -364,7 +364,7 @@ namespace LibraryMySQL
 
             Console.Clear();
             userDAO.GetUserList(userList); // 유저들 리스트 
-            adminModeUI.PrintAdminMenuMessage("전체회원 대여상황", "확인");
+            adminModeUI.PrintAdminMenuMessage("                    전체회원 대여상황", "확인");
 
             for(int index = 0; index < userList.Count; index++)
             {
@@ -394,7 +394,7 @@ namespace LibraryMySQL
                 List<UserDTO> userList = new List<UserDTO>();
                 userDAO.GetUserList(userList); // 유저들 리스트 
               
-                adminModeUI.PrintAdminMenuMessage("삭제할 유저Number 입력 :", "확인");
+                adminModeUI.PrintAdminMenuMessage("              삭제할 유저Number 입력 :", "확인");
 
                 for (int index = 0; index < userList.Count; index++)
                 {
@@ -402,7 +402,7 @@ namespace LibraryMySQL
                 }
                 Console.SetCursorPosition(0, 0);
 
-                id = validInput.EnterDeleteUserID(82, 3, ErrorMessage.USER_NOT_EXIST, RegularExpression.USER_NUMBER_NOT_EXIST);  // 삭제할 유저 Number입력
+                id = validInput.EnterDeleteUserID(77, 3, ErrorMessage.USER_NOT_EXIST, RegularExpression.USER_NUMBER_NOT_EXIST);  // 삭제할 유저 Number입력
                 if (id == Constants.INPUT_BACK)
                     break;
 
@@ -410,7 +410,7 @@ namespace LibraryMySQL
 
 
                 Console.SetCursorPosition(0, 0);
-                adminModeUI.PrintAdminMenuMessage("ID삭제완료!", "다른 ID 지우기");
+                adminModeUI.PrintAdminMenuMessage("                     ID삭제완료!                 ", "다른ID지우기");
                 mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", id, "회원삭제"); // 로그저장
                 while (Constants.isPROGRAM_ON)
                 {
