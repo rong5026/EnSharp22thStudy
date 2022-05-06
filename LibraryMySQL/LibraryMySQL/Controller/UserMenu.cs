@@ -47,7 +47,7 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.BOOK_BORROW_LIST: //대여도서확인                  
-                        bookSearching.ConfirmRentedBook();
+                        bookSearching.ConfirmReturnAndRentBook("빌린", "대여도서확인");
                         Console.Clear();
                         break;
                     case Constants.BOOK_RETURN: // 도서 반납                      
@@ -55,7 +55,7 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.BOOK_RETRUN_HISTORY:
-                        bookSearching.ConfirmReturnBook(); // 도서반납확인
+                        bookSearching.ConfirmReturnAndRentBook("반납", "반납도서확인"); // 도서반납확인
                         Console.Clear();
                         break;
                     case Constants.USER_EDIT: // 회원정보 수정

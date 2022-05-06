@@ -127,7 +127,7 @@ namespace LibraryMySQL
 
             List<BookVO> bookVOs = new List<BookVO>();
 
-            var json = JObject.Parse(text);
+            JObject json = JObject.Parse(text);
             var items = json["items"];
 
             for (int index = 0; index < items.Count(); index++)

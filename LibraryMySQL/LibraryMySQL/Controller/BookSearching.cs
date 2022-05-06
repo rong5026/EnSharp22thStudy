@@ -151,7 +151,7 @@ namespace LibraryMySQL {
             Console.Clear();
             userModeUI.PrintReturnRentBook("반납","입력하기");
             mySQlData.GetRentBook(bookList,LibraryStart.loginedUser);
-            libraryUI.ShowBorrowedBookList(bookList,"빌린책");
+            libraryUI.ShowBorrowedBookList(bookList,"빌린");
 
             while (Constants.isPROGRAM_ON)
             {
@@ -209,40 +209,18 @@ namespace LibraryMySQL {
 
             }
         }
-
-        public void ConfirmRentedBook() // 빌린책 확인
+        public void ConfirmReturnAndRentBook(string type,string message) // 빌린, 반납책 확인
         {
             Console.Clear();
-            userModeUI.PrintReturnRentBookList("빌린"); // 빌린책 UI 출력
+            userModeUI.PrintReturnRentBookList(type); // 빌린책 UI 출력
 
             List<BookVO> list = new List<BookVO>();
 
-            mySQlData.GetRentBook(list,LibraryStart.loginedUser); //로그인된 사람의 빌린책
+            mySQlData.GetRentBook(list, LibraryStart.loginedUser); //로그인된 사람의 빌린책
 
-            libraryUI.ShowBorrowedBookList(list,"빌린책");
+            libraryUI.ShowBorrowedBookList(list, type);
 
-            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저",LibraryStart.loginedUser, "대여도서확인"); // 로그저장
-            while (Constants.isPROGRAM_ON)
-            {
-                keyInput = Console.ReadKey(Constants.KEY_INPUT);
-
-                if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기           
-                    return;
-                
-            }
-        }
-        public void ConfirmReturnBook()  //반납책 확인
-        {
-            Console.Clear();
-            userModeUI.PrintReturnRentBookList("반납"); // 반납책 UI 출력
-
-            List<BookVO> list = new List<BookVO>();
-
-            mySQlData.GetReturnedBook(list); //로그인된 사람의 빌린책
-
-            libraryUI.ShowBorrowedBookList(list,"반납");
-
-            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", LibraryStart.loginedUser, "반납도서확인"); // 로그저장
+            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", LibraryStart.loginedUser, message); // 로그저장
             while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(Constants.KEY_INPUT);
@@ -252,6 +230,7 @@ namespace LibraryMySQL {
 
             }
         }
+     
 
 
 

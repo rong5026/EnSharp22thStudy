@@ -324,13 +324,10 @@ namespace LibraryMySQL
 				Console.WriteLine("ISBN      : {0} ", list[index].Isbn);
 				Console.WriteLine("책 정보   : {0} ", list[index].Information);
 
-				if (type == "빌린책" || type == "반납책")
-				{
-					Console.WriteLine("빌린시간 : {1} ", type, list[index].RentTime);
-					Console.WriteLine("반납시간 : {1} ", type, list[index].ReturnTime);
-				}
-				else if(type =="반납")
-					Console.WriteLine("반납시간 : {1} ", type, list[index].ReturnTime);
+				if (type == "빌린" )
+					Console.WriteLine("빌린시간 : {1} ", type, list[index].RentTime);					
+			
+				Console.WriteLine("반납시간 : {1} ", type, list[index].ReturnTime);
 
 
 

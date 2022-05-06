@@ -102,7 +102,7 @@
     <Compile Include="LibraryStart.cs" />
     <Compile Include="Model\BookVO.cs" />
     <Compile Include="Utility\Constants.cs" />
-    <Compile Include="Controller\MySQlDataConnection.cs" />
+    <Compile Include="Model\MySQlDataConnection.cs" />
     <Compile Include="Utility\ErrorMessage.cs" />
     <Compile Include="Model\LogVO.cs" />
     <Compile Include="Utility\QueryData.cs" />
