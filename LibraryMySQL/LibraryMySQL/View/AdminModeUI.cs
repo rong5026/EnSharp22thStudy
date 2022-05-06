@@ -14,7 +14,7 @@ namespace LibraryMySQL
             Console.WriteLine("                                     ■■■■■■■■■■■■■■■■■■■■■■■■■■");
             Console.WriteLine("                                                                                     ");
             Console.WriteLine("                                                                                     ");
-            Console.WriteLine("                                                          {0}                   ", message);
+            Console.WriteLine("                                     {0}                   ", message);
             Console.WriteLine("                                                                                     ");
             Console.WriteLine("                                                                                     ");
             Console.WriteLine("                                     ■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n");

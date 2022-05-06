@@ -142,7 +142,7 @@ namespace LibraryMySQL
                 for (int index = 0; index < items.Count(); index++)
                 {
                     BookDTO book = new BookDTO(0,
-                        items[index]["title"].ToString(),
+                        items[index]["title"].ToString().Replace("<b>", "").Replace("</b>", ""),
                         items[index]["author"].ToString(),
                         items[index]["publisher"].ToString().Replace("<b>", "").Replace("</b>", ""),
                         10, Convert.ToInt32(items[index]["price"].ToString()), items[index]["pubdate"].ToString(),
