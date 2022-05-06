@@ -21,7 +21,25 @@ namespace LibraryMySQL
         private string isbn;
         private string information;
     
-       
+        public BookDTO()
+        {
+
+        }
+       public BookDTO(int id, string name, string author, string publisher, int bookCount, int price, string date, string rentTime, string returnTime, string isbn, string information)
+        {
+            this.id = id;
+            this.name = name;
+            this.author = author;
+            this.publisher = publisher;
+            this.bookCount = bookCount; 
+            this.price = price;
+            this.date = date;
+            this.rentTime = rentTime;
+            this.returnTime = returnTime;
+            this.isbn = isbn;
+            this.information = information;
+
+        }
     
         public string Isbn
         {

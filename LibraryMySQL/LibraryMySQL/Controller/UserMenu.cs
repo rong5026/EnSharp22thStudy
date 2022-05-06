@@ -119,24 +119,24 @@ namespace LibraryMySQL
             string phonenumber;
             string address;
 
-            UserDTO userVO = new UserDTO();
+            UserDTO userDTO = new UserDTO();
            
             Console.Clear();
 
-            userDAO.GetLoginedUserLogList(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
-            id = userVO.Id;
-            password = userVO.Password;
-            name = userVO.Name;
-            age = userVO.Age;
-            phonenumber = userVO.PhoneNumber;
-            address = userVO.Address;
+            userDAO.GetLoginedUserLogList(userDTO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
+            id = userDTO.Id;
+            password = userDTO.Password;
+            name = userDTO.Name;
+            age = userDTO.Age;
+            phonenumber = userDTO.PhoneNumber;
+            address = userDTO.Address;
 
             while (Constants.isPROGRAM_ON)
             {
                 Console.SetCursorPosition(0, 0);    
                 userModeUI.PrintUserDataEdit();  //유저 정보 변경 UI
-                userDAO.GetLoginedUserLogList(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
-                userModeUI.PrintLoginedUserData(userVO); // 기존 회원정보 프린트
+                userDAO.GetLoginedUserLogList(userDTO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
+                userModeUI.PrintLoginedUserData(userDTO); // 기존 회원정보 프린트
 
                 
                 menuNumber = mode.SelectUserManagerMenu("Edit", 7);
@@ -146,32 +146,32 @@ namespace LibraryMySQL
                     case Constants.USER_ID: // 유저 ID                 
                         id = validInput.EnterRegisterID(71, 22);
                         if (id == Constants.INPUT_BACK)
-                            id =userVO.Id;
+                            id = userDTO.Id;
                         break;
                     case Constants.USER_PW: // 유저 PW
                         password = validInput.EnterInput(71, 23, ErrorMessage.PASSWORD, RegularExpression.PASSWORD);
                         if (password == Constants.INPUT_BACK)
-                            password = userVO.Password;
+                            password = userDTO.Password;
                         break;
                     case Constants.USER_NAME: //유저 이름
                         name = validInput.EnterInput(74, 24, ErrorMessage.USER_NAME, RegularExpression.USER_NAME);
                         if(name == Constants.INPUT_BACK)
-                            name = userVO.Name;
+                            name = userDTO.Name;
                         break;
                     case Constants.USER_AGE: // 유저 나이
                         age = validInput.EnterInput(73, 25, ErrorMessage.USER_AGE, RegularExpression.USER_AGE);
                         if (age == Constants.INPUT_BACK)
-                            age = userVO.Age;
+                            age = userDTO.Age;
                         break;
                     case Constants.USER_PHONE: // 유저 휴대폰
                         phonenumber = validInput.EnterInput(74, 26, ErrorMessage.USER_PHONE, RegularExpression.USER_PHONE);
                         if (phonenumber == Constants.INPUT_BACK)
-                            phonenumber = userVO.PhoneNumber;
+                            phonenumber = userDTO.PhoneNumber;
                         break;
                     case Constants.USER_ADDRESS: // 유저 주소
                         address = validInput.EnterInput(69, 27, ErrorMessage.USER_ADDRESS, RegularExpression.USER_ADDRESS);// 주소
                         if(address == Constants.INPUT_BACK)
-                            address = userVO.Address;
+                            address = userDTO.Address;
                         break;
                     case Constants.EDIT: // 변경하기 버튼                    
                         userDAO.UpdateUserData(id, password, name, age, phonenumber, address);

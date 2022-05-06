@@ -104,7 +104,7 @@
     <Compile Include="Model\UserDAO.cs" />
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Model\BookDAO.cs" />
-    <Compile Include="Utility\ErrorMessage.cs" />
+    <Compile Include="Error\ErrorMessage.cs" />
     <Compile Include="Model\LogDTO.cs" />
     <Compile Include="Utility\QueryData.cs" />
     <Compile Include="Utility\RegularExpression.cs" />

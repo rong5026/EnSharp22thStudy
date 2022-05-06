@@ -336,15 +336,8 @@ namespace LibraryMySQL
                 if (information == Constants.INPUT_BACK)
                     break;
 
-                bookVO =new BookDTO();
-                bookVO.Name = name;  // 입력값을 넣어야해서 생성자에서 초기화를 못했어요
-                bookVO.Author = author;
-                bookVO.Publisher = publisher;
-                bookVO.BookCount = Convert.ToInt16( count);
-                bookVO.Price = Convert.ToInt32( price );
-                bookVO.Date = date;
-                bookVO.Isbn = isbn;
-                bookVO.Information = information;
+                bookVO =new BookDTO(0, name, author, publisher, Convert.ToInt16(count), Convert.ToInt32(price), date,null,null, isbn, information);
+             
 
 
                 mySQlData.InsertBook(bookVO); // 데이터베이스에 책 추가
