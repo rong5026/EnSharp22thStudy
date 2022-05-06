@@ -556,7 +556,7 @@ namespace LibraryMySQL
             {
                 adminModeUI.PrintUserName(userList[index].Id); // 유저ID 출력
                 mySQlData.GetRentBook(bookList, userList[index].Id);  // 유저가 빌린 책 리스트 
-                libraryUI.ShowBorrowedBookList(bookList, "빌린");
+                libraryUI.ShowBorrowedBookList(bookList, "빌린책");
 
             }
             Console.SetCursorPosition(0, 0);

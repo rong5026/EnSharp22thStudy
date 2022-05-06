@@ -62,3 +62,5 @@ C:\Users\rong5\Documents\EnSharp22thStudy\LibraryMySQL\LibraryMySQL\obj\Debug\Li
 C:\Users\rong5\Documents\EnSharp22thStudy\LibraryMySQL\LibraryMySQL\obj\Debug\LibraryMySQL.pdb
 C:\Users\rong5\Documents\EnSharp22thStudy\LibraryMySQL\LibraryMySQL\bin\Debug\Newtonsoft.Json.dll
 C:\Users\rong5\Documents\EnSharp22thStudy\LibraryMySQL\LibraryMySQL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\rong5\Desktop\EnSharp22thStudy\LibraryMySQL\LibraryMySQL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\rong5\Desktop\EnSharp22thStudy\LibraryMySQL\LibraryMySQL\bin\Debug\Newtonsoft.Json.xml

@@ -323,12 +323,19 @@ namespace LibraryMySQL
 				Console.WriteLine("출시일    : {0} ", list[index].Date);
 				Console.WriteLine("ISBN      : {0} ", list[index].Isbn);
 				Console.WriteLine("책 정보   : {0} ", list[index].Information);
-				if (type != "반납책")
-					Console.WriteLine("{0} 시간 : {1} ", type, list[index].Time);
+
+				if (type == "빌린책" || type == "반납책")
+				{
+					Console.WriteLine("빌린시간 : {1} ", type, list[index].RentTime);
+					Console.WriteLine("반납시간 : {1} ", type, list[index].ReturnTime);
+				}
+				else if(type =="반납")
+					Console.WriteLine("반납시간 : {1} ", type, list[index].ReturnTime);
+
 
 
 			}
-			//Console.SetCursorPosition(0, 0);
+		
 
 		}
 		public List<int> ShowBookList(string name, string author, string publisher, List<BookVO> list) // 이름 저자 출판사로 책 검색해서 출력

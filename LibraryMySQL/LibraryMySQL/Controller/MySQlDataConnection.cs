@@ -319,19 +319,7 @@ namespace LibraryMySQL
             connection.Close();
             return Constants.BACK;
         }
-        public void InsertRentBook(string rentTime,BookVO bookVO) // 빌린책 저장
-        {
-
-            MySqlConnection connection = ConnectMySQL();
-            connection.Open();
-
-            string insertQuery = string.Format(QueryData.INSERT_RENT_BOOK, LibraryStart.loginedUser,bookVO.Id,bookVO.Name,bookVO.Author,bookVO.Publisher,bookVO.BookCount,bookVO.Price,bookVO.Date, rentTime,bookVO.Isbn,bookVO.Information);
-
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            command.ExecuteNonQuery();
-
-            connection.Close();
-        }
+     
 
         public void GetRentBook(List<BookVO> list,string userId) // 해당아이디의 빌린책 리스트 리턴
         {
@@ -355,7 +343,8 @@ namespace LibraryMySQL
                     book.BookCount = (int)table["book_count"];
                     book.Price = (int)table["book_price"];
                     book.Date = (string)table["book_date"];
-                    book.Time = (string)table["book_rent_time"];
+                    book.RentTime = (string)table["book_rent_time"];
+                    book.ReturnTime = (string)table["book_return_time"];
                     book.Isbn = (string)table["book_isbn"];
                     book.Information = (string)table["book_information"];
                     list.Add(book);
@@ -388,7 +377,7 @@ namespace LibraryMySQL
                     book.BookCount = (int)table["book_count"];
                     book.Price = (int)table["book_price"];
                     book.Date = (string)table["book_date"];
-                    book.Time = (string)table["book_return_time"];
+                    book.ReturnTime = (string)table["book_return_time"];
                     book.Isbn = (string)table["book_isbn"];
                     book.Information = (string)table["book_information"];
                     list.Add(book);
@@ -427,7 +416,21 @@ namespace LibraryMySQL
 
             connection.Close();
         }
+        public void InsertRentBook(string rentTime, string returnTime, BookVO bookVO) // 빌린책 저장
+        {
 
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format(QueryData.INSERT_RENT_BOOK, LibraryStart.loginedUser, bookVO.Id, bookVO.Name, bookVO.Author, bookVO.Publisher, bookVO.BookCount, bookVO.Price, bookVO.Date, rentTime, returnTime, bookVO.Isbn, bookVO.Information);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+
+
+            connection.Close();
+        }
         public void InsertBook(BookVO bookVO) // 책 등록
         {
             MySqlConnection connection = ConnectMySQL();

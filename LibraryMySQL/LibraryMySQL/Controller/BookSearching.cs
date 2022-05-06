@@ -115,7 +115,7 @@ namespace LibraryMySQL {
                             // 책 수량1개감소 
                             mySQlData.UpdateBookCount(bookList[index].BookCount - 1, bookList[index].Id);   
                             // 빌린 유저에 책정보 저장
-                            mySQlData.InsertRentBook(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), bookList[index]);
+                            mySQlData.InsertRentBook(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), DateTime.Now.AddDays(7).ToString("yyyy-MM-dd HH:mm:ss"), bookList[index]);
 
                             //대여 성공 메시지 출력
                             Console.SetCursorPosition(0, 0);
@@ -151,7 +151,7 @@ namespace LibraryMySQL {
             Console.Clear();
             userModeUI.PrintReturnRentBook("반납","입력하기");
             mySQlData.GetRentBook(bookList,LibraryStart.loginedUser);
-            libraryUI.ShowBorrowedBookList(bookList,"반납책");
+            libraryUI.ShowBorrowedBookList(bookList,"빌린책");
 
             while (Constants.isPROGRAM_ON)
             {
@@ -219,7 +219,7 @@ namespace LibraryMySQL {
 
             mySQlData.GetRentBook(list,LibraryStart.loginedUser); //로그인된 사람의 빌린책
 
-            libraryUI.ShowBorrowedBookList(list,"빌린");
+            libraryUI.ShowBorrowedBookList(list,"빌린책");
 
             mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저",LibraryStart.loginedUser, "대여도서확인"); // 로그저장
             while (Constants.isPROGRAM_ON)

@@ -134,8 +134,8 @@ namespace LibraryMySQL
             {
                 BookVO book = new BookVO();
                 book.Name = items[index]["title"].ToString().Replace("<b>", "").Replace("</b>","");
-                book.Author = items[index]["author"].ToString();
-                book.Publisher = items[index]["publisher"].ToString();
+                book.Author = items[index]["author"].ToString().Replace("<b>", "").Replace("</b>", "");
+                book.Publisher = items[index]["publisher"].ToString().Replace("<b>", "").Replace("</b>", "");
                 book.BookCount = 10;
                 book.Price = Convert.ToInt32(items[index]["price"].ToString());
                 book.Date = items[index]["pubdate"].ToString();
