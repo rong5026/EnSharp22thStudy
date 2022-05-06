@@ -67,6 +67,10 @@ namespace LibraryMySQL
 
                         validBookList = GetSameIsbnBook(isbn, bookList); // isbn이 같은 책의 정보를 가져옴
 
+                        if(validBookList == null)
+                        {
+                            break;
+                        }
                         for(int index = 0; index < validBookList.Count; index++)
                         {
                             mySQlData.InsertBook(validBookList[index]); // 책 추가
@@ -123,41 +127,48 @@ namespace LibraryMySQL
             request.Headers.Add("X-Naver-Client-Secret", userDTO.Password);       // 클라이언트 시크릿
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-        
-            Stream stream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-            string text = reader.ReadToEnd();
-
-            List<BookDTO> bookVOs = new List<BookDTO>();
-
-            JObject json = JObject.Parse(text);
-            var items = json["items"];
-
-            for (int index = 0; index < items.Count(); index++)
+            string status = response.StatusCode.ToString();
+            if (status == "OK")
             {
-                BookDTO book = new BookDTO(0,
-                    items[index]["title"].ToString(), 
-                    items[index]["author"].ToString(), 
-                    items[index]["publisher"].ToString().Replace("<b>", "").Replace("</b>", ""), 
-                    10, Convert.ToInt32(items[index]["price"].ToString()), items[index]["pubdate"].ToString(),
-                    null,null, 
-                    items[index]["isbn"].ToString(), items[index]["description"].ToString().Replace("<b>", "").Replace("</b>", "")     
-                    );
-         
+                Stream stream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                string text = reader.ReadToEnd();
 
+                List<BookDTO> bookVOs = new List<BookDTO>();
 
-                adminModeUI.PrintNaverBookList(items[index]["isbn"].ToString(), book.Name, book.Author, book.Price, book.Publisher, book.Date, book.Information);
-                bookVOs.Add(book);
+                JObject json = JObject.Parse(text);
+                var items = json["items"];
+
+                for (int index = 0; index < items.Count(); index++)
+                {
+                    BookDTO book = new BookDTO(0,
+                        items[index]["title"].ToString(),
+                        items[index]["author"].ToString(),
+                        items[index]["publisher"].ToString().Replace("<b>", "").Replace("</b>", ""),
+                        10, Convert.ToInt32(items[index]["price"].ToString()), items[index]["pubdate"].ToString(),
+                        null, null,
+                        items[index]["isbn"].ToString(), items[index]["description"].ToString().Replace("<b>", "").Replace("</b>", "")
+                        );
+
+                    adminModeUI.PrintNaverBookList(items[index]["isbn"].ToString(), book.Name, book.Author, book.Price, book.Publisher, book.Date, book.Information);
+                    bookVOs.Add(book);
+                }
+                Console.SetCursorPosition(0, 0);
+                response.Close();
+
+                return bookVOs;
             }
-            Console.SetCursorPosition(0, 0);
+            else
+            {
+                Console.SetCursorPosition(0, 3);
+                Console.WriteLine("Error 발생=" + status);
+            }
 
-          
-            response.Close();
-            reader.Close();
-            return bookVOs;
+            return null;
 
 
-         
+
+
         }
        
     }
