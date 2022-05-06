@@ -25,29 +25,7 @@ namespace LibraryMySQL
         {
 
         }
-        public BookVO(int id, string name, string author, string publisher, int bookCount, int price,string date )
-        {
-            this.id = id;
-            this.name = name;
-            this.author = author;
-            this.publisher = publisher;
-            this.bookCount = bookCount;
-            this.price = price;
-            this.date = date;
-          
-        }
-        public BookVO(int id, string name, string author, string publisher, int bookCount, int price, string date, string rentTime)
-        {
-            this.id = id;
-            this.name = name;
-            this.author = author;
-            this.publisher = publisher;
-            this.bookCount = bookCount;
-            this.price = price;
-            this.date = date;
-            this.rentTime = rentTime;
-           
-        }
+    
         public string Isbn
         {
             get { return isbn; }
