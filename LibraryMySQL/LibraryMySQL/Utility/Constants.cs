@@ -27,6 +27,7 @@ namespace LibraryMySQL
         public const int BOOK_RETRUN_HISTORY = 5;
         public const int USER_EDIT = 6;
         public const int DELETE = 7;
+        public const int NAVER_SEARCH_AND_ADDBOOK = 8;
         public const int EXIT = -1;
 
         //SelectionMode
@@ -75,6 +76,7 @@ namespace LibraryMySQL
         public const int USER_PHONE = 5;
         public const int USER_ADDRESS = 6;
         public const int EDIT = 7;
+        
 
 
         public const int BOOK_EXIST = 1;

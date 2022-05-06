@@ -257,6 +257,7 @@ namespace LibraryMySQL
 			Console.ResetColor();
 			Console.WriteLine("               │");
 			Console.Write("                                   │                 ");
+
 			if (selectNumber == 6)
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
@@ -279,6 +280,18 @@ namespace LibraryMySQL
 			Console.Write("{0}  회원탈퇴", selectFirst);
 			Console.ResetColor();
 			Console.WriteLine("                   │");
+
+			Console.Write("                                   │                 ");
+			if (selectNumber == 8)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				selectFirst = "●";
+			}
+			else
+				selectFirst = "○";
+			Console.Write("{0}  네이버검색 및 추가", selectFirst);
+			Console.ResetColor();
+			Console.WriteLine("         │");
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");

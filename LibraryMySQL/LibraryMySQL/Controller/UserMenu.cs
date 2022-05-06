@@ -16,6 +16,7 @@ namespace LibraryMySQL
         ValidInput validInput;
         BookDAO mySQlData;
         UserDAO userDAO;
+        NaverSearching naverSearching;
         public UserMenu(ValidInput validInput, UserModeUI userModeUI,LibraryUI libraryUI,SelectionMode mode)
         {
             this.validInput = validInput;
@@ -25,6 +26,7 @@ namespace LibraryMySQL
             bookSearching = new BookSearching(validInput, libraryUI, userModeUI);          
             mySQlData = BookDAO.Instance();
             userDAO= new UserDAO();
+            naverSearching = new NaverSearching();
         }
         public void StartUserMenu()
         {
@@ -34,7 +36,7 @@ namespace LibraryMySQL
 
             while (Constants.isPROGRAM_ON)
             {              
-               menuNumber = mode.SelectUserManagerMenu("User", 7); // 유저메뉴 위아래 화살표로 선택하기
+               menuNumber = mode.SelectUserManagerMenu("User", 8); // 유저메뉴 위아래 화살표로 선택하기
                 
                 switch (menuNumber)
                 {
@@ -67,6 +69,10 @@ namespace LibraryMySQL
                     case Constants.DELETE: // 계정삭제
                         if(DeleteUserId())
                             return;
+                        break;
+                    case Constants.NAVER_SEARCH_AND_ADDBOOK: // 네이버검색 후 도서추가
+                        naverSearching.SearchInNaver();
+                        Console.Clear();
                         break;
                     case Constants.EXIT:
                         return;
