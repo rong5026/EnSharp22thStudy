@@ -221,6 +221,8 @@ namespace LibraryMySQL {
             libraryUI.ShowBorrowedBookList(list, type);
 
             mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", LibraryStart.loginedUser, message); // 로그저장
+
+            Console.SetCursorPosition(0, 0);
             while (Constants.isPROGRAM_ON)
             {
                 keyInput = Console.ReadKey(Constants.KEY_INPUT);

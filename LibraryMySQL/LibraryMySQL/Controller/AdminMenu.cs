@@ -104,190 +104,9 @@ namespace LibraryMySQL
             }
 
         }
-        private void ControlLog() // 로그관리
-        {
-            int menuNumber;
-            Console.Clear();
-            libraryUI.PrintMainUI();
-            
-            while (Constants.isPROGRAM_ON)
-            {
-
-                menuNumber = mode.SelectUserManagerMenu("Log", Constants.LOG_MENU_COUNT); //메뉴선택
-
-                switch (menuNumber)
-                {
-                    case Constants.LOG_EDIT: //로그수정            
-                        EditLog();
-                        Console.Clear();
-                        break;
-                    case Constants.LOG_SAVE_FILE: // 로그파일저장             
-                        SaveLog();
-                        Console.Clear();
-                        break;
-                    case Constants.LOG_DELETE_FILE: //로그파일삭제        
-                        DeleteLogFile();
-                        Console.Clear();
-                        break;
-                    case Constants.LOG_RESET: // 로그초기화               
-                        ResetLogData();
-                        Console.Clear();
-                        break;
-                               
-                    case Constants.EXIT:
-                        Console.Clear();
-                        return;
-                    default:
-                        return;
-                }
-
-
-            }
-        }
+       
       
-        private void DeleteLogFile() // 로그텍스트파일 삭제
-        {
-            Console.Clear();
-
-            adminModeUI.PrintAdminMenuMessage("                   로그 텍스트파일 삭제", "삭제하기");
-
-            while (Constants.isPROGRAM_ON)
-            {
-                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
-                if (keyInput.Key == ConsoleKey.Escape)
-                    return;
-                else if (keyInput.Key == ConsoleKey.Enter)
-                {
-                    string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Library로그기록.txt";
-                    if (File.Exists(path))
-                    {
-                        File.Delete(path); // 로그파일 삭제
-                        Console.SetCursorPosition(0, 0);
-                        adminModeUI.PrintAdminMenuMessage("                로그파일이 삭제되었습니다", "확인하기");
-                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "Librart로그기록.txt ", "로그파일삭제"); // 로그저장
-                    }
-                    else
-                    {
-                        Console.SetCursorPosition(0, 0);
-                        adminModeUI.PrintAdminMenuMessage("            삭제할 파일이 존재하지 않습니다", "확인하기"); // 로그파일 삭제 실패
-                    }
-                    while (Constants.isPROGRAM_ON)
-                    {
-                        keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
-                        if (keyInput.Key == ConsoleKey.Escape)
-                            return;
-
-                    }
-                }
-            }
-        }
-        private void SaveLog() // 로그 text파일로 저장
-        {
-            List<LogDTO> list;
-            string log = "";
-            Console.Clear();
-           
-
-            adminModeUI.PrintAdminMenuMessage("                text파일에 저장하시겠습니까?", "저장하기");
-
-            while (Constants.isPROGRAM_ON)
-            {
-                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
-                if (keyInput.Key == ConsoleKey.Escape)
-                    return;
-                else if (keyInput.Key == ConsoleKey.Enter)
-                {
-                    list = mySQlData.GetLogList(); //로그데이터 가져옴
-
-                    for(int index = 0; index < list.Count; index++)
-                    {
-                        log += "순서: " + list[index].Id.ToString() + " / 시간: " + list[index].Time + " / 사용자 :" + list[index].User + " / 내용 :" + list[index].Information + " / 명령 :" + list[index].Action+"\n";
-                    }
-                    File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Library로그기록.txt", log); // 로그text파일 생성
-
-                    Console.SetCursorPosition(0, 0);
-                    adminModeUI.PrintAdminMenuMessage("                로그파일로 저장되었습니다", "확인하기");
-                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "Librart로그기록.txt ", "로그파일저장"); // 로그저장
-                    while (Constants.isPROGRAM_ON)
-                    {
-                        keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
-                        if (keyInput.Key == ConsoleKey.Escape)
-                            return;
-
-                    }
-                }
-            }
-        }
-        private void EditLog() // 로그수정
-        {
-            string logId;
-
-
-            while (Constants.isPROGRAM_ON)
-            {
-                Console.Clear();
-
-                adminModeUI.PrintAdminMenuMessage("                삭제하려는 로그ID :", "확인하기");
-                List<LogDTO> list = mySQlData.GetLogList(); // 전체 로그 가져옴
-
-             
-                adminModeUI.PrintLogData(list);// 전체로그 출력
-
-                logId = validInput.EnterLogId(73, 3, ErrorMessage.LOG_ID, RegularExpression.LOG_ID); // 수정할 로그 Id입력
-
-                if (logId == Constants.INPUT_BACK)
-                    return;
-
-                mySQlData.DeleteLogData(Convert.ToInt32(logId)); // 로그정보 삭제
-                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", logId, "로그삭제"); // 로그저장
-
-                Console.SetCursorPosition(0, 0);
-                adminModeUI.PrintAdminMenuMessage("                     로그 삭제 완료!                          ", "다시삭제");
-                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", logId, "선택로그삭제"); // 로그저장
-
-                Console.CursorVisible = Constants.isNONVISIBLE;
-
-                while (Constants.isPROGRAM_ON)
-                {
-                    keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
-                    if (keyInput.Key == ConsoleKey.Escape)
-                        return;
-                    else if (keyInput.Key == ConsoleKey.Enter)
-                        break;
-                }
-            }
-
-
-        }
-
-        private void ResetLogData() // 모든 로그정보 삭제
-        {
-            Console.Clear();
-
-            adminModeUI.PrintAdminMenuMessage("                로그를 초기화 시키겠습니까?", "초기화하기");
-
-            while (Constants.isPROGRAM_ON)
-            {
-                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
-                if (keyInput.Key == ConsoleKey.Escape)
-                    return;
-                else if (keyInput.Key == ConsoleKey.Enter)
-                {
-                    mySQlData.DeleteALlLog();
-                    Console.SetCursorPosition(0, 0);
-                    adminModeUI.PrintAdminMenuMessage("                로그정보가 초기화되었습니다", "확인하기");
-                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "초기화", "로그초기화"); // 로그저장
-                    while (Constants.isPROGRAM_ON)
-                    {
-                        keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
-                        if (keyInput.Key == ConsoleKey.Escape)
-                            return;
-                        
-                    }
-                }
-            }
-
-        }
+       
 
         private void AddBook() // 도서 추가
         {
@@ -306,7 +125,7 @@ namespace LibraryMySQL
             while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
-                adminModeUI.PrintAdminMenuMessage("도서추가","확인");
+                adminModeUI.PrintAdminMenuMessage("                       도서추가", "확인");
                 adminModeUI.PrtinInputAddBook();
               
 
@@ -343,7 +162,7 @@ namespace LibraryMySQL
                 mySQlData.InsertBook(bookVO); // 데이터베이스에 책 추가
                 mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", name, "도서추가"); // 로그저장
                 Console.Clear();
-                adminModeUI.PrintAdminMenuMessage("도서추가","다시추가");
+                adminModeUI.PrintAdminMenuMessage("                      추가완료!", "다시추가");
                 adminModeUI.PrintAddBookSuccess();
                 Console.CursorVisible = Constants.isNONVISIBLE;
 
@@ -389,7 +208,7 @@ namespace LibraryMySQL
 
 
                 Console.Clear();
-                adminModeUI.PrintAdminMenuMessage("삭제할 책 ID :","확인");
+                adminModeUI.PrintAdminMenuMessage("                      삭제할 책 ID :", "확인");
 
                 bookIndex =libraryUI.ShowBookList(name, author, publisher, bookList); // 검색한 책 리스트 출력
 
@@ -401,7 +220,7 @@ namespace LibraryMySQL
                 mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", bookId, "도서삭제"); // 로그저장
 
                 Console.SetCursorPosition(0, 0);
-                adminModeUI.PrintAdminMenuMessage("책 삭제 완료!","다시삭제");
+                adminModeUI.PrintAdminMenuMessage("                      책 삭제 완료!           ", "다시삭제");
                 Console.CursorVisible = Constants.isNONVISIBLE;
 
                 while (Constants.isPROGRAM_ON)
@@ -444,7 +263,7 @@ namespace LibraryMySQL
 
 
                 Console.Clear();
-                adminModeUI.PrintAdminMenuMessage("수정할 책 ID :", "확인");
+                adminModeUI.PrintAdminMenuMessage("                     수정할 책 ID :", "확인");
                 bookIndex = libraryUI.ShowBookList(name, author, publisher, bookList); // 검색한 책 리스트 출력
 
                 bookId = validInput.EnterDeleteBookID(73, 3, ErrorMessage.BOOK_ID, RegularExpression.BOOK_ID, bookIndex, bookList);// 수정할 책 ID 입력            
@@ -467,11 +286,11 @@ namespace LibraryMySQL
             string price;
             string date;
 
-            BookDTO bookVO = new BookDTO();
+            BookDTO bookVO;
 
             Console.Clear();
 
-            mySQlData.GetSelectedBook(bookVO, bookId); // 수정하고자하는 책 정보 가져옮
+            bookVO = mySQlData.GetSelectedBook(bookId); // 수정하고자하는 책 정보 가져옮
             name = bookVO.Name;
             author = bookVO.Author;
             publisher = bookVO.Publisher;
@@ -482,8 +301,8 @@ namespace LibraryMySQL
             while (Constants.isPROGRAM_ON)
             {
                 Console.SetCursorPosition(0, 0);
-                adminModeUI.PrintAdminMenuMessage("책 수정", "확인");
-                mySQlData.GetSelectedBook(bookVO, bookId); // 수정하고자하는 책 정보 가져옮
+                adminModeUI.PrintAdminMenuMessage("                         책 수정", "확인");
+                bookVO = mySQlData.GetSelectedBook(bookId); // 수정하고자하는 책 정보 가져옮
                 adminModeUI.PrintRegisteredBook(bookVO); // 기존 책정보 프린트
 
                 
@@ -601,6 +420,189 @@ namespace LibraryMySQL
                         return;
                     else if (keyInput.Key == ConsoleKey.Enter)
                         break;
+                }
+            }
+
+        }
+        private void ControlLog() // 로그관리
+        {
+            int menuNumber;
+            Console.Clear();
+            libraryUI.PrintMainUI();
+
+            while (Constants.isPROGRAM_ON)
+            {
+
+                menuNumber = mode.SelectUserManagerMenu("Log", Constants.LOG_MENU_COUNT); //메뉴선택
+
+                switch (menuNumber)
+                {
+                    case Constants.LOG_EDIT: //로그수정            
+                        EditLog();
+                        Console.Clear();
+                        break;
+                    case Constants.LOG_SAVE_FILE: // 로그파일저장             
+                        SaveLog();
+                        Console.Clear();
+                        break;
+                    case Constants.LOG_DELETE_FILE: //로그파일삭제        
+                        DeleteLogFile();
+                        Console.Clear();
+                        break;
+                    case Constants.LOG_RESET: // 로그초기화               
+                        ResetLogData();
+                        Console.Clear();
+                        break;
+
+                    case Constants.EXIT:
+                        Console.Clear();
+                        return;
+                    default:
+                        return;
+                }
+
+
+            }
+        }
+        private void DeleteLogFile() // 로그텍스트파일 삭제
+        {
+            Console.Clear();
+
+            adminModeUI.PrintAdminMenuMessage("                   로그 텍스트파일 삭제", "삭제하기");
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return;
+                else if (keyInput.Key == ConsoleKey.Enter)
+                {
+                    string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Library로그기록.txt";
+                    if (File.Exists(path))
+                    {
+                        File.Delete(path); // 로그파일 삭제
+                        Console.SetCursorPosition(0, 0);
+                        adminModeUI.PrintAdminMenuMessage("                로그파일이 삭제되었습니다", "확인하기");
+                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "Librart로그기록.txt ", "로그파일삭제"); // 로그저장
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(0, 0);
+                        adminModeUI.PrintAdminMenuMessage("            삭제할 파일이 존재하지 않습니다", "확인하기"); // 로그파일 삭제 실패
+                    }
+                    while (Constants.isPROGRAM_ON)
+                    {
+                        keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                        if (keyInput.Key == ConsoleKey.Escape)
+                            return;
+
+                    }
+                }
+            }
+        }
+        private void SaveLog() // 로그 text파일로 저장
+        {
+            List<LogDTO> list;
+            string log = "";
+            Console.Clear();
+
+
+            adminModeUI.PrintAdminMenuMessage("                text파일에 저장하시겠습니까?", "저장하기");
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return;
+                else if (keyInput.Key == ConsoleKey.Enter)
+                {
+                    list = mySQlData.GetLogList(); //로그데이터 가져옴
+
+                    for (int index = 0; index < list.Count; index++)
+                    {
+                        log += "순서: " + list[index].Id.ToString() + " / 시간: " + list[index].Time + " / 사용자 :" + list[index].User + " / 내용 :" + list[index].Information + " / 명령 :" + list[index].Action + "\n";
+                    }
+                    File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Library로그기록.txt", log); // 로그text파일 생성
+
+                    Console.SetCursorPosition(0, 0);
+                    adminModeUI.PrintAdminMenuMessage("                로그파일로 저장되었습니다", "확인하기");
+                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "Librart로그기록.txt ", "로그파일저장"); // 로그저장
+                    while (Constants.isPROGRAM_ON)
+                    {
+                        keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                        if (keyInput.Key == ConsoleKey.Escape)
+                            return;
+
+                    }
+                }
+            }
+        }
+        private void EditLog() // 로그수정
+        {
+            string logId;
+
+
+            while (Constants.isPROGRAM_ON)
+            {
+                Console.Clear();
+
+                adminModeUI.PrintAdminMenuMessage("                삭제하려는 로그ID :", "확인하기");
+                List<LogDTO> list = mySQlData.GetLogList(); // 전체 로그 가져옴
+
+
+                adminModeUI.PrintLogData(list);// 전체로그 출력
+
+                logId = validInput.EnterLogId(73, 3, ErrorMessage.LOG_ID, RegularExpression.LOG_ID); // 수정할 로그 Id입력
+
+                if (logId == Constants.INPUT_BACK)
+                    return;
+
+                mySQlData.DeleteLogData(Convert.ToInt32(logId)); // 로그정보 삭제
+                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", logId, "로그삭제"); // 로그저장
+
+                Console.SetCursorPosition(0, 0);
+                adminModeUI.PrintAdminMenuMessage("                     로그 삭제 완료!                          ", "다시삭제");
+                mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", logId, "선택로그삭제"); // 로그저장
+
+                Console.CursorVisible = Constants.isNONVISIBLE;
+
+                while (Constants.isPROGRAM_ON)
+                {
+                    keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                    if (keyInput.Key == ConsoleKey.Escape)
+                        return;
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                        break;
+                }
+            }
+
+
+        }
+
+        private void ResetLogData() // 모든 로그정보 삭제
+        {
+            Console.Clear();
+
+            adminModeUI.PrintAdminMenuMessage("                로그를 초기화 시키겠습니까?", "초기화하기");
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                if (keyInput.Key == ConsoleKey.Escape)
+                    return;
+                else if (keyInput.Key == ConsoleKey.Enter)
+                {
+                    mySQlData.DeleteALlLog();
+                    Console.SetCursorPosition(0, 0);
+                    adminModeUI.PrintAdminMenuMessage("                로그정보가 초기화되었습니다", "확인하기");
+                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "초기화", "로그초기화"); // 로그저장
+                    while (Constants.isPROGRAM_ON)
+                    {
+                        keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                        if (keyInput.Key == ConsoleKey.Escape)
+                            return;
+
+                    }
                 }
             }
 

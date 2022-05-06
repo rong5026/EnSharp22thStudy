@@ -290,9 +290,9 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public void GetSelectedBook(BookDTO bookVO, int bookId) // 수정하고자 하는 책 정보 리턴
+        public BookDTO GetSelectedBook( int bookId) // 수정하고자 하는 책 정보 리턴
         {
-
+            BookDTO bookVO;
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.SELECT_BOOKLIST);
 
@@ -306,14 +306,15 @@ namespace LibraryMySQL
             {
                 if (bookId == (int)table["book_id"])
                 {
-                  
 
-                    book = new BookDTO((int)table["book_id"], (string)table["book_name"], (string)table["book_author"], (string)table["book_publisher"], (int)table["book_count"], (int)table["book_price"], (string)table["book_date"], null,null, (string)table["book_isbn"], (string)table["book_information"]);
+                    bookVO = new BookDTO((int)table["book_id"], (string)table["book_name"], (string)table["book_author"], (string)table["book_publisher"], (int)table["book_count"], (int)table["book_price"], (string)table["book_date"], null,null, (string)table["book_isbn"], (string)table["book_information"]);
                     table.Close();
                     connection.Close();
-                    return;
+                    return bookVO;
+
                 }
             }
+            return null;
         }
         public void UpdateBookDate(string name, string author, string publisher, int count, int price, string date,int bookId) // 책정보 변경
         {
