@@ -25,7 +25,7 @@ namespace LibraryMySQL
         public void SearchInNaver()
         {
             List<BookDTO> bookList;
-            List<BookDTO> validBookList;
+           
 
             while (Constants.isPROGRAM_ON)
             {
@@ -45,56 +45,65 @@ namespace LibraryMySQL
                 bookList = SearchNaverBook(Convert.ToInt32(bookCount), name); // 검색결과를 리스트에 넣음
                 Console.CursorVisible = Constants.isNONVISIBLE;
 
+                if (AddAdminNaverBook(bookList) == 0)
+                    return;
+                               
+                    
+            }
+        }
 
-                Console.SetCursorPosition(0, 0);
-                adminModeUI.PrtinInputNaverBook("도서 추가하기(ISBN일부만 입력해도 추가가 됩니다)", "뒤로가기"); //책 , 수량 입력
+        private int AddAdminNaverBook(List<BookDTO> bookList)
+        {
+            List<BookDTO> validBookList;
+            Console.SetCursorPosition(0, 0);
+            adminModeUI.PrtinInputNaverBook("도서 추가하기(ISBN일부만 입력해도 추가가 됩니다)", "뒤로가기"); //책 , 수량 입력
 
-                keyInput = Console.ReadKey(Constants.KEY_INPUT);
-                if (keyInput.Key == ConsoleKey.Escape)
-                    return; // ESC 누르면 뒤로가기 
-                else if (keyInput.Key == ConsoleKey.Enter)
+            keyInput = Console.ReadKey(Constants.KEY_INPUT);
+            if (keyInput.Key == ConsoleKey.Escape)
+                return 0; // ESC 누르면 뒤로가기 
+            else if (keyInput.Key == ConsoleKey.Enter)
+            {
+
+                while (Constants.isPROGRAM_ON)
                 {
+                    Console.SetCursorPosition(0, 0);
+                    adminModeUI.PrintInputNaverISBN("책 ISBN", "확인하기 (ISBN일부만 입력해도 추가가 됩니다)", "뒤로가기");
+
+                    string isbn = validInput.EnterBookISBN(16, 1, bookList); // 책 isbn
+                    if (isbn == Constants.INPUT_BACK)
+                        break;
+
+
+                    validBookList = GetSameIsbnBook(isbn, bookList); // isbn이 같은 책의 정보를 가져옴
+
+                    if (validBookList == null)
+                    {
+                        break;
+                    }
+                    for (int index = 0; index < validBookList.Count; index++)
+                    {
+                        mySQlData.InsertBook(validBookList[index]); // 책 추가
+                        mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", validBookList[index].Name, "네이버도서추가"); // 로그저장
+                    }
+
+                    Console.SetCursorPosition(0, 0);
+                    adminModeUI.PrintInputNaverISBN("입력값을 포함한 ISBN을 가진 책 전부 추가성공!", "다시추가하기", "뒤로가기");
 
                     while (Constants.isPROGRAM_ON)
                     {
-                        Console.SetCursorPosition(0, 0);
-                        adminModeUI.PrintInputNaverISBN("책 ISBN", "확인하기 (ISBN일부만 입력해도 추가가 됩니다)", "뒤로가기");
-
-                        string isbn = validInput.EnterBookISBN(16, 1, bookList); // 책 isbn
-                        if (isbn == Constants.INPUT_BACK)
+                        keyInput = Console.ReadKey(Constants.KEY_INPUT);
+                        if (keyInput.Key == ConsoleKey.Escape)
+                            return 0; // ESC 누르면 뒤로가기 
+                        else if (keyInput.Key == ConsoleKey.Enter)
                             break;
 
 
-                        validBookList = GetSameIsbnBook(isbn, bookList); // isbn이 같은 책의 정보를 가져옴
-
-                        if(validBookList == null)
-                        {
-                            break;
-                        }
-                        for(int index = 0; index < validBookList.Count; index++)
-                        {
-                            mySQlData.InsertBook(validBookList[index]); // 책 추가
-                            mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", validBookList[index].Name, "네이버도서추가"); // 로그저장
-                        }
-                                         
-                        Console.SetCursorPosition(0, 0);
-                        adminModeUI.PrintInputNaverISBN("입력값을 포함한 ISBN을 가진 책 전부 추가성공!", "다시추가하기", "뒤로가기");
-
-                        while (Constants.isPROGRAM_ON)
-                        {
-                            keyInput = Console.ReadKey(Constants.KEY_INPUT);
-                            if (keyInput.Key == ConsoleKey.Escape)
-                                return; // ESC 누르면 뒤로가기 
-                            else if (keyInput.Key == ConsoleKey.Enter)
-                                break;
-
-
-                        }
                     }
-
                 }
-              
+
             }
+
+            return 0;
         }
         private List<BookDTO> GetSameIsbnBook(string isbn, List<BookDTO> list) // isbn을 포함하는 모든 책 리턴
         {
@@ -108,7 +117,7 @@ namespace LibraryMySQL
 
             return validBookList;
         }
-        public List<BookDTO> SearchNaverBook(int displayCount, string content )
+        public List<BookDTO> SearchNaverBook(int displayCount, string content ) // 네이버 책 검색
         {
             UserDTO userDTO;
             mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", content, "네이버 검색"); // 로그저장
