@@ -14,7 +14,7 @@ namespace LibraryMySQL
         BookSearching bookSearching;         
         UserModeUI userModeUI;
         ValidInput validInput;
-        MySQlDataConnection mySQlData;
+        BookDAO mySQlData;
         UserDAO userDAO;
         public UserMenu(ValidInput validInput, UserModeUI userModeUI,LibraryUI libraryUI,SelectionMode mode)
         {
@@ -23,7 +23,7 @@ namespace LibraryMySQL
             this.libraryUI = libraryUI;        
             this.mode = mode;
             bookSearching = new BookSearching(validInput, libraryUI, userModeUI);          
-            mySQlData = MySQlDataConnection.Instance();
+            mySQlData = BookDAO.Instance();
             userDAO= new UserDAO();
         }
         public void StartUserMenu()

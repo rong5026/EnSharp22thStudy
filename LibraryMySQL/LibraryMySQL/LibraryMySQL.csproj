@@ -103,7 +103,7 @@
     <Compile Include="Model\BookDTO.cs" />
     <Compile Include="Model\UserDAO.cs" />
     <Compile Include="Utility\Constants.cs" />
-    <Compile Include="Model\MySQlDataConnection.cs" />
+    <Compile Include="Model\BookDAO.cs" />
     <Compile Include="Utility\ErrorMessage.cs" />
     <Compile Include="Model\LogDTO.cs" />
     <Compile Include="Utility\QueryData.cs" />

@@ -14,7 +14,7 @@ namespace LibraryMySQL
 
         AdminModeUI adminModeUI = new AdminModeUI();
         ValidInput validInput = new ValidInput();
-        MySQlDataConnection mySQlData = new MySQlDataConnection();
+        BookDAO mySQlData = new BookDAO();
         ConsoleKeyInfo keyInput;
 
         private string name;

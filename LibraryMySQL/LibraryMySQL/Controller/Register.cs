@@ -13,7 +13,7 @@ namespace LibraryMySQL
         ConsoleKeyInfo keyInput;
         UserModeUI userModeUI;
         ValidInput validInput;     
-        MySQlDataConnection mySQlData;
+        BookDAO mySQlData;
         UserDAO userDAO;
 
 
@@ -30,7 +30,7 @@ namespace LibraryMySQL
         {
             this.userModeUI = userModeUI;       
             this.validInput = validInput;
-            mySQlData = MySQlDataConnection.Instance();
+            mySQlData = BookDAO.Instance();
             userDAO = new UserDAO();
         }
         public bool RegistUser()

@@ -15,7 +15,7 @@ namespace LibraryMySQL
         UserModeUI userModeUI;
         AdminModeUI adminModeUI;
         ValidInput validInput;
-        MySQlDataConnection mySQlData;
+        BookDAO mySQlData;
         Login login;
         NaverSearching naver;
         UserDAO userDAO;
@@ -29,7 +29,7 @@ namespace LibraryMySQL
             adminModeUI = new AdminModeUI();
             bookSearching = new BookSearching(validInput, libraryUI, userModeUI);        
             mode = new SelectionMode(libraryUI);
-            mySQlData = MySQlDataConnection.Instance();
+            mySQlData = BookDAO.Instance();
             login = new Login(userModeUI, validInput);
             naver = new NaverSearching();
             userDAO= new UserDAO();

@@ -10,7 +10,7 @@ namespace LibraryMySQL
     internal class ValidInput
     {
         UserModeUI userModeUI;
-        MySQlDataConnection mySQlData;
+        BookDAO mySQlData;
         private bool check;
         private string error;
         private string input;
@@ -20,12 +20,12 @@ namespace LibraryMySQL
         public ValidInput()
         {
             userModeUI = new UserModeUI();
-            mySQlData = MySQlDataConnection.Instance();
+            mySQlData = BookDAO.Instance();
             userDAO = new UserDAO();    
         }
         public ValidInput(UserModeUI userModeUI)
         {
-            mySQlData = MySQlDataConnection.Instance();
+            mySQlData = BookDAO.Instance();
             this.userModeUI = userModeUI;
             userDAO =new UserDAO();
         }

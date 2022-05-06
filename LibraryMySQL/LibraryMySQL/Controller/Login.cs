@@ -12,7 +12,7 @@ namespace LibraryMySQL
 
         UserModeUI userModeUI;
         ValidInput validInput;
-        MySQlDataConnection mySQlData;
+        BookDAO mySQlData;
         UserDAO userDAO;
     
         private string id;
@@ -23,7 +23,7 @@ namespace LibraryMySQL
         {                        
             this.validInput = validInput;          
             this.userModeUI = userModeUI;
-            mySQlData = MySQlDataConnection.Instance();
+            mySQlData = BookDAO.Instance();
             userDAO = new UserDAO();
         }
         public int LoginUser(string type)

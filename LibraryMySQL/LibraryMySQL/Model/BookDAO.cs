@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 namespace LibraryMySQL
 {
-    internal class MySQlDataConnection
+    internal class BookDAO
     {
 
-        private static MySQlDataConnection mysqlData;
+        private static BookDAO mysqlData;
         private UserDTO user;
-        public static MySQlDataConnection Instance()
+        public static BookDAO Instance()
         {
             if (mysqlData == null)
-                mysqlData = new MySQlDataConnection();
+                mysqlData = new BookDAO();
             return mysqlData;
         }
 
@@ -27,11 +27,6 @@ namespace LibraryMySQL
             return connection;
         }
      
-
-
-
-
-
 
 
         public bool LoginedUserRentBookCount(string userId) // 로그인한 유저의 빌린책 수

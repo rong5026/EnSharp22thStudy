@@ -9,7 +9,7 @@ namespace LibraryMySQL
 {
     internal class UserDAO
     {
-        MySQlDataConnection mySQlData = MySQlDataConnection.Instance();
+        BookDAO mySQlData = BookDAO.Instance();
         MySqlConnection connection;
         private UserDTO user;
 
