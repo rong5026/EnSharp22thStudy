@@ -64,9 +64,7 @@ namespace LibraryMySQL
 
 
             while (table.Read())
-            {
-                
-        
+            {                     
                 if (userNumber == (int)table["user_number"])
                 {
 
@@ -75,13 +73,10 @@ namespace LibraryMySQL
                     connection.Close();
                     return userId;
                 }
-            }
-
-          
+            }          
             table.Close();
             connection.Close();
             return Constants.INPUT_EMPTY;
-
         }
 
        
@@ -101,8 +96,7 @@ namespace LibraryMySQL
             while (table.Read())
             {
               
-
-                book = new BookDTO((int)table["book_id"], (string)table["book_name"], (string)table["book_author"], (string)table["book_publisher"], (int)table["book_count"], (int)table["book_price"], (string)table["book_date"], (string)table["book_rent_time"], (string)table["book_return_time"], (string)table["book_isbn"], (string)table["book_information"]);
+                book = new BookDTO((int)table["book_id"], (string)table["book_name"], (string)table["book_author"], (string)table["book_publisher"], (int)table["book_count"], (int)table["book_price"], (string)table["book_date"], null,null, (string)table["book_isbn"], (string)table["book_information"]);
 
                 list.Add(book);               
             }
