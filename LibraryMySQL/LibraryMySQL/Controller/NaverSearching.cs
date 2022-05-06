@@ -132,15 +132,15 @@ namespace LibraryMySQL
 
             for (int index = 0; index < items.Count(); index++)
             {
-                BookDTO book = new BookDTO();
-                book.Name = items[index]["title"].ToString().Replace("<b>", "").Replace("</b>","");
-                book.Author = items[index]["author"].ToString().Replace("<b>", "").Replace("</b>", "");
-                book.Publisher = items[index]["publisher"].ToString().Replace("<b>", "").Replace("</b>", "");
-                book.BookCount = 10;
-                book.Price = Convert.ToInt32(items[index]["price"].ToString());
-                book.Date = items[index]["pubdate"].ToString();
-                book.Isbn = items[index]["isbn"].ToString();
-                book.Information = items[index]["description"].ToString().Replace("<b>", "").Replace("</b>", "");
+                BookDTO book = new BookDTO(0,
+                    items[index]["title"].ToString(), 
+                    items[index]["author"].ToString(), 
+                    items[index]["publisher"].ToString().Replace("<b>", "").Replace("</b>", ""), 
+                    10, Convert.ToInt32(items[index]["price"].ToString()), items[index]["pubdate"].ToString(),
+                    null,null, 
+                    items[index]["isbn"].ToString(), items[index]["description"].ToString().Replace("<b>", "").Replace("</b>", "")     
+                    );
+         
 
 
                 adminModeUI.PrintNaverBookList(items[index]["isbn"].ToString(), book.Name, book.Author, book.Price, book.Publisher, book.Date, book.Information);
