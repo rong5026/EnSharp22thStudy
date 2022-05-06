@@ -105,5 +105,6 @@ namespace LibraryMySQL
         public const int LOG_EXISTS = 1;
         public const int LOG_NOT_EXISTS = 0;
 
+      
     }
 }

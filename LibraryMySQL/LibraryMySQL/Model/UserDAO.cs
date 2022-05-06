@@ -159,6 +159,25 @@ namespace LibraryMySQL
 
             connection.Close();
         }
+        public UserDTO GetNaverAPI( ) // 데이터베이스에서 네이버 연결 id,secret키 가져오기
+        {
+            UserDTO userDTO = new UserDTO();
+            string insertQuery = string.Format(QueryData.SELECT_NAVER_API);
+            connection.Open();
 
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
+
+            while (table.Read())
+            {
+                userDTO.Id= (string)table["client_id"];
+                userDTO.Password = (string)table["client_secret"];
+               
+            }
+
+            table.Close();
+            connection.Close();
+            return userDTO;
+        }
     }
 }

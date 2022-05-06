@@ -40,5 +40,7 @@ namespace LibraryMySQL
 
         public const string SELECT_LOGLIST = "SELECT * FROM log_data"; // 모든 로그 리턴
         public const string DELETE_ALL_LOG = "DELETE FROM log_data;"; // 모든로그 삭제
+
+        public const string SELECT_NAVER_API = "SELECT * FROM naver_api;";
     }
 }

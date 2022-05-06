@@ -12,13 +12,16 @@ namespace LibraryMySQL
     internal class NaverSearching
     {
 
+     
         AdminModeUI adminModeUI = new AdminModeUI();
         ValidInput validInput = new ValidInput();
         BookDAO mySQlData = new BookDAO();
+        UserDAO userDAO = new UserDAO();
         ConsoleKeyInfo keyInput;
-
+      
         private string name;
         private string bookCount;
+
         public void SearchInNaver()
         {
             List<BookDTO> bookList;
@@ -69,10 +72,7 @@ namespace LibraryMySQL
                             mySQlData.InsertBook(validBookList[index]); // 책 추가
                             mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", validBookList[index].Name, "네이버도서추가"); // 로그저장
                         }
-                       
-
-                     
-
+                                         
                         Console.SetCursorPosition(0, 0);
                         adminModeUI.PrintInputNaverISBN("입력값을 포함한 ISBN을 가진 책 전부 추가성공!", "다시추가하기", "뒤로가기");
 
@@ -106,18 +106,21 @@ namespace LibraryMySQL
         }
         public List<BookDTO> SearchNaverBook(int displayCount, string content )
         {
-
+            UserDTO userDTO;
             mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", content, "네이버 검색"); // 로그저장
             string display = Convert.ToString(displayCount); // 검색할 책 수량
             string query = content; // 검색할 문자열
             string url = "https://openapi.naver.com/v1/search/book?query=" + query + "&display=" + display; // 결과가 JSON 포맷
 
+
+            userDTO = userDAO.GetNaverAPI(); // 데이터베이스에서 id, secret가져오기
+           
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.ContentType = "application/json; charset=utf-8";
             request.Method = "GET";
 
-            request.Headers.Add("X-Naver-Client-Id", "Yf8bYtZNXXeGGbdZZBHZ"); // 클라이언트 아이디
-            request.Headers.Add("X-Naver-Client-Secret", "xdMUgPn89d");       // 클라이언트 시크릿
+            request.Headers.Add("X-Naver-Client-Id", userDTO.Id); // 클라이언트 아이디
+            request.Headers.Add("X-Naver-Client-Secret", userDTO.Password);       // 클라이언트 시크릿
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
         
