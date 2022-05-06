@@ -149,7 +149,7 @@ namespace LibraryMySQL
         {
             Console.Clear();
 
-            adminModeUI.PrintAdminMenuMessage("로그 텍스트파일 삭제", "삭제하기");
+            adminModeUI.PrintAdminMenuMessage("                   로그 텍스트파일 삭제", "삭제하기");
 
             while (Constants.isPROGRAM_ON)
             {
@@ -163,13 +163,13 @@ namespace LibraryMySQL
                     {
                         File.Delete(path); // 로그파일 삭제
                         Console.SetCursorPosition(0, 0);
-                        adminModeUI.PrintAdminMenuMessage("로그파일이 삭제되었습니다", "확인하기");
+                        adminModeUI.PrintAdminMenuMessage("                로그파일이 삭제되었습니다", "확인하기");
                         mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "Librart로그기록.txt ", "로그파일삭제"); // 로그저장
                     }
                     else
                     {
                         Console.SetCursorPosition(0, 0);
-                        adminModeUI.PrintAdminMenuMessage("삭제할 파일이 존재하지 않습니다", "확인하기"); // 로그파일 삭제 실패
+                        adminModeUI.PrintAdminMenuMessage("            삭제할 파일이 존재하지 않습니다", "확인하기"); // 로그파일 삭제 실패
                     }
                     while (Constants.isPROGRAM_ON)
                     {
@@ -188,7 +188,7 @@ namespace LibraryMySQL
             Console.Clear();
            
 
-            adminModeUI.PrintAdminMenuMessage("text파일에 저장하시겠습니까?", "저장하기");
+            adminModeUI.PrintAdminMenuMessage("                text파일에 저장하시겠습니까?", "저장하기");
 
             while (Constants.isPROGRAM_ON)
             {
@@ -206,7 +206,7 @@ namespace LibraryMySQL
                     File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Library로그기록.txt", log); // 로그text파일 생성
 
                     Console.SetCursorPosition(0, 0);
-                    adminModeUI.PrintAdminMenuMessage("로그파일로 저장되었습니다", "확인하기");
+                    adminModeUI.PrintAdminMenuMessage("                로그파일로 저장되었습니다", "확인하기");
                     mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "Librart로그기록.txt ", "로그파일저장"); // 로그저장
                     while (Constants.isPROGRAM_ON)
                     {
@@ -227,13 +227,13 @@ namespace LibraryMySQL
             {
                 Console.Clear();
 
-                adminModeUI.PrintAdminMenuMessage("삭제하려는 로그ID :", "확인하기");
+                adminModeUI.PrintAdminMenuMessage("                삭제하려는 로그ID :", "확인하기");
                 List<LogDTO> list = mySQlData.GetLogList(); // 전체 로그 가져옴
 
              
                 adminModeUI.PrintLogData(list);// 전체로그 출력
 
-                logId = validInput.EnterLogId(78, 3, ErrorMessage.LOG_ID, RegularExpression.LOG_ID); // 수정할 로그 Id입력
+                logId = validInput.EnterLogId(73, 3, ErrorMessage.LOG_ID, RegularExpression.LOG_ID); // 수정할 로그 Id입력
 
                 if (logId == Constants.INPUT_BACK)
                     return;
@@ -242,7 +242,7 @@ namespace LibraryMySQL
                 mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", logId, "로그삭제"); // 로그저장
 
                 Console.SetCursorPosition(0, 0);
-                adminModeUI.PrintAdminMenuMessage("로그 삭제 완료!", "다시삭제");
+                adminModeUI.PrintAdminMenuMessage("                     로그 삭제 완료!                          ", "다시삭제");
                 mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", logId, "선택로그삭제"); // 로그저장
 
                 Console.CursorVisible = Constants.isNONVISIBLE;
@@ -264,7 +264,7 @@ namespace LibraryMySQL
         {
             Console.Clear();
 
-            adminModeUI.PrintAdminMenuMessage("로그를 초기화 시키겠습니까?", "초기화하기");
+            adminModeUI.PrintAdminMenuMessage("                로그를 초기화 시키겠습니까?", "초기화하기");
 
             while (Constants.isPROGRAM_ON)
             {
@@ -275,7 +275,7 @@ namespace LibraryMySQL
                 {
                     mySQlData.DeleteALlLog();
                     Console.SetCursorPosition(0, 0);
-                    adminModeUI.PrintAdminMenuMessage("로그정보가 초기화되었습니다", "확인하기");
+                    adminModeUI.PrintAdminMenuMessage("                로그정보가 초기화되었습니다", "확인하기");
                     mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", "초기화", "로그초기화"); // 로그저장
                     while (Constants.isPROGRAM_ON)
                     {
