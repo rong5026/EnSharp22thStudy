@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryMySQL
 {
-    internal class BookVO
+    internal class BookDTO
     {
 
         private int id;
@@ -21,10 +21,7 @@ namespace LibraryMySQL
         private string isbn;
         private string information;
     
-        public BookVO()
-        {
-
-        }
+       
     
         public string Isbn
         {

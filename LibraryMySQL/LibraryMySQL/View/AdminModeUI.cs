@@ -60,7 +60,7 @@ namespace LibraryMySQL
             Console.WriteLine("                                                                                                   \n");
             Console.WriteLine("                                ------------------------------------------------------------\n");
         }
-        public void PrintRegisteredBook(BookVO bookVO) // 선택한 책 정보 출력
+        public void PrintRegisteredBook(BookDTO bookVO) // 선택한 책 정보 출력
         {
             Console.WriteLine("                                                  ◈현재 등록되어 있는 정보◈\n\n");
             Console.WriteLine("                             책제목(영어,한글,숫자,?!+= 1개 이상): {0}",bookVO.Name );
@@ -81,7 +81,7 @@ namespace LibraryMySQL
             Console.ResetColor();
           
         }
-        public void PrintUserData(UserVO userVO) // 유저 정보 출력
+        public void PrintUserData(UserDTO userVO) // 유저 정보 출력
         {
             Console.WriteLine("============================================================================================================================\n");
 
@@ -136,7 +136,7 @@ namespace LibraryMySQL
             Console.WriteLine("");
 
         }
-        public void PrintLogData(List<LogVO> list) // 로그 정보 출력
+        public void PrintLogData(List<LogDTO> list) // 로그 정보 출력
         {
 
             for (int index = 0; index < list.Count; index++)

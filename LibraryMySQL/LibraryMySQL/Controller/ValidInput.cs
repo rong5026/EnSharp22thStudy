@@ -15,16 +15,19 @@ namespace LibraryMySQL
         private string error;
         private string input;
         ConsoleKeyInfo keyInput;
+        UserDAO userDAO;
 
         public ValidInput()
         {
             userModeUI = new UserModeUI();
             mySQlData = MySQlDataConnection.Instance();
+            userDAO = new UserDAO();    
         }
         public ValidInput(UserModeUI userModeUI)
         {
             mySQlData = MySQlDataConnection.Instance();
             this.userModeUI = userModeUI;
+            userDAO =new UserDAO();
         }
 
         public string EnterInput(int x, int y, string errorMessage, string regular)
@@ -192,8 +195,8 @@ namespace LibraryMySQL
         }
         private int CheckUserId(string id) // 회원가입시 이미 가입한 회원과 ID가 겹치는지 확인
         {
-            List<UserVO> userList = new List<UserVO>();
-            mySQlData.GetUserList(userList);
+            List<UserDTO> userList = new List<UserDTO>();
+            userDAO.GetUserList(userList);
 
             for (int index = 0; index < userList.Count; index++)
             {
@@ -331,7 +334,7 @@ namespace LibraryMySQL
         }
         private int CheckBookName(string bookName) // 책 이미 등록되어있는지 확인
         {
-            List<BookVO> bookList;
+            List<BookDTO> bookList;
             bookList = mySQlData.GetBookList();
 
             for (int index = 0; index < bookList.Count; index++)
@@ -399,7 +402,7 @@ namespace LibraryMySQL
         }
 
 
-        public string EnterDeleteBookID(int x, int y, string errorMessage, string regular,List<int> bookInedex, List<BookVO> bookList) // 삭제할 책 ID
+        public string EnterDeleteBookID(int x, int y, string errorMessage, string regular,List<int> bookInedex, List<BookDTO> bookList) // 삭제할 책 ID
         {
             Console.CursorVisible = true;
             error = errorMessage;   //예외조건 성립안할때 출력
@@ -466,7 +469,7 @@ namespace LibraryMySQL
 
         private int CheckBookId(string bookId) // 책 이미 등록되어있는지 확인
         {
-            List<BookVO> bookList;
+            List<BookDTO> bookList;
             bookList = mySQlData.GetBookList();
 
             for (int index = 0; index < bookList.Count; index++)
@@ -477,7 +480,7 @@ namespace LibraryMySQL
             return Constants.BOOK_NOT_EXIST;
 
         }
-        private int CheckBookListID(string bookId,List<int> bookInedex, List<BookVO> bookList) // 검색한 책리스트에 있는 책인지
+        private int CheckBookListID(string bookId,List<int> bookInedex, List<BookDTO> bookList) // 검색한 책리스트에 있는 책인지
         {
 
           
@@ -555,8 +558,8 @@ namespace LibraryMySQL
         }
         private int CheckUserNumber(string userNumber) // 존재하는 유저Number인지 확인
         {
-            List<UserVO> userList=new List<UserVO>();
-            mySQlData.GetUserList(userList); // 유저 리스트 
+            List<UserDTO> userList=new List<UserDTO>();
+            userDAO.GetUserList(userList); // 유저 리스트 
 
             for (int index = 0; index < userList.Count; index++)
             {             
@@ -630,7 +633,7 @@ namespace LibraryMySQL
 
         private int CheckLogID(int logId) // 존재하는 로그ID인지 확인
         {
-            List<LogVO> logList = mySQlData.GetLogList();
+            List<LogDTO> logList = mySQlData.GetLogList();
          
             for (int index = 0; index < logList.Count; index++)
             {
@@ -640,7 +643,7 @@ namespace LibraryMySQL
             return Constants.LOG_NOT_EXISTS;
         }
 
-        public string EnterBookISBN(int x, int y,List<BookVO> list) // 책 ISBN입력
+        public string EnterBookISBN(int x, int y,List<BookDTO> list) // 책 ISBN입력
         {
             Console.CursorVisible = true;
          
@@ -706,7 +709,7 @@ namespace LibraryMySQL
         }
         private int CheckISBNInBookList(string isbn) // 책 리스트에 이미있는 ISBN인지
         {
-            List<BookVO> bookList;
+            List<BookDTO> bookList;
             bookList = mySQlData.GetBookList();
 
             for (int index = 0; index < bookList.Count; index++)
@@ -716,7 +719,7 @@ namespace LibraryMySQL
             }
             return Constants.BOOK_NOT_EXIST;
         }
-        private int CheckISBNInSearchingList(List<BookVO> list,string isbn)// 검색된 리스트에 있는 ISBN인지
+        private int CheckISBNInSearchingList(List<BookDTO> list,string isbn)// 검색된 리스트에 있는 ISBN인지
         {
             for (int index = 0; index < list.Count; index++)
             {

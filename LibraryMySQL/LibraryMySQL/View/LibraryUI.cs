@@ -308,7 +308,7 @@ namespace LibraryMySQL
 
 
 
-		public void ShowBorrowedBookList(List<BookVO> list, string type)
+		public void ShowBorrowedBookList(List<BookDTO> list, string type)
 		{
 			for (int index = 0; index < list.Count; index++)
 			{
@@ -335,7 +335,7 @@ namespace LibraryMySQL
 		
 
 		}
-		public List<int> ShowBookList(string name, string author, string publisher, List<BookVO> list) // 이름 저자 출판사로 책 검색해서 출력
+		public List<int> ShowBookList(string name, string author, string publisher, List<BookDTO> list) // 이름 저자 출판사로 책 검색해서 출력
 		{
 
 			List<int> validIndex = new List<int>();

@@ -97,7 +97,7 @@ namespace LibraryMySQL
 			Console.WriteLine("                                                                                                      ");
 			Console.WriteLine("                                                                                                      ");
 		}
-		public void PrintLoginedUserData(UserVO userVO)
+		public void PrintLoginedUserData(UserDTO userVO)
 		{
 			Console.WriteLine("                                                  ◈현재 등록되어 있는 정보◈\n\n");
 			Console.WriteLine("                             User ID (8~ 15글자 영어, 숫자포함) : {0}", userVO.Id);

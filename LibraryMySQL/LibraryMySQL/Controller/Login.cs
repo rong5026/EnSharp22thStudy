@@ -13,6 +13,7 @@ namespace LibraryMySQL
         UserModeUI userModeUI;
         ValidInput validInput;
         MySQlDataConnection mySQlData;
+        UserDAO userDAO;
     
         private string id;
         private string passWord;
@@ -22,7 +23,8 @@ namespace LibraryMySQL
         {                        
             this.validInput = validInput;          
             this.userModeUI = userModeUI;
-            mySQlData = MySQlDataConnection.Instance();         
+            mySQlData = MySQlDataConnection.Instance();
+            userDAO = new UserDAO();
         }
         public int LoginUser(string type)
         {
@@ -70,9 +72,9 @@ namespace LibraryMySQL
         }
         private int CheckUser(string id, string passWord)//유저 로그인확인
         {
-            List<UserVO> userList = new List<UserVO>();
+            List<UserDTO> userList = new List<UserDTO>();
 
-            mySQlData.GetUserList(userList); // 회원정보를 다가져옴
+            userDAO.GetUserList(userList); // 회원정보를 다가져옴
 
             for (int index = 0; index < userList.Count; index++)
             {
@@ -83,9 +85,9 @@ namespace LibraryMySQL
         }
         private int CheckAdmin(string id, string passWord) // 관리자 로그인확인
         {
-            List<UserVO> adminList = new List<UserVO>();
+            List<UserDTO> adminList = new List<UserDTO>();
 
-            mySQlData.GetAdminList(adminList); // 회원정보를 다가져옴
+            userDAO.GetAdminList(adminList); // 회원정보를 다가져옴
 
             for (int index = 0; index < adminList.Count; index++)
             {

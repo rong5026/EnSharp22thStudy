@@ -21,8 +21,8 @@ namespace LibraryMySQL
         private string bookCount;
         public void SearchInNaver()
         {
-            List<BookVO> bookList;
-            List<BookVO> validBookList;
+            List<BookDTO> bookList;
+            List<BookDTO> validBookList;
 
             while (Constants.isPROGRAM_ON)
             {
@@ -92,9 +92,9 @@ namespace LibraryMySQL
               
             }
         }
-        private List<BookVO> GetSameIsbnBook(string isbn, List<BookVO> list) // isbn을 포함하는 모든 책 리턴
+        private List<BookDTO> GetSameIsbnBook(string isbn, List<BookDTO> list) // isbn을 포함하는 모든 책 리턴
         {
-            List<BookVO> validBookList = new List<BookVO>();
+            List<BookDTO> validBookList = new List<BookDTO>();
 
             for(int index = 0; index < list.Count; index++)
             {
@@ -104,7 +104,7 @@ namespace LibraryMySQL
 
             return validBookList;
         }
-        public List<BookVO> SearchNaverBook(int displayCount, string content )
+        public List<BookDTO> SearchNaverBook(int displayCount, string content )
         {
 
             mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", content, "네이버 검색"); // 로그저장
@@ -125,14 +125,14 @@ namespace LibraryMySQL
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             string text = reader.ReadToEnd();
 
-            List<BookVO> bookVOs = new List<BookVO>();
+            List<BookDTO> bookVOs = new List<BookDTO>();
 
             JObject json = JObject.Parse(text);
             var items = json["items"];
 
             for (int index = 0; index < items.Count(); index++)
             {
-                BookVO book = new BookVO();
+                BookDTO book = new BookDTO();
                 book.Name = items[index]["title"].ToString().Replace("<b>", "").Replace("</b>","");
                 book.Author = items[index]["author"].ToString().Replace("<b>", "").Replace("</b>", "");
                 book.Publisher = items[index]["publisher"].ToString().Replace("<b>", "").Replace("</b>", "");

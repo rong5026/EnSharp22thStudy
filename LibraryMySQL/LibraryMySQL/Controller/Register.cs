@@ -14,6 +14,7 @@ namespace LibraryMySQL
         UserModeUI userModeUI;
         ValidInput validInput;     
         MySQlDataConnection mySQlData;
+        UserDAO userDAO;
 
 
         private string id;
@@ -30,6 +31,7 @@ namespace LibraryMySQL
             this.userModeUI = userModeUI;       
             this.validInput = validInput;
             mySQlData = MySQlDataConnection.Instance();
+            userDAO = new UserDAO();
         }
         public bool RegistUser()
         {
@@ -71,7 +73,7 @@ namespace LibraryMySQL
             // ex) 서울특별시+ 강남구 +" "+ " "+ 남부순환로 + 지하2744
             // ex) 서울특별시 +" "+ 구로구+ " " +경인로248-29
 
-            mySQlData.InsertUserData(id, password, name, age, phoneNumber, address); // 회원Data에 추가
+            userDAO.InsertUserData(id, password, name, age, phoneNumber, address); // 회원Data에 추가
 
             mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", id, "회원가입"); // 로그기록
             Console.Clear();

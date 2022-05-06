@@ -18,6 +18,7 @@ namespace LibraryMySQL
         MySQlDataConnection mySQlData;
         Login login;
         NaverSearching naver;
+        UserDAO userDAO;
         ConsoleKeyInfo keyInput;
 
         public AdminMenu(ValidInput validInput, UserModeUI userModeUI)
@@ -31,6 +32,7 @@ namespace LibraryMySQL
             mySQlData = MySQlDataConnection.Instance();
             login = new Login(userModeUI, validInput);
             naver = new NaverSearching();
+            userDAO= new UserDAO();
         }
 
         public void StartAdminMode() // 관리자 모드 시작
@@ -181,7 +183,7 @@ namespace LibraryMySQL
         }
         private void SaveLog() // 로그 text파일로 저장
         {
-            List<LogVO> list;
+            List<LogDTO> list;
             string log = "";
             Console.Clear();
            
@@ -226,7 +228,7 @@ namespace LibraryMySQL
                 Console.Clear();
 
                 adminModeUI.PrintAdminMenuMessage("삭제하려는 로그ID :", "확인하기");
-                List<LogVO> list = mySQlData.GetLogList(); // 전체 로그 가져옴
+                List<LogDTO> list = mySQlData.GetLogList(); // 전체 로그 가져옴
 
              
                 adminModeUI.PrintLogData(list);// 전체로그 출력
@@ -298,7 +300,7 @@ namespace LibraryMySQL
             string date;
             string isbn;
             string information;
-            BookVO bookVO;
+            BookDTO bookVO;
 
             
             while (Constants.isPROGRAM_ON)
@@ -334,7 +336,7 @@ namespace LibraryMySQL
                 if (information == Constants.INPUT_BACK)
                     break;
 
-                bookVO =new BookVO();
+                bookVO =new BookDTO();
                 bookVO.Name = name;  // 입력값을 넣어야해서 생성자에서 초기화를 못했어요
                 bookVO.Author = author;
                 bookVO.Publisher = publisher;
@@ -371,7 +373,7 @@ namespace LibraryMySQL
             string publisher;
             string bookId;
             List<int> bookIndex;
-            List<BookVO> bookList;
+            List<BookDTO> bookList;
             while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
@@ -428,7 +430,7 @@ namespace LibraryMySQL
             string publisher;
             string bookId;
             List<int> bookIndex;
-            List<BookVO> bookList;
+            List<BookDTO> bookList;
             while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
@@ -472,7 +474,7 @@ namespace LibraryMySQL
             string price;
             string date;
 
-            BookVO bookVO = new BookVO();
+            BookDTO bookVO = new BookDTO();
 
             Console.Clear();
 
@@ -545,11 +547,11 @@ namespace LibraryMySQL
         }
         private void ShowTotalRentUser() // 대여상황
         {
-            List<UserVO> userList = new List<UserVO>();
-            List<BookVO> bookList = new List<BookVO>();
+            List<UserDTO> userList = new List<UserDTO>();
+            List<BookDTO> bookList = new List<BookDTO>();
 
             Console.Clear();
-            mySQlData.GetUserList(userList); // 유저들 리스트 
+            userDAO.GetUserList(userList); // 유저들 리스트 
             adminModeUI.PrintAdminMenuMessage("전체회원 대여상황", "확인");
 
             for(int index = 0; index < userList.Count; index++)
@@ -577,8 +579,8 @@ namespace LibraryMySQL
             while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
-                List<UserVO> userList = new List<UserVO>();
-                mySQlData.GetUserList(userList); // 유저들 리스트 
+                List<UserDTO> userList = new List<UserDTO>();
+                userDAO.GetUserList(userList); // 유저들 리스트 
               
                 adminModeUI.PrintAdminMenuMessage("삭제할 유저Number 입력 :", "확인");
 
@@ -592,7 +594,7 @@ namespace LibraryMySQL
                 if (id == Constants.INPUT_BACK)
                     break;
 
-                mySQlData.DeleteUserNumber(id);
+                userDAO.DeleteUserNumber(id);
 
 
                 Console.SetCursorPosition(0, 0);

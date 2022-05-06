@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 namespace LibraryMySQL
 {
 
-    internal class UserVO
+    internal class UserDTO
     {
         private string id;
         private string password;
@@ -17,16 +17,16 @@ namespace LibraryMySQL
         private string address;
         private int number;
       
-        public UserVO()
+        public UserDTO()
         {
 
         }
-        public UserVO(string id, string password)
+        public UserDTO(string id, string password)
         {
             this.id = id;
             this.password = password;
         }
-        public UserVO(int number,string id, string password, string name, string age, string phonenumber, string address)
+        public UserDTO(int number,string id, string password, string name, string age, string phonenumber, string address)
         {
             this.number = number;
             this.id = id;

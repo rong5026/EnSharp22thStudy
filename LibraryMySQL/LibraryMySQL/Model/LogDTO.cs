@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryMySQL
 {
-    internal class LogVO
+    internal class LogDTO
     {
         private int id;
         private string time;
@@ -14,11 +14,11 @@ namespace LibraryMySQL
         private string information;     
         private string action;
 
-        public LogVO()
+        public LogDTO()
         {
 
         }
-        public LogVO(int id, string time, string user, string information, string action)
+        public LogDTO(int id, string time, string user, string information, string action)
         {
             this.id = id;
             this.time = time;

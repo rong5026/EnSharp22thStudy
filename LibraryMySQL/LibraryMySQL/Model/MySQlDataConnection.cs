@@ -10,7 +10,7 @@ namespace LibraryMySQL
     {
 
         private static MySQlDataConnection mysqlData;
-        private UserVO user;
+        private UserDTO user;
         public static MySQlDataConnection Instance()
         {
             if (mysqlData == null)
@@ -18,157 +18,22 @@ namespace LibraryMySQL
             return mysqlData;
         }
 
-        private MySqlConnection ConnectMySQL()
+        public MySqlConnection ConnectMySQL()
         {
 
-            MySqlConnection connection = new MySqlConnection("Server="+ QueryData.SERVER+"; Port="+ QueryData.PORT + ";Database="+ QueryData.DATABASE_NAME+";Uid="+ QueryData.ID + ";Pwd="+ QueryData.PASSWROD + ";");
-          
+            MySqlConnection connection = new MySqlConnection("Server=" + QueryData.SERVER + "; Port=" + QueryData.PORT + ";Database=" + QueryData.DATABASE_NAME + ";Uid=" + QueryData.ID + ";Pwd=" + QueryData.PASSWROD + ";");
+
 
             return connection;
         }
-        public void GetUserList(List<UserVO> list) // 회원정보 보내줌    send->get
-        {
-         
-            MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format(QueryData.SELECT_USERLIST);
-
-            connection.Open();
-
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            MySqlDataReader table = command.ExecuteReader();
+     
 
 
-            while (table.Read())
-            {
-                user = new UserVO( 
-                    (int)table["user_number"],
-                    (string)table["user_id"],
-                    (string)table["user_password"],
-                    (string)table["user_name"],
-                    (string)table["user_age"],
-                    (string)table["user_phonenumber"],
-                    (string)table["user_address"]
-                    );
-                list.Add(user);
-            }
-                 
-            table.Close();
-            connection.Close();
-       
-        }
-        public void GetAdminList(List<UserVO> list)// 관리자 정보 보내줌
-        {
-            MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format(QueryData.SELECT_ADMINLIST);
-
-            connection.Open();
-
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            MySqlDataReader table = command.ExecuteReader();
 
 
-            while (table.Read())
-            {
-                user = new UserVO(
-                    (string)table["id"],
-                    (string)table["password"]                 
-                    );
-                list.Add(user);
-            }
-
-            table.Close();
-            connection.Close();
-        }
-
-        public void InsertUserData(string id, string password, string name,string age,string phoneNumber, string address ) // 유저정보 삽입
-        {
-            MySqlConnection connection = ConnectMySQL();
-            connection.Open();
-
-            string insertQuery = string.Format(QueryData.INSERT_USER, id, password, name, age, phoneNumber, address);
-
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            command.ExecuteNonQuery();
-
-            connection.Close();
-        }
-
-        
-      
-
-        public void GetLoginedUserLogList(UserVO userVO, string loginedUser) // 현재 로그인중인 유저정보 리턴
-        {
-
-            MySqlConnection connection = ConnectMySQL();
-            string insertQuery = string.Format(QueryData.SELECT_USERLIST);
-
-            connection.Open();
-
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            MySqlDataReader table = command.ExecuteReader();
 
 
-            while (table.Read())
-            {
-                if (loginedUser == (string)table["user_id"])
-                {
-                    userVO.Number = (int)table["user_number"]; 
-                    userVO.Id = (string)table["user_id"];
-                    userVO.Password = (string)table["user_password"];
-                    userVO.Name = (string)table["user_name"];
-                    userVO.Age = (string)table["user_age"];
-                    userVO.PhoneNumber = (string)table["user_phonenumber"];
-                    userVO.Address = (string)table["user_address"];
 
-                    table.Close();
-                    connection.Close();
-                    return;
-                }
-            }
-        }
-
-        public void UpdateUserData(string id, string password, string name, string age, string phoneNumber, string address ) // 회원정보 변경
-        {
-            MySqlConnection connection = ConnectMySQL();
-            connection.Open();
-
-            string insertQuery = string.Format(QueryData.UPDATE_USERDATA, id,password,name,age, phoneNumber, address,  LibraryStart.loginedUser);
-
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            command.ExecuteNonQuery();
-
-            LibraryStart.loginedUser = id;
-           
-            connection.Close();
-        }
-       
-        public void DeleteUserID(string userId) // 회원정보 삭제
-        {
-            MySqlConnection connection = ConnectMySQL();
-            connection.Open();
-
-            string insertQuery = string.Format(QueryData.DELETE_USER, userId);
-
-
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            command.ExecuteNonQuery();
-
-            connection.Close();
-        }
-        public void DeleteUserNumber(string userNumber) // 유저number엣 해당하는 유저삭제
-        {
-            MySqlConnection connection = ConnectMySQL();
-            connection.Open();
-
-            string insertQuery = string.Format(QueryData.DELETE_USER_NUMBER, userNumber);
-
-
-            MySqlCommand command = new MySqlCommand(insertQuery, connection);
-            command.ExecuteNonQuery();
-
-            connection.Close();
-        }
-        
         public bool LoginedUserRentBookCount(string userId) // 로그인한 유저의 빌린책 수
         {
             MySqlConnection connection = ConnectMySQL();
@@ -226,10 +91,10 @@ namespace LibraryMySQL
        
 
 
-        public List<BookVO> GetBookList() // 책리스트를 리턴
+        public List<BookDTO> GetBookList() // 책리스트를 리턴
         {
            
-            List<BookVO> list = new List<BookVO>();
+            List<BookDTO> list = new List<BookDTO>();
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.SELECT_BOOKLIST);
             connection.Open();
@@ -239,7 +104,7 @@ namespace LibraryMySQL
    
             while (table.Read())
             {
-                BookVO book = new BookVO();
+                BookDTO book = new BookDTO();
                
 
                 book.Id = (int)table["book_id"];
@@ -321,7 +186,7 @@ namespace LibraryMySQL
         }
      
 
-        public void GetRentBook(List<BookVO> list,string userId) // 해당아이디의 빌린책 리스트 리턴
+        public void GetRentBook(List<BookDTO> list,string userId) // 해당아이디의 빌린책 리스트 리턴
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.RENT_BOOK);
@@ -335,7 +200,7 @@ namespace LibraryMySQL
 
                 if (userId == (string)table["user_id"])
                 {
-                    BookVO book = new BookVO();
+                    BookDTO book = new BookDTO();
                     book.Id = (int)table["book_id"];
                     book.Name = (string)table["book_name"];
                     book.Author = (string)table["book_author"];
@@ -356,7 +221,7 @@ namespace LibraryMySQL
             connection.Close();
 
         }
-        public void GetReturnedBook(List<BookVO> list) // 해당아이디의 반납책 리스트 리턴
+        public void GetReturnedBook(List<BookDTO> list) // 해당아이디의 반납책 리스트 리턴
         {
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.RETURN_BOOK);
@@ -369,7 +234,7 @@ namespace LibraryMySQL
 
                 if (LibraryStart.loginedUser == (string)table["user_id"])
                 {
-                    BookVO book = new BookVO();
+                    BookDTO book = new BookDTO();
                     book.Id = (int)table["book_id"];
                     book.Name = (string)table["book_name"];
                     book.Author = (string)table["book_author"];
@@ -403,7 +268,7 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public void InsertReturnBook(string returnTime, BookVO bookVO) // 반납책 저장
+        public void InsertReturnBook(string returnTime, BookDTO bookVO) // 반납책 저장
         {
 
             MySqlConnection connection = ConnectMySQL();
@@ -416,7 +281,7 @@ namespace LibraryMySQL
 
             connection.Close();
         }
-        public void InsertRentBook(string rentTime, string returnTime, BookVO bookVO) // 빌린책 저장
+        public void InsertRentBook(string rentTime, string returnTime, BookDTO bookVO) // 빌린책 저장
         {
 
             MySqlConnection connection = ConnectMySQL();
@@ -431,7 +296,7 @@ namespace LibraryMySQL
 
             connection.Close();
         }
-        public void InsertBook(BookVO bookVO) // 책 등록
+        public void InsertBook(BookDTO bookVO) // 책 등록
         {
             MySqlConnection connection = ConnectMySQL();
             connection.Open();
@@ -458,7 +323,7 @@ namespace LibraryMySQL
             connection.Close();
         }
 
-        public void GetSelectedBook(BookVO bookVO, int bookId) // 수정하고자 하는 책 정보 리턴
+        public void GetSelectedBook(BookDTO bookVO, int bookId) // 수정하고자 하는 책 정보 리턴
         {
 
             MySqlConnection connection = ConnectMySQL();
@@ -503,6 +368,12 @@ namespace LibraryMySQL
 
             connection.Close();
         }
+
+
+
+
+
+
         public void InsertLogData(string time, string user, string information, string action) // 로그정보 삽입
         {
             MySqlConnection connection = ConnectMySQL();
@@ -528,9 +399,9 @@ namespace LibraryMySQL
             connection.Close();
 
         }
-        public List<LogVO> GetLogList() // 전체로그 리스트 리턴
+        public List<LogDTO> GetLogList() // 전체로그 리스트 리턴
         {
-            List<LogVO> list = new List<LogVO>();
+            List<LogDTO> list = new List<LogDTO>();
             MySqlConnection connection = ConnectMySQL();
             string insertQuery = string.Format(QueryData.SELECT_LOGLIST);
             connection.Open();
@@ -540,7 +411,7 @@ namespace LibraryMySQL
 
             while (table.Read())
             {
-                LogVO log = new LogVO();
+                LogDTO log = new LogDTO();
 
                 log.Id = (int)table["log_id"];
                 log.Time = (string)table["log_time"];

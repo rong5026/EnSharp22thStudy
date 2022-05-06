@@ -26,7 +26,7 @@ namespace LibraryMySQL {
         }
         public void SearchBook() // 책 검색
         {
-            List<BookVO> bookList;
+            List<BookDTO> bookList;
             while (Constants.isPROGRAM_ON)
             {
                 Console.Clear();
@@ -68,7 +68,7 @@ namespace LibraryMySQL {
 
         public int BorrowBook() // 책 대여
         {
-            List<BookVO> bookList;
+            List<BookDTO> bookList;
             List<int> bookIndex;
             Console.SetWindowSize(125, 50);
             Console.SetCursorPosition(0, 0);
@@ -146,7 +146,7 @@ namespace LibraryMySQL {
         }
         public int ReturnBook()// 도서반납
         {
-            List<BookVO> bookList = new List<BookVO>();
+            List<BookDTO> bookList = new List<BookDTO>();
 
             Console.Clear();
             userModeUI.PrintReturnRentBook("반납","입력하기");
@@ -214,7 +214,7 @@ namespace LibraryMySQL {
             Console.Clear();
             userModeUI.PrintReturnRentBookList(type); // 빌린책 UI 출력
 
-            List<BookVO> list = new List<BookVO>();
+            List<BookDTO> list = new List<BookDTO>();
 
             mySQlData.GetRentBook(list, LibraryStart.loginedUser); //로그인된 사람의 빌린책
 

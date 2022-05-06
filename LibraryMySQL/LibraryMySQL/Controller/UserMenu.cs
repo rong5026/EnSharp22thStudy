@@ -15,6 +15,7 @@ namespace LibraryMySQL
         UserModeUI userModeUI;
         ValidInput validInput;
         MySQlDataConnection mySQlData;
+        UserDAO userDAO;
         public UserMenu(ValidInput validInput, UserModeUI userModeUI,LibraryUI libraryUI,SelectionMode mode)
         {
             this.validInput = validInput;
@@ -23,6 +24,7 @@ namespace LibraryMySQL
             this.mode = mode;
             bookSearching = new BookSearching(validInput, libraryUI, userModeUI);          
             mySQlData = MySQlDataConnection.Instance();
+            userDAO= new UserDAO();
         }
         public void StartUserMenu()
         {
@@ -100,7 +102,7 @@ namespace LibraryMySQL
                                 return Constants.isDELETE_ID_FAIL; ; // ESC 누르면 뒤로가기 
                         }                      
                     }
-                    mySQlData.DeleteUserID(LibraryStart.loginedUser);
+                    userDAO.DeleteUserID(LibraryStart.loginedUser);
                     mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", LibraryStart.loginedUser, "회원탈퇴"); // 로그저장
                     return Constants.isDELETE_ID_SUCCESS;
                 }
@@ -117,11 +119,11 @@ namespace LibraryMySQL
             string phonenumber;
             string address;
 
-            UserVO userVO = new UserVO();
+            UserDTO userVO = new UserDTO();
            
             Console.Clear();
 
-            mySQlData.GetLoginedUserLogList(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
+            userDAO.GetLoginedUserLogList(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
             id = userVO.Id;
             password = userVO.Password;
             name = userVO.Name;
@@ -133,7 +135,7 @@ namespace LibraryMySQL
             {
                 Console.SetCursorPosition(0, 0);    
                 userModeUI.PrintUserDataEdit();  //유저 정보 변경 UI
-                mySQlData.GetLoginedUserLogList(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
+                userDAO.GetLoginedUserLogList(userVO, LibraryStart.loginedUser); // 로그인 된 회원정보를 다가져옴
                 userModeUI.PrintLoginedUserData(userVO); // 기존 회원정보 프린트
 
                 
@@ -172,7 +174,7 @@ namespace LibraryMySQL
                             address = userVO.Address;
                         break;
                     case Constants.EDIT: // 변경하기 버튼                    
-                        mySQlData.UpdateUserData(id, password, name, age, phonenumber, address);
+                        userDAO.UpdateUserData(id, password, name, age, phonenumber, address);
                         mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "유저", LibraryStart.loginedUser, "회원정보변경"); // 로그저장
                         Console.Clear();
                         break;
