@@ -289,9 +289,9 @@ namespace LibraryMySQL
 			}
 			else
 				selectFirst = "○";
-			Console.Write("{0}  네이버검색 및 추가", selectFirst);
+			Console.Write("{0}  네이버검색,도서신청", selectFirst);
 			Console.ResetColor();
-			Console.WriteLine("         │");
+			Console.WriteLine("        │");
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");
 			Console.WriteLine("                                         ↑ 또는 ↓ 키를 눌러 메뉴를 이동하세요.");

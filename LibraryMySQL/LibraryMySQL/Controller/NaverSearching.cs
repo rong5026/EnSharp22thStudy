@@ -129,7 +129,7 @@ namespace LibraryMySQL
                     Console.SetCursorPosition(0, 0);
                     adminModeUI.PrintInputNaverISBN("책 ISBN", "확인하기 (ISBN일부만 입력해도 신청이 됩니다)", "뒤로가기");
 
-                    string isbn = validInput.EnterBookISBN(16, 1, bookList); // 책 isbn
+                    string isbn = validInput.EnterUserBookISBN(16, 1, bookList); // 책 isbn
                     if (isbn == Constants.INPUT_BACK)
                         break;
 

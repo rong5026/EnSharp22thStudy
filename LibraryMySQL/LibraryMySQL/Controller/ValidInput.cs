@@ -707,6 +707,65 @@ namespace LibraryMySQL
             return input;
 
         }
+        public string EnterUserBookISBN(int x, int y, List<BookDTO> list) // 책 ISBN입력
+        {
+            Console.CursorVisible = true;
+
+            Console.SetCursorPosition(x, y);
+
+            input = Constants.INPUT_EMPTY;
+
+            while (Constants.isPROGRAM_ON)
+            {
+                keyInput = Console.ReadKey(Constants.KEY_INPUT);
+                if (input == Constants.INPUT_EMPTY)
+                    DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+
+                if (keyInput.Key == ConsoleKey.Escape) // 뒤로가기
+                    return Constants.INPUT_BACK;
+
+                if (keyInput.Key != ConsoleKey.Backspace && keyInput.Key != ConsoleKey.Enter)
+                {
+                    input += keyInput.KeyChar;
+                    Console.Write(keyInput.KeyChar); // 입력값을 그대로 출력
+                }
+                else
+                {
+                    if (keyInput.Key == ConsoleKey.Backspace && input.Length > 0)
+                    {
+                        if (Regex.IsMatch(input[input.Length - 1].ToString(), RegularExpression.KOREAN))
+                            Console.Write("\b \b\b \b");  // 지우기
+                        else
+                            Console.Write("\b \b");  // 지우기
+                        input = input.Substring(0, (input.Length - 1));
+
+                    }
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                        break;
+                }
+            }
+
+            // 정규식 예외처리
+            if (input != null)
+                check = Regex.IsMatch(input, RegularExpression.BOOK_ISBN);
+            if (check == Constants.NON_INPUT) // 정규식에 어긋날때
+            {
+                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+                userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_ISBN);
+                return EnterBookISBN(x, y, list);
+            }
+           
+            if (CheckISBNInSearchingList(list, input) == Constants.BOOK_NOT_EXIST) // 검색된 list에 없는 isbn일때
+            {
+                DeleteInput(124 - x, 124, y); // 오류메시지 삭제
+                userModeUI.PrintErrorMessage(x, y, ErrorMessage.BOOK_NOT_EXIST_IN_LIST);
+                return EnterBookISBN(x, y, list);
+            }
+
+
+            return input;
+
+        }
         private int CheckISBNInBookList(string isbn) // 책 리스트에 이미있는 ISBN인지
         {
             List<BookDTO> bookList;
