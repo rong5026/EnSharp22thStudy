@@ -87,7 +87,7 @@ namespace LibraryMySQL
                         Console.Clear();
                         break;
                     case Constants.NAVER_SEARCHING: // 네이버 검색
-                        naver.SearchInNaver();
+                        naver.SearchInNaver("AddAdminBook");
                         Console.Clear();
                         break;
                     case Constants.LOG: // 로그관리

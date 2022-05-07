@@ -275,7 +275,18 @@ namespace LibraryMySQL
 
             connection.Close();
         }
-        
+        public void InsertUserApplicationBook(BookDTO bookVO) // 유저 요청 책 등록
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format(QueryData.INSERT_USER_APPLICATION_BOOK, bookVO.Name, bookVO.Author, bookVO.Publisher, bookVO.BookCount, bookVO.Price, bookVO.Date, bookVO.Isbn, bookVO.Information);
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
         public void DeleteBook(int bookId) // 책 삭제
         {
             MySqlConnection connection = ConnectMySQL();

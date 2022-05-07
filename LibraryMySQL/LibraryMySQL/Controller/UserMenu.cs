@@ -71,7 +71,7 @@ namespace LibraryMySQL
                             return;
                         break;
                     case Constants.NAVER_SEARCH_AND_ADDBOOK: // 네이버검색 후 도서추가
-                        naverSearching.SearchInNaver();
+                        naverSearching.SearchInNaver("UserAddBook");
                         Console.Clear();
                         break;
                     case Constants.EXIT:
