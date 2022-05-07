@@ -46,12 +46,13 @@ namespace LibraryMySQL
                 Console.CursorVisible = Constants.isNONVISIBLE;
 
                 if (type == "AddAdminBook") {
-                    if (AddAdminNaverBook(bookList) == 0)
+                    if (AddAdminNaverBook(bookList) == Constants.BACKMENU)
                         return;
                 }
                 else
                 {
-                    AddUserNaverBook(bookList);
+                    if (AddUserNaverBook(bookList) == Constants.BACKMENU)
+                        return;
                 }
 
                                
@@ -59,7 +60,7 @@ namespace LibraryMySQL
             }
         }
 
-        private int AddAdminNaverBook(List<BookDTO> bookList) // 관리자 책 추가 
+        private string AddAdminNaverBook(List<BookDTO> bookList) // 관리자 책 추가 
         {
             List<BookDTO> validBookList;
             Console.SetCursorPosition(0, 0);
@@ -67,7 +68,7 @@ namespace LibraryMySQL
 
             keyInput = Console.ReadKey(Constants.KEY_INPUT);
             if (keyInput.Key == ConsoleKey.Escape)
-                return 0; // ESC 누르면 뒤로가기 
+                return Constants.BACKMENU; // ESC 누르면 뒤로가기 
             else if (keyInput.Key == ConsoleKey.Enter)
             {
 
@@ -100,7 +101,7 @@ namespace LibraryMySQL
                     {
                         keyInput = Console.ReadKey(Constants.KEY_INPUT);
                         if (keyInput.Key == ConsoleKey.Escape)
-                            return 0; // ESC 누르면 뒤로가기 
+                            return Constants.BACKMENU; // ESC 누르면 뒤로가기 
                         else if (keyInput.Key == ConsoleKey.Enter)
                             break;
 
@@ -110,9 +111,9 @@ namespace LibraryMySQL
 
             }
 
-            return 0;
+            return Constants.BACKMENU;
         }
-        private int AddUserNaverBook(List<BookDTO> bookList) // 유저 책 추가 요청 
+        private string AddUserNaverBook(List<BookDTO> bookList) // 유저 책 추가 요청 
         {
             List<BookDTO> validBookList;
             Console.SetCursorPosition(0, 0);
@@ -120,7 +121,7 @@ namespace LibraryMySQL
 
             keyInput = Console.ReadKey(Constants.KEY_INPUT);
             if (keyInput.Key == ConsoleKey.Escape)
-                return 0; // ESC 누르면 뒤로가기 
+                return Constants.BACKMENU; // ESC 누르면 뒤로가기 
             else if (keyInput.Key == ConsoleKey.Enter)
             {
 
@@ -151,7 +152,7 @@ namespace LibraryMySQL
                     {
                         keyInput = Console.ReadKey(Constants.KEY_INPUT);
                         if (keyInput.Key == ConsoleKey.Escape)
-                            return 0; // ESC 누르면 뒤로가기 
+                            return Constants.BACKMENU; // ESC 누르면 뒤로가기 
                         else if (keyInput.Key == ConsoleKey.Enter)
                             break;
 
@@ -161,9 +162,9 @@ namespace LibraryMySQL
 
             }
 
-            return 0;
+            return Constants.BACKMENU;
         }
-        private List<BookDTO> GetSameIsbnBook(string isbn, List<BookDTO> list) // isbn을 포함하는 모든 책 리턴
+        public List<BookDTO> GetSameIsbnBook(string isbn, List<BookDTO> list) // isbn을 포함하는 모든 책 리턴
         {
             List<BookDTO> validBookList = new List<BookDTO>();
 

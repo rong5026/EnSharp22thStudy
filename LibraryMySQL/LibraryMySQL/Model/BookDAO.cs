@@ -342,9 +342,44 @@ namespace LibraryMySQL
             connection.Close();
         }
 
+        public List<BookDTO> GetUserApplicationBookList() //  유저가 신청한 책 리스트
+        {
+
+            List<BookDTO> list = new List<BookDTO>();
+            MySqlConnection connection = ConnectMySQL();
+            string insertQuery = string.Format(QueryData.SELECT_USER_BOOKLIST);
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            MySqlDataReader table = command.ExecuteReader();
 
 
+            while (table.Read())
+            {
 
+                book = new BookDTO((int)table["book_id"], (string)table["book_name"], (string)table["book_author"], (string)table["book_publisher"], (int)table["book_count"], (int)table["book_price"], (string)table["book_date"], null, null, (string)table["book_isbn"], (string)table["book_information"]);
+
+                list.Add(book);
+            }
+            table.Close();
+            connection.Close();
+
+            return list;
+
+        }
+        public void DeleteUserApplicationBook(int bookId) // 유저가 신청한 책 삭제
+        {
+            MySqlConnection connection = ConnectMySQL();
+            connection.Open();
+
+            string insertQuery = string.Format(QueryData.DELETE_USER_APPLICATION_BOOK, bookId);
+
+
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+      
 
 
         public void InsertLogData(string time, string user, string information, string action) // 로그정보 삽입

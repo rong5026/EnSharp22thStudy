@@ -19,6 +19,7 @@ namespace LibraryMySQL
         Login login;
         NaverSearching naver;
         UserDAO userDAO;
+        NaverSearching naverSearching;
         ConsoleKeyInfo keyInput;
 
         public AdminMenu(ValidInput validInput, UserModeUI userModeUI)
@@ -33,6 +34,7 @@ namespace LibraryMySQL
             login = new Login(userModeUI, validInput);
             naver = new NaverSearching();
             userDAO= new UserDAO();
+            naverSearching = new NaverSearching();
         }
 
         public void StartAdminMode() // 관리자 모드 시작
@@ -57,7 +59,7 @@ namespace LibraryMySQL
             while (Constants.isPROGRAM_ON)
             {
 
-                menuNumber = mode.SelectUserManagerMenu("Admin", 8); //메뉴선택
+                menuNumber = mode.SelectUserManagerMenu("Admin", 9); //메뉴선택
 
                 switch (menuNumber)
                 {
@@ -93,6 +95,9 @@ namespace LibraryMySQL
                     case Constants.LOG: // 로그관리
                         ControlLog();
                         break;
+                    case Constants.BOOK_ADD_USER_APPLICATION: // 회원이 신청한 책 추가
+                        AddUserApplicationBook();
+                        break;
                     case Constants.EXIT:
                         Console.Clear();
                         return;
@@ -107,7 +112,59 @@ namespace LibraryMySQL
        
       
        
+        private void AddUserApplicationBook()
+        {
+            List<BookDTO> validBookList;
+            List<BookDTO> list;
+            string isbn;
+            while (Constants.isPROGRAM_ON)
+            {
+                Console.Clear();
+              
 
+                list = mySQlData.GetUserApplicationBookList(); // 유저가 신청한 책 리스트
+                adminModeUI.PrintAdminMenuMessage("                    추가할 책 ISBN :", "확인");
+                for (int index = 0; index < list.Count; index++)
+                {
+                    adminModeUI.PrintNaverBookList(list[index].Isbn, list[index].Name, list[index].Author, list[index].Price, list[index].Publisher, list[index].Date, list[index].Information);
+                }
+
+                isbn = validInput.EnterUserBookISBN(73, 3, list); // 책 isbn입력
+                
+                if (isbn == Constants.INPUT_BACK)
+                    break;
+
+               
+                validBookList = naverSearching.GetSameIsbnBook(isbn, list); // isbn이 같은 책의 정보를 가져옴
+
+                if (validBookList == null)
+                {
+                    break;
+                }
+                for (int index = 0; index < validBookList.Count; index++)
+                {
+                    mySQlData.InsertBook(validBookList[index]); // 책 추가
+                    mySQlData.DeleteUserApplicationBook(validBookList[index].Id); // 유저가신청한 리스트에서 추가한책 삭제
+                    mySQlData.InsertLogData(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "관리자", validBookList[index].Name, "요청도서추가"); // 로그저장
+                }
+
+                     
+                Console.Clear();
+                adminModeUI.PrintAdminMenuMessage("                      추가완료!      ", "다시추가");
+             Console.CursorVisible = Constants.isNONVISIBLE;
+
+                while (Constants.isPROGRAM_ON)
+                {
+                    keyInput = Console.ReadKey(Constants.KEY_INPUT); // ESC 뒤로가기
+                    if (keyInput.Key == ConsoleKey.Escape)
+                        return;
+                    else if (keyInput.Key == ConsoleKey.Enter)
+                        break;
+                }
+
+              
+            }
+        }
         private void AddBook() // 도서 추가
         {
             

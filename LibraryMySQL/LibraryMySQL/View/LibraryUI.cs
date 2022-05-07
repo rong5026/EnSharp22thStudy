@@ -144,6 +144,7 @@ namespace LibraryMySQL
 			PrintAdminMenuList(selectNumber, 6, "대여상황 ");
 			PrintAdminMenuList(selectNumber, 7, "NAVER검색");
 			PrintAdminMenuList(selectNumber, 8, "로그관리 ");
+			PrintAdminMenuList(selectNumber, 9, "요청도서 ");
 
 			Console.WriteLine("                                   │                                                │");
 			Console.WriteLine("                                   └------------------------------------------------┘");

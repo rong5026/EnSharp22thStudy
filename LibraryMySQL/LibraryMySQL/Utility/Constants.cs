@@ -45,6 +45,7 @@ namespace LibraryMySQL
         public const int TOTAL_USER_RENTBOOK = 6;
         public const int NAVER_SEARCHING = 7;
         public const int LOG = 8;
+        public const int BOOK_ADD_USER_APPLICATION = 9;
         //Login
         public const int LOGIN_INDEX = 0;
 
@@ -66,7 +67,7 @@ namespace LibraryMySQL
 
 
         public const string BACKMENU = "back";
-
+        
 
         //EditUserData
         public const int USER_ID = 1;
