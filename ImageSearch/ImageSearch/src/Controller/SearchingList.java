@@ -23,7 +23,7 @@ import java.net.HttpURLConnection;
 
 
 
-public class SearchingList extends JFrame implements ActionListener,ItemListener{
+public class SearchingList extends JFrame implements ActionListener,ItemListener,MouseListener{
 
 	String count[] = {"10","20","30"};
 	String comboboxNumber;
@@ -33,6 +33,8 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 	
 	JPanel imagePanel;
 	TextField textField;
+	JSONObject imageObject;
+	BufferedImage bigImage;
 	
 	public SearchingList() {
 		setSize(1000,800);
@@ -105,11 +107,8 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			
 			dataString = URLEncoder.encode(dataString,"UTF-8");
 			String reqURL = "https://dapi.kakao.com/v2/search/image?sort=accuracy&page=1&size="+comboboxNumber+"&query="+dataString;
-			
-			
-			
+						
 			URL url = new URL(reqURL);
-			
 			
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
@@ -139,12 +138,12 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		
 	}
 	
-	public void ShowImageList(JPanel imagePanel) {
+	public void ShowImageList(JPanel imagePanel) { // 이미지를 패널에 다 붙이기
 		
 		imagePanel.removeAll();
 		String result= Getimage();
 		JSONParser jsonParser = new JSONParser();
-		System.out.print(result);
+		
 		
 		try {
 			JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
@@ -152,7 +151,7 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			
 			for(int i = 0; i< imageUrlArray.size() ; i++) {
 				
-				JSONObject imageObject = (JSONObject) imageUrlArray.get(i);
+				imageObject = (JSONObject) imageUrlArray.get(i);
 				// System.out.println("url : "+imageObject.get("image_url"));
 				
 				BufferedImage image = null;
@@ -169,6 +168,9 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 				button.setFocusPainted(false);
 				button.setContentAreaFilled(false);
 				button.setSize(50,50);
+				
+				button.addMouseListener(this);
+			
 				imagePanel.add(button);
 				
 				imagePanel.revalidate();
@@ -181,8 +183,41 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			e.printStackTrace();
 		}
 	}
+
+	public void ShowBigImage(JSONObject imageObject) {
+		
+		JFrame bigImageFrame = new JFrame();
+		bigImage = null;
+		int x;
+		int y;
+		try {
+			URL imageUrl = new URL((String) imageObject.get("image_url"));
+			//x = (int) imageObject.get("width");
+			//y = (int) imageObject.get("height");
+
+			bigImage = ImageIO.read(imageUrl);
+		
+			BigImagePanel panel = new BigImagePanel();
+			
+			bigImageFrame.add(panel);
+			
+			bigImageFrame.setVisible(true);
+			
+			
+		} catch (IOException  e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	class BigImagePanel extends JPanel{
+		public void paint(Graphics g) {
+			g.drawImage(bigImage,0,0,null);
+		}
+	}
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent event) { //버튼엑션
 		JButton button = (JButton)event.getSource();
 		
 		if(button.getText().equals("검색하기")) {
@@ -195,11 +230,44 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			a.StartSearchImage();
 		}
 		
+		
 	}
 	
-	public void itemStateChanged(ItemEvent e) {
+	public void itemStateChanged(ItemEvent e) { // 콤보박스 엑션
 		dataString = textField.getText();
 		ShowImageList(imagePanel);
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		if(e.getClickCount()==2) {
+			if(e.getClickCount()==2) {
+				ShowBigImage(imageObject);
+			}
+			
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	
