@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -102,14 +103,20 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			else
 				comboboxNumber = countCombobox.getSelectedItem().toString(); 
 			
+			dataString = URLEncoder.encode(dataString,"UTF-8");
 			String reqURL = "https://dapi.kakao.com/v2/search/image?sort=accuracy&page=1&size="+comboboxNumber+"&query="+dataString;
+			
+			
+			
 			URL url = new URL(reqURL);
+			
+			
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Authorization", "KakaoAK 218c562ea0d8c58d03fc5b731d32838b");
 			connection.setDoOutput(true);
 			
-			BufferedReader br = new BufferedReader (new InputStreamReader(connection.getInputStream()));
+			BufferedReader br = new BufferedReader (new InputStreamReader(connection.getInputStream(),"UTF-8"));
 			
 			String line = "";
 		
@@ -194,9 +201,6 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		dataString = textField.getText();
 		ShowImageList(imagePanel);
 		
-		
-		
-
 	}
 	
 }

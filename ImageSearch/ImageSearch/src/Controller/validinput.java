@@ -9,16 +9,6 @@ public class validinput implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton button = (JButton)e.getSource();
-		
-		if(button.getText().equals("검색하기")) {
-			
-		}
-		else {
-			//setVisible(false);
-			SearchingImage a = new SearchingImage();
-			a.StartSearchImage();
-		}
 		
 	}
 
