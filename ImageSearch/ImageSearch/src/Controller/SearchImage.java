@@ -43,8 +43,8 @@ public class SearchImage extends JFrame{
 				System.out.println(dataString);
 				
 				setVisible(false);
-				SearchList a =new SearchList();
-				a.StartSearchList();
+				SearchList a  = new SearchList();
+				a.StartSearchList(dataString);
 			
 				
 			}
