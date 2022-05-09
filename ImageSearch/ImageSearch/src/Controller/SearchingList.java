@@ -15,6 +15,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import Model.historyDAO;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,9 +37,6 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 	JPanel imagePanel;
 	TextField textField;
 
-
-
-	
 	
 	URL bigImageUrl;
 	
@@ -249,6 +248,8 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		if(button.getText().equals("검색하기")) {
 			dataString = textField.getText();
 			ShowImageList(imagePanel);
+			historyDAO dao = new historyDAO();	
+			dao.InsertSearchHistory(dataString);
 		}
 		else {
 			setVisible(false);
