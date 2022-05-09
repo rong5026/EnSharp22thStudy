@@ -16,7 +16,7 @@ public class validinput implements ActionListener {
 		}
 		else {
 			//setVisible(false);
-			SearchImage a = new SearchImage();
+			SearchingImage a = new SearchingImage();
 			a.StartSearchImage();
 		}
 		

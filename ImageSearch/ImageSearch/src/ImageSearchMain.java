@@ -1,10 +1,13 @@
-import Controller.SearchImage;
+import Controller.SearchingImage;
 	
 public class ImageSearchMain {
 
 	public static void main(String[] args) {
-		SearchImage main = new SearchImage();
+		SearchingImage main = new SearchingImage();
 		main.StartSearchImage();
+		
+		
+		
 	}
 
 

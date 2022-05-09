@@ -20,30 +20,32 @@ import java.net.HttpURLConnection;
 
 
 
-public class SearchList extends JFrame implements ActionListener{
+public class SearchingList extends JFrame implements ActionListener{
 
 	String count[] = {"10","20","30"};
 	String comboboxNumber;
 	String dataString;
+	String apiResult;
 	JComboBox<String> countCombobox;
-	public SearchList() {
+	public SearchingList() {
 		setSize(1000,800);
 		setLocationRelativeTo(null);
 		setTitle("EN# 이미지 서치");
 		setResizable(false);
-		
+		comboboxNumber = "10";
 	
+		
 	}
 	
 	public void StartSearchList(String dataString) {
 		
-	
 		
+		this.dataString = dataString;
 		Container container = getContentPane();		
 		container.setLayout(new BorderLayout());
 		
 		
-		
+		//버튼 붙일 패널
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		
 		TextField textField = new TextField(20);	
@@ -53,21 +55,27 @@ public class SearchList extends JFrame implements ActionListener{
 		countCombobox = new JComboBox(count);
 		
 		
-	
-
+		//검색,뒤로가기,입력칸,콤보박스
 		buttonPanel.add(textField);
 		buttonPanel.add(searchingButton);
 		buttonPanel.add(backButton);
 		buttonPanel.add(countCombobox);
 		buttonPanel.setBounds(400,300,200,200);
 		
+		//버튼 리스너
 		searchingButton.addActionListener(this);
 		backButton.addActionListener(this);
 		
-		
 		container.add(buttonPanel);
 		
-	
+		
+		// 이미지붙일 패널
+		JPanel imagePanel = new JPanel(new GridLayout(10,10));
+		ShowImageList(imagePanel);
+		container.add(imagePanel);
+		imagePanel.setBounds(400,300,200,200);
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
@@ -75,11 +83,14 @@ public class SearchList extends JFrame implements ActionListener{
 		
 	}
 	
-	public String Getimage() { // APi리턴값 가졍괴
+	public String Getimage() { // APi리턴값 
 		String result = "";
 		try {
-			comboboxNumber = countCombobox.getSelectedItem().toString(); 
-
+			if(countCombobox == null)
+				comboboxNumber = "10";
+			else
+				comboboxNumber = countCombobox.getSelectedItem().toString(); 
+			
 			String reqURL = "https://dapi.kakao.com/v2/search/image?sort=accuracy&page=1&size="+comboboxNumber+"&query="+dataString;
 			URL url = new URL(reqURL);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -95,10 +106,11 @@ public class SearchList extends JFrame implements ActionListener{
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			//System.out.println("response body : " + result);
 				
 			br.close();
 			return result;
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -108,43 +120,55 @@ public class SearchList extends JFrame implements ActionListener{
 		
 		
 	}
+	
+	public void ShowImageList(JPanel imagePanel) {
+		
+		String result= Getimage();
+		JSONParser jsonParser = new JSONParser();
+		System.out.print(result);
+		
+		try {
+			JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
+			JSONArray imageUrlArray =(JSONArray)jsonObject.get("documents");
+			
+			for(int i = 0; i< imageUrlArray.size() ; i++) {
+				
+				JSONObject imageObject = (JSONObject) imageUrlArray.get(i);
+				// System.out.println("url : "+imageObject.get("image_url"));
+				ImageIcon icon = new ImageIcon((String) imageObject.get("thumbnail_url"));
+				JButton button = new JButton(icon);
+				button.setBorderPainted(false);
+				button.setFocusPainted(false);
+				button.setContentAreaFilled(false);
+				button.setSize(50,50);
+				imagePanel.add(button);
+				
+			}
+			
+			
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		JButton button = (JButton)event.getSource();
 		
 		if(button.getText().equals("검색하기")) {
-			String result= Getimage();
 			
-			JSONParser jsonParser = new JSONParser();
-			System.out.print(result);
-			
-		
-			try {
-				JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
-				JSONArray imageUrlArray =(JSONArray)jsonObject.get("documents");
-				
-				for(int i = 0; i< imageUrlArray.size() ; i++) {
-					 JSONObject imageObject = (JSONObject) imageUrlArray.get(i);
-					 
-					 System.out.println("url : "+imageObject.get("image_url"));
-				}
-			} catch (ParseException e) {
-				
-				e.printStackTrace();
-			}
 			
 		}
 		else {
 			setVisible(false);
-			SearchImage a = new SearchImage();
+			SearchingImage a = new SearchingImage();
 			a.StartSearchImage();
 		}
 		
 	}
 	
-	
-	
 }
+
 
 
 

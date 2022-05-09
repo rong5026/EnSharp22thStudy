@@ -1,14 +1,15 @@
 package Controller;
-import Controller.SearchList;
+import Controller.SearchingList;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 	
-public class SearchImage extends JFrame{
+public class SearchingImage extends JFrame{
 
 	
-	public SearchImage() {
+	
+	public SearchingImage() {
 		setSize(1000,800);
 		setLocationRelativeTo(null);
 		setTitle("EN# 이미지 서치");
@@ -22,6 +23,20 @@ public class SearchImage extends JFrame{
 		Container container = getContentPane();		
 		container.setLayout(null);
 		
+		JPanel jPanel = new JPanel();
+		ImageIcon icon = new ImageIcon( "https://search1.kakaocdn.net/argon/130x130_85_c/2uBreS1I1HC" );
+		
+		JButton button = new JButton(icon);
+		button.setBorderPainted(false);
+		button.setFocusPainted(false);
+		button.setContentAreaFilled(false);
+		button.setSize(50,50);
+		jPanel.add(button);
+		
+		container.add(jPanel);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		/*
 		TextField textField = new TextField(20);
 		textField.setBounds(250,250,500,30);
 		container.add(textField);
@@ -43,7 +58,7 @@ public class SearchImage extends JFrame{
 				String dataString = textField.getText();
 			
 				setVisible(false);
-				SearchList a  = new SearchList();
+				SearchingList a  = new SearchingList();
 				a.StartSearchList(dataString);
 			
 				
@@ -53,7 +68,7 @@ public class SearchImage extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		
+		*/
 		
 	}
 	
