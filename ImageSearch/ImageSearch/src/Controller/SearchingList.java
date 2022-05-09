@@ -1,8 +1,10 @@
 package Controller;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.html.HTMLEditorKit.Parser;
@@ -46,7 +48,7 @@ public class SearchingList extends JFrame implements ActionListener{
 		
 		
 		//버튼 붙일 패널
-		JPanel buttonPanel = new JPanel(new FlowLayout());
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 		TextField textField = new TextField(20);	
 		textField.setText(dataString);
@@ -60,20 +62,20 @@ public class SearchingList extends JFrame implements ActionListener{
 		buttonPanel.add(searchingButton);
 		buttonPanel.add(backButton);
 		buttonPanel.add(countCombobox);
-		buttonPanel.setBounds(400,300,200,200);
+		//buttonPanel.setBounds(400,300,200,200);
 		
 		//버튼 리스너
 		searchingButton.addActionListener(this);
 		backButton.addActionListener(this);
 		
-		container.add(buttonPanel);
+		container.add(buttonPanel,BorderLayout.NORTH);
 		
 		
 		// 이미지붙일 패널
-		JPanel imagePanel = new JPanel(new GridLayout(10,10));
+		JPanel imagePanel = new JPanel(new GridLayout(3,5));
 		ShowImageList(imagePanel);
-		container.add(imagePanel);
-		imagePanel.setBounds(400,300,200,200);
+		container.add(imagePanel,BorderLayout.CENTER);
+		//imagePanel.setBounds(400,300,200,200);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,8 +137,17 @@ public class SearchingList extends JFrame implements ActionListener{
 				
 				JSONObject imageObject = (JSONObject) imageUrlArray.get(i);
 				// System.out.println("url : "+imageObject.get("image_url"));
-				ImageIcon icon = new ImageIcon((String) imageObject.get("thumbnail_url"));
-				JButton button = new JButton(icon);
+				
+				BufferedImage image = null;
+				
+				try {
+					URL url = new URL((String) imageObject.get("thumbnail_url"));
+					image = ImageIO.read(url);
+				} catch (IOException  e) {
+					e.printStackTrace();
+				}
+				
+				JButton button = new JButton(new ImageIcon(image));
 				button.setBorderPainted(false);
 				button.setFocusPainted(false);
 				button.setContentAreaFilled(false);

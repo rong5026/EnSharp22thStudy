@@ -28,33 +28,9 @@ public class SearchingImage extends JFrame{
 		
 		Container container = getContentPane();		
 		container.setLayout(null);
-		
-		JPanel jPanel = new JPanel();
-		//ImageIcon icon = new ImageIcon( "https://search1.kakaocdn.net/argon/130x130_85_c/2uBreS1I1HC" );
-		
-		
-		
-	
-		BufferedImage image = null;
-		try {
 			
-			URL url = new URL("https://search1.kakaocdn.net/argon/130x130_85_c/2uBreS1I1HC");
-			image = ImageIO.read(url);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		JButton button = new JButton(new ImageIcon(image));
-		button.setBorderPainted(false);
-		button.setFocusPainted(false);
-		button.setContentAreaFilled(false);
-		button.setSize(50,50);
-		jPanel.add(button);
+
 		
-		container.add(jPanel);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
-		/*
 		TextField textField = new TextField(20);
 		textField.setBounds(250,250,500,30);
 		container.add(textField);
@@ -86,7 +62,7 @@ public class SearchingImage extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		*/
+		
 		
 	}
 	
