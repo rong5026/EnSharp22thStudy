@@ -5,14 +5,18 @@ import java.net.URL;
 
 import javax.swing.*;
 import javax.swing.event.*;
-import java.net.URL;
+import javax.swing.text.html.HTMLEditorKit.Parser;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
+
 
 
 
@@ -31,7 +35,7 @@ public class SearchList extends JFrame implements ActionListener{
 	
 	public void StartSearchList(String dataString) {
 		
-		this.dataString =dataString;
+	
 		
 		Container container = getContentPane();		
 		container.setLayout(new BorderLayout());
@@ -45,8 +49,8 @@ public class SearchList extends JFrame implements ActionListener{
 		JButton searchingButton = new JButton("검색하기");		
 		JButton backButton = new JButton("뒤로가기");
 		JComboBox<String> countCombobox = new JComboBox(count);
-
 		
+
 		
 		buttonPanel.add(textField);
 		buttonPanel.add(searchingButton);
@@ -68,8 +72,8 @@ public class SearchList extends JFrame implements ActionListener{
 		
 	}
 	
-	public void Getimage() {
-		
+	public String Getimage() {
+		String result = "";
 		try {
 			
 			String reqURL = "https://dapi.kakao.com/v2/search/image?sort=accuracy&page=1&size=3&query="+dataString;
@@ -82,29 +86,49 @@ public class SearchList extends JFrame implements ActionListener{
 			BufferedReader br = new BufferedReader (new InputStreamReader(connection.getInputStream()));
 			
 			String line = "";
-			String result = "";
+		
 
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			System.out.println("response body : " + result);
-			
-			
+			//System.out.println("response body : " + result);
+				
 			br.close();
-		
+			return result;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return result;
+		
 		
 		
 	}
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		JButton button = (JButton)e.getSource();
+	public void actionPerformed(ActionEvent event) {
+		JButton button = (JButton)event.getSource();
 		
 		if(button.getText().equals("검색하기")) {
-			Getimage();
+			String result= Getimage();
+			
+			JSONParser jsonParser = new JSONParser();
+			System.out.print(result);
+			
+		
+			try {
+				JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
+				JSONArray imageUrlArray =(JSONArray)jsonObject.get("documents");
+				
+				for(int i = 0; i< imageUrlArray.size() ; i++) {
+					 JSONObject imageObject = (JSONObject) imageUrlArray.get(i);
+					 
+					 System.out.println("url : "+imageObject.get("image_url"));
+				}
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
+			
 		}
 		else {
 			setVisible(false);

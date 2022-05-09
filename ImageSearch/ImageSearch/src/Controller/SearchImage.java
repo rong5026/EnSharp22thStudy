@@ -31,6 +31,7 @@ public class SearchImage extends JFrame{
 		JButton recordButton = new JButton("기록보기");
 		
 		
+		
 		buttonPanel.add(searchingButton);
 		buttonPanel.add(recordButton);
 		buttonPanel.setBounds(400,300,200,200);
@@ -40,8 +41,7 @@ public class SearchImage extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String dataString = textField.getText();
-				System.out.println(dataString);
-				
+			
 				setVisible(false);
 				SearchList a  = new SearchList();
 				a.StartSearchList(dataString);
