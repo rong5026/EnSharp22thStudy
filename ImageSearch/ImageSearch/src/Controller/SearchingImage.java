@@ -2,6 +2,12 @@ package Controller;
 import Controller.SearchingList;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.awt.Image;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 	
@@ -24,9 +30,21 @@ public class SearchingImage extends JFrame{
 		container.setLayout(null);
 		
 		JPanel jPanel = new JPanel();
-		ImageIcon icon = new ImageIcon( "https://search1.kakaocdn.net/argon/130x130_85_c/2uBreS1I1HC" );
+		//ImageIcon icon = new ImageIcon( "https://search1.kakaocdn.net/argon/130x130_85_c/2uBreS1I1HC" );
 		
-		JButton button = new JButton(icon);
+		
+		
+	
+		BufferedImage image = null;
+		try {
+			
+			URL url = new URL("https://search1.kakaocdn.net/argon/130x130_85_c/2uBreS1I1HC");
+			image = ImageIO.read(url);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JButton button = new JButton(new ImageIcon(image));
 		button.setBorderPainted(false);
 		button.setFocusPainted(false);
 		button.setContentAreaFilled(false);
