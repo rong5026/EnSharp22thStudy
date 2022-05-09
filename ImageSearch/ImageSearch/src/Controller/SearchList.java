@@ -23,7 +23,9 @@ import java.net.HttpURLConnection;
 public class SearchList extends JFrame implements ActionListener{
 
 	String count[] = {"10","20","30"};
+	String comboboxNumber;
 	String dataString;
+	JComboBox<String> countCombobox;
 	public SearchList() {
 		setSize(1000,800);
 		setLocationRelativeTo(null);
@@ -48,10 +50,11 @@ public class SearchList extends JFrame implements ActionListener{
 		textField.setText(dataString);
 		JButton searchingButton = new JButton("검색하기");		
 		JButton backButton = new JButton("뒤로가기");
-		JComboBox<String> countCombobox = new JComboBox(count);
+		countCombobox = new JComboBox(count);
 		
+		
+	
 
-		
 		buttonPanel.add(textField);
 		buttonPanel.add(searchingButton);
 		buttonPanel.add(backButton);
@@ -72,11 +75,12 @@ public class SearchList extends JFrame implements ActionListener{
 		
 	}
 	
-	public String Getimage() {
+	public String Getimage() { // APi리턴값 가졍괴
 		String result = "";
 		try {
-			
-			String reqURL = "https://dapi.kakao.com/v2/search/image?sort=accuracy&page=1&size=3&query="+dataString;
+			comboboxNumber = countCombobox.getSelectedItem().toString(); 
+
+			String reqURL = "https://dapi.kakao.com/v2/search/image?sort=accuracy&page=1&size="+comboboxNumber+"&query="+dataString;
 			URL url = new URL(reqURL);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
