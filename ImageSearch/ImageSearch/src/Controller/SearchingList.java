@@ -158,7 +158,9 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 				
 				try {
 					URL url = new URL((String) imageObject.get("thumbnail_url"));
+					URL imageUrl = new URL((String) imageObject.get("image_url"));
 					image = ImageIO.read(url);
+					bigImage = ImageIO.read(imageUrl);
 				} catch (IOException  e) {
 					e.printStackTrace();
 				}
@@ -169,7 +171,36 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 				button.setContentAreaFilled(false);
 				button.setSize(50,50);
 				
-				button.addMouseListener(this);
+				button.addMouseListener(new MouseListener() {
+					
+					@Override
+					public void mouseReleased(MouseEvent e) {	}
+					
+					@Override
+					public void mousePressed(MouseEvent e)  {	}
+					
+					@Override
+					public void mouseExited(MouseEvent e)  {	}
+					
+					@Override
+					public void mouseEntered(MouseEvent e)  {	}
+					
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if(e.getClickCount()==2) {
+							JFrame bigImageFrame = new JFrame();
+													
+							int x = (int) imageObject.get("width");
+							int y = (int) imageObject.get("height");
+							setSize(x,y);
+							
+							BigImagePanel bigImagePanel = new BigImagePanel();
+															
+						}
+							
+						
+					}
+				});
 			
 				imagePanel.add(button);
 				
@@ -183,7 +214,12 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			e.printStackTrace();
 		}
 	}
-
+	class BigImagePanel extends JPanel{
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(bigImage, 0, 0, this);
+		}
+	}
 	public void ShowBigImage(JSONObject imageObject) {
 		
 		JFrame bigImageFrame = new JFrame();
@@ -191,17 +227,12 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		int x;
 		int y;
 		try {
-			URL imageUrl = new URL((String) imageObject.get("image_url"));
+			
 			//x = (int) imageObject.get("width");
 			//y = (int) imageObject.get("height");
 
 			bigImage = ImageIO.read(imageUrl);
-		
-			BigImagePanel panel = new BigImagePanel();
-			
-			bigImageFrame.add(panel);
-			
-			bigImageFrame.setVisible(true);
+	
 			
 			
 		} catch (IOException  e) {
@@ -211,11 +242,7 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		
 		
 	}
-	class BigImagePanel extends JPanel{
-		public void paint(Graphics g) {
-			g.drawImage(bigImage,0,0,null);
-		}
-	}
+
 	@Override
 	public void actionPerformed(ActionEvent event) { //¹öÆ°¿¢¼Ç
 		JButton button = (JButton)event.getSource();
