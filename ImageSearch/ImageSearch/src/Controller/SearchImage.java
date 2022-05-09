@@ -47,7 +47,6 @@ public class SearchImage extends JFrame{
 				a.StartSearchList();
 			
 				
-				
 			}
 		});
 		container.add(buttonPanel);

@@ -1,11 +1,17 @@
 package Controller;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 
+public class validinput implements ActionListener {
 
-public class validinput {
 
-	
-	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		
+	}
 	
 
 	
