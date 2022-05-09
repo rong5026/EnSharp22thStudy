@@ -22,7 +22,7 @@ import java.net.HttpURLConnection;
 
 
 
-public class SearchingList extends JFrame implements ActionListener{
+public class SearchingList extends JFrame implements ActionListener,ItemListener{
 
 	String count[] = {"10","20","30"};
 	String comboboxNumber;
@@ -63,6 +63,7 @@ public class SearchingList extends JFrame implements ActionListener{
 		JButton backButton = new JButton("뒤로가기");
 		//콤보박스
 		countCombobox = new JComboBox(count);
+		countCombobox.addItemListener(this);
 		
 		
 		//검색,뒤로가기,입력칸,콤보박스
@@ -187,6 +188,15 @@ public class SearchingList extends JFrame implements ActionListener{
 			a.StartSearchImage();
 		}
 		
+	}
+	
+	public void itemStateChanged(ItemEvent e) {
+		dataString = textField.getText();
+		ShowImageList(imagePanel);
+		
+		
+		
+
 	}
 	
 }
