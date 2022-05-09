@@ -29,6 +29,10 @@ public class SearchingList extends JFrame implements ActionListener{
 	String dataString;
 	String apiResult;
 	JComboBox<String> countCombobox;
+	
+	JPanel imagePanel;
+	TextField textField;
+	
 	public SearchingList() {
 		setSize(1000,800);
 		setLocationRelativeTo(null);
@@ -50,10 +54,14 @@ public class SearchingList extends JFrame implements ActionListener{
 		//버튼 붙일 패널
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
-		TextField textField = new TextField(20);	
+		//텍스트필드
+		textField = new TextField(20);	
 		textField.setText(dataString);
+		textField.setColumns(40);
+		//버튼
 		JButton searchingButton = new JButton("검색하기");		
 		JButton backButton = new JButton("뒤로가기");
+		//콤보박스
 		countCombobox = new JComboBox(count);
 		
 		
@@ -72,7 +80,7 @@ public class SearchingList extends JFrame implements ActionListener{
 		
 		
 		// 이미지붙일 패널
-		JPanel imagePanel = new JPanel(new GridLayout(3,5));
+		imagePanel = new JPanel(new GridLayout(5,2));
 		ShowImageList(imagePanel);
 		container.add(imagePanel,BorderLayout.CENTER);
 		//imagePanel.setBounds(400,300,200,200);
@@ -125,6 +133,7 @@ public class SearchingList extends JFrame implements ActionListener{
 	
 	public void ShowImageList(JPanel imagePanel) {
 		
+		imagePanel.removeAll();
 		String result= Getimage();
 		JSONParser jsonParser = new JSONParser();
 		System.out.print(result);
@@ -154,6 +163,8 @@ public class SearchingList extends JFrame implements ActionListener{
 				button.setSize(50,50);
 				imagePanel.add(button);
 				
+				imagePanel.revalidate();
+				imagePanel.repaint();
 			}
 			
 			
@@ -167,8 +178,8 @@ public class SearchingList extends JFrame implements ActionListener{
 		JButton button = (JButton)event.getSource();
 		
 		if(button.getText().equals("검색하기")) {
-			
-			
+			dataString = textField.getText();
+			ShowImageList(imagePanel);
 		}
 		else {
 			setVisible(false);
