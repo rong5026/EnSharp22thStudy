@@ -19,11 +19,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 
 
 
 
-public class SearchingList extends JFrame implements ActionListener,ItemListener,MouseListener{
+public class SearchingList extends JFrame implements ActionListener,ItemListener{
 
 	String count[] = {"10","20","30"};
 	String comboboxNumber;
@@ -33,9 +34,11 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 	
 	JPanel imagePanel;
 	TextField textField;
-	JSONObject imageObject;
-	BufferedImage bigImage;
+
+
+	JSONObject bigJsonObject;
 	
+	BufferedImage bigImage;
 	public SearchingList() {
 		setSize(1000,800);
 		setLocationRelativeTo(null);
@@ -151,57 +154,53 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			
 			for(int i = 0; i< imageUrlArray.size() ; i++) {
 				
-				imageObject = (JSONObject) imageUrlArray.get(i);
+				JSONObject imageObject = (JSONObject) imageUrlArray.get(i);
+				bigJsonObject = imageObject;
 				// System.out.println("url : "+imageObject.get("image_url"));
 				
+				
+				// 이미지 가져오기
 				BufferedImage image = null;
-				
-				try {
-					URL url = new URL((String) imageObject.get("thumbnail_url"));
-					URL imageUrl = new URL((String) imageObject.get("image_url"));
-					image = ImageIO.read(url);
-					bigImage = ImageIO.read(imageUrl);
-				} catch (IOException  e) {
-					e.printStackTrace();
-				}
-				
+				bigImage = null;
+				URL url = new URL((String) imageObject.get("thumbnail_url"));		
+				URL bigImageUrl = new URL((String) bigJsonObject.get("image_url"));
+				bigImage = ImageIO.read(bigImageUrl);
+				image = ImageIO.read(url);
+					
+				 
+				//버튼에 이미지 넣어주기
 				JButton button = new JButton(new ImageIcon(image));
 				button.setBorderPainted(false);
 				button.setFocusPainted(false);
 				button.setContentAreaFilled(false);
 				button.setSize(50,50);
 				
+				//버튼 이벤트 달아주기
 				button.addMouseListener(new MouseListener() {
 					
 					@Override
-					public void mouseReleased(MouseEvent e) {	}
+					public void mouseReleased(MouseEvent e) {}
 					
 					@Override
-					public void mousePressed(MouseEvent e)  {	}
+					public void mousePressed(MouseEvent e){}
 					
 					@Override
-					public void mouseExited(MouseEvent e)  {	}
+					public void mouseExited(MouseEvent e) {}
 					
 					@Override
-					public void mouseEntered(MouseEvent e)  {	}
+					public void mouseEntered(MouseEvent e) {}
 					
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						if(e.getClickCount()==2) {
-							JFrame bigImageFrame = new JFrame();
-													
-							int x = (int) imageObject.get("width");
-							int y = (int) imageObject.get("height");
-							setSize(x,y);
-							
-							BigImagePanel bigImagePanel = new BigImagePanel();
+							CreateBigImageFrame(bigImage);
 															
 						}
-							
 						
 					}
 				});
-			
+					
+					
 				imagePanel.add(button);
 				
 				imagePanel.revalidate();
@@ -212,36 +211,23 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		} catch (ParseException e) {
 			
 			e.printStackTrace();
-		}
-	}
-	class BigImagePanel extends JPanel{
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			g.drawImage(bigImage, 0, 0, this);
-		}
-	}
-	public void ShowBigImage(JSONObject imageObject) {
-		
-		JFrame bigImageFrame = new JFrame();
-		bigImage = null;
-		int x;
-		int y;
-		try {
-			
-			//x = (int) imageObject.get("width");
-			//y = (int) imageObject.get("height");
-
-			bigImage = ImageIO.read(imageUrl);
-	
-			
-			
-		} catch (IOException  e) {
+		}catch (IOException  e) {
 			e.printStackTrace();
 		}
 		
-		
-		
 	}
+	public void CreateBigImageFrame(BufferedImage bigImage) {
+		
+		JFrame frame = new JFrame();
+		
+		JLabel label =new JLabel(new ImageIcon(bigImage));
+		
+	
+		frame.getContentPane().add(label);
+		frame.pack();
+		frame.setVisible(true);
+	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent event) { //버튼엑션
@@ -264,39 +250,13 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		dataString = textField.getText();
 		ShowImageList(imagePanel);
 	}
+
 	
-	public void mouseClicked(MouseEvent e) {
-		if(e.getClickCount()==2) {
-			if(e.getClickCount()==2) {
-				ShowBigImage(imageObject);
-			}
-			
-		}
-	}
+	
+	
+	
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }
 
