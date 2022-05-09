@@ -10,7 +10,7 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
-	
+import Model.historyDAO;
 public class SearchingImage extends JFrame{
 
 	
@@ -54,6 +54,9 @@ public class SearchingImage extends JFrame{
 				setVisible(false);
 				SearchingList a  = new SearchingList();
 				a.StartSearchList(dataString);
+				
+				historyDAO dao = new historyDAO();	
+				dao.InsertSearchHistory(dataString);
 			
 				
 			}

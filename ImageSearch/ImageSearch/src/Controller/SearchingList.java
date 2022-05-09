@@ -36,9 +36,11 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 	TextField textField;
 
 
-	JSONObject bigJsonObject;
+
 	
-	BufferedImage bigImage;
+	
+	URL bigImageUrl;
+	
 	public SearchingList() {
 		setSize(1000,800);
 		setLocationRelativeTo(null);
@@ -155,16 +157,19 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			for(int i = 0; i< imageUrlArray.size() ; i++) {
 				
 				JSONObject imageObject = (JSONObject) imageUrlArray.get(i);
-				bigJsonObject = imageObject;
+			
 				// System.out.println("url : "+imageObject.get("image_url"));
 				
 				
 				// 이미지 가져오기
 				BufferedImage image = null;
-				bigImage = null;
+				BufferedImage bigImage = null;
+		
 				URL url = new URL((String) imageObject.get("thumbnail_url"));		
-				URL bigImageUrl = new URL((String) bigJsonObject.get("image_url"));
+				bigImageUrl = new URL((String) imageObject.get("image_url"));
 				bigImage = ImageIO.read(bigImageUrl);
+				
+				System.out.println(bigImageUrl);
 				image = ImageIO.read(url);
 					
 				 
@@ -193,8 +198,7 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						if(e.getClickCount()==2) {
-							CreateBigImageFrame(bigImage);
-															
+							CreateBigImageFrame(bigImageUrl);
 						}
 						
 					}
@@ -216,16 +220,25 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		}
 		
 	}
-	public void CreateBigImageFrame(BufferedImage bigImage) {
+	public void CreateBigImageFrame(URL bigImageUrl) {
 		
 		JFrame frame = new JFrame();
-		
-		JLabel label =new JLabel(new ImageIcon(bigImage));
+	
+		BufferedImage image = null;
+
+		try {
+			image = ImageIO.read(bigImageUrl);
+			JLabel label =new JLabel(new ImageIcon(image));
+
+			frame.add(label);
+			frame.pack();
+			frame.setVisible(true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	
-		frame.getContentPane().add(label);
-		frame.pack();
-		frame.setVisible(true);
 	}
 
 
