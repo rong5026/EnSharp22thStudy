@@ -42,7 +42,9 @@ public class SearchImage extends JFrame{
 				String dataString = textField.getText();
 				System.out.println(dataString);
 				
-				new SearchList();
+				setVisible(false);
+				SearchList a =new SearchList();
+				a.StartSearchList();
 			
 				
 				
