@@ -7,15 +7,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import com.mysql.cj.protocol.Resultset;
+import Model.historyDTO;;
 
-
-public class historyDAO {
+public class HistoryDAO {
 
 	 Connection connection = null;
 	
-	public historyDAO() {
+	public HistoryDAO() {
 		 try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
@@ -61,21 +62,27 @@ public class historyDAO {
 		}
 		
 	}
-	public void SelectSearchHistory() {
+	public ArrayList<historyDTO> SelectSearchHistory(ArrayList<historyDTO> wordlList) {
 		String sql = "SELECT * FROM history";
 		PreparedStatement pstmt = null;
 		ResultSet resultset = null;
+		
+		ArrayList<historyDTO> list = new ArrayList<historyDTO>();
+		historyDTO historyDTO = new 
 		
 		try {
 			pstmt = connection.prepareStatement(sql);
 			resultset = pstmt.executeQuery();
 			
 			
-		while(resultset.next()) {
-			
-		}
+			while(resultset.next()) {
+				
+			}
+		
+		 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return list;
 	}
 }

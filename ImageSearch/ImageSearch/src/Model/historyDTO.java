@@ -1,6 +1,6 @@
 package Model;
 
-public class historyDTO {
+public class HistoryDTO {
 
 	private String word;
 	
