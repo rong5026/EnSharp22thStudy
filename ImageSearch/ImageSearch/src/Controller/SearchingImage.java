@@ -104,7 +104,7 @@ public class SearchingImage extends JFrame{
 		historyLabel.setPreferredSize(new Dimension(100,100));
 		
 		northPanel.setBackground(Color.BLUE);
-		//historyLabel.setBounds(50, 50, 200, 200);
+		
 		northPanel.add(historyLabel);
 		
 		
@@ -115,11 +115,20 @@ public class SearchingImage extends JFrame{
 		
 		centerPanel.add(scrollPane);
 		scrollPane.setPreferredSize(new Dimension(500,500));
-		//centerPanel.setBackground(Color.RED);
+		centerPanel.setBackground(Color.RED);
+		
+		JPanel southPanel = new JPanel(new FlowLayout());
+		southPanel.setPreferredSize(new Dimension(100,120));
+		JButton deleteButton = new JButton("삭제하기");
+		JButton backButton = new JButton("뒤로가기");
+		southPanel.add(deleteButton);
+		southPanel.add(backButton);
+		
 		
 		//프레임에 패널 추가
 		this.add(northPanel,BorderLayout.NORTH);
 		this.add(centerPanel,BorderLayout.CENTER);
+		this.add(southPanel, BorderLayout.SOUTH);
 	
 	}
 	
