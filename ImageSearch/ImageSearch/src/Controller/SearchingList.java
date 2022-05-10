@@ -78,7 +78,8 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		buttonPanel.add(searchingButton);
 		buttonPanel.add(backButton);
 		buttonPanel.add(countCombobox);
-		//buttonPanel.setBounds(400,300,200,200);
+		
+		
 		
 		//버튼 리스너
 		searchingButton.addActionListener(this);
@@ -91,7 +92,7 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		imagePanel = new JPanel(new GridLayout(5,2));
 		ShowImageList(imagePanel);
 		container.add(imagePanel,BorderLayout.CENTER);
-		//imagePanel.setBounds(400,300,200,200);
+	
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -219,10 +220,10 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		}
 		
 	}
-	public void CreateBigImageFrame(URL bigImageUrl) { // 원본이미지를 포함한 프레임
+	public void CreateBigImageFrame(URL bigImageUrl) { // 원본이미지를 포함한 프레임 만들기
 		
 		JFrame frame = new JFrame();
-	
+		frame.setLocation(100,100); // 원본이미지 띄울 좌표
 		BufferedImage image = null;
 
 		try {
@@ -233,7 +234,7 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			frame.pack();
 			frame.setVisible(true);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		

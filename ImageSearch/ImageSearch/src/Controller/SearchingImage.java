@@ -11,8 +11,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 import Model.HistoryDAO;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 
 
 public class SearchingImage extends JFrame{
@@ -45,29 +43,12 @@ public class SearchingImage extends JFrame{
 		JButton recordButton = new JButton("기록보기");
 		
 		
-		
 		mainPanel.add(searchingButton);
 		mainPanel.add(recordButton);
 		mainPanel.setBounds(400,300,200,200);
 		
-		JPanel historyJPanel = new JPanel(new BorderLayout()); // 검색기록 패널 생성
 		
-		JLabel historyLabel =new JLabel("검색 기록");
-		historyLabel.setForeground(Color.black); // 글자색
-		historyLabel.setBackground(Color.yellow); // 배경 노랑
-		historyJPanel.add(historyLabel);
-		historyJPanel.setBounds(450,50,500,30);
-		
-		JTextArea text= new JTextArea();
-		JScrollPane scrollPane = new JScrollPane(text);  //스크롤판 추가
-		text.setLineWrap(true); // 자동 줄바꿈
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // 수직스크롤바 생성
-		
-		
-		
-		//패널에 붙이기
-		historyJPanel.add(scrollPane); 
-		historyJPanel.add(historyLabel);
+	
 		
 		
 		searchingButton.addActionListener(new ActionListener() { // 검색하기 버튼 이벤트
@@ -91,8 +72,10 @@ public class SearchingImage extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+		
 				container.removeAll();
-				container.add(historyJPanel);
+				//container.add(historyJPanel);
+				ShowHistory();
 				container.revalidate();
 				container.repaint();
 				
@@ -109,30 +92,37 @@ public class SearchingImage extends JFrame{
 		
 	}
 	
-	private void ShowHistory(JPanel historyJPanel) { // 검색기록 패널에 컴포넌트 삽입
+	private void ShowHistory() { // 검색기록 패널에 컴포넌트 삽입
 		
+		this.setLayout(new BorderLayout()); // 프레임 레이아웃변경
+		
+		JPanel northPanel = new JPanel();
 	
 		JLabel historyLabel =new JLabel("검색 기록");
 		historyLabel.setForeground(Color.black); // 글자색
 		historyLabel.setBackground(Color.yellow); // 배경 노랑
+		historyLabel.setPreferredSize(new Dimension(100,100));
 		
-		JTextArea text= new JTextArea();
-		JScrollPane scrollPane = new JScrollPane(text);  //스크롤판 추가
-		text.setLineWrap(true); // 자동 줄바꿈
+		northPanel.setBackground(Color.BLUE);
+		//historyLabel.setBounds(50, 50, 200, 200);
+		northPanel.add(historyLabel);
+		
+		
+		JPanel centerPanel = new JPanel();
+		JTextArea textArea= new JTextArea();
+		JScrollPane scrollPane = new JScrollPane(textArea);  //스크롤판 추가
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // 수직스크롤바 생성
 		
-		//패널에 붙이기
+		centerPanel.add(scrollPane);
+		scrollPane.setPreferredSize(new Dimension(500,500));
+		//centerPanel.setBackground(Color.RED);
+		
+		//프레임에 패널 추가
+		this.add(northPanel,BorderLayout.NORTH);
+		this.add(centerPanel,BorderLayout.CENTER);
 	
-		historyJPanel.add(scrollPane); 
-		historyJPanel.add(historyLabel);
-		
-	
-
-
-		
-		
-		
 	}
 	
 
 }
+
