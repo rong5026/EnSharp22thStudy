@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+
+import com.mysql.cj.protocol.Resultset;
 
 
 public class historyDAO {
@@ -59,5 +62,22 @@ public class historyDAO {
 			e.printStackTrace();
 		}
 		
+	}
+	public void SelectSearchHistory() {
+		String sql = "SELECT * FROM history";
+		PreparedStatement pstmt = null;
+		ResultSet resultset = null;
+		
+		try {
+			pstmt = connection.prepareStatement(sql);
+			resultset = pstmt.executeQuery();
+			
+			
+		while(resultset.next()) {
+			
+		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
