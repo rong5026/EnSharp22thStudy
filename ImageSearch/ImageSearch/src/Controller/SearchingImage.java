@@ -6,11 +6,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.awt.Image;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
-import Model.historyDAO;
+import Model.HistoryDAO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
@@ -18,7 +18,7 @@ import javax.swing.BoxLayout;
 public class SearchingImage extends JFrame{
 
 	
-	JPanel historyJPanel = new JPanel();
+	
 	
 	public SearchingImage() {
 		setSize(1000,800);
@@ -50,7 +50,27 @@ public class SearchingImage extends JFrame{
 		mainPanel.add(recordButton);
 		mainPanel.setBounds(400,300,200,200);
 		
-		searchingButton.addActionListener(new ActionListener() {
+		JPanel historyJPanel = new JPanel(new BorderLayout()); // 검색기록 패널 생성
+		
+		JLabel historyLabel =new JLabel("검색 기록");
+		historyLabel.setForeground(Color.black); // 글자색
+		historyLabel.setBackground(Color.yellow); // 배경 노랑
+		historyJPanel.add(historyLabel);
+		historyJPanel.setBounds(450,50,500,30);
+		
+		JTextArea text= new JTextArea();
+		JScrollPane scrollPane = new JScrollPane(text);  //스크롤판 추가
+		text.setLineWrap(true); // 자동 줄바꿈
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // 수직스크롤바 생성
+		
+		
+		
+		//패널에 붙이기
+		historyJPanel.add(scrollPane); 
+		historyJPanel.add(historyLabel);
+		
+		
+		searchingButton.addActionListener(new ActionListener() { // 검색하기 버튼 이벤트
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -60,26 +80,23 @@ public class SearchingImage extends JFrame{
 				SearchingList a  = new SearchingList();
 				a.StartSearchList(dataString);
 				
-				historyDAO dao = new historyDAO();	
+				HistoryDAO dao = new HistoryDAO();	
 				dao.InsertSearchHistory(dataString);
 			
 				
 			}
 		});
-		recordButton.addActionListener(new ActionListener() {
+		recordButton.addActionListener(new ActionListener() { // 검색기록 버튼 이벤트
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ShowHistory();
 				
 				container.removeAll();
-				//mainPanel.setVisible(false);
-				
 				container.add(historyJPanel);
-				historyJPanel.setVisible(true);
-				//container.repaint();
+				container.revalidate();
+				container.repaint();
 				
-				
+				//historyJPanel.setVisible(true);
 				
 			}
 		});
@@ -92,22 +109,24 @@ public class SearchingImage extends JFrame{
 		
 	}
 	
-	private void ShowHistory() {
+	private void ShowHistory(JPanel historyJPanel) { // 검색기록 패널에 컴포넌트 삽입
 		
 	
-
 		JLabel historyLabel =new JLabel("검색 기록");
-		historyJPanel.add(historyLabel);
+		historyLabel.setForeground(Color.black); // 글자색
+		historyLabel.setBackground(Color.yellow); // 배경 노랑
 		
 		JTextArea text= new JTextArea();
 		JScrollPane scrollPane = new JScrollPane(text);  //스크롤판 추가
 		text.setLineWrap(true); // 자동 줄바꿈
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // 수직스크롤바 생성
+		
+		//패널에 붙이기
+	
 		historyJPanel.add(scrollPane); 
+		historyJPanel.add(historyLabel);
 		
-		
-		text.append("ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇ");  // 출력로그 JTextArea 출력
-		//area.setCaretPosition(txtLog.getDocument().getLength());
+	
 
 
 		

@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import com.mysql.cj.protocol.Resultset;
-import Model.historyDTO;;
+import Model.HistoryDTO;
 
 public class HistoryDAO {
 
@@ -62,23 +62,25 @@ public class HistoryDAO {
 		}
 		
 	}
-	public ArrayList<historyDTO> SelectSearchHistory(ArrayList<historyDTO> wordlList) {
+	public ArrayList<HistoryDTO> SelectSearchHistory(ArrayList<HistoryDTO> wordlList) { // mysql 데이터 가져오기
 		String sql = "SELECT * FROM history";
 		PreparedStatement pstmt = null;
 		ResultSet resultset = null;
 		
-		ArrayList<historyDTO> list = new ArrayList<historyDTO>();
-		historyDTO historyDTO = new 
+		ArrayList<HistoryDTO> list = new ArrayList<HistoryDTO>();
+		
+		HistoryDTO historyDTO = new HistoryDTO();
 		
 		try {
 			pstmt = connection.prepareStatement(sql);
 			resultset = pstmt.executeQuery();
 			
-			
 			while(resultset.next()) {
-				
+				historyDTO.setWord(resultset.getString("word"));
+				list.add(historyDTO);
 			}
-		
+			pstmt.close();
+			connection.close();
 		 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -1,5 +1,5 @@
 import Controller.SearchingImage;
-import Model.historyDAO;
+import Model.HistoryDAO;
 
 public class ImageSearchMain {
 
