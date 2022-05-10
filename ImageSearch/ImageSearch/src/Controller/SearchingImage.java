@@ -96,7 +96,6 @@ public class SearchingImage extends JFrame{
 		
 	
 
-		
 		JLabel historyLabel =new JLabel("검색 기록");
 		historyJPanel.add(historyLabel);
 		
@@ -112,7 +111,6 @@ public class SearchingImage extends JFrame{
 
 
 		
-	
 		
 		
 	}
