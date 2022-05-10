@@ -41,18 +41,16 @@ public class historyDAO {
 	
 	public void InsertSearchHistory(String SearchingText) { // 검색기록 데이터베이스 저장
 		
-		String sql = "INSERT INTO history VALUES (?,?)";
+		String sql = "INSERT INTO history VALUES (?)";
 		PreparedStatement pstmt = null;
 		
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 			long time = System.currentTimeMillis();
-			String currentTime = dateFormat.format(time);
+			String wordString = SearchingText+dateFormat.format(time);
+			pstmt = connection.prepareStatement(sql);	
+			pstmt.setString(1, wordString);
 			
-			pstmt = connection.prepareStatement(sql);
-			
-			pstmt.setString(1, SearchingText);
-			pstmt.setString(2,currentTime);
 			pstmt.executeUpdate();
 			
 			pstmt.close();
