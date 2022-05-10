@@ -6,11 +6,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 import Model.HistoryDAO;
+import Model.HistoryDTO;
 
 
 public class SearchingImage extends JFrame{
@@ -58,12 +60,14 @@ public class SearchingImage extends JFrame{
 				String dataString = textField.getText();
 			
 				setVisible(false);
-				SearchingList a  = new SearchingList();
+				SearchingList a  = new SearchingList(); // 다른 frame으로 전환
 				a.StartSearchList(dataString);
 				
-				HistoryDAO dao = new HistoryDAO();	
+				 // 데이터베이스에 검색단어 넣기
+				HistoryDAO dao = new HistoryDAO();
 				dao.InsertSearchHistory(dataString);
-			
+				
+		
 				
 			}
 		});
@@ -94,6 +98,7 @@ public class SearchingImage extends JFrame{
 	
 	private void ShowHistory() { // 검색기록 패널에 컴포넌트 삽입
 		
+		
 		this.setLayout(new BorderLayout()); // 프레임 레이아웃변경
 		
 		JPanel northPanel = new JPanel();
@@ -112,9 +117,19 @@ public class SearchingImage extends JFrame{
 		JTextArea textArea= new JTextArea();
 		JScrollPane scrollPane = new JScrollPane(textArea);  //스크롤판 추가
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // 수직스크롤바 생성
+
+		HistoryDAO dao = new HistoryDAO();
+		ArrayList<HistoryDTO> list = dao.SelectSearchHistory(); // 리스트에 데이터베이스 값 가져오기
+		
+		
+		for(Integer index1 = 0 ; index1 < list.size() ; index1++) {
+		
+			 textArea.append(list.get(index1).getWord()+System.lineSeparator());
+			 
+		}		
 		
 		centerPanel.add(scrollPane);
-		scrollPane.setPreferredSize(new Dimension(500,500));
+		scrollPane.setPreferredSize(new Dimension(400,500));
 		centerPanel.setBackground(Color.RED);
 		
 		JPanel southPanel = new JPanel(new FlowLayout());

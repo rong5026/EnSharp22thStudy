@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class HistoryDAO {
 			
 			connection= DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/hongyeonghwan_imagesearch?serverTimezone=UTC", // DB URL
-                    "root", "0000");  // USER_NAME∞˙ PASSWORD
+                    "root", "0000");  // USER_NAMEÍ≥º PASSWORD
 			
 			System.out.println("Success");
 			
@@ -40,7 +41,7 @@ public class HistoryDAO {
 		
 	}
 	
-	public void InsertSearchHistory(String SearchingText) { // ∞Àªˆ±‚∑œ µ•¿Ã≈Õ∫£¿ÃΩ∫ ¿˙¿Â
+	public void InsertSearchHistory(String SearchingText) { // Í≤ÄÏÉâÍ∏∞Î°ù Îç∞Ïù¥ÌÑ∞Î≤†Ïù¥Ïä§ Ï†ÄÏû•
 		
 		String sql = "INSERT INTO history VALUES (?)";
 		PreparedStatement pstmt = null;
@@ -48,7 +49,7 @@ public class HistoryDAO {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 			long time = System.currentTimeMillis();
-			String wordString = SearchingText+dateFormat.format(time);
+			String wordString = "        "+SearchingText+"                 "+dateFormat.format(time);
 			pstmt = connection.prepareStatement(sql);	
 			pstmt.setString(1, wordString);
 			
@@ -62,20 +63,22 @@ public class HistoryDAO {
 		}
 		
 	}
-	public ArrayList<HistoryDTO> SelectSearchHistory(ArrayList<HistoryDTO> wordlList) { // mysql µ•¿Ã≈Õ ∞°¡Æø¿±‚
+	public ArrayList<HistoryDTO> SelectSearchHistory() { // mysql Îç∞Ïù¥ÌÑ∞ Í∞ÄÏ†∏Ïò§Í∏∞
 		String sql = "SELECT * FROM history";
 		PreparedStatement pstmt = null;
 		ResultSet resultset = null;
 		
 		ArrayList<HistoryDTO> list = new ArrayList<HistoryDTO>();
 		
-		HistoryDTO historyDTO = new HistoryDTO();
-		
+		HistoryDTO historyDTO;
 		try {
 			pstmt = connection.prepareStatement(sql);
 			resultset = pstmt.executeQuery();
 			
 			while(resultset.next()) {
+				historyDTO = new HistoryDTO();
+				
+				
 				historyDTO.setWord(resultset.getString("word"));
 				list.add(historyDTO);
 			}
@@ -87,4 +90,5 @@ public class HistoryDAO {
 		}
 		return list;
 	}
+	
 }
