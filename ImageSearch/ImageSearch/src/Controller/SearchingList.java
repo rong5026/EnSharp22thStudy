@@ -43,7 +43,7 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 	public SearchingList() {
 		setSize(1000,800);
 		setLocationRelativeTo(null);
-		setTitle("EN# ÀÌ¹ÌÁö ¼­Ä¡");
+		setTitle("EN# ì´ë¯¸ì§€ ì„œì¹˜");
 		setResizable(false);
 		comboboxNumber = "10";
 	
@@ -58,36 +58,36 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		container.setLayout(new BorderLayout());
 		
 		
-		//¹öÆ° ºÙÀÏ ÆĞ³Î
+		//ë²„íŠ¼ ë¶™ì¼ íŒ¨ë„
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
-		//ÅØ½ºÆ®ÇÊµå
+		//í…ìŠ¤íŠ¸í•„ë“œ
 		textField = new TextField(20);	
 		textField.setText(dataString);
 		textField.setColumns(40);
-		//¹öÆ°
-		JButton searchingButton = new JButton("°Ë»öÇÏ±â");		
-		JButton backButton = new JButton("µÚ·Î°¡±â");
-		//ÄŞº¸¹Ú½º
+		//ë²„íŠ¼
+		JButton searchingButton = new JButton("ê²€ìƒ‰í•˜ê¸°");		
+		JButton backButton = new JButton("ë’¤ë¡œê°€ê¸°");
+		//ì½¤ë³´ë°•ìŠ¤
 		countCombobox = new JComboBox(count);
 		countCombobox.addItemListener(this);
 		
 		
-		//°Ë»ö,µÚ·Î°¡±â,ÀÔ·ÂÄ­,ÄŞº¸¹Ú½º
+		//ê²€ìƒ‰,ë’¤ë¡œê°€ê¸°,ì…ë ¥ì¹¸,ì½¤ë³´ë°•ìŠ¤
 		buttonPanel.add(textField);
 		buttonPanel.add(searchingButton);
 		buttonPanel.add(backButton);
 		buttonPanel.add(countCombobox);
 		//buttonPanel.setBounds(400,300,200,200);
 		
-		//¹öÆ° ¸®½º³Ê
+		//ë²„íŠ¼ ë¦¬ìŠ¤ë„ˆ
 		searchingButton.addActionListener(this);
 		backButton.addActionListener(this);
 		
 		container.add(buttonPanel,BorderLayout.NORTH);
 		
 		
-		// ÀÌ¹ÌÁöºÙÀÏ ÆĞ³Î
+		// ì´ë¯¸ì§€ë¶™ì¼ íŒ¨ë„
 		imagePanel = new JPanel(new GridLayout(5,2));
 		ShowImageList(imagePanel);
 		container.add(imagePanel,BorderLayout.CENTER);
@@ -101,7 +101,7 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		
 	}
 	
-	public String Getimage() { // APi¸®ÅÏ°ª 
+	public String GetAPIDate() { // APië°›ì•„ì˜¨ ë¬¸ì ë¦¬í„´
 		String result = "";
 		try {
 			if(countCombobox == null)
@@ -133,7 +133,7 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 			
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return result;
@@ -142,10 +142,10 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		
 	}
 	
-	public void ShowImageList(JPanel imagePanel) { // ÀÌ¹ÌÁö¸¦ ÆĞ³Î¿¡ ´Ù ºÙÀÌ±â
+	public void ShowImageList(JPanel imagePanel) { // ì´ë¯¸ì§€ë¥¼ íŒ¨ë„ì— ë‹¤ ë¶™ì´ê¸°
 		
 		imagePanel.removeAll();
-		String result= Getimage();
+		String result= GetAPIDate();
 		JSONParser jsonParser = new JSONParser();
 		
 		
@@ -157,29 +157,31 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 				
 				JSONObject imageObject = (JSONObject) imageUrlArray.get(i);
 			
-				// System.out.println("url : "+imageObject.get("image_url"));
-				
-				
-				// ÀÌ¹ÌÁö °¡Á®¿À±â
+		
+				// ì´ë¯¸ì§€ ê°€ì ¸ì˜¤ê¸°
 				BufferedImage image = null;
 				BufferedImage bigImage = null;
 		
-				URL url = new URL((String) imageObject.get("thumbnail_url"));		
-				bigImageUrl = new URL((String) imageObject.get("image_url"));
-				bigImage = ImageIO.read(bigImageUrl);
-				
-				System.out.println(bigImageUrl);
-				image = ImageIO.read(url);
+				try {
+					URL url = new URL((String) imageObject.get("thumbnail_url"));		
+					bigImageUrl = new URL((String) imageObject.get("image_url"));
+					bigImage = ImageIO.read(bigImageUrl);
 					
-				 
-				//¹öÆ°¿¡ ÀÌ¹ÌÁö ³Ö¾îÁÖ±â
+					image = ImageIO.read(url);
+				} catch (IOException  e) {
+					
+					continue;
+				}
+				
+						 
+				//ë²„íŠ¼ì— ì´ë¯¸ì§€ ë„£ì–´ì£¼ê¸°
 				JButton button = new JButton(new ImageIcon(image));
 				button.setBorderPainted(false);
 				button.setFocusPainted(false);
 				button.setContentAreaFilled(false);
 				button.setSize(50,50);
 				
-				//¹öÆ° ÀÌº¥Æ® ´Ş¾ÆÁÖ±â
+				//ë²„íŠ¼ ì´ë²¤íŠ¸ ë‹¬ì•„ì£¼ê¸°
 				button.addMouseListener(new MouseListener() {
 					
 					@Override
@@ -214,12 +216,10 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		} catch (ParseException e) {
 			
 			e.printStackTrace();
-		}catch (IOException  e) {
-			e.printStackTrace();
 		}
 		
 	}
-	public void CreateBigImageFrame(URL bigImageUrl) {
+	public void CreateBigImageFrame(URL bigImageUrl) { // ì›ë³¸ì´ë¯¸ì§€ë¥¼ í¬í•¨í•œ í”„ë ˆì„
 		
 		JFrame frame = new JFrame();
 	
@@ -242,10 +242,10 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 
 
 	@Override
-	public void actionPerformed(ActionEvent event) { //¹öÆ°¿¢¼Ç
+	public void actionPerformed(ActionEvent event) { //ë²„íŠ¼ì—‘ì…˜
 		JButton button = (JButton)event.getSource();
 		
-		if(button.getText().equals("°Ë»öÇÏ±â")) {
+		if(button.getText().equals("ê²€ìƒ‰í•˜ê¸°")) {
 			dataString = textField.getText();
 			ShowImageList(imagePanel);
 			HistoryDAO dao = new HistoryDAO();	
@@ -260,7 +260,7 @@ public class SearchingList extends JFrame implements ActionListener,ItemListener
 		
 	}
 	
-	public void itemStateChanged(ItemEvent e) { // ÄŞº¸¹Ú½º ¿¢¼Ç
+	public void itemStateChanged(ItemEvent e) { // ì½¤ë³´ë°•ìŠ¤ ì—‘ì…˜
 		dataString = textField.getText();
 		ShowImageList(imagePanel);
 	}

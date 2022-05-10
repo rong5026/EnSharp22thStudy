@@ -23,7 +23,7 @@ public class SearchingImage extends JFrame{
 	public SearchingImage() {
 		setSize(1000,800);
 		setLocationRelativeTo(null);
-		setTitle("EN# ÀÌ¹ÌÁö ¼­Ä¡");
+		setTitle("EN# ì´ë¯¸ì§€ ì„œì¹˜");
 		setResizable(false);
 	
 	}
@@ -41,8 +41,8 @@ public class SearchingImage extends JFrame{
 		container.add(textField);
 		
 		JPanel mainPanel = new JPanel(new FlowLayout());
-		JButton searchingButton = new JButton("°Ë»öÇÏ±â");		
-		JButton recordButton = new JButton("±â·Ïº¸±â");
+		JButton searchingButton = new JButton("ê²€ìƒ‰í•˜ê¸°");		
+		JButton recordButton = new JButton("ê¸°ë¡ë³´ê¸°");
 		
 		
 		
@@ -50,27 +50,27 @@ public class SearchingImage extends JFrame{
 		mainPanel.add(recordButton);
 		mainPanel.setBounds(400,300,200,200);
 		
-		JPanel historyJPanel = new JPanel(new BorderLayout()); // °Ë»ö±â·Ï ÆĞ³Î »ı¼º
+		JPanel historyJPanel = new JPanel(new BorderLayout()); // ê²€ìƒ‰ê¸°ë¡ íŒ¨ë„ ìƒì„±
 		
-		JLabel historyLabel =new JLabel("°Ë»ö ±â·Ï");
-		historyLabel.setForeground(Color.black); // ±ÛÀÚ»ö
-		historyLabel.setBackground(Color.yellow); // ¹è°æ ³ë¶û
+		JLabel historyLabel =new JLabel("ê²€ìƒ‰ ê¸°ë¡");
+		historyLabel.setForeground(Color.black); // ê¸€ììƒ‰
+		historyLabel.setBackground(Color.yellow); // ë°°ê²½ ë…¸ë‘
 		historyJPanel.add(historyLabel);
 		historyJPanel.setBounds(450,50,500,30);
 		
 		JTextArea text= new JTextArea();
-		JScrollPane scrollPane = new JScrollPane(text);  //½ºÅ©·ÑÆÇ Ãß°¡
-		text.setLineWrap(true); // ÀÚµ¿ ÁÙ¹Ù²Ş
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // ¼öÁ÷½ºÅ©·Ñ¹Ù »ı¼º
+		JScrollPane scrollPane = new JScrollPane(text);  //ìŠ¤í¬ë¡¤íŒ ì¶”ê°€
+		text.setLineWrap(true); // ìë™ ì¤„ë°”ê¿ˆ
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // ìˆ˜ì§ìŠ¤í¬ë¡¤ë°” ìƒì„±
 		
 		
 		
-		//ÆĞ³Î¿¡ ºÙÀÌ±â
+		//íŒ¨ë„ì— ë¶™ì´ê¸°
 		historyJPanel.add(scrollPane); 
 		historyJPanel.add(historyLabel);
 		
 		
-		searchingButton.addActionListener(new ActionListener() { // °Ë»öÇÏ±â ¹öÆ° ÀÌº¥Æ®
+		searchingButton.addActionListener(new ActionListener() { // ê²€ìƒ‰í•˜ê¸° ë²„íŠ¼ ì´ë²¤íŠ¸
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,7 +86,7 @@ public class SearchingImage extends JFrame{
 				
 			}
 		});
-		recordButton.addActionListener(new ActionListener() { // °Ë»ö±â·Ï ¹öÆ° ÀÌº¥Æ®
+		recordButton.addActionListener(new ActionListener() { // ê²€ìƒ‰ê¸°ë¡ ë²„íŠ¼ ì´ë²¤íŠ¸
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -109,19 +109,19 @@ public class SearchingImage extends JFrame{
 		
 	}
 	
-	private void ShowHistory(JPanel historyJPanel) { // °Ë»ö±â·Ï ÆĞ³Î¿¡ ÄÄÆ÷³ÍÆ® »ğÀÔ
+	private void ShowHistory(JPanel historyJPanel) { // ê²€ìƒ‰ê¸°ë¡ íŒ¨ë„ì— ì»´í¬ë„ŒíŠ¸ ì‚½ì…
 		
 	
-		JLabel historyLabel =new JLabel("°Ë»ö ±â·Ï");
-		historyLabel.setForeground(Color.black); // ±ÛÀÚ»ö
-		historyLabel.setBackground(Color.yellow); // ¹è°æ ³ë¶û
+		JLabel historyLabel =new JLabel("ê²€ìƒ‰ ê¸°ë¡");
+		historyLabel.setForeground(Color.black); // ê¸€ììƒ‰
+		historyLabel.setBackground(Color.yellow); // ë°°ê²½ ë…¸ë‘
 		
 		JTextArea text= new JTextArea();
-		JScrollPane scrollPane = new JScrollPane(text);  //½ºÅ©·ÑÆÇ Ãß°¡
-		text.setLineWrap(true); // ÀÚµ¿ ÁÙ¹Ù²Ş
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // ¼öÁ÷½ºÅ©·Ñ¹Ù »ı¼º
+		JScrollPane scrollPane = new JScrollPane(text);  //ìŠ¤í¬ë¡¤íŒ ì¶”ê°€
+		text.setLineWrap(true); // ìë™ ì¤„ë°”ê¿ˆ
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // ìˆ˜ì§ìŠ¤í¬ë¡¤ë°” ìƒì„±
 		
-		//ÆĞ³Î¿¡ ºÙÀÌ±â
+		//íŒ¨ë„ì— ë¶™ì´ê¸°
 	
 		historyJPanel.add(scrollPane); 
 		historyJPanel.add(historyLabel);
@@ -136,4 +136,3 @@ public class SearchingImage extends JFrame{
 	
 
 }
-
