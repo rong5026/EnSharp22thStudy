@@ -5,18 +5,20 @@ import java.awt.Container;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
+import Model.constants;
 import View.textPanel;
 import View.buttonPanel;
 import View.menuPanel;
 
 
 public class calculatorStart extends JFrame{
-
+	private ImageIcon calculatorIcon;
 	
 	public calculatorStart() {
-		ImageIcon img = new ImageIcon("이미지경로");
+		ImageIcon img = new ImageIcon(constants.CALCULATOR_ICON_IMAGE);
 		this.setIconImage(img.getImage());
-	
+		
 		this.setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		setTitle("EN# 계산기");
