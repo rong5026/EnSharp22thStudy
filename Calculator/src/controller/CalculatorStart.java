@@ -9,19 +9,19 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import model.constants;
-import view.buttonPanel;
-import view.menuPanel;
-import view.textPanel;
+import model.Constants;
+import view.ButtonPanel;
+import view.MenuPanel;
+import view.TextPanel;
 
 
-public class calculatorStart extends JFrame{
+public class CalculatorStart extends JFrame{
 	private ImageIcon calculatorIcon;
 	private Box box;
 	
-	public calculatorStart() {
+	public CalculatorStart() {
 		//아이콘 설정
-		ImageIcon img = new ImageIcon(constants.CALCULATOR_ICON_IMAGE);
+		ImageIcon img = new ImageIcon(Constants.CALCULATOR_ICON_IMAGE);
 		this.setIconImage(img.getImage());
 		
 		this.setLayout(new GridLayout(3,1));
@@ -36,9 +36,9 @@ public class calculatorStart extends JFrame{
 		
 		Container container = getContentPane();
 		
-		container.add(new menuPanel());
-		container.add(new textPanel());
-		container.add(new buttonPanel());
+		container.add(new MenuPanel());
+		container.add(new TextPanel());
+		container.add(new ButtonPanel());
 	
 		setVisible(true);
 	}

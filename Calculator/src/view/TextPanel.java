@@ -9,12 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class textPanel extends JPanel{
+public class TextPanel extends JPanel{
 
 	JLabel inputJLabel;
 	JLabel informationJLabel;
 	String result;
-	public textPanel() {
+	public TextPanel() {
 		result ="0";
 		setBackground(Color.gray);
 		setLayout(new GridLayout(3,1)); // 상하 3개로 나누기

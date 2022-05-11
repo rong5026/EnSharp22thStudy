@@ -9,9 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import model.constants;
+import model.Constants;
 
-public class menuPanel extends JPanel{
+public class MenuPanel extends JPanel{
 
 	private Dimension dimension ;
 	private JButton historyButton;
@@ -19,7 +19,7 @@ public class menuPanel extends JPanel{
 	private JButton zoomButton;
 	private Box box;
 	
-	public menuPanel() {
+	public MenuPanel() {
 		
 		dimension = new Dimension(20,50);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -27,9 +27,9 @@ public class menuPanel extends JPanel{
 		setBackground(Color.yellow);
 		
 		
-		menuButton= new JButton(new ImageIcon(constants.MENU_BUTTON_IMAGE));
-		zoomButton= new JButton(new ImageIcon(constants.ZOOM_BUTTON_IMAGE));
-		historyButton= new JButton(new ImageIcon(constants.HISTORY_BUTTON_IMAGE));
+		menuButton= new JButton(new ImageIcon(Constants.MENU_BUTTON_IMAGE));
+		zoomButton= new JButton(new ImageIcon(Constants.ZOOM_BUTTON_IMAGE));
+		historyButton= new JButton(new ImageIcon(Constants.HISTORY_BUTTON_IMAGE));
 	
 		
 		//menuButton.setBorderPainted(false);
