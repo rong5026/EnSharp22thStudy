@@ -23,7 +23,7 @@ public class menuPanel extends JPanel{
 		dimension = new Dimension(20,50);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		setPreferredSize(new Dimension(100,45));
-		//setBackground(Color.blue);
+		setBackground(Color.yellow);
 		
 		
 		menuButton= new JButton(new ImageIcon(constants.MENU_BUTTON_IMAGE));
