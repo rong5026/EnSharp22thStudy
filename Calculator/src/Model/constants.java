@@ -1,6 +1,6 @@
 package Model;
 
-public class constannt {
+public class constants {
 
 	
 	public final static String MENU_BUTTON_IMAGE = "src/Image/menu.png";

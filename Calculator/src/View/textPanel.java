@@ -24,7 +24,6 @@ public class textPanel extends JPanel{
 		
 		
 		
-		
 	}
 	
 	

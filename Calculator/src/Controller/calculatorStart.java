@@ -16,8 +16,7 @@ public class calculatorStart extends JFrame{
 	public calculatorStart() {
 		ImageIcon img = new ImageIcon("이미지경로");
 		this.setIconImage(img.getImage());
-		
-
+	
 		this.setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		setTitle("EN# 계산기");
