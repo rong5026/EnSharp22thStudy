@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +8,8 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import Model.constants;
+
+import model.constants;
 
 public class menuPanel extends JPanel{
 
@@ -22,7 +23,7 @@ public class menuPanel extends JPanel{
 		
 		dimension = new Dimension(20,50);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		setPreferredSize(new Dimension(100,45));
+		setPreferredSize(new Dimension(100,20));
 		setBackground(Color.yellow);
 		
 		

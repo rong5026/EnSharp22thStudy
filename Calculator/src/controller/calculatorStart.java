@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -9,10 +9,10 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import Model.constants;
-import View.textPanel;
-import View.buttonPanel;
-import View.menuPanel;
+import model.constants;
+import view.buttonPanel;
+import view.menuPanel;
+import view.textPanel;
 
 
 public class calculatorStart extends JFrame{
@@ -24,7 +24,7 @@ public class calculatorStart extends JFrame{
 		ImageIcon img = new ImageIcon(constants.CALCULATOR_ICON_IMAGE);
 		this.setIconImage(img.getImage());
 		
-		this.setLayout(new F));
+		this.setLayout(new GridLayout(3,1));
 		//this.setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		setTitle("EN# °è»ê±â");
@@ -36,9 +36,9 @@ public class calculatorStart extends JFrame{
 		
 		Container container = getContentPane();
 		
-		container.add(new menuPanel(),BorderLayout.NORTH);
-		container.add(new textPanel(), BorderLayout.CENTER);
-		container.add(new buttonPanel(),BorderLayout.SOUTH);
+		container.add(new menuPanel());
+		container.add(new textPanel());
+		container.add(new buttonPanel());
 	
 		setVisible(true);
 	}
