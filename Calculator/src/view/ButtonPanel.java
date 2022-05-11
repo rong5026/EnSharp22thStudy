@@ -18,7 +18,7 @@ public class ButtonPanel extends JPanel{
 		
 		setLayout(new GridLayout(5,4,1,1));
 		button = new JButton[20];
-		setPreferredSize(new Dimension(100,200));
+		setPreferredSize(new Dimension(0,400));
 		
 		button[0] = new JButton("CE");
 		button[1] = new JButton("C");

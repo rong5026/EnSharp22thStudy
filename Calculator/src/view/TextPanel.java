@@ -11,27 +11,38 @@ import javax.swing.SwingConstants;
 
 public class TextPanel extends JPanel{
 
-	JLabel inputJLabel;
-	JLabel informationJLabel;
-	String result;
+	private JLabel inputJLabel;
+	private JLabel informationJLabel;
+	private String result;
 	public TextPanel() {
 		result ="0";
-		setBackground(Color.gray);
-		setLayout(new GridLayout(3,1)); // »óÇÏ 3°³·Î ³ª´©±â
-		setPreferredSize(new Dimension(100,80));
+		//setBackground(Color.gray);
+		setLayout(new GridLayout(3,1)); // ìƒí•˜ 3ê°œë¡œ ë‚˜ëˆ„ê¸°
+		setPreferredSize(new Dimension(500,180));
 		
 		informationJLabel = new JLabel("");
 		inputJLabel = new JLabel(result);
 		
-		//ÀÔ·Â Á¤º¸
-		informationJLabel.setFont(new Font("¸¼Àº °íµñ", 0, 40));
+		
+		//ì…ë ¥ ì •ë³´
+		informationJLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 0, 40));
 		informationJLabel.setForeground(Color.BLACK);
 		informationJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		//ÀÔ·Â °ª
-		inputJLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD , 55));
+		
+		//ì…ë ¥ ê°’
+		inputJLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", Font.BOLD , 55));
 		inputJLabel.setForeground(Color.BLACK);
 		inputJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		
+		// ë‚˜ì¤‘ì— ì‚­ì œí• ê²ƒ
+		informationJLabel.setOpaque(true);
+		informationJLabel.setBackground(Color.green);
+		
+		inputJLabel.setOpaque(true);
+		inputJLabel.setBackground(Color.CYAN);
+		//
 		
 		
 		add(informationJLabel);

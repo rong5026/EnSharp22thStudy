@@ -13,7 +13,7 @@ import model.Constants;
 
 public class MenuPanel extends JPanel{
 
-	private Dimension dimension ;
+
 	private JButton historyButton;
 	private JButton menuButton;
 	private JButton zoomButton;
@@ -21,9 +21,9 @@ public class MenuPanel extends JPanel{
 	
 	public MenuPanel() {
 		
-		dimension = new Dimension(20,50);
+	
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		setPreferredSize(new Dimension(100,20));
+		setPreferredSize(new Dimension(0,50));
 		setBackground(Color.yellow);
 		
 		

@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -17,29 +18,29 @@ import view.TextPanel;
 
 public class CalculatorStart extends JFrame{
 	private ImageIcon calculatorIcon;
-	private Box box;
-	
+	private Container container;
+	private ImageIcon img;
 	public CalculatorStart() {
-		//¾ÆÀÌÄÜ ¼³Á¤
-		ImageIcon img = new ImageIcon(Constants.CALCULATOR_ICON_IMAGE);
+		
+		
+		img = new ImageIcon(Constants.CALCULATOR_ICON_IMAGE);
 		this.setIconImage(img.getImage());
 		
-		this.setLayout(new GridLayout(3,1));
-		//this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
-		setTitle("EN# °è»ê±â");
+		setTitle("EN# ï¿½ï¿½ï¿½ï¿½");
 		setResizable(false);
 		setSize(500,700);
 	}
 	
 	public void start() {
 		
-		Container container = getContentPane();
+		container = getContentPane();
 		
-		container.add(new MenuPanel());
-		container.add(new TextPanel());
-		container.add(new ButtonPanel());
-	
+		container.add(new MenuPanel(),BorderLayout.NORTH);
+		container.add(new TextPanel(),BorderLayout.CENTER);
+		container.add(new ButtonPanel(),BorderLayout.SOUTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 	
