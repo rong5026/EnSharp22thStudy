@@ -1,8 +1,13 @@
 
+
+import Controller.calculatorStart;
+
 public class calculatorMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		calculatorStart calculator = new calculatorStart();
+		calculator.start();
 
 	}
 
