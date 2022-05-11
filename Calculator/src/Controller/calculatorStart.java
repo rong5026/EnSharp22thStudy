@@ -27,7 +27,9 @@ public class calculatorStart extends JFrame{
 	public void start() {
 		
 		Container container = getContentPane();
+		
 		container.add(new menuPanel(),BorderLayout.NORTH);
+		
 		
 		setVisible(true);
 	}
