@@ -17,6 +17,7 @@ import Model.HistoryDTO;
 
 public class SearchingImage extends JFrame{
 
+	//
 	
 	
 	
@@ -108,7 +109,7 @@ public class SearchingImage extends JFrame{
 		historyLabel.setBackground(Color.yellow); // 배경 노랑
 		historyLabel.setPreferredSize(new Dimension(100,100));
 		
-		northPanel.setBackground(Color.BLUE);
+		//northPanel.setBackground(Color.BLUE);
 		
 		northPanel.add(historyLabel);
 		
@@ -123,14 +124,12 @@ public class SearchingImage extends JFrame{
 		
 		
 		for(Integer index1 = 0 ; index1 < list.size() ; index1++) {
-		
-			 textArea.append(list.get(index1).getWord()+System.lineSeparator());
-			 
+			 textArea.append(list.get(index1).getWord()+System.lineSeparator()+System.lineSeparator()+System.lineSeparator()+System.lineSeparator());
 		}		
 		
 		centerPanel.add(scrollPane);
 		scrollPane.setPreferredSize(new Dimension(400,500));
-		centerPanel.setBackground(Color.RED);
+		//centerPanel.setBackground(Color.RED);
 		
 		JPanel southPanel = new JPanel(new FlowLayout());
 		southPanel.setPreferredSize(new Dimension(100,120));
@@ -138,6 +137,7 @@ public class SearchingImage extends JFrame{
 		JButton backButton = new JButton("뒤로가기");
 		southPanel.add(deleteButton);
 		southPanel.add(backButton);
+		
 		
 		
 		//프레임에 패널 추가

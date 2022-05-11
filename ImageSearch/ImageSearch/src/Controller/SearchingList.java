@@ -24,11 +24,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 
 
-
-
 public class SearchingList extends JFrame implements ActionListener,ItemListener{
 
-	String count[] = {"10","20","30"};
+	String count[] = {"10","20","30"}; //접근제한자
 	String comboboxNumber;
 	String dataString;
 	String apiResult;
