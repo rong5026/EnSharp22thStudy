@@ -26,7 +26,7 @@ public class TextPanel extends JPanel{
 		
 		
 		previousJLabel = new JLabel("");
-		inputJLabel = new JLabel(CalculatorStart.inputNumber);
+		inputJLabel = new JLabel("0");
 		
 		
 		//입력과거 정보
