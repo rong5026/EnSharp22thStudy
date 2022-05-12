@@ -10,10 +10,10 @@ import view.TextPanel;
 public class NumberButtonAction {
 	private JButton pressedbutton;
 	private String inpuText;
-	
+	private int index;
 	
 	public void setButtonAction(JButton [] button) {
-		for(int index =0 ; index<20 ; index++) {
+		for(index =0 ; index<20 ; index++) {
 			
 			//숫자버튼 엑션 1 ~ 9
 			if( (3 <index && index<15 && index%4!=3)) {
@@ -31,6 +31,7 @@ public class NumberButtonAction {
 					
 						//최대길이 16개로 제한
 						if(CalculatorStart.inputNumber.length()<16) {
+																														
 							inpuText= pressedbutton.getText();
 							
 							//입력숫자값만 resultNumber에 넣기
@@ -173,33 +174,90 @@ public class NumberButtonAction {
 			
 			////////////////////////////////////////////////  수학 기호 버튼 
 			
-			// 나누기
-			else if(index == 3) {
+			// 나누기 , 곱하기, 빼기 , 더하기, 등호 =
+			else if(index == 3 ||index == 7||index == 11||index == 15||index == 19 ) {
 				button[index].addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 					
+						String mathSign;
+						double result = 0;
 						
-						// 미리입력한 값에 입력값 저장
-						CalculatorStart.previousNumber = CalculatorStart.inputNumber;
+						if(TextPanel.previousJLabel.getText()!="") {
+							
+							//마지막 문자 가져와서 ÷,×,－,＋,＝ 확인
+							mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
+							double previusDouble = Double.parseDouble(CalculatorStart.previousNumber);
+							double inputDoble =  Double.parseDouble(CalculatorStart.inputNumber);
+							switch (mathSign) {
+							case "÷":						
+								result = previusDouble/inputDoble;
+								TextPanel.previousJLabel.setText(String.valueOf(result)+"÷");
+								break;
+							case "×":
+								result = previusDouble*inputDoble;
+								TextPanel.previousJLabel.setText(String.valueOf(result)+"×");
+								break;
+							case "－":
+								result = previusDouble-inputDoble;
+								TextPanel.previousJLabel.setText(String.valueOf(result)+"－");
+								break;
+							case "＋":
+								result = previusDouble+inputDoble;
+								TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");
+								break;
+							case "＝":
+								
+								break;
+								
+
+							default:
+								break;
+							}
+							
+							// 미리입력한 값에 입력값 저장
+							CalculatorStart.previousNumber = String.valueOf(result);
+							
+							TextPanel.inputJLabel.setText(String.valueOf(result));
+							//결과값  inputlabel에 저장
+							TextPanel.inputJLabel.setText(String.valueOf(result));
+							
+						}
+						else {
+							// 미리입력한 값에 입력값 저장
+							CalculatorStart.previousNumber = CalculatorStart.inputNumber;
 						
-						//입력숫자 + 콤마가 추가된 문자 inputPanel에 출력
-						TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
+							switch (index) {
+							case 3:			//나누기										
+								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"÷");		
+								break;
+							case 7:			//곱하기			
+								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"×");		
+								break;
+							case 11:		//빼기	
+								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"－");		
+								break;
+							case 15:	//더하기
+								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"＋");		
+								break;
+							case 19:
+								
+								break;
+								
+
+							default:
+								break;
+							}
+									
+						}
+
 						
-						// 콤마 뺀 숫자 + 소수점만 저장
-						TextPanel.previousJLabel.setText(CalculatorStart.inputNumber);
-					
+						//초기화
+						CalculatorStart.inputNumber ="0";
 					}
 				});
 			}
-			
-			
-			
-			
-			
-			
-			
 			
 			
 			
