@@ -192,7 +192,7 @@ public class NumberButtonAction {
 						double inputDoble;
 						pressedbutton = (JButton)e.getSource();
 						
-						if(CalculatorStart.previousNumber!="" ) {
+						if(CalculatorStart.previousNumber!="") {
 							
 							//마지막 문자 가져와서 ÷,×,－,＋,＝ 확인
 							mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
@@ -242,33 +242,33 @@ public class NumberButtonAction {
 							
 						}
 						else {
-						
 							
-							
+							if(CalculatorStart.previousNumber =="")
+								// 미리입력한 값에 입력값 저장
+								CalculatorStart.previousNumber = CalculatorStart.inputNumber;
 							switch (pressedbutton.getText()) {
 							case "÷":	//나누기										
-								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"÷");		
+								TextPanel.previousJLabel.setText(CalculatorStart.previousNumber+"÷");		
 								break;
 							case "×":	//곱하기			
-								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"×");		
+								TextPanel.previousJLabel.setText(CalculatorStart.previousNumber+"×");		
 								break;
 							case "－":	//빼기	
-								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"－");		
+								TextPanel.previousJLabel.setText(CalculatorStart.previousNumber+"－");		
 								break;
 							case "＋":	//더하기
-								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＋");		
+								TextPanel.previousJLabel.setText(CalculatorStart.previousNumber+"＋");		
 								break;
 										
 							default:
 								break;
 							}
+							
 						
-									
 						}
 						
-						// 미리입력한 값에 입력값 저장
-						CalculatorStart.previousNumber = CalculatorStart.inputNumber;
-						
+					
+			
 						
 						//입력값초기화
 						CalculatorStart.inputNumber ="0";
