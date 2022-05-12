@@ -17,7 +17,7 @@ public class ButtonAction {
 		for(int index =0 ; index<20 ; index++) {
 			
 			//숫자버튼 엑션 1 ~ 9
-			if(3 <index && index<15 && index%4!=3) {
+			if( (3 <index && index<15 && index%4!=3)) {
 				button[index].addActionListener(new ActionListener() {
 					
 					@Override
@@ -37,8 +37,10 @@ public class ButtonAction {
 							//입력숫자값만 resultNumber에 넣기
 							CalculatorStart.resultNumber = CalculatorStart.resultNumber+inpuText;
 							
+							//입력 수가 많아질수록 폰트 사이즈 감소
 							changeFontSize(CalculatorStart.resultNumber);
-							//입력숫자 + 콤마가 추가된 문자 넣기
+							
+							//입력숫자 + 콤마가 추가된 문자 textPanel에 출력
 							TextPanel.inputJLabel.setText(setComma(CalculatorStart.resultNumber));
 							
 						}
@@ -53,20 +55,53 @@ public class ButtonAction {
 					public void actionPerformed(ActionEvent e) {
 						pressedbutton = (JButton)e.getSource();
 						// 0밖에 없을때 제외, 길이 16까지 제한
-						if(TextPanel.inputJLabel.getText() !="0" &&TextPanel.inputJLabel.getText().length()<16) {
+						
+						
+						if(TextPanel.inputJLabel.getText() !="0" &&CalculatorStart.resultNumber.length()<16) {
 							inpuText= pressedbutton.getText();
-							CalculatorStart.resultNumber = TextPanel.inputJLabel.getText()+inpuText;
 							
-							TextPanel.inputJLabel.setText(CalculatorStart.resultNumber);
+							//입력숫자값만 resultNumber에 넣기
+							CalculatorStart.resultNumber = CalculatorStart.resultNumber+inpuText;
+							
+							//입력 수가 많아질수록 폰트 사이즈 감소
+							changeFontSize(CalculatorStart.resultNumber);
+							
+							//입력숫자 + 콤마가 추가된 문자 textPanel에 출력
+							TextPanel.inputJLabel.setText(setComma(CalculatorStart.resultNumber));
 						}
-						
-						
-						
-						
 					}
 				});
 						
 			}
+			
+			// . 소수점
+			
+			else if(index ==18) {
+				button[index].addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						pressedbutton = (JButton)e.getSource();
+						
+						// .을 쓴적이 없고, 최대길이 이전일때
+						if(TextPanel.inputJLabel.getText().contains(pressedbutton.getText()) ==false &&CalculatorStart.resultNumber.length()<16) {
+							inpuText= pressedbutton.getText();
+							
+							//입력숫자값만 resultNumber에 넣기
+							CalculatorStart.resultNumber = CalculatorStart.resultNumber+inpuText;
+							
+							//입력 수가 많아질수록 폰트 사이즈 감소
+							changeFontSize(CalculatorStart.resultNumber);
+							
+							//입력숫자 + 콤마가 추가된 문자 textPanel에 출력
+							TextPanel.inputJLabel.setText(setComma(CalculatorStart.resultNumber));
+						}
+					
+						
+					}
+				});
+			}
+			
 			
 		}
 	
