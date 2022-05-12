@@ -58,17 +58,22 @@ public class NumberButtonAction {
 						
 						
 						if(TextPanel.inputJLabel.getText() !="0" &&CalculatorStart.inputNumber.length()<16) {
+							
+							System.out.println("0이눌림");
 							inpuText= pressedbutton.getText();
 							
-							//입력숫자값만 resultNumber에 넣기
-							CalculatorStart.inputNumber = CalculatorStart.inputNumber+inpuText;
+							if(CalculatorStart.inputNumber!="0")
+								//입력숫자값만 resultNumber에 넣기
+								CalculatorStart.inputNumber = CalculatorStart.inputNumber+inpuText;
 							
 							//입력 수가 많아질수록 폰트 사이즈 감소
 							changeFontSize(CalculatorStart.inputNumber,"Down");
 							
+						
 							//입력숫자 + 콤마가 추가된 문자 inputPanel에 출력
 							TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
 						}
+					
 					}
 				});
 						
@@ -183,78 +188,87 @@ public class NumberButtonAction {
 					
 						String mathSign;
 						double result = 0;
+						double previusDouble;
+						double inputDoble;
+						pressedbutton = (JButton)e.getSource();
 						
-						if(TextPanel.previousJLabel.getText()!="") {
+						if(CalculatorStart.previousNumber!="" ) {
 							
 							//마지막 문자 가져와서 ÷,×,－,＋,＝ 확인
 							mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
-							double previusDouble = Double.parseDouble(CalculatorStart.previousNumber);
-							double inputDoble =  Double.parseDouble(CalculatorStart.inputNumber);
+							previusDouble = Double.parseDouble(CalculatorStart.previousNumber);
+							inputDoble =  Double.parseDouble(CalculatorStart.inputNumber);
+							
+							System.out.println(mathSign);
 							switch (mathSign) {
 							case "÷":						
-								result = previusDouble/inputDoble;
-								TextPanel.previousJLabel.setText(String.valueOf(result)+"÷");
+								result = previusDouble/inputDoble;							
 								break;
 							case "×":
-								result = previusDouble*inputDoble;
-								TextPanel.previousJLabel.setText(String.valueOf(result)+"×");
+								result = previusDouble*inputDoble;							
 								break;
 							case "－":
 								result = previusDouble-inputDoble;
-								TextPanel.previousJLabel.setText(String.valueOf(result)+"－");
 								break;
 							case "＋":
 								result = previusDouble+inputDoble;
-								TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");
 								break;
-							case "＝":
-								
-								break;
-								
-
 							default:
 								break;
 							}
-							
+							switch (pressedbutton.getText()) {
+							case "÷":	//나누기										
+								TextPanel.previousJLabel.setText(String.valueOf(result)+"÷");
+								break;
+							case "×":	//곱하기			
+								TextPanel.previousJLabel.setText(String.valueOf(result)+"×");	
+								break;
+							case "－":	//빼기	
+								TextPanel.previousJLabel.setText(String.valueOf(result)+"－");
+								break;
+							case "＋":	//더하기
+								TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");	
+								break;										
+							default:
+								break;
+							}
 							// 미리입력한 값에 입력값 저장
 							CalculatorStart.previousNumber = String.valueOf(result);
 							
-							TextPanel.inputJLabel.setText(String.valueOf(result));
 							//결과값  inputlabel에 저장
 							TextPanel.inputJLabel.setText(String.valueOf(result));
 							
 						}
 						else {
-							// 미리입력한 값에 입력값 저장
-							CalculatorStart.previousNumber = CalculatorStart.inputNumber;
 						
-							switch (index) {
-							case 3:			//나누기										
+							
+							switch (pressedbutton.getText()) {
+							case "÷":	//나누기										
 								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"÷");		
 								break;
-							case 7:			//곱하기			
+							case "×":	//곱하기			
 								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"×");		
 								break;
-							case 11:		//빼기	
+							case "－":	//빼기	
 								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"－");		
 								break;
-							case 15:	//더하기
+							case "＋":	//더하기
 								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"＋");		
 								break;
-							case 19:
-								
-								break;
-								
-
+										
 							default:
 								break;
 							}
+							System.out.println("hong");
 									
 						}
-
+						// 미리입력한 값에 입력값 저장
+						CalculatorStart.previousNumber = CalculatorStart.inputNumber;
 						
-						//초기화
+						//입력값초기화
 						CalculatorStart.inputNumber ="0";
+						
+						System.out.println("imput 0으로 초기화");
 					}
 				});
 			}
