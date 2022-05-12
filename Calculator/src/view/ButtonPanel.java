@@ -12,11 +12,12 @@ import javax.swing.JPanel;
 
 import model.Constants;
 import controller.MouseAction;
+import controller.ButtonAction;
 
 public class ButtonPanel extends JPanel{
 	
-	public static JButton [] button;
-	
+	public JButton [] button;
+	private ButtonAction buttonAction;
 	public ButtonPanel() {
 		
 		setLayout(new GridLayout(5,4,1,1));
@@ -65,9 +66,13 @@ public class ButtonPanel extends JPanel{
 			button[15].setBackground(new Color(232,232,232));		
 			button[19].setBackground(new Color(153,204,255));		
 			
+			// 마우스 리스너달기
 			button[index].addMouseListener(new MouseAction());
-					
 		}
+		
+		//버튼 리스너달기
+		buttonAction = new ButtonAction();
+		buttonAction.setButtonAction(button);
 		
 	}
 	public void setFont(JButton button) { // 버튼 폰트 변경
