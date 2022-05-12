@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -14,7 +15,7 @@ import model.Constants;
 public class ButtonPanel extends JPanel{
 	
 	private JButton [] button;
-	private String [] buttonString;
+
 	public ButtonPanel() {
 		
 		setLayout(new GridLayout(5,4,1,1));
@@ -50,18 +51,28 @@ public class ButtonPanel extends JPanel{
 			
 			add(button[index]);
 			setFont(button[index]);
+			
+			if( 0<= index && index <=3) 
+				button[index].setBackground(new Color(232,232,232));			
+			else 
+				button[index].setBackground(new Color(252,252,252));
+			
+			button[7].setBackground(new Color(232,232,232));			
+			button[11].setBackground(new Color(232,232,232));		
+			button[15].setBackground(new Color(232,232,232));		
+			button[19].setBackground(new Color(232,232,232));		
+					
 		}
 		
 	}
-	public void setFont(JButton button) {
+	public void setFont(JButton button) { // 버튼 폰트 변경
 		
 		Font font;
 		
 		font = new Font("맑은 고딕", Font.BOLD, 20);
 		button.setFont(font);
-		
-		
 	}
+	
 	
 
 }
