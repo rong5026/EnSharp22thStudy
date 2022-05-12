@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
@@ -48,8 +49,16 @@ public class ButtonPanel extends JPanel{
 		for(int index = 0 ; index <20 ; index++) {
 			
 			add(button[index]);
+			setFont(button[index]);
 		}
 		
+	}
+	public void setFont(JButton button) {
+		
+		Font font;
+		
+		font = new Font("맑은 고딕", Font.BOLD, 20);
+		button.setFont(font);
 		
 		
 	}
