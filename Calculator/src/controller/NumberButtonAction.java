@@ -180,7 +180,7 @@ public class NumberButtonAction {
 			////////////////////////////////////////////////  수학 기호 버튼 
 			
 			// 나누기 , 곱하기, 빼기 , 더하기, 등호 =
-			else if(index == 3 ||index == 7||index == 11||index == 15) {
+			else if(index == 3 ||index == 7||index == 11||index == 15|| index ==19) {
 				button[index].addActionListener(new ActionListener() {
 					
 					@Override
@@ -213,6 +213,9 @@ public class NumberButtonAction {
 							case "＋":
 								result = previusDouble+inputDoble;
 								break;
+							case "＝":
+								result = previusDouble+inputDoble;
+								break;
 							default:
 								break;
 							}
@@ -228,12 +231,14 @@ public class NumberButtonAction {
 								break;
 							case "＋":	//더하기
 								TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");	
-								break;										
+								break;	
+							case "＝":
+								TextPanel.previousJLabel.setText(previusDouble + " " + mathSign + " " +inputDoble);	
+								break;
 							default:
 								break;
 							}
-							// 미리입력한 값에 입력값 저장
-							//CalculatorStart.previousNumber = String.valueOf(result);
+						
 							
 							//결과값  inputlabel에 저장
 							TextPanel.inputJLabel.setText(String.valueOf(result));
@@ -256,6 +261,9 @@ public class NumberButtonAction {
 							case "＋":	//더하기
 								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＋");		
 								break;
+							case "＝":
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＝");		
+								break;
 										
 							default:
 								break;
@@ -264,8 +272,7 @@ public class NumberButtonAction {
 
 						
 						}
-						
-
+					
 					
 						//입력값초기화
 						CalculatorStart.inputNumber ="";
@@ -280,17 +287,7 @@ public class NumberButtonAction {
 			}
 			
 			// 등호 =
-			else if(index == 19 ) {
-				button[index].addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						
-						
-					
-					}
-				});
-			}
+		
 			
 			
 			
