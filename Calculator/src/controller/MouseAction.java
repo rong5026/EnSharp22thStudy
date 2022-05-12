@@ -1,38 +1,23 @@
 package controller;
 
 import java.awt.Color;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
-import view.ButtonPanel;
-import view.TextPanel;
+
 public class MouseAction implements MouseListener {
 
 	private JButton button;
 	private Color priorColor;
 	
+
+	
+	
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-		
-	
-		for(int index =0; index<20;index++) {
-			
-			if(3 <index && index<15 && index%4!=3) {
-				
-				if(TextPanel.informationJLabel.getText() =="0")
-					TextPanel.informationJLabel.setText("");
-				
-				button = (JButton)e.getSource();
-				System.out.println(button.getText());
-				
-				
-			}
-			
-			
-		}
-		
 		
 	}
 
@@ -62,9 +47,5 @@ public class MouseAction implements MouseListener {
 		button.setBackground(priorColor);
 		
 	}
-	
-	
-	
-	
 
 }

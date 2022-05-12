@@ -25,7 +25,7 @@ public class ButtonPanel extends JPanel{
 		setBackground(new Color(220,220,220));
 		button[0] = new JButton("CE");
 		button[1] = new JButton("C");
-		button[2] = new JButton(new ImageIcon(Constants.BACK_BUTTON_ICON));
+		button[2] = new JButton(new ImageIcon(Constants.BACK_BUTTON_ICON));	
 		button[3] = new JButton(new ImageIcon(Constants.DIVISION_BUTTON_ICON));
 		
 		button[4] = new JButton("7");
