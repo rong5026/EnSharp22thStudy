@@ -238,37 +238,46 @@ public class NumberButtonAction {
 							//결과값  inputlabel에 저장
 							TextPanel.inputJLabel.setText(String.valueOf(result));
 							
+						
+							
 						}
 						else {
 						
 							
+							
 							switch (pressedbutton.getText()) {
 							case "÷":	//나누기										
-								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"÷");		
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"÷");		
 								break;
 							case "×":	//곱하기			
-								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"×");		
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"×");		
 								break;
 							case "－":	//빼기	
-								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"－");		
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"－");		
 								break;
 							case "＋":	//더하기
-								TextPanel.previousJLabel.setText(CalculatorStart.inputNumber+"＋");		
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＋");		
 								break;
 										
 							default:
 								break;
 							}
-							System.out.println("hong");
+						
 									
 						}
+						
 						// 미리입력한 값에 입력값 저장
 						CalculatorStart.previousNumber = CalculatorStart.inputNumber;
+						
 						
 						//입력값초기화
 						CalculatorStart.inputNumber ="0";
 						
-						System.out.println("imput 0으로 초기화");
+						
+						System.out.println(CalculatorStart.inputNumber);
+						System.out.println(CalculatorStart.previousNumber);
+						System.out.println(TextPanel.inputJLabel.getText());
+						System.out.println(TextPanel.previousJLabel.getText());
 					}
 				});
 			}
