@@ -196,7 +196,8 @@ public class NumberButtonAction {
 							
 							//마지막 문자 가져와서 ÷,×,－,＋,＝ 확인
 							mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
-							previusDouble = Double.parseDouble( TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1));
+							previusDouble = Double.parseDouble( TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "0")  );
+						
 							inputDoble =  Double.parseDouble(CalculatorStart.inputNumber);
 							
 							System.out.println(mathSign);
@@ -241,7 +242,7 @@ public class NumberButtonAction {
 						
 							
 							//결과값  inputlabel에 저장
-							TextPanel.inputJLabel.setText(String.valueOf(result));
+							TextPanel.inputJLabel.setText(setComma(String.valueOf(result)));
 							
 						
 							
@@ -269,6 +270,7 @@ public class NumberButtonAction {
 								break;
 							}
 							
+							
 
 						
 						}
@@ -278,7 +280,7 @@ public class NumberButtonAction {
 						CalculatorStart.inputNumber ="";
 						
 						
-						System.out.println(CalculatorStart.inputNumber);
+						System.out.println(CalculatorStart.inputNumber);					
 						System.out.println(TextPanel.inputJLabel.getText());
 						System.out.println(TextPanel.previousJLabel.getText());
 						
@@ -313,8 +315,8 @@ public class NumberButtonAction {
 			
 			integerPart =	part[0].toString();
 			decimalPart = "."+part[1].toString();
-		
 		}
+		
 		else {
 			integerPart = resultNumber;
 			decimalPart="";
