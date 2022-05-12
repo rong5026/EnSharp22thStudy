@@ -12,7 +12,8 @@ public class CalculatorMain {
 		for(int i = 1 ; i<=16 ;i++)
 			System.out.println("수:"+i +"몇개" +i/3);
 			
-		
+
+	
 		
 		
 	}

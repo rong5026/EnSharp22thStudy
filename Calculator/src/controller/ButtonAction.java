@@ -87,11 +87,11 @@ public class ButtonAction {
 						if(TextPanel.inputJLabel.getText().contains(pressedbutton.getText()) ==false &&CalculatorStart.resultNumber.length()<16) {
 							inpuText= pressedbutton.getText();
 							
-							//입력숫자값만 resultNumber에 넣기
+							//입력숫자 + 점 resultNumber에 넣기
 							CalculatorStart.resultNumber = CalculatorStart.resultNumber+inpuText;
 							
 							//입력 수가 많아질수록 폰트 사이즈 감소
-							changeFontSize(CalculatorStart.resultNumber);
+							//changeFontSize(CalculatorStart.resultNumber);
 							
 							//입력숫자 + 콤마가 추가된 문자 textPanel에 출력
 							TextPanel.inputJLabel.setText(setComma(CalculatorStart.resultNumber));
@@ -110,22 +110,39 @@ public class ButtonAction {
 	public String setComma(String resultNumber) { // 콤마찍어주기
 		
 		
-		String resultText=resultNumber;
-		Integer countNumber = resultNumber.length()/3;
+		
+		Integer countNumber;
 		String firstText=null;
 		String secondText = null;
-		if(resultNumber.length()%3==0)
+		
+		String integerPart=null;
+		String decimalPart=null;
+		
+		if(resultNumber.contains(".")) {
+			String []part = resultNumber.split("\\.",2);
+			
+			integerPart =	part[0].toString();
+			decimalPart = "."+part[1].toString();
+		
+		}
+		else {
+			integerPart = resultNumber;
+			decimalPart="";
+		}
+		
+		countNumber = integerPart.length()/3;
+		if(integerPart.length()%3==0)
 			countNumber--;
 		
 		for(int count = 0; count < countNumber ;count++) {
 			
-			firstText = resultText.substring(0,resultText.length()-3*(count+1)-count);
-			secondText = resultText.substring(resultText.length()-3*(count+1)-count,resultText.length());
+			firstText = integerPart.substring(0,integerPart.length()-3*(count+1)-count);
+			secondText = integerPart.substring(integerPart.length()-3*(count+1)-count,integerPart.length());
 
-			resultText = firstText+ "," + secondText;
+			integerPart = firstText+ "," + secondText;
 			
 		}
-		return resultText;
+		return integerPart+decimalPart;
 		
 	}
 	public void changeFontSize(String resultNumber) { // 글씨가 많아질수록 폰트사이즈 작아짐
