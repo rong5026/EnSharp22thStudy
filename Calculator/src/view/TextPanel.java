@@ -11,18 +11,19 @@ import javax.swing.SwingConstants;
 
 public class TextPanel extends JPanel{
 
-	private JLabel inputJLabel;
-	private JLabel informationJLabel;
-	private String result;
+	public static JLabel inputJLabel;
+	public static JLabel informationJLabel;
+	
+	
 	public TextPanel() {
-		result ="0";
+	
 		//setBackground(Color.gray);
 		setLayout(new GridLayout(3,1)); // 상하 3개로 나누기
 		setPreferredSize(new Dimension(500,180));
 		setBackground(new Color(220,220,220));
 		
 		informationJLabel = new JLabel("");
-		inputJLabel = new JLabel(result);
+		inputJLabel = new JLabel("0");
 		
 		
 		//입력 정보

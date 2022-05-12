@@ -11,18 +11,18 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import model.Constants;
-import controller.MouseClick;
+import controller.MouseAction;
 
 public class ButtonPanel extends JPanel{
 	
-	private JButton [] button;
+	public static JButton [] button;
 	
 	public ButtonPanel() {
 		
 		setLayout(new GridLayout(5,4,1,1));
 		button = new JButton[20];
 		setPreferredSize(new Dimension(0,400));
-		
+		setBackground(new Color(220,220,220));
 		button[0] = new JButton("CE");
 		button[1] = new JButton("C");
 		button[2] = new JButton(new ImageIcon(Constants.BACK_BUTTON_ICON));
@@ -65,7 +65,7 @@ public class ButtonPanel extends JPanel{
 			button[15].setBackground(new Color(232,232,232));		
 			button[19].setBackground(new Color(153,204,255));		
 			
-			button[index].addMouseListener(new MouseClick());
+			button[index].addMouseListener(new MouseAction());
 					
 		}
 		

@@ -20,8 +20,9 @@ public class CalculatorStart extends JFrame{
 	private ImageIcon calculatorIcon;
 	private Container container;
 	private ImageIcon img;
+	
+	public static String resultString;
 	public CalculatorStart() {
-		
 		
 		img = new ImageIcon(Constants.CALCULATOR_ICON_IMAGE);
 		this.setIconImage(img.getImage());
