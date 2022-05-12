@@ -28,7 +28,7 @@ public class TextPanel extends JPanel{
 		inputJLabel = new JLabel(CalculatorStart.resultNumber);
 		
 		
-		//입력 정보
+		//입력과거 정보
 		informationJLabel.setFont(new Font("맑은 고딕", 0, 40));
 		informationJLabel.setForeground(Color.BLACK);
 		informationJLabel.setHorizontalAlignment(SwingConstants.RIGHT);

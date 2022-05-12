@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -36,9 +37,10 @@ public class ButtonAction {
 							//입력숫자값만 resultNumber에 넣기
 							CalculatorStart.resultNumber = CalculatorStart.resultNumber+inpuText;
 							
+							changeFontSize(CalculatorStart.resultNumber);
 							//입력숫자 + 콤마가 추가된 문자 넣기
 							TextPanel.inputJLabel.setText(setComma(CalculatorStart.resultNumber));
-							//TextPanel.inputJLabel.setText(CalculatorStart.resultNumber);
+							
 						}
 					}
 				});
@@ -90,6 +92,13 @@ public class ButtonAction {
 		}
 		return resultText;
 		
+	}
+	public void changeFontSize(String resultNumber) { // 글씨가 많아질수록 폰트사이즈 작아짐
+		
+		if(resultNumber.length() >=12) {
+			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55-(resultNumber.length()-11)*3 ));
+		}
+			
 	}
 	
 }
