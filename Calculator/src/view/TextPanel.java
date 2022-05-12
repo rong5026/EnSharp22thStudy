@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controller.CalculatorStart;
+
 public class TextPanel extends JPanel{
 
 	public static JLabel inputJLabel;
@@ -23,7 +25,7 @@ public class TextPanel extends JPanel{
 		setBackground(new Color(220,220,220));
 		
 		informationJLabel = new JLabel("");
-		inputJLabel = new JLabel("0");
+		inputJLabel = new JLabel(CalculatorStart.resultNumber);
 		
 		
 		//입력 정보
@@ -48,13 +50,11 @@ public class TextPanel extends JPanel{
 		//
 		 */
 		
-		
-		
 		add(informationJLabel);
 		add(inputJLabel);
-		
-		
 	}
+	
+	
 	
 	
 }

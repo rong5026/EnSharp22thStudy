@@ -21,7 +21,7 @@ public class CalculatorStart extends JFrame{
 	private Container container;
 	private ImageIcon img;
 	
-	public static String resultString;
+	public static String resultNumber="0";
 	public CalculatorStart() {
 		
 		img = new ImageIcon(Constants.CALCULATOR_ICON_IMAGE);
