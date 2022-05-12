@@ -11,11 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import model.Constants;
+import controller.MouseClick;
 
 public class ButtonPanel extends JPanel{
 	
 	private JButton [] button;
-
+	
 	public ButtonPanel() {
 		
 		setLayout(new GridLayout(5,4,1,1));
@@ -47,6 +48,8 @@ public class ButtonPanel extends JPanel{
 		button[18] = new JButton(".");
 		button[19] = new JButton(new ImageIcon(Constants.EQUAL_BUTTON_ICON));
 		
+		
+		
 		for(int index = 0 ; index <20 ; index++) {
 			
 			add(button[index]);
@@ -60,7 +63,9 @@ public class ButtonPanel extends JPanel{
 			button[7].setBackground(new Color(232,232,232));			
 			button[11].setBackground(new Color(232,232,232));		
 			button[15].setBackground(new Color(232,232,232));		
-			button[19].setBackground(new Color(232,232,232));		
+			button[19].setBackground(new Color(153,204,255));		
+			
+			button[index].addMouseListener(new MouseClick());
 					
 		}
 		

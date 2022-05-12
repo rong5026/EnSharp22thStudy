@@ -19,6 +19,7 @@ public class TextPanel extends JPanel{
 		//setBackground(Color.gray);
 		setLayout(new GridLayout(3,1)); // 상하 3개로 나누기
 		setPreferredSize(new Dimension(500,180));
+		setBackground(new Color(220,220,220));
 		
 		informationJLabel = new JLabel("");
 		inputJLabel = new JLabel(result);
@@ -36,6 +37,7 @@ public class TextPanel extends JPanel{
 		inputJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		
+		/*
 		// 나중에 삭제할것
 		informationJLabel.setOpaque(true);
 		informationJLabel.setBackground(Color.green);
@@ -43,6 +45,8 @@ public class TextPanel extends JPanel{
 		inputJLabel.setOpaque(true);
 		inputJLabel.setBackground(Color.CYAN);
 		//
+		 */
+		
 		
 		
 		add(informationJLabel);

@@ -28,7 +28,7 @@ public class CalculatorStart extends JFrame{
 		
 		this.setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
-		setTitle("EN# ����");
+		setTitle("EN# 계산기");
 		setResizable(false);
 		setSize(500,700);
 	}
