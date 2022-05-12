@@ -24,13 +24,14 @@ public class TextPanel extends JPanel{
 		setPreferredSize(new Dimension(500,180));
 		setBackground(new Color(220,220,220));
 		
+		
 		previousJLabel = new JLabel("");
 		inputJLabel = new JLabel(CalculatorStart.inputNumber);
 		
 		
 		//입력과거 정보
-		previousJLabel.setFont(new Font("맑은 고딕", 0, 40));
-		previousJLabel.setForeground(Color.BLACK);
+		previousJLabel.setFont(new Font("맑은 고딕", 0, 30));
+		previousJLabel.setForeground(new Color(128,128,128));
 		previousJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		

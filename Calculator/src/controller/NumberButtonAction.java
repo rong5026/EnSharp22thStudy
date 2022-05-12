@@ -171,8 +171,28 @@ public class NumberButtonAction {
 				});
 			}
 			
+			////////////////////////////////////////////////  수학 기호 버튼 
 			
-			
+			// 나누기
+			else if(index == 3) {
+				button[index].addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+					
+						
+						// 미리입력한 값에 입력값 저장
+						CalculatorStart.previousNumber = CalculatorStart.inputNumber;
+						
+						//입력숫자 + 콤마가 추가된 문자 inputPanel에 출력
+						TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
+						
+						// 콤마 뺀 숫자 + 소수점만 저장
+						TextPanel.previousJLabel.setText(CalculatorStart.inputNumber);
+					
+					}
+				});
+			}
 			
 			
 			
