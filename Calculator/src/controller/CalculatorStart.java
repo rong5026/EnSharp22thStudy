@@ -31,7 +31,7 @@ public class CalculatorStart extends JFrame{
 		setLocationRelativeTo(null);
 		setTitle("EN# 계산기");
 		setResizable(false);
-		setSize(500,700);
+		setSize(450,700);
 	}
 	
 	public void start() {

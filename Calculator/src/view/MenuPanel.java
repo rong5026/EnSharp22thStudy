@@ -61,7 +61,7 @@ public class MenuPanel extends JPanel{
 		box.add(menuButton);
 		box.add(information);
 		box.add(zoomButton);
-		box.add(Box.createHorizontalStrut(260));
+		box.add(Box.createHorizontalStrut(210));
 		box.add(historyButton);
 		
 		// 버튼에 리스너달기
