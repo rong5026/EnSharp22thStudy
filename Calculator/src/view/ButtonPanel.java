@@ -12,12 +12,12 @@ import javax.swing.JPanel;
 
 import model.Constants;
 import controller.MouseAction;
-import controller.ButtonAction;
+import controller.NumberButtonAction;
 
 public class ButtonPanel extends JPanel{
 	
 	public JButton [] button;
-	private ButtonAction buttonAction;
+	private NumberButtonAction buttonAction;
 	public ButtonPanel() {
 		
 		setLayout(new GridLayout(5,4,1,1));
@@ -71,7 +71,7 @@ public class ButtonPanel extends JPanel{
 		}
 		
 		//버튼 리스너달기
-		buttonAction = new ButtonAction();
+		buttonAction = new NumberButtonAction();
 		buttonAction.setButtonAction(button);
 		
 	}

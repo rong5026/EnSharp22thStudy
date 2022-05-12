@@ -14,7 +14,7 @@ import controller.CalculatorStart;
 public class TextPanel extends JPanel{
 
 	public static JLabel inputJLabel;
-	public static JLabel informationJLabel;
+	public static JLabel previousJLabel;
 	
 	
 	public TextPanel() {
@@ -24,14 +24,14 @@ public class TextPanel extends JPanel{
 		setPreferredSize(new Dimension(500,180));
 		setBackground(new Color(220,220,220));
 		
-		informationJLabel = new JLabel("");
-		inputJLabel = new JLabel(CalculatorStart.resultNumber);
+		previousJLabel = new JLabel("");
+		inputJLabel = new JLabel(CalculatorStart.inputNumber);
 		
 		
 		//입력과거 정보
-		informationJLabel.setFont(new Font("맑은 고딕", 0, 40));
-		informationJLabel.setForeground(Color.BLACK);
-		informationJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		previousJLabel.setFont(new Font("맑은 고딕", 0, 40));
+		previousJLabel.setForeground(Color.BLACK);
+		previousJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		
 		//입력 값
@@ -50,7 +50,7 @@ public class TextPanel extends JPanel{
 		//
 		 */
 		
-		add(informationJLabel);
+		add(previousJLabel);
 		add(inputJLabel);
 	}
 	

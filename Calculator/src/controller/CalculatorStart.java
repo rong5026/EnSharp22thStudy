@@ -21,7 +21,9 @@ public class CalculatorStart extends JFrame{
 	private Container container;
 	private ImageIcon img;
 	
-	public static String resultNumber="0";
+	public static String inputNumber="0"; //현재 입력중인 값
+	public static String previousNumber=""; // 먼저 입력한 값
+	
 	public CalculatorStart() {
 		
 		img = new ImageIcon(Constants.CALCULATOR_ICON_IMAGE);
