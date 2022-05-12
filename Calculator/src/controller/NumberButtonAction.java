@@ -24,7 +24,7 @@ public class NumberButtonAction {
 						pressedbutton = (JButton)e.getSource();
 						
 						// 0밖에 없을때는 지우고 입력한 숫자표시
-						if(TextPanel.inputJLabel.getText() =="0") {
+						if(CalculatorStart.inputNumber =="0") {
 							CalculatorStart.inputNumber = "";
 							TextPanel.inputJLabel.setText("");
 						}
@@ -155,8 +155,11 @@ public class NumberButtonAction {
 						//입력값이 1개이상 있을때 지우기 가능
 						if(CalculatorStart.inputNumber.length()>0) {
 							
-						//입력숫자 + 점 resultNumber에 넣기
+						//입력값 1개 삭제
 						CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
+						
+						if(CalculatorStart.inputNumber.length() ==0)
+							CalculatorStart.inputNumber ="0";
 						
 						//입력 수가 많아질수록 폰트 사이즈 증가
 						changeFontSize(CalculatorStart.inputNumber,"Up");
