@@ -183,6 +183,7 @@ public class NumberButtonAction {
 			else if(index == 3 ||index == 7||index == 11||index == 15|| index ==19) {
 				button[index].addActionListener(new ActionListener() {
 					
+					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 					
@@ -195,13 +196,16 @@ public class NumberButtonAction {
 						if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
 							
 							//마지막 문자 가져와서 ÷,×,－,＋,＝ 확인
-							mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
-							previusDouble = Double.parseDouble( TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "0")  );
 						
+							mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
+							//previusDouble = Double.parseDouble( TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "0")  );
+							previusDouble = Double.parseDouble( CalculatorStart.previousNumber);
 							inputDoble =  Double.parseDouble(CalculatorStart.inputNumber);
 							
-							System.out.println(mathSign);
+							
 							switch (mathSign) {
+							
+						
 							case "÷":						
 								result = previusDouble/inputDoble;							
 								break;
@@ -215,7 +219,7 @@ public class NumberButtonAction {
 								result = previusDouble+inputDoble;
 								break;
 							case "＝":
-								result = previusDouble+inputDoble;
+								result =actEqual(mathSign,previusDouble,inputDoble);
 								break;
 							default:
 								break;
@@ -234,7 +238,7 @@ public class NumberButtonAction {
 								TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");	
 								break;	
 							case "＝":
-								TextPanel.previousJLabel.setText(previusDouble + " " + mathSign + " " +inputDoble);	
+								TextPanel.previousJLabel.setText(previusDouble + " " + mathSign + " " +inputDoble +"＝");	
 								break;
 							default:
 								break;
@@ -244,8 +248,8 @@ public class NumberButtonAction {
 							//결과값  inputlabel에 저장
 							TextPanel.inputJLabel.setText(setComma(String.valueOf(result)));
 							
-						
-							
+							//이전값에 결과값넣음
+							CalculatorStart.previousNumber = String.valueOf(result);
 						}
 						else {
 							
@@ -270,17 +274,17 @@ public class NumberButtonAction {
 								break;
 							}
 							
-							
-
-						
+							//이전값에 입력값 넣음
+							CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "0");
+									
 						}
-					
-					
 						//입력값초기화
 						CalculatorStart.inputNumber ="";
+					
 						
 						
-						System.out.println(CalculatorStart.inputNumber);					
+						System.out.println(CalculatorStart.inputNumber);			
+						System.out.println(CalculatorStart.previousNumber);	
 						System.out.println(TextPanel.inputJLabel.getText());
 						System.out.println(TextPanel.previousJLabel.getText());
 						
@@ -297,6 +301,33 @@ public class NumberButtonAction {
 			
 		}
 	
+	}
+	
+	public double actEqual(String mathString,double previous,double inputdouble) {
+		
+		
+		double equalResult=0;
+		System.out.println("눌렸다"+previous);
+		switch (mathString) {
+		
+		
+		case "÷":						
+			equalResult = previous/inputdouble;							
+			break;
+		case "×":
+			equalResult = previous*inputdouble;							
+			break;
+		case "－":
+			equalResult = previous-inputdouble;
+			break;
+		case "＋":
+			equalResult = previous+inputdouble;
+			break;
+		default:
+			break;
+		}
+		
+		return equalResult;
 	}
 	
 	public String setComma(String resultNumber) { // 콤마찍어주기

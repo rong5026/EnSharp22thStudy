@@ -30,7 +30,7 @@ public class TextPanel extends JPanel{
 		
 		
 		//입력과거 정보
-		previousJLabel.setFont(new Font("맑은 고딕", 0, 30));
+		previousJLabel.setFont(new Font("맑은 고딕", 0, 15));
 		previousJLabel.setForeground(new Color(64,64,64));
 		previousJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
