@@ -278,7 +278,7 @@ public class NumberButtonAction {
 							}
 							
 							//이전값에 입력값 넣음
-							CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "0");
+							CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 									
 						}
 						//입력값초기화
@@ -305,16 +305,14 @@ public class NumberButtonAction {
 						if(CalculatorStart.inputNumber!="" && TextPanel.inputJLabel.getText()!="0") {
 							
 						
-							if( Double.parseDouble(CalculatorStart.inputNumber) <0) {
-		
+							if( Double.parseDouble(CalculatorStart.inputNumber) <0) 
 								CalculatorStart.inputNumber = CalculatorStart.inputNumber.replace("-", "");
-								TextPanel.inputJLabel.setText(CalculatorStart.inputNumber );
-							}
-							
-							else {
+						
+							else 		
 								CalculatorStart.inputNumber = "-"+CalculatorStart.inputNumber;
-								TextPanel.inputJLabel.setText(CalculatorStart.inputNumber );
-							}
+								
+							
+							TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber) );
 						}
 							
 						
