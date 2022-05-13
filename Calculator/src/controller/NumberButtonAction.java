@@ -356,6 +356,13 @@ public class NumberButtonAction {
 			decimalPart="";
 		}
 		
+		// 음수있을 때 - 제외시켜주시
+		if(resultNumber.contains("-")) 
+			integerPart = integerPart.replace("-", "");
+	
+		
+		
+		
 		countNumber = integerPart.length()/3;
 		if(integerPart.length()%3==0)
 			countNumber--;
@@ -368,6 +375,10 @@ public class NumberButtonAction {
 			integerPart = firstText+ "," + secondText;
 			
 		}
+		
+		if(resultNumber.contains("-"))
+			return "-"+integerPart+decimalPart;
+		
 		return integerPart+decimalPart;
 		
 	}
