@@ -295,7 +295,34 @@ public class NumberButtonAction {
 				});
 			}
 			
-			// 등호 =
+			// ±
+			else if(index == 16) {
+				button[index].addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						if(CalculatorStart.inputNumber!="" && TextPanel.inputJLabel.getText()!="0") {
+							
+						
+							if( Double.parseDouble(CalculatorStart.inputNumber) <0) {
+		
+								CalculatorStart.inputNumber = CalculatorStart.inputNumber.replace("-", "");
+								TextPanel.inputJLabel.setText(CalculatorStart.inputNumber );
+							}
+							
+							else {
+								CalculatorStart.inputNumber = "-"+CalculatorStart.inputNumber;
+								TextPanel.inputJLabel.setText(CalculatorStart.inputNumber );
+							}
+						}
+							
+						
+								
+					}
+				});
+			}
+			
 		
 			
 			
