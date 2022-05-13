@@ -27,7 +27,10 @@ public class NumberButtonAction {
 						if(TextPanel.inputJLabel.getText() =="0") {							
 							TextPanel.inputJLabel.setText("");
 						}
-					
+						
+						if(CalculatorStart.inputNumber=="")
+							TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));
+						
 						//최대길이 16개로 제한
 						if(CalculatorStart.inputNumber.length()<16) {
 																														
@@ -280,7 +283,7 @@ public class NumberButtonAction {
 						}
 						//입력값초기화
 						CalculatorStart.inputNumber ="";
-					
+						
 						
 						
 						System.out.println(CalculatorStart.inputNumber);			
