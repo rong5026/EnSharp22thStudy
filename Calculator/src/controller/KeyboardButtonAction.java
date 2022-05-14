@@ -15,13 +15,14 @@ public class KeyboardButtonAction implements KeyListener{
 	NumberButtonAction numberButtonAction = new NumberButtonAction();
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int keyChar = e.getKeyCode(); 
+		int keyCode = e.getKeyCode(); 
+		
 	
 		// 오른쪽 키패드 0~9  -> 96 ~ 105
 		// 오른쪽 키패드 나누기 111 , 곱하기 106,  빼기 109 , 더하기 107 , 엔터 10, 점 . 110
 		
 		//  키패드 1~9 
-		if( ( (keyChar >=97 && keyChar<=105) ||   (keyChar >=49 && keyChar<=57) ) &&e.getModifiers()==0) {
+		if( ( (keyCode >=97 && keyCode<=105) ||   (keyCode >=49 && keyCode<=57) ) &&e.getModifiers()==0) {
 		
 			
 			// 0밖에 없을때는 지우고 입력한 숫자표시
@@ -49,7 +50,7 @@ public class KeyboardButtonAction implements KeyListener{
 			}
 		}
 		// 키패드 0
-		else if((keyChar == 96 || keyChar ==48) &&e.getModifiers()==0) {
+		else if((keyCode == 96 || keyCode ==48) &&e.getModifiers()==0) {
 			if(TextPanel.inputJLabel.getText()=="0")
 				CalculatorStart.inputNumber ="";
 			
@@ -70,7 +71,7 @@ public class KeyboardButtonAction implements KeyListener{
 		}
 		
 		//점 .
-		else if((keyChar ==110||keyChar ==46) &&e.getModifiers()==0) {
+		else if((keyCode ==110||keyCode ==46) &&e.getModifiers()==0) {
 			
 			if(TextPanel.inputJLabel.getText()=="0" && CalculatorStart.inputNumber=="" ) {
 				CalculatorStart.inputNumber = "0.";
@@ -93,7 +94,7 @@ public class KeyboardButtonAction implements KeyListener{
 		}
 		
 		//한개 지우기
-		else if(keyChar ==8 && e.getModifiers()==0) {
+		else if(keyCode ==8 && e.getModifiers()==0) {
 			//입력값이 1개이상 있을때 지우기 가능
 			if(CalculatorStart.inputNumber.length()>0) {
 				
@@ -115,30 +116,33 @@ public class KeyboardButtonAction implements KeyListener{
 			}
 		}
 		//나누기 2개, 빼기 2개 = 2개
-		else if((keyChar ==111 ||keyChar ==47||keyChar ==109||keyChar ==45 ||keyChar ==10||keyChar ==61 || keyChar ==106 ||keyChar ==107) &&e.getModifiers()==0  ||  (keyChar ==56 && e.getModifiers()==1) || (keyChar ==61 && e.getModifiers()==1) ){
+		else if((keyCode ==111 ||keyCode ==47||keyCode ==109||keyCode ==45 ||keyCode ==10||keyCode ==61 || keyCode ==106 ||keyCode ==107) &&e.getModifiers()==0  ||  (keyCode ==56 && e.getModifiers()==1) || (keyCode ==61 && e.getModifiers()==1) ){
 			
 			String mathSign;
 			double result = 0;
 			double previusDouble;
 			double inputDoble;
+		
+		
 			if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
 				mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
 				previusDouble = Double.parseDouble( CalculatorStart.previousNumber);
 				inputDoble =  Double.parseDouble(CalculatorStart.inputNumber);
 				
 				
-				switch (keyChar) {
+				switch (mathSign) {
 				
-				case 111:case 47://나누기			
+				
+				case "÷":						
 					result = previusDouble/inputDoble;							
 					break;
-				case 106: case 56://곱하기
+				case "×":
 					result = previusDouble*inputDoble;							
 					break;
-				case 109: case 45://빼기
+				case "－":
 					result = previusDouble-inputDoble;
 					break;
-				case 107: case 61:// 더하기
+				case "＋":
 					result = previusDouble+inputDoble;
 					break;
 			
@@ -146,17 +150,25 @@ public class KeyboardButtonAction implements KeyListener{
 					break;
 				}
 				
-				if(keyChar ==111 || keyChar ==47) // 나누기
+				if(keyCode ==111 || keyCode ==47) { // 나누기
+					result = previusDouble/inputDoble;		
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"÷");
-				
-				else if(keyChar ==106 || keyChar ==56) //곱하기
-					TextPanel.previousJLabel.setText(String.valueOf(result)+"×");	
-				else if(keyChar ==109 || keyChar ==45) //뻬기
+				}
+				else if(keyCode ==106 || keyCode ==56) {//곱하기
+					result = previusDouble*inputDoble;			
+					TextPanel.previousJLabel.setText(String.valueOf(result)+"×");
+				}
+				else if(keyCode ==109 || keyCode ==45) { //뻬기
+					result = previusDouble-inputDoble;
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"－");
-				else if(keyChar ==107 || ( keyChar ==61 && e.getModifiers()==1))// 더하기
+				}
+				else if(keyCode ==107 || ( keyCode ==61 && e.getModifiers()==1)){// 더하기
+					result = previusDouble+inputDoble;
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");	
-				else if(keyChar ==10 || keyChar ==61) //엔터
+				}
+				else if(keyCode ==10 || keyCode ==61) //엔터
 					TextPanel.previousJLabel.setText(previusDouble + " " + mathSign + " " +inputDoble +"＝");	
+			
 			
 			
 				
@@ -168,28 +180,20 @@ public class KeyboardButtonAction implements KeyListener{
 			}
 			else {
 				
-				switch (Character.toString(e.getKeyChar())) {
-				case "÷":	//나누기										
+				if(keyCode ==111 || keyCode ==47) // 나누기
 					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"÷");		
-					break;
-				case "×":	//곱하기			
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"×");		
-					break;
-				case "－":	//빼기	
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"－");		
-					break;
-				case "＋":	//더하기
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＋");		
-					break;
-				case "＝":
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＝");		
-					break;
-							
-				default:
-					break;
-				}
 				
-				//이전값에 입력값 넣음  -23,223  ->-23223 을 넣음
+				else if(keyCode ==106 || keyCode ==56) //곱하기
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"×");		
+				else if(keyCode ==109 || keyCode ==45) //뻬기
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"－");		
+				else if(keyCode ==107 || ( keyCode ==61 && e.getModifiers()==1))// 더하기
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＋");		
+				else if(keyCode ==10 || keyCode ==61) //엔터
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＝");		
+				
+				
+				//이전값에 입력값 넣음  
 				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 						
 			}
@@ -197,12 +201,13 @@ public class KeyboardButtonAction implements KeyListener{
 			CalculatorStart.inputNumber ="";
 			
 			
-			/*
-			System.out.println(CalculatorStart.inputNumber);			
-			System.out.println(CalculatorStart.previousNumber);	
-			System.out.println(TextPanel.inputJLabel.getText());
-			System.out.println(TextPanel.previousJLabel.getText());
-			*/
+			System.out.println(e.getKeyCode());
+			//System.out.println(e.getKeyChar());
+			//System.out.println("input : "+CalculatorStart.inputNumber);			
+			//System.out.println("previ : "+CalculatorStart.previousNumber);	
+			//System.out.println("inputpanel : "+TextPanel.inputJLabel.getText());
+			//System.out.println("previpabel : "+TextPanel.previousJLabel.getText());
+			
 				
 			 
 		
