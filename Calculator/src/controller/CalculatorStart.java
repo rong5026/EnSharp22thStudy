@@ -16,41 +16,42 @@ import view.MenuPanel;
 import view.TextPanel;
 
 
-public class CalculatorStart extends JFrame{
+public class CalculatorStart {
 	private ImageIcon calculatorIcon;
 	private Container container;
 	private ImageIcon img;
 	
 	public static String inputNumber=""; //현재 입력중인 값
 	public static String previousNumber=""; //이전에 입력중인 값
-
+	public static JFrame minaFrame;
 	
 	public CalculatorStart() {
 		
+		minaFrame = new JFrame();
 		img = new ImageIcon(Constants.CALCULATOR_ICON_IMAGE);
-		this.setIconImage(img.getImage());
+		minaFrame.setIconImage(img.getImage());
 		
-		this.setLayout(new BorderLayout());
-		setLocationRelativeTo(null);
-		setTitle("EN# 계산기");
-		setResizable(false);
-		setSize(450,700);
+		minaFrame.setLayout(new BorderLayout());
+		minaFrame.setLocationRelativeTo(null);
+		minaFrame.setTitle("EN# 계산기");
+		minaFrame.setResizable(false);
+		minaFrame.setSize(450,700);
 	}
 	
 	public void start() {
 		
-		container = getContentPane();
 		
-		container.add(new MenuPanel(),BorderLayout.NORTH);
-		container.add(new TextPanel(),BorderLayout.CENTER);
-		container.add(new ButtonPanel(),BorderLayout.SOUTH);
+		minaFrame.add(new MenuPanel(),BorderLayout.NORTH);
+		minaFrame.add(new TextPanel(),BorderLayout.CENTER);
+		minaFrame.add(new ButtonPanel(),BorderLayout.SOUTH);
 		
-		container.addKeyListener(new KeyboardButtonAction());
-		container.setFocusable(true);
-		container.requestFocus();
+		// 키보드값 입력 엑션달기
+		minaFrame.addKeyListener(new KeyboardButtonAction());
+		minaFrame.setFocusable(true);
+		minaFrame.requestFocus();
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		minaFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		minaFrame.setVisible(true);
 	}
 	
 }

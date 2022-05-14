@@ -1,6 +1,7 @@
 package controller;
 
 
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,6 +47,9 @@ public class NumberButtonAction {
 							TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
 							
 						}
+						
+						
+						
 					}
 				});
 			}
@@ -325,9 +329,8 @@ public class NumberButtonAction {
 				});
 			}
 			
+			
 		
-			
-			
 			
 			
 			

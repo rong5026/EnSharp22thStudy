@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -68,11 +69,14 @@ public class ButtonPanel extends JPanel{
 			
 			// 마우스 리스너달기
 			button[index].addMouseListener(new MouseAction());
+			
 		}
 		
 		//버튼 리스너달기
 		buttonAction = new NumberButtonAction();
 		buttonAction.setButtonAction(button);
+	
+	
 		
 	}
 	public void setFont(JButton button) { // 버튼 폰트 변경
