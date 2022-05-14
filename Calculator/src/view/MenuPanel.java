@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.HistoryButtonAction;
 import controller.MouseAction;
 import model.Constants;
 
@@ -70,7 +71,8 @@ public class MenuPanel extends JPanel{
 		historyButton.addMouseListener(new MouseAction());
 		
 		// 버튼에 엑션 리스너 달기
-	
+		historyButton.addActionListener(new HistoryButtonAction());
+		
 		
 		add(box);
 		

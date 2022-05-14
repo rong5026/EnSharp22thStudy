@@ -23,35 +23,36 @@ public class CalculatorStart {
 	
 	public static String inputNumber=""; //현재 입력중인 값
 	public static String previousNumber=""; //이전에 입력중인 값
-	public static JFrame minaFrame;
+	public static JFrame mainFrame;
+	public static ButtonPanel buttonPanel;
 	
 	public CalculatorStart() {
-		
-		minaFrame = new JFrame();
+		buttonPanel = new ButtonPanel();
+		mainFrame = new JFrame();
 		img = new ImageIcon(Constants.CALCULATOR_ICON_IMAGE);
-		minaFrame.setIconImage(img.getImage());
+		mainFrame.setIconImage(img.getImage());
 		
-		minaFrame.setLayout(new BorderLayout());
-		minaFrame.setLocationRelativeTo(null);
-		minaFrame.setTitle("EN# 계산기");
-		minaFrame.setResizable(false);
-		minaFrame.setSize(450,700);
+		mainFrame.setLayout(new BorderLayout());
+		mainFrame.setLocationRelativeTo(null);
+		mainFrame.setTitle("EN# 계산기");
+		mainFrame.setResizable(false);
+		mainFrame.setSize(450,700);
 	}
 	
 	public void start() {
 		
 		
-		minaFrame.add(new MenuPanel(),BorderLayout.NORTH);
-		minaFrame.add(new TextPanel(),BorderLayout.CENTER);
-		minaFrame.add(new ButtonPanel(),BorderLayout.SOUTH);
+		mainFrame.add(new MenuPanel(),BorderLayout.NORTH);
+		mainFrame.add(new TextPanel(),BorderLayout.CENTER);
+		mainFrame.add(buttonPanel,BorderLayout.SOUTH);
 		
 		// 키보드값 입력 엑션달기
-		minaFrame.addKeyListener(new KeyboardButtonAction());
-		minaFrame.setFocusable(true);
-		minaFrame.requestFocus();
+		mainFrame.addKeyListener(new KeyboardButtonAction());
+		mainFrame.setFocusable(true);
+		mainFrame.requestFocus();
 		
-		minaFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		minaFrame.setVisible(true);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setVisible(true);
 	}
 	
 }
