@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 
+import model.Constants;
 import view.TextPanel;
 
 public class KeyboardButtonAction implements KeyListener{
@@ -20,11 +21,19 @@ public class KeyboardButtonAction implements KeyListener{
 	
 		// 오른쪽 키패드 0~9  -> 96 ~ 105
 		// 오른쪽 키패드 나누기 111 , 곱하기 106,  빼기 109 , 더하기 107 , 엔터 10, 점 . 110
+		//왼쪽 0~9  -> 48 ~57
+		//왼쪽 한개 지우기 8
+		//왼쪽 엔터 10
+		//왼쪽 나누기 47
+		// 곱하기  16 누른채 56
+		// 빼기  45
+		// 더하기 16 누른채 61
+		// 엔터 61
+		// 점 46
 		
 		//  키패드 1~9 
-		if( ( (keyCode >=97 && keyCode<=105) ||   (keyCode >=49 && keyCode<=57) ) &&e.getModifiers()==0) {
+		if( ( (keyCode >=Constants.LEFT_KEY_NUMBER_1 && keyCode<=Constants.LEFT_KEY_NUMBER_9) ||   (keyCode >=Constants.RIGHT_KEY_NUMBER_1 && keyCode<=Constants.RIGHT_KEY_NUMBER_9) ) &&e.getModifiers()==Constants.KEY_SHIFT_OFF ) {
 		
-			
 			// 0밖에 없을때는 지우고 입력한 숫자표시
 			if(TextPanel.inputJLabel.getText() =="0") {							
 				TextPanel.inputJLabel.setText("");
@@ -50,7 +59,7 @@ public class KeyboardButtonAction implements KeyListener{
 			}
 		}
 		// 키패드 0
-		else if((keyCode == 96 || keyCode ==48) &&e.getModifiers()==0) {
+		else if((keyCode == Constants.LEFT_KEY_NUMBER_0 || keyCode ==Constants.RIGHT_KEY_NUMBER_0) &&e.getModifiers()==0) {
 			if(TextPanel.inputJLabel.getText()=="0")
 				CalculatorStart.inputNumber ="";
 			
@@ -71,7 +80,7 @@ public class KeyboardButtonAction implements KeyListener{
 		}
 		
 		//점 .
-		else if((keyCode ==110||keyCode ==46) &&e.getModifiers()==0) {
+		else if((keyCode ==Constants.LEFT_KEY_DOT||keyCode ==Constants.RIGHT_KEY_DOT) &&e.getModifiers()==0) {
 			
 			if(TextPanel.inputJLabel.getText()=="0" && CalculatorStart.inputNumber=="" ) {
 				CalculatorStart.inputNumber = "0.";
@@ -94,7 +103,7 @@ public class KeyboardButtonAction implements KeyListener{
 		}
 		
 		//한개 지우기
-		else if(keyCode ==8 && e.getModifiers()==0) {
+		else if(keyCode ==Constants.KEY_DELETE && e.getModifiers()==Constants.KEY_SHIFT_OFF ) {
 			//입력값이 1개이상 있을때 지우기 가능
 			if(CalculatorStart.inputNumber.length()>0) {
 				
@@ -115,8 +124,14 @@ public class KeyboardButtonAction implements KeyListener{
 				TextPanel.inputJLabel.setText("0");
 			}
 		}
-		//나누기 2개, 빼기 2개 = 2개
-		else if((keyCode ==111 ||keyCode ==47||keyCode ==109||keyCode ==45 ||keyCode ==10||keyCode ==61 || keyCode ==106 ||keyCode ==107) &&e.getModifiers()==0  ||  (keyCode ==56 && e.getModifiers()==1) || (keyCode ==61 && e.getModifiers()==1) ){
+		// 수학기호 입력
+		else if((keyCode ==Constants.RIGTH_KEY_DIVIDE ||keyCode ==Constants.LEFT_KEY_DIVIDE||
+				keyCode ==Constants.RIGTH_KEY_MINUS||keyCode ==Constants.LEFT_KEY_MINUS ||
+				keyCode ==Constants.RIGTH_KEY_ENTER||keyCode ==Constants.LEFT_KEY_ENTER || 
+				keyCode ==Constants.RIGTH_KEY_MULTIPLE ||
+				keyCode ==Constants.RIGTH_KEY_PLUS) &&e.getModifiers()==Constants.KEY_SHIFT_OFF  || 
+				(keyCode ==Constants.LEFT_KEY_MULTIPLE && e.getModifiers()==Constants.KEY_SHIFT_ON) || 
+				(keyCode ==Constants.LEFT_KEY_PLUS && e.getModifiers()==Constants.KEY_SHIFT_ON) ){
 			
 			String mathSign;
 			double result = 0;
@@ -129,9 +144,7 @@ public class KeyboardButtonAction implements KeyListener{
 				previusDouble = Double.parseDouble( CalculatorStart.previousNumber);
 				inputDoble =  Double.parseDouble(CalculatorStart.inputNumber);
 				
-				
 				switch (mathSign) {
-				
 				
 				case "÷":						
 					result = previusDouble/inputDoble;							
@@ -150,28 +163,25 @@ public class KeyboardButtonAction implements KeyListener{
 					break;
 				}
 				
-				if(keyCode ==111 || keyCode ==47) { // 나누기
+				if(keyCode ==Constants.RIGTH_KEY_DIVIDE ||keyCode ==Constants.LEFT_KEY_DIVIDE) { // 나누기
 					result = previusDouble/inputDoble;		
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"÷");
 				}
-				else if(keyCode ==106 || keyCode ==56) {//곱하기
+				else if(keyCode ==Constants.RIGTH_KEY_MULTIPLE || keyCode ==Constants.LEFT_KEY_MULTIPLE) {//곱하기
 					result = previusDouble*inputDoble;			
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"×");
 				}
-				else if(keyCode ==109 || keyCode ==45) { //뻬기
+				else if(keyCode ==Constants.RIGTH_KEY_MINUS || keyCode ==Constants.LEFT_KEY_MINUS) { //뻬기
 					result = previusDouble-inputDoble;
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"－");
 				}
-				else if(keyCode ==107 || ( keyCode ==61 && e.getModifiers()==1)){// 더하기
+				else if(keyCode ==Constants.RIGTH_KEY_PLUS || ( keyCode ==Constants.LEFT_KEY_PLUS && e.getModifiers()==Constants.KEY_SHIFT_ON)){// 더하기
 					result = previusDouble+inputDoble;
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");	
 				}
-				else if(keyCode ==10 || keyCode ==61) //엔터
+				else if(keyCode ==Constants.RIGTH_KEY_ENTER || keyCode ==Constants.LEFT_KEY_ENTER) //엔터
 					TextPanel.previousJLabel.setText(previusDouble + " " + mathSign + " " +inputDoble +"＝");	
 			
-			
-			
-				
 				//결과값  inputlabel에 저장
 				TextPanel.inputJLabel.setText(numberButtonAction.setComma(String.valueOf(result)));
 				
@@ -180,16 +190,15 @@ public class KeyboardButtonAction implements KeyListener{
 			}
 			else {
 				
-				if(keyCode ==111 || keyCode ==47) // 나누기
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"÷");		
-				
-				else if(keyCode ==106 || keyCode ==56) //곱하기
+				if(keyCode ==Constants.RIGTH_KEY_DIVIDE ||keyCode ==Constants.LEFT_KEY_DIVIDE)  // 나누기
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"÷");				
+				else if(keyCode ==Constants.RIGTH_KEY_MULTIPLE || keyCode ==Constants.LEFT_KEY_MULTIPLE) //곱하기
 					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"×");		
-				else if(keyCode ==109 || keyCode ==45) //뻬기
+				else if(keyCode ==Constants.RIGTH_KEY_MINUS || keyCode ==Constants.LEFT_KEY_MINUS) //뻬기
 					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"－");		
-				else if(keyCode ==107 || ( keyCode ==61 && e.getModifiers()==1))// 더하기
+				else if(keyCode ==Constants.RIGTH_KEY_PLUS || ( keyCode ==Constants.LEFT_KEY_PLUS && e.getModifiers()==Constants.KEY_SHIFT_ON))// 더하기
 					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＋");		
-				else if(keyCode ==10 || keyCode ==61) //엔터
+				else if(keyCode ==Constants.RIGTH_KEY_ENTER || keyCode ==Constants.LEFT_KEY_ENTER)  //엔터
 					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＝");		
 				
 				
@@ -202,26 +211,9 @@ public class KeyboardButtonAction implements KeyListener{
 			
 			
 			System.out.println(e.getKeyCode());
-			//System.out.println(e.getKeyChar());
-			//System.out.println("input : "+CalculatorStart.inputNumber);			
-			//System.out.println("previ : "+CalculatorStart.previousNumber);	
-			//System.out.println("inputpanel : "+TextPanel.inputJLabel.getText());
-			//System.out.println("previpabel : "+TextPanel.previousJLabel.getText());
-			
-				
-			 
 		
-			
-			//왼쪽 0~9  -> 48 ~57
-			//왼쪽 한개 지우기 8
-			//왼쪽 엔터 10
-			
-			//왼쪽 나누기 47
-			// 곱하기  16 누른채 56
-			// 빼기  45
-			// 더하기 16 누른채 61
-			// 엔터 61
-			// 점 46
+				
+		
 			
 		}
 			

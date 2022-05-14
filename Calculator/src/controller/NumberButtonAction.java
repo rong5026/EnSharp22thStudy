@@ -287,11 +287,12 @@ public class NumberButtonAction {
 						CalculatorStart.inputNumber ="";
 						
 						
-						
+					/*
 						System.out.println(CalculatorStart.inputNumber);			
 						System.out.println(CalculatorStart.previousNumber);	
 						System.out.println(TextPanel.inputJLabel.getText());
 						System.out.println(TextPanel.previousJLabel.getText());
+						*/
 					
 						
 					}
