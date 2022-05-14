@@ -166,21 +166,21 @@ public class NumberButtonAction {
 						//입력값이 1개이상 있을때 지우기 가능
 						if(CalculatorStart.inputNumber.length()>0) {
 							
-							
 						//입력값 1개 삭제
 						CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
-						
-						if(CalculatorStart.inputNumber.length() ==0) {
-							CalculatorStart.inputNumber ="";
-							TextPanel.inputJLabel.setText("0");
-						}
-						
+									
 						//입력 수가 많아질수록 폰트 사이즈 증가
 						changeFontSize(CalculatorStart.inputNumber,"Up");
 						
 						//입력숫자 + 콤마가 추가된 문자 inputPanel에 출력
+						
 						TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
-						}		
+						}	
+						if(CalculatorStart.inputNumber.length() ==0) {
+							CalculatorStart.inputNumber ="";
+							TextPanel.inputJLabel.setText("0");
+						}
+					
 					}
 				});
 			}
@@ -287,12 +287,12 @@ public class NumberButtonAction {
 						CalculatorStart.inputNumber ="";
 						
 						
-						/*
+						
 						System.out.println(CalculatorStart.inputNumber);			
 						System.out.println(CalculatorStart.previousNumber);	
 						System.out.println(TextPanel.inputJLabel.getText());
 						System.out.println(TextPanel.previousJLabel.getText());
-						*/
+					
 						
 					}
 				});

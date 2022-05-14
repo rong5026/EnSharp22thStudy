@@ -71,8 +71,14 @@ public class KeyboardButtonAction implements KeyListener{
 		
 		//점 .
 		else if((keyChar ==110||keyChar ==46) &&e.getModifiers()==0) {
+			
+			if(TextPanel.inputJLabel.getText()=="0" && CalculatorStart.inputNumber=="" ) {
+				CalculatorStart.inputNumber = "0.";
+				TextPanel.inputJLabel.setText(CalculatorStart.inputNumber);
+			}
+			
 			// .을 쓴적이 없고, 최대길이 이전일때
-			if(TextPanel.inputJLabel.getText().contains(Character.toString(e.getKeyChar())) ==false &&CalculatorStart.inputNumber.length()<16) {
+			else if(TextPanel.inputJLabel.getText().contains(Character.toString(e.getKeyChar())) ==false &&CalculatorStart.inputNumber.length()<16) {
 				inpuText=Character.toString(e.getKeyChar());
 				
 				//입력숫자 + 점 resultNumber에 넣기
@@ -95,17 +101,18 @@ public class KeyboardButtonAction implements KeyListener{
 			//입력값 1개 삭제
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
 			
-			if(CalculatorStart.inputNumber.length() ==0) {
-				CalculatorStart.inputNumber ="";
-				TextPanel.inputJLabel.setText("0");
-			}
-			
+		
 			//입력 수가 많아질수록 폰트 사이즈 증가
 			numberButtonAction.changeFontSize(CalculatorStart.inputNumber,"Up");
 			
 			//입력숫자 + 콤마가 추가된 문자 inputPanel에 출력
 			TextPanel.inputJLabel.setText(numberButtonAction.setComma(CalculatorStart.inputNumber));
+			
 			}											
+			if(CalculatorStart.inputNumber.length() ==0) {
+				CalculatorStart.inputNumber ="";
+				TextPanel.inputJLabel.setText("0");
+			}
 		}
 		//나누기 2개, 빼기 2개 = 2개
 		else if((keyChar ==111 ||keyChar ==47||keyChar ==109||keyChar ==45 ||keyChar ==10||keyChar ==61 || keyChar ==106 ||keyChar ==107) &&e.getModifiers()==0  ||  (keyChar ==56 && e.getModifiers()==1) || (keyChar ==61 && e.getModifiers()==1) ){
