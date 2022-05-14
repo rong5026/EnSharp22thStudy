@@ -49,7 +49,8 @@ public class NumberButtonAction {
 						}
 						
 						
-						
+						CalculatorStart.minaFrame.setFocusable(true);
+						CalculatorStart.minaFrame.requestFocus();
 					}
 				});
 			}
@@ -78,8 +79,10 @@ public class NumberButtonAction {
 							//입력숫자 + 콤마가 추가된 문자 inputPanel에 출력
 							TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
 						}
-					
+						CalculatorStart.minaFrame.setFocusable(true);
+						CalculatorStart.minaFrame.requestFocus();
 					}
+					
 				});
 						
 			}
@@ -111,7 +114,8 @@ public class NumberButtonAction {
 							TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
 						}
 					
-						
+						CalculatorStart.minaFrame.setFocusable(true);
+						CalculatorStart.minaFrame.requestFocus();
 					}
 				});
 			}
@@ -130,6 +134,9 @@ public class NumberButtonAction {
 						TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
 						//입력숫자 + 콤마가 추가된 문자 inputPanel에 출력
 						TextPanel.inputJLabel.setText("0");
+						
+						CalculatorStart.minaFrame.setFocusable(true);
+						CalculatorStart.minaFrame.requestFocus();
 														
 					}
 				});
@@ -155,7 +162,9 @@ public class NumberButtonAction {
 						
 						//숫자 + 소수점이 추가된 문자 previousPanel 초기화
 						TextPanel.previousJLabel.setText("");
-					
+						
+						CalculatorStart.minaFrame.setFocusable(true);
+						CalculatorStart.minaFrame.requestFocus();
 					}
 				});
 			}
@@ -184,7 +193,8 @@ public class NumberButtonAction {
 							CalculatorStart.inputNumber ="";
 							TextPanel.inputJLabel.setText("0");
 						}
-					
+						CalculatorStart.minaFrame.setFocusable(true);
+						CalculatorStart.minaFrame.requestFocus();
 					}
 				});
 			}
@@ -298,7 +308,8 @@ public class NumberButtonAction {
 						System.out.println(TextPanel.previousJLabel.getText());
 						*/
 					
-						
+						CalculatorStart.minaFrame.setFocusable(true);
+						CalculatorStart.minaFrame.requestFocus();
 					}
 				});
 			}
@@ -324,14 +335,16 @@ public class NumberButtonAction {
 						}
 							
 						
-								
+						CalculatorStart.minaFrame.setFocusable(true);
+						CalculatorStart.minaFrame.requestFocus();
 					}
 				});
 			}
 			
 			
 		
-			
+			CalculatorStart.minaFrame.setFocusable(true);
+			CalculatorStart.minaFrame.requestFocus();
 			
 			
 		}
