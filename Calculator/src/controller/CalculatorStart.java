@@ -44,6 +44,11 @@ public class CalculatorStart extends JFrame{
 		container.add(new MenuPanel(),BorderLayout.NORTH);
 		container.add(new TextPanel(),BorderLayout.CENTER);
 		container.add(new ButtonPanel(),BorderLayout.SOUTH);
+		
+		container.addKeyListener(new KeyboardButtonAction());
+		container.setFocusable(true);
+		container.requestFocus();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
