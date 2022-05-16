@@ -36,7 +36,7 @@ public class CalculatorStart {
 		mainFrame.setLayout(new BorderLayout());
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setTitle("EN# 계산기");
-		//mainFrame.setResizable(false);
+	
 		
 		mainFrame.setSize(450,700);
 		

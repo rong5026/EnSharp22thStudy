@@ -19,15 +19,15 @@ public class TextPanel extends JPanel{
 	
 	public TextPanel() {
 	
-		//setBackground(Color.gray);
+		
 		setLayout(new GridLayout(3,1)); // 상하 3개로 나누기
 		setPreferredSize(new Dimension(500,180));
+		setMinimumSize(new Dimension(0,200));
 		setBackground(new Color(220,220,220));
 		
 		
 		previousJLabel = new JLabel("");
 		inputJLabel = new JLabel("0");
-		
 		
 		//입력과거 정보
 		previousJLabel.setFont(new Font("맑은 고딕", 0, 15 ));
@@ -39,7 +39,8 @@ public class TextPanel extends JPanel{
 		inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55));
 		inputJLabel.setForeground(Color.BLACK);
 		inputJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		
+		inputJLabel.setBackground(Color.RED);
+	
 	
 		
 		add(previousJLabel);
