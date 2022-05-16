@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 import javax.swing.JButton;
 
@@ -134,29 +136,29 @@ public class KeyboardButtonAction implements KeyListener{
 				(keyCode ==Constants.LEFT_KEY_PLUS && e.getModifiers()==Constants.KEY_SHIFT_ON) ){
 			
 			String mathSign;
-			double result = 0;
-			double previusDouble;
-			double inputDoble;
+			BigDecimal result = null;
+			BigDecimal previusDouble;
+			BigDecimal inputDoble;
 		
 		
 			if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
 				mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
-				previusDouble = Double.parseDouble( CalculatorStart.previousNumber);
-				inputDoble =  Double.parseDouble(CalculatorStart.inputNumber);
+				previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
+				inputDoble = new BigDecimal(CalculatorStart.inputNumber); 
 				
 				switch (mathSign) {
 				
 				case "÷":						
-					result = previusDouble/inputDoble;							
+					result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);						
 					break;
 				case "×":
-					result = previusDouble*inputDoble;							
+					result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
 					break;
 				case "－":
-					result = previusDouble-inputDoble;
+					result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
 					break;
 				case "＋":
-					result = previusDouble+inputDoble;
+					result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
 					break;
 			
 				default:
@@ -164,19 +166,19 @@ public class KeyboardButtonAction implements KeyListener{
 				}
 				
 				if(keyCode ==Constants.RIGTH_KEY_DIVIDE ||keyCode ==Constants.LEFT_KEY_DIVIDE) { // 나누기
-					result = previusDouble/inputDoble;		
+					result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"÷");
 				}
 				else if(keyCode ==Constants.RIGTH_KEY_MULTIPLE || keyCode ==Constants.LEFT_KEY_MULTIPLE) {//곱하기
-					result = previusDouble*inputDoble;			
+					result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);					
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"×");
 				}
 				else if(keyCode ==Constants.RIGTH_KEY_MINUS || keyCode ==Constants.LEFT_KEY_MINUS) { //뻬기
-					result = previusDouble-inputDoble;
+					result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);	
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"－");
 				}
 				else if(keyCode ==Constants.RIGTH_KEY_PLUS || ( keyCode ==Constants.LEFT_KEY_PLUS && e.getModifiers()==Constants.KEY_SHIFT_ON)){// 더하기
-					result = previusDouble+inputDoble;
+					result =previusDouble.add(inputDoble,MathContext.DECIMAL64);	
 					TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");	
 				}
 				else if(keyCode ==Constants.RIGTH_KEY_ENTER || keyCode ==Constants.LEFT_KEY_ENTER) //엔터
