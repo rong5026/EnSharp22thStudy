@@ -5,6 +5,9 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 import javax.swing.JButton;
 import view.TextPanel;
 
@@ -215,9 +218,9 @@ public class NumberButtonAction {
 					public void actionPerformed(ActionEvent e) {
 					
 						String mathSign;
-						double result = 0;
-						double previusDouble;
-						double inputDoble;
+						BigDecimal result = null;
+						BigDecimal previusDouble;
+						BigDecimal inputDoble;
 						pressedbutton = (JButton)e.getSource();
 						
 						if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
@@ -225,24 +228,23 @@ public class NumberButtonAction {
 							//마지막 문자 가져와서 ÷,×,－,＋,＝ 확인
 						
 							mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
-							previusDouble = Double.parseDouble( CalculatorStart.previousNumber);
-							inputDoble =  Double.parseDouble(CalculatorStart.inputNumber);
+							previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
+							inputDoble = new BigDecimal(CalculatorStart.inputNumber); 
 							
 							
 							switch (mathSign) {
 							
-						
 							case "÷":						
-								result = previusDouble/inputDoble;							
+								result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);						
 								break;
 							case "×":
-								result = previusDouble*inputDoble;							
+								result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
 								break;
 							case "－":
-								result = previusDouble-inputDoble;
+								result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
 								break;
 							case "＋":
-								result = previusDouble+inputDoble;
+								result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
 								break;
 						
 							default:
@@ -270,8 +272,10 @@ public class NumberButtonAction {
 						
 							
 							//결과값  inputlabel에 저장
+						
 							TextPanel.inputJLabel.setText(setComma(String.valueOf(result)));
 							
+							changeResultFontSize(String.valueOf(result));
 							//이전값에 결과값넣음
 							CalculatorStart.previousNumber = String.valueOf(result);
 						}
@@ -338,6 +342,7 @@ public class NumberButtonAction {
 								
 							
 							TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber) );
+							
 						}
 							
 						// 키보드 포커싱
@@ -415,6 +420,16 @@ public class NumberButtonAction {
 		
 		else if(resultNumber.length()>=11 && type =="Up")
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()+3 ));
+	}
+	public void changeResultFontSize(String resultNumber) {
+		int count = 0;
+		for(int index = 0 ; index < resultNumber.length() ; index++) {
+			if(index >=11) 
+				count++;
+		}
+		
+		TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()-3*count ));
+		
 	}
 	
 	
