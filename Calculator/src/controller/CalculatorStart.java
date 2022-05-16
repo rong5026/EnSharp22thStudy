@@ -11,7 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import model.Constants;
+import Constants.ConstantNumber;
 import view.ButtonPanel;
 import view.MenuPanel;
 import view.TextPanel;
@@ -26,11 +26,12 @@ public class CalculatorStart {
 	public static String previousNumber=""; //이전에 입력중인 값
 	public static JFrame mainFrame;
 	public static ButtonPanel buttonPanel;
+	public static int errorNumber;
 	
 	public CalculatorStart() {
 		buttonPanel = new ButtonPanel();
 		mainFrame = new JFrame();
-		img = new ImageIcon(Constants.CALCULATOR_ICON_IMAGE);
+		img = new ImageIcon(ConstantNumber.CALCULATOR_ICON_IMAGE);
 		mainFrame.setIconImage(img.getImage());
 		
 		mainFrame.setLayout(new BorderLayout());

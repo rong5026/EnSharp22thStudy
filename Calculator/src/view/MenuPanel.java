@@ -11,9 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Constants.ConstantNumber;
 import controller.HistoryButtonAction;
 import controller.MouseAction;
-import model.Constants;
 
 public class MenuPanel extends JPanel{
 
@@ -32,9 +32,9 @@ public class MenuPanel extends JPanel{
 		setBackground(new Color(220,220,220));
 		
 		
-		menuButton= new JButton(new ImageIcon(Constants.MENU_BUTTON_IMAGE));
-		zoomButton= new JButton(new ImageIcon(Constants.ZOOM_BUTTON_IMAGE));
-		historyButton= new JButton(new ImageIcon(Constants.HISTORY_BUTTON_IMAGE));
+		menuButton= new JButton(new ImageIcon(ConstantNumber.MENU_BUTTON_IMAGE));
+		zoomButton= new JButton(new ImageIcon(ConstantNumber.ZOOM_BUTTON_IMAGE));
+		historyButton= new JButton(new ImageIcon(ConstantNumber.HISTORY_BUTTON_IMAGE));
 		information = new JLabel("표준");
 		
 		//버튼 배경색 설정

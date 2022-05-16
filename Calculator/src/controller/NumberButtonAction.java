@@ -9,12 +9,15 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import javax.swing.JButton;
+
+import Constants.ConstantNumber;
 import view.TextPanel;
 
 public class NumberButtonAction {
 	private JButton pressedbutton;
 	private String inpuText;
 	private int index;
+
 	
 	public void setButtonAction(JButton [] button) {
 		for(index =0 ; index<20 ; index++) {
@@ -34,6 +37,14 @@ public class NumberButtonAction {
 						
 						if(CalculatorStart.inputNumber=="")
 							TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));
+						
+						if(CalculatorStart.errorNumber == ConstantNumber.ZERO_ERROR) {
+							TextPanel.inputJLabel.setText("");
+							TextPanel.previousJLabel.setText("");
+							CalculatorStart.errorNumber = ConstantNumber.NON_ERROR;
+							
+						}
+							
 						
 						//최대길이 16개로 제한
 						if(CalculatorStart.inputNumber.length()<16) {
@@ -221,6 +232,8 @@ public class NumberButtonAction {
 						BigDecimal result = null;
 						BigDecimal previusDouble;
 						BigDecimal inputDoble;
+						
+						Boolean divisionZero;
 						pressedbutton = (JButton)e.getSource();
 						
 						if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
@@ -232,10 +245,13 @@ public class NumberButtonAction {
 							inputDoble = new BigDecimal(CalculatorStart.inputNumber); 
 							
 							
+								
 							switch (mathSign) {
 							
-							case "÷":						
-								result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);						
+							case "÷":	
+								if( String.valueOf(inputDoble).equals("0")==false) 							
+									result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);	
+									
 								break;
 							case "×":
 								result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
@@ -250,34 +266,47 @@ public class NumberButtonAction {
 							default:
 								break;
 							}
-							switch (pressedbutton.getText()) {
-							case "÷":	//나누기										
-								TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"÷");
-								break;
-							case "×":	//곱하기			
-								TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"×");	
-								break;
-							case "－":	//빼기	
-								TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"－");
-								break;
-							case "＋":	//더하기
-								TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"＋");	
-								break;	
-							case "＝":
-								TextPanel.previousJLabel.setText(String.valueOf(previusDouble).replace("E","e") + " " + mathSign + " " +inputDoble +"＝");	
-								break;
-							default:
-								break;
+							
+							if(result ==null) {
+								TextPanel.inputJLabel.setText("0으로 나눌 수 없습니다");
+								TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 30));
+								
+								CalculatorStart.errorNumber = ConstantNumber.ZERO_ERROR;
+								
+								CalculatorStart.inputNumber ="";
+								CalculatorStart.previousNumber ="";
 							}
-						
+							else {
+								switch (pressedbutton.getText()) {
+								case "÷":	//나누기										
+									TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"÷");
+									break;
+								case "×":	//곱하기			
+									TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"×");	
+									break;
+								case "－":	//빼기	
+									TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"－");
+									break;
+								case "＋":	//더하기
+									TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"＋");	
+									break;	
+								case "＝":
+									TextPanel.previousJLabel.setText(String.valueOf(previusDouble).replace("E","e") + " " + mathSign + " " +inputDoble +"＝");	
+									break;
+								default:
+									break;
+								}
 							
-							//결과값  inputlabel에 저장
-						
-							TextPanel.inputJLabel.setText(setComma(String.valueOf(result).replace("E","e")));
+								
+								//결과값  inputlabel에 저장
 							
-							changeResultFontSize(String.valueOf(result).replace("E","e"));
-							//이전값에 결과값넣음
-							CalculatorStart.previousNumber = String.valueOf(result);
+								TextPanel.inputJLabel.setText(setComma(String.valueOf(result).replace("E","e")));
+								
+								changeResultFontSize(String.valueOf(result).replace("E","e"));
+								//이전값에 결과값넣음
+								CalculatorStart.previousNumber = String.valueOf(result);
+							}
+							
 						}
 						else {
 							
@@ -310,12 +339,12 @@ public class NumberButtonAction {
 						CalculatorStart.inputNumber ="";
 						
 						
-					/*
+				
 						System.out.println(CalculatorStart.inputNumber);			
 						System.out.println(CalculatorStart.previousNumber);	
 						System.out.println(TextPanel.inputJLabel.getText());
 						System.out.println(TextPanel.previousJLabel.getText());
-						*/
+						
 						
 						// 키보드 포커싱
 						CalculatorStart.mainFrame.setFocusable(true);

@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import model.Constants;
+import Constants.ConstantNumber;
 import controller.CalculatorStart;
 import controller.MouseAction;
 import controller.NumberButtonAction;
@@ -30,7 +30,7 @@ public class ButtonPanel extends JPanel{
 		setBackground(new Color(220,220,220));
 		button[0] = new JButton("CE");
 		button[1] = new JButton("C");
-		button[2] = new JButton(new ImageIcon(Constants.BACK_BUTTON_ICON));	
+		button[2] = new JButton(new ImageIcon(ConstantNumber.BACK_BUTTON_ICON));	
 		button[3] = new JButton("÷");
 		
 		button[4] = new JButton("7");
