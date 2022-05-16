@@ -25,6 +25,7 @@ public class ButtonPanel extends JPanel{
 		setLayout(new GridLayout(5,4,1,1));
 		button = new JButton[20];
 		setPreferredSize(new Dimension(0,400));
+		setMinimumSize(new Dimension(0, 100));
 		setBackground(new Color(220,220,220));
 		button[0] = new JButton("CE");
 		button[1] = new JButton("C");
@@ -57,7 +58,7 @@ public class ButtonPanel extends JPanel{
 			
 			add(button[index]);
 			setFont(button[index]);
-			
+			button[index].setBorder(null);
 			if( 0<= index && index <=3) 
 				button[index].setBackground(new Color(232,232,232));			
 			else 
