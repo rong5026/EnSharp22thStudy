@@ -67,6 +67,7 @@ public class ButtonPanel extends JPanel{
 			button[11].setBackground(new Color(232,232,232));		
 			button[15].setBackground(new Color(232,232,232));		
 			button[19].setBackground(new Color(153,204,255));		
+		
 			
 			// 마우스 리스너달기
 			button[index].addMouseListener(new MouseAction());

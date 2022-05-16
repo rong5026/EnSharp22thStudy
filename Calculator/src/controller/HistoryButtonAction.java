@@ -8,12 +8,12 @@ import view.ButtonPanel;
 import view.HistoryPanel;
 
 public class HistoryButtonAction implements ActionListener{
-
+	HistoryPanel historyPanel;
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		historyPanel =new HistoryPanel();
 		CalculatorStart.buttonPanel.setVisible(false);
-		CalculatorStart.mainFrame.add(new HistoryPanel(),BorderLayout.SOUTH);
+		CalculatorStart.mainFrame.add(historyPanel.scroll,BorderLayout.SOUTH);
 		
 	
 		CalculatorStart.mainFrame.revalidate();

@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -35,8 +36,11 @@ public class CalculatorStart {
 		mainFrame.setLayout(new BorderLayout());
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setTitle("EN# 계산기");
-		mainFrame.setResizable(false);
+		//mainFrame.setResizable(false);
+		
 		mainFrame.setSize(450,700);
+		
+		mainFrame.setMinimumSize(new Dimension(330, 530));
 	}
 	
 	public void start() {
