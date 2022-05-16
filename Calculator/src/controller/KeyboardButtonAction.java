@@ -167,41 +167,42 @@ public class KeyboardButtonAction implements KeyListener{
 				
 				if(keyCode ==Constants.RIGTH_KEY_DIVIDE ||keyCode ==Constants.LEFT_KEY_DIVIDE) { // 나누기
 					result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);
-					TextPanel.previousJLabel.setText(String.valueOf(result)+"÷");
+					TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"÷");
 				}
 				else if(keyCode ==Constants.RIGTH_KEY_MULTIPLE || keyCode ==Constants.LEFT_KEY_MULTIPLE) {//곱하기
 					result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);					
-					TextPanel.previousJLabel.setText(String.valueOf(result)+"×");
+					TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"×");
 				}
 				else if(keyCode ==Constants.RIGTH_KEY_MINUS || keyCode ==Constants.LEFT_KEY_MINUS) { //뻬기
 					result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);	
-					TextPanel.previousJLabel.setText(String.valueOf(result)+"－");
+					TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"－");
 				}
 				else if(keyCode ==Constants.RIGTH_KEY_PLUS || ( keyCode ==Constants.LEFT_KEY_PLUS && e.getModifiers()==Constants.KEY_SHIFT_ON)){// 더하기
 					result =previusDouble.add(inputDoble,MathContext.DECIMAL64);	
-					TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");	
+					TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"＋");	
 				}
 				else if(keyCode ==Constants.RIGTH_KEY_ENTER || keyCode ==Constants.LEFT_KEY_ENTER) //엔터
-					TextPanel.previousJLabel.setText(previusDouble + " " + mathSign + " " +inputDoble +"＝");	
+					TextPanel.previousJLabel.setText(String.valueOf(previusDouble).replace("E","e") + " " + mathSign + " " +inputDoble +"＝");	
 			
 				//결과값  inputlabel에 저장
-				TextPanel.inputJLabel.setText(numberButtonAction.setComma(String.valueOf(result)));
-				
+				TextPanel.inputJLabel.setText(numberButtonAction.setComma(String.valueOf(result).replace("E","e")));
+				//결과값도 16개 이상되면 폰트 줄어들게 설정
+				numberButtonAction.changeResultFontSize(String.valueOf(result).replace("E","e"));
 				//이전값에 결과값넣음
 				CalculatorStart.previousNumber = String.valueOf(result);
 			}
 			else {
 				
 				if(keyCode ==Constants.RIGTH_KEY_DIVIDE ||keyCode ==Constants.LEFT_KEY_DIVIDE)  // 나누기
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"÷");				
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"÷");				
 				else if(keyCode ==Constants.RIGTH_KEY_MULTIPLE || keyCode ==Constants.LEFT_KEY_MULTIPLE) //곱하기
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"×");		
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"×");		
 				else if(keyCode ==Constants.RIGTH_KEY_MINUS || keyCode ==Constants.LEFT_KEY_MINUS) //뻬기
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"－");		
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"－");		
 				else if(keyCode ==Constants.RIGTH_KEY_PLUS || ( keyCode ==Constants.LEFT_KEY_PLUS && e.getModifiers()==Constants.KEY_SHIFT_ON))// 더하기
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＋");		
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＋");		
 				else if(keyCode ==Constants.RIGTH_KEY_ENTER || keyCode ==Constants.LEFT_KEY_ENTER)  //엔터
-					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＝");		
+					TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＝");		
 				
 				
 				//이전값에 입력값 넣음  
@@ -211,9 +212,12 @@ public class KeyboardButtonAction implements KeyListener{
 			//입력값초기화
 			CalculatorStart.inputNumber ="";
 			
+			System.out.println(CalculatorStart.inputNumber);			
+			System.out.println(CalculatorStart.previousNumber);	
+			System.out.println(TextPanel.inputJLabel.getText());
+			System.out.println(TextPanel.previousJLabel.getText());
 			
-			System.out.println(e.getKeyCode());
-		
+			
 				
 		
 			

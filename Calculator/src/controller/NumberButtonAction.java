@@ -252,19 +252,19 @@ public class NumberButtonAction {
 							}
 							switch (pressedbutton.getText()) {
 							case "÷":	//나누기										
-								TextPanel.previousJLabel.setText(String.valueOf(result)+"÷");
+								TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"÷");
 								break;
 							case "×":	//곱하기			
-								TextPanel.previousJLabel.setText(String.valueOf(result)+"×");	
+								TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"×");	
 								break;
 							case "－":	//빼기	
-								TextPanel.previousJLabel.setText(String.valueOf(result)+"－");
+								TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"－");
 								break;
 							case "＋":	//더하기
-								TextPanel.previousJLabel.setText(String.valueOf(result)+"＋");	
+								TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"＋");	
 								break;	
 							case "＝":
-								TextPanel.previousJLabel.setText(previusDouble + " " + mathSign + " " +inputDoble +"＝");	
+								TextPanel.previousJLabel.setText(String.valueOf(previusDouble).replace("E","e") + " " + mathSign + " " +inputDoble +"＝");	
 								break;
 							default:
 								break;
@@ -273,9 +273,9 @@ public class NumberButtonAction {
 							
 							//결과값  inputlabel에 저장
 						
-							TextPanel.inputJLabel.setText(setComma(String.valueOf(result)));
+							TextPanel.inputJLabel.setText(setComma(String.valueOf(result).replace("E","e")));
 							
-							changeResultFontSize(String.valueOf(result));
+							changeResultFontSize(String.valueOf(result).replace("E","e"));
 							//이전값에 결과값넣음
 							CalculatorStart.previousNumber = String.valueOf(result);
 						}
@@ -283,19 +283,19 @@ public class NumberButtonAction {
 							
 							switch (pressedbutton.getText()) {
 							case "÷":	//나누기										
-								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"÷");		
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"÷");		
 								break;
 							case "×":	//곱하기			
-								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"×");		
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"×");		
 								break;
 							case "－":	//빼기	
-								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"－");		
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"－");		
 								break;
 							case "＋":	//더하기
-								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＋");		
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＋");		
 								break;
 							case "＝":
-								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText()+"＝");		
+								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＝");		
 								break;
 										
 							default:
