@@ -44,6 +44,13 @@ public class KeyboardButtonAction implements KeyListener{
 			if(CalculatorStart.inputNumber=="")
 				TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));
 			
+			//0으로 나누는거 오류
+			if(CalculatorStart.errorNumber == ConstantNumber.ZERO_ERROR) {
+				TextPanel.inputJLabel.setText("");
+				TextPanel.previousJLabel.setText("");
+				CalculatorStart.errorNumber = ConstantNumber.NON_ERROR;
+				
+			}
 			//최대길이 16개로 제한
 			if(CalculatorStart.inputNumber.length()<16) {
 																											
@@ -149,7 +156,9 @@ public class KeyboardButtonAction implements KeyListener{
 				switch (mathSign) {
 				
 				case "÷":
-					result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);						
+					if( String.valueOf(inputDoble).equals("0")==false) 							
+						result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);	
+									
 					break;
 				case "×":
 					result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
