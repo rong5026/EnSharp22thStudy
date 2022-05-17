@@ -18,6 +18,12 @@ public class NumberButtonAction {
 	private String inpuText;
 	private int index;
 
+	String mathSign;
+	BigDecimal result = null;
+	BigDecimal previusDouble;
+	BigDecimal inputDoble;
+	Boolean divisionZero;
+	
 	
 	public void setButtonAction(JButton [] button) {
 		for(index =0 ; index<20 ; index++) {
@@ -228,12 +234,8 @@ public class NumberButtonAction {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 					
-						String mathSign;
-						BigDecimal result = null;
-						BigDecimal previusDouble;
-						BigDecimal inputDoble;
-						
-						Boolean divisionZero;
+					
+	
 						pressedbutton = (JButton)e.getSource();
 						
 						if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
@@ -244,7 +246,7 @@ public class NumberButtonAction {
 							previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
 							inputDoble = new BigDecimal(CalculatorStart.inputNumber); 
 							
-							
+						
 								
 							switch (mathSign) {
 							
@@ -260,6 +262,10 @@ public class NumberButtonAction {
 								result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
 								break;
 							case "＋":
+								result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
+								break;
+							case "＝":
+								inputDoble = new BigDecimal(TextPanel.inputJLabel.getText()); 
 								result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
 								break;
 						
@@ -458,6 +464,33 @@ public class NumberButtonAction {
 		}
 		
 		TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()-3*count ));
+		
+	}
+	public BigDecimal calculateEqual() {
+
+		mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
+		previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
+		inputDoble = new BigDecimal(TextPanel.inputJLabel.getText()); 	
+		
+		switch (mathSign) {
+		
+		case "÷":	
+			if( String.valueOf(inputDoble).equals("0")==false) 							
+				return previusDouble.divide(inputDoble,MathContext.DECIMAL64);	
+			break;
+		case "×":
+			return previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
+			
+		case "－":
+			return previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
+			
+		case "＋":
+			return previusDouble.add(inputDoble,MathContext.DECIMAL64);			
+		case "＝":
+			return previusDouble.add(inputDoble,MathContext.DECIMAL64);		
+		default:
+			break;
+		}
 		
 	}
 	
