@@ -117,7 +117,7 @@ public class NumberButtonAction {
 					public void actionPerformed(ActionEvent e) {
 						pressedbutton = (JButton)e.getSource();
 						
-						if(TextPanel.inputJLabel.getText()=="0" && CalculatorStart.inputNumber=="" ) {
+						if(TextPanel.inputJLabel.getText()=="0" || CalculatorStart.inputNumber=="" ) {
 							CalculatorStart.inputNumber = "0.";
 							TextPanel.inputJLabel.setText(CalculatorStart.inputNumber);
 						}
@@ -266,7 +266,7 @@ public class NumberButtonAction {
 								break;
 							case "＝":
 								inputDoble = new BigDecimal(TextPanel.inputJLabel.getText()); 
-								result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
+								result =calculateEqual();			
 								break;
 						
 							default:
@@ -320,7 +320,7 @@ public class NumberButtonAction {
 							case "÷":	//나누기										
 								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"÷");		
 								break;
-							case "×":	//곱하기			
+							case "×":	//곱하기		
 								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"×");		
 								break;
 							case "－":	//빼기	
@@ -329,7 +329,7 @@ public class NumberButtonAction {
 							case "＋":	//더하기
 								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＋");		
 								break;
-							case "＝":
+							case "＝":							
 								TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＝");		
 								break;
 										
@@ -468,9 +468,7 @@ public class NumberButtonAction {
 	}
 	public BigDecimal calculateEqual() {
 
-		mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
-		previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
-		inputDoble = new BigDecimal(TextPanel.inputJLabel.getText()); 	
+	
 		
 		switch (mathSign) {
 		
@@ -487,10 +485,14 @@ public class NumberButtonAction {
 		case "＋":
 			return previusDouble.add(inputDoble,MathContext.DECIMAL64);			
 		case "＝":
-			return previusDouble.add(inputDoble,MathContext.DECIMAL64);		
+		
+			previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
+			inputDoble = new BigDecimal("9"); 	
+			return calculateEqual();	
 		default:
 			break;
 		}
+		return inputDoble;
 		
 	}
 	
