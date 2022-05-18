@@ -18,17 +18,18 @@ public class NumberButtonAction {
 	private String inpuText;
 	private int index;
 
-	String mathSign;
-	BigDecimal result = null;
-	BigDecimal previusDouble;
-	BigDecimal inputDoble;
-	Boolean divisionZero;
+	private String mathSign;
+	private BigDecimal result = null;
+	private BigDecimal previusDouble;
+	private BigDecimal inputDoble;
+	private Boolean divisionZero;
 	
 	
 	public void setButtonAction(JButton [] button) {
 		for(index =0 ; index<20 ; index++) {
 			
 			//숫자버튼 엑션 1 ~ 9
+			
 			if( (3 <index && index<15 && index%4!=3)) {
 				button[index].addActionListener(new ActionListener() {
 					
@@ -44,6 +45,7 @@ public class NumberButtonAction {
 						if(CalculatorStart.inputNumber=="")
 							TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));
 						
+						//0으로 나누는거 오류
 						if(CalculatorStart.errorNumber == ConstantNumber.ZERO_ERROR) {
 							TextPanel.inputJLabel.setText("");
 							TextPanel.previousJLabel.setText("");
@@ -175,6 +177,8 @@ public class NumberButtonAction {
 						
 						// 입력값 초기화 , 미리 입력한값 초기화
 						CalculatorStart.inputNumber = "";		
+						CalculatorStart.previousNumber = "";		
+						
 						
 						
 						// 폰트 초기화
@@ -402,7 +406,6 @@ public class NumberButtonAction {
 	public String setComma(String resultNumber) { // 콤마찍어주기
 		
 		
-		
 		Integer countNumber;
 		String firstText=null;
 		String secondText = null;
@@ -427,8 +430,6 @@ public class NumberButtonAction {
 			integerPart = integerPart.replace("-", "");
 	
 		
-		
-		
 		countNumber = integerPart.length()/3;
 		if(integerPart.length()%3==0)
 			countNumber--;
@@ -448,6 +449,8 @@ public class NumberButtonAction {
 		return integerPart+decimalPart;
 		
 	}
+	
+	
 	public void changeFontSize(String resultNumber,String type) { // 글자의 수에따라 폰트 변경
 		
 		if(resultNumber.length() >=12 && type =="Down") 
@@ -456,6 +459,8 @@ public class NumberButtonAction {
 		else if(resultNumber.length()>=11 && type =="Up")
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()+3 ));
 	}
+	
+	// 결과 값도 , 찍어주기
 	public void changeResultFontSize(String resultNumber) {
 		int count = 0;
 		for(int index = 0 ; index < resultNumber.length() ; index++) {
@@ -466,10 +471,11 @@ public class NumberButtonAction {
 		TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()-3*count ));
 		
 	}
+	
+	
 	public BigDecimal calculateEqual() {
 
-	
-		
+
 		switch (mathSign) {
 		
 		case "÷":	

@@ -44,15 +44,15 @@ public class MenuPanel extends JPanel{
 		
 		menuButton.setBorderPainted(false);
 		menuButton.setFocusPainted(false);
-		//menuButton.setContentAreaFilled(false);
+		
 		
 		historyButton.setBorderPainted(false);
 		historyButton.setFocusPainted(false);
-		//historyButton.setContentAreaFilled(false);
+		
 		
 		zoomButton.setBorderPainted(false);
 		zoomButton.setFocusPainted(false);
-		//zoomButton.setContentAreaFilled(false);
+		
 		
 		// 라벨 폰트설정
 		information.setFont(new Font("맑은 고딕", Font.BOLD, 20));

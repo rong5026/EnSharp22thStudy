@@ -157,8 +157,7 @@ public class KeyboardButtonAction implements KeyListener{
 				
 				case "÷":
 					if( String.valueOf(inputDoble).equals("0")==false) 							
-						result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);	
-									
+						result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);		
 					break;
 				case "×":
 					result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
