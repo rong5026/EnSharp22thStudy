@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import constants.ConstantNumber;
+import Utility.ConstantNumber;
 import view.TextPanel;
 
 public class NumberButtonAction {
@@ -232,5 +232,11 @@ public class NumberButtonAction {
 		
 		else if(resultNumber.length()>=11 && type =="Up")
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()+3 ));
+	}
+	public void setCorrectInputLabel() {
+		
+	}
+	public void setCorrectPreviousLabel() {
+		
 	}
 }

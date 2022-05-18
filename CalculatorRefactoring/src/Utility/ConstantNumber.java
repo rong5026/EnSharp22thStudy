@@ -1,4 +1,4 @@
-package constants;
+package Utility;
 
 public class ConstantNumber {
 

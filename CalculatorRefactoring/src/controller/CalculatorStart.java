@@ -11,7 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import constants.ConstantNumber;
+import Utility.ConstantNumber;
 import view.CenterPanel;
 import view.MenuPanel;
 

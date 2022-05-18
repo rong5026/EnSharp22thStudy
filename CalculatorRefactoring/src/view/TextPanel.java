@@ -42,6 +42,7 @@ public class TextPanel extends JPanel{
 		inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55));
 		inputJLabel.setForeground(Color.BLACK);
 		inputJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		inputJLabel.setPreferredSize(new Dimension(CalculatorStart.mainFrame.getWidth(),50));
 		
 		grdBagConstraints.weightx = 1;
 		grdBagConstraints.weighty = 0.1;
