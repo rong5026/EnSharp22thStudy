@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import constants.ConstantNumber;
 import controller.CalculatorStart;
 import controller.MouseAction;
+import controller.NumberButtonAction;
 
 
 public class ButtonPanel extends JPanel{
@@ -21,6 +22,7 @@ public class ButtonPanel extends JPanel{
 	public JButton [] button;
 	
 	public ButtonPanel() {
+		NumberButtonAction buttonAction;
 		
 		setLayout(new GridLayout(5,4,1,1));
 		button = new JButton[20];
@@ -77,7 +79,8 @@ public class ButtonPanel extends JPanel{
 			button[index].addMouseListener(new MouseAction());
 			
 		}
-		
+		buttonAction = new NumberButtonAction();
+		buttonAction.setButtonAction(button);
 	
 	
 		
