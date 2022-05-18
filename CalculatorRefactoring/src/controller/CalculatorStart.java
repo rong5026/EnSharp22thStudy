@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import constants.ConstantNumber;
+import view.CenterPanel;
 import view.MenuPanel;
 
 
@@ -42,7 +43,7 @@ public class CalculatorStart {
 	
 	public void start() {
 		mainFrame.add(new MenuPanel(),BorderLayout.NORTH);
-		
+		mainFrame.add(new CenterPanel(),BorderLayout.CENTER);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setVisible(true);
 	}
