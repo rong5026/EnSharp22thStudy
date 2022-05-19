@@ -21,10 +21,10 @@ public class CorrectTextFormat {
 		result = removeComma(resultNumber);
 		result = changeEtoe(result);
 		
-		bigDecimal = new BigDecimal(result).stripTrailingZeros();
-		
-		result = bigDecimal.toString();
-		
+		if(resultNumber.contains(".")) {
+			bigDecimal = new BigDecimal(result).stripTrailingZeros();
+			result = bigDecimal.toString();
+		}
 
 		return result;
 		
