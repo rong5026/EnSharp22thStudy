@@ -141,18 +141,22 @@ public class ArithmeticSign {
 				calculateDivision();
 				return;
 			}
-			else
-				result = previusDouble.divide(inputDoble,15,BigDecimal.ROUND_HALF_EVEN);			
+			else {
+				result = previusDouble.divide(inputDoble,15,BigDecimal.ROUND_HALF_EVEN);	
+				CalculatorStart.previousNumber = previusDouble.divide(inputDoble,16,BigDecimal.ROUND_HALF_EVEN).toString().replace("E", "e");	
+			}
 			break;
 		case "×":
-			result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64).setScale(10,RoundingMode.HALF_EVEN);
+			result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64).setScale(15,RoundingMode.HALF_EVEN);
+			CalculatorStart.previousNumber =  String.valueOf( previusDouble.multiply(inputDoble,MathContext.DECIMAL128).setScale(16,RoundingMode.HALF_EVEN)  ).replace("E", "e");
 			break;
 		case "－":
 			result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
+			CalculatorStart.previousNumber =  String.valueOf(result).replace("E", "e");
 			break;
 		case "＋":
 			result =previusDouble.add(inputDoble,MathContext.DECIMAL64);
-	
+			CalculatorStart.previousNumber =  String.valueOf(result).replace("E", "e");
 			
 			break;
 	
@@ -183,7 +187,7 @@ public class ArithmeticSign {
 		
 		TextPanel.inputJLabel.setText(    correctTextFormat.setCorrectInputPanel(     correctTextFormat.removeDecimalPoint(  String.valueOf(result))) );
 		//이전값에 결과값넣음
-		CalculatorStart.previousNumber = String.valueOf(result).replace("E", "e");
+		//CalculatorStart.previousNumber = String.valueOf(result).replace("E", "e");
 		
 	}
 	

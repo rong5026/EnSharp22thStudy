@@ -238,7 +238,7 @@ public class NumberButtonAction {
 		CalculatorStart.mainFrame.requestFocus();
 	}
 	
-	public int getNumberLength(String number) {
+	public int getNumberLength(String number) { // 입력받은 수의 숫자로만의 길이
 		
 		int count=0;
 		
