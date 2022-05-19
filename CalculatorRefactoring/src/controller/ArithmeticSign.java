@@ -12,6 +12,7 @@ public class ArithmeticSign {
 	private BigDecimal previusDouble;
 	private BigDecimal inputDoble;
 	
+	
 	public void enterArithmeticSign(String input) {
 		
 		
@@ -21,49 +22,7 @@ public class ArithmeticSign {
 			previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
 			inputDoble = new BigDecimal(CalculatorStart.inputNumber); 
 			
-			switch (mathSign) {
-			
-			case "÷":							
-				result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);				
-				break;
-			case "×":
-				result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
-				break;
-			case "－":
-				result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
-				break;
-			case "＋":
-				result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
-				break;
-			case "＝":
-				break;
-		
-			default:
-				break;
-			}
-			switch (input) {
-			case "÷":	//나누기										
-				// 0 나누기 함수넣기
-				break;
-			case "×":	//곱하기			
-				TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"×");	
-				break;
-			case "－":	//빼기	
-				TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"－");
-				break;
-			case "＋":	//더하기
-				TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"＋");	
-				break;	
-			case "＝":
-				// 함수 넣기
-				break;
-			default:
-				break;
-			}
-			
-			//결과값  inputlabel에 저장
-			
-			TextPanel.inputJLabel.setText((String.valueOf(result).replace("E","e")));
+			calculateArithmeticSign(input);
 		}
 		else {
 			switch (input) {
@@ -83,8 +42,8 @@ public class ArithmeticSign {
 				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＋");		
 				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 				break;
-			case "＝":							
-				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＝");		
+			case "＝":	
+				calculateEqual();
 				
 				break;
 						
@@ -100,7 +59,6 @@ public class ArithmeticSign {
 		CalculatorStart.inputNumber ="";
 		
 		
-
 		System.out.println(CalculatorStart.inputNumber);			
 		System.out.println(CalculatorStart.previousNumber);	
 		System.out.println(TextPanel.inputJLabel.getText());
@@ -110,30 +68,53 @@ public class ArithmeticSign {
 	
 	private void calculateEqual() {
 		
+	
 		String previousJLabelText;
 		previousJLabelText = TextPanel.previousJLabel.getText();
 		
-		
-		
-		previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
-		inputDoble = new BigDecimal(CalculatorStart.inputNumber); 
-		
-		
-		if(previousJLabelText.contains("÷")) {
+		if(previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) {
+			TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＝");		
+			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
+		}
+	
+		else {
+			previusDouble =  new BigDecimal(TextPanel.inputJLabel.getText()); // 콤마 없애야함
 			
-			mathSign  ="÷";
-		}
-		else if( previousJLabelText.contains("×") ) {
-			mathSign  ="×";
-		}
-		else if( previousJLabelText.contains("－") ) {
-			mathSign  ="－";
-		}
-		else if(previousJLabelText.contains("＋")) {
-			mathSign  ="＋";
-		}
+	
+			if( getArithmeticSignCount( TextPanel.previousJLabel.getText()) == 1) { // 9X 처럼 연산자가 1개있을때는 처음으로 시작
+				mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
+				
+				inputDoble =  new BigDecimal(TextPanel.inputJLabel.getText()); 
+			
+				
+				
+			}
+			else {
+				if(previousJLabelText.contains("÷")) {
+					mathSign  ="÷";
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("÷")+1 , TextPanel.previousJLabel.getText().lastIndexOf("="))); 
+				}
+				else if( previousJLabelText.contains("×") ) {
+					mathSign  ="×";
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("×")+1 , TextPanel.previousJLabel.getText().lastIndexOf("="))); 
+				}
+				else if( previousJLabelText.contains("－") ) {
+					mathSign  ="－";
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("－")+1 , TextPanel.previousJLabel.getText().lastIndexOf("="))); 
+				}
+				else if(previousJLabelText.contains("＋")) {
+					mathSign  ="＋";
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("＋")+1 , TextPanel.previousJLabel.getText().lastIndexOf("="))); 
+				}
+				
+				System.out.println(inputDoble);
+			}
 			
 		
+			
+			
+			calculateArithmeticSign("＝");	
+		}		
 	}
 	
 	private void setPreviousLabel(String input) {
@@ -156,7 +137,7 @@ public class ArithmeticSign {
 		
 	}
 	
-	private BigDecimal calculateArithmeticSign(String input) {
+	private BigDecimal calculateArithmeticSign(String input) { // 연산자 계산
 		switch (mathSign) {
 		
 		case "÷":							
@@ -191,7 +172,7 @@ public class ArithmeticSign {
 			TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"＋");	
 			break;	
 		case "＝":
-			// 함수 넣기
+			TextPanel.previousJLabel.setText(String.valueOf(previusDouble).replace("E","e")  + mathSign  +inputDoble +"＝");	
 			break;
 		default:
 			break;
@@ -200,7 +181,26 @@ public class ArithmeticSign {
 		//결과값  inputlabel에 저장
 		
 		TextPanel.inputJLabel.setText((String.valueOf(result).replace("E","e")));
-		
+		//이전값에 결과값넣음
+		CalculatorStart.previousNumber = String.valueOf(result);
 		return result;
+	}
+	
+	private int getArithmeticSignCount(String previousLabelText) { // 패널에 연산자가 몇개있는지 확인
+		
+		int count = 0;
+		
+		if(previousLabelText.contains("×"))
+			count++;
+		if(previousLabelText.contains("－"))
+			count++;
+		if(previousLabelText.contains("＋"))
+			count++;
+		if(previousLabelText.contains("÷"))
+			count++;
+		if(previousLabelText.contains("＝"))
+			count++;
+		
+		return count;
 	}
 }

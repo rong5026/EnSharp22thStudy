@@ -25,8 +25,7 @@ public class CalculatorStart {
 	public static String inputNumber=""; //현재 입력중인 값
 	public static String previousNumber=""; //이전에 입력중인 값
 	public static JFrame mainFrame;
-
-	public static int errorNumber;
+	
 	
 	public CalculatorStart() {
 		
