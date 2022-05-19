@@ -104,11 +104,11 @@ public class NumberButtonAction {
 	
 	public void enterNumberAction(String input) { // 1~9 버튼 입력
 		
-		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {
+		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR||arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())==2) {
 			 enterCAction();
-			 
 		}
-			
+		
+		
 		if(TextPanel.inputJLabel.getText() =="0") {						
 			TextPanel.inputJLabel.setText("");
 		}
@@ -133,7 +133,7 @@ public class NumberButtonAction {
 					
 	}
 	public void enterZeroAction(String input) { // 0 버튼 입력
-		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR ||arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())==2) {
 			if(TextPanel.inputJLabel.getText()=="0")
 				CalculatorStart.inputNumber ="";
 			
@@ -173,6 +173,10 @@ public class NumberButtonAction {
 	}
 	public void enterCEAction() { //CE 입력
 		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+			
+			if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())==2) {
+				TextPanel.previousJLabel.setText("");
+			}
 			CalculatorStart.inputNumber = "";				
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
 			TextPanel.inputJLabel.setText("0");

@@ -47,7 +47,7 @@ public class ArithmeticSign {
 					break;
 				case "＝":	
 					calculateEqual();
-					
+					calculateArithmeticSign("＝");	
 					break;
 							
 				default:
@@ -123,7 +123,7 @@ public class ArithmeticSign {
 	
 			}
 			
-			calculateArithmeticSign("＝");	
+			
 		}		
 	}
 	
@@ -147,7 +147,9 @@ public class ArithmeticSign {
 			result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
 			break;
 		case "＋":
-			result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
+			result =previusDouble.add(inputDoble,MathContext.DECIMAL64);
+	
+			
 			break;
 	
 		default:
@@ -194,7 +196,7 @@ public class ArithmeticSign {
 		}
 	}
 	
-	private int getArithmeticSignCount(String previousLabelText) { // 패널에 연산자가 몇개있는지 확인
+	public int getArithmeticSignCount(String previousLabelText) { // 패널에 연산자가 몇개있는지 확인
 		
 		int count = 0;
 		
