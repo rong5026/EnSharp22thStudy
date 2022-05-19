@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Font;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -21,42 +22,51 @@ public class ArithmeticSign {
 	
 	public void enterArithmeticSign(String input) {
 		
+		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+			if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
+				
+				mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
+				previusDouble =  new BigDecimal(CalculatorStart.previousNumber.replace("e", "E"));
+				inputDoble = new BigDecimal(CalculatorStart.inputNumber.replace("e", "E"));
+				
+				calculateArithmeticSign(input);
+			}
+			else {
+				switch (input) {
+				case "÷":	//나누기										
+					setPreviousValue("÷");
+					break;
+				case "×":	//곱하기		
+					setPreviousValue("×");
+					break;
+				case "－":	//빼기	
+					setPreviousValue("－");
+					break;
+				case "＋":	//더하기
+					setPreviousValue("＋");
+					break;
+				case "＝":	
+					calculateEqual();
+					
+					break;
+							
+				default:
+					break;
+				}
+				
+
+			}
+			//입력값초기화
+			CalculatorStart.inputNumber ="";
 		
-		if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
-			
-			mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
-			previusDouble =  new BigDecimal(CalculatorStart.previousNumber.replace("e", "E"));
-			inputDoble = new BigDecimal(CalculatorStart.inputNumber.replace("e", "E"));
-			
-			calculateArithmeticSign(input);
 		}
 		else {
-			switch (input) {
-			case "÷":	//나누기										
-				setPreviousValue("÷");
-				break;
-			case "×":	//곱하기		
-				setPreviousValue("×");
-				break;
-			case "－":	//빼기	
-				setPreviousValue("－");
-				break;
-			case "＋":	//더하기
-				setPreviousValue("＋");
-				break;
-			case "＝":	
-				calculateEqual();
-				
-				break;
-						
-			default:
-				break;
-			}
-			
-
+			CalculatorStart.inputNumber = "";				
+			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
+			TextPanel.inputJLabel.setText("0");
+			CalculatorStart.errorType =ConstantNumber.NON_ERROR;
 		}
-		//입력값초기화
-		CalculatorStart.inputNumber ="";
+		
 		
 		
 		System.out.println(CalculatorStart.inputNumber);			
@@ -65,6 +75,8 @@ public class ArithmeticSign {
 		System.out.println(TextPanel.previousJLabel.getText());
 		
 	}
+	
+	
 	public void setPreviousValue(String mathSign) {
 		TextPanel.previousJLabel.setText(  correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+mathSign);		
 		CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText());

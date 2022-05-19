@@ -104,8 +104,12 @@ public class NumberButtonAction {
 	
 	public void enterNumberAction(String input) { // 1~9 버튼 입력
 		
-		
-		if(TextPanel.inputJLabel.getText() =="0") {							
+		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {
+			 enterCAction();
+			 
+		}
+			
+		if(TextPanel.inputJLabel.getText() =="0") {						
 			TextPanel.inputJLabel.setText("");
 		}
 		
@@ -116,48 +120,68 @@ public class NumberButtonAction {
 																									
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
 			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
-			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
-			
+			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));			
 		}
+
+			
+		
+			
+			
+	
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
 					
 	}
 	public void enterZeroAction(String input) { // 0 버튼 입력
-		if(TextPanel.inputJLabel.getText()=="0")
-			CalculatorStart.inputNumber ="";
-		
-		else if(TextPanel.inputJLabel.getText()!="0" &&CalculatorStart.inputNumber.length()<16) {
+		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+			if(TextPanel.inputJLabel.getText()=="0")
+				CalculatorStart.inputNumber ="";
 			
-			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
-			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
-			
+			else if(TextPanel.inputJLabel.getText()!="0" &&CalculatorStart.inputNumber.length()<16) {
+				
+				CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
+				correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+				TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
+				
+			}
 		}
+		else 
+			 enterCAction();
+		
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
 	}
 	public void enterDotAction(String input) { // . 소수점 입력
-		if(TextPanel.inputJLabel.getText()=="0" || CalculatorStart.inputNumber=="" ) {
-			CalculatorStart.inputNumber = "0.";
-			TextPanel.inputJLabel.setText(CalculatorStart.inputNumber);
+		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+			if(TextPanel.inputJLabel.getText()=="0" || CalculatorStart.inputNumber=="" ) {
+				CalculatorStart.inputNumber = "0.";
+				TextPanel.inputJLabel.setText(CalculatorStart.inputNumber);
+			}
+			// .을 쓴적이 없고, 최대길이 이전일때
+			else if(TextPanel.inputJLabel.getText().contains(input) ==false &&CalculatorStart.inputNumber.length()<16) {
+			
+				CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
+				correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+				TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
+			}
 		}
-		// .을 쓴적이 없고, 최대길이 이전일때
-		else if(TextPanel.inputJLabel.getText().contains(input) ==false &&CalculatorStart.inputNumber.length()<16) {
-		
-			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
-			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
-		}
+		else 
+			enterCAction();
+			
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
 	}
 	public void enterCEAction() { //CE 입력
-		CalculatorStart.inputNumber = "";				
-		TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
-		TextPanel.inputJLabel.setText("0");
-		CalculatorStart.mainFrame.setFocusable(true);
-		CalculatorStart.mainFrame.requestFocus();
+		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+			CalculatorStart.inputNumber = "";				
+			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
+			TextPanel.inputJLabel.setText("0");
+			CalculatorStart.mainFrame.setFocusable(true);
+			CalculatorStart.mainFrame.requestFocus();
+		
+		}
+		else 
+			enterCAction();
 	}
 	public void enterCAction() { // C입력
 		
@@ -168,38 +192,47 @@ public class NumberButtonAction {
 		TextPanel.previousJLabel.setText("");
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
+		CalculatorStart.errorType =ConstantNumber.NON_ERROR;
 	}
 	public void enterBackAction() { /// back 입력
-		if(CalculatorStart.inputNumber.length()>0) {
+		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+			if(CalculatorStart.inputNumber.length()>0) {
+				
+				//입력값 1개 삭제
+				CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
+							
+				correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
+				
 			
-			//입력값 1개 삭제
-			CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
-						
-			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
-			
-		
-			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
-		}	
-		if(CalculatorStart.inputNumber.length() ==0) {
-			CalculatorStart.inputNumber ="";
-			TextPanel.inputJLabel.setText("0");
+				TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
+			}	
+			if(CalculatorStart.inputNumber.length() ==0) {
+				CalculatorStart.inputNumber ="";
+				TextPanel.inputJLabel.setText("0");
+			}
 		}
+		else 
+			enterCAction();
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
 	}
 	public void enterNegateAction() { //± 입력
-		if(CalculatorStart.inputNumber!="" && TextPanel.inputJLabel.getText()!="0") {
-			
-			
-			if( Double.parseDouble(CalculatorStart.inputNumber) <0) 
-				CalculatorStart.inputNumber = CalculatorStart.inputNumber.replace("-", "");
-		
-			else 		
-				CalculatorStart.inputNumber = "-"+CalculatorStart.inputNumber;
+		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+			if(CalculatorStart.inputNumber!="" && TextPanel.inputJLabel.getText()!="0") {
 				
-			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber) );
+				
+				if( Double.parseDouble(CalculatorStart.inputNumber) <0) 
+					CalculatorStart.inputNumber = CalculatorStart.inputNumber.replace("-", "");
 			
+				else 		
+					CalculatorStart.inputNumber = "-"+CalculatorStart.inputNumber;
+					
+				TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber) );
+				
+			}
 		}
+		else 
+			enterCAction();
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
 	}
