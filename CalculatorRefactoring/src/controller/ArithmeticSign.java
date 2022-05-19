@@ -24,8 +24,8 @@ public class ArithmeticSign {
 		if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
 			
 			mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
-			previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
-			inputDoble = new BigDecimal(CalculatorStart.inputNumber);
+			previusDouble =  new BigDecimal(CalculatorStart.previousNumber.replace("e", "E"));
+			inputDoble = new BigDecimal(CalculatorStart.inputNumber.replace("e", "E"));
 			
 			calculateArithmeticSign(input);
 		}
@@ -94,7 +94,6 @@ public class ArithmeticSign {
 				
 				if(previousJLabelText.contains("÷")) {
 					mathSign  ="÷";
-					
 					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("÷")+1 , TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				else if( previousJLabelText.contains("×") ) {
@@ -166,7 +165,7 @@ public class ArithmeticSign {
 		
 		TextPanel.inputJLabel.setText( correctTextFormat.setCorrectInputPanel(String.valueOf(result)));
 		//이전값에 결과값넣음
-		CalculatorStart.previousNumber = String.valueOf(result);
+		CalculatorStart.previousNumber = String.valueOf(result).replace("E", "e");
 		return result;
 	}
 	

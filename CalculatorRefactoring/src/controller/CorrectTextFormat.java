@@ -19,13 +19,13 @@ public class CorrectTextFormat {
 		String result;
 		BigDecimal bigDecimal;
 		result = removeComma(resultNumber);
-		result = changeEtoe(result);
+		
 		
 		if(resultNumber.contains(".")) {
 			bigDecimal = new BigDecimal(result).stripTrailingZeros();
 			result = bigDecimal.toString();
 		}
-
+		result = changeEtoe(result);
 		return result;
 		
 	}
