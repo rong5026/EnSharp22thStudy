@@ -90,21 +90,24 @@ public class ArithmeticSign {
 				
 			}
 			else {
+			
+				
 				if(previousJLabelText.contains("÷")) {
 					mathSign  ="÷";
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("÷")+1 , TextPanel.previousJLabel.getText().lastIndexOf("="))); 
+					
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("÷")+1 , TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				else if( previousJLabelText.contains("×") ) {
 					mathSign  ="×";
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("×")+1 , TextPanel.previousJLabel.getText().lastIndexOf("="))); 
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("×")+1 ,TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				else if( previousJLabelText.contains("－") ) {
 					mathSign  ="－";
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("－")+1 , TextPanel.previousJLabel.getText().lastIndexOf("="))); 
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("－")+1 ,TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				else if(previousJLabelText.contains("＋")) {
 					mathSign  ="＋";
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("＋")+1 , TextPanel.previousJLabel.getText().lastIndexOf("="))); 
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("＋")+1 , TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				
 				System.out.println(inputDoble);

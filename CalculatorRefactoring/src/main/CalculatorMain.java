@@ -4,6 +4,7 @@ package main;
 import java.math.BigDecimal;
 
 import controller.CalculatorStart;
+import view.TextPanel;
 
 public class CalculatorMain {
 
@@ -13,9 +14,7 @@ public class CalculatorMain {
 		calculator.start();
 		
 		
-		
 	
-		
 		
 	}
 }
