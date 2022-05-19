@@ -14,7 +14,12 @@ public class CalculatorMain {
 		calculator.start();
 		
 		
-	
+		//String n = "222.34000020";
+		//BigDecimal bigDecimal = new BigDecimal(n).stripTrailingZeros();
+		//System.out.println(bigDecimal);
+		//System.out.println(bigDecimal.toString());
+		
+		
 		
 	}
 }

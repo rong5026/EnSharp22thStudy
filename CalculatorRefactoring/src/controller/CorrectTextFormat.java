@@ -1,13 +1,36 @@
 package controller;
 
 import java.awt.Font;
+import java.math.BigDecimal;
 
 import view.TextPanel;
 
 public class CorrectTextFormat {
 	public String setCorrectInputPanel(String resultNumber) { // 콤마찍어주기. E -> e변경
 		
+		String result;
 		
+		result = addComma(resultNumber);
+		result = changeEtoe(result);
+		return result;
+	}
+	public String setCorrectPreviousPanel(String resultNumber) { // 콤마 삭제 , E ->e , 2.000 ->2
+		
+		String result;
+		BigDecimal bigDecimal;
+		result = removeComma(resultNumber);
+		result = changeEtoe(result);
+		
+		bigDecimal = new BigDecimal(result).stripTrailingZeros();
+		
+		result = bigDecimal.toString();
+		
+
+		return result;
+		
+	}
+	
+	public String addComma(String resultNumber) { // 콤마찍기
 		Integer countNumber;
 		String firstText=null;
 		String secondText = null;
@@ -47,23 +70,30 @@ public class CorrectTextFormat {
 		}
 		
 		if(resultNumber.contains("-"))
-			return "-"+integerPart.replace("E","e")+decimalPart.replace("E","e");
+			return "-"+integerPart+decimalPart;
 		
-		return integerPart.replace("E","e")+decimalPart.replace("E","e");
+		return integerPart+decimalPart;
+	}
+	public String removeComma(String resultNumber) { // 콤마 삭제
+		
+		return resultNumber.replace(",", "");
+	}
+	public String changeEtoe(String resultNumber) { // E ->e
+		
+		return resultNumber.replace("E", "e");
+	}
+	public String changeetoE(String resultNumber) { // e -> E
+		return resultNumber.replace("e", "E");
+	}
+	public String removeDecimalPoint(String resultNumber) {
+		
+		
+		return resultNumber;
+		
+		
 		
 	}
-	
-	
-	public String setCorrectPreviousPanel(String resultNumber) { // 콤마 삭제 , E ->e
-		
-		String removeCommaString;
-		
-		removeCommaString = resultNumber.replace(",","");
-		
-		return removeCommaString.replace("E","e");
-		
-	}
-	
+
 	public void changeFontSize(String resultNumber,String type) { // 글자의 수에따라 폰트 변경
 		
 		if(resultNumber.length() >=12 && type =="Down") 
