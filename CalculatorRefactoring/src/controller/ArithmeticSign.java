@@ -51,9 +51,7 @@ public class ArithmeticSign {
 				break;
 			}
 			
-			//이전값에 입력값 넣음  -23,223  ->-23223 을 넣음
-			//CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
-			
+
 		}
 		//입력값초기화
 		CalculatorStart.inputNumber ="";

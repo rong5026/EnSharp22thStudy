@@ -158,7 +158,7 @@ public class NumberButtonAction {
 		TextPanel.inputJLabel.setText("0");
 		TextPanel.previousJLabel.setText("");
 	}
-	public void enterBackAction() {
+	public void enterBackAction() { /// back 입력
 		if(CalculatorStart.inputNumber.length()>0) {
 			
 			//입력값 1개 삭제
@@ -234,7 +234,15 @@ public class NumberButtonAction {
 		return integerPart+decimalPart;
 		
 	}
-	
+	public String removeComma(String resultNumber) { // 콤마 삭제
+		
+		String removeCommaString;
+		
+		removeCommaString = resultNumber.replace(",","");
+		
+		return removeCommaString;
+		
+	}
 	
 	public void changeFontSize(String resultNumber,String type) { // 글자의 수에따라 폰트 변경
 		
@@ -250,7 +258,5 @@ public class NumberButtonAction {
 		
 		
 	}
-	public void correctPreviousLabel(String previousText) {
-		
-	}
+	
 }
