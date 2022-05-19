@@ -115,7 +115,7 @@ public class NumberButtonAction {
 																									
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
 			changeFontSize(CalculatorStart.inputNumber,"Down");
-			TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
+			TextPanel.inputJLabel.setText(setCorrectInputPanel(CalculatorStart.inputNumber));
 			
 		}
 	}
@@ -127,7 +127,7 @@ public class NumberButtonAction {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
 			changeFontSize(CalculatorStart.inputNumber,"Down");
-			TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
+			TextPanel.inputJLabel.setText(setCorrectInputPanel(CalculatorStart.inputNumber));
 			
 		}
 	}
@@ -141,7 +141,7 @@ public class NumberButtonAction {
 		
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
 			changeFontSize(CalculatorStart.inputNumber,"Down");
-			TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
+			TextPanel.inputJLabel.setText(setCorrectInputPanel(CalculatorStart.inputNumber));
 		}
 	}
 	public void enterCEAction() { //CE 입력
@@ -167,7 +167,7 @@ public class NumberButtonAction {
 			changeFontSize(CalculatorStart.inputNumber,"Up");
 			
 		
-			TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber));
+			TextPanel.inputJLabel.setText(setCorrectInputPanel(CalculatorStart.inputNumber));
 			}	
 			if(CalculatorStart.inputNumber.length() ==0) {
 				CalculatorStart.inputNumber ="";
@@ -184,11 +184,11 @@ public class NumberButtonAction {
 			else 		
 				CalculatorStart.inputNumber = "-"+CalculatorStart.inputNumber;
 				
-			TextPanel.inputJLabel.setText(setComma(CalculatorStart.inputNumber) );
+			TextPanel.inputJLabel.setText(setCorrectInputPanel(CalculatorStart.inputNumber) );
 			
 		}
 	}
-	public String setComma(String resultNumber) { // 콤마찍어주기
+	public String setCorrectInputPanel(String resultNumber) { // 콤마찍어주기. E -> e변경
 		
 		
 		Integer countNumber;
@@ -197,6 +197,7 @@ public class NumberButtonAction {
 		
 		String integerPart=null;
 		String decimalPart=null;
+		
 		
 		if(resultNumber.contains(".")) {
 			String []part = resultNumber.split("\\.",2);
@@ -229,11 +230,13 @@ public class NumberButtonAction {
 		}
 		
 		if(resultNumber.contains("-"))
-			return "-"+integerPart+decimalPart;
+			return "-"+integerPart.replace("E","e")+decimalPart.replace("E","e");
 		
-		return integerPart+decimalPart;
+		return integerPart.replace("E","e")+decimalPart.replace("E","e");
 		
 	}
+	
+	
 	public String removeComma(String resultNumber) { // 콤마 삭제
 		
 		String removeCommaString;
@@ -252,11 +255,7 @@ public class NumberButtonAction {
 		else if(resultNumber.length()>=11 && type =="Up")
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()+3 ));
 	}
-	public void correctInputLabel(String inputText) { // 입력라벨값 적절한지 수정
-		//changeFontSize(inputText,) 나중에 화면크기에 따라 글자크기 변경하도록
-		inputText = setComma(inputText);
-		
-		
-	}
+	
+	
 	
 }
