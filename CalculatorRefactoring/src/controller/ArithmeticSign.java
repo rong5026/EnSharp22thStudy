@@ -81,12 +81,12 @@ public class ArithmeticSign {
 		}
 	
 		else {
-			previusDouble =  new BigDecimal(TextPanel.inputJLabel.getText()); // 콤마 없애야함
+			previusDouble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText()).replace("e", "E") );
 			
 	
 			if( getArithmeticSignCount( TextPanel.previousJLabel.getText()) == 1) { // 9X 처럼 연산자가 1개있을때는 처음으로 시작
 				mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);		
-				inputDoble =  new BigDecimal(TextPanel.inputJLabel.getText()); 
+				inputDoble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText()).replace("e", "E")  ); 
 					
 			}
 			else {
@@ -95,19 +95,19 @@ public class ArithmeticSign {
 				if(previousJLabelText.contains("÷")) {
 					mathSign  ="÷";
 					
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("÷")+1 , TextPanel.previousJLabel.getText().length()-1)); 
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("÷")+1 , TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				else if( previousJLabelText.contains("×") ) {
 					mathSign  ="×";
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("×")+1 ,TextPanel.previousJLabel.getText().length()-1)); 
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("×")+1 ,TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				else if( previousJLabelText.contains("－") ) {
 					mathSign  ="－";
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("－")+1 ,TextPanel.previousJLabel.getText().length()-1)); 
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("－")+1 ,TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				else if(previousJLabelText.contains("＋")) {
 					mathSign  ="＋";
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("＋")+1 , TextPanel.previousJLabel.getText().length()-1)); 
+					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("＋")+1 , TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				
 	
