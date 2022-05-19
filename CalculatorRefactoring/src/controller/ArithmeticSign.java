@@ -167,7 +167,7 @@ public class ArithmeticSign {
 			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"＋");	
 			break;	
 		case "＝":
-			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +inputDoble +"＝");	
+			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");	
 			break;
 		default:
 			break;
@@ -175,7 +175,7 @@ public class ArithmeticSign {
 		
 		//결과값  inputlabel에 저장
 		
-		TextPanel.inputJLabel.setText( correctTextFormat.setCorrectInputPanel(String.valueOf(result)));
+		TextPanel.inputJLabel.setText(    correctTextFormat.setCorrectInputPanel(     correctTextFormat.removeDecimalPoint(  String.valueOf(result))) );
 		//이전값에 결과값넣음
 		CalculatorStart.previousNumber = String.valueOf(result).replace("E", "e");
 		

@@ -9,8 +9,9 @@ public class CorrectTextFormat {
 	public String setCorrectInputPanel(String resultNumber) { // 콤마찍어주기. E -> e변경
 		
 		String result;
-		
+		BigDecimal bigDecimal;
 		result = addComma(resultNumber);
+		
 		result = changeEtoe(result);
 		return result;
 	}
@@ -29,6 +30,7 @@ public class CorrectTextFormat {
 		return result;
 		
 	}
+
 	
 	public String addComma(String resultNumber) { // 콤마찍기
 		Integer countNumber;
@@ -85,8 +87,15 @@ public class CorrectTextFormat {
 	public String changeetoE(String resultNumber) { // e -> E
 		return resultNumber.replace("e", "E");
 	}
-	public String removeDecimalPoint(String resultNumber) {
+	public String removeDecimalPoint(String resultNumber) { // bigdecimal값에 소수점이 있으면 .000 없애기
+		BigDecimal bigDecimal;
+		String result = null;
 		
+		if(resultNumber.contains(".")) {
+			bigDecimal = new BigDecimal(resultNumber).stripTrailingZeros();
+			result = bigDecimal.toString();
+			return result;
+		}
 		
 		return resultNumber;
 		
