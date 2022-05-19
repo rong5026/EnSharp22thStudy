@@ -14,6 +14,11 @@ public class NumberButtonAction {
 	private int index;
 	private String input;
 	private JButton pressedButton;
+	private ArithmeticSign arithmeticSign;
+	
+	public NumberButtonAction() {
+		arithmeticSign = new ArithmeticSign();
+	}
 	public void setButtonAction(JButton [] button) {
 		
 		for(index =0 ; index<20 ; index++) {
@@ -79,8 +84,14 @@ public class NumberButtonAction {
 					}			
 				});
 			}
-			else if(index == 3 ||index == 7||index == 11||index == 15|| index ==19) { // 나누기 , 곱하기, 빼기 , 더하기, 등호 
-				
+			else if(index == 3 ||index == 7||index == 11||index == 15|| index ==19) { // 연산자
+				button[index].addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {		
+						pressedButton = (JButton)e.getSource();
+						arithmeticSign.enterArithmeticSign(pressedButton.getText());
+					}			
+				});
 				
 			}
 			// 키보드 포커싱 주기
@@ -233,10 +244,13 @@ public class NumberButtonAction {
 		else if(resultNumber.length()>=11 && type =="Up")
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()+3 ));
 	}
-	public void setCorrectInputLabel() {
+	public void correctInputLabel(String inputText) { // 입력라벨값 적절한지 수정
+		//changeFontSize(inputText,) 나중에 화면크기에 따라 글자크기 변경하도록
+		inputText = setComma(inputText);
+		
 		
 	}
-	public void setCorrectPreviousLabel() {
+	public void correctPreviousLabel(String previousText) {
 		
 	}
 }
