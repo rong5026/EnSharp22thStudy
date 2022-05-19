@@ -116,16 +116,13 @@ public class NumberButtonAction {
 		if(CalculatorStart.inputNumber=="")
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));
 	
-		if(CalculatorStart.inputNumber.length()<16) {
+		if(  getNumberLength( CalculatorStart.inputNumber) <16) {
 																									
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
 			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
 			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));			
 		}
 
-			
-		
-			
 			
 	
 		CalculatorStart.mainFrame.setFocusable(true);
@@ -239,6 +236,21 @@ public class NumberButtonAction {
 			enterCAction();
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
+	}
+	
+	public int getNumberLength(String number) {
+		
+		int count=0;
+		
+		for(int index = 0 ; index < number.length() ; index++) {
+			
+			if(number.charAt(index) >='0' && number.charAt(index )<='9' )
+				count++;
+			
+			
+		}
+		
+		return count;
 	}
 	
 	

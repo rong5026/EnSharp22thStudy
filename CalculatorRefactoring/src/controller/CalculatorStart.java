@@ -26,12 +26,14 @@ public class CalculatorStart {
 	public static String previousNumber; //이전에 입력중인 값
 	public static JFrame mainFrame;
 	public static int errorType;
+
 	
 	
 	public CalculatorStart() {
 		
 		inputNumber="";
 		previousNumber=""; 
+	
 		errorType= ConstantNumber.NON_ERROR;
 		mainFrame = new JFrame();
 		img = new ImageIcon(ConstantNumber.CALCULATOR_ICON_IMAGE);

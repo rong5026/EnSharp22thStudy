@@ -1,8 +1,10 @@
 package controller;
 
 import java.awt.Font;
+import java.awt.geom.RoundRectangle2D;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 
 import Utility.ConstantNumber;
 import view.TextPanel;
@@ -57,6 +59,7 @@ public class ArithmeticSign {
 
 			}
 			//입력값초기화
+		
 			CalculatorStart.inputNumber ="";
 		
 		}
@@ -68,7 +71,7 @@ public class ArithmeticSign {
 		}
 		
 		
-		
+	
 		System.out.println(CalculatorStart.inputNumber);			
 		System.out.println(CalculatorStart.previousNumber);	
 		System.out.println(TextPanel.inputJLabel.getText());
@@ -133,15 +136,16 @@ public class ArithmeticSign {
 		switch (mathSign) {
 		
 		case "÷":		
+			
 			if(inputDoble.compareTo(new BigDecimal("0"))==0) {
 				calculateDivision();
 				return;
 			}
 			else
-				result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);				
+				result = previusDouble.divide(inputDoble,15,BigDecimal.ROUND_HALF_EVEN);			
 			break;
 		case "×":
-			result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
+			result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64).setScale(10,RoundingMode.HALF_EVEN);
 			break;
 		case "－":
 			result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
