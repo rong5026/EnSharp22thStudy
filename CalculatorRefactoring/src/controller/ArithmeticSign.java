@@ -142,7 +142,7 @@ public class ArithmeticSign {
 		}
 		switch (input) {
 		case "÷":	//나누기										
-			// 0 나누기 함수넣기
+			calculateDivision();
 			break;
 		case "×":	//곱하기			
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"×");	
@@ -166,6 +166,18 @@ public class ArithmeticSign {
 		//이전값에 결과값넣음
 		CalculatorStart.previousNumber = String.valueOf(result).replace("E", "e");
 		return result;
+	}
+	
+	public void calculateDivision() {
+		
+		if(inputDoble.compareTo(new BigDecimal("0"))==0) {
+			TextPanel.inputJLabel.setText("0으로 나눌 수 없습니다");
+			CalculatorStart.inputNumber="";
+			CalculatorStart.previousNumber="";
+		}
+		else {
+			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"÷");	
+		}
 	}
 	
 	private int getArithmeticSignCount(String previousLabelText) { // 패널에 연산자가 몇개있는지 확인

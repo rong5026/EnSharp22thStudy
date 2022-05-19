@@ -15,7 +15,9 @@ public class CalculatorMain {
 		
 		
 		//String n = "222.34000020";
-		//BigDecimal bigDecimal = new BigDecimal("60").stripTrailingZeros();
+		//BigDecimal bigDecimal = new BigDecimal("0");
+		//if(bigDecimal.compareTo(new BigDecimal("0.0"))==0)
+		//	System.out.println(bigDecimal);
 		//System.out.println(bigDecimal);
 		//System.out.println(bigDecimal.toString());
 		
