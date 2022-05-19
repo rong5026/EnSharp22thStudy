@@ -80,8 +80,7 @@ public class KeyboardButtonAction implements KeyListener{
 				case "＋":
 					result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
 					break;
-				case "＝":
-					break;
+				
 			
 				default:
 					break;

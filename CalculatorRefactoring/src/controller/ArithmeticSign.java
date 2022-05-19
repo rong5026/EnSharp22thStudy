@@ -3,6 +3,7 @@ package controller;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import Utility.ConstantNumber;
 import view.TextPanel;
 
 public class ArithmeticSign {
@@ -89,7 +90,6 @@ public class ArithmeticSign {
 					
 			}
 			else {
-			
 				
 				if(previousJLabelText.contains("÷")) {
 					mathSign  ="÷";
@@ -111,19 +111,22 @@ public class ArithmeticSign {
 	
 			}
 			
-		
-		
 			calculateArithmeticSign("＝");	
 		}		
 	}
 	
 	
 	
-	public BigDecimal calculateArithmeticSign(String input) { // 연산자 계산
+	public void calculateArithmeticSign(String input) { // 연산자 계산
 		switch (mathSign) {
 		
-		case "÷":							
-			result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);				
+		case "÷":		
+			if(inputDoble.compareTo(new BigDecimal("0"))==0) {
+				calculateDivision();
+				return;
+			}
+			else
+				result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);				
 			break;
 		case "×":
 			result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
@@ -134,15 +137,13 @@ public class ArithmeticSign {
 		case "＋":
 			result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
 			break;
-		case "＝":
-			break;
 	
 		default:
 			break;
 		}
 		switch (input) {
 		case "÷":	//나누기										
-			calculateDivision();
+			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"÷");	
 			break;
 		case "×":	//곱하기			
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"×");	
@@ -165,15 +166,16 @@ public class ArithmeticSign {
 		TextPanel.inputJLabel.setText( correctTextFormat.setCorrectInputPanel(String.valueOf(result)));
 		//이전값에 결과값넣음
 		CalculatorStart.previousNumber = String.valueOf(result).replace("E", "e");
-		return result;
+		
 	}
 	
-	public void calculateDivision() {
+	public void calculateDivision() { // 0나누기 오류
 		
 		if(inputDoble.compareTo(new BigDecimal("0"))==0) {
 			TextPanel.inputJLabel.setText("0으로 나눌 수 없습니다");
 			CalculatorStart.inputNumber="";
 			CalculatorStart.previousNumber="";
+			CalculatorStart.errorType = ConstantNumber.ZERO_ERROR;
 		}
 		else {
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"÷");	

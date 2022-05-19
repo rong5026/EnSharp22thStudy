@@ -45,6 +45,10 @@ public class ConstantNumber {
 	//esc
 	public final static int KEY_ESC = 27;
 	
+	//error
+	public final static int NON_ERROR = 0;
+	public final static int ZERO_ERROR = 1;
+	
 	
 	
 	

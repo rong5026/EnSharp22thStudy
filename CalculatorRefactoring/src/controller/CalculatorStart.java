@@ -22,13 +22,17 @@ public class CalculatorStart {
 	private Container container;
 	private ImageIcon img;
 	
-	public static String inputNumber=""; //현재 입력중인 값
-	public static String previousNumber=""; //이전에 입력중인 값
+	public static String inputNumber; //현재 입력중인 값
+	public static String previousNumber; //이전에 입력중인 값
 	public static JFrame mainFrame;
+	public static int errorType;
 	
 	
 	public CalculatorStart() {
 		
+		inputNumber="";
+		previousNumber=""; 
+		errorType= ConstantNumber.NON_ERROR;
 		mainFrame = new JFrame();
 		img = new ImageIcon(ConstantNumber.CALCULATOR_ICON_IMAGE);
 		mainFrame.setIconImage(img.getImage());
