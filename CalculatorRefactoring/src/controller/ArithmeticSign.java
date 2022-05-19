@@ -11,6 +11,11 @@ public class ArithmeticSign {
 	private BigDecimal result = null;
 	private BigDecimal previusDouble;
 	private BigDecimal inputDoble;
+	private CorrectTextFormat correctTextFormat;
+	
+	public ArithmeticSign() {
+		correctTextFormat = new CorrectTextFormat();
+	}
 	
 	
 	public void enterArithmeticSign(String input) {
@@ -27,19 +32,19 @@ public class ArithmeticSign {
 		else {
 			switch (input) {
 			case "÷":	//나누기										
-				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"÷");		
-				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
+				TextPanel.previousJLabel.setText(  correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"÷");		
+				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1);
 				break;
 			case "×":	//곱하기		
-				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"×");		
+				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"×");		
 				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 				break;
 			case "－":	//빼기	
-				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"－");		
+				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"－");		
 				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 				break;
 			case "＋":	//더하기
-				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＋");		
+				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＋");		
 				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 				break;
 			case "＝":	
@@ -64,14 +69,14 @@ public class ArithmeticSign {
 		
 	}
 	
-	private void calculateEqual() {
+	private void calculateEqual() { // = 계산
 		
 	
 		String previousJLabelText;
 		previousJLabelText = TextPanel.previousJLabel.getText();
 		
 		if(previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) {
-			TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＝");		
+			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＝");		
 			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 		}
 	
@@ -80,12 +85,9 @@ public class ArithmeticSign {
 			
 	
 			if( getArithmeticSignCount( TextPanel.previousJLabel.getText()) == 1) { // 9X 처럼 연산자가 1개있을때는 처음으로 시작
-				mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
-				
+				mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);		
 				inputDoble =  new BigDecimal(TextPanel.inputJLabel.getText()); 
-			
-				
-				
+					
 			}
 			else {
 			
@@ -108,35 +110,16 @@ public class ArithmeticSign {
 					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().substring( TextPanel.previousJLabel.getText().lastIndexOf("＋")+1 , TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				
-				System.out.println(inputDoble);
+	
 			}
 			
 		
-			
-			
+		
 			calculateArithmeticSign("＝");	
 		}		
 	}
 	
-	private void setPreviousLabel(String input) {
-		
-		switch (input) {
 	
-		case "×":	//곱하기		
-			TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"×");		
-			break;
-		case "－":	//빼기	
-			TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"－");		
-			break;
-		case "＋":	//더하기
-			TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＋");		
-			break;
-			
-		default:
-			break;
-		}
-		
-	}
 	
 	private BigDecimal calculateArithmeticSign(String input) { // 연산자 계산
 		switch (mathSign) {
@@ -164,16 +147,16 @@ public class ArithmeticSign {
 			// 0 나누기 함수넣기
 			break;
 		case "×":	//곱하기			
-			TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"×");	
+			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"×");	
 			break;
 		case "－":	//빼기	
-			TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"－");
+			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"－");
 			break;
 		case "＋":	//더하기
-			TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"＋");	
+			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"＋");	
 			break;	
 		case "＝":
-			TextPanel.previousJLabel.setText(String.valueOf(previusDouble).replace("E","e")  + mathSign  +inputDoble +"＝");	
+			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +inputDoble +"＝");	
 			break;
 		default:
 			break;
@@ -181,7 +164,7 @@ public class ArithmeticSign {
 		
 		//결과값  inputlabel에 저장
 		
-		TextPanel.inputJLabel.setText((String.valueOf(result).replace("E","e")));
+		TextPanel.inputJLabel.setText( correctTextFormat.setCorrectInputPanel(String.valueOf(result)));
 		//이전값에 결과값넣음
 		CalculatorStart.previousNumber = String.valueOf(result);
 		return result;
