@@ -32,20 +32,16 @@ public class ArithmeticSign {
 		else {
 			switch (input) {
 			case "÷":	//나누기										
-				TextPanel.previousJLabel.setText(  correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"÷");		
-				CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText());
+				setPreviousValue("÷");
 				break;
 			case "×":	//곱하기		
-				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"×");						
-				CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText());
+				setPreviousValue("×");
 				break;
 			case "－":	//빼기	
-				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"－");		
-				CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText());
+				setPreviousValue("－");
 				break;
 			case "＋":	//더하기
-				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＋");		
-				CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText());
+				setPreviousValue("＋");
 				break;
 			case "＝":	
 				calculateEqual();
@@ -68,8 +64,11 @@ public class ArithmeticSign {
 		System.out.println(TextPanel.previousJLabel.getText());
 		
 	}
-	
-	private void calculateEqual() { // = 계산
+	public void setPreviousValue(String mathSign) {
+		TextPanel.previousJLabel.setText(  correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+mathSign);		
+		CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText());
+	}
+	public void calculateEqual() { // = 계산
 		
 	
 		String previousJLabelText;
@@ -120,7 +119,7 @@ public class ArithmeticSign {
 	
 	
 	
-	private BigDecimal calculateArithmeticSign(String input) { // 연산자 계산
+	public BigDecimal calculateArithmeticSign(String input) { // 연산자 계산
 		switch (mathSign) {
 		
 		case "÷":							

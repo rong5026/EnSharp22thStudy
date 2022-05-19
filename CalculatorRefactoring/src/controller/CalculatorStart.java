@@ -43,6 +43,11 @@ public class CalculatorStart {
 	public void start() {
 		mainFrame.add(new MenuPanel(),BorderLayout.NORTH);
 		mainFrame.add(new CenterPanel(),BorderLayout.CENTER);
+		// 키보드값 입력 엑션달기
+		mainFrame.addKeyListener(new KeyboardButtonAction());
+		mainFrame.setFocusable(true);
+		mainFrame.requestFocus();
+		
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setVisible(true);
 	}

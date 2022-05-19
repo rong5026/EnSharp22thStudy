@@ -42,11 +42,11 @@ public class ConstantNumber {
 	// Shift 키
 	public final static int KEY_SHIFT_ON = 1;
 	public final static int KEY_SHIFT_OFF = 0;
+	//esc
+	public final static int KEY_ESC = 27;
 	
 	
-	// 0으로 나눴을때 Error
-	public final static int NON_ERROR = 0;
-	public final static int ZERO_ERROR = 1;
+	
 	
 	
 	// 오른쪽 키패드 0~9  -> 96 ~ 105
