@@ -36,7 +36,6 @@ public class ArithmeticSign {
 				result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
 				break;
 			case "＝":
-						
 				break;
 		
 			default:
@@ -70,18 +69,23 @@ public class ArithmeticSign {
 			switch (input) {
 			case "÷":	//나누기										
 				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"÷");		
+				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 				break;
 			case "×":	//곱하기		
 				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"×");		
+				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 				break;
 			case "－":	//빼기	
 				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"－");		
+				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 				break;
 			case "＋":	//더하기
 				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＋");		
+				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 				break;
 			case "＝":							
 				TextPanel.previousJLabel.setText(TextPanel.inputJLabel.getText().replace("E","e")+"＝");		
+				
 				break;
 						
 			default:
@@ -89,7 +93,7 @@ public class ArithmeticSign {
 			}
 			
 			//이전값에 입력값 넣음  -23,223  ->-23223 을 넣음
-			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
+			//CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 			
 		}
 		//입력값초기화
@@ -104,6 +108,33 @@ public class ArithmeticSign {
 		
 	}
 	
+	private void calculateEqual() {
+		
+		String previousJLabelText;
+		previousJLabelText = TextPanel.previousJLabel.getText();
+		
+		
+		
+		previusDouble =  new BigDecimal(CalculatorStart.previousNumber);
+		inputDoble = new BigDecimal(CalculatorStart.inputNumber); 
+		
+		
+		if(previousJLabelText.contains("÷")) {
+			
+			mathSign  ="÷";
+		}
+		else if( previousJLabelText.contains("×") ) {
+			mathSign  ="×";
+		}
+		else if( previousJLabelText.contains("－") ) {
+			mathSign  ="－";
+		}
+		else if(previousJLabelText.contains("＋")) {
+			mathSign  ="＋";
+		}
+			
+		
+	}
 	
 	private void setPreviousLabel(String input) {
 		
@@ -123,5 +154,53 @@ public class ArithmeticSign {
 			break;
 		}
 		
+	}
+	
+	private BigDecimal calculateArithmeticSign(String input) {
+		switch (mathSign) {
+		
+		case "÷":							
+			result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);				
+			break;
+		case "×":
+			result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);				
+			break;
+		case "－":
+			result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
+			break;
+		case "＋":
+			result =previusDouble.add(inputDoble,MathContext.DECIMAL64);				
+			break;
+		case "＝":
+			break;
+	
+		default:
+			break;
+		}
+		switch (input) {
+		case "÷":	//나누기										
+			// 0 나누기 함수넣기
+			break;
+		case "×":	//곱하기			
+			TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"×");	
+			break;
+		case "－":	//빼기	
+			TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"－");
+			break;
+		case "＋":	//더하기
+			TextPanel.previousJLabel.setText(String.valueOf(result).replace("E","e")+"＋");	
+			break;	
+		case "＝":
+			// 함수 넣기
+			break;
+		default:
+			break;
+		}
+		
+		//결과값  inputlabel에 저장
+		
+		TextPanel.inputJLabel.setText((String.valueOf(result).replace("E","e")));
+		
+		return result;
 	}
 }
