@@ -20,10 +20,14 @@ public class CorrectTextFormat {
 		
 		String result;
 		BigDecimal bigDecimal;
+		
+		if(new BigDecimal(resultNumber).compareTo(new BigDecimal("0"))==0)
+			return "0";
+		
 		result = removeComma(resultNumber);
 		
 		
-		result = removeDecimalPoint(result);
+		//result = removeDecimalPoint(result);
 		result = changeEtoe(result);
 		return result;
 		
@@ -96,7 +100,12 @@ public class CorrectTextFormat {
 			integer  = new BigDecimal( resultNumber.substring(  0, resultNumber.indexOf(".")  ));
 			decimal = new BigDecimal(resultNumber.substring( resultNumber.indexOf("."), resultNumber.length())).stripTrailingZeros();
 					
-		
+			if(integer.toString().contains("－")) {
+				integer = integer.multiply(new BigDecimal("-1"));
+				
+				return integer.add(decimal).toString();
+			}
+			
 			return integer.toString() + decimal.toString().substring(1);
 		}
 		

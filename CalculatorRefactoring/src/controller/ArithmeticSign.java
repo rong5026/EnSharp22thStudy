@@ -78,6 +78,7 @@ public class ArithmeticSign {
 		System.out.println(CalculatorStart.previousNumber);	
 		System.out.println(TextPanel.inputJLabel.getText());
 		System.out.println(TextPanel.previousJLabel.getText());
+		System.out.println(inputDoble);	
 		
 	}
 	
@@ -95,6 +96,9 @@ public class ArithmeticSign {
 		if(CalculatorStart.inputNumber!="") {
 			previusDouble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(CalculatorStart.inputNumber).replace("e", "E"));
 		}
+		
+		if(TextPanel.inputJLabel.getText().equals("0"))
+			previusDouble = new BigDecimal("0");
 		if(previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) {
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＝");		
 			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
@@ -112,6 +116,8 @@ public class ArithmeticSign {
 					
 			}
 			else {
+				if(CalculatorStart.inputNumber=="")
+					//previusDouble = new BigDecimal("0");
 				
 				if(previousJLabelText.contains("÷")) {
 					mathSign  ="÷";
@@ -176,7 +182,7 @@ public class ArithmeticSign {
 			break;
 		}
 		
-		
+	
 		switch (input) {
 		case "÷":	//나누기										
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"÷");	

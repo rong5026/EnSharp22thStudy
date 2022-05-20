@@ -9,17 +9,17 @@ import view.TextPanel;
 public class CalculatorMain {
 
 	public static void main(String[] args) {
+		//
+		CalculatorStart calculator = new CalculatorStart();
+		calculator.start();
 		
-		//CalculatorStart calculator = new CalculatorStart();
-		//calculator.start();
-		
-		
-		//String resultNumber = "-222.34000020000";
+		//
+		//String resultNumber = "-1.3";
 		
 		//BigDecimal integer;
 		//BigDecimal decimal;
 		
-		//integer  = new BigDecimal( resultNumber.substring(  0, resultNumber.indexOf(".")  ));
+		///integer  = new BigDecimal( resultNumber.substring(  0, resultNumber.indexOf(".")  ));
 		//decimal = new BigDecimal(resultNumber.substring( resultNumber.indexOf("."), resultNumber.length())).stripTrailingZeros();
 		
 		//System.out.println(integer);
