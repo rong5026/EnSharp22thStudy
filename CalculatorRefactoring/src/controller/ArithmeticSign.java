@@ -71,7 +71,7 @@ public class ArithmeticSign {
 		}
 		
 		
-		System.out.println(CalculatorStart.firstNumber);			
+			
 		System.out.println(CalculatorStart.inputNumber);			
 		System.out.println(CalculatorStart.previousNumber);	
 		System.out.println(TextPanel.inputJLabel.getText());

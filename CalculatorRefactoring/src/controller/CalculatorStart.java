@@ -26,7 +26,7 @@ public class CalculatorStart {
 	public static String previousNumber; //이전에 입력중인 값
 	public static JFrame mainFrame;
 	public static int errorType;
-	public static String firstNumber;
+	
 
 	
 	
@@ -34,7 +34,6 @@ public class CalculatorStart {
 		
 		inputNumber="";
 		previousNumber=""; 
-		firstNumber = "";
 		errorType= ConstantNumber.NON_ERROR;
 		mainFrame = new JFrame();
 		img = new ImageIcon(ConstantNumber.CALCULATOR_ICON_IMAGE);

@@ -109,7 +109,6 @@ public class NumberButtonAction {
 			System.out.println("초기화");
 			 enterCAction();
 			 
-			 //arithmeticSign.inputDoble
 		}
 		
 		
@@ -154,6 +153,10 @@ public class NumberButtonAction {
 	}
 	public void enterDotAction(String input) { // . 소수점 입력
 		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+			if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())==2) {
+				System.out.println("초기화");
+				enterCAction();
+			}
 			if(TextPanel.inputJLabel.getText()=="0" || CalculatorStart.inputNumber=="" ) {
 				CalculatorStart.inputNumber = "0.";
 				TextPanel.inputJLabel.setText(CalculatorStart.inputNumber);
@@ -192,7 +195,7 @@ public class NumberButtonAction {
 		
 		CalculatorStart.inputNumber = "";		
 		CalculatorStart.previousNumber = "";		
-		CalculatorStart.firstNumber = "";
+	
 		TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));		
 		TextPanel.inputJLabel.setText("0");
 		TextPanel.previousJLabel.setText("");
