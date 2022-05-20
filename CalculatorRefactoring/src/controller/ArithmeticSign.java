@@ -168,14 +168,15 @@ public class ArithmeticSign {
 		case "＋":
 			result =previusDouble.add(inputDoble,MathContext.DECIMAL64);
 			CalculatorStart.previousNumber =  String.valueOf(result).replace("E", "e");
-			
+		case "＝": // == 하다가 값이 바뀌었을때
+			// 
 			break;
 	
 		default:
 			break;
 		}
 		
-		//result = correctTextFormat.removeBigdecimalPoint(result);
+		
 		switch (input) {
 		case "÷":	//나누기										
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"÷");	
@@ -204,8 +205,7 @@ public class ArithmeticSign {
 		//결과값  inputlabel에 저장
 		
 		TextPanel.inputJLabel.setText(    correctTextFormat.setCorrectPreviousPanel(     String.valueOf(result)) );
-		//이전값에 결과값넣음
-		//CalculatorStart.previousNumber = String.valueOf(result).replace("E", "e");
+	
 		
 	}
 	

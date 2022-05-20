@@ -97,7 +97,7 @@ public class CorrectTextFormat {
 			decimal = new BigDecimal(resultNumber.substring( resultNumber.indexOf("."), resultNumber.length())).stripTrailingZeros();
 					
 		
-			return integer.add(decimal).toString();
+			return integer.toString() + decimal.toString().substring(1);
 		}
 		
 		return resultNumber;
