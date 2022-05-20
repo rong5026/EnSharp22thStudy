@@ -205,19 +205,25 @@ public class NumberButtonAction {
 	}
 	public void enterBackAction() { /// back 입력
 		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
-			if(CalculatorStart.inputNumber.length()>0) {
-				
-				//입력값 1개 삭제
-				CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
-							
-				correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
-				
 			
-				TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
-			}	
-			if(CalculatorStart.inputNumber.length() ==0) {
-				CalculatorStart.inputNumber ="";
-				TextPanel.inputJLabel.setText("0");
+			if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())==2) {
+				TextPanel.previousJLabel.setText("");
+			}
+			else {
+				if(CalculatorStart.inputNumber.length()>0 && CalculatorStart.inputNumber!="") {
+					
+					//입력값 1개 삭제
+					CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
+								
+					correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
+					
+				
+					TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
+				}	
+				if(TextPanel.inputJLabel.getText().length() ==0) {
+					CalculatorStart.inputNumber ="";
+					TextPanel.inputJLabel.setText("0");
+				}
 			}
 		}
 		else 

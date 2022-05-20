@@ -107,7 +107,7 @@ public class KeyboardButtonAction implements KeyListener{
 
 	
 	
-	private String getCorrectMathSign(int keyCode,KeyEvent e) {
+	private String getCorrectMathSign(int keyCode,KeyEvent e) { // 키보드 입력받은 수학기호 판별 후 리ㅓㄴ
 		
 		if(keyCode ==ConstantNumber.RIGTH_KEY_DIVIDE ||keyCode ==ConstantNumber.LEFT_KEY_DIVIDE)  // 나누기
 			return "÷";
