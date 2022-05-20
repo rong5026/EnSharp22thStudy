@@ -23,10 +23,7 @@ public class CorrectTextFormat {
 		result = removeComma(resultNumber);
 		
 		
-		if(resultNumber.contains(".")) {
-			bigDecimal = new BigDecimal(result).stripTrailingZeros();
-			result = bigDecimal.toString();
-		}
+		result = removeDecimalPoint(result);
 		result = changeEtoe(result);
 		return result;
 		
@@ -89,25 +86,23 @@ public class CorrectTextFormat {
 		return resultNumber.replace("e", "E");
 	}
 	public String removeDecimalPoint(String resultNumber) { // bigdecimal값에 소수점이 있으면 .000 없애기
-		BigDecimal bigDecimal;
+		BigDecimal integer;
+		BigDecimal decimal;
 		String result = null;
 		
+		
+	
 		if(resultNumber.contains(".")) {
-			bigDecimal = new BigDecimal(resultNumber).stripTrailingZeros();
-			result = bigDecimal.toString();
-			return result;
+			integer  = new BigDecimal( resultNumber.substring(  0, resultNumber.indexOf(".")  ));
+			decimal = new BigDecimal(resultNumber.substring( resultNumber.indexOf("."), resultNumber.length())).stripTrailingZeros();
+					
+		
+			return integer.add(decimal).toString();
 		}
 		
 		return resultNumber;
 		
 		
-	}
-	public BigDecimal removeBigdecimalPoint(BigDecimal bigDecimal) { // bigdecimal 형태로 리턴
-		
-		if(bigDecimal.toString().contains(".")) {
-			return bigDecimal.stripTrailingZeros();
-		}
-		return bigDecimal;
 	}
 
 	public void changeFontSize(String resultNumber,String type) { // 글자의 수에따라 폰트 변경
