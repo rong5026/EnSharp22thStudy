@@ -10,6 +10,7 @@ public class CorrectTextFormat {
 		
 		String result;
 		BigDecimal bigDecimal;
+		
 		result = addComma(resultNumber);
 		
 		result = changeEtoe(result);
@@ -100,7 +101,13 @@ public class CorrectTextFormat {
 		return resultNumber;
 		
 		
+	}
+	public BigDecimal removeBigdecimalPoint(BigDecimal bigDecimal) { // bigdecimal 형태로 리턴
 		
+		if(bigDecimal.toString().contains(".")) {
+			return bigDecimal.stripTrailingZeros();
+		}
+		return bigDecimal;
 	}
 
 	public void changeFontSize(String resultNumber,String type) { // 글자의 수에따라 폰트 변경

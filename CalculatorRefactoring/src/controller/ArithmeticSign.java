@@ -93,13 +93,13 @@ public class ArithmeticSign {
 		previousJLabelText = TextPanel.previousJLabel.getText();
 		
 		if(CalculatorStart.inputNumber!="") {
-			previusDouble = new BigDecimal(correctTextFormat.setCorrectPreviousPanel(CalculatorStart.inputNumber).replace("e", "E"));
+			previusDouble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(CalculatorStart.inputNumber).replace("e", "E"));
 		}
 		if(previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) {
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＝");		
 			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 		
-			System.out.println("여기 들어왔따");
+			
 		}
 	
 		else {
@@ -123,11 +123,11 @@ public class ArithmeticSign {
 				}
 				else if( previousJLabelText.contains("－") ) {
 					mathSign  ="－";
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("－")+1 ,TextPanel.previousJLabel.getText().length()-1)); 
+					inputDoble =new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("－")+1 ,TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				else if(previousJLabelText.contains("＋")) {
 					mathSign  ="＋";
-					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("＋")+1 , TextPanel.previousJLabel.getText().length()-1)); 
+					inputDoble =new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("＋")+1 , TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				
 				
@@ -135,11 +135,15 @@ public class ArithmeticSign {
 			
 			
 		}		
+		
+		
 	}
 	
 	
 	
 	public void calculateArithmeticSign(String input) { // 연산자 계산
+		
+		
 		switch (mathSign) {
 		
 		case "÷":		
@@ -170,6 +174,8 @@ public class ArithmeticSign {
 		default:
 			break;
 		}
+		
+		//result = correctTextFormat.removeBigdecimalPoint(result);
 		switch (input) {
 		case "÷":	//나누기										
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"÷");	
@@ -184,7 +190,12 @@ public class ArithmeticSign {
 			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"＋");	
 			break;	
 		case "＝":
-			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");	
+			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+			
+			System.out.println("result = "+result);
+			System.out.println("input = "+inputDoble);
+			System.out.println("pre = "+previusDouble);
+			
 			break;
 		default:
 			break;
@@ -192,13 +203,13 @@ public class ArithmeticSign {
 		
 		//결과값  inputlabel에 저장
 		
-		TextPanel.inputJLabel.setText(    correctTextFormat.setCorrectInputPanel(     correctTextFormat.removeDecimalPoint(  String.valueOf(result))) );
+		TextPanel.inputJLabel.setText(    correctTextFormat.setCorrectPreviousPanel(     String.valueOf(result)) );
 		//이전값에 결과값넣음
 		//CalculatorStart.previousNumber = String.valueOf(result).replace("E", "e");
 		
 	}
 	
-	public void calculateDivision() { // 0나누기 오류
+	private void calculateDivision() { // 0나누기 오류
 		
 		if(inputDoble.compareTo(new BigDecimal("0"))==0) {
 			TextPanel.inputJLabel.setText("0으로 나눌 수 없습니다");
@@ -228,4 +239,6 @@ public class ArithmeticSign {
 		
 		return count;
 	}
+	
+
 }
