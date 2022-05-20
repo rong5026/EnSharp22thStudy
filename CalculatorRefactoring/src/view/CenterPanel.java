@@ -8,10 +8,12 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
+import controller.ArithmeticSign;
+
 public class CenterPanel extends JPanel{
 
 
-	public CenterPanel() {
+	public CenterPanel(ArithmeticSign arithmeticSign) {
 		
 		setBackground(new Color(220,220,220));
 		setLayout(new GridBagLayout());
@@ -27,7 +29,7 @@ public class CenterPanel extends JPanel{
 		grdBagConstraints.weighty = 0.5;
 		grdBagConstraints.gridx = 0;
 		grdBagConstraints.gridy = 1;
-		add(new ButtonPanel(),grdBagConstraints);
+		add(new ButtonPanel(arithmeticSign),grdBagConstraints);
 		
 	
 		

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Utility.ConstantNumber;
+import controller.ArithmeticSign;
 import controller.CalculatorStart;
 import controller.MouseAction;
 import controller.NumberButtonAction;
@@ -21,7 +23,7 @@ public class ButtonPanel extends JPanel{
 	
 	public JButton [] button;
 	
-	public ButtonPanel() {
+	public ButtonPanel(ArithmeticSign arithmeticSign) {
 		NumberButtonAction buttonAction;
 		
 		setLayout(new GridLayout(5,4,1,1));
@@ -79,11 +81,11 @@ public class ButtonPanel extends JPanel{
 			button[index].addMouseListener(new MouseAction());
 			
 		}
+		//버튼클릭 엑션
 		buttonAction = new NumberButtonAction();
 		buttonAction.setButtonAction(button);
 	
 	
-		
 	}
 	private void setFont(JButton button) { // 버튼 폰트 변경
 		
@@ -91,6 +93,9 @@ public class ButtonPanel extends JPanel{
 		
 		font = new Font("맑은 고딕", Font.BOLD, 20);
 		button.setFont(font);
+	}
+	public JButton[] getButtons() {
+		return this.button;
 	}
 	
 	

@@ -34,6 +34,8 @@ public class ArithmeticSign {
 				calculateArithmeticSign(input);
 			}
 			else {
+				
+			
 				switch (input) {
 				case "÷":	//나누기										
 					setPreviousValue("÷");
@@ -96,6 +98,8 @@ public class ArithmeticSign {
 		if(previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) {
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＝");		
 			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
+		
+			System.out.println("여기 들어왔따");
 		}
 	
 		else {
