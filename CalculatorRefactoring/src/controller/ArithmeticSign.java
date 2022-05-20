@@ -14,7 +14,7 @@ public class ArithmeticSign {
 	private String mathSign;
 	private BigDecimal result = null;
 	private BigDecimal previusDouble;
-	private BigDecimal inputDoble;
+	public BigDecimal inputDoble;
 	private CorrectTextFormat correctTextFormat;
 	
 	public ArithmeticSign() {
@@ -71,7 +71,7 @@ public class ArithmeticSign {
 		}
 		
 		
-	
+		System.out.println(CalculatorStart.firstNumber);			
 		System.out.println(CalculatorStart.inputNumber);			
 		System.out.println(CalculatorStart.previousNumber);	
 		System.out.println(TextPanel.inputJLabel.getText());
@@ -90,6 +90,9 @@ public class ArithmeticSign {
 		String previousJLabelText;
 		previousJLabelText = TextPanel.previousJLabel.getText();
 		
+		if(CalculatorStart.inputNumber!="") {
+			previusDouble = new BigDecimal(correctTextFormat.setCorrectPreviousPanel(CalculatorStart.inputNumber).replace("e", "E"));
+		}
 		if(previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) {
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＝");		
 			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
@@ -123,7 +126,7 @@ public class ArithmeticSign {
 					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("＋")+1 , TextPanel.previousJLabel.getText().length()-1)); 
 				}
 				
-	
+				
 			}
 			
 			

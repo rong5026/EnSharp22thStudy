@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 import Utility.ConstantNumber;
 import view.TextPanel;
@@ -105,7 +106,10 @@ public class NumberButtonAction {
 	public void enterNumberAction(String input) { // 1~9 버튼 입력
 		
 		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR||arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())==2) {
+			System.out.println("초기화");
 			 enterCAction();
+			 
+			 //arithmeticSign.inputDoble
 		}
 		
 		
@@ -188,6 +192,7 @@ public class NumberButtonAction {
 		
 		CalculatorStart.inputNumber = "";		
 		CalculatorStart.previousNumber = "";		
+		CalculatorStart.firstNumber = "";
 		TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));		
 		TextPanel.inputJLabel.setText("0");
 		TextPanel.previousJLabel.setText("");
