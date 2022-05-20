@@ -19,8 +19,8 @@ public class NumberButtonAction {
 	private ArithmeticSign arithmeticSign;
 	private CorrectTextFormat correctTextFormat;
 	
-	public NumberButtonAction() {
-		arithmeticSign = new ArithmeticSign();
+	public NumberButtonAction(ArithmeticSign arithmeticSign) {
+		this.arithmeticSign =arithmeticSign;
 		correctTextFormat = new CorrectTextFormat();
 	}
 	public void setButtonAction(JButton [] button) {

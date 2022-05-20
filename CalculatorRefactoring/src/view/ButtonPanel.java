@@ -82,7 +82,7 @@ public class ButtonPanel extends JPanel{
 			
 		}
 		//버튼클릭 엑션
-		buttonAction = new NumberButtonAction();
+		buttonAction = new NumberButtonAction(arithmeticSign);
 		buttonAction.setButtonAction(button);
 	
 	

@@ -52,7 +52,7 @@ public class CalculatorStart {
 		mainFrame.add(new CenterPanel(arithmeticSign),BorderLayout.CENTER);
 		// 키보드값 입력 엑션달기
 		
-		mainFrame.addKeyListener(new KeyboardButtonAction());
+		mainFrame.addKeyListener(new KeyboardButtonAction(arithmeticSign));
 		mainFrame.setFocusable(true);
 		mainFrame.requestFocus();
 		

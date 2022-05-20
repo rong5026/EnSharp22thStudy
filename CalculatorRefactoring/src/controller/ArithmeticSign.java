@@ -11,9 +11,9 @@ import view.TextPanel;
 
 public class ArithmeticSign {
 	
-	private String mathSign;
+	public String mathSign;
 	private BigDecimal result = null;
-	private BigDecimal previusDouble;
+	public BigDecimal previusDouble;
 	public BigDecimal inputDoble;
 	private CorrectTextFormat correctTextFormat;
 	
