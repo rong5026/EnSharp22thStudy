@@ -88,7 +88,9 @@ public class ArithmeticSign {
 		TextPanel.previousJLabel.setText(  correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+mathSign);		
 		CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText());
 	}
-	public void calculateEqual() { // = 계산
+	
+	 // = 계산
+	public void calculateEqual() { 
 		
 	
 		String previousJLabelText;
@@ -118,9 +120,7 @@ public class ArithmeticSign {
 					
 			}
 			else {
-			//	if(CalculatorStart.inputNumber=="")
-				//	previusDouble = new BigDecimal("0");
-				
+		
 				if(previousJLabelText.contains("÷")) {
 					mathSign  ="÷";
 					inputDoble = new BigDecimal(TextPanel.previousJLabel.getText().replace("e", "E").substring( TextPanel.previousJLabel.getText().lastIndexOf("÷")+1 , TextPanel.previousJLabel.getText().length()-1)); 
@@ -151,7 +151,10 @@ public class ArithmeticSign {
 	
 	public void calculateArithmeticSign(String input) { // 연산자 계산
 		
-		if(mathSign!=null) {
+		
+		if(mathSign!=null && inputDoble!=null && previusDouble!=null) {
+			
+			System.out.println("난끝났다");
 			switch (mathSign) {
 			
 			case "÷":		
@@ -204,17 +207,17 @@ public class ArithmeticSign {
 			}
 			else
 				TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
-			if(result!=null)
+			if(result!=null) {
 				System.out.println("result = "+result.toString());
-			System.out.println("input = "+inputDoble);
-			System.out.println("pre = "+previusDouble);
-			
+				System.out.println("input = "+inputDoble);
+				System.out.println("pre = "+previusDouble);
+			}
 			break;
 		default:
 			break;
 		}
 		
-		//결과값  inputlabel에 저장99999999
+
 		if(result!=null )
 			TextPanel.inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(String.valueOf(result)))  );
 	

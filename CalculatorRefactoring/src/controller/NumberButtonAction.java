@@ -112,7 +112,8 @@ public class NumberButtonAction {
 		else if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
 			enterCEAction();
 		}
-		
+		else if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())==1 && TextPanel.previousJLabel.getText().contains("＝"))
+			TextPanel.inputJLabel.setText("");
 		
 		if(TextPanel.inputJLabel.getText() =="0") {						
 			TextPanel.inputJLabel.setText("");
@@ -213,8 +214,8 @@ public class NumberButtonAction {
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
 		CalculatorStart.errorType =ConstantNumber.NON_ERROR;
-		arithmeticSign.previusDouble=null;
-		arithmeticSign.inputDoble=null;
+		this.arithmeticSign = new ArithmeticSign();
+		
 	}
 	public void enterBackAction() { /// back 입력
 	
@@ -228,6 +229,7 @@ public class NumberButtonAction {
 			
 		if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
 			TextPanel.previousJLabel.setText("");
+			CalculatorStart.inputNumber = correctTextFormat.setCorrectPreviousPanel (TextPanel.inputJLabel.getText());  //수정
 		}
 			
 		else {
