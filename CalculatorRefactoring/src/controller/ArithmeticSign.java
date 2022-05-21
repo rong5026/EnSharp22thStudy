@@ -80,6 +80,9 @@ public class ArithmeticSign {
 		System.out.println(TextPanel.previousJLabel.getText());
 		System.out.println(inputDoble);	
 		
+		CalculatorStart.mainFrame.setFocusable(true);
+		CalculatorStart.mainFrame.requestFocus();
+		
 	}
 	
 	
@@ -104,9 +107,9 @@ public class ArithmeticSign {
 			previusDouble = new BigDecimal("0");
 		
 		if((previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) ) {
-			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＝");		
+			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( CalculatorStart.inputNumber)+"＝");		
 			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
-			
+
 			
 		}
 	
@@ -154,7 +157,7 @@ public class ArithmeticSign {
 		
 		if(mathSign!=null && inputDoble!=null && previusDouble!=null) {
 			
-			System.out.println("난끝났다");
+			
 			switch (mathSign) {
 			
 			case "÷":		
@@ -202,7 +205,7 @@ public class ArithmeticSign {
 		case "＝":
 			
 			if(result==null && inputDoble==null) {
-				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＝");		
+				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( CalculatorStart.inputNumber)+"＝");		
 				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 			}
 			else
@@ -221,6 +224,7 @@ public class ArithmeticSign {
 		if(result!=null )
 			TextPanel.inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(String.valueOf(result)))  );
 	
+		
 		
 	}
 	

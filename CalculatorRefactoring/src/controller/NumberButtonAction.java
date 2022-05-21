@@ -112,8 +112,8 @@ public class NumberButtonAction {
 		else if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
 			enterCEAction();
 		}
-		else if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())==1 && TextPanel.previousJLabel.getText().contains("＝"))
-			TextPanel.inputJLabel.setText("");
+	
+		
 		
 		if(TextPanel.inputJLabel.getText() =="0") {						
 			TextPanel.inputJLabel.setText("");
@@ -196,6 +196,8 @@ public class NumberButtonAction {
 			if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
 				TextPanel.previousJLabel.setText("");
 			}
+		
+				
 			CalculatorStart.inputNumber = "";				
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
 			TextPanel.inputJLabel.setText("0");

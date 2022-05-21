@@ -46,8 +46,10 @@ public class KeyboardButtonAction implements KeyListener{
 		else if(keyCode ==ConstantNumber.KEY_DELETE && e.getModifiers()==ConstantNumber.KEY_SHIFT_OFF ) {
 			numberButtonAction.enterBackAction();
 		}//ESC
-		else if(keyCode ==  ConstantNumber.KEY_ESC )
+		else if(keyCode ==  ConstantNumber.KEY_ESC ) {
 			numberButtonAction.enterCAction();
+			this.arithmeticSign =new ArithmeticSign();
+		}
 		// 연산자
 		else if((keyCode ==ConstantNumber.RIGTH_KEY_DIVIDE ||keyCode ==ConstantNumber.LEFT_KEY_DIVIDE||
 				keyCode ==ConstantNumber.RIGTH_KEY_MINUS||keyCode ==ConstantNumber.LEFT_KEY_MINUS ||
@@ -60,7 +62,7 @@ public class KeyboardButtonAction implements KeyListener{
 			
 			
 			if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
-				if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
+				if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!=""&& TextPanel.previousJLabel.getText().charAt(TextPanel.previousJLabel.getText().length()-1) != '＝') {
 					
 					arithmeticSign.mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
 					arithmeticSign.previusDouble =  new BigDecimal(CalculatorStart.previousNumber.replace("e", "E"));
