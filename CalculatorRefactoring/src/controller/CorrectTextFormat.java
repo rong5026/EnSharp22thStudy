@@ -121,6 +121,7 @@ public class CorrectTextFormat {
 		
 	}
 
+	/*
 	public void changeFontSize(String resultNumber,String type) { // 글자의 수에따라 폰트 변경
 		
 		if(resultNumber.length() >=12 && type =="Down") 
@@ -129,5 +130,6 @@ public class CorrectTextFormat {
 		else if(resultNumber.length()>=11 && type =="Up")
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()+3 ));
 	}
+	*/
 	
 }
