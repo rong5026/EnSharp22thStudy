@@ -260,12 +260,12 @@ public class NumberButtonAction {
 		if(CalculatorStart.inputNumber!="" && TextPanel.inputJLabel.getText()!="0") {
 			
 			
-			if( Double.parseDouble(CalculatorStart.inputNumber) <0) 
+			if( Double.parseDouble(CalculatorStart.inputNumber) <0 || CalculatorStart.inputNumber.contains("-")) 
 				CalculatorStart.inputNumber = CalculatorStart.inputNumber.replace("-", "");
-		
+			
 			else 		
 				CalculatorStart.inputNumber = "-"+CalculatorStart.inputNumber;
-				
+			System.out.print(CalculatorStart.inputNumber );
 			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber) );
 			
 		}	
