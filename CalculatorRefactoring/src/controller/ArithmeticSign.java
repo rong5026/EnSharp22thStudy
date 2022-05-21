@@ -25,7 +25,7 @@ public class ArithmeticSign {
 	public void enterArithmeticSign(String input) {
 	
 		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
-			if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
+			if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="" ) {
 				
 				mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
 				previusDouble =  new BigDecimal(CalculatorStart.previousNumber.replace("e", "E"));
@@ -104,7 +104,7 @@ public class ArithmeticSign {
 		if((previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) ) {
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＝");		
 			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
-		
+			
 			
 		}
 	
@@ -118,8 +118,8 @@ public class ArithmeticSign {
 					
 			}
 			else {
-				if(CalculatorStart.inputNumber=="")
-					//previusDouble = new BigDecimal("0");
+			//	if(CalculatorStart.inputNumber=="")
+				//	previusDouble = new BigDecimal("0");
 				
 				if(previousJLabelText.contains("÷")) {
 					mathSign  ="÷";
@@ -198,16 +198,16 @@ public class ArithmeticSign {
 			break;	
 		case "＝":
 			
-			if(result==null) {
+			if(result==null && inputDoble==null) {
 				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+"＝");		
 				CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
 			}
 			else
 				TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
-			
-			//System.out.println("result = "+result.toString());
-			//System.out.println("input = "+inputDoble);
-			//System.out.println("pre = "+previusDouble);
+			if(result!=null)
+				System.out.println("result = "+result.toString());
+			System.out.println("input = "+inputDoble);
+			System.out.println("pre = "+previusDouble);
 			
 			break;
 		default:
@@ -215,7 +215,7 @@ public class ArithmeticSign {
 		}
 		
 		//결과값  inputlabel에 저장99999999
-		if(result!=null)
+		if(result!=null )
 			TextPanel.inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(String.valueOf(result)))  );
 	
 		

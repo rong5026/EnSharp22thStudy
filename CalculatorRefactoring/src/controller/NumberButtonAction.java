@@ -213,8 +213,8 @@ public class NumberButtonAction {
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
 		CalculatorStart.errorType =ConstantNumber.NON_ERROR;
-		arithmeticSign.previusDouble=new BigDecimal("0");
-		arithmeticSign.inputDoble=new BigDecimal("0");
+		arithmeticSign.previusDouble=null;
+		arithmeticSign.inputDoble=null;
 	}
 	public void enterBackAction() { /// back 입력
 	
