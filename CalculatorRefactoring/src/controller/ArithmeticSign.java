@@ -23,7 +23,7 @@ public class ArithmeticSign {
 	
 	
 	public void enterArithmeticSign(String input) {
-		
+	
 		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
 			if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="") {
 				
@@ -34,7 +34,7 @@ public class ArithmeticSign {
 				calculateArithmeticSign(input);
 			}
 			else {
-				
+			
 			
 				switch (input) {
 				case "÷":	//나누기										
@@ -84,6 +84,7 @@ public class ArithmeticSign {
 	
 	
 	public void setPreviousValue(String mathSign) {
+		
 		TextPanel.previousJLabel.setText(  correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText())+mathSign);		
 		CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText());
 	}
@@ -199,7 +200,7 @@ public class ArithmeticSign {
 		case "＝":
 			TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
 			
-			System.out.println("result = "+result);
+			System.out.println("result = "+result.toString());
 			System.out.println("input = "+inputDoble);
 			System.out.println("pre = "+previusDouble);
 			
@@ -208,9 +209,9 @@ public class ArithmeticSign {
 			break;
 		}
 		
-		//결과값  inputlabel에 저장
+		//결과값  inputlabel에 저장99999999
 		
-		TextPanel.inputJLabel.setText(    correctTextFormat.setCorrectPreviousPanel(     String.valueOf(result)) );
+		TextPanel.inputJLabel.setText(    ( String.valueOf(result)) );
 	
 		
 	}

@@ -12,7 +12,7 @@ public class CorrectTextFormat {
 		BigDecimal bigDecimal;
 		
 		result = addComma(resultNumber);
-		
+		//result = removeDecimalPoint(result);
 		result = changeEtoe(result);
 		return result;
 	}

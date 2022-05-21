@@ -14,6 +14,11 @@ public class CalculatorMain {
 		calculator.start();
 		
 		
+	
+		
+		//if(new BigDecimal("159191591").compareTo(new BigDecimal("0"))==0) {
+			//System.out.println("같다");
+		//}
 		/*
 		String resultNumber = "-0.0001000";
 		

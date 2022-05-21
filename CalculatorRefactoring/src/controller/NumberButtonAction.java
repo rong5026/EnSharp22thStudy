@@ -221,7 +221,7 @@ public class NumberButtonAction {
 		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		
 			 enterCAction();
 		}
-		if(new BigDecimal(TextPanel.inputJLabel.getText()).compareTo(new BigDecimal("0"))==0) {
+		if(new BigDecimal( correctTextFormat.removeComma(TextPanel.inputJLabel.getText())).compareTo(new BigDecimal("0"))==0) {
 			TextPanel.inputJLabel.setText("0");
 			CalculatorStart.inputNumber ="";
 		}
@@ -289,6 +289,7 @@ public class NumberButtonAction {
 		
 		return count;
 	}
+	
 	
 	
 	
