@@ -76,11 +76,12 @@ public class ArithmeticSign {
 		
 		
 			
-		System.out.println(CalculatorStart.inputNumber);			
-		System.out.println(CalculatorStart.previousNumber);	
-		System.out.println(TextPanel.inputJLabel.getText());
-		System.out.println(TextPanel.previousJLabel.getText());
-		System.out.println(inputDoble);	
+		System.out.println("inputnumber:"+CalculatorStart.inputNumber);			
+		System.out.println("previousNumber:"+CalculatorStart.previousNumber);	
+		System.out.println("inputJLabel:"+TextPanel.inputJLabel.getText());
+		System.out.println("previousJLabel:"+TextPanel.previousJLabel.getText());
+		
+	
 		
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
@@ -181,6 +182,7 @@ public class ArithmeticSign {
 				break;
 			case "×":
 				result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);
+			
 				
 				if(result.compareTo(new BigDecimal("9.999999999999375E+9999"))>0) {
 					cakculateOverFlow();
@@ -230,8 +232,10 @@ public class ArithmeticSign {
 				TextPanel.previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
 			if(result!=null) {
 				System.out.println("result = "+result.toString());
-				System.out.println("input = "+inputDoble);
 				System.out.println("pre = "+previusDouble);
+				System.out.println("--------------");
+				//System.out.println("input = "+inputDoble);
+				//System.out.println("pre = "+previusDouble);
 			}
 			break;
 		default:
@@ -239,11 +243,15 @@ public class ArithmeticSign {
 		}
 		
 
-		if(result!=null )
-			TextPanel.inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(String.valueOf(result)))  );
+		if(result!=null ) {
+			correctTextFormat.changeResultFontSize( correctTextFormat.removeDecimalPoint(String.valueOf(result)));
+			TextPanel.inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(String.valueOf(result))) ) ;
+			
 	
+		}
 	 } catch (NumberFormatException e) {
 			
+		 
 		}
 		
 	}

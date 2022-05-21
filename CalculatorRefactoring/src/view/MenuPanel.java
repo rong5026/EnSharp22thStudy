@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -20,9 +21,9 @@ import controller.MouseAction;
 
 
 
-public class MenuPanel extends JPanel{
+public class MenuPanel {
 
-
+	public JPanel menuPanel;
 	private JButton historyButton;
 	private JButton menuButton;
 	private JButton zoomButton;
@@ -31,10 +32,11 @@ public class MenuPanel extends JPanel{
 	
 	public MenuPanel(CenterPanel centerPanel ) {
 		
+		menuPanel = new JPanel();
 	
-		setLayout(new BorderLayout());
-		setPreferredSize(new Dimension(0,40));
-		setBackground(new Color(220,220,220));
+		menuPanel.setLayout(new BorderLayout());
+		menuPanel.setPreferredSize(new Dimension(0,40));
+		menuPanel.setBackground(new Color(220,220,220));
 		
 		
 		menuButton= new JButton(new ImageIcon(ConstantNumber.MENU_BUTTON_IMAGE));
@@ -43,9 +45,9 @@ public class MenuPanel extends JPanel{
 		information = new JLabel("표준");
 		
 		//버튼 배경색 설정
-		menuButton.setBackground(getBackground());
-		zoomButton.setBackground(getBackground());
-		historyButton.setBackground(getBackground());
+		menuButton.setBackground(menuPanel.getBackground());
+		zoomButton.setBackground(menuPanel.getBackground());
+		historyButton.setBackground(menuPanel.getBackground());
 		
 		menuButton.setBorderPainted(false);
 		menuButton.setFocusPainted(false);
@@ -61,15 +63,16 @@ public class MenuPanel extends JPanel{
 		box.add(menuButton);
 		box.add(information);
 		box.add(zoomButton);
-		add(box,BorderLayout.WEST);
+		menuPanel.add(box,BorderLayout.WEST);
 		
-		add(historyButton,BorderLayout.EAST);
+		menuPanel.add(historyButton,BorderLayout.EAST);
 	
 		// 버튼에 마우스 리스너달기
 		menuButton.addMouseListener(new MouseAction());
 		zoomButton.addMouseListener(new MouseAction());
 		historyButton.addMouseListener(new MouseAction());
-		historyButton.addActionListener(new HistoryButtonAction(centerPanel));
+		
+		historyButton.addActionListener(new HistoryButtonAction(centerPanel,menuPanel));
 	
 		
 		

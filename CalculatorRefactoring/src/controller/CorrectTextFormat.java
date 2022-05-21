@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.Font;
 import java.math.BigDecimal;
+import java.time.zone.ZoneOffsetTransitionRule;
 
 import view.TextPanel;
 
@@ -129,6 +130,13 @@ public class CorrectTextFormat {
 		
 		else if(resultNumber.length()>=11 && type =="Up")
 			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()+3 ));
+	}
+	
+	public void changeResultFontSize(String resultNumber) {
+		
+		
+		TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD ,55 - (resultNumber.length()-12 )*3));
+		
 	}
 	
 	
