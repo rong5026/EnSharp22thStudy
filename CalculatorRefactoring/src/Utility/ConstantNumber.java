@@ -48,6 +48,7 @@ public class ConstantNumber {
 	//error
 	public final static int NON_ERROR = 0;
 	public final static int ZERO_ERROR = 1;
+	public final static int OVERFLOW_ERROR = 2;
 	
 	
 	

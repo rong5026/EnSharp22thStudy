@@ -125,7 +125,7 @@ public class NumberButtonAction {
 		if(  getNumberLength( CalculatorStart.inputNumber) <16) {
 																									
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			//correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
 			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));			
 		}
 
@@ -151,7 +151,7 @@ public class NumberButtonAction {
 		else if(TextPanel.inputJLabel.getText()!="0" &&CalculatorStart.inputNumber.length()<16) {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			//correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
 			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 			
 		}
@@ -178,7 +178,7 @@ public class NumberButtonAction {
 		else if(TextPanel.inputJLabel.getText().contains(input) ==false &&CalculatorStart.inputNumber.length()<16) {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			//correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
 			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 		}
 		
@@ -240,7 +240,7 @@ public class NumberButtonAction {
 				//입력값 1개 삭제
 				CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
 							
-				//correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
+				correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
 				
 			
 				TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));

@@ -14,8 +14,9 @@ import javax.swing.JPanel;
 
 import Utility.ConstantNumber;
 import controller.CalculatorStart;
-
+import controller.HistoryButtonAction;
 import controller.MouseAction;
+
 
 
 
@@ -28,7 +29,7 @@ public class MenuPanel extends JPanel{
 	private JLabel information;
 	private Box box;
 	
-	public MenuPanel() {
+	public MenuPanel(CenterPanel centerPanel ) {
 		
 	
 		setLayout(new BorderLayout());
@@ -63,13 +64,12 @@ public class MenuPanel extends JPanel{
 		add(box,BorderLayout.WEST);
 		
 		add(historyButton,BorderLayout.EAST);
-		//historyButton.setBounds(CalculatorStart.mainFrame.getWidth()-40, getHeight(), 100, 40);
-		
-		System.out.println(getWidth());
+	
 		// 버튼에 마우스 리스너달기
 		menuButton.addMouseListener(new MouseAction());
 		zoomButton.addMouseListener(new MouseAction());
 		historyButton.addMouseListener(new MouseAction());
+		historyButton.addActionListener(new HistoryButtonAction(centerPanel));
 	
 		
 		

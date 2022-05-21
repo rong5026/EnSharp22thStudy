@@ -12,16 +12,18 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controller.CalculatorStart;
+import controller.ComponentAction;
 
 public class TextPanel extends JPanel{
 
 	public static JLabel inputJLabel;
 	public static JLabel previousJLabel;
 	
+	private ComponentAction componentAction;
 	
 	public TextPanel() {
 	
-		
+	
 		setLayout(new GridBagLayout()); // 상하 3개로 나누기
 		GridBagConstraints grdBagConstraints =new GridBagConstraints();
 		grdBagConstraints.fill = GridBagConstraints.BOTH;
@@ -55,7 +57,9 @@ public class TextPanel extends JPanel{
 		grdBagConstraints.gridx = 0;
 		grdBagConstraints.gridy = 1;
 		add(inputJLabel,grdBagConstraints);
-	
+		
+		
+		//componentAction = new ComponentAction(inputJLabel);
 		
 		
 	}

@@ -22,9 +22,12 @@ public class CalculatorStart {
 	private Container container;
 	private ImageIcon img;
 	private ArithmeticSign arithmeticSign;
+	private CenterPanel centerPanel;
+	
 	public static String inputNumber; //현재 입력중인 값
 	public static String previousNumber; //이전에 입력중인 값
 	public static JFrame mainFrame;
+	
 	public static int errorType;
 	
 
@@ -36,6 +39,7 @@ public class CalculatorStart {
 		previousNumber=""; 
 		errorType= ConstantNumber.NON_ERROR;
 		mainFrame = new JFrame();
+		centerPanel = new CenterPanel(arithmeticSign);
 		arithmeticSign = new ArithmeticSign();
 		img = new ImageIcon(ConstantNumber.CALCULATOR_ICON_IMAGE);
 		mainFrame.setIconImage(img.getImage());
@@ -48,8 +52,10 @@ public class CalculatorStart {
 	}
 	
 	public void start() {
-		mainFrame.add(new MenuPanel(),BorderLayout.NORTH);
-		mainFrame.add(new CenterPanel(arithmeticSign),BorderLayout.CENTER);
+
+		
+		mainFrame.add(new MenuPanel(centerPanel ),BorderLayout.NORTH);
+		mainFrame.add(centerPanel,BorderLayout.CENTER);
 		// 키보드값 입력 엑션달기
 		
 		mainFrame.addKeyListener(new KeyboardButtonAction(arithmeticSign));

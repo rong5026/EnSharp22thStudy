@@ -12,7 +12,8 @@ import controller.ArithmeticSign;
 
 public class CenterPanel extends JPanel{
 
-
+	public ButtonPanel buttonPanel;
+	
 	public CenterPanel(ArithmeticSign arithmeticSign) {
 		
 		setBackground(new Color(220,220,220));
@@ -29,7 +30,9 @@ public class CenterPanel extends JPanel{
 		grdBagConstraints.weighty = 0.5;
 		grdBagConstraints.gridx = 0;
 		grdBagConstraints.gridy = 1;
-		add(new ButtonPanel(arithmeticSign),grdBagConstraints);
+		
+		buttonPanel = new ButtonPanel(arithmeticSign);
+		add( buttonPanel,grdBagConstraints);
 		
 	
 		
