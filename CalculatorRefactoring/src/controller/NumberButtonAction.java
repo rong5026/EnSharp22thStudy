@@ -261,6 +261,7 @@ public class NumberButtonAction {
 			 enterCAction();
 		}
 		
+		
 		if(CalculatorStart.inputNumber!="" && TextPanel.inputJLabel.getText()!="0") {
 			
 			
@@ -273,6 +274,16 @@ public class NumberButtonAction {
 			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber) );
 			
 		}	
+		
+		if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=1) {
+			
+			if(TextPanel.previousJLabel.getText().contains("＝")) {
+				TextPanel.previousJLabel.setText(correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(TextPanel.inputJLabel.getText()) ));
+			}
+			else {
+				
+			}
+		}
 		
 	
 		CalculatorStart.mainFrame.setFocusable(true);

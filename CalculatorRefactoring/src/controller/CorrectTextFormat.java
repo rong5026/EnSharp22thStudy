@@ -135,8 +135,14 @@ public class CorrectTextFormat {
 	public void changeResultFontSize(String resultNumber) {
 		
 		
-		TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD ,55 - (resultNumber.length()-12 )*3));
+		if(resultNumber.length()>=10)
+			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD ,55 - (resultNumber.length()-12 )*3));
 		
+	}
+	
+	public String setNegate(String inputValue) {
+		
+		return "negate(" + inputValue + ")";
 	}
 	
 	

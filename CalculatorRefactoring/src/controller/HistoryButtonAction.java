@@ -33,7 +33,7 @@ public class HistoryButtonAction implements ActionListener{
 		grdBagConstraints.gridy = 1;
 		centerPanel.add(historyPanel.scroll,grdBagConstraints);
 		
-		centerPanel.textPanel.setBackground(Color.red);
+		//centerPanel.textPanel.setBackground(Color.red);
 		
 		CalculatorStart.mainFrame.revalidate();
 		CalculatorStart.mainFrame.repaint();
