@@ -5,9 +5,9 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
+import javax.swing.JPanel;import model.ResultDTO;
 import view.ButtonPanel;
 import view.CenterPanel;
 import view.HistoryPanel;
@@ -15,12 +15,14 @@ import view.HistoryPanel;
 public class HistoryButtonAction implements ActionListener{
 	private HistoryPanel historyPanel;
 	private CenterPanel centerPanel;
-	public HistoryButtonAction(CenterPanel centerPanel,JPanel menupanel) {
+	private ArrayList<ResultDTO> resultList;
+	public HistoryButtonAction(CenterPanel centerPanel,JPanel menupanel,ArrayList<ResultDTO> resultList) {
 		this.centerPanel = centerPanel;
+		this.resultList =resultList;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		historyPanel =new HistoryPanel();
+		historyPanel =new HistoryPanel(resultList);
 		
 		
 		centerPanel.buttonPanel.setVisible(false);

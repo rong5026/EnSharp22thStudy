@@ -5,9 +5,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.math.BigDecimal;
 import java.math.MathContext;
-
+import java.util.ArrayList;
 
 import Utility.*;
+import model.ResultDTO;
 import view.TextPanel;
 
 public class KeyboardButtonAction implements KeyListener{
@@ -16,10 +17,12 @@ public class KeyboardButtonAction implements KeyListener{
 	private NumberButtonAction numberButtonAction;
 	private ArithmeticSign arithmeticSign;
 	private CorrectTextFormat correctTextFormat;
+	private ArrayList<ResultDTO> resultList;
 	
-	public KeyboardButtonAction(ArithmeticSign arithmeticSign) {
-		numberButtonAction = new NumberButtonAction(arithmeticSign);
+	public KeyboardButtonAction(ArithmeticSign arithmeticSign,ArrayList<ResultDTO> resultList) {
+		numberButtonAction = new NumberButtonAction(arithmeticSign,resultList);
 		this.arithmeticSign = arithmeticSign;
+		this.resultList =resultList;
 		correctTextFormat= new CorrectTextFormat();
 	}
 	
@@ -48,7 +51,7 @@ public class KeyboardButtonAction implements KeyListener{
 		}//ESC
 		else if(keyCode ==  ConstantNumber.KEY_ESC ) {
 			numberButtonAction.enterCAction();
-			this.arithmeticSign =new ArithmeticSign();
+			this.arithmeticSign =new ArithmeticSign(resultList);
 		}
 		// 연산자
 		else if((keyCode ==ConstantNumber.RIGTH_KEY_DIVIDE ||keyCode ==ConstantNumber.LEFT_KEY_DIVIDE||

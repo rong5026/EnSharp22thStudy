@@ -5,18 +5,20 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.LayoutFocusTraversalPolicy;
 
 import controller.ArithmeticSign;
+import model.ResultDTO;
 
 public class CenterPanel extends JPanel{
 
 	public ButtonPanel buttonPanel;
 	public TextPanel textPanel;
 	public HistoryPanel historyPanel;
-	public CenterPanel(ArithmeticSign arithmeticSign) {
+	public CenterPanel(ArithmeticSign arithmeticSign,ArrayList<ResultDTO> resultList) {
 		
 		setBackground(new Color(220,220,220));
 		setLayout(new GridBagLayout());
@@ -34,7 +36,7 @@ public class CenterPanel extends JPanel{
 		grdBagConstraints.gridx = 0;
 		grdBagConstraints.gridy = 1;
 		
-		buttonPanel = new ButtonPanel(arithmeticSign);
+		buttonPanel = new ButtonPanel(arithmeticSign,resultList);
 		add( buttonPanel,grdBagConstraints);
 		
 		

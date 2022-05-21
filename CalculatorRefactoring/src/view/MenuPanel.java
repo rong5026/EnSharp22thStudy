@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -17,6 +18,7 @@ import Utility.ConstantNumber;
 import controller.CalculatorStart;
 import controller.HistoryButtonAction;
 import controller.MouseAction;
+import model.ResultDTO;
 
 
 
@@ -30,7 +32,7 @@ public class MenuPanel {
 	private JLabel information;
 	private Box box;
 	
-	public MenuPanel(CenterPanel centerPanel ) {
+	public MenuPanel(CenterPanel centerPanel ,ArrayList<ResultDTO> resultList) {
 		
 		menuPanel = new JPanel();
 	
@@ -72,7 +74,7 @@ public class MenuPanel {
 		zoomButton.addMouseListener(new MouseAction());
 		historyButton.addMouseListener(new MouseAction());
 		
-		historyButton.addActionListener(new HistoryButtonAction(centerPanel,menuPanel));
+		historyButton.addActionListener(new HistoryButtonAction(centerPanel,menuPanel,resultList));
 	
 		
 		

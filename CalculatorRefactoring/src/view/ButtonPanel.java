@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,13 +18,15 @@ import controller.ArithmeticSign;
 import controller.CalculatorStart;
 import controller.MouseAction;
 import controller.NumberButtonAction;
+import model.ResultDTO;
 
 
 public class ButtonPanel extends JPanel{
 	
 	public JButton [] button;
 	
-	public ButtonPanel(ArithmeticSign arithmeticSign) {
+	public ButtonPanel(ArithmeticSign arithmeticSign,ArrayList<ResultDTO> resultList) {
+		
 		NumberButtonAction buttonAction;
 		
 		setLayout(new GridLayout(5,4,1,1));
@@ -81,7 +84,7 @@ public class ButtonPanel extends JPanel{
 			
 		}
 		//버튼클릭 엑션
-		buttonAction = new NumberButtonAction(arithmeticSign);
+		buttonAction = new NumberButtonAction(arithmeticSign,resultList);
 		buttonAction.setButtonAction(button);
 	
 	

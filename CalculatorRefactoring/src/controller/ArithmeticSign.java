@@ -5,8 +5,10 @@ import java.awt.geom.RoundRectangle2D;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 
 import Utility.ConstantNumber;
+import model.ResultDTO;
 import view.TextPanel;
 
 public class ArithmeticSign {
@@ -16,9 +18,10 @@ public class ArithmeticSign {
 	public BigDecimal previusDouble;
 	public BigDecimal inputDoble;
 	private CorrectTextFormat correctTextFormat;
-	
-	public ArithmeticSign() {
+	private ArrayList<ResultDTO> resultList;
+	public ArithmeticSign(ArrayList<ResultDTO> resultList) {
 		correctTextFormat = new CorrectTextFormat();
+		this.resultList = resultList;
 	}
 	
 	
@@ -116,7 +119,7 @@ public class ArithmeticSign {
 		if((previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) ) {
 			TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( CalculatorStart.inputNumber)+"＝");		
 			CalculatorStart.previousNumber =TextPanel.previousJLabel.getText().substring(0,TextPanel.previousJLabel.getText().length()-1).replace(",", "");
-		
+			resultList.add(new ResultDTO(TextPanel.previousJLabel.getText() ,TextPanel.inputJLabel.getText() ));
 		
 		}
 	

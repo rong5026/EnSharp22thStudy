@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
@@ -11,6 +12,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 import Utility.ConstantNumber;
 import view.TextPanel;
 import controller.CorrectTextFormat;
+import model.ResultDTO;
 
 public class NumberButtonAction {
 
@@ -19,9 +21,11 @@ public class NumberButtonAction {
 	private JButton pressedButton;
 	private ArithmeticSign arithmeticSign;
 	private CorrectTextFormat correctTextFormat;
+	private  ArrayList<ResultDTO> resultList;
 	
-	public NumberButtonAction(ArithmeticSign arithmeticSign) {
+	public NumberButtonAction(ArithmeticSign arithmeticSign, ArrayList<ResultDTO> resultList) {
 		this.arithmeticSign =arithmeticSign;
+		this.resultList = resultList;
 		correctTextFormat = new CorrectTextFormat();
 	}
 	public void setButtonAction(JButton [] button) {
@@ -216,7 +220,7 @@ public class NumberButtonAction {
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
 		CalculatorStart.errorType =ConstantNumber.NON_ERROR;
-		this.arithmeticSign = new ArithmeticSign();
+		this.arithmeticSign = new ArithmeticSign(resultList);
 		
 	}
 	public void enterBackAction() { /// back 입력
