@@ -90,21 +90,30 @@ public class CorrectTextFormat {
 		return resultNumber.replace("e", "E");
 	}
 	public String removeDecimalPoint(String resultNumber) { // bigdecimal값에 소수점이 있으면 .000 없애기
-		BigDecimal integer;
-		BigDecimal decimal;
-		String result = null;
-		
 		
 	
+		
+		int zeroCount=0;
+		String result;
 		if(resultNumber.contains(".")) {
-			integer  = new BigDecimal( resultNumber.substring(  0, resultNumber.indexOf(".")  ));
-			decimal = new BigDecimal(resultNumber.substring( resultNumber.indexOf("."), resultNumber.length())).stripTrailingZeros();
-					
-			if(resultNumber.contains("-")) {
-				return "-"+integer.toString() + decimal.toString().substring(1);
+			
+			for(int index = resultNumber.length()-1 ; index >=0 ; index--) {
+				
+				if(resultNumber.charAt(index)=='0' )
+					zeroCount++;
+				else {
+					break;
+				}
 			}
 			
-			return integer.toString() + decimal.toString().substring(1);
+			
+			result = resultNumber.substring(0, resultNumber.length()- zeroCount);
+			
+			if(result.charAt(result.length()-1) =='.')
+				return result.substring(0,result.length()-1);
+			
+			return result;
+			
 		}
 		
 		return resultNumber;

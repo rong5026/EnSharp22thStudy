@@ -15,6 +15,11 @@ public class CalculatorMain {
 		
 		
 	
+		//String aString = "120.0002";
+		
+		
+		//System.out.println(aString.substring(0,aString.length()));
+		//System.out.println(aString.charAt(aString.length()-1));
 		
 		//if(new BigDecimal("159191591").compareTo(new BigDecimal("0"))==0) {
 			//System.out.println("같다");
