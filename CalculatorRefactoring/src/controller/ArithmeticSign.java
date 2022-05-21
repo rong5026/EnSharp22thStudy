@@ -25,7 +25,7 @@ public class ArithmeticSign {
 	public void enterArithmeticSign(String input) {
 	
 		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
-			if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="" ) {
+			if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!="" && TextPanel.previousJLabel.getText().charAt(TextPanel.previousJLabel.getText().length()-1) != '＝') {
 				
 				mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
 				previusDouble =  new BigDecimal(CalculatorStart.previousNumber.replace("e", "E"));
