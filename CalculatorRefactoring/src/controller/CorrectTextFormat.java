@@ -12,7 +12,7 @@ public class CorrectTextFormat {
 		BigDecimal bigDecimal;
 		
 		result = addComma(resultNumber);
-		//result = removeDecimalPoint(result);
+	
 		result = changeEtoe(result);
 		return result;
 	}
@@ -21,7 +21,7 @@ public class CorrectTextFormat {
 		String result;
 		BigDecimal bigDecimal;
 		
-		if(new BigDecimal(resultNumber).compareTo(new BigDecimal("0"))==0)
+		if(new BigDecimal( removeComma(resultNumber)).compareTo(new BigDecimal("0"))==0)
 			return "0";
 		
 		result = removeComma(resultNumber);

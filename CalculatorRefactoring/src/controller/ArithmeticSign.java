@@ -165,7 +165,7 @@ public class ArithmeticSign {
 			}
 			break;
 		case "×":
-			result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64).setScale(15,RoundingMode.HALF_EVEN);
+			result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);//previusDouble.multiply(inputDoble,MathContext.DECIMAL64).setScale(15,RoundingMode.HALF_EVEN);
 			CalculatorStart.previousNumber =  String.valueOf( previusDouble.multiply(inputDoble,MathContext.DECIMAL128).setScale(16,RoundingMode.HALF_EVEN)  ).replace("E", "e");
 			break;
 		case "－":
@@ -211,7 +211,7 @@ public class ArithmeticSign {
 		
 		//결과값  inputlabel에 저장99999999
 		
-		TextPanel.inputJLabel.setText(    ( String.valueOf(result)) );
+		TextPanel.inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(String.valueOf(result)))  );
 	
 		
 	}
