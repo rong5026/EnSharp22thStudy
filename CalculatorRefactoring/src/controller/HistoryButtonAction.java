@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,26 +20,30 @@ public class HistoryButtonAction implements ActionListener{
 	private HistoryPanel historyPanel;
 	private CenterPanel centerPanel;
 	private ArrayList<ResultDTO> resultList;
+	private JPanel buttonPanel;
+	private CalculatorStart calculatorStart;
 	private boolean ishistoryOn;
 	public HistoryButtonAction(CenterPanel centerPanel,ArrayList<ResultDTO> resultList,CalculatorStart calculatorStart) {
 		this.centerPanel = centerPanel;
 		this.resultList =resultList;
-		if(	calculatorStart.ishistoryOn == ConstantNumber.isHISTORY_OFF)
-			calculatorStart.ishistoryOn = ConstantNumber.isHISTORY_ON;
-		else 
-			calculatorStart.ishistoryOn = ConstantNumber.isHISTORY_OFF;
-		this.ishistoryOn = calculatorStart.ishistoryOn;
+		this.calculatorStart = calculatorStart;
+	
+		ishistoryOn = calculatorStart.ishistoryOn;
+	
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		System.out.println(ishistoryOn);
 		
-		if(ishistoryOn ==ConstantNumber.isHISTORY_ON) {
+		if(ishistoryOn ==ConstantNumber.isHISTORY_OFF) {
 		
 			historyPanel =new HistoryPanel(resultList);
 			
+			
 			centerPanel.buttonPanel.setVisible(false);
+			
 			GridBagConstraints grdBagConstraints =new GridBagConstraints();
 			grdBagConstraints.fill = GridBagConstraints.BOTH;
 			grdBagConstraints.weightx = 1;
@@ -46,20 +51,17 @@ public class HistoryButtonAction implements ActionListener{
 			grdBagConstraints.gridx = 0;
 			grdBagConstraints.gridy = 1;
 			centerPanel.add(historyPanel.scroll,grdBagConstraints);
-		}
-		else {
-
-			centerPanel.buttonPanel.setVisible(true);
+			ishistoryOn = ConstantNumber.isHISTORY_ON;
 			
 		}
 		
 		
-		
-		
 
-		
 		CalculatorStart.mainFrame.revalidate();
 		CalculatorStart.mainFrame.repaint();
+		System.out.println(ishistoryOn);
+		
+
 	}
 	
 	

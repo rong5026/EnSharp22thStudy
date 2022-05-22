@@ -24,12 +24,12 @@ public class CalculatorStart {
 	private ImageIcon calculatorIcon;
 	private Container container;
 	private ImageIcon img;
-	private ArithmeticSign arithmeticSign;
+	public ArithmeticSign arithmeticSign;
 	public CenterPanel centerPanel;
 	private MenuPanel menuPanel;
 	private ArrayList<ResultDTO> resultList;
-	private JLabel inputJLabel; // 현재 입력중인 값 라벨
-	private JLabel previousJLabel; // 이전에 입력중인 라벨
+	public JLabel inputJLabel; // 현재 입력중인 값 라벨
+	public JLabel previousJLabel; // 이전에 입력중인 라벨
 	public boolean ishistoryOn;
 	public static JFrame mainFrame;
 	public static String inputNumber; //현재 입력중인 값
