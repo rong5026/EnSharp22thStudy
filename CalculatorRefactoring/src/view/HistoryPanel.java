@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ import model.ResultDTO;
 public class HistoryPanel {
 
 	public JScrollPane scroll;
-	JPanel historyJPanel;
-	
+	private JPanel historyJPanel;
+	private JButton button;
 	public  HistoryPanel(ArrayList<ResultDTO> resultList) {
 		
 		
@@ -31,40 +32,27 @@ public class HistoryPanel {
 		historyJPanel.setLayout(new GridLayout(resultList.size(),1)); // 세로로
 		
 		
-		/*
-		for(int index = 0; index<resultList.size() ; index++) {
-			String top = resultList.get(index).getFormula();
-			String bottom = resultList.get(index).getResult();
-			JPanel panel = new JPanel();
-			panel.setLayout(new GridLayout(2,1));
-			panel.setPreferredSize(new Dimension(0,120));
-			JLabel topJLabel = new JLabel(top);
-			JLabel bottomJLabel = new JLabel(bottom);
-			panel.add(topJLabel);
-			panel.add(bottomJLabel);
+		if(resultList.size() ==0) {
 			
-			historyJPanel.add(panel);
+			button = createButton("아직 기록이 없음");
 			
-			
-			
-			
+			historyJPanel.add(button);
 		}
-		*/
 		
 		
 		for(int index = 0; index<resultList.size() ; index++) {
-			String buttonString = resultList.get(index).getFormula() +"<html><br></html>"+ resultList.get(index).getResult();
-			JButton button = new JButton( );
-			button.setText("<html>" + resultList.get(index).getFormula() +"<br>" +resultList.get(index).getResult() + "</html>"  );
+			String topString = resultList.get(index).getFormula() ;
+			String bottomString =  resultList.get(index).getResult();
+
+			button = createButton("<html><body style='text-align:right;'>" + topString+"<br>" +bottomString + "</body></html>" );
 			button.setHorizontalAlignment(SwingConstants.RIGHT);
-			
-			button.setPreferredSize(new Dimension(0,120));
-			button.setBorder(null);
-			button.setBackground(new Color(232,232,232));		
+	
 			historyJPanel.add(button);
 			button.addMouseListener(new MouseAction());
 			
 		}
+		
+	
 		
 		scroll = new JScrollPane(historyJPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setPreferredSize(new Dimension(0,400));
@@ -72,5 +60,17 @@ public class HistoryPanel {
 		
 	}
 	
+	private JButton createButton(String buttonText) {
+		button = new JButton();
+		button.setText(buttonText);
+		
+		
+		button.setFont(new Font("맑은 고딕", Font.BOLD , 30));
+		button.setPreferredSize(new Dimension(0,120));
+		button.setBorder(null);
+		button.setBackground(new Color(232,232,232));		
+		
+		return button;
+	}
 		
 }
