@@ -24,7 +24,7 @@ public class TextPanel extends JPanel{
 	public TextPanel() {
 	
 	
-		setLayout(new GridBagLayout()); // 상하 3개로 나누기
+		setLayout(new GridLayout(2,1)); // 상하 3개로 나누기
 		GridBagConstraints grdBagConstraints =new GridBagConstraints();
 		grdBagConstraints.fill = GridBagConstraints.BOTH;
 		
@@ -50,13 +50,13 @@ public class TextPanel extends JPanel{
 		grdBagConstraints.weighty = 0.1;
 		grdBagConstraints.gridx = 0;
 		grdBagConstraints.gridy = 0;
-		add(previousJLabel,grdBagConstraints);
+		add(previousJLabel);
 		
 		grdBagConstraints.weightx = 1;
 		grdBagConstraints.weighty = 0.3;
 		grdBagConstraints.gridx = 0;
 		grdBagConstraints.gridy = 1;
-		add(inputJLabel,grdBagConstraints);
+		add(inputJLabel);
 		
 		
 		//componentAction = new ComponentAction(inputJLabel);

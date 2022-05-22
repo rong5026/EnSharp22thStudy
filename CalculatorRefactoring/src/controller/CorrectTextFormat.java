@@ -83,30 +83,31 @@ public class CorrectTextFormat {
 		
 		return resultNumber.replace(",", "");
 	}
+	
 	public String changeEtoe(String resultNumber) { // E ->e
 		
 		return resultNumber.replace("E", "e");
 	}
+	
 	public String changeetoE(String resultNumber) { // e -> E
 		return resultNumber.replace("e", "E");
 	}
+	
 	public String removeDecimalPoint(String resultNumber) { // bigdecimal값에 소수점이 있으면 .000 없애기
 		
 	
-		
 		int zeroCount=0;
 		String result;
 		if(resultNumber.contains(".")) {
 			
 			for(int index = resultNumber.length()-1 ; index >=0 ; index--) {
 				
-				if(resultNumber.charAt(index)=='0' )
+				if(resultNumber.charAt(index)=='0' ) {
 					zeroCount++;
-				else {
-					break;
+					continue;
 				}
+				break;
 			}
-			
 			
 			result = resultNumber.substring(0, resultNumber.length()- zeroCount);
 			
@@ -114,11 +115,9 @@ public class CorrectTextFormat {
 				return result.substring(0,result.length()-1);
 			
 			return result;
-			
 		}
 		
 		return resultNumber;
-		
 		
 	}
 

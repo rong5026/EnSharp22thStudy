@@ -105,7 +105,6 @@ public class ArithmeticSign {
 		try {
 			
 		
-	
 		String previousJLabelText;
 		previousJLabelText = TextPanel.previousJLabel.getText();
 		
@@ -186,7 +185,6 @@ public class ArithmeticSign {
 			case "×":
 				result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);
 			
-				
 				if(result.compareTo(new BigDecimal("9.999999999999375E+9999"))>0) {
 					cakculateOverFlow();
 					return;
@@ -208,6 +206,7 @@ public class ArithmeticSign {
 				break;
 			}
 			
+			resultList.add(new ResultDTO(  correctTextFormat.removeDecimalPoint(previusDouble.toString())+mathSign+inputDoble.toString()+"=" ,correctTextFormat.removeDecimalPoint(String.valueOf(result))  ));
 		
 		}
 		

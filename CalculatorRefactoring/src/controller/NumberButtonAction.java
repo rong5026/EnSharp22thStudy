@@ -236,7 +236,7 @@ public class NumberButtonAction {
 		if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
 			TextPanel.previousJLabel.setText("");
 			CalculatorStart.inputNumber = correctTextFormat.setCorrectPreviousPanel (TextPanel.inputJLabel.getText());  //수정
-		}
+		} 
 			
 		else {
 			if(CalculatorStart.inputNumber.length()>0 && CalculatorStart.inputNumber!="") {
@@ -265,6 +265,15 @@ public class NumberButtonAction {
 			 enterCAction();
 		}
 		
+		if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=1 ) {
+			
+			if(TextPanel.previousJLabel.getText().contains("＝")) {
+				TextPanel.previousJLabel.setText(correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(TextPanel.inputJLabel.getText()) ));
+			}
+			else {
+				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText())+ TextPanel.previousJLabel.getText().charAt(TextPanel.previousJLabel.getText().length()-1) +  correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(TextPanel.inputJLabel.getText()) ));
+			}
+		}
 		
 		if( TextPanel.inputJLabel.getText()!="0") {
 			
@@ -283,15 +292,7 @@ public class NumberButtonAction {
 			
 		}	
 		
-		if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=1 ) {
-			
-			if(TextPanel.previousJLabel.getText().contains("＝")) {
-				TextPanel.previousJLabel.setText(correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(TextPanel.inputJLabel.getText()) ));
-			}
-			else {
-				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText())+ TextPanel.previousJLabel.getText().charAt(TextPanel.previousJLabel.getText().length()-1) +  correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(TextPanel.inputJLabel.getText()) ));
-			}
-		}
+		
 		
 	
 		CalculatorStart.mainFrame.setFocusable(true);
