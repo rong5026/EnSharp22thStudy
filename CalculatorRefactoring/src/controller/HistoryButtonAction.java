@@ -54,6 +54,12 @@ public class HistoryButtonAction implements ActionListener{
 			ishistoryOn = ConstantNumber.isHISTORY_ON;
 			
 		}
+		else {
+			
+			historyPanel.scroll.setVisible(false);
+			centerPanel.buttonPanel.setVisible(true);
+			ishistoryOn = ConstantNumber.isHISTORY_OFF;
+		}
 		
 		
 

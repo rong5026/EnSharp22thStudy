@@ -41,20 +41,6 @@ public class CenterPanel extends JPanel{
 		buttonPanel = new ButtonPanel(arithmeticSign,resultList,inputJLabel,previousJLabel);
 		add( buttonPanel,grdBagConstraints);
 		
-		
-		
-		grdBagConstraints.weightx = 1;
-		grdBagConstraints.weighty = 0.5;
-		grdBagConstraints.gridx = 0;
-		grdBagConstraints.gridy = 1;
-		buttonPanel = new ButtonPanel(arithmeticSign,resultList,inputJLabel,previousJLabel);
-		add( buttonPanel,grdBagConstraints);
-
-		
-		
 	
-		
-	
-		
 	}
 }
