@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Utility.ConstantNumber;
@@ -25,7 +26,7 @@ public class ButtonPanel extends JPanel{
 	
 	public JButton [] button;
 	
-	public ButtonPanel(ArithmeticSign arithmeticSign,ArrayList<ResultDTO> resultList) {
+	public ButtonPanel(ArithmeticSign arithmeticSign,ArrayList<ResultDTO> resultList,JLabel inputJLabel, JLabel previousJLabel) {
 		
 		NumberButtonAction buttonAction;
 		
@@ -84,7 +85,7 @@ public class ButtonPanel extends JPanel{
 			
 		}
 		//버튼클릭 엑션
-		buttonAction = new NumberButtonAction(arithmeticSign,resultList);
+		buttonAction = new NumberButtonAction(arithmeticSign,resultList,inputJLabel,previousJLabel);
 		buttonAction.setButtonAction(button);
 	
 	

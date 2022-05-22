@@ -11,6 +11,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import Utility.ConstantNumber;
 import model.ResultDTO;
@@ -27,10 +28,12 @@ public class CalculatorStart {
 	private CenterPanel centerPanel;
 	private MenuPanel menuPanel;
 	private ArrayList<ResultDTO> resultList;
+	public static JFrame mainFrame;
 	public static String inputNumber; //현재 입력중인 값
 	public static String previousNumber; //이전에 입력중인 값
-	public static JFrame mainFrame;
-	
+	private JLabel inputJLabel; // 현재 입력중인 값 라벨
+	private JLabel previousJLabel; // 이전에 입력중인 라벨
+
 	public static int errorType;
 	
 
@@ -43,8 +46,10 @@ public class CalculatorStart {
 		errorType= ConstantNumber.NON_ERROR;
 		mainFrame = new JFrame();
 		resultList = new ArrayList<ResultDTO>();
-		arithmeticSign = new ArithmeticSign(resultList);
-		centerPanel = new CenterPanel(arithmeticSign,resultList);
+		previousJLabel = new JLabel("");
+		inputJLabel = new JLabel("0");
+		arithmeticSign = new ArithmeticSign(resultList,inputJLabel,previousJLabel);
+		centerPanel = new CenterPanel(arithmeticSign,resultList,inputJLabel,previousJLabel);
 		menuPanel = new MenuPanel(centerPanel,resultList );
 	
 		img = new ImageIcon(ConstantNumber.CALCULATOR_ICON_IMAGE);
@@ -64,7 +69,7 @@ public class CalculatorStart {
 		mainFrame.add(centerPanel,BorderLayout.CENTER);
 		// 키보드값 입력 엑션달기
 		
-		mainFrame.addKeyListener(new KeyboardButtonAction(arithmeticSign,resultList));
+		mainFrame.addKeyListener(new KeyboardButtonAction(arithmeticSign,resultList,inputJLabel,previousJLabel));
 		mainFrame.setFocusable(true);
 		mainFrame.requestFocus();
 		

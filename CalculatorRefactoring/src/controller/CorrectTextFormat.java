@@ -4,9 +4,20 @@ import java.awt.Font;
 import java.math.BigDecimal;
 import java.time.zone.ZoneOffsetTransitionRule;
 
+import javax.swing.JLabel;
+
 import view.TextPanel;
 
 public class CorrectTextFormat {
+	
+	
+	private JLabel inputJLabel;
+	private JLabel previousJLabel;
+	 
+	public CorrectTextFormat(JLabel inputJLabel, JLabel previousJLabel) {
+		this.inputJLabel = inputJLabel;
+		this.previousJLabel = previousJLabel;
+	}
 	public String setCorrectInputPanel(String resultNumber) { // 콤마찍어주기. E -> e변경
 		
 		String result;
@@ -79,67 +90,58 @@ public class CorrectTextFormat {
 		
 		return integerPart+decimalPart;
 	}
-	public String removeComma(String resultNumber) { // 콤마 삭제
-		
+	// 콤마 삭제
+	public String removeComma(String resultNumber) {
 		return resultNumber.replace(",", "");
 	}
-	
-	public String changeEtoe(String resultNumber) { // E ->e
-		
+	 // E ->e
+	public String changeEtoe(String resultNumber) { 
 		return resultNumber.replace("E", "e");
 	}
-	
-	public String changeetoE(String resultNumber) { // e -> E
+	// e -> E
+	public String changeetoE(String resultNumber) { 
 		return resultNumber.replace("e", "E");
 	}
-	
-	public String removeDecimalPoint(String resultNumber) { // bigdecimal값에 소수점이 있으면 .000 없애기
-		
-	
+	 // bigdecimal값에 소수점이 있으면 .000 없애기
+	public String removeDecimalPoint(String resultNumber) {
 		int zeroCount=0;
 		String result;
 		if(resultNumber.contains(".")) {
 			
-			for(int index = resultNumber.length()-1 ; index >=0 ; index--) {
-				
+			for(int index = resultNumber.length()-1 ; index >=0 ; index--) {	
 				if(resultNumber.charAt(index)=='0' ) {
 					zeroCount++;
 					continue;
 				}
 				break;
 			}
-			
 			result = resultNumber.substring(0, resultNumber.length()- zeroCount);
-			
 			if(result.charAt(result.length()-1) =='.')
 				return result.substring(0,result.length()-1);
-			
 			return result;
 		}
-		
 		return resultNumber;
-		
 	}
 
 	
 	public void changeFontSize(String resultNumber,String type) { // 글자의 수에따라 폰트 변경
 		
 		if(resultNumber.length() >=12 && type =="Down") 
-			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()-3 ));
+			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , inputJLabel.getFont().getSize()-3 ));
 		
 		else if(resultNumber.length()>=11 && type =="Up")
-			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , TextPanel.inputJLabel.getFont().getSize()+3 ));
+			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , inputJLabel.getFont().getSize()+3 ));
 	}
 	
 	public void changeResultFontSize(String resultNumber) {
 		
 		
 		if(resultNumber.length()>=10)
-			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD ,55 - (resultNumber.length()-12 )*3));
+			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD ,55 - (resultNumber.length()-12 )*3));
 		
 	}
 	
-	public String setNegate(String inputValue) {
+	public String setNegate(String inputValue) { //negate 설정
 		
 		return "negate(" + inputValue + ")";
 	}

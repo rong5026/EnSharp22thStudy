@@ -16,24 +16,19 @@ import controller.ComponentAction;
 
 public class TextPanel extends JPanel{
 
-	public static JLabel inputJLabel;
-	public static JLabel previousJLabel;
+
 	
 	private ComponentAction componentAction;
 	
-	public TextPanel() {
+	public TextPanel(JLabel inputJLabel, JLabel previousJLabel) {
 	
 	
 		setLayout(new GridLayout(2,1)); // 상하 3개로 나누기
-		GridBagConstraints grdBagConstraints =new GridBagConstraints();
-		grdBagConstraints.fill = GridBagConstraints.BOTH;
-		
+
 		setBackground(new Color(220,220,220));
 	
 		
-		
-		previousJLabel = new JLabel("");
-		inputJLabel = new JLabel("0");
+	
 		
 		//입력과거 정보
 		previousJLabel.setFont(new Font("맑은 고딕", 0, 15 ));
@@ -46,26 +41,10 @@ public class TextPanel extends JPanel{
 		inputJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		inputJLabel.setPreferredSize(new Dimension(CalculatorStart.mainFrame.getWidth(),50));
 		
-		grdBagConstraints.weightx = 1;
-		grdBagConstraints.weighty = 0.1;
-		grdBagConstraints.gridx = 0;
-		grdBagConstraints.gridy = 0;
+	
 		add(previousJLabel);
-		
-		grdBagConstraints.weightx = 1;
-		grdBagConstraints.weighty = 0.3;
-		grdBagConstraints.gridx = 0;
-		grdBagConstraints.gridy = 1;
 		add(inputJLabel);
 		
-		
-		//componentAction = new ComponentAction(inputJLabel);
-		
-		
 	}
-	
-	
-	
-	
 }
 

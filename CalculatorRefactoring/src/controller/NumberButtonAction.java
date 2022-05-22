@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 import Utility.ConstantNumber;
@@ -22,11 +23,15 @@ public class NumberButtonAction {
 	private ArithmeticSign arithmeticSign;
 	private CorrectTextFormat correctTextFormat;
 	private  ArrayList<ResultDTO> resultList;
+	private JLabel inputJLabel;
+	private JLabel previousJLabel;
 	
-	public NumberButtonAction(ArithmeticSign arithmeticSign, ArrayList<ResultDTO> resultList) {
+	public NumberButtonAction(ArithmeticSign arithmeticSign, ArrayList<ResultDTO> resultList,JLabel inputJLabel, JLabel previousJLabel) {
 		this.arithmeticSign =arithmeticSign;
 		this.resultList = resultList;
-		correctTextFormat = new CorrectTextFormat();
+		this.inputJLabel = inputJLabel;
+		this.previousJLabel=previousJLabel;
+		correctTextFormat = new CorrectTextFormat(inputJLabel,previousJLabel);
 	}
 	public void setButtonAction(JButton [] button) {
 		
@@ -113,24 +118,24 @@ public class NumberButtonAction {
 		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		
 			 enterCAction();
 		}
-		else if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
+		else if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=2) {
 			enterCEAction();
 		}
 	
 		
 		
-		if(TextPanel.inputJLabel.getText() =="0") {						
-			TextPanel.inputJLabel.setText("");
+		if(inputJLabel.getText() =="0") {						
+			inputJLabel.setText("");
 		}
 		
 		if(CalculatorStart.inputNumber=="")
-			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));
+			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));
 	
 		if(  getNumberLength( CalculatorStart.inputNumber) <16) {
 																									
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
 			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
-			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));			
+			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));			
 		}
 
 			
@@ -144,19 +149,19 @@ public class NumberButtonAction {
 		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		
 			 enterCAction();
 		}
-		else if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
+		else if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=2) {
 			enterCEAction();
 		}
-		if(TextPanel.inputJLabel.getText()=="0")
+		if(inputJLabel.getText()=="0")
 			CalculatorStart.inputNumber ="";
 		
 		
 		
-		else if(TextPanel.inputJLabel.getText()!="0" &&CalculatorStart.inputNumber.length()<16) {
+		else if(inputJLabel.getText()!="0" &&CalculatorStart.inputNumber.length()<16) {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
 			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
-			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
+			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 			
 		}
 
@@ -170,20 +175,20 @@ public class NumberButtonAction {
 		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		
 			 enterCAction();
 		}
-		else if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
+		else if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=2) {
 			enterCEAction();
 		}
 		
-		if(TextPanel.inputJLabel.getText()=="0" || CalculatorStart.inputNumber=="" ) {
+		if(inputJLabel.getText()=="0" || CalculatorStart.inputNumber=="" ) {
 			CalculatorStart.inputNumber = "0.";
-			TextPanel.inputJLabel.setText(CalculatorStart.inputNumber);
+			inputJLabel.setText(CalculatorStart.inputNumber);
 		}
 			// .을 쓴적이 없고, 최대길이 이전일때
-		else if(TextPanel.inputJLabel.getText().contains(input) ==false &&CalculatorStart.inputNumber.length()<16) {
+		else if(inputJLabel.getText().contains(input) ==false &&CalculatorStart.inputNumber.length()<16) {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
 			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
-			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
+			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 		}
 		
 		
@@ -197,14 +202,14 @@ public class NumberButtonAction {
 		}
 	
 			
-			if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
-				TextPanel.previousJLabel.setText("");
+			if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=2) {
+				previousJLabel.setText("");
 			}
 		
 				
 			CalculatorStart.inputNumber = "";				
-			TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
-			TextPanel.inputJLabel.setText("0");
+			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
+			inputJLabel.setText("0");
 			CalculatorStart.mainFrame.setFocusable(true);
 			CalculatorStart.mainFrame.requestFocus();
 	
@@ -214,13 +219,13 @@ public class NumberButtonAction {
 		CalculatorStart.inputNumber = "";		
 		CalculatorStart.previousNumber = "";		
 	
-		TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));		
-		TextPanel.inputJLabel.setText("0");
-		TextPanel.previousJLabel.setText("");
+		inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));		
+		inputJLabel.setText("0");
+		previousJLabel.setText("");
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
 		CalculatorStart.errorType =ConstantNumber.NON_ERROR;
-		this.arithmeticSign = new ArithmeticSign(resultList);
+		this.arithmeticSign = new ArithmeticSign(resultList,inputJLabel,previousJLabel);
 		
 	}
 	public void enterBackAction() { /// back 입력
@@ -228,14 +233,14 @@ public class NumberButtonAction {
 		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		
 			 enterCAction();
 		}
-		if( TextPanel.inputJLabel.getText().equals("-0.") )    {
-			TextPanel.inputJLabel.setText("0");
+		if( inputJLabel.getText().equals("-0.") )    {
+			inputJLabel.setText("0");
 			CalculatorStart.inputNumber ="";
 		}
 			
-		if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=2) {
-			TextPanel.previousJLabel.setText("");
-			CalculatorStart.inputNumber = correctTextFormat.setCorrectPreviousPanel (TextPanel.inputJLabel.getText());  //수정
+		if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=2) {
+			previousJLabel.setText("");
+			CalculatorStart.inputNumber = correctTextFormat.setCorrectPreviousPanel (inputJLabel.getText());  //수정
 		} 
 			
 		else {
@@ -247,11 +252,11 @@ public class NumberButtonAction {
 				correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
 				
 			
-				TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
+				inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 			}	
-			if(TextPanel.inputJLabel.getText().length() ==0) {
+			if(inputJLabel.getText().length() ==0) {
 				CalculatorStart.inputNumber ="";
-				TextPanel.inputJLabel.setText("0");
+				inputJLabel.setText("0");
 			}
 		}
 		
@@ -265,20 +270,20 @@ public class NumberButtonAction {
 			 enterCAction();
 		}
 		
-		if(arithmeticSign.getArithmeticSignCount(TextPanel.previousJLabel.getText())>=1 ) {
+		if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=1 ) {
 			
-			if(TextPanel.previousJLabel.getText().contains("＝")) {
-				TextPanel.previousJLabel.setText(correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(TextPanel.inputJLabel.getText()) ));
+			if(previousJLabel.getText().contains("＝")) {
+				previousJLabel.setText(correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(inputJLabel.getText()) ));
 			}
 			else {
-				TextPanel.previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(TextPanel.inputJLabel.getText())+ TextPanel.previousJLabel.getText().charAt(TextPanel.previousJLabel.getText().length()-1) +  correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(TextPanel.inputJLabel.getText()) ));
+				previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText())+ previousJLabel.getText().charAt(previousJLabel.getText().length()-1) +  correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(inputJLabel.getText()) ));
 			}
 		}
 		
-		if( TextPanel.inputJLabel.getText()!="0") {
+		if( inputJLabel.getText()!="0") {
 			
 			if(CalculatorStart.inputNumber=="")
-				CalculatorStart.inputNumber =correctTextFormat.setCorrectPreviousPanel( TextPanel.inputJLabel.getText());
+				CalculatorStart.inputNumber =correctTextFormat.setCorrectPreviousPanel( inputJLabel.getText());
 			
 			if( Double.parseDouble(CalculatorStart.inputNumber) <0 || CalculatorStart.inputNumber.contains("-") ) 
 				CalculatorStart.inputNumber = CalculatorStart.inputNumber.replace("-", "");
@@ -288,7 +293,7 @@ public class NumberButtonAction {
 			
 			
 			
-			TextPanel.inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber) );
+			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber) );
 			
 		}	
 		

@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
 import Utility.*;
 import model.ResultDTO;
 import view.TextPanel;
@@ -18,12 +20,16 @@ public class KeyboardButtonAction implements KeyListener{
 	private ArithmeticSign arithmeticSign;
 	private CorrectTextFormat correctTextFormat;
 	private ArrayList<ResultDTO> resultList;
+	private JLabel inputJLabel;
+	private JLabel previousJLabel;
 	
-	public KeyboardButtonAction(ArithmeticSign arithmeticSign,ArrayList<ResultDTO> resultList) {
-		numberButtonAction = new NumberButtonAction(arithmeticSign,resultList);
+	public KeyboardButtonAction(ArithmeticSign arithmeticSign,ArrayList<ResultDTO> resultList,JLabel inputJLabel, JLabel previousJLabel) {
+		numberButtonAction = new NumberButtonAction(arithmeticSign,resultList,inputJLabel,previousJLabel);
 		this.arithmeticSign = arithmeticSign;
 		this.resultList =resultList;
-		correctTextFormat= new CorrectTextFormat();
+		this.inputJLabel = inputJLabel;
+		this.previousJLabel = previousJLabel;
+		correctTextFormat= new CorrectTextFormat(inputJLabel,previousJLabel);
 	}
 	
 	@Override
@@ -51,29 +57,20 @@ public class KeyboardButtonAction implements KeyListener{
 		}//ESC
 		else if(keyCode ==  ConstantNumber.KEY_ESC ) {
 			numberButtonAction.enterCAction();
-			this.arithmeticSign =new ArithmeticSign(resultList);
+			this.arithmeticSign =new ArithmeticSign(resultList,inputJLabel,previousJLabel);
 		}
 		// 연산자
-		else if((keyCode ==ConstantNumber.RIGTH_KEY_DIVIDE ||keyCode ==ConstantNumber.LEFT_KEY_DIVIDE||
-				keyCode ==ConstantNumber.RIGTH_KEY_MINUS||keyCode ==ConstantNumber.LEFT_KEY_MINUS ||
-				keyCode ==ConstantNumber.RIGTH_KEY_ENTER||keyCode ==ConstantNumber.LEFT_KEY_ENTER || 
-				keyCode ==ConstantNumber.RIGTH_KEY_MULTIPLE ||
-				keyCode ==ConstantNumber.RIGTH_KEY_PLUS) &&e.getModifiers()==ConstantNumber.KEY_SHIFT_OFF  || 
-				(keyCode ==ConstantNumber.LEFT_KEY_MULTIPLE && e.getModifiers()==ConstantNumber.KEY_SHIFT_ON) || 
-				(keyCode ==ConstantNumber.LEFT_KEY_PLUS && e.getModifiers()==ConstantNumber.KEY_SHIFT_ON) ){
+		else if((keyCode ==ConstantNumber.RIGTH_KEY_DIVIDE ||keyCode ==ConstantNumber.LEFT_KEY_DIVIDE||keyCode ==ConstantNumber.RIGTH_KEY_MINUS||keyCode ==ConstantNumber.LEFT_KEY_MINUS ||keyCode ==ConstantNumber.RIGTH_KEY_ENTER||keyCode ==ConstantNumber.LEFT_KEY_ENTER || keyCode ==ConstantNumber.RIGTH_KEY_MULTIPLE ||keyCode ==ConstantNumber.RIGTH_KEY_PLUS) &&e.getModifiers()==ConstantNumber.KEY_SHIFT_OFF  || (keyCode ==ConstantNumber.LEFT_KEY_MULTIPLE && e.getModifiers()==ConstantNumber.KEY_SHIFT_ON) || (keyCode ==ConstantNumber.LEFT_KEY_PLUS && e.getModifiers()==ConstantNumber.KEY_SHIFT_ON) ){
 			
+			if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) { // 에러가 없을때
 			
-			
-			if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
-				if(TextPanel.previousJLabel.getText()!="" && CalculatorStart.inputNumber!=""&& TextPanel.previousJLabel.getText().charAt(TextPanel.previousJLabel.getText().length()-1) != '＝') {
+				if(previousJLabel.getText()!="" && CalculatorStart.inputNumber!=""&& previousJLabel.getText().charAt(previousJLabel.getText().length()-1) != '＝') {
 					
-					arithmeticSign.mathSign = 	TextPanel.previousJLabel.getText().substring(TextPanel.previousJLabel.getText().length()-1);
+					arithmeticSign.mathSign = 	previousJLabel.getText().substring(previousJLabel.getText().length()-1);
 					arithmeticSign.previusDouble =  new BigDecimal(CalculatorStart.previousNumber.replace("e", "E"));
 					arithmeticSign.inputDoble = new BigDecimal(CalculatorStart.inputNumber.replace("e", "E"));
 					
 					arithmeticSign.calculateArithmeticSign(getCorrectMathSign(keyCode,e));
-				
-				
 				}
 				else {
 					
@@ -88,31 +85,24 @@ public class KeyboardButtonAction implements KeyListener{
 					else if(keyCode ==ConstantNumber.RIGTH_KEY_ENTER || keyCode ==ConstantNumber.LEFT_KEY_ENTER) {  //엔터
 						arithmeticSign.calculateEqual();
 						arithmeticSign.calculateArithmeticSign("＝");	
-					}
-								
+					}		
 				}
-				//입력값초기화
 				CalculatorStart.inputNumber ="";
 				
-			}
+			}// 에러가 있을 때
 			else {
 				CalculatorStart.inputNumber = "";				
-				TextPanel.inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
-				TextPanel.inputJLabel.setText("0");
+				inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
+				inputJLabel.setText("0");
 				CalculatorStart.errorType =ConstantNumber.NON_ERROR;
 			}
-			
-			System.out.println(CalculatorStart.inputNumber);			
-			System.out.println(CalculatorStart.previousNumber);	
-			System.out.println(TextPanel.inputJLabel.getText());
-			System.out.println(TextPanel.previousJLabel.getText());
 			
 		}
 	}
 
 	
-	
-	private String getCorrectMathSign(int keyCode,KeyEvent e) { // 키보드 입력받은 수학기호 판별 후 리ㅓㄴ
+	// 키보드 입력받은 수학기호 판별 후 리턴
+	private String getCorrectMathSign(int keyCode,KeyEvent e) { 
 		
 		if(keyCode ==ConstantNumber.RIGTH_KEY_DIVIDE ||keyCode ==ConstantNumber.LEFT_KEY_DIVIDE)  // 나누기
 			return "÷";
