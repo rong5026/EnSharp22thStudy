@@ -65,7 +65,7 @@ public class HistoryPanel {
 		button.setText(buttonText);
 		
 		
-		button.setFont(new Font("맑은 고딕", Font.BOLD , 30));
+		button.setFont(new Font("맑은 고딕", Font.BOLD , 24));
 		button.setPreferredSize(new Dimension(0,120));
 		button.setBorder(null);
 		button.setBackground(new Color(232,232,232));		

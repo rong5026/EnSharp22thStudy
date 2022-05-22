@@ -23,6 +23,7 @@ public class ArithmeticSign {
 	private ArrayList<ResultDTO> resultList;
 	private JLabel inputJLabel;
 	private JLabel previousJLabel;
+	
 	public ArithmeticSign(ArrayList<ResultDTO> resultList,JLabel inputJLabel, JLabel previousJLabel) {
 		correctTextFormat = new CorrectTextFormat(inputJLabel,previousJLabel);
 		this.resultList = resultList;
@@ -45,8 +46,7 @@ public class ArithmeticSign {
 				calculateArithmeticSign(input);
 			}
 			else {
-			
-			
+						
 				switch (input) {
 				case "÷":	//나누기										
 					setPreviousValue("÷");
@@ -94,7 +94,7 @@ public class ArithmeticSign {
 		
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
-} catch (NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			
 		}
 	}
@@ -109,61 +109,57 @@ public class ArithmeticSign {
 	 // = 계산
 	public void calculateEqual() { 
 		try {
+			String previousJLabelText;
+			previousJLabelText = previousJLabel.getText();
 			
-		
-		String previousJLabelText;
-		previousJLabelText = previousJLabel.getText();
-		
-		if(CalculatorStart.inputNumber!="") {
-			previusDouble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(CalculatorStart.inputNumber).replace("e", "E"));
-		}
-		
-		if(inputJLabel.getText().equals("0"))
-			previusDouble = new BigDecimal("0");
-		
-		if((previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) ) {
-			previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( CalculatorStart.inputNumber)+"＝");		
-			CalculatorStart.previousNumber =previousJLabel.getText().substring(0,previousJLabel.getText().length()-1).replace(",", "");
-			resultList.add(new ResultDTO(previousJLabel.getText() ,inputJLabel.getText() ));
-		
-		}
-	
-		else {
-			previusDouble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText()).replace("e", "E"));
+			if(CalculatorStart.inputNumber!="") {
+				previusDouble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(CalculatorStart.inputNumber).replace("e", "E"));
+			}
 			
-	
-			if( getArithmeticSignCount( previousJLabel.getText()) == 1) { // 9X 처럼 연산자가 1개있을때는 처음으로 시작
-				mathSign = 	previousJLabel.getText().substring(previousJLabel.getText().length()-1);		
-				inputDoble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText()).replace("e", "E")  ); 
+			if(inputJLabel.getText().equals("0"))
+				previusDouble = new BigDecimal("0");
+			
+			if((previousJLabelText.contains("÷")==false &&previousJLabelText.contains("×")==false && previousJLabelText.contains("－")==false&&previousJLabelText.contains("＋")==false) ) {
+				previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( CalculatorStart.inputNumber)+"＝");		
+				CalculatorStart.previousNumber =previousJLabel.getText().substring(0,previousJLabel.getText().length()-1).replace(",", "");
+				resultList.add(new ResultDTO(previousJLabel.getText() ,inputJLabel.getText() ));
 			
 			}
+		
 			else {
+				previusDouble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText()).replace("e", "E"));
+				
 		
-				if(previousJLabelText.contains("÷")) {
-					mathSign  ="÷";
-					inputDoble = new BigDecimal(previousJLabel.getText().replace("e", "E").substring( previousJLabel.getText().lastIndexOf("÷")+1 , previousJLabel.getText().length()-1)); 
-				}
-				else if( previousJLabelText.contains("×") ) {
-					mathSign  ="×";
-					inputDoble = new BigDecimal(previousJLabel.getText().replace("e", "E").substring( previousJLabel.getText().lastIndexOf("×")+1 ,previousJLabel.getText().length()-1)); 
-				}
-				else if( previousJLabelText.contains("－") ) {
-					mathSign  ="－";
-					inputDoble =new BigDecimal(previousJLabel.getText().replace("e", "E").substring( previousJLabel.getText().lastIndexOf("－")+1 ,previousJLabel.getText().length()-1)); 
-				}
-				else if(previousJLabelText.contains("＋")) {
-					mathSign  ="＋";
-					inputDoble =new BigDecimal(previousJLabel.getText().replace("e", "E").substring( previousJLabel.getText().lastIndexOf("＋")+1 , previousJLabel.getText().length()-1)); 
-				}
+				if( getArithmeticSignCount( previousJLabel.getText()) == 1) { // 9X 처럼 연산자가 1개있을때는 처음으로 시작
+					mathSign = 	previousJLabel.getText().substring(previousJLabel.getText().length()-1);		
+					inputDoble =  new BigDecimal(correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText()).replace("e", "E")  ); 
 				
+				}
+				else {
 			
+					if(previousJLabelText.contains("÷")) {
+						mathSign  ="÷";
+						inputDoble = new BigDecimal(previousJLabel.getText().replace("e", "E").substring( previousJLabel.getText().lastIndexOf("÷")+1 , previousJLabel.getText().length()-1)); 
+					}
+					else if( previousJLabelText.contains("×") ) {
+						mathSign  ="×";
+						inputDoble = new BigDecimal(previousJLabel.getText().replace("e", "E").substring( previousJLabel.getText().lastIndexOf("×")+1 ,previousJLabel.getText().length()-1)); 
+					}
+					else if( previousJLabelText.contains("－") ) {
+						mathSign  ="－";
+						inputDoble =new BigDecimal(previousJLabel.getText().replace("e", "E").substring( previousJLabel.getText().lastIndexOf("－")+1 ,previousJLabel.getText().length()-1)); 
+					}
+					else if(previousJLabelText.contains("＋")) {
+						mathSign  ="＋";
+						inputDoble =new BigDecimal(previousJLabel.getText().replace("e", "E").substring( previousJLabel.getText().lastIndexOf("＋")+1 , previousJLabel.getText().length()-1)); 
+					}
+				}
 			}
-			
-			
-		}		
-		 } catch (NumberFormatException e) {
 				
-			}
+		} 
+		catch (NumberFormatException e) {
+				
+		}
 		
 	}
 	

@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Utility.ConstantNumber;
 import controller.CalculatorStart;
+import controller.ComponentAction;
 import controller.HistoryButtonAction;
 import controller.MouseAction;
 import model.ResultDTO;
@@ -32,7 +34,7 @@ public class MenuPanel {
 	private JLabel information;
 	private Box box;
 	
-	public MenuPanel(CenterPanel centerPanel ,ArrayList<ResultDTO> resultList) {
+	public MenuPanel(CenterPanel centerPanel ,ArrayList<ResultDTO> resultList,JFrame mainFrame,CalculatorStart calculatorStart) {
 		
 		menuPanel = new JPanel();
 	
@@ -74,7 +76,7 @@ public class MenuPanel {
 		zoomButton.addMouseListener(new MouseAction());
 		historyButton.addMouseListener(new MouseAction());
 		
-		historyButton.addActionListener(new HistoryButtonAction(centerPanel,menuPanel,resultList));
+		historyButton.addActionListener(new HistoryButtonAction(centerPanel,resultList,calculatorStart));
 	
 		
 		

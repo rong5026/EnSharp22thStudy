@@ -50,6 +50,9 @@ public class ConstantNumber {
 	public final static int ZERO_ERROR = 1;
 	public final static int OVERFLOW_ERROR = 2;
 	
+	//historyon
+	public final static boolean isHISTORY_ON = true;
+	public final static boolean isHISTORY_OFF = false;
 	
 	
 	

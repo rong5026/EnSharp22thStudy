@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JPanel;import model.ResultDTO;
+import javax.swing.JPanel;
+
+import Utility.ConstantNumber;
+import model.ResultDTO;
 import view.ButtonPanel;
 import view.CenterPanel;
 import view.HistoryPanel;
@@ -16,31 +19,48 @@ public class HistoryButtonAction implements ActionListener{
 	private HistoryPanel historyPanel;
 	private CenterPanel centerPanel;
 	private ArrayList<ResultDTO> resultList;
-	public HistoryButtonAction(CenterPanel centerPanel,JPanel menupanel,ArrayList<ResultDTO> resultList) {
+	private boolean ishistoryOn;
+	public HistoryButtonAction(CenterPanel centerPanel,ArrayList<ResultDTO> resultList,CalculatorStart calculatorStart) {
 		this.centerPanel = centerPanel;
 		this.resultList =resultList;
+		if(	calculatorStart.ishistoryOn == ConstantNumber.isHISTORY_OFF)
+			calculatorStart.ishistoryOn = ConstantNumber.isHISTORY_ON;
+		else 
+			calculatorStart.ishistoryOn = ConstantNumber.isHISTORY_OFF;
+		this.ishistoryOn = calculatorStart.ishistoryOn;
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		historyPanel =new HistoryPanel(resultList);
 		
 		
-		centerPanel.buttonPanel.setVisible(false);
+		if(ishistoryOn ==ConstantNumber.isHISTORY_ON) {
 		
-		GridBagConstraints grdBagConstraints =new GridBagConstraints();
-		grdBagConstraints.fill = GridBagConstraints.BOTH;
-		grdBagConstraints.weightx = 1;
-		grdBagConstraints.weighty = 0.3;
-		grdBagConstraints.gridx = 0;
-		grdBagConstraints.gridy = 1;
-		centerPanel.add(historyPanel.scroll,grdBagConstraints);
+			historyPanel =new HistoryPanel(resultList);
+			
+			centerPanel.buttonPanel.setVisible(false);
+			GridBagConstraints grdBagConstraints =new GridBagConstraints();
+			grdBagConstraints.fill = GridBagConstraints.BOTH;
+			grdBagConstraints.weightx = 1;
+			grdBagConstraints.weighty = 0.3;
+			grdBagConstraints.gridx = 0;
+			grdBagConstraints.gridy = 1;
+			centerPanel.add(historyPanel.scroll,grdBagConstraints);
+		}
+		else {
+
+			centerPanel.buttonPanel.setVisible(true);
+			
+		}
+		
+		
+		
 		
 
 		
 		CalculatorStart.mainFrame.revalidate();
 		CalculatorStart.mainFrame.repaint();
 	}
-	
 	
 	
 	

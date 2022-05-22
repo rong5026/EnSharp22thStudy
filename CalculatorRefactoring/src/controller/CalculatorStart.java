@@ -25,14 +25,16 @@ public class CalculatorStart {
 	private Container container;
 	private ImageIcon img;
 	private ArithmeticSign arithmeticSign;
-	private CenterPanel centerPanel;
+	public CenterPanel centerPanel;
 	private MenuPanel menuPanel;
 	private ArrayList<ResultDTO> resultList;
+	private JLabel inputJLabel; // 현재 입력중인 값 라벨
+	private JLabel previousJLabel; // 이전에 입력중인 라벨
+	public boolean ishistoryOn;
 	public static JFrame mainFrame;
 	public static String inputNumber; //현재 입력중인 값
 	public static String previousNumber; //이전에 입력중인 값
-	private JLabel inputJLabel; // 현재 입력중인 값 라벨
-	private JLabel previousJLabel; // 이전에 입력중인 라벨
+	
 
 	public static int errorType;
 	
@@ -43,14 +45,16 @@ public class CalculatorStart {
 		
 		inputNumber="";
 		previousNumber=""; 
+		ishistoryOn= ConstantNumber.isHISTORY_OFF;
 		errorType= ConstantNumber.NON_ERROR;
 		mainFrame = new JFrame();
 		resultList = new ArrayList<ResultDTO>();
 		previousJLabel = new JLabel("");
 		inputJLabel = new JLabel("0");
 		arithmeticSign = new ArithmeticSign(resultList,inputJLabel,previousJLabel);
+		
 		centerPanel = new CenterPanel(arithmeticSign,resultList,inputJLabel,previousJLabel);
-		menuPanel = new MenuPanel(centerPanel,resultList );
+		menuPanel = new MenuPanel(centerPanel,resultList,mainFrame,this);
 	
 		img = new ImageIcon(ConstantNumber.CALCULATOR_ICON_IMAGE);
 		mainFrame.setIconImage(img.getImage());

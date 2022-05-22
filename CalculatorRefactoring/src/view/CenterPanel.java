@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutFocusTraversalPolicy;
@@ -18,7 +19,7 @@ public class CenterPanel extends JPanel{
 
 	public ButtonPanel buttonPanel;
 	public TextPanel textPanel;
-	public HistoryPanel historyPanel;
+	
 	public CenterPanel(ArithmeticSign arithmeticSign,ArrayList<ResultDTO> resultList, JLabel inputJLabel, JLabel previousJLabel) {
 		
 		setBackground(new Color(220,220,220));
