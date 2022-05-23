@@ -254,8 +254,6 @@ public class ArithmeticSign {
 	
 		}
 	 } catch (NumberFormatException e) {
-			
-		 
 		}
 		
 	}

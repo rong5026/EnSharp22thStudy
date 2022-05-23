@@ -25,12 +25,14 @@ public class NumberButtonAction {
 	private  ArrayList<ResultDTO> resultList;
 	private JLabel inputJLabel;
 	private JLabel previousJLabel;
+	private boolean isResultBack;
 	
 	public NumberButtonAction(ArithmeticSign arithmeticSign, ArrayList<ResultDTO> resultList,JLabel inputJLabel, JLabel previousJLabel) {
 		this.arithmeticSign =arithmeticSign;
 		this.resultList = resultList;
 		this.inputJLabel = inputJLabel;
 		this.previousJLabel=previousJLabel;
+		isResultBack = ConstantNumber.isRESULT_BACK_OFF;
 		correctTextFormat = new CorrectTextFormat(inputJLabel,previousJLabel);
 	}
 	public void setButtonAction(JButton [] button) {
@@ -138,7 +140,7 @@ public class NumberButtonAction {
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));			
 		}
 
-		
+		isResultBack = ConstantNumber.isRESULT_BACK_OFF;
 		setFocusMainFrame();
 					
 	}
@@ -162,7 +164,7 @@ public class NumberButtonAction {
 			
 		}
 
-
+		isResultBack = ConstantNumber.isRESULT_BACK_OFF;
 		setFocusMainFrame();
 	}
 	public void enterDotAction(String input) { // . 소수점 입력
@@ -185,7 +187,7 @@ public class NumberButtonAction {
 			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 		}
-		
+		isResultBack = ConstantNumber.isRESULT_BACK_OFF;
 			
 		setFocusMainFrame();
 	}
@@ -201,6 +203,7 @@ public class NumberButtonAction {
 		
 				
 			CalculatorStart.inputNumber = "";				
+			isResultBack = ConstantNumber.isRESULT_BACK_OFF;
 			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
 			inputJLabel.setText("0");
 			setFocusMainFrame();
@@ -214,7 +217,7 @@ public class NumberButtonAction {
 		inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));		
 		inputJLabel.setText("0");
 		previousJLabel.setText("");
-		
+		isResultBack = ConstantNumber.isRESULT_BACK_OFF;
 		CalculatorStart.errorType =ConstantNumber.NON_ERROR;
 		this.arithmeticSign = new ArithmeticSign(resultList,inputJLabel,previousJLabel);
 		setFocusMainFrame();
@@ -233,17 +236,16 @@ public class NumberButtonAction {
 		if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=2) {
 			previousJLabel.setText("");
 			CalculatorStart.inputNumber = correctTextFormat.setCorrectPreviousPanel (inputJLabel.getText());  //수정
+			isResultBack = ConstantNumber.isRESULT_BACK_ON;
 		} 
 			
 		else {
-			if(CalculatorStart.inputNumber.length()>0 && CalculatorStart.inputNumber!="") {
+			if(CalculatorStart.inputNumber.length()>0 && CalculatorStart.inputNumber!="" && isResultBack!=ConstantNumber.isRESULT_BACK_ON) {
 				
 				//입력값 1개 삭제
 				CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
 							
 				correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
-				
-			
 				inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 			}	
 			if(inputJLabel.getText().length() ==0) {

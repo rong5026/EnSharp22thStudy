@@ -54,6 +54,9 @@ public class ConstantNumber {
 	public final static boolean isHISTORY_ON = true;
 	public final static boolean isHISTORY_OFF = false;
 	
+	public final static boolean isRESULT_BACK_ON = true;
+	public final static boolean isRESULT_BACK_OFF= false;
+	
 	
 	
 	
