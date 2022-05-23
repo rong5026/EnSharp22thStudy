@@ -100,11 +100,7 @@ public class ArithmeticSign {
 	}
 	
 	
-	public void setPreviousValue(String mathSign) {
-		
-		previousJLabel.setText(  correctTextFormat.setCorrectPreviousPanel( inputJLabel.getText())+mathSign);		
-		CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText());
-	}
+
 	
 	 // = 계산
 	public void calculateEqual() { 
@@ -185,10 +181,11 @@ public class ArithmeticSign {
 				}
 				break;
 			case "×":
-				result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);
+				result = previusDouble.multiply(inputDoble,MathContext.UNLIMITED).setScale(15,RoundingMode.HALF_EVEN);
+				
 			
 				if(result.compareTo(new BigDecimal("9.999999999999375E+9999"))>0) {
-					cakculateOverFlow();
+					calculateOverFlow();
 					return;
 				}
 				else {
@@ -271,7 +268,7 @@ public class ArithmeticSign {
 		}
 	}
 	
-	private void cakculateOverFlow() { //오버플로우 오류
+	private void calculateOverFlow() { //오버플로우 오류
 		inputJLabel.setText("오버플로");
 		previousJLabel.setText("");
 		CalculatorStart.inputNumber="";
@@ -296,6 +293,12 @@ public class ArithmeticSign {
 		
 		return count;
 	}
+	public void setPreviousValue(String mathSign) {
+		
+		previousJLabel.setText(  correctTextFormat.setCorrectPreviousPanel( inputJLabel.getText())+mathSign);		
+		CalculatorStart.previousNumber = correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText());
+	}
+	
 	
 
 }

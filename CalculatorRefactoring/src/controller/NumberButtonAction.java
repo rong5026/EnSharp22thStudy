@@ -192,21 +192,19 @@ public class NumberButtonAction {
 		setFocusMainFrame();
 	}
 	public void enterCEAction() { //CE 입력
-		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		
+		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) 
 			 enterCAction();
-		}
+	
+		if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=2) 
+			previousJLabel.setText("");
+		
+		CalculatorStart.inputNumber = "";				
+		isResultBack = ConstantNumber.isRESULT_BACK_OFF;
+		inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
+		inputJLabel.setText("0");
+		setFocusMainFrame();
 	
 			
-			if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=2) {
-				previousJLabel.setText("");
-			}
-		
-				
-			CalculatorStart.inputNumber = "";				
-			isResultBack = ConstantNumber.isRESULT_BACK_OFF;
-			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
-			inputJLabel.setText("0");
-			setFocusMainFrame();
 	
 	}
 	public void enterCAction() { // C입력
@@ -225,9 +223,8 @@ public class NumberButtonAction {
 	}
 	public void enterBackAction() { /// back 입력
 	
-		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		
+		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) 	
 			 enterCAction();
-		}
 		if( inputJLabel.getText().equals("-0.") )    {
 			inputJLabel.setText("0");
 			CalculatorStart.inputNumber ="";
@@ -241,7 +238,6 @@ public class NumberButtonAction {
 			
 		else {
 			if(CalculatorStart.inputNumber.length()>0 && CalculatorStart.inputNumber!="" && isResultBack!=ConstantNumber.isRESULT_BACK_ON) {
-				
 				//입력값 1개 삭제
 				CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
 							
@@ -259,18 +255,15 @@ public class NumberButtonAction {
 	public void enterNegateAction() { //± 입력
 		
 
-		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		
+		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) 
 			 enterCAction();
-		}
-		
 		if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=1 ) {
 			
-			if(previousJLabel.getText().contains("＝")) {
+			if(previousJLabel.getText().contains("＝")) 
 				previousJLabel.setText(correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(inputJLabel.getText()) ));
-			}
-			else {
+			else 
 				previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText())+ previousJLabel.getText().charAt(previousJLabel.getText().length()-1) +  correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(inputJLabel.getText()) ));
-			}
+			
 		}
 		
 		if( inputJLabel.getText()!="0") {
@@ -280,33 +273,25 @@ public class NumberButtonAction {
 			
 			if( Double.parseDouble(CalculatorStart.inputNumber) <0 || CalculatorStart.inputNumber.contains("-") ) 
 				CalculatorStart.inputNumber = CalculatorStart.inputNumber.replace("-", "");
-			
 			else 		
 				CalculatorStart.inputNumber = "-"+CalculatorStart.inputNumber;
-			
-			
 			
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber) );
 			
 		}	
-		
 		setFocusMainFrame();
 	}
 	
 	public int getNumberLength(String number) { // 입력받은 수의 숫자로만의 길이
 		
 		int count=0;
-		
 		for(int index = 0 ; index < number.length() ; index++) {
-			
 			if(number.charAt(index) >='0' && number.charAt(index )<='9' )
 				count++;
 			
 		}
-		
 		return count;
 	}
-	
 	
 	private void setFocusMainFrame() { // 메인에 포커스
 		CalculatorStart.mainFrame.setFocusable(true);

@@ -39,22 +39,18 @@ public class KeyboardButtonAction implements KeyListener{
 		System.out.println(e.getKeyChar());
 		
 		// 키패드 1~9
-		if( ( (keyCode >=ConstantNumber.LEFT_KEY_NUMBER_1 && keyCode<=ConstantNumber.LEFT_KEY_NUMBER_9) ||  
-				(keyCode >=ConstantNumber.RIGHT_KEY_NUMBER_1 && keyCode<=ConstantNumber.RIGHT_KEY_NUMBER_9) ) &&e.getModifiers()==ConstantNumber.KEY_SHIFT_OFF ) {
-
+		if( ( (keyCode >=ConstantNumber.LEFT_KEY_NUMBER_1 && keyCode<=ConstantNumber.LEFT_KEY_NUMBER_9) ||  	(keyCode >=ConstantNumber.RIGHT_KEY_NUMBER_1 && keyCode<=ConstantNumber.RIGHT_KEY_NUMBER_9) ) &&e.getModifiers()==ConstantNumber.KEY_SHIFT_OFF ) 
 			numberButtonAction.enterNumberAction(Character.toString(e.getKeyChar()));
-		}
 		//숫자 0
-		else if((keyCode == ConstantNumber.LEFT_KEY_NUMBER_0 || keyCode ==ConstantNumber.RIGHT_KEY_NUMBER_0) &&e.getModifiers()==0) {
+		else if((keyCode == ConstantNumber.LEFT_KEY_NUMBER_0 || keyCode ==ConstantNumber.RIGHT_KEY_NUMBER_0) &&e.getModifiers()==0) 
 			numberButtonAction.enterZeroAction(Character.toString(e.getKeyChar()));
-		}
 		//점 .
-		else if((keyCode ==ConstantNumber.LEFT_KEY_DOT||keyCode ==ConstantNumber.RIGHT_KEY_DOT) &&e.getModifiers()==0) {
+		else if((keyCode ==ConstantNumber.LEFT_KEY_DOT||keyCode ==ConstantNumber.RIGHT_KEY_DOT) &&e.getModifiers()==0) 
 			numberButtonAction.enterDotAction(Character.toString(e.getKeyChar()));
-		}//back
-		else if(keyCode ==ConstantNumber.KEY_DELETE && e.getModifiers()==ConstantNumber.KEY_SHIFT_OFF ) {
+		//back
+		else if(keyCode ==ConstantNumber.KEY_DELETE && e.getModifiers()==ConstantNumber.KEY_SHIFT_OFF ) 
 			numberButtonAction.enterBackAction();
-		}//ESC
+		//ESC
 		else if(keyCode ==  ConstantNumber.KEY_ESC ) {
 			numberButtonAction.enterCAction();
 			this.arithmeticSign =new ArithmeticSign(resultList,inputJLabel,previousJLabel);
