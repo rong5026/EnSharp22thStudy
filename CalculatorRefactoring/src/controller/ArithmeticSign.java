@@ -177,9 +177,9 @@ public class ArithmeticSign {
 					return;
 				}
 				else {
-					result = previusDouble.divide(inputDoble,15,BigDecimal.ROUND_HALF_EVEN);	
+					result = previusDouble.divide(inputDoble,MathContext.DECIMAL128);	
 				
-					CalculatorStart.previousNumber =  previusDouble.divide(inputDoble,MathContext.DECIMAL128).toPlainString().replace("E", "e");
+					CalculatorStart.previousNumber = result.toPlainString().replace("E", "e");
 				
 				}
 				break;
@@ -213,10 +213,10 @@ public class ArithmeticSign {
 		
 		switch (input) {
 		case "÷":	//나누기										
-			previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"÷");	
+			previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result.setScale(16,RoundingMode.HALF_UP)))+"÷");	
 			break;
 		case "×":	//곱하기			
-			previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"×");	
+			previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(String.valueOf(result.setScale(16,RoundingMode.HALF_UP)))+"×");	
 			break;
 		case "－":	//빼기	
 			previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"－");
@@ -231,7 +231,7 @@ public class ArithmeticSign {
 				CalculatorStart.previousNumber =previousJLabel.getText().substring(0,previousJLabel.getText().length()-1).replace(",", "");
 			}
 			else
-				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble.setScale(16,RoundingMode.HALF_UP).toEngineeringString()))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
 			if(result!=null) {
 				System.out.println("result = "+result.toString());
 				System.out.println("pre = "+previusDouble);
@@ -246,8 +246,8 @@ public class ArithmeticSign {
 		
 
 		if(result!=null ) {
-			correctTextFormat.changeResultFontSize( correctTextFormat.removeDecimalPoint(String.valueOf(result)));
-			inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(result.toEngineeringString())) ) ;
+			//correctTextFormat.changeResultFontSize( correctTextFormat.removeDecimalPoint(String.valueOf(result)));
+			inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(result.setScale(16,RoundingMode.HALF_UP).toEngineeringString())) ) ;
 			
 	
 		}
