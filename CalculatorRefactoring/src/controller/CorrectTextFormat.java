@@ -115,6 +115,10 @@ public class CorrectTextFormat {
 				}
 				break;
 			}
+			
+			
+			if(resultNumber.contains("E") || resultNumber.contains("e") )
+				zeroCount = 0;
 			result = resultNumber.substring(0, resultNumber.length()- zeroCount);
 			if(result.charAt(result.length()-1) =='.')
 				return result.substring(0,result.length()-1);

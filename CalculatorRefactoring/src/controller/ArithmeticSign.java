@@ -181,9 +181,7 @@ public class ArithmeticSign {
 				}
 				break;
 			case "×":
-				result = previusDouble.multiply(inputDoble,MathContext.UNLIMITED).setScale(15,RoundingMode.HALF_EVEN);
-				
-			
+				result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);
 				if(result.compareTo(new BigDecimal("9.999999999999375E+9999"))>0) {
 					calculateOverFlow();
 					return;
