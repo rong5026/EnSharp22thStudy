@@ -138,10 +138,8 @@ public class NumberButtonAction {
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));			
 		}
 
-			
-	
-		CalculatorStart.mainFrame.setFocusable(true);
-		CalculatorStart.mainFrame.requestFocus();
+		
+		setFocusMainFrame();
 					
 	}
 	public void enterZeroAction(String input) { // 0 버튼 입력
@@ -156,7 +154,6 @@ public class NumberButtonAction {
 			CalculatorStart.inputNumber ="";
 		
 		
-		
 		else if(inputJLabel.getText()!="0" &&CalculatorStart.inputNumber.length()<16) {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
@@ -165,10 +162,8 @@ public class NumberButtonAction {
 			
 		}
 
-			
-		
-		CalculatorStart.mainFrame.setFocusable(true);
-		CalculatorStart.mainFrame.requestFocus();
+
+		setFocusMainFrame();
 	}
 	public void enterDotAction(String input) { // . 소수점 입력
 
@@ -191,10 +186,8 @@ public class NumberButtonAction {
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 		}
 		
-		
 			
-		CalculatorStart.mainFrame.setFocusable(true);
-		CalculatorStart.mainFrame.requestFocus();
+		setFocusMainFrame();
 	}
 	public void enterCEAction() { //CE 입력
 		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		
@@ -210,8 +203,7 @@ public class NumberButtonAction {
 			CalculatorStart.inputNumber = "";				
 			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));						
 			inputJLabel.setText("0");
-			CalculatorStart.mainFrame.setFocusable(true);
-			CalculatorStart.mainFrame.requestFocus();
+			setFocusMainFrame();
 	
 	}
 	public void enterCAction() { // C입력
@@ -222,10 +214,10 @@ public class NumberButtonAction {
 		inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55 ));		
 		inputJLabel.setText("0");
 		previousJLabel.setText("");
-		CalculatorStart.mainFrame.setFocusable(true);
-		CalculatorStart.mainFrame.requestFocus();
+		
 		CalculatorStart.errorType =ConstantNumber.NON_ERROR;
 		this.arithmeticSign = new ArithmeticSign(resultList,inputJLabel,previousJLabel);
+		setFocusMainFrame();
 		
 	}
 	public void enterBackAction() { /// back 입력
@@ -260,8 +252,7 @@ public class NumberButtonAction {
 			}
 		}
 		
-		CalculatorStart.mainFrame.setFocusable(true);
-		CalculatorStart.mainFrame.requestFocus();
+		setFocusMainFrame();
 	}
 	public void enterNegateAction() { //± 입력
 		
@@ -297,11 +288,7 @@ public class NumberButtonAction {
 			
 		}	
 		
-		
-		
-	
-		CalculatorStart.mainFrame.setFocusable(true);
-		CalculatorStart.mainFrame.requestFocus();
+		setFocusMainFrame();
 	}
 	
 	public int getNumberLength(String number) { // 입력받은 수의 숫자로만의 길이
@@ -313,13 +300,15 @@ public class NumberButtonAction {
 			if(number.charAt(index) >='0' && number.charAt(index )<='9' )
 				count++;
 			
-			
 		}
 		
 		return count;
 	}
 	
 	
-	
+	private void setFocusMainFrame() { // 메인에 포커스
+		CalculatorStart.mainFrame.setFocusable(true);
+		CalculatorStart.mainFrame.requestFocus();
+	}
 	
 }

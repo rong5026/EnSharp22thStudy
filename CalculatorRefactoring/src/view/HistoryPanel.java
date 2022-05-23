@@ -23,6 +23,8 @@ public class HistoryPanel {
 	public JScrollPane scroll;
 	private JPanel historyJPanel;
 	private JButton button;
+	private String topString;
+	private String bottomString;
 	public  HistoryPanel(ArrayList<ResultDTO> resultList) {
 		
 		
@@ -41,8 +43,8 @@ public class HistoryPanel {
 		
 		
 		for(int index = 0; index<resultList.size() ; index++) {
-			String topString = resultList.get(index).getFormula() ;
-			String bottomString =  resultList.get(index).getResult();
+			topString = resultList.get(index).getFormula() ;
+			bottomString =  resultList.get(index).getResult();
 
 			button = createButton("<html><body style='text-align:right;'>" + topString+"<br>" +bottomString + "</body></html>" );
 			button.setHorizontalAlignment(SwingConstants.RIGHT);

@@ -27,8 +27,8 @@ public class ComponentAction {
 			
 			@Override
 			public void componentResized(ComponentEvent e) {
-			
 				System.out.println(mainFrame.getWidth());
+				
 				if(mainFrame.getWidth() > 550 && isBigSize ==false) {
 					
 					// 로그페이지 없애고
@@ -42,6 +42,7 @@ public class ComponentAction {
 				}
 				else if(mainFrame.getWidth() <= 550 &&isBigSize ==true ) {
 					
+				
 					if(historyButtonAction.ishistoryOn ==ConstantNumber.isHISTORY_ON) {
 						historyButtonAction.historyPanel =new HistoryPanel(resultList);
 						centerPanel.buttonPanel.setVisible(false);
@@ -52,12 +53,11 @@ public class ComponentAction {
 						grdBagConstraints.gridx = 0;
 						grdBagConstraints.gridy = 1;
 						centerPanel.add(historyButtonAction.historyPanel.scroll,grdBagConstraints);
-						
-						isBigSize = false;
+								
 					}
 					
-					
-					
+					isBigSize = false;
+						
 				}
 			
 				CalculatorStart.mainFrame.revalidate();

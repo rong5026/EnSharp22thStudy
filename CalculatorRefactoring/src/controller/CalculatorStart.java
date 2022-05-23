@@ -10,12 +10,15 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import Utility.ConstantNumber;
 import model.ResultDTO;
 import view.CenterPanel;
+import view.HistoryPanel;
 import view.MenuPanel;
 
 
@@ -34,8 +37,6 @@ public class CalculatorStart {
 	public static JFrame mainFrame;
 	public static String inputNumber; //현재 입력중인 값
 	public static String previousNumber; //이전에 입력중인 값
-	
-
 	public static int errorType;
 	
 
@@ -68,7 +69,15 @@ public class CalculatorStart {
 	
 	public void start() {
 
+		/*
+		JPanel hiJPanel = new JPanel();
+		hiJPanel.setPreferredSize(new Dimension(100,400));
 		
+		HistoryPanel historyPanel = new HistoryPanel(resultList);
+		
+		hiJPanel.add(historyPanel.scroll);
+		mainFrame.add(historyPanel.scroll,BorderLayout.EAST)
+		*/
 		mainFrame.add(menuPanel.menuPanel,BorderLayout.NORTH);
 		mainFrame.add(centerPanel,BorderLayout.CENTER);
 		// 키보드값 입력 엑션달기
