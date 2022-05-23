@@ -23,8 +23,9 @@ public class CorrectTextFormat {
 		String result;
 		BigDecimal bigDecimal;
 		
-		result = addComma(resultNumber);
+		//result = addComma(resultNumber);
 	
+		result = resultNumber;
 		result = changeEtoe(result);
 		return result;
 	}
@@ -68,7 +69,7 @@ public class CorrectTextFormat {
 		}
 		
 		// 음수있을 때 - 제외시켜주시
-		if(resultNumber.contains("-")) 
+		if(resultNumber.charAt(0)=='-') 
 			integerPart = integerPart.replace("-", "");
 	
 		
@@ -85,7 +86,7 @@ public class CorrectTextFormat {
 			
 		}
 		
-		if(resultNumber.contains("-"))
+		if(resultNumber.charAt(0)=='-')
 			return "-"+integerPart+decimalPart;
 		
 		return integerPart+decimalPart;

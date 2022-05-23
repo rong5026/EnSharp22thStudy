@@ -5,6 +5,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -177,7 +178,9 @@ public class ArithmeticSign {
 				}
 				else {
 					result = previusDouble.divide(inputDoble,15,BigDecimal.ROUND_HALF_EVEN);	
-					CalculatorStart.previousNumber = previusDouble.divide(inputDoble,16,BigDecimal.ROUND_HALF_EVEN).toString().replace("E", "e");	
+				
+					CalculatorStart.previousNumber =  previusDouble.divide(inputDoble,MathContext.DECIMAL128).toPlainString().replace("E", "e");
+				
 				}
 				break;
 			case "×":
@@ -187,23 +190,23 @@ public class ArithmeticSign {
 					return;
 				}
 				else {
-					CalculatorStart.previousNumber =  String.valueOf( previusDouble.multiply(inputDoble,MathContext.DECIMAL128).setScale(16,RoundingMode.HALF_EVEN)  ).replace("E", "e");
+					CalculatorStart.previousNumber =   previusDouble.multiply(inputDoble,MathContext.DECIMAL128).setScale(16,RoundingMode.HALF_EVEN).toEngineeringString().replace("E", "e");
 				}
 			
 				break;
 			case "－":
 				result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
-				CalculatorStart.previousNumber =  String.valueOf(result).replace("E", "e");
+				CalculatorStart.previousNumber =  result.toEngineeringString().replace("E", "e");
 				break;
 			case "＋":
 				result =previusDouble.add(inputDoble,MathContext.DECIMAL64);
-				CalculatorStart.previousNumber =  String.valueOf(result).replace("E", "e");
+				CalculatorStart.previousNumber =  result.toEngineeringString().replace("E", "e");
 			
 			default:
 				break;
 			}
 			
-			resultList.add(new ResultDTO(  correctTextFormat.removeDecimalPoint(previusDouble.toString())+mathSign+inputDoble.toString()+"=" ,correctTextFormat.removeDecimalPoint(String.valueOf(result))  ));
+			resultList.add(new ResultDTO(  correctTextFormat.removeDecimalPoint(previusDouble.toEngineeringString())+mathSign+inputDoble.toEngineeringString()+"=" ,correctTextFormat.removeDecimalPoint(result.toEngineeringString())  ));
 		
 		}
 		
@@ -244,7 +247,7 @@ public class ArithmeticSign {
 
 		if(result!=null ) {
 			correctTextFormat.changeResultFontSize( correctTextFormat.removeDecimalPoint(String.valueOf(result)));
-			inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(String.valueOf(result))) ) ;
+			inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(result.toEngineeringString())) ) ;
 			
 	
 		}
