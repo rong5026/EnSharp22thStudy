@@ -17,12 +17,12 @@ import view.CenterPanel;
 import view.HistoryPanel;
 
 public class HistoryButtonAction implements ActionListener{
-	private HistoryPanel historyPanel;
+	public HistoryPanel historyPanel;
 	private CenterPanel centerPanel;
 	private ArrayList<ResultDTO> resultList;
 	private JPanel buttonPanel;
 	private CalculatorStart calculatorStart;
-	private boolean ishistoryOn;
+	public boolean ishistoryOn;
 	public HistoryButtonAction(CenterPanel centerPanel,ArrayList<ResultDTO> resultList,CalculatorStart calculatorStart) {
 		this.centerPanel = centerPanel;
 		this.resultList =resultList;
@@ -65,7 +65,7 @@ public class HistoryButtonAction implements ActionListener{
 
 		CalculatorStart.mainFrame.revalidate();
 		CalculatorStart.mainFrame.repaint();
-		System.out.println(ishistoryOn);
+	
 		
 
 	}

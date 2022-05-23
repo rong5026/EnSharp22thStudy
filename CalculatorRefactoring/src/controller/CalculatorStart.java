@@ -77,6 +77,7 @@ public class CalculatorStart {
 		mainFrame.setFocusable(true);
 		mainFrame.requestFocus();
 		
+		
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setVisible(true);
 	}

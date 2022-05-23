@@ -33,6 +33,7 @@ public class MenuPanel {
 	private JButton zoomButton;
 	private JLabel information;
 	private Box box;
+	private HistoryButtonAction historyButtonAction;
 	
 	public MenuPanel(CenterPanel centerPanel ,ArrayList<ResultDTO> resultList,JFrame mainFrame,CalculatorStart calculatorStart) {
 		
@@ -76,8 +77,10 @@ public class MenuPanel {
 		zoomButton.addMouseListener(new MouseAction());
 		historyButton.addMouseListener(new MouseAction());
 		
-		historyButton.addActionListener(new HistoryButtonAction(centerPanel,resultList,calculatorStart));
-	
+		historyButtonAction = new HistoryButtonAction(centerPanel,resultList,calculatorStart);
+		historyButton.addActionListener(historyButtonAction);
+		
+		new ComponentAction(centerPanel,resultList,calculatorStart,mainFrame,historyButtonAction);
 		
 		
 		
