@@ -68,6 +68,7 @@ public class ButtonPanel extends JPanel{
 			add(button[index]);
 			setFont(button[index]);
 			button[index].setBorder(null);
+			button[index].setFocusable(false);
 
 			if( 0<= index && index <=3) 
 				button[index].setBackground(new Color(232,232,232));			

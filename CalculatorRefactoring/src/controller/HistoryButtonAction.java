@@ -37,7 +37,7 @@ public class HistoryButtonAction implements ActionListener{
 		
 		
 		
-		if(ishistoryOn ==ConstantNumber.isHISTORY_OFF) {
+		if(ishistoryOn ==ConstantNumber.isHISTORY_OFF && calculatorStart.mainFrame.getWidth()<550) {
 		
 			historyPanel =new HistoryPanel(resultList);
 			
@@ -54,7 +54,7 @@ public class HistoryButtonAction implements ActionListener{
 			ishistoryOn = ConstantNumber.isHISTORY_ON;
 			
 		}
-		else {
+		else if(ishistoryOn ==ConstantNumber.isHISTORY_ON&& calculatorStart.mainFrame.getWidth()<550){
 			
 			historyPanel.scroll.setVisible(false);
 			centerPanel.buttonPanel.setVisible(true);
