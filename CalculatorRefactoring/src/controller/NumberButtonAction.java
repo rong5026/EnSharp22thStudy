@@ -125,7 +125,6 @@ public class NumberButtonAction {
 		}
 	
 		
-		
 		if(inputJLabel.getText() =="0") {						
 			inputJLabel.setText("");
 		}
@@ -144,6 +143,7 @@ public class NumberButtonAction {
 		setFocusMainFrame();
 					
 	}
+	
 	public void enterZeroAction(String input) { // 0 버튼 입력
 		
 		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) {		

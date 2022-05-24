@@ -177,9 +177,9 @@ public class ArithmeticSign {
 					return;
 				}
 				else {
-					result = previusDouble.divide(inputDoble,MathContext.DECIMAL128);	
+					result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);
 				
-					CalculatorStart.previousNumber = result.toPlainString().replace("E", "e");
+					CalculatorStart.previousNumber = previusDouble.divide(inputDoble,MathContext.UNLIMITED).toPlainString();
 				
 				}
 				break;
@@ -231,13 +231,12 @@ public class ArithmeticSign {
 				CalculatorStart.previousNumber =previousJLabel.getText().substring(0,previousJLabel.getText().length()-1).replace(",", "");
 			}
 			else
-				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble.setScale(16,RoundingMode.HALF_UP).toEngineeringString()))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(previusDouble.toEngineeringString())  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
 			if(result!=null) {
 				System.out.println("result = "+result.toString());
 				System.out.println("pre = "+previusDouble);
 				System.out.println("--------------");
-				//System.out.println("input = "+inputDoble);
-				//System.out.println("pre = "+previusDouble);
+
 			}
 			break;
 		default:
@@ -245,17 +244,48 @@ public class ArithmeticSign {
 		}
 		
 
-		if(result!=null ) {
-			//correctTextFormat.changeResultFontSize( correctTextFormat.removeDecimalPoint(String.valueOf(result)));
-			inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(result.setScale(16,RoundingMode.HALF_UP).toEngineeringString())) ) ;
+		if(result!=null && mathSign != "÷") {
 			
-	
+			correctTextFormat.changeResultFontSize( correctTextFormat.removeDecimalPoint(String.valueOf(result)));
+		
+			inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint( String.valueOf(result) )) ) ;
 		}
+		else if(result!=null && mathSign == "÷") {
+			
+			
+			if(getDecimalNumberCount(  result.toPlainString() ) > 16) {
+				System.out.println("e붙어야한다");
+				
+				inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(correctTextFormat.removeDecimalPoint (   String.valueOf(result.setScale(15,RoundingMode.HALF_EVEN)) ))) ;
+				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+			}
+			else {
+				inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(    result.toPlainString()   ))) ;
+				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(previusDouble.toPlainString())  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+			}
+			
+			
+			
+		}
+		
 	 } catch (NumberFormatException e) {
 		}
 		
 	}
-	
+	private int getDecimalNumberCount(String resultNumber) { // 소수점 몇번째 자리인지
+		
+		int count = 0;
+		boolean isDot = false;
+		
+		for(int index = resultNumber.length()-1 ; index>=0; index--) {
+			if(resultNumber.charAt(index)=='.')
+				break;
+			count++;
+		}
+		
+		return count;
+		
+	}
 	private void calculateDivision() { // 0나누기 오류
 		
 		if(inputDoble.compareTo(new BigDecimal("0"))==0) {

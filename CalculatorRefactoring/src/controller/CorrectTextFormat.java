@@ -23,9 +23,9 @@ public class CorrectTextFormat {
 		String result;
 		BigDecimal bigDecimal;
 		
-		//result = addComma(resultNumber);
+		result = addComma(resultNumber);
 	
-		result = resultNumber;
+		
 		result = changeEtoe(result);
 		return result;
 	}
@@ -91,6 +91,8 @@ public class CorrectTextFormat {
 		
 		return integerPart+decimalPart;
 	}
+	
+	
 	// 콤마 삭제
 	public String removeComma(String resultNumber) {
 		return resultNumber.replace(",", "");
