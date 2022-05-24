@@ -244,20 +244,11 @@ public class NumberButtonAction {
 
 		if(CalculatorStart.errorType != ConstantNumber.NON_ERROR) 
 			 enterCAction();
-		if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=1 ) {
-			
-			if(previousJLabel.getText().contains("＝")) 
-				previousJLabel.setText(correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(inputJLabel.getText()) ));
-			else 
-				previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText())+
-						previousJLabel.getText().charAt(previousJLabel.getText().length()-1) +
-						correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(inputJLabel.getText()) ));
-			
-		}
-
+		
+		identifyNegate();
 		
 		if( inputJLabel.getText()!="0") {
-			System.out.println("쁠마 들어옴");
+			
 			if(CalculatorStart.inputNumber=="")
 				CalculatorStart.inputNumber =correctTextFormat.setCorrectPreviousPanel( inputJLabel.getText());
 			
@@ -292,6 +283,31 @@ public class NumberButtonAction {
 			 enterCAction();
 		else if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=2) 
 			enterCEAction();
+	}
+	
+	private void identifyNegate() {
+	
+		String panelString = previousJLabel.getText();
+		
+		
+		if(panelString.contains("(")) {
+			String first = panelString.substring(0,panelString.indexOf("n"));
+			String second = panelString.substring(panelString.indexOf("n"));
+			previousJLabel.setText(  first +  correctTextFormat.setNegate(second) );
+		}
+		else if(arithmeticSign.getArithmeticSignCount(previousJLabel.getText())>=1 ) {
+			if(previousJLabel.getText().contains("＝")) 
+				previousJLabel.setText(correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(inputJLabel.getText()) ));
+			else 
+				previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel(inputJLabel.getText())+
+						previousJLabel.getText().charAt(previousJLabel.getText().length()-1) +
+						correctTextFormat.setNegate(  correctTextFormat.setCorrectInputPanel(inputJLabel.getText()) ));
+			
+				
+		}
+		
+		
+		
 	}
 	
 }

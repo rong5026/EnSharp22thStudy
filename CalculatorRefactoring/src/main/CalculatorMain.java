@@ -22,6 +22,14 @@ public class CalculatorMain {
 		
 		//System.out.println(formatter.format(a));
 
+		
+		//String aString = "5+negate(negate(5))";
+		
+		//System.out.println(aString.indexOf("n"));
+		
+		//System.out.println(aString.substring(0,aString.indexOf("n")));
+		//System.out.println(aString.substring(aString.indexOf("n")));
+		
 	}
 	
 	
