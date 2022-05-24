@@ -15,12 +15,12 @@ public class CalculatorMain {
 		CalculatorStart calculator = new CalculatorStart();
 		calculator.start();
 		
-		//DecimalFormat formatter = new DecimalFormat("#.#");
+		//DecimalFormat formatter = new DecimalFormat("#.################");
 
 	
-		//BigDecimal a =new BigDecimal("3.333333333333333333333333333333333").setScale(16,RoundingMode.HALF_UP);
+		//BigDecimal a =new BigDecimal("3.647333333333333333333333333333333");
 		
-		//System.out.println(a);
+		//System.out.println(formatter.format(a));
 
 	}
 	

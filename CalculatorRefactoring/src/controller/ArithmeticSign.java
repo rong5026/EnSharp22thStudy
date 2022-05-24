@@ -256,7 +256,7 @@ public class ArithmeticSign {
 			if(getDecimalNumberCount(  result.toPlainString() ) > 16) {
 				System.out.println("e붙어야한다");
 				
-				inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(correctTextFormat.removeDecimalPoint (   String.valueOf(result.setScale(15,RoundingMode.HALF_EVEN)) ))) ;
+				inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(correctTextFormat.removeDecimalPoint (   result.toString()))) ;
 				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
 			}
 			else {
