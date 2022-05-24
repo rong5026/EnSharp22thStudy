@@ -27,7 +27,7 @@ public class TextPanel extends JPanel{
 
 		setBackground(new Color(220,220,220));
 	
-		
+		setPreferredSize(new Dimension(0,120));
 	
 		
 		//입력과거 정보
@@ -39,7 +39,6 @@ public class TextPanel extends JPanel{
 		inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , 55));
 		inputJLabel.setForeground(Color.BLACK);
 		inputJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		inputJLabel.setPreferredSize(new Dimension(CalculatorStart.mainFrame.getWidth(),50));
 		
 	
 		add(previousJLabel);

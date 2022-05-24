@@ -25,8 +25,10 @@ public class CorrectTextFormat {
 		
 		result = addComma(resultNumber);
 	
-		
 		result = changeEtoe(result);
+		
+		result = removeDecimalInEvalue(result);
+		
 		return result;
 	}
 	public String setCorrectPreviousPanel(String resultNumber) { // 콤마 삭제 , E ->e , 2.000 ->2
@@ -93,6 +95,28 @@ public class CorrectTextFormat {
 	}
 	
 	
+	private String removeDecimalInEvalue(String resultNumber) { // e앞에 소수점 없애기
+		
+		int count = 0;
+		String first;
+		String second;
+		if(resultNumber.contains("e")) {
+			
+			first = resultNumber.substring(0,resultNumber.indexOf("e"));
+			second = resultNumber.substring(resultNumber.indexOf("e"));
+			
+			System.out.println(first);
+			System.out.println(second);
+			
+			first = removeDecimalPoint(first);
+			return first+"."+second;
+			
+		}
+		
+		return resultNumber;
+		
+		
+	}
 	// 콤마 삭제
 	public String removeComma(String resultNumber) {
 		return resultNumber.replace(",", "");
@@ -131,22 +155,18 @@ public class CorrectTextFormat {
 	}
 
 	
-	public void changeFontSize(String resultNumber,String type) { // 글자의 수에따라 폰트 변경
+	
+	public void changeFont() {
 		
-		if(resultNumber.length() >=12 && type =="Down") 
-			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , inputJLabel.getFont().getSize()-3 ));
+		Font inputFont = new Font("맑은 고딕", Font.BOLD , 55 );
 		
-		else if(resultNumber.length()>=11 && type =="Up")
-			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD , inputJLabel.getFont().getSize()+3 ));
+		while(inputJLabel.getPreferredSize().width > CalculatorStart.mainFrame.getWidth()-60) {
+			 
+			inputFont = new Font("맑은 고딕", Font.BOLD , inputFont.getSize()-3);
+			inputJLabel.setFont(inputFont);
+		}
 	}
 	
-	public void changeResultFontSize(String resultNumber) {
-		
-		
-		if(resultNumber.length()>=10)
-			inputJLabel.setFont(new Font("맑은 고딕", Font.BOLD ,55 - (resultNumber.length()-12 )*3));
-		
-	}
 	
 	public String setNegate(String inputValue) { //negate 설정
 		

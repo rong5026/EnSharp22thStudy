@@ -38,6 +38,7 @@ public class ArithmeticSign {
 		
 	
 		if(CalculatorStart.errorType == ConstantNumber.NON_ERROR) {
+			//연산할때
 			if(previousJLabel.getText()!="" && CalculatorStart.inputNumber!="" && previousJLabel.getText().charAt(previousJLabel.getText().length()-1) != '＝') {
 				
 				mathSign = 	previousJLabel.getText().substring(previousJLabel.getText().length()-1);
@@ -46,33 +47,11 @@ public class ArithmeticSign {
 				
 				calculateArithmeticSign(input);
 			}
-			else {
-				switch (input) {
-				case "÷":	//나누기										
-					setPreviousValue("÷");
-					break;
-				case "×":	//곱하기		
-					setPreviousValue("×");
-					break;
-				case "－":	//빼기	
-					setPreviousValue("－");
-					break;
-				case "＋":	//더하기
-					setPreviousValue("＋");
-					break;
-				case "＝":	
-					calculateEqual();
-					calculateArithmeticSign("＝");	
-					break;
-							
-				default:
-					break;
-				}
+			else 
+				// 연산안할때
+				setPreviousText(input); 
 				
-
-			}
 			//입력값초기화
-		
 			CalculatorStart.inputNumber ="";
 		
 		}
@@ -92,7 +71,7 @@ public class ArithmeticSign {
 	}
 	
 	
-
+	
 	
 	 // = 계산
 	public void calculateEqual() { 
@@ -246,15 +225,39 @@ public class ArithmeticSign {
 	}
 	
 	
-	
+	private void setPreviousText(String input) {
+		switch (input) {
+		case "÷":	//나누기										
+			setPreviousValue("÷");
+			break;
+		case "×":	//곱하기		
+			setPreviousValue("×");
+			break;
+		case "－":	//빼기	
+			setPreviousValue("－");
+			break;
+		case "＋":	//더하기
+			setPreviousValue("＋");
+			break;
+		case "＝":	
+			calculateEqual();
+			calculateArithmeticSign("＝");	
+			break;
+					
+		default:
+			break;
+		}
+		
+	}
 	
 	private void setLogOfDivision(BigDecimal result) {// 나누기일때 inputlable, previouslabel 
 
 		if(result!=null && mathSign != "÷") {
 			
-			correctTextFormat.changeResultFontSize( correctTextFormat.removeDecimalPoint(String.valueOf(result)));
+			
 		
 			inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint( String.valueOf(result) )) ) ;
+			correctTextFormat.changeFont();
 		}
 		else if(result!=null && mathSign == "÷") {
 			
@@ -262,12 +265,13 @@ public class ArithmeticSign {
 			if(getDecimalNumberCount(  result.toPlainString() ) > 16) {
 				inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(correctTextFormat.removeDecimalPoint (   result.toString()))) ;
 				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble.setScale(16,RoundingMode.HALF_EVEN)))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+				
 			}
 			else {
 				inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(    result.toPlainString()   ))) ;
 				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(previusDouble.setScale(16,RoundingMode.HALF_EVEN).toPlainString())  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
 			}
-			
+			correctTextFormat.changeFont();
 			
 		}
 		

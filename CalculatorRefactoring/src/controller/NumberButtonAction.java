@@ -130,9 +130,10 @@ public class NumberButtonAction {
 		if(  getNumberLength( CalculatorStart.inputNumber) <16) {
 																									
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			correctTextFormat.changeFont();
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));			
 		}
+	
 
 		isResultBack = ConstantNumber.isRESULT_BACK_OFF;
 		setFocusMainFrame();
@@ -150,7 +151,8 @@ public class NumberButtonAction {
 		else if(inputJLabel.getText()!="0" &&CalculatorStart.inputNumber.length()<16) {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			//correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			correctTextFormat.changeFont();
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 			
 		}
@@ -171,7 +173,8 @@ public class NumberButtonAction {
 		else if(inputJLabel.getText().contains(input) ==false &&CalculatorStart.inputNumber.length()<16) {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			//correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			correctTextFormat.changeFont();
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 		}
 		isResultBack = ConstantNumber.isRESULT_BACK_OFF;
@@ -232,9 +235,9 @@ public class NumberButtonAction {
 			if(CalculatorStart.inputNumber.length()>0 && CalculatorStart.inputNumber!="" && isResultBack!=ConstantNumber.isRESULT_BACK_ON) {
 				//입력값 1개 삭제
 				CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
-							
-				correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
+				
 				inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
+				correctTextFormat.changeFont();
 			}	
 			
 		}
@@ -287,7 +290,7 @@ public class NumberButtonAction {
 			enterCEAction();
 	}
 	
-	private void identifyNegate() {
+	private void identifyNegate() { //negate 타입 2가지 판별해서 negate 적용
 	
 		String panelString = previousJLabel.getText();
 		
