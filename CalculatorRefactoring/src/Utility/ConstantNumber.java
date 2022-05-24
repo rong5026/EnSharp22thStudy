@@ -57,7 +57,8 @@ public class ConstantNumber {
 	public final static boolean isRESULT_BACK_ON = true;
 	public final static boolean isRESULT_BACK_OFF= false;
 	
-	
+	public final static boolean isERROR_ON = true;
+	public final static boolean isERROR_OFF= false;
 	
 	
 	// 오른쪽 키패드 0~9  -> 96 ~ 105

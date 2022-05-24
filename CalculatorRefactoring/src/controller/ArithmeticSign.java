@@ -47,7 +47,6 @@ public class ArithmeticSign {
 				calculateArithmeticSign(input);
 			}
 			else {
-						
 				switch (input) {
 				case "÷":	//나누기										
 					setPreviousValue("÷");
@@ -84,14 +83,6 @@ public class ArithmeticSign {
 			CalculatorStart.errorType =ConstantNumber.NON_ERROR;
 		}
 		
-		
-			
-		System.out.println("inputnumber:"+CalculatorStart.inputNumber);			
-		System.out.println("previousNumber:"+CalculatorStart.previousNumber);	
-		System.out.println("inputJLabel:"+inputJLabel.getText());
-		System.out.println("previousJLabel:"+previousJLabel.getText());
-		
-	
 		
 		CalculatorStart.mainFrame.setFocusable(true);
 		CalculatorStart.mainFrame.requestFocus();
@@ -164,33 +155,19 @@ public class ArithmeticSign {
 	
 	public void calculateArithmeticSign(String input) { // 연산자 계산
 		
-	try {
+	
 		if(mathSign!=null && inputDoble!=null && previusDouble!=null) {
 			
 			
 			switch (mathSign) {
 			
-			case "÷":		
-				
-				if(inputDoble.compareTo(new BigDecimal("0"))==0) {
-					calculateDivision();
-					return;
-				}
-				else {
-					result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);
-					CalculatorStart.previousNumber = previusDouble.divide(inputDoble,MathContext.DECIMAL128).toPlainString();
-				}
+			case "÷":				
+				result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);
+				CalculatorStart.previousNumber = previusDouble.divide(inputDoble,MathContext.DECIMAL128).toPlainString();
 				break;
 			case "×":
 				result = previusDouble.multiply(inputDoble,MathContext.DECIMAL64);
-				if(result.compareTo(new BigDecimal("9.999999999999375E+9999"))>0) {
-					calculateOverFlow();
-					return;
-				}
-				else {
-					CalculatorStart.previousNumber =   previusDouble.multiply(inputDoble,MathContext.DECIMAL128).setScale(16,RoundingMode.HALF_EVEN).toEngineeringString().replace("E", "e");
-				}
-			
+				CalculatorStart.previousNumber =   previusDouble.multiply(inputDoble,MathContext.DECIMAL128).setScale(16,RoundingMode.HALF_EVEN).toEngineeringString().replace("E", "e");
 				break;
 			case "－":
 				result = previusDouble.subtract(inputDoble,MathContext.DECIMAL64);				
@@ -204,8 +181,16 @@ public class ArithmeticSign {
 				break;
 			}
 			
+			//오류인지 판별
+			if(isOverFlowError(result,mathSign))
+				return;
+			
+			// 연산결과리스트에 넣기
 			resultList.add(new ResultDTO(  correctTextFormat.removeDecimalPoint(previusDouble.toEngineeringString())+mathSign+inputDoble.toEngineeringString()+"=" ,correctTextFormat.removeDecimalPoint(result.toEngineeringString())  ));
 		
+			
+		
+			
 		}
 		
 		
@@ -223,24 +208,47 @@ public class ArithmeticSign {
 			previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(result))+"＋");	
 			break;	
 		case "＝":
-		
-			if(result==null && inputDoble==null) {
-				previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( CalculatorStart.inputNumber)+"＝");		
-				CalculatorStart.previousNumber =previousJLabel.getText().substring(0,previousJLabel.getText().length()-1).replace(",", "");
-			}
-			else
-				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(previusDouble.setScale(16,RoundingMode.HALF_EVEN).toEngineeringString())  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
-			if(result!=null) {
-				System.out.println("result = "+result.toString());
-				System.out.println("pre = "+previusDouble);
-				System.out.println("--------------");
-
-			}
-			break;
+			setDivisionNull(result,inputDoble);
+			
 		default:
 			break;
 		}
 		
+		setLogOfDivision(result);
+
+	}
+	
+	
+	private boolean isOverFlowError(BigDecimal result,String mathSign) { // 0나누기 에러, 오버플로 에러
+		
+		if(result.compareTo(new BigDecimal("9.999999999999375E+9999"))>0 && mathSign.equals("×")) {
+			calculateOverFlow();
+			return ConstantNumber.isERROR_ON;
+		}
+		
+		if(inputDoble.compareTo(new BigDecimal("0"))==0 && mathSign.equals("÷")) {
+			calculateDivision();
+			return ConstantNumber.isERROR_ON;
+		}
+		
+		return ConstantNumber.isERROR_OFF;
+		
+	}
+	
+	private void setDivisionNull(BigDecimal result, BigDecimal inputDouble ) { // 연산하는 =인지 숫자만옥 = 인지 
+		if(result==null && inputDoble==null) {
+			previousJLabel.setText( correctTextFormat.setCorrectPreviousPanel( CalculatorStart.inputNumber)+"＝");		
+			CalculatorStart.previousNumber =previousJLabel.getText().substring(0,previousJLabel.getText().length()-1).replace(",", "");
+		}
+		else
+			previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(previusDouble.setScale(16,RoundingMode.HALF_EVEN).toEngineeringString())  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+		
+	}
+	
+	
+	
+	
+	private void setLogOfDivision(BigDecimal result) {// 나누기일때 inputlable, previouslabel 
 
 		if(result!=null && mathSign != "÷") {
 			
@@ -261,13 +269,10 @@ public class ArithmeticSign {
 			}
 			
 			
-			
-		}
-		
-	 } catch (NumberFormatException e) {
 		}
 		
 	}
+	
 	private int getDecimalNumberCount(String resultNumber) { // 소수점 몇번째 자리인지
 		
 		int count = 0;
