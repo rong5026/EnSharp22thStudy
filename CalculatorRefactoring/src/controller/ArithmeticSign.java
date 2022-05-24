@@ -178,9 +178,7 @@ public class ArithmeticSign {
 				}
 				else {
 					result = previusDouble.divide(inputDoble,MathContext.DECIMAL64);
-				
-					CalculatorStart.previousNumber = previusDouble.divide(inputDoble,MathContext.UNLIMITED).toPlainString();
-				
+					CalculatorStart.previousNumber = previusDouble.divide(inputDoble,MathContext.DECIMAL128).toPlainString();
 				}
 				break;
 			case "×":
@@ -231,7 +229,7 @@ public class ArithmeticSign {
 				CalculatorStart.previousNumber =previousJLabel.getText().substring(0,previousJLabel.getText().length()-1).replace(",", "");
 			}
 			else
-				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(previusDouble.toEngineeringString())  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(previusDouble.setScale(16,RoundingMode.HALF_EVEN).toEngineeringString())  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
 			if(result!=null) {
 				System.out.println("result = "+result.toString());
 				System.out.println("pre = "+previusDouble);
@@ -254,14 +252,12 @@ public class ArithmeticSign {
 			
 			
 			if(getDecimalNumberCount(  result.toPlainString() ) > 16) {
-				System.out.println("e붙어야한다");
-				
 				inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(correctTextFormat.removeDecimalPoint (   result.toString()))) ;
-				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(String.valueOf(previusDouble.setScale(16,RoundingMode.HALF_EVEN)))  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
 			}
 			else {
 				inputJLabel.setText(   correctTextFormat.setCorrectInputPanel(  correctTextFormat.removeDecimalPoint(    result.toPlainString()   ))) ;
-				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(previusDouble.toPlainString())  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
+				previousJLabel.setText(correctTextFormat.setCorrectPreviousPanel(previusDouble.setScale(16,RoundingMode.HALF_EVEN).toPlainString())  + mathSign  +correctTextFormat.removeDecimalPoint(inputDoble.toString()) +"＝");
 			}
 			
 			

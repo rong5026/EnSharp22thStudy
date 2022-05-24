@@ -58,7 +58,6 @@ public class HistoryPanel {
 		
 		scroll = new JScrollPane(historyJPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setPreferredSize(new Dimension(300,500));
-		//historyJPanel.setPreferredSize(new Dimension(200,400));
 		scroll.setBackground(new Color(255,250,250));
 		
 		
