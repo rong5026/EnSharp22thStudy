@@ -224,6 +224,11 @@ public class NumberButtonAction {
 		} 
 			
 		else {
+			
+			if(inputJLabel.getText().length() ==0 ||inputJLabel.getText().length() ==1) {
+				CalculatorStart.inputNumber ="";
+				inputJLabel.setText("0");
+			}
 			if(CalculatorStart.inputNumber.length()>0 && CalculatorStart.inputNumber!="" && isResultBack!=ConstantNumber.isRESULT_BACK_ON) {
 				//입력값 1개 삭제
 				CalculatorStart.inputNumber = CalculatorStart.inputNumber.substring(0,CalculatorStart.inputNumber.length()-1);
@@ -231,10 +236,7 @@ public class NumberButtonAction {
 				correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Up");
 				inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 			}	
-			if(inputJLabel.getText().length() ==0) {
-				CalculatorStart.inputNumber ="";
-				inputJLabel.setText("0");
-			}
+			
 		}
 		
 		setFocusMainFrame();
