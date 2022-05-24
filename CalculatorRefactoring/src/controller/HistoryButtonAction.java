@@ -35,7 +35,7 @@ public class HistoryButtonAction implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		System.out.println(ishistoryOn);
+		
 		
 		if(ishistoryOn ==ConstantNumber.isHISTORY_OFF) {
 		

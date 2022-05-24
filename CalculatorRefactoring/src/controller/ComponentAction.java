@@ -27,23 +27,32 @@ public class ComponentAction {
 			
 			@Override
 			public void componentResized(ComponentEvent e) {
-				System.out.println(mainFrame.getWidth());
+				
 				
 				if(mainFrame.getWidth() > 550 && isBigSize ==false) {
 					
 					// 로그페이지 없애고
-					if(historyButtonAction.ishistoryOn ==ConstantNumber.isHISTORY_ON)
+					if(historyButtonAction.ishistoryOn ==ConstantNumber.isHISTORY_ON) {
+						mainFrame.remove(historyButtonAction.historyPanel.scroll);
 						historyButtonAction.historyPanel.scroll.setVisible(false);
+						centerPanel.buttonPanel.setVisible(true);
+					}
 					
 					historyButtonAction.historyPanel =new HistoryPanel(resultList);
 					mainFrame.add(historyButtonAction.historyPanel.scroll,BorderLayout.EAST);
+					historyButtonAction.historyPanel.scroll.setVisible(true);
+					mainFrame.setVisible(true);
+					
 					isBigSize = true;
 					
 				}
 				else if(mainFrame.getWidth() <= 550 &&isBigSize ==true ) {
 					
-				
+					mainFrame.remove(historyButtonAction.historyPanel.scroll);
+					
 					if(historyButtonAction.ishistoryOn ==ConstantNumber.isHISTORY_ON) {
+						
+						
 						historyButtonAction.historyPanel =new HistoryPanel(resultList);
 						centerPanel.buttonPanel.setVisible(false);
 						GridBagConstraints grdBagConstraints =new GridBagConstraints();
@@ -55,13 +64,16 @@ public class ComponentAction {
 						centerPanel.add(historyButtonAction.historyPanel.scroll,grdBagConstraints);
 								
 					}
+					else {
+						historyButtonAction.historyPanel.scroll.setVisible(false);
+					}
 					
 					isBigSize = false;
 						
 				}
-			
-				CalculatorStart.mainFrame.revalidate();
 				CalculatorStart.mainFrame.repaint();
+				mainFrame.revalidate();
+				
 			}
 			
 		});

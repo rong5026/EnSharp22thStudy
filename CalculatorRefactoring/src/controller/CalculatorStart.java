@@ -63,21 +63,23 @@ public class CalculatorStart {
 		mainFrame.setLayout(new BorderLayout());
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setTitle("EN# 계산기");
-		mainFrame.setSize(450,600);
+		//mainFrame.setSize(450,600);
 		mainFrame.setMinimumSize(new Dimension(330, 530));
 	}
 	
 	public void start() {
 
-		/*
-		JPanel hiJPanel = new JPanel();
-		hiJPanel.setPreferredSize(new Dimension(100,400));
 		
-		HistoryPanel historyPanel = new HistoryPanel(resultList);
+		//JPanel hiJPanel = new JPanel();
+		//hiJPanel.setPreferredSize(new Dimension(100,400));
 		
-		hiJPanel.add(historyPanel.scroll);
-		mainFrame.add(historyPanel.scroll,BorderLayout.EAST)
-		*/
+		//HistoryPanel historyPanel = new HistoryPanel(resultList);
+		
+		//hiJPanel.add(historyPanel.scroll);
+		
+		//mainFrame.add(new JButton("sdfsd"),BorderLayout.EAST);
+		
+		
 		mainFrame.add(menuPanel.menuPanel,BorderLayout.NORTH);
 		mainFrame.add(centerPanel,BorderLayout.CENTER);
 		// 키보드값 입력 엑션달기
@@ -85,6 +87,7 @@ public class CalculatorStart {
 		mainFrame.addKeyListener(new KeyboardButtonAction(arithmeticSign,resultList,inputJLabel,previousJLabel));
 		mainFrame.setFocusable(true);
 		mainFrame.requestFocus();
+		
 		
 		
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

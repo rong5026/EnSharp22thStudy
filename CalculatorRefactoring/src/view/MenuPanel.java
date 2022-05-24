@@ -80,7 +80,7 @@ public class MenuPanel {
 		historyButtonAction = new HistoryButtonAction(centerPanel,resultList,calculatorStart);
 		historyButton.addActionListener(historyButtonAction);
 		
-		//new ComponentAction(centerPanel,resultList,calculatorStart,mainFrame,historyButtonAction);
+		new ComponentAction(centerPanel,resultList,calculatorStart,mainFrame,historyButtonAction);
 		
 		
 		
