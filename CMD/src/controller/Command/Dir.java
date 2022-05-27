@@ -29,6 +29,7 @@ public class Dir {
 		String dir;
 		String fileSize;
 		String fileName;
+		int fileCount = 0;
 		
 		for (int index = 0; index < fileList.length; index++) {
 			
@@ -37,7 +38,10 @@ public class Dir {
 			fileSize = getFileByte(fileList[index]);
 			fileName = fileList[index].getName();
 			resultText.showDir(date, dir, fileSize, fileName);
+			
 		}
+		System.out.println(fileList.length);
+		
 		
 	}
 	
@@ -68,15 +72,25 @@ public class Dir {
 			return "    <DIR>";
 	}
 	
-	private String getFileByte(File file) { // 파일의 크기 
+	private String getFileByte(File file ) { // 파일의 크기, 파일의 수 측정
+		DecimalFormat decFormat;
+		int fileByteSize;
 		if(file.isFile()) {
-			DecimalFormat decFormat = new DecimalFormat("###,###");
-			int fileByteSizeString = (int)file.length();
-			return decFormat.format(fileByteSizeString);  
+			decFormat = new DecimalFormat("###,###");
+			fileByteSize = (int)file.length();
+			return decFormat.format(fileByteSize);  
 		}
 		else 
 			return "          ";
 	}
+	private int getFileCount(File file,int count) { // 폴더안 파일의 수
+		
+		if(file.isFile())
+			return count++;
+		return count;
+	}
+	
+
 	
 	
 }
