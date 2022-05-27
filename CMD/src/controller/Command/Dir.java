@@ -14,41 +14,41 @@ import javax.naming.spi.DirStateFactory.Result;
 
 import org.w3c.dom.html.HTMLIsIndexElement;
 
-import view.ResultText;
+import view.DirText;
 
 public class Dir {
 
-	private ResultText resultText;
+	private DirText dirText;
 	
-	public Dir(ResultText resultText) {
-		this.resultText = resultText;
+	
+	public Dir() {
+		dirText = new DirText();
 	}
 	public void startDir(String inputText) throws IOException  {
 		
-		File directory = new File(inputText);
-		File []fileList = directory.listFiles();
-		String date;
-		String dir;
-		String fileSize;
-		String fileName;
+		File directory;
+		File []fileList;
 		int fileCount;
 		int fileByteTotal;
 	
-		
+		directory = new File(inputText);
+		fileList = directory.listFiles();
+
 		for (int index = 0; index < fileList.length; index++) {
 			
-			date = getCreationDate(fileList[index]);
-			dir= getDIR(fileList[index]);
-			fileSize = getFileByte(fileList[index]);
-			fileName = fileList[index].getName();
-			// 출력
-			resultText.showDir(date, dir, fileSize, fileName);
+			String date = getCreationDate(fileList[index]);
+			String dir= getDIR(fileList[index]);
+			String fileSize = getFileByte(fileList[index]);
+			String fileName = fileList[index].getName();
+			
+			dirText.showDir(date, dir, fileSize, fileName);// 출력
 		}
-		
-		fileCount =getFileCount(fileList);
-		fileByteTotal = sumFileByte(fileList);
-		
-		resultText.showDirLastText(fileCount,fileByteTotal,fileList.length);
+
+	
+		fileCount =getFileCount(fileList);//파일의 수
+		fileByteTotal = sumFileByte(fileList);//파일의 크기합
+	
+		dirText.showDirLastText(fileCount,fileByteTotal,fileList.length);
 		
 	}
 	
@@ -60,7 +60,8 @@ public class Dir {
 		String dateForm;
 		SimpleDateFormat simpleDateFormat;
 		String result;
-			
+		
+	
 		atrribute = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
 		time = atrribute.creationTime();
 		dateForm = "yyyy-MM-dd  aa hh:mm";
