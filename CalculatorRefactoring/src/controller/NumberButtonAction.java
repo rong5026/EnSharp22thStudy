@@ -151,7 +151,7 @@ public class NumberButtonAction {
 		else if(inputJLabel.getText()!="0" &&CalculatorStart.inputNumber.length()<16) {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			//correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			
 			correctTextFormat.changeFont();
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 			
@@ -173,7 +173,7 @@ public class NumberButtonAction {
 		else if(inputJLabel.getText().contains(input) ==false &&CalculatorStart.inputNumber.length()<16) {
 			
 			CalculatorStart.inputNumber = CalculatorStart.inputNumber+input;
-			//correctTextFormat.changeFontSize(CalculatorStart.inputNumber,"Down");
+			
 			correctTextFormat.changeFont();
 			inputJLabel.setText(correctTextFormat.setCorrectInputPanel(CalculatorStart.inputNumber));
 		}

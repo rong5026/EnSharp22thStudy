@@ -19,6 +19,7 @@ import view.HistoryPanel;
 public class ComponentAction {
 
 	private boolean isBigSize;
+
 	public ComponentAction(CenterPanel centerPanel,ArrayList<ResultDTO> resultList,CalculatorStart calculatorStart,JFrame mainFrame,HistoryButtonAction historyButtonAction) {
 	
 		isBigSize =false;

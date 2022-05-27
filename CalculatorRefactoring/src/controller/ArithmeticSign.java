@@ -134,7 +134,7 @@ public class ArithmeticSign {
 	
 	public void calculateArithmeticSign(String input) { // 연산자 계산
 		
-	
+		try {
 		if(mathSign!=null && inputDoble!=null && previusDouble!=null) {
 			
 			
@@ -194,6 +194,10 @@ public class ArithmeticSign {
 		}
 		
 		setLogOfDivision(result);
+		}
+		catch (Exception e) {
+		
+		}
 
 	}
 	
@@ -205,6 +209,10 @@ public class ArithmeticSign {
 			return ConstantNumber.isERROR_ON;
 		}
 		
+		if(result.compareTo(new BigDecimal("1.E-9999"))<0 && mathSign.equals("×")) {
+			calculateOverFlow();
+			return ConstantNumber.isERROR_ON;
+		}
 		if(inputDoble.compareTo(new BigDecimal("0"))==0 && mathSign.equals("÷")) {
 			calculateDivision();
 			return ConstantNumber.isERROR_ON;
@@ -329,6 +337,7 @@ public class ArithmeticSign {
 		
 		return count;
 	}
+	
 	public void setPreviousValue(String mathSign) {
 		
 		previousJLabel.setText(  correctTextFormat.setCorrectPreviousPanel( inputJLabel.getText())+mathSign);		

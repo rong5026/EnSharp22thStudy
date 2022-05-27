@@ -20,14 +20,15 @@ public class CorrectTextFormat {
 	}
 	public String setCorrectInputPanel(String resultNumber) { // 콤마찍어주기. E -> e변경
 		
-		String result;
+		String result=resultNumber;
 		BigDecimal bigDecimal;
 		
-		result = addComma(resultNumber);
+		if(resultNumber.contains("E")==false)
+			result = addComma(result);
 	
 		result = changeEtoe(result);
 		
-		result = removeDecimalInEvalue(result);
+		//result = removeDecimalInEvalue(result);
 		
 		return result;
 	}
@@ -156,13 +157,16 @@ public class CorrectTextFormat {
 
 	
 	
-	public void changeFont() {
+	public void changeFont() { // 폰트변경 
 		
 		Font inputFont = new Font("맑은 고딕", Font.BOLD , 55 );
+		inputJLabel.setFont(inputFont);
 		
 		while(inputJLabel.getPreferredSize().width > CalculatorStart.mainFrame.getWidth()-60) {
 			 
 			inputFont = new Font("맑은 고딕", Font.BOLD , inputFont.getSize()-3);
+			
+			System.out.println(inputFont.getSize());
 			inputJLabel.setFont(inputFont);
 		}
 	}
