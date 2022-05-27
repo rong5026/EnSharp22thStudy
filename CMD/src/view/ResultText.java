@@ -1,9 +1,12 @@
 package view;
 
+import java.io.File;
+
 public class ResultText {
 
-	
-	public void showResult(String result) { //결과값 출력
-		 System.out.println(result);
+	public void showDir(String date, String dir, String fileSize, String fileName) {
+		
+		System.out.println(date + dir+fileSize+fileName);
+		
 	}
 }

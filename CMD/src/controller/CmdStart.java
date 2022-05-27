@@ -27,7 +27,7 @@ public class CmdStart {
 		while(ConstantsNumber.IS_CMD_ON) {
 			mainText.showInput(currentAddress);
 			inputText = new Scanner(System.in).nextLine();
-			System.out.println(inputText);
+			
 		}
 		
 	}
