@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 import javax.lang.model.element.NestingKind;
@@ -17,15 +18,25 @@ public class Dir {
 
 	private ResultText resultText;
 	
-	public void startDir(String inputText) {
+	public Dir(ResultText resultText) {
+		this.resultText = resultText;
+	}
+	public void startDir(String inputText) throws IOException  {
 		
 		File directory = new File(inputText);
 		File []fileList = directory.listFiles();
-	
+		String date;
+		String dir;
+		String fileSize;
+		String fileName;
 		
-		for (int i = 0; i < fileList.length; i++) {
+		for (int index = 0; index < fileList.length; index++) {
 			
-			resultText.showDir(inputText, inputText, inputText, inputText);
+			date = getCreationDate(fileList[index]);
+			dir= getDIR(fileList[index]);
+			fileSize = getFileByte(fileList[index]);
+			fileName = fileList[index].getName();
+			resultText.showDir(date, dir, fileSize, fileName);
 		}
 		
 	}
@@ -33,15 +44,15 @@ public class Dir {
 	private String getCreationDate(File file) throws IOException { // 파일,폴더생성날짜
 		
 	
-		BasicFileAttributes attrs;
+		BasicFileAttributes atrribute;
 		FileTime time;
 		String dateForm;
 		SimpleDateFormat simpleDateFormat;
 		String result;
 			
-		attrs = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
-		time = attrs.creationTime();
-		dateForm = "yyyy-MM-dd aa hh:mm:ss";
+		atrribute = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
+		time = atrribute.creationTime();
+		dateForm = "yyyy-MM-dd  aa hh:mm";
 	    simpleDateFormat = new SimpleDateFormat(dateForm);
 	    result = simpleDateFormat.format( new Date( time.toMillis() ) );
 
@@ -49,19 +60,22 @@ public class Dir {
 		
 	}
 	
-	private String discriminateDIR(File file) { // 폴더인지 파일인지 구분
+	private String getDIR(File file) { // 폴더인지 파일인지 구분
 		
 		if(file.isFile())
-			return "      ";
+			return "         ";
 		else 
-			return "<DIR>";
+			return "    <DIR>";
 	}
 	
 	private String getFileByte(File file) { // 파일의 크기 
-		if(file.isFile())
-			return Integer.toString((int)file.length());
+		if(file.isFile()) {
+			DecimalFormat decFormat = new DecimalFormat("###,###");
+			int fileByteSizeString = (int)file.length();
+			return decFormat.format(fileByteSizeString);  
+		}
 		else 
-			return "           ";
+			return "          ";
 	}
 	
 	
