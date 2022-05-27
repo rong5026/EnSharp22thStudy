@@ -16,13 +16,14 @@ public class ResultText {
 		
 		decFormat = new DecimalFormat("###,###");
 		String fileCountString =  decFormat.format(fileCount);  
-		String directoryCountString =  decFormat.format(directoryFileSum-fileCount);  
 		String fileByteTotalString = decFormat.format(fileByteTotal);  
-		String directoryByteTotalString = decFormat.format(313238241280L-fileCount);  
+		
+		String directoryCountString =  decFormat.format(directoryFileSum-fileCount);  
+		String directoryByteTotalString = decFormat.format(directoryByteTotal);  
 		
 
-		System.out.printf("%15s %10s  \n",fileCountString+"개 파일", fileByteTotalString+" 바이트");
-		System.out.printf("%15s %10s  \n",directoryCountString+"개 디렉터리",directoryByteTotalString+" 바이트 남음");
+		System.out.printf("              %s %10s  \n",fileCountString+"개 파일", fileByteTotalString+" 바이트");
+		System.out.printf("              %s %10s  \n",directoryCountString+"개 디렉터리",directoryByteTotalString+" 바이트 남음");
 		
 		
 	}

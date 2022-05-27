@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import javax.lang.model.element.NestingKind;
 import javax.naming.spi.DirStateFactory.Result;
 
+import org.w3c.dom.html.HTMLIsIndexElement;
+
 import view.ResultText;
 
 public class Dir {
@@ -29,7 +31,9 @@ public class Dir {
 		String dir;
 		String fileSize;
 		String fileName;
-		int fileCount = 0;
+		int fileCount;
+		int fileByteTotal;
+	
 		
 		for (int index = 0; index < fileList.length; index++) {
 			
@@ -37,11 +41,14 @@ public class Dir {
 			dir= getDIR(fileList[index]);
 			fileSize = getFileByte(fileList[index]);
 			fileName = fileList[index].getName();
+			// 출력
 			resultText.showDir(date, dir, fileSize, fileName);
-			
 		}
-		System.out.println(fileList.length);
 		
+		fileCount =getFileCount(fileList);
+		fileByteTotal = sumFileByte(fileList);
+		
+		resultText.showDirLastText(fileCount,fileByteTotal,fileList.length);
 		
 	}
 	
@@ -83,13 +90,25 @@ public class Dir {
 		else 
 			return "          ";
 	}
-	private int getFileCount(File file,int count) { // 폴더안 파일의 수
-		
-		if(file.isFile())
-			return count++;
+	
+	private int getFileCount(File []fileList) { // 폴더안 파일의 수 
+		int count=0;
+		for (int index = 0; index < fileList.length; index++) {
+			if(fileList[index].isFile())
+				count++;
+		}
 		return count;
 	}
 	
+	private int sumFileByte(File []fileList ) { // 폴더안 파일의 크기의 총합
+		
+		int sum = 0;
+		for (int index = 0; index < fileList.length; index++) {
+			sum+=(int)fileList[index].length();
+		}
+		
+		return sum;
+	}
 
 	
 	
