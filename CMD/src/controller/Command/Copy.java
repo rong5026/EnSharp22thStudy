@@ -45,24 +45,44 @@ public class Copy {
 	//폴더 - > 파일
 	public void executeFolerToFile(File firstAdressFile, File secondAdressFile) throws IOException {
 		 String files[] = firstAdressFile.list();
+		 System.out.println(files);
 		 if(files!=null) {	
 			 for (String file : files) {
 				 File copyFile = new File(firstAdressFile, file);
+				 
+				 System.out.println(copyFile.getAbsolutePath());
+				 System.out.println(copyFile.getName());
+				 System.out.println(copyFile.getPath());
+				
+				 
 				 if(!copyFile.isDirectory()) {
 					 
-					 FileInputStream input = new FileInputStream(file);        
+					   try {
+					 
+					
+					 FileInputStream input = new FileInputStream(copyFile);        
 					 FileOutputStream output = new FileOutputStream(secondAdressFile);
 					 
+					
 					 byte[] buf = new byte[1024];
 					
 					 int readData;      
-					 while ((readData = input.read(buf)) > 0) {    
+					 while ((readData = input.read(buf)) !=-1) {    
 						 output.write(buf, 0, readData);       
+						
 					 }
-					
-					  input.close();     
-					  output.close();
-					 
+				
+						
+						
+					 input.close();     
+					 output.close();
+				 } catch (FileNotFoundException e) {
+			            // TODO Auto-generated catch block
+			            e.printStackTrace();
+			        } catch (IOException e) {
+			            // TODO Auto-generated catch block
+			            e.printStackTrace();
+			        }
 				 }
 				 
 			 }
