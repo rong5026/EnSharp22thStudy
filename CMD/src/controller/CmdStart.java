@@ -11,6 +11,7 @@ import controller.Command.Cd;
 import controller.Command.Copy;
 import controller.Command.Dir;
 import controller.Command.Help;
+import controller.Command.Move;
 import utility.ConstantsNumber;
 import view.MainText;
 import view.DirText;
@@ -24,7 +25,7 @@ public class CmdStart {
 	private Help help;
 	private Cd cd;
 	private Copy copy;
-	
+	private Move move;
 	public  CmdStart() {
 		currentAddress ="C:\\Users\\"+System.getProperty("user.name");
 		
@@ -33,6 +34,7 @@ public class CmdStart {
 		help = new Help();
 		cd = new Cd();
 		copy = new Copy();
+		move = new Move();
 	}
 	
 	
@@ -66,7 +68,7 @@ public class CmdStart {
 				
 				break;
 			case "move": 
-	
+				move.moveFileToFolder(new File("C:\\Users\\rong5\\Desktop\\1.txt"),new File("C:\\Users\\rong5\\Desktop\\65"));
 				break;
 				
 			
