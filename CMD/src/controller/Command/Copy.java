@@ -1,10 +1,12 @@
 package controller.Command;
 
 import java.awt.Window.Type;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,24 +60,21 @@ public class Copy {
 				 if(!copyFile.isDirectory()) {
 					 
 					   try {
-					 
+						   FileReader filereader = new FileReader(copyFile);
+						   FileWriter fileWriter = new FileWriter(secondAdressFile,true);
 					
-					 FileInputStream input = new FileInputStream(copyFile);        
-					 FileOutputStream output = new FileOutputStream(secondAdressFile);
-					 
-					
-					 byte[] buf = new byte[1024];
 					
 					 int readData;      
-					 while ((readData = input.read(buf)) !=-1) {    
-						 output.write(buf, 0, readData);       
+					 while ((readData = filereader.read()) !=-1) {    
+						 fileWriter.write(readData);       
 						
 					 }
 				
 						
-						
-					 input.close();     
-					 output.close();
+					 fileWriter.close();
+					 filereader.close();
+					
+					
 				 } catch (FileNotFoundException e) {
 			            // TODO Auto-generated catch block
 			            e.printStackTrace();
