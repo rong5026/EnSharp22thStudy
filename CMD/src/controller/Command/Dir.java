@@ -24,7 +24,7 @@ public class Dir {
 	public Dir() {
 		dirText = new DirText();
 	}
-	public void startDir(String inputText) throws IOException  {
+	public void start(String inputText) throws IOException  { // dir기능 수행
 		
 		File directory;
 		File []fileList;

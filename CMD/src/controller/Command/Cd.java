@@ -24,15 +24,9 @@ public class Cd {
 			 cmdStart.currentAddress = cmdStart.currentAddress.substring(0,backSlashIndex);
 	}
 	
-	public void moveEnteredAddress(CmdStart cmdStart, String inputAddress) {Cd //입력한 주소로 이동
-		
+	public void moveEnteredAddress(CmdStart cmdStart, String inputAddress) {//입력한 주소로 이동
 		cmdStart.currentAddress = inputAddress;
 	}
-	
-	
-	
-	
-	
 	
 	private int countBackSlash(String currentAddress) { // 역슬래쉬 수
 		return currentAddress.length() - currentAddress.replace(String.valueOf("\\"), "").length();

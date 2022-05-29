@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import controller.Command.Cd;
+import controller.Command.Copy;
 import controller.Command.Dir;
 import controller.Command.Help;
 import utility.ConstantsNumber;
@@ -20,6 +21,7 @@ public class CmdStart {
 	private Dir dir;
 	private Help help;
 	private Cd cd;
+	private Copy copy;
 	
 	public  CmdStart() {
 		currentAddress = "C:\\Users\\"+System.getProperty("user.name");
@@ -28,6 +30,7 @@ public class CmdStart {
 		dir= new Dir( );
 		help = new Help();
 		cd = new Cd();
+		copy = new Copy();
 	}
 	
 	
@@ -44,17 +47,17 @@ public class CmdStart {
 			switch (inputText) {
 			
 			case "cd": 
-				cd.backOneAddress(this);
+				cd.moveBackOneAddress(this);
 				break;
 			case "dir": 
-				//dir.startDir(inputText);
-				dir.startDir("C:\\Users\\rong5");
+	
+				dir.start("C:\\Users\\rong5");
 				break;
 			case "cls": 
 				mainText.showCls();
 				break;
 			case "help": 
-				help.startHelp();
+				help.start();
 				break;
 			case "copy": 
 				
