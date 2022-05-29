@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -37,34 +38,60 @@ public class Copy {
 		
 	}
 	
-	//파일 - 파일
-	public void conductFileToFile(String firstAddress, String secondAddress ,String firstFileName, String secondFileName,CmdStart cmdStart) throws IOException { // 파일에서 파일 복사
-		
-		File firstFile = new File(firstAddress+"\\" +firstFileName  );
-		File secondFile = new File(secondAddress+"\\" +secondFileName );	
-		Files.copy(firstFile.toPath(), secondFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
+
+
+
+	
+	//폴더 - > 파일
+	public void executeFolerToFile(File firstAdressFile, File secondAdressFile) throws IOException {
+		 String files[] = firstAdressFile.list();
+		 if(files!=null) {	
+			 for (String file : files) {
+				 File copyFile = new File(firstAdressFile, file);
+				 if(!copyFile.isDirectory()) {
+					 
+					 FileInputStream input = new FileInputStream(file);        
+					 FileOutputStream output = new FileOutputStream(secondAdressFile);
+					 
+					 byte[] buf = new byte[1024];
+					
+					 int readData;      
+					 while ((readData = input.read(buf)) > 0) {    
+						 output.write(buf, 0, readData);       
+					 }
+					
+					  input.close();     
+					  output.close();
+					 
+				 }
+				 
+			 }
+			 
+			 
+		 }
 		
 	}
-	
 
-
-	//  폴더 - 폴더
-	//  파일 - 파일
-	//  파일 - 폴더   2번째 주소에 첫번째 주소의 firstAdressFile.getName() == 텍스트 파일이름을 더해서 넣어주기
-	public void executeSame(File firstAdressFile, File secondAdressFile) throws IOException
-	{
-		  String files[] = firstAdressFile.list();
-		  
-		  if(files!=null) {
-		
+	//폴더 -> 폴더
+	public void executeFolerToFolder(File firstAdressFile, File secondAdressFile) throws IOException {
+		 String files[] = firstAdressFile.list();
+		 if(files!=null) {		
 			  for (String file : files)
 				  if(!new File(firstAdressFile, file).isDirectory()) 
 					  Files.copy(new File(firstAdressFile, file).toPath(), new File(secondAdressFile, file).toPath() , StandardCopyOption.REPLACE_EXISTING);
 		  }
-		  else {
-			
-			  Files.copy(firstAdressFile.toPath(), secondAdressFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
-		  }
+	}
+	
+	// 파일 -> 파일
+	private void executeFileToFile(File firstAdressFile, File secondAdressFile) throws IOException {
+		 Files.copy(firstAdressFile.toPath(), secondAdressFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
+	}
+	
+	
+	//파일 -> 폴더
+	private void executeFileToFolder(File firstAdressFile, File secondAdressFile) throws IOException {
+		File file = new File( secondAdressFile+ "\\" + firstAdressFile.getName()  );
+		Files.copy(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
 	}
 	
 
