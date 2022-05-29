@@ -30,12 +30,7 @@ public class Copy {
 	
 	public void start(String firstAddress, String secondAddress ,String firstFileName, String secondFileName) {
 		
-		//첫 주소 경로 있는지 확인
-		//첫 파일 존재하는지 확인
-		
-		//두번째 주소 있는지 확인
-		//두번째 파일 있는지 확인 - 1.없으면 생성,   2. 있으면 덮어쓰기
-		
+	
 		
 		
 	}
@@ -46,49 +41,28 @@ public class Copy {
 	
 	//폴더 - > 파일
 	public void executeFolerToFile(File firstAdressFile, File secondAdressFile) throws IOException {
+		
 		 String files[] = firstAdressFile.list();
-		 System.out.println(files);
+	
 		 if(files!=null) {	
 			 for (String file : files) {
 				 File copyFile = new File(firstAdressFile, file);
-				 
-				 System.out.println(copyFile.getAbsolutePath());
-				 System.out.println(copyFile.getName());
-				 System.out.println(copyFile.getPath());
-				
-				 
+
 				 if(!copyFile.isDirectory()) {
-					 
-					   try {
+		 
 						   FileReader filereader = new FileReader(copyFile);
 						   FileWriter fileWriter = new FileWriter(secondAdressFile,true);
-					
 					
 					 int readData;      
 					 while ((readData = filereader.read()) !=-1) {    
 						 fileWriter.write(readData);       
-						
 					 }
-				
-						
+
 					 fileWriter.close();
 					 filereader.close();
-					
-					
-				 } catch (FileNotFoundException e) {
-			            // TODO Auto-generated catch block
-			            e.printStackTrace();
-			        } catch (IOException e) {
-			            // TODO Auto-generated catch block
-			            e.printStackTrace();
-			        }
-				 }
-				 
-			 }
-			 
-			 
+				 }		 
+			 }			
 		 }
-		
 	}
 
 	//폴더 -> 폴더

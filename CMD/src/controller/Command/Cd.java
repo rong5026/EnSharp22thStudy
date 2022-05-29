@@ -19,7 +19,6 @@ public class Cd {
 		
 		int backSlashIndex = cmdStart.currentAddress.lastIndexOf("\\");
 		
-		//현재 주소에서 역슬래쉬가 2개 이상일때 상위 폴더로 이동
 		if(countBackSlash(cmdStart.currentAddress)>=2) 
 			 cmdStart.currentAddress = cmdStart.currentAddress.substring(0,backSlashIndex);
 	}
@@ -28,6 +27,11 @@ public class Cd {
 		cmdStart.currentAddress = inputAddress;
 	}
 	
+	public void moveSubFolderAddress(CmdStart cmdStart , String inputAddress) {// cd 하위폴더 
+		
+		// 하위폴더 있는지 확인 후
+		cmdStart.currentAddress = cmdStart.currentAddress+inputAddress;
+	}
 	private int countBackSlash(String currentAddress) { // 역슬래쉬 수
 		return currentAddress.length() - currentAddress.replace(String.valueOf("\\"), "").length();
 	}
