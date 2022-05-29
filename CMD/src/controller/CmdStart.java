@@ -3,6 +3,8 @@ package controller;
 import java.io.Console;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 
 import controller.Command.Cd;
@@ -24,7 +26,7 @@ public class CmdStart {
 	private Copy copy;
 	
 	public  CmdStart() {
-		currentAddress = "C:\\Users\\"+System.getProperty("user.name");
+		currentAddress = "C:\\Users\\rong5\\Desktop"; //"C:\\Users\\"+System.getProperty("user.name");
 		
 		mainText= new MainText();
 		dir= new Dir( );
@@ -42,7 +44,6 @@ public class CmdStart {
 			mainText.showInput(currentAddress);
 			inputText = new Scanner(System.in).nextLine();
 			
-			//dir.startDir("C:\\Users\\rong5");
 			
 			switch (inputText) {
 			
@@ -53,6 +54,7 @@ public class CmdStart {
 	
 				dir.start("C:\\Users\\rong5");
 				break;
+				
 			case "cls": 
 				mainText.showCls();
 				break;
@@ -60,6 +62,7 @@ public class CmdStart {
 				help.start();
 				break;
 			case "copy": 
+				copy.executeSame(new File("C:\\Users\\rong5\\Desktop\\2.txt"),new File("C:\\Users\\rong5\\Desktop\\1") );
 				
 				break;
 			case "move": 
