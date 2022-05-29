@@ -26,7 +26,7 @@ public class CmdStart {
 	private Copy copy;
 	
 	public  CmdStart() {
-		currentAddress = "C:\\Users\\rong5\\Desktop"; //"C:\\Users\\"+System.getProperty("user.name");
+		currentAddress ="C:\\Users\\"+System.getProperty("user.name");
 		
 		mainText= new MainText();
 		dir= new Dir( );
@@ -62,7 +62,7 @@ public class CmdStart {
 				help.start();
 				break;
 			case "copy": 
-				copy.executeSame(new File("C:\\Users\\rong5\\Desktop\\2.txt"),new File("C:\\Users\\rong5\\Desktop\\1") );
+				copy.executeFileToFolder(new File("C:\\Users\\rong5\\Desktop\\2.txt"),new File("C:\\Users\\rong5\\Desktop\\1") );
 				
 				break;
 			case "move": 

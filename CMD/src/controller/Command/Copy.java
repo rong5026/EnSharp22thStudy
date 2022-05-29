@@ -1,7 +1,9 @@
 package controller.Command;
 
+import java.awt.Window.Type;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,6 +50,7 @@ public class Copy {
 
 	//  폴더 - 폴더
 	//  파일 - 파일
+	//  파일 - 폴더   2번째 주소에 첫번째 주소의 firstAdressFile.getName() == 텍스트 파일이름을 더해서 넣어주기
 	public void executeSame(File firstAdressFile, File secondAdressFile) throws IOException
 	{
 		  String files[] = firstAdressFile.list();
@@ -59,12 +62,12 @@ public class Copy {
 					  Files.copy(new File(firstAdressFile, file).toPath(), new File(secondAdressFile, file).toPath() , StandardCopyOption.REPLACE_EXISTING);
 		  }
 		  else {
+			
 			  Files.copy(firstAdressFile.toPath(), secondAdressFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
 		  }
 	}
 	
 
-	
 
 
 	
