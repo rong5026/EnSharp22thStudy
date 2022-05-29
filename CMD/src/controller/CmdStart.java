@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+import controller.Command.Cd;
 import controller.Command.Dir;
 import controller.Command.Help;
 import utility.ConstantsNumber;
@@ -14,18 +15,19 @@ import view.DirText;
 public class CmdStart {
 	
 	private MainText mainText;
-	private String currentAddress;
+	public String currentAddress;
 	private String inputText;
 	private Dir dir;
 	private Help help;
+	private Cd cd;
 	
 	public  CmdStart() {
 		currentAddress = "C:\\Users\\"+System.getProperty("user.name");
 		
 		mainText= new MainText();
-		
 		dir= new Dir( );
 		help = new Help();
+		cd = new Cd();
 	}
 	
 	
@@ -42,10 +44,11 @@ public class CmdStart {
 			switch (inputText) {
 			
 			case "cd": 
-				
+				cd.backOneAddress(this);
 				break;
 			case "dir": 
-				dir.startDir(inputText);
+				//dir.startDir(inputText);
+				dir.startDir("C:\\Users\\rong5");
 				break;
 			case "cls": 
 				mainText.showCls();
@@ -64,12 +67,10 @@ public class CmdStart {
 			default:
 				
 			}
-		
-			
-			
-			
 		}
-		
+	}
+	private void setAddress(String currentAddress) {
+		this.currentAddress = currentAddress;
 	}
 	
 	
