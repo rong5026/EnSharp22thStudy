@@ -7,7 +7,7 @@ import utility.ConstantsNumber;
 public class InputException {
 	
 	
-	/*
+	
 	public int distinguishCommand(String inputText) {
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자로 변환, 앞 공백 삭제
@@ -29,10 +29,11 @@ public class InputException {
 			return ConstantsNumber.MOVE;
 
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + key);
+			
 		}
+		return 0;
 	}
-	*/
+	
 	private boolean distinguishCd(String inputText) { // cd인지 확인
 		String input;
 		
@@ -52,9 +53,10 @@ public class InputException {
 		
 	}
 	
-	//private boolean distinguishDir(String inputText) {
-		
-	//}
+	private boolean distinguishDir(String inputText) {
+		return false;
+		//if(inputText.substring(0, 3).equals("dir")) 
+	}
 	
 
 }

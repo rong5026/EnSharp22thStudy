@@ -21,11 +21,11 @@ public class CmdMain {
 		//cmd.start();
 		
 	
-		String aString = "HElp sdfsd sdfsdf";
+		String aString = "HElp";
 		
 		aString = aString.stripLeading();
 		
-		System.out.println(aString.substring(0,2));
+		System.out.println(aString.split(" ")[0]);
 		System.out.println(aString.charAt(2));
 		
 	
