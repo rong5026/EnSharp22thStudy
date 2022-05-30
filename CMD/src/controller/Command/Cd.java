@@ -21,19 +21,28 @@ public class Cd {
 	public void start(CmdStart cmdStart,String inputText) {//cd 명령어 수행
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
+		
 	
 		
-		
-		if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\")) // cd\
+		if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\")) { // cd\
 			moveFirstAddress(cmdStart);
-		else if(inputText.replace(" ", "") == "cd.." && checkVaildCd(inputText,"..")) // cd..
-			moveBackOneAddress(cmdStart);
-		else if(inputText.replace(" ", "") == "cd..\\.." && checkVaildCd(inputText,"..\\..")) // cd..\..
+			System.out.println("1번에 들어옴");
+		}
+		else if(inputText.replace(" ", "").equals("cd..") && checkVaildCd(inputText,"..")) { // cd..
+			moveBackOneAddress(cmdStart);	
+			System.out.println("2번에 들어옴");
+		}
+		else if(inputText.replace(" ", "").equals("cd..\\..") && checkVaildCd(inputText,"..\\..")) { // cd..\..
 			moveBackTwoAddress(cmdStart);
-		else if(removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  checkValidAddress( removeBlackAddress(inputText)))// c:\\ 첫주소부터 입력했을때	
-			moveEnteredAddress( cmdStart, removeBlackAddress(inputText).substring(3));		
+			System.out.println("3번에 들어옴");
+		}
+		else if(removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  checkValidAddress( removeBlackAddress(inputText))){// c:\\ 첫주소부터 입력했을때	
+			moveEnteredAddress( cmdStart, removeBlackAddress(inputText).substring(3));	
+			System.out.println("4번에 들어옴");
+		}
 		else if( removeBlackAddress(inputText).substring(3).contains("c:\\users") ==false && checkValidAddress( removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) ))) {
 			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+removeBlackAddress(inputText).substring(3));
+			System.out.println("5번에 들어옴");
 		}
 		else // 에러메시지 표시
 			errorText.showNonValidAddress();
@@ -81,6 +90,8 @@ public class Cd {
 		
 		if(countBackSlash(cmdStart.currentAddress)>=2) 
 			 cmdStart.currentAddress = cmdStart.currentAddress.substring(0,backSlashIndex);
+		
+		
 	}
 	
 	public void moveEnteredAddress(CmdStart cmdStart, String inputAddress) {//입력한 주소로 이동

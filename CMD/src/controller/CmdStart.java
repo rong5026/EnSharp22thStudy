@@ -57,6 +57,7 @@ public class CmdStart {
 			switch (commandType) {
 			
 			case  ConstantsNumber.CD:  
+				
 				cd.start(this,inputText);
 				break;
 			case ConstantsNumber.DIR: 
