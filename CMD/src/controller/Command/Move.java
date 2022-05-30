@@ -49,16 +49,18 @@ public class Move {
 		
 	
 	//파일 -> 폴더
-	public void moveFileToFolder(File firstAdressFile, File secondAdressFile) throws IOException {
+	public void moveFileToFolder(File firstAdressFile, File secondAdressFile) throws IOException  {
 		File file = new File( secondAdressFile+ "\\" + firstAdressFile.getName()  );	
 		
-		System.out.println(file.getPath());
-		System.out.println(file.getName());
 		
 		if(file.exists()) {
-				
+			if(enterOverWrite(file,secondAdressFile,ConstantsNumber.FileToFolder)==ConstantsNumber.YES_INPUT)
+				runMoveProcess(firstAdressFile,file);
 		}
-		Files.move(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
+		else 
+			runMoveProcess(firstAdressFile,file);
+		
+		moveText.showCopyResult(moveCount);
 	}
 	
 	
@@ -68,11 +70,10 @@ public class Move {
 		while(ConstantsNumber.IS_CMD_ON) {
 			
 			//문구 출력
-			if(type == ConstantsNumber.FileToFolder || type == ConstantsNumber.FolderToFolder){//파일 - 폴더 ,  폴더 - 폴더
+			if(type == ConstantsNumber.FileToFolder ){//파일 - 폴더
+				moveText.showOverwriteFile(firstAddressFile.getPath());
 			}
-			else if(type == ConstantsNumber.FileToFile || type == ConstantsNumber.FolderToFile) { // 파일 - 파일  , 폴더 - 파일
 			
-			}
 			
 			// yes,no,all 입력
 			int input = cmdInput.enterYesNoAll();
@@ -83,6 +84,13 @@ public class Move {
 		}
 		
 	}
+	
+	private void runMoveProcess(File firstAdressFile,File file) throws IOException {
+		Files.move(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
+		moveCount++;
+	}
+		
+
 		
 
 		
