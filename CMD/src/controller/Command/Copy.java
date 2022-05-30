@@ -16,28 +16,26 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import controller.CmdInput;
 import controller.CmdStart;
+import utility.ConstantsNumber;
+import view.CopyText;
 
 public class Copy {
 
-	
-	
+	private CopyText copyText;
+	private CmdInput cmdInput;
 	public Copy() {
-		
+		copyText = new CopyText();
+		cmdInput = new CmdInput();
 	}
 	
 	
 	
-	public void start(String firstAddress, String secondAddress ,String firstFileName, String secondFileName) {
-		
-	
+	public void startCopy() {
 		
 		
 	}
-	
-
-
-
 	
 	//폴더 - > 파일
 	public void executeFolerToFile(File firstAdressFile, File secondAdressFile) throws IOException {
@@ -49,9 +47,10 @@ public class Copy {
 				 File copyFile = new File(firstAdressFile, file);
 
 				 if(!copyFile.isDirectory()) {
+					 
 		 
-						   FileReader filereader = new FileReader(copyFile);
-						   FileWriter fileWriter = new FileWriter(secondAdressFile,true);
+					 FileReader filereader = new FileReader(copyFile);
+					 FileWriter fileWriter = new FileWriter(secondAdressFile,true);
 					
 					 int readData;      
 					 while ((readData = filereader.read()) !=-1) {    
@@ -84,10 +83,43 @@ public class Copy {
 	//파일 -> 폴더
 	private void executeFileToFolder(File firstAdressFile, File secondAdressFile) throws IOException {
 		File file = new File( secondAdressFile+ "\\" + firstAdressFile.getName()  );
+		
+		if(file.exists()) {
+			
+			switch (enterOverWrite(firstAdressFile,secondAdressFile)) {
+			case ConstantsNumber.YES_INPUT: 
+				break;
+			case ConstantsNumber.NO_INPUT: 
+				break;
+			case ConstantsNumber.ALL_INPUT: 
+				break;
+				
+			default:
+				
+			}
+			
+			
+		}
+		
 		Files.copy(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
 	}
 	
-
+	
+	// 문구 출력 후 yes,no,all 올바른 값을 받을 때까지 반복
+	private int enterOverWrite(File firstAdressFile, File secondAdressFile) { 
+		
+		while(ConstantsNumber.IS_CMD_ON) {
+			copyText.showOverwriteFileMessage(secondAdressFile.getName(), firstAdressFile.getName());
+			
+			if( cmdInput.enterYesNoAll() != ConstantsNumber.INVALID_INPUT)
+				return cmdInput.enterYesNoAll();
+		}
+		
+	}
+	
+	
+	
+	
 
 
 	
