@@ -21,10 +21,7 @@ public class Cd {
 	public void start(CmdStart cmdStart,String inputText) {//cd 명령어 수행
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
-		
-		System.out.println(removeBlackAddress(cmdStart.currentAddress +"\\"+inputText ));
-		System.out.println( checkValidAddress( removeBlackAddress(cmdStart.currentAddress +"\\"+inputText )));
-		
+	
 		
 		
 		if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\")) // cd\

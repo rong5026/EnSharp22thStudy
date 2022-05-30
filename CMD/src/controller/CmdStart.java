@@ -60,7 +60,7 @@ public class CmdStart {
 				cd.start(this,inputText);
 				break;
 			case ConstantsNumber.DIR: 
-				dir.start("C:\\Users\\rong5");
+				dir.start(currentAddress);
 				break;
 			case ConstantsNumber.CLS: 
 				mainText.showCls();
