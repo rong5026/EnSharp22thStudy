@@ -75,8 +75,27 @@ public class Copy {
 	}
 	
 	// 파일 -> 파일
-	private void executeFileToFile(File firstAdressFile, File secondAdressFile) throws IOException {
-		 Files.copy(firstAdressFile.toPath(), secondAdressFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
+	public void executeFileToFile(File firstAdressFile, File secondAdressFile) throws IOException {
+		int copyCount=0;
+		
+	
+		
+		
+		if(secondAdressFile.exists()) { // 폴더안에 중복되는것이 있을때
+			
+			if(enterOverWrite(firstAdressFile,secondAdressFile,ConstantsNumber.FileToFile) == ConstantsNumber.YES_INPUT ||
+					enterOverWrite(firstAdressFile,secondAdressFile,ConstantsNumber.FileToFile) == ConstantsNumber.ALL_INPUT  ) {
+				 Files.copy(firstAdressFile.toPath(), secondAdressFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
+				copyCount++;
+			}
+		}
+		else {
+			 Files.copy(firstAdressFile.toPath(), secondAdressFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
+			copyCount++;
+		}
+		
+		copyText.showCopyResult(copyCount);
+		
 	}
 	
 	
@@ -86,16 +105,12 @@ public class Copy {
 		
 		File file = new File( secondAdressFile+ "\\" + firstAdressFile.getName()  );
 		
-		if(file.exists()) { // 폴더안에 중복되는것이 없을때
+		if(file.exists()) { // 폴더안에 중복되는것이 있을때
 			
-			switch (enterOverWrite(firstAdressFile,secondAdressFile)) {
-			case ConstantsNumber.YES_INPUT:case ConstantsNumber.ALL_INPUT: 
+			if(enterOverWrite(firstAdressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.YES_INPUT ||
+					enterOverWrite(firstAdressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.ALL_INPUT  ) {
 				Files.copy(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
 				copyCount++;
-				break;
-			case ConstantsNumber.NO_INPUT: 
-				break;
-			default:
 			}
 		}
 		else {
@@ -108,14 +123,19 @@ public class Copy {
 	}
 	
 	
-	// 문구 출력 후 yes,no,all 올바른 값을 받을 때까지 반복
-	private int enterOverWrite(File firstAdressFile, File secondAdressFile) { 
+	// 문구 출력 후 입력
+	private int enterOverWrite(File firstAdressFile, File secondAdressFile,int type) { 
 		
 		while(ConstantsNumber.IS_CMD_ON) {
 			
+			//문구 출력
+			if(type == ConstantsNumber.FileToFolder)
+				copyText.showOverwriteFileMessage(secondAdressFile.getName(), firstAdressFile.getName());
+			else if(type == ConstantsNumber.FileToFile) {
+				copyText.showOverwriteMessage(secondAdressFile.getName());
+			}
 			
-			copyText.showOverwriteFileMessage(secondAdressFile.getName(), firstAdressFile.getName());
-			
+			// yes,no,all 입력
 			int input = cmdInput.enterYesNoAll();
 			if( input != ConstantsNumber.INVALID_INPUT)
 				return input;
