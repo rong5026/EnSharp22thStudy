@@ -18,7 +18,7 @@ public class CopyText {
 		//   폴더이름\3.txt를 덮어쓰시겠습니까?(yes/no/all)
 	}
 	
-	public void showOverWriteFolderToFolder(String folderName, String fileName) {
+	public void showFolderFileName(String folderName, String fileName) {
 		System.out.println(folderName+"\\"+fileName);
 		
 	}

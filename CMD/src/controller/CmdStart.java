@@ -66,7 +66,7 @@ public class CmdStart {
 				help.start();
 				break;
 			case "copy": 
-				copy.executeFolerToFolder(new File("C:\\Users\\rong5\\Desktop\\3"),new File("C:\\Users\\rong5\\Desktop\\1") );
+				copy.executeFolerToFile(new File("C:\\Users\\rong5\\Desktop\\3"),new File("C:\\Users\\rong5\\Desktop\\65.txt") );
 				
 				break;
 			case "move": 
