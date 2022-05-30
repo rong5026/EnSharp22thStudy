@@ -83,14 +83,12 @@ public class Copy {
 	public void executeFileToFile(File firstAddressFile, File secondAdressFile) throws IOException {
 		copyCount=0;
 		
-	
 		if(secondAdressFile.exists()) { // 폴더안에 중복되는것이 있을때
 			if(enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFile) == ConstantsNumber.YES_INPUT ||enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFile) == ConstantsNumber.ALL_INPUT  ) 
 				runFileCopy( firstAddressFile, secondAdressFile);	
 		}
 		else 
 			runFileCopy( firstAddressFile, secondAdressFile);
-		
 		
 		copyText.showCopyResult(copyCount);
 		
@@ -126,7 +124,7 @@ public class Copy {
 			else if(type == ConstantsNumber.FileToFile || type == ConstantsNumber.FolderToFile) // 파일 - 파일  , 폴더 - 파일
 				copyText.showOverwriteFileToFile(secondAdressFile.getName());
 	
-			
+	
 			// yes,no,all 입력
 			int input = cmdInput.enterYesNoAll();
 			if( input != ConstantsNumber.INVALID_INPUT) {

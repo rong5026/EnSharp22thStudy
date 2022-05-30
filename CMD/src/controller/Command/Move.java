@@ -32,19 +32,33 @@ public class Move {
 		//second폴더가 있을때
 		if(secondAdressFile.isDirectory()) {
 			File file = new File( secondAdressFile+ "\\" + firstAdressFile.getName()  );
-			Files.move(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
+			if(file.exists()) {
+				int inputResult = enterOverWrite(file);
+				if(inputResult==ConstantsNumber.YES_INPUT || inputResult == ConstantsNumber.ALL_INPUT)
+					runMoveProcess(firstAdressFile,file);
+			}
+			runMoveProcess(firstAdressFile,file);
 		}
 		//second폴더가 없을때
-		else {
-			Files.move(firstAdressFile.toPath(), secondAdressFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
-		}
-			
+		else 
+			runMoveProcess(firstAdressFile,secondAdressFile);
+		
+		 moveText.showCopyResult(moveCount);
 	}
 		
 	// 파일 -> 파일
 	//없는파일도 자동으로 바뀜
 	public void moveFileToFile(File firstAdressFile, File secondAdressFile) throws IOException {
-		 Files.move(firstAdressFile.toPath(), secondAdressFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
+		
+		if(secondAdressFile.exists()) {
+			int inputResult = enterOverWrite(secondAdressFile);
+			if(inputResult==ConstantsNumber.YES_INPUT || inputResult == ConstantsNumber.ALL_INPUT)
+				runMoveProcess(firstAdressFile,secondAdressFile);
+		}
+		else 
+			runMoveProcess(firstAdressFile,secondAdressFile);
+		 
+		 moveText.showCopyResult(moveCount);
 	}
 		
 	
@@ -52,9 +66,9 @@ public class Move {
 	public void moveFileToFolder(File firstAdressFile, File secondAdressFile) throws IOException  {
 		File file = new File( secondAdressFile+ "\\" + firstAdressFile.getName()  );	
 		
-		
 		if(file.exists()) {
-			if(enterOverWrite(file,secondAdressFile,ConstantsNumber.FileToFolder)==ConstantsNumber.YES_INPUT)
+			int inputResult = enterOverWrite(file);
+			if(inputResult==ConstantsNumber.YES_INPUT || inputResult == ConstantsNumber.ALL_INPUT)
 				runMoveProcess(firstAdressFile,file);
 		}
 		else 
@@ -65,16 +79,13 @@ public class Move {
 	
 	
 	// 문구 출력 후 입력
-	private int enterOverWrite(File firstAddressFile, File secondAdressFile,int type) { 
+	private int enterOverWrite(File firstAddressFile) { 
 		
 		while(ConstantsNumber.IS_CMD_ON) {
 			
 			//문구 출력
-			if(type == ConstantsNumber.FileToFolder ){//파일 - 폴더
-				moveText.showOverwriteFile(firstAddressFile.getPath());
-			}
-			
-			
+			moveText.showOverwriteFile(firstAddressFile.getPath());
+		
 			// yes,no,all 입력
 			int input = cmdInput.enterYesNoAll();
 			if( input != ConstantsNumber.INVALID_INPUT) {
@@ -85,6 +96,7 @@ public class Move {
 		
 	}
 	
+	//move 기능 수행
 	private void runMoveProcess(File firstAdressFile,File file) throws IOException {
 		Files.move(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
 		moveCount++;
