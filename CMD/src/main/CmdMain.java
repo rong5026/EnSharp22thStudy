@@ -21,9 +21,12 @@ public class CmdMain {
 		//cmd.start();
 		
 	
-		String aString = "cd c: \\users";
+		String aString = "cd c:           \\users";
 		
-		aString = aString.replaceAll("\s\\\\", "\\\\");
+		
+		if(aString.contains(":\\"))
+			System.out.println(aString);
+		//aString = aString.replaceAll("\s{0,}\\\\", "\\\\");
 		/*
 		while(true) {
 			System.out.println(aString);
@@ -35,7 +38,7 @@ public class CmdMain {
 			}
 		}
 		*/
-		System.out.println(aString);
+	
 		//aString = aString.stripLeading();
 		
 		//System.out.println(aString.split(" ")[0]);

@@ -6,13 +6,14 @@ import javax.imageio.stream.ImageInputStreamImpl;
 
 import controller.CmdStart;
 import utility.ConstantsNumber;
+import view.ErrorText;
 
 public class Cd {
 
-	
+	private ErrorText errorText;
 	public Cd() {
 		
-		
+		errorText = new ErrorText();
 		
 	}
 	
@@ -27,21 +28,19 @@ public class Cd {
 			moveBackOneAddress(cmdStart);
 		else if(inputText.replace(" ", "") == "cd..\\.." && checkVaildCd(inputText,"..\\..")) // cd..\..
 			moveBackTwoAddress(cmdStart);
-		//else if(inputText.substring(2).contains("c:\\users")  &&)
-		
-		
-		
+		else if(removeBlackAddress(inputText).substring(2).contains("c:\\users")  &&  checkValidAddress( removeBlackAddress(inputText)))  // c:\\ 첫주소부터 입력했을때
+			moveEnteredAddress( cmdStart, inputText);
+		else if( !removeBlackAddress(inputText).substring(2).contains("c:\\users")  && checkValidAddress( removeBlackAddress(cmdStart.currentAddress +"\\"+inputText )))
+			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+inputText);
+		else // 에러메시지 표시
+			errorText.showNonValidAddress();
+			
 	}
 	
-	// cd:\dfsdfsd  \sdfsdfsd\dsfsd \sdfsdfs
-	private String removeBlackBeforeBackSlash(String inputAddress) {
-		
-		while(true) {
-			
-			//if(inputAddress.contains(" \\")))
-		}
-		
-		
+	
+	
+	private String removeBlackAddress(String inputAddress) { // \앞에 공백 제거
+		return inputAddress.replaceAll("\s{0,}\\\\", "\\\\");
 	}
 
 	
