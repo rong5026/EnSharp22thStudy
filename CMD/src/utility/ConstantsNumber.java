@@ -25,6 +25,7 @@ public class ConstantsNumber {
 	public final static int HELP = 4;
 	public final static int COPY = 5;
 	public final static int MOVE = 6;
+	public final static int NON_VALUE = 0;
 	
 	
 	//inputException

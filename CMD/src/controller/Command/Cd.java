@@ -7,6 +7,17 @@ import controller.CmdStart;
 public class Cd {
 
 	
+	public Cd() {
+		
+		
+	}
+	
+	
+	public void startCd() {
+		
+		
+		
+	}
 	public void moveFirstAddress(CmdStart cmdStart) { // cd\  처음위치로 이동
 		cmdStart.currentAddress = "C:\\";
 	}

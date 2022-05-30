@@ -26,6 +26,7 @@ public class CmdStart {
 	private Cd cd;
 	private Copy copy;
 	private Move move;
+	private InputException inputException;
 	
 	
 	public  CmdStart() {
@@ -37,38 +38,40 @@ public class CmdStart {
 		cd = new Cd();
 		copy = new Copy();
 		move = new Move();
+		
+		inputException = new InputException();
 	}
 	
 	
 	public void start() throws IOException {
-		
+		int commandType;
 		mainText.showMain(); // 처음 문구
 		
 		while(ConstantsNumber.IS_CMD_ON) {
 			mainText.showInput(currentAddress);
 			inputText = new Scanner(System.in).nextLine();
+			commandType = inputException.distinguishCommand(inputText);
 			
-			switch (inputText) {
+			switch (commandType) {
 			
-			case "cd": 
+			case  ConstantsNumber.CD: 
 				cd.moveBackOneAddress(this);
 				break;
-			case "dir": 
+			case ConstantsNumber.DIR: 
 	
 				dir.start("C:\\Users\\rong5");
 				break;
 				
-			case "cls": 
+			case ConstantsNumber.CLS: 
 				mainText.showCls();
 				break;
-			case "help": 
+			case ConstantsNumber.HELP: 
 				help.start();
 				break;
-			case "copy": 
+			case ConstantsNumber.COPY: 
 				copy.copyFolerToFile(new File("C:\\Users\\rong5\\Desktop\\3"),new File("C:\\Users\\rong5\\Desktop\\65.txt") );
-				
 				break;
-			case "move": 
+			case  ConstantsNumber.MOVE: 
 				move.moveFolerToFolder(new File("C:\\Users\\rong5\\Desktop\\11"),new File("C:\\Users\\rong5\\Desktop\\11"));
 				break;
 				

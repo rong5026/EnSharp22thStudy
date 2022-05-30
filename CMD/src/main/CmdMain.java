@@ -17,18 +17,18 @@ public class CmdMain {
 
 	public static void main(String[] args) throws IOException {
 
-		//CmdStart cmd = new CmdStart();
-		//cmd.start();
+		CmdStart cmd = new CmdStart();
+		cmd.start();
 		
 	
-		String aString = "HElp";
+		/*String aString = "HElp";
 		
 		aString = aString.stripLeading();
 		
 		System.out.println(aString.split(" ")[0]);
 		System.out.println(aString.charAt(2));
 		
-	
+		 */
 		
 		
 	}
