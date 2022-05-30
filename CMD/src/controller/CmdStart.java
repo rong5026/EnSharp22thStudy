@@ -26,6 +26,8 @@ public class CmdStart {
 	private Cd cd;
 	private Copy copy;
 	private Move move;
+	
+	
 	public  CmdStart() {
 		currentAddress ="C:\\Users\\"+System.getProperty("user.name");
 		
@@ -64,7 +66,7 @@ public class CmdStart {
 				help.start();
 				break;
 			case "copy": 
-				copy.executeFolerToFile(new File("C:\\Users\\rong5\\Desktop\\2"),new File("C:\\Users\\rong5\\Desktop\\4.txt") );
+				copy.executeFileToFolder(new File("C:\\Users\\rong5\\Desktop\\3.txt"),new File("C:\\Users\\rong5\\Desktop\\1") );
 				
 				break;
 			case "move": 
@@ -77,9 +79,7 @@ public class CmdStart {
 			}
 		}
 	}
-	private void setAddress(String currentAddress) {
-		this.currentAddress = currentAddress;
-	}
+	
 	
 	
 

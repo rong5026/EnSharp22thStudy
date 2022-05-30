@@ -11,12 +11,15 @@ public class CmdInput {
 
 	public int enterYesNoAll() { // yes, or, all중 선택
 		String inputText = new Scanner(System.in).nextLine();
-		
+		System.out.println("입력이 끝남");
 		inputText = inputText.toLowerCase();
+		
+		if(inputText=="" || inputText ==null)
+			return ConstantsNumber.INVALID_INPUT;
 		
 		switch (inputText.charAt(0)){
 		
-		case 'y': 
+		case 'y': 	
 			return ConstantsNumber.YES_INPUT;
 		
 		case 'n':
@@ -33,3 +36,4 @@ public class CmdInput {
 	}
 	
 }
+

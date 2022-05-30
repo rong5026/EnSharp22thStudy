@@ -81,27 +81,30 @@ public class Copy {
 	
 	
 	//파일 -> 폴더
-	private void executeFileToFolder(File firstAdressFile, File secondAdressFile) throws IOException {
+	public void executeFileToFolder(File firstAdressFile, File secondAdressFile) throws IOException {
+		int copyCount=0;
+		
 		File file = new File( secondAdressFile+ "\\" + firstAdressFile.getName()  );
 		
-		if(file.exists()) {
+		if(file.exists()) { // 폴더안에 중복되는것이 없을때
 			
 			switch (enterOverWrite(firstAdressFile,secondAdressFile)) {
-			case ConstantsNumber.YES_INPUT: 
+			case ConstantsNumber.YES_INPUT:case ConstantsNumber.ALL_INPUT: 
+				Files.copy(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
+				copyCount++;
 				break;
 			case ConstantsNumber.NO_INPUT: 
 				break;
-			case ConstantsNumber.ALL_INPUT: 
-				break;
-				
 			default:
-				
 			}
-			
-			
+		}
+		else {
+			Files.copy(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
+			copyCount++;
 		}
 		
-		Files.copy(firstAdressFile.toPath(), file.toPath() , StandardCopyOption.REPLACE_EXISTING);
+		copyText.showCopyResult(copyCount);
+		
 	}
 	
 	
@@ -109,10 +112,14 @@ public class Copy {
 	private int enterOverWrite(File firstAdressFile, File secondAdressFile) { 
 		
 		while(ConstantsNumber.IS_CMD_ON) {
+			
+			
 			copyText.showOverwriteFileMessage(secondAdressFile.getName(), firstAdressFile.getName());
 			
-			if( cmdInput.enterYesNoAll() != ConstantsNumber.INVALID_INPUT)
-				return cmdInput.enterYesNoAll();
+			int input = cmdInput.enterYesNoAll();
+			if( input != ConstantsNumber.INVALID_INPUT)
+				return input;
+			
 		}
 		
 	}
