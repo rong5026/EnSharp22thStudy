@@ -48,20 +48,20 @@ public class CmdStart {
 		mainText.showMain(); // 처음 문구
 		
 		while(ConstantsNumber.IS_CMD_ON) {
+			
 			mainText.showInput(currentAddress);
+			
 			inputText = new Scanner(System.in).nextLine();
 			commandType = inputException.distinguishCommand(inputText);
 			
 			switch (commandType) {
 			
-			case  ConstantsNumber.CD: 
-				cd.moveBackOneAddress(this);
+			case  ConstantsNumber.CD:  
+				cd.start(this,inputText);
 				break;
 			case ConstantsNumber.DIR: 
-	
 				dir.start("C:\\Users\\rong5");
 				break;
-				
 			case ConstantsNumber.CLS: 
 				mainText.showCls();
 				break;

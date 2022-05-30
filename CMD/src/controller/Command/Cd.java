@@ -3,6 +3,7 @@ package controller.Command;
 import java.io.File;
 
 import controller.CmdStart;
+import utility.ConstantsNumber;
 
 public class Cd {
 
@@ -10,14 +11,39 @@ public class Cd {
 	public Cd() {
 		
 		
+		
 	}
 	
 	
-	public void startCd() {
+	public void start(CmdStart cmdStart,String inputText) {
+		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
+		
+		if(inputText.replace(" ", "") == "cd\\") // cd\
+			moveFirstAddress(cmdStart);
+		else if()
 		
 		
 		
 	}
+	
+	private boolean checkVaildCd(String inputText) {
+		
+		//if(inputText.replace(" ", "") == "cd\\")
+		
+	}
+	
+	private boolean checkContinuousCd(String inputText, String typeText) {
+		
+	
+		if(inputText.contains(typeText))
+			return ConstantsNumber.IS_VALID_CDTYPE;
+		else 
+			return ConstantsNumber.IS_NON_VALID_CDTYPE;
+		
+		
+		
+	}
+	
 	public void moveFirstAddress(CmdStart cmdStart) { // cd\  처음위치로 이동
 		cmdStart.currentAddress = "C:\\";
 	}

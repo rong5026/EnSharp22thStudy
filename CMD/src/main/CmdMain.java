@@ -17,18 +17,23 @@ public class CmdMain {
 
 	public static void main(String[] args) throws IOException {
 
-		CmdStart cmd = new CmdStart();
-		cmd.start();
+		//CmdStart cmd = new CmdStart();
+		//cmd.start();
 		
 	
-		/*String aString = "HElp";
+		String aString = "cd ..\\..";
 		
 		aString = aString.stripLeading();
 		
-		System.out.println(aString.split(" ")[0]);
-		System.out.println(aString.charAt(2));
+		//System.out.println(aString.split(" ")[0]);
+		//System.out.println(aString.charAt(2));
 		
-		 */
+		if(aString.contains(". . \\.."))
+			System.out.println("있음");
+		else {
+			System.out.println("없음");
+		}
+		 
 		
 		
 	}
