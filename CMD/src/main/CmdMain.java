@@ -12,20 +12,22 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import controller.CmdStart;
+import utility.ConstantsNumber;
 
 public class CmdMain {
 
 	public static void main(String[] args) throws IOException {
 
-		//CmdStart cmd = new CmdStart();
-		//cmd.start();
+		CmdStart cmd = new CmdStart();
+		cmd.start();
 		
 	
-		String aString = "cd c:           \\users";
+	
+		//String aString = "cd c:           \\users";
 		
 		
-		if(aString.contains(":\\"))
-			System.out.println(aString);
+		//if(aString.contains(":\\"))
+		//	System.out.println(aString);
 		//aString = aString.replaceAll("\s{0,}\\\\", "\\\\");
 		/*
 		while(true) {

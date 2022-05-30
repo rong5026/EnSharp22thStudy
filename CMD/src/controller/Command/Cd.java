@@ -22,16 +22,22 @@ public class Cd {
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		
+		System.out.println(removeBlackAddress(cmdStart.currentAddress +"\\"+inputText ));
+		System.out.println( checkValidAddress( removeBlackAddress(cmdStart.currentAddress +"\\"+inputText )));
+		
+		
+		
 		if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\")) // cd\
 			moveFirstAddress(cmdStart);
 		else if(inputText.replace(" ", "") == "cd.." && checkVaildCd(inputText,"..")) // cd..
 			moveBackOneAddress(cmdStart);
 		else if(inputText.replace(" ", "") == "cd..\\.." && checkVaildCd(inputText,"..\\..")) // cd..\..
 			moveBackTwoAddress(cmdStart);
-		else if(removeBlackAddress(inputText).substring(2).contains("c:\\users")  &&  checkValidAddress( removeBlackAddress(inputText)))  // c:\\ 첫주소부터 입력했을때
-			moveEnteredAddress( cmdStart, inputText);
-		else if( !removeBlackAddress(inputText).substring(2).contains("c:\\users")  && checkValidAddress( removeBlackAddress(cmdStart.currentAddress +"\\"+inputText )))
-			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+inputText);
+		else if(removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  checkValidAddress( removeBlackAddress(inputText)))// c:\\ 첫주소부터 입력했을때	
+			moveEnteredAddress( cmdStart, removeBlackAddress(inputText).substring(3));		
+		else if( removeBlackAddress(inputText).substring(3).contains("c:\\users") ==false && checkValidAddress( removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) ))) {
+			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+removeBlackAddress(inputText).substring(3));
+		}
 		else // 에러메시지 표시
 			errorText.showNonValidAddress();
 			
