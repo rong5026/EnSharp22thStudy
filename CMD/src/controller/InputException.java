@@ -3,35 +3,39 @@ package controller;
 import java.util.StringTokenizer;
 
 import utility.ConstantsNumber;
+import view.ErrorText;
 
 public class InputException {
+	private ErrorText errorText;
 	
+	public InputException() {
+		errorText = new ErrorText();
+	}
 	
 	
 	public int distinguishCommand(String inputText) {
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자로 변환, 앞 공백 삭제
 	
-		String command = inputText.split(" ")[0];
-		switch (command) {
-		
-		case "cd": 
+		if(distinguishCd(inputText))
 			return ConstantsNumber.CD;
-		case "dir":
+		else if(confirmCommandType(inputText,"dir"))
 			return ConstantsNumber.DIR;
-		case "cls":
+		else if(confirmCommandType(inputText,"cls"))
 			return ConstantsNumber.CLS;
-		case "help":
+		else if(confirmCommandType(inputText,"help"))
 			return ConstantsNumber.HELP;
-		case "copy":
+		else if(confirmCommandType(inputText,"copy"))
 			return ConstantsNumber.COPY;
-		case "move":
+		else if(confirmCommandType(inputText,"move"))
 			return ConstantsNumber.MOVE;
-
-		default:
-			
+		else {
+			errorText.showNonCommand(inputText.split(" ")[0]);
+			return ConstantsNumber.NON_VALUE;
 		}
-		return 0;
+		
+
+	
 	}
 	
 	private boolean distinguishCd(String inputText) { // cd인지 확인
@@ -43,20 +47,23 @@ public class InputException {
 			if(input.charAt(2)=='.' ||input.charAt(2)=='\\' )
 				return ConstantsNumber.IS_CD;
 		}
+		input = inputText.split(" ")[0]; 
 		
-		input = inputText.split(" ")[0]; // 앞 공백없고 공백으로 자른 첫단어
-		
-		if(input.equals("cd"))
-			return  ConstantsNumber.IS_CD;
-		
-		return ConstantsNumber.IS_NON_CD;
-		
+		return confirmCommandType(inputText,"cd");
+
 	}
 	
-	private boolean distinguishDir(String inputText) {
-		return false;
-		//if(inputText.substring(0, 3).equals("dir")) 
+
+	private boolean confirmCommandType(String inputText, String type) { // cd, dir, cls, help,copy,move인지 확인
+		String input = inputText.split(" ")[0];
+		
+		if(input.equals(type))
+			return ConstantsNumber.IS_COMMAND;
+		else 
+			return ConstantsNumber.IS_NON_COMMAND;
 	}
+	
+	
 	
 
 }

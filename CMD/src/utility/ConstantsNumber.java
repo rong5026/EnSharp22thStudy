@@ -31,10 +31,8 @@ public class ConstantsNumber {
 	
 	public final static boolean IS_CD = true;
 	public final static boolean IS_NON_CD = false;
-	public final static boolean IS_DIR = true;
-	public final static boolean IS_NON_DIR = false;
-	public final static boolean IS_HELP = true;
-	public final static boolean IS_NON_HELP = false;
+	public final static boolean IS_COMMAND = true;
+	public final static boolean IS_NON_COMMAND = false;
 	
 	
 	
