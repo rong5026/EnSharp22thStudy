@@ -27,5 +27,11 @@ public class ConstantsNumber {
 	public final static int MOVE = 6;
 	
 	
+	//inputException
+	
+	public final static boolean IS_CD = true;
+	public final static boolean IS_NON_CD = false;
+	
+	
 	
 }
