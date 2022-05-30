@@ -48,7 +48,6 @@ public class CmdStart {
 			mainText.showInput(currentAddress);
 			inputText = new Scanner(System.in).nextLine();
 			
-			
 			switch (inputText) {
 			
 			case "cd": 
@@ -66,14 +65,13 @@ public class CmdStart {
 				help.start();
 				break;
 			case "copy": 
-				copy.executeFolerToFile(new File("C:\\Users\\rong5\\Desktop\\3"),new File("C:\\Users\\rong5\\Desktop\\65.txt") );
+				copy.copyFolerToFile(new File("C:\\Users\\rong5\\Desktop\\3"),new File("C:\\Users\\rong5\\Desktop\\65.txt") );
 				
 				break;
 			case "move": 
-				move.moveFolerToFolder(new File("C:\\Users\\rong5\\Desktop\\123"),new File("C:\\Users\\rong5\\Desktop\\11"));
+				move.moveFolerToFolder(new File("C:\\Users\\rong5\\Desktop\\11"),new File("C:\\Users\\rong5\\Desktop\\11"));
 				break;
 				
-			
 			default:
 				
 			}

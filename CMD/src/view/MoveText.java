@@ -13,6 +13,9 @@ public class MoveText {
 		//         0개 파일이 이동했습니다.
 	}
 	
+	public void showError() {
+		System.out.println("다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.");
+	}
 	
 	
 }

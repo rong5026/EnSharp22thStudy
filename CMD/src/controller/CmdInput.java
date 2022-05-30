@@ -31,9 +31,11 @@ public class CmdInput {
 		default:
 			return ConstantsNumber.INVALID_INPUT;
 		
-		
 		}
 	}
+	
+	
+	
 	
 }
 

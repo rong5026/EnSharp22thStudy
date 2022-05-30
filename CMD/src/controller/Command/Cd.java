@@ -1,5 +1,7 @@
 package controller.Command;
 
+import java.io.File;
+
 import controller.CmdStart;
 
 public class Cd {
@@ -29,8 +31,10 @@ public class Cd {
 	
 	public void moveSubFolderAddress(CmdStart cmdStart , String inputAddress) {// cd 하위폴더 
 		
+		File file = new File(cmdStart.currentAddress+inputAddress);
 		// 하위폴더 있는지 확인 후
-		cmdStart.currentAddress = cmdStart.currentAddress+inputAddress;
+		if(file.isDirectory())
+			cmdStart.currentAddress = cmdStart.currentAddress+inputAddress;
 	}
 	private int countBackSlash(String currentAddress) { // 역슬래쉬 수
 		return currentAddress.length() - currentAddress.replace(String.valueOf("\\"), "").length();

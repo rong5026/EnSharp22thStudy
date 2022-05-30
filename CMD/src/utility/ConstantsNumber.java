@@ -17,4 +17,15 @@ public class ConstantsNumber {
 	public final static int FileToFolder = 4;
 	
 	
+	//main
+	
+	public final static int CD = 1;
+	public final static int DIR = 2;
+	public final static int CLS = 3;
+	public final static int HELP = 4;
+	public final static int COPY = 5;
+	public final static int MOVE = 6;
+	
+	
+	
 }
