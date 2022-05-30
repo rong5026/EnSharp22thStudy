@@ -27,11 +27,13 @@ public class Copy {
 
 	private CopyText copyText;
 	private CmdInput cmdInput;
-	private int copyCount;
+	private int copyCount; 
+	private boolean inputAll;
 	public Copy() {
 		copyText = new CopyText();
 		cmdInput = new CmdInput();
 		copyCount=0;
+		inputAll = false;
 	}
 	
 	
@@ -45,77 +47,36 @@ public class Copy {
 	public void executeFolerToFile(File firstAddressFile, File secondAdressFile) throws IOException {
 		
 		copyCount=0;
-		boolean inputAll =false;
-		int inputResult = -1;
+		inputAll =false;
 		
+
 		String files[] = firstAddressFile.list();
 	
-		if(files!=null) {		
-			  for (String file : files) {
-				  
-				  File copyFile = new File(firstAddressFile, file);
-				  
-				  if(!copyFile.isDirectory()) {
-					 
-					  //복사하는 폴더, 파일 이름 출력
-					 copyText.showFolderFileName(firstAddressFile.getName(),copyFile.getName());
-					
-					 if(!inputAll) 
-						 inputResult = enterOverWrite(copyFile,secondAdressFile,ConstantsNumber.FolderToFile);
-					 
-					 if(inputAll == true) {	 
-						 runFolderCopy(copyFile,secondAdressFile);
-						 continue;
-					 }
-					 else if( inputResult==ConstantsNumber.ALL_INPUT &&inputAll==false) {
-						 inputAll= true;
-						 runFolderCopy(copyFile,secondAdressFile);
-					 }
-					 else if( inputResult==ConstantsNumber.YES_INPUT &&inputAll==false) 			
-						 runFolderCopy(copyFile,secondAdressFile);
-				  }
+		if(files!=null) {	
+			for (String file : files) {
+				File copyFile = new File(firstAddressFile, file);
+				runProcessFromFolder(copyFile,firstAddressFile,secondAdressFile,file, ConstantsNumber.FolderToFile);
+
 			  }
 		 }
 		copyText.showCopyResult(copyCount);
-		
-	
 	}
-	
+
 
 
 	//폴더 -> 폴더
 	public void executeFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		
 		copyCount=0;
-		boolean inputAll =false;
+		inputAll =false;
 		int inputResult = -1;
 		
 		String files[] = firstAddressFile.list();
 		
 		if(files!=null) {		
 			  for (String file : files) {
-				  
 				  File copyFile = new File(firstAddressFile, file);
-				  
-				  if(!copyFile.isDirectory()) {
-					 
-					  //복사하는 폴더, 파일 이름 출력
-					 copyText.showFolderFileName(firstAddressFile.getName(),copyFile.getName());
-					
-					 if(!inputAll) 
-						 inputResult = enterOverWrite(copyFile,secondAdressFile,ConstantsNumber.FolderToFolder);
-					 
-					 if(inputAll == true) {	 
-						 runFileCopy( copyFile, new File(secondAdressFile, file));	
-						 continue;
-					 }
-					 else if( inputResult==ConstantsNumber.ALL_INPUT &&inputAll==false) {
-						 inputAll= true;
-						 runFileCopy( copyFile, new File(secondAdressFile, file));
-					 }
-					 else if( inputResult==ConstantsNumber.YES_INPUT &&inputAll==false) 			
-						 runFileCopy( copyFile, new File(secondAdressFile, file));
-				  }
+				  runProcessFromFolder( copyFile, firstAddressFile,  secondAdressFile ,file, ConstantsNumber.FolderToFolder);
 			  }
 		 }
 		copyText.showCopyResult(copyCount);
@@ -196,14 +157,43 @@ public class Copy {
 		while ((readData = fileReader.read()) !=-1)  			
 			fileWriter.write(readData);       			
 				
-	
 		fileWriter.close();		
 		fileReader.close();
 		copyCount++;
 	}
 	
+	// 폴더 -> 파일, 폴더-> 폴더  copy수행
+	private void runProcessFromFolder(File copyFile,File firstAddressFile, File secondAdressFile ,String file,int copyType) throws IOException {
+		
+		int inputResult=-1;
+		if(!copyFile.isDirectory()) {
+			
+			  //복사하는 폴더, 파일 이름 출력
+		    copyText.showFolderFileName(firstAddressFile.getName(),copyFile.getName());
+			
+			if(!inputAll) 			
+				inputResult = enterOverWrite(copyFile,secondAdressFile,copyType);
+			 
+			if(inputAll == true) 
+				runFolderOrFileCopy(copyFile,secondAdressFile ,file,copyType);
+				   
+			else if( inputResult==ConstantsNumber.ALL_INPUT &&inputAll==false) {
+				inputAll= true;
+				runFolderOrFileCopy(copyFile,secondAdressFile ,file,copyType);
+			}
+			else if( inputResult==ConstantsNumber.YES_INPUT &&inputAll==false) 			
+				runFolderOrFileCopy(copyFile,secondAdressFile ,file,copyType);
+		  }
+	}
 	
-	
+	// copyType에 따라 폴더- 파일, 폴더-폴더 수행 구분
+	private void runFolderOrFileCopy(File copyFile, File secondAdressFile ,String file,int copyType) throws IOException {
+		if(copyType == ConstantsNumber.FolderToFile )
+			runFolderCopy(copyFile,secondAdressFile);
+		else 
+			runFileCopy( copyFile, new File(secondAdressFile, file));
+	   
+	}
 	
 
 
