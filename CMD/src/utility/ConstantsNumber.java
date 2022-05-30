@@ -35,6 +35,13 @@ public class ConstantsNumber {
 	public final static boolean IS_COMMAND = true;
 	public final static boolean IS_NON_COMMAND = false;
 	
+	//cd
+	public final static boolean IS_VALID_CDTYPE = true; 
+	public final static boolean IS_NON_VALID_CDTYPE = false; 
+	public final static boolean IS_VALID_ADDRESS = true; 
+	public final static boolean IS_NON_VALID_ADDRESS = false; 
+	
+	
 	
 	
 }

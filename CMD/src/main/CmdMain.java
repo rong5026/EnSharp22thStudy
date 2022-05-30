@@ -21,18 +21,27 @@ public class CmdMain {
 		//cmd.start();
 		
 	
-		String aString = "cd ..\\..";
+		String aString = "cd c: \\users";
 		
-		aString = aString.stripLeading();
+		aString = aString.replaceAll("\s\\\\", "\\\\");
+		/*
+		while(true) {
+			System.out.println(aString);
+			if(aString.contains(" \\")) {
+				aString.replace(" \\", "\\");
+			}
+			else {
+				break;
+			}
+		}
+		*/
+		System.out.println(aString);
+		//aString = aString.stripLeading();
 		
 		//System.out.println(aString.split(" ")[0]);
-		//System.out.println(aString.charAt(2));
+		//System.out.println(aString.substring(2));
 		
-		if(aString.contains(". . \\.."))
-			System.out.println("있음");
-		else {
-			System.out.println("없음");
-		}
+	
 		 
 		
 		
