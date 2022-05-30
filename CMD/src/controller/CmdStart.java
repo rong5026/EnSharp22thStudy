@@ -70,7 +70,7 @@ public class CmdStart {
 				
 				break;
 			case "move": 
-				move.moveFolerToFolder(new File("C:\\Users\\rong5\\Desktop\\10"),new File("C:\\Users\\rong5\\Desktop\\4"));
+				move.moveFileToFolder(new File("C:\\Users\\rong5\\Desktop\\3.txt"),new File("C:\\Users\\rong5\\Desktop\\3"));
 				break;
 				
 			

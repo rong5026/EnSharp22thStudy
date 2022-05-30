@@ -56,13 +56,10 @@ public class Copy {
 			for (String file : files) {
 				File copyFile = new File(firstAddressFile, file);
 				runProcessFromFolder(copyFile,firstAddressFile,secondAdressFile,file, ConstantsNumber.FolderToFile);
-
 			  }
 		 }
 		copyText.showCopyResult(copyCount);
 	}
-
-
 
 	//폴더 -> 폴더
 	public void executeFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
