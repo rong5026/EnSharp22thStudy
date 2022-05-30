@@ -44,7 +44,7 @@ public class Copy {
 	}
 	
 	//폴더 - > 파일
-	public void executeFolerToFile(File firstAddressFile, File secondAdressFile) throws IOException {
+	public void copyFolerToFile(File firstAddressFile, File secondAdressFile) throws IOException {
 		
 		copyCount=0;
 		inputAll =false;
@@ -62,7 +62,7 @@ public class Copy {
 	}
 
 	//폴더 -> 폴더
-	public void executeFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
+	public void copyFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		
 		copyCount=0;
 		inputAll =false;
@@ -80,7 +80,7 @@ public class Copy {
 	}
 	
 	// 파일 -> 파일
-	public void executeFileToFile(File firstAddressFile, File secondAdressFile) throws IOException {
+	public void copyFileToFile(File firstAddressFile, File secondAdressFile) throws IOException {
 		copyCount=0;
 		
 		if(secondAdressFile.exists()) { // 폴더안에 중복되는것이 있을때
@@ -96,7 +96,7 @@ public class Copy {
 	
 	
 	//파일 -> 폴더
-	public void executeFileToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
+	public void copyFileToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		copyCount=0;
 		
 		File file = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );
