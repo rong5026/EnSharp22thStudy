@@ -61,18 +61,18 @@ public class Copy {
 					 copyText.showFolderFileName(firstAddressFile.getName(),copyFile.getName());
 					
 					 if(!inputAll) 
-						 inputResult = enterOverWrite(copyFile,secondAdressFile,ConstantsNumber.FolderToFolder);
+						 inputResult = enterOverWrite(copyFile,secondAdressFile,ConstantsNumber.FolderToFile);
 					 
 					 if(inputAll == true) {	 
-						 runFolderCopy(copyFile,secondAdressFile,copyCount);
+						 runFolderCopy(copyFile,secondAdressFile);
 						 continue;
 					 }
 					 else if( inputResult==ConstantsNumber.ALL_INPUT &&inputAll==false) {
 						 inputAll= true;
-						 runFolderCopy(copyFile,secondAdressFile,copyCount);
+						 runFolderCopy(copyFile,secondAdressFile);
 					 }
 					 else if( inputResult==ConstantsNumber.YES_INPUT &&inputAll==false) 			
-						 runFolderCopy(copyFile,secondAdressFile,copyCount);
+						 runFolderCopy(copyFile,secondAdressFile);
 				  }
 			  }
 		 }
@@ -106,15 +106,15 @@ public class Copy {
 						 inputResult = enterOverWrite(copyFile,secondAdressFile,ConstantsNumber.FolderToFolder);
 					 
 					 if(inputAll == true) {	 
-						 runFileCopy( copyFile, new File(secondAdressFile, file),copyCount);	
+						 runFileCopy( copyFile, new File(secondAdressFile, file));	
 						 continue;
 					 }
 					 else if( inputResult==ConstantsNumber.ALL_INPUT &&inputAll==false) {
 						 inputAll= true;
-						 runFileCopy( copyFile, new File(secondAdressFile, file),copyCount);
+						 runFileCopy( copyFile, new File(secondAdressFile, file));
 					 }
 					 else if( inputResult==ConstantsNumber.YES_INPUT &&inputAll==false) 			
-						 runFileCopy( copyFile, new File(secondAdressFile, file),copyCount);
+						 runFileCopy( copyFile, new File(secondAdressFile, file));
 				  }
 			  }
 		 }
@@ -128,10 +128,10 @@ public class Copy {
 	
 		if(secondAdressFile.exists()) { // 폴더안에 중복되는것이 있을때
 			if(enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFile) == ConstantsNumber.YES_INPUT ||enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFile) == ConstantsNumber.ALL_INPUT  ) 
-				runFileCopy( firstAddressFile, secondAdressFile,copyCount);	
+				runFileCopy( firstAddressFile, secondAdressFile);	
 		}
 		else 
-			runFileCopy( firstAddressFile, secondAdressFile,copyCount);
+			runFileCopy( firstAddressFile, secondAdressFile);
 		
 		
 		copyText.showCopyResult(copyCount);
@@ -147,10 +147,10 @@ public class Copy {
 		
 		if(file.exists()) { // 폴더안에 중복되는것이 있을때
 			if(enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.YES_INPUT ||enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.ALL_INPUT  ) 	
-				runFileCopy( firstAddressFile, file,copyCount);
+				runFileCopy( firstAddressFile, file);
 		}
 		else 
-			runFileCopy( firstAddressFile, file,copyCount);
+			runFileCopy( firstAddressFile, file);
 	
 		copyText.showCopyResult(copyCount);
 		
@@ -165,7 +165,7 @@ public class Copy {
 			//문구 출력
 			if(type == ConstantsNumber.FileToFolder || type == ConstantsNumber.FolderToFolder)//파일 - 폴더 ,  폴더 - 폴더
 				copyText.showOverwriteFileToFolder(secondAdressFile.getName(), firstAddressFile.getName());
-			else if(type == ConstantsNumber.FileToFile) // 파일 - 파일  , 폴더 - 파일
+			else if(type == ConstantsNumber.FileToFile || type == ConstantsNumber.FolderToFile) // 파일 - 파일  , 폴더 - 파일
 				copyText.showOverwriteFileToFile(secondAdressFile.getName());
 	
 			
@@ -179,14 +179,14 @@ public class Copy {
 		
 	}
 	
-	//파일 복사 실행
-	private void runFileCopy(File firstAddressFile, File secondAddress,int copycount) throws IOException {
+	//파일복사 실행
+	private void runFileCopy(File firstAddressFile, File secondAddress) throws IOException {
 		Files.copy(firstAddressFile.toPath(), secondAddress.toPath() , StandardCopyOption.REPLACE_EXISTING);
 		copyCount++;
 	}
 	
-	// 폴더 - 파일 실행
-	private void runFolderCopy(  File copyFile,File secondAdressFile,int copycount) throws IOException { 
+	// 폴더 복사 실행
+	private void runFolderCopy(  File copyFile,File secondAdressFile) throws IOException { 
 		
 		FileReader fileReader = new FileReader(copyFile);					
 		FileWriter fileWriter = new FileWriter(secondAdressFile,true);
@@ -196,9 +196,10 @@ public class Copy {
 		while ((readData = fileReader.read()) !=-1)  			
 			fileWriter.write(readData);       			
 				
-		copycount++;
+	
 		fileWriter.close();		
 		fileReader.close();
+		copyCount++;
 	}
 	
 	

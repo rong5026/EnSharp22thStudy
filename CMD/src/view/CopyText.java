@@ -20,8 +20,9 @@ public class CopyText {
 	
 	public void showFolderFileName(String folderName, String fileName) {
 		System.out.println(folderName+"\\"+fileName);
-		
 	}
+	
+	
 	
 	
 }
