@@ -26,4 +26,8 @@ public class ErrorText {
 	public void showSameMove() {
 		System.out.println("다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.\n");
 	}
+	
+	public void showSameFolderMove() {
+		System.out.println("액세스가 거부되었습니다.\n");
+	}
 }

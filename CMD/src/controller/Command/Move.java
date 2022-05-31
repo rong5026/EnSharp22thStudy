@@ -38,10 +38,11 @@ public class Move {
 		
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
 		if(commandList.length == 2) { // 주소 1개 입력했을때
+			
 			runOneAddress(  addressChange.removeBlackAddress(commandList[1]) , cmdStart );
 		}
 		else if(commandList.length == 3) { // 주소 2개 입력했을때
-			
+			runTwoAddress( addressChange.removeBlackAddress(commandList[1]),  addressChange.removeBlackAddress(commandList[2]), cmdStart); 
 		}
 		else
 			errorText.showNonValidAddress();
@@ -55,8 +56,9 @@ public class Move {
 		if(firstAddressFile.getPath() == secondAdressFile.getPath())
 			errorText.showSameMove();
 		else if(secondAdressFile.exists()) {// 중복되는것이 있을때		
-			File file = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );
-			executeMoveProcess(firstAddressFile,file);
+			//File file = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );
+			//executeMoveProcess(firstAddressFile,file);
+			errorText.showSameFolderMove();
 		}
 		else 
 			runMoveProcess(firstAddressFile,secondAdressFile);
@@ -106,18 +108,19 @@ public class Move {
 			File secondFile = new File(secondAddress);
 				
 				
-			if(firstFile.isDirectory() && secondFile.isFile()) { // 폴더 -> 파일
+			if(firstFile.isDirectory() && secondFile.getName().contains(".")) { // 폴더 -> 파일
 					
 			}
-			else if( firstFile.isDirectory() && secondFile.isDirectory()) // 폴더 -> 폴더
+			else if( firstFile.isDirectory() && !secondFile.getName().contains(".")) // 폴더 -> 폴더
 				moveFolerToFolder(firstFile, secondFile);
-			else if( firstFile.isFile() && secondFile.isFile()) // 파일 -> 파일
+			else if( firstFile.isFile() && secondFile.getName().contains(".")) // 파일 -> 파일
 				moveFileToFile(firstFile, secondFile);
-			else if( firstFile.isFile() && secondFile.isDirectory()) // 파일 -> 폴더
+			else if( firstFile.isFile() &&  !secondFile.getName().contains(".")) // 파일 -> 폴더
 				moveFileToFolder(firstFile, secondFile);
 			else
 				errorText.showNonValidAddress();
 			}
+		
 			else 
 				errorText.showNonValidAddress();
 			
