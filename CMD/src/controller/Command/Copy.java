@@ -115,8 +115,13 @@ public class Copy {
 		if(files!=null) {	
 			for (String file : files) {
 				File copyFile = new File(firstAddressFile, file);
-				runProcessFromFolder(copyFile,firstAddressFile,secondAdressFile,file, ConstantsNumber.FolderToFile);
-			  }
+				if(secondAdressFile.exists())
+					runProcessFromFolder(copyFile,firstAddressFile,secondAdressFile,file, ConstantsNumber.FolderToFile);
+				else 
+					runFolderOrFileCopy(copyFile,secondAdressFile ,file,ConstantsNumber.FolderToFile);
+				
+			
+			}
 		 }
 		copyText.showCopyResult(copyCount);
 	}
@@ -133,11 +138,19 @@ public class Copy {
 		if(firstAddressFile.getPath() ==secondAdressFile.getPath()) { // 같은 폴더 복사하려고 할때
 			errorText.showSameFileCopy();
 		}
-		else if(files!=null) {		
-			  for (String file : files) {
-				  File copyFile = new File(firstAddressFile, file);
-				  runProcessFromFolder( copyFile, firstAddressFile,  secondAdressFile ,file, ConstantsNumber.FolderToFolder);
-			  }
+		else if(files!=null) {	
+			
+			
+			for (String file : files) {
+				File copyFile = new File(firstAddressFile, file);
+				File copiedFile = new File( secondAdressFile.getPath()+ "\\" + copyFile.getName()  );
+				if(copiedFile.exists())
+					runProcessFromFolder( copyFile, firstAddressFile,  secondAdressFile ,file, ConstantsNumber.FolderToFolder);
+				else 
+					runFolderOrFileCopy(copyFile,secondAdressFile ,file,ConstantsNumber.FolderToFolder);
+				
+			
+			}
 		 }
 		copyText.showCopyResult(copyCount);
 	}
@@ -166,8 +179,8 @@ public class Copy {
 	private void copyFileToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		copyCount=0;
 		
-		File file = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );
-		
+		File file = new File( secondAdressFile.getPath()+ "\\" + firstAddressFile.getName()  );
+		System.out.println(file.getPath());
 		
 		if(file.exists()) { // 폴더안에 중복되는것이 있을때
 			if(enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.YES_INPUT ||enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.ALL_INPUT  ) 	

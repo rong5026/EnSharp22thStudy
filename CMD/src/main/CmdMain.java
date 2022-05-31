@@ -19,22 +19,10 @@ public class CmdMain {
 
 	public static void main(String[] args) throws IOException {
 
-		//CmdStart cmd = new CmdStart();
-		//cmd.start();
+		CmdStart cmd = new CmdStart();
+		cmd.start();
 		
 	
-		File file = new File("C:\\Users\\rong5\\Desktop\\5");
-		File file2 = new File("C:\\Users\\rong5\\Desktop\\65.txt");
-		
-		
-		if(file.isDirectory())
-			System.out.println("1");
-		if(file.isFile())
-			System.out.println("2");
-		if(file2.isDirectory())
-			System.out.println("1");
-		if(file2.isFile())
-			System.out.println("2");
 		//String aString = "cd c:           \\users";
 		
 		//String[] liString = aString.split("\\s{1,}");

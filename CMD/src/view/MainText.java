@@ -10,6 +10,7 @@ public class MainText {
 	}
 	
 	public void showInput(String currentAddress) { //입력 문구 출력
+		System.out.println();
 		System.out.print(currentAddress + ">" );
 	}
 	
