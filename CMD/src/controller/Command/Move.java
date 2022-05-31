@@ -137,6 +137,7 @@ public class Move {
 			
 		}
 		
+		
 	}
 	
 	//move 기능 수행

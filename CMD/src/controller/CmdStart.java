@@ -73,7 +73,7 @@ public class CmdStart {
 				copy.start(inputText, this);
 				break;
 			case  ConstantsNumber.MOVE: 
-				move.moveFolerToFolder(new File("C:\\Users\\rong5\\Desktop\\11"),new File("C:\\Users\\rong5\\Desktop\\11"));
+				move.start(inputText, this);
 				break;
 				
 			default:

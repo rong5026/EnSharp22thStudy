@@ -16,6 +16,7 @@ public class AddressProcessing {
 	public boolean checkValidAddress(String folderAddress) { //이동하려는 주소가 유효한지 검사
 		
 		File file = new File(folderAddress);
+		
 		if(file.exists()) 
 			return ConstantsNumber.IS_VALID_ADDRESS;
 		else 

@@ -51,12 +51,14 @@ public class Copy {
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		
 		
+		
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
 		if(commandList.length == 2) { // 주소 1개 입력했을때
 			runOneAddress(commandList[1],cmdStart);
 		}
 		else if(commandList.length == 3) { // 주소 2개 입력했을때
 			runTwoAddress( commandList[1],commandList[2], cmdStart);
+	
 		}
 		else
 			errorText.showNonValidAddress();
@@ -88,30 +90,35 @@ public class Copy {
 	//폴더 -> 폴더
 	private void copyFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		
+		
 		copyCount=0;
 		inputAll =false;
 		int inputResult = -1;
 		
 		String files[] = firstAddressFile.list();
 		
+		
 		if(firstAddressFile.getPath() ==secondAdressFile.getPath()) { // 같은 폴더 복사하려고 할때
 			errorText.showSameCopy();
 		}
 		else if(files!=null) {	
-			
+		
 			
 			for (String file : files) {
 				File copyFile = new File(firstAddressFile, file);
 				File copiedFile = new File( secondAdressFile.getPath()+ "\\" + copyFile.getName()  );
+				
+				
 				if(copiedFile.exists())
 					runProcessFromFolder( copyFile, firstAddressFile,  secondAdressFile ,file, ConstantsNumber.FolderToFolder);
-				else 
+				else {
 					runFolderOrFileCopy(copyFile,secondAdressFile ,file,ConstantsNumber.FolderToFolder);
-				
+				}
 			
 			}
 		 }
 		copyText.showCopyResult(copyCount);
+		
 	}
 	
 	// 파일 -> 파일
@@ -139,10 +146,11 @@ public class Copy {
 		copyCount=0;
 		
 		File file = new File( secondAdressFile.getPath()+ "\\" + firstAddressFile.getName()  );
-		System.out.println(file.getPath());
+		
 		
 		if(file.exists()) { // 폴더안에 중복되는것이 있을때
-			if(enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.YES_INPUT ||enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.ALL_INPUT  ) 	
+			int select = enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFolder);
+			if(select == ConstantsNumber.YES_INPUT ||select == ConstantsNumber.ALL_INPUT  ) 	
 				runFileCopy( firstAddressFile, file);
 		}
 		else 
@@ -168,28 +176,43 @@ public class Copy {
 	}
 	private void runTwoAddress(String firstAddress, String secondAddress,CmdStart cmdStart) throws IOException { // 두개의 주소 입력했을때
 		
+		
 		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); 
 		secondAddress = addressChange.setCompletedAddress(secondAddress,cmdStart); //완성된 주소로 변경
+	
 		
 		if(addressChange.checkValidAddress(firstAddress)) {
 			
 			File firstFile = new File(firstAddress);
 			File secondFile = new File(secondAddress);
 			
+		
 			
-			if(firstFile.isDirectory() && secondFile.isFile()) // 폴더 -> 파일
+			
+			if(firstFile.isDirectory() && secondFile.getName().contains(".")) { // 폴더 -> 파일
 				copyFolerToFile(firstFile, secondFile);
-			else if( firstFile.isDirectory() && secondFile.isDirectory()) // 폴더 -> 폴더
+				System.out.println("폴더 파일");
+				
+			}
+			else if( firstFile.isDirectory() && !secondFile.getName().contains(".")) { // 폴더 -> 폴더
 				copyFolerToFolder(firstFile, secondFile);
-			else if( firstFile.isFile() && secondFile.isFile()) // 파일 -> 파일
+				System.out.println("폴더 폴더");
+			}
+			else if( firstFile.isFile() && secondFile.getName().contains(".")) { // 파일 -> 파일
 				copyFileToFile(firstFile, secondFile);
-			else if( firstFile.isFile() && secondFile.isDirectory()) // 파일 -> 폴더
+				System.out.println("파일 파일");
+			}
+			else if( firstFile.isFile() && !secondFile.getName().contains(".")) { // 파일 -> 폴더
 				copyFileToFolder(firstFile, secondFile);
+				System.out.println("파일 폴더");
+			}
 			else
 				errorText.showNonValidAddress();
 		}
 		else 
 			errorText.showNonValidAddress();
+		
+		
 		
 	}
 	
@@ -263,7 +286,13 @@ public class Copy {
 	
 	// copyType에 따라 폴더- 파일, 폴더-폴더 수행 구분
 	private void runFolderOrFileCopy(File copyFile, File secondAdressFile ,String file,int copyType) throws IOException {
+		
+		
+		System.out.println(copyFile.getPath());
+		System.out.println(secondAdressFile.getPath());
+		
 		if(copyType == ConstantsNumber.FolderToFile )
+	
 			runFolderCopy(copyFile,secondAdressFile);
 		else 
 			runFileCopy( copyFile, new File(secondAdressFile, file));
