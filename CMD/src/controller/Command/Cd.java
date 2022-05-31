@@ -22,7 +22,8 @@ public class Cd {
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		
-	
+		
+		
 		
 		if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\")) { // cd\
 			moveFirstAddress(cmdStart);
@@ -40,7 +41,7 @@ public class Cd {
 			moveEnteredAddress( cmdStart, removeBlackAddress(inputText).substring(3));	
 			System.out.println("4번에 들어옴");
 		}
-		else if( removeBlackAddress(inputText).substring(3).contains("c:\\users") ==false && checkValidAddress( removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) ))) {
+		else if( !removeBlackAddress(inputText).substring(3).contains("c:\\users") && checkValidAddress( removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) {
 			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+removeBlackAddress(inputText).substring(3));
 			System.out.println("5번에 들어옴");
 		}
@@ -55,6 +56,12 @@ public class Cd {
 		return inputAddress.replaceAll("\s{0,}\\\\", "\\\\");
 	}
 
+	//private boolean checkValidShortAddress(String inputText) {
+		
+	//	inputText  =  removeBlackAddress(inputText); // \앞 공백 삭제
+		
+		
+	//}
 	
 	private boolean checkVaildCd(String inputText, String typeText) { // cd\ cd.. cd..\..가 유효한지 검사
 		
@@ -67,7 +74,7 @@ public class Cd {
 	private boolean checkValidAddress(String folderAddress) { //이동하려는 주소가 유효한지 검사
 		
 		File file = new File(folderAddress);
-		if(file.isDirectory()) 
+		if(file.exists()) 
 			return ConstantsNumber.IS_VALID_ADDRESS;
 		else 
 			return ConstantsNumber.IS_NON_VALID_ADDRESS;
@@ -95,7 +102,14 @@ public class Cd {
 	}
 	
 	public void moveEnteredAddress(CmdStart cmdStart, String inputAddress) {//입력한 주소로 이동
-		cmdStart.currentAddress = inputAddress;
+		
+		
+		if(new File(inputAddress).isFile())
+			errorText.showNotCorrectDirectory();
+		else 
+			cmdStart.currentAddress = inputAddress;
+		
+		
 	}
 	/*
 	public void moveSubFolderAddress(CmdStart cmdStart , String inputAddress) {// cd 하위폴더 
