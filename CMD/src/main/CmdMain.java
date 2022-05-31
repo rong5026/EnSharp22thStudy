@@ -23,14 +23,18 @@ public class CmdMain {
 		//cmd.start();
 		
 	
+		File file = new File("C:\\Users\\rong5\\Desktop\\5");
+		File file2 = new File("C:\\Users\\rong5\\Desktop\\5");
+		
+		if(file.getPath() == file2.getPath())
+			System.out.println("같다");
+		//String aString = "cd c:           \\users";
+		
+		//String[] liString = aString.split("\\s{1,}");
 	
-		String aString = "cd c:           \\users";
-		
-		String[] liString = aString.split("\\s{1,}");
-		
-		System.out.println(Arrays.toString(liString));
-		System.out.println(liString.length);
-		System.out.println("sdfsd"+liString[2]);
+		//System.out.println(Arrays.toString(liString));
+		//System.out.println(liString.length);
+		//System.out.println("sdfsd"+liString[2]);
 		//if(aString.contains(":\\"))
 		//	System.out.println(aString);
 		//aString = aString.replaceAll("\s{0,}\\\\", "\\\\");

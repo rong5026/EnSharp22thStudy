@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.imageio.stream.ImageInputStreamImpl;
 
+import controller.AddressProcessing;
 import controller.CmdStart;
 import utility.ConstantsNumber;
 import view.ErrorText;
@@ -11,8 +12,9 @@ import view.ErrorText;
 public class Cd {
 
 	private ErrorText errorText;
+	private AddressProcessing addressChange;
 	public Cd() {
-		
+		addressChange = new AddressProcessing();
 		errorText = new ErrorText();
 		
 	}
@@ -37,12 +39,12 @@ public class Cd {
 			moveBackTwoAddress(cmdStart);
 			System.out.println("3번에 들어옴");
 		}
-		else if(removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  checkValidAddress( removeBlackAddress(inputText))){// c:\\ 첫주소부터 입력했을때	
-			moveEnteredAddress( cmdStart, removeBlackAddress(inputText).substring(3));	
+		else if(addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  addressChange.checkValidAddress( addressChange.removeBlackAddress(inputText))){// c:\\ 첫주소부터 입력했을때	
+			moveEnteredAddress( cmdStart, addressChange.removeBlackAddress(inputText).substring(3));	
 			System.out.println("4번에 들어옴");
 		}
-		else if( !removeBlackAddress(inputText).substring(3).contains("c:\\users") && checkValidAddress( removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) {
-			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+removeBlackAddress(inputText).substring(3));
+		else if( !addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users") && addressChange.checkValidAddress( addressChange.removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) {
+			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+addressChange.removeBlackAddress(inputText).substring(3));
 			System.out.println("5번에 들어옴");
 		}
 		else // 에러메시지 표시
@@ -51,12 +53,7 @@ public class Cd {
 	}
 	
 	
-	
-	private String removeBlackAddress(String inputAddress) { // 역슬래시앞에 공백 제거
-		return inputAddress.replaceAll("\s{0,}\\\\", "\\\\");
-	}
 
-	
 	
 	private boolean checkVaildCd(String inputText, String typeText) { // cd\ cd.. cd..\..가 유효한지 검사
 		
@@ -66,15 +63,7 @@ public class Cd {
 			return ConstantsNumber.IS_NON_VALID_CDTYPE;
 	}
 	
-	private boolean checkValidAddress(String folderAddress) { //이동하려는 주소가 유효한지 검사
-		
-		File file = new File(folderAddress);
-		if(file.exists()) 
-			return ConstantsNumber.IS_VALID_ADDRESS;
-		else 
-			return ConstantsNumber.IS_NON_VALID_ADDRESS;
-	}
-	
+
 	
 	public void moveFirstAddress(CmdStart cmdStart) { // cd\  처음위치로 이동
 		cmdStart.currentAddress = "C:\\";
@@ -90,7 +79,7 @@ public class Cd {
 		
 		int backSlashIndex = cmdStart.currentAddress.lastIndexOf("\\");
 		
-		if(countBackSlash(cmdStart.currentAddress)>=2) 
+		if(addressChange.countBackSlash(cmdStart.currentAddress)>=2) 
 			 cmdStart.currentAddress = cmdStart.currentAddress.substring(0,backSlashIndex);
 		
 		
@@ -104,12 +93,9 @@ public class Cd {
 		else 
 			cmdStart.currentAddress = inputAddress;
 		
-		
 	}
 	
 	
-	private int countBackSlash(String currentAddress) { // 역슬래쉬 수
-		return currentAddress.length() - currentAddress.replace(String.valueOf("\\"), "").length();
-	}
+	
 	
 }

@@ -14,4 +14,8 @@ public class ErrorText {
 	public void showNotCorrectDirectory() {
 		System.out.println("디렉터리 이름이 올바르지 않습니다.\n");
 	}
+	
+	public void showSameFileCopy() {
+		System.out.println("같은 파일로 복사할 수 없습니다.\n");
+	}
 }

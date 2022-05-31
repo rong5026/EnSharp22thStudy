@@ -18,6 +18,8 @@ import java.nio.file.StandardCopyOption;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
+import controller.AddressProcessing;
+
 import controller.CmdInput;
 import controller.CmdStart;
 import utility.ConstantsNumber;
@@ -29,6 +31,7 @@ public class Copy {
 	private CopyText copyText;
 	private CmdInput cmdInput;
 	private ErrorText errorText;
+	private AddressProcessing addressChange;
 	private int copyCount; 
 	private boolean inputAll;
 	
@@ -36,6 +39,7 @@ public class Copy {
 		copyText = new CopyText();
 		cmdInput = new CmdInput();
 		errorText = new ErrorText();
+		addressChange = new AddressProcessing();
 		copyCount=0;
 		inputAll = false;
 	}
@@ -57,10 +61,23 @@ public class Copy {
 		else
 			errorText.showNonValidAddress();
 	}
-	private String setCompletedAddress(String inputAddress, CmdStart cmdStart) { // 완성된 주소 리턴
+
+	private void runOneAddress(String inputAddress,CmdStart cmdStart) throws IOException { //하나의 주소만 입력했을때
 		
+		inputAddress = addressChange.setCompletedAddress(inputAddress,cmdStart); //완성된 주소로 변경
 		
+		if(addressChange.checkValidAddress(inputAddress)) {
+			if(new File(inputAddress).isFile()) // 파일 -> 폴더 복사
+				copyFileToFolder(new File(inputAddress), new File(cmdStart.currentAddress));
+			else if(new File(inputAddress).isDirectory()) // 폴더 -> 폴더 복사
+				copyFolerToFolder(new File(inputAddress), new File(cmdStart.currentAddress));
+		}
+		else 
+			errorText.showNonValidAddress();
+		
+			
 	}
+	
 	
 	//폴더 - > 파일
 	public void copyFolerToFile(File firstAddressFile, File secondAdressFile) throws IOException {
@@ -89,7 +106,10 @@ public class Copy {
 		
 		String files[] = firstAddressFile.list();
 		
-		if(files!=null) {		
+		if(firstAddressFile.getPath() ==secondAdressFile.getPath()) { // 같은 폴더 복사하려고 할때
+			errorText.showSameFileCopy();
+		}
+		else if(files!=null) {		
 			  for (String file : files) {
 				  File copyFile = new File(firstAddressFile, file);
 				  runProcessFromFolder( copyFile, firstAddressFile,  secondAdressFile ,file, ConstantsNumber.FolderToFolder);
@@ -102,7 +122,11 @@ public class Copy {
 	public void copyFileToFile(File firstAddressFile, File secondAdressFile) throws IOException {
 		copyCount=0;
 		
-		if(secondAdressFile.exists()) { // 폴더안에 중복되는것이 있을때
+		
+		if(firstAddressFile.getPath() ==secondAdressFile.getPath()) { // 같은 파일 복사하려고 할때
+			errorText.showSameFileCopy();
+		}
+		else if(secondAdressFile.exists()) { // 폴더안에 중복되는것이 있을때
 			if(enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFile) == ConstantsNumber.YES_INPUT ||enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFile) == ConstantsNumber.ALL_INPUT  ) 
 				runFileCopy( firstAddressFile, secondAdressFile);	
 		}
@@ -119,6 +143,7 @@ public class Copy {
 		copyCount=0;
 		
 		File file = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );
+		
 		
 		if(file.exists()) { // 폴더안에 중복되는것이 있을때
 			if(enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.YES_INPUT ||enterOverWrite(firstAddressFile,secondAdressFile,ConstantsNumber.FileToFolder) == ConstantsNumber.ALL_INPUT  ) 	

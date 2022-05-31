@@ -4,7 +4,7 @@ import java.io.File;
 
 import utility.ConstantsNumber;
 
-public class AdressProcessing {
+public class AddressProcessing {
 	
 	
 	
@@ -26,5 +26,13 @@ public class AdressProcessing {
 		return currentAddress.length() - currentAddress.replace(String.valueOf("\\"), "").length();
 	}
 	
+	public String setCompletedAddress(String inputAddress, CmdStart cmdStart) { // 완성된 주소 리턴
+		
+		if(!inputAddress.contains("c:\\users"))
+			return cmdStart.currentAddress + "\\" + inputAddress;
+		else 
+			return inputAddress;
+		
+	}
 	
 }
