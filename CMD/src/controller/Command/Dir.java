@@ -36,12 +36,15 @@ public class Dir {
 
 		for (int index = 0; index < fileList.length; index++) {
 			
-			String date = getCreationDate(fileList[index]);
-			String dir= getDIR(fileList[index]);
-			String fileSize = getFileByte(fileList[index]);
-			String fileName = fileList[index].getName();
+			if(!fileList[index].isHidden()) {
+				String date = getCreationDate(fileList[index]);
+				String dir= getDIR(fileList[index]);
+				String fileSize = getFileByte(fileList[index]);
+				String fileName = fileList[index].getName();
+				
+				dirText.showDir(date, dir, fileSize, fileName);// 출력
 			
-			dirText.showDir(date, dir, fileSize, fileName);// 출력
+			}
 		}
 
 	

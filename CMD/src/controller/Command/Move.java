@@ -38,7 +38,7 @@ public class Move {
 		
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
 		if(commandList.length == 2) { // 주소 1개 입력했을때
-			runOneAddress( commandList[1] , cmdStart );
+			runOneAddress(  addressChange.removeBlackAddress(commandList[1]) , cmdStart );
 		}
 		else if(commandList.length == 3) { // 주소 2개 입력했을때
 			

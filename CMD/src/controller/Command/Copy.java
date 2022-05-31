@@ -58,7 +58,6 @@ public class Copy {
 		}
 		else if(commandList.length == 3) { // 주소 2개 입력했을때
 			runTwoAddress(addressChange.removeBlackAddress( commandList[1]),addressChange.removeBlackAddress(commandList[2]), cmdStart);
-	
 		}
 		else
 			errorText.showNonValidAddress();
