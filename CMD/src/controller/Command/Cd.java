@@ -52,16 +52,11 @@ public class Cd {
 	
 	
 	
-	private String removeBlackAddress(String inputAddress) { // \앞에 공백 제거
+	private String removeBlackAddress(String inputAddress) { // 역슬래시앞에 공백 제거
 		return inputAddress.replaceAll("\s{0,}\\\\", "\\\\");
 	}
 
-	//private boolean checkValidShortAddress(String inputText) {
-		
-	//	inputText  =  removeBlackAddress(inputText); // \앞 공백 삭제
-		
-		
-	//}
+	
 	
 	private boolean checkVaildCd(String inputText, String typeText) { // cd\ cd.. cd..\..가 유효한지 검사
 		
@@ -111,15 +106,7 @@ public class Cd {
 		
 		
 	}
-	/*
-	public void moveSubFolderAddress(CmdStart cmdStart , String inputAddress) {// cd 하위폴더 
-		
-		File file = new File(cmdStart.currentAddress+inputAddress);
-		// 하위폴더 있는지 확인 후
-		if(file.isDirectory())
-			cmdStart.currentAddress = cmdStart.currentAddress+inputAddress;
-	}
-	*/
+	
 	
 	private int countBackSlash(String currentAddress) { // 역슬래쉬 수
 		return currentAddress.length() - currentAddress.replace(String.valueOf("\\"), "").length();

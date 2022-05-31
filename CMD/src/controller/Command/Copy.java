@@ -22,23 +22,42 @@ import controller.CmdInput;
 import controller.CmdStart;
 import utility.ConstantsNumber;
 import view.CopyText;
+import view.ErrorText;
 
 public class Copy {
 
 	private CopyText copyText;
 	private CmdInput cmdInput;
+	private ErrorText errorText;
 	private int copyCount; 
 	private boolean inputAll;
+	
 	public Copy() {
 		copyText = new CopyText();
 		cmdInput = new CmdInput();
+		errorText = new ErrorText();
 		copyCount=0;
 		inputAll = false;
 	}
 	
 	
 	
-	public void startCopy() {
+	public void start(String inputText,CmdStart cmdStart) { // copy 명령어 수행
+		
+		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
+		
+		
+		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
+		if(commandList.length == 2) {
+			
+		}
+		else if(commandList.length == 3) {
+			
+		}
+		else
+			errorText.showNonValidAddress();
+	}
+	private String setCompletedAddress(String inputAddress, CmdStart cmdStart) { // 완성된 주소 리턴
 		
 		
 	}

@@ -10,4 +10,8 @@ public class ErrorText {
 	public void showNonValidAddress() {
 		System.out.println("지정된 경로를 찾을 수 없습니다.\n");
 	}
+	
+	public void showNotCorrectDirectory() {
+		System.out.println("디렉터리 이름이 올바르지 않습니다.\n");
+	}
 }

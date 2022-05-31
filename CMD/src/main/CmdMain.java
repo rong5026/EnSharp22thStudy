@@ -10,6 +10,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 
 import controller.CmdStart;
 import utility.ConstantsNumber;
@@ -18,14 +19,18 @@ public class CmdMain {
 
 	public static void main(String[] args) throws IOException {
 
-		CmdStart cmd = new CmdStart();
-		cmd.start();
+		//CmdStart cmd = new CmdStart();
+		//cmd.start();
 		
 	
 	
-		//String aString = "cd c:           \\users";
+		String aString = "cd c:           \\users";
 		
+		String[] liString = aString.split("\\s{1,}");
 		
+		System.out.println(Arrays.toString(liString));
+		System.out.println(liString.length);
+		System.out.println("sdfsd"+liString[2]);
 		//if(aString.contains(":\\"))
 		//	System.out.println(aString);
 		//aString = aString.replaceAll("\s{0,}\\\\", "\\\\");
