@@ -3,6 +3,8 @@ package view;
 import java.io.File;
 import java.text.DecimalFormat;
 
+import controller.CmdStart;
+
 public class DirText {
 
 	public void showDir(String date, String dir, String fileSize, String fileName) { // Dir 결과 출력
@@ -19,6 +21,16 @@ public class DirText {
 		System.out.printf("              %s %10s  \n",decFormat.format(directoryFileSum-fileCount)+"개 디렉터리",decFormat.format(directoryByteTotal)+" 바이트 남음");
 		
 	}
+	
+	
+	
+	public void showDirStartText(String startText,String address) {
+		
+		System.out.println(startText+"\n");
+		System.out.println(address +" 디렉터리\n");
+		
+	}
+	
 	
 	
 	

@@ -38,7 +38,6 @@ public class Move {
 		
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
 		if(commandList.length == 2) { // 주소 1개 입력했을때
-			
 			runOneAddress(  addressChange.removeBlackAddress(commandList[1]) , cmdStart );
 		}
 		else if(commandList.length == 3) { // 주소 2개 입력했을때
@@ -56,14 +55,14 @@ public class Move {
 		if(firstAddressFile.getPath() == secondAdressFile.getPath())
 			errorText.showSameMove();
 		else if(secondAdressFile.exists()) {// 중복되는것이 있을때		
-			//File file = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );
-			//executeMoveProcess(firstAddressFile,file);
 			errorText.showSameFolderMove();
 		}
-		else 
+		else {
 			runMoveProcess(firstAddressFile,secondAdressFile);
+			 moveText.showCopyResult(moveCount);
+		}
 		
-		 moveText.showCopyResult(moveCount);
+		
 	}
 		
 	// 파일 -> 파일

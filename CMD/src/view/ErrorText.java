@@ -1,5 +1,7 @@
 package view;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
+
 public class ErrorText {
 
 	public void showNonCommand(String nonCommandInput) { //유효한 명령어가 아닐때 
@@ -30,4 +32,8 @@ public class ErrorText {
 	public void showSameFolderMove() {
 		System.out.println("액세스가 거부되었습니다.\n");
 	}
+	public void showNonValidDir() {
+		System.out.println("파일을 찾을 수 없습니다.");
+	}
+	
 }

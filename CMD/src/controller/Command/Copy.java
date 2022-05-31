@@ -188,18 +188,14 @@ public class Copy {
 			File firstFile = new File(firstAddress);
 			File secondFile = new File(secondAddress);
 			
-			if(firstFile.isDirectory() && secondFile.getName().contains(".")) { // 폴더 -> 파일
+			if(firstFile.isDirectory() && secondFile.getName().contains("."))  // 폴더 -> 파일
 				copyFolerToFile(firstFile, secondFile);
-			}
-			else if( firstFile.isDirectory() && !secondFile.getName().contains(".")) { // 폴더 -> 폴더
+			else if( firstFile.isDirectory() && !secondFile.getName().contains("."))  // 폴더 -> 폴더
 				copyFolerToFolder(firstFile, secondFile);
-			}
-			else if( firstFile.isFile() && secondFile.getName().contains(".")) { // 파일 -> 파일
+			else if( firstFile.isFile() && secondFile.getName().contains("."))  // 파일 -> 파일
 				copyFileToFile(firstFile, secondFile);
-			}
-			else if( firstFile.isFile() && !secondFile.getName().contains(".")) { // 파일 -> 폴더
+			else if( firstFile.isFile() && !secondFile.getName().contains("."))  // 파일 -> 폴더
 				copyFileToFolder(firstFile, secondFile);
-			}
 			else
 				errorText.showNonValidAddress();
 		}

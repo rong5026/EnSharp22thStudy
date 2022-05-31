@@ -61,7 +61,7 @@ public class CmdStart {
 				cd.start(inputText,this);
 				break;
 			case ConstantsNumber.DIR: 
-				dir.start(currentAddress);
+				dir.start(inputText,this);
 				break;
 			case ConstantsNumber.CLS: 
 				mainText.showCls();

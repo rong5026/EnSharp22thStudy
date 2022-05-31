@@ -42,7 +42,7 @@ public class Cd {
 		}
 		else if(addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  addressChange.checkValidAddress( addressChange.removeBlackAddress(inputText.substring(3)))){// c:\\ 첫주소부터 입력했을때	
 			moveEnteredAddress( cmdStart, addressChange.removeBlackAddress(inputText).substring(3));	
-		
+	
 		}
 		else if( !addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users") && addressChange.checkValidAddress( addressChange.removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) {
 			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+addressChange.removeBlackAddress(inputText).substring(3));
