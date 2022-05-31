@@ -8,14 +8,17 @@ import controller.AddressProcessing;
 import controller.CmdStart;
 import utility.ConstantsNumber;
 import view.ErrorText;
+import view.MainText;
 
 public class Cd {
 
 	private ErrorText errorText;
 	private AddressProcessing addressChange;
+	private MainText mainText;
 	public Cd() {
 		addressChange = new AddressProcessing();
 		errorText = new ErrorText();
+		mainText = new MainText();
 		
 	}
 	
@@ -26,26 +29,27 @@ public class Cd {
 		
 		
 		
-		
-		if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\")) { // cd\
+		if(inputText.equals("cd")) {// cd만 눌렀을때
+			mainText.showCdAddress(cmdStart.currentAddress);
+		}
+		else if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\")) { // cd\
 			moveFirstAddress(cmdStart);
-			System.out.println("1번에 들어옴");
 		}
 		else if(inputText.replace(" ", "").equals("cd..") && checkVaildCd(inputText,"..")) { // cd..
 			moveBackOneAddress(cmdStart);	
-			System.out.println("2번에 들어옴");
+		
 		}
 		else if(inputText.replace(" ", "").equals("cd..\\..") && checkVaildCd(inputText,"..\\..")) { // cd..\..
 			moveBackTwoAddress(cmdStart);
-			System.out.println("3번에 들어옴");
+		
 		}
 		else if(addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  addressChange.checkValidAddress( addressChange.removeBlackAddress(inputText))){// c:\\ 첫주소부터 입력했을때	
 			moveEnteredAddress( cmdStart, addressChange.removeBlackAddress(inputText).substring(3));	
-			System.out.println("4번에 들어옴");
+		
 		}
 		else if( !addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users") && addressChange.checkValidAddress( addressChange.removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) {
 			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+addressChange.removeBlackAddress(inputText).substring(3));
-			System.out.println("5번에 들어옴");
+		
 		}
 		else // 에러메시지 표시
 			errorText.showNonValidAddress();

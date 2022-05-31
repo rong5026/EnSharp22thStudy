@@ -160,7 +160,8 @@ public class Copy {
 		
 	}
 	
-	private void runOneAddress(String firstAddress,CmdStart cmdStart) throws IOException { //하나의 주소만 입력했을때
+	//하나의 주소만 입력했을때
+	private void runOneAddress(String firstAddress,CmdStart cmdStart) throws IOException { 
 		
 		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); //완성된 주소로 변경
 		
@@ -174,7 +175,9 @@ public class Copy {
 			errorText.showNonValidAddress();
 		
 	}
-	private void runTwoAddress(String firstAddress, String secondAddress,CmdStart cmdStart) throws IOException { // 두개의 주소 입력했을때
+	
+	// 두개의 주소 입력했을때
+	private void runTwoAddress(String firstAddress, String secondAddress,CmdStart cmdStart) throws IOException { 
 		
 		
 		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); 
@@ -186,25 +189,17 @@ public class Copy {
 			File firstFile = new File(firstAddress);
 			File secondFile = new File(secondAddress);
 			
-		
-			
-			
 			if(firstFile.isDirectory() && secondFile.getName().contains(".")) { // 폴더 -> 파일
 				copyFolerToFile(firstFile, secondFile);
-				System.out.println("폴더 파일");
-				
 			}
 			else if( firstFile.isDirectory() && !secondFile.getName().contains(".")) { // 폴더 -> 폴더
 				copyFolerToFolder(firstFile, secondFile);
-				System.out.println("폴더 폴더");
 			}
 			else if( firstFile.isFile() && secondFile.getName().contains(".")) { // 파일 -> 파일
 				copyFileToFile(firstFile, secondFile);
-				System.out.println("파일 파일");
 			}
 			else if( firstFile.isFile() && !secondFile.getName().contains(".")) { // 파일 -> 폴더
 				copyFileToFolder(firstFile, secondFile);
-				System.out.println("파일 폴더");
 			}
 			else
 				errorText.showNonValidAddress();
@@ -287,10 +282,7 @@ public class Copy {
 	// copyType에 따라 폴더- 파일, 폴더-폴더 수행 구분
 	private void runFolderOrFileCopy(File copyFile, File secondAdressFile ,String file,int copyType) throws IOException {
 		
-		
-		System.out.println(copyFile.getPath());
-		System.out.println(secondAdressFile.getPath());
-		
+	
 		if(copyType == ConstantsNumber.FolderToFile )
 	
 			runFolderCopy(copyFile,secondAdressFile);

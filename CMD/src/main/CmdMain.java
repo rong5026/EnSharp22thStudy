@@ -24,40 +24,6 @@ public class CmdMain {
 		CmdStart cmd = new CmdStart();
 		cmd.start();
 		
-	
-
-		
-		//String aString = "cd c:           \\users";
-		
-		//String[] liString = aString.split("\\s{1,}");
-	
-		//System.out.println(Arrays.toString(liString));
-		//System.out.println(liString.length);
-		//System.out.println("sdfsd"+liString[2]);
-		//if(aString.contains(":\\"))
-		//	System.out.println(aString);
-		//aString = aString.replaceAll("\s{0,}\\\\", "\\\\");
-		/*
-		while(true) {
-			System.out.println(aString);
-			if(aString.contains(" \\")) {
-				aString.replace(" \\", "\\");
-			}
-			else {
-				break;
-			}
-		}
-		*/
-	
-		//aString = aString.stripLeading();
-		
-		//System.out.println(aString.split(" ")[0]);
-		//System.out.println(aString.substring(2));
-		
-	
-		 
-		
-		
 	}
 }
 

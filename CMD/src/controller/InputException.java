@@ -41,7 +41,10 @@ public class InputException {
 	private boolean distinguishCd(String inputText) { // cd인지 확인
 		String input;
 		
-		if(inputText.substring(0, 2).equals("cd")) {
+
+		if(inputText.equals("cd"))
+			return ConstantsNumber.IS_CD;
+		else if(inputText.substring(0, 2).equals("cd")) {
 			input = inputText.replace(" ", "");
 			
 			if(input.charAt(2)=='.' ||input.charAt(2)=='\\' )

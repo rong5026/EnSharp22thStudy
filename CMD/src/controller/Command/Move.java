@@ -31,7 +31,7 @@ public class Move {
 		moveCount = 0;
 	}
 	
-	
+	//시작
 	public void start(String inputText, CmdStart cmdStart) throws IOException {
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
@@ -48,47 +48,7 @@ public class Move {
 		
 	}
 	
-	private void runOneAddress(String firstAddress,CmdStart cmdStart) throws IOException { // 주소 하나만 입력
-		
-		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); //완성된 주소로 변경
-		
-		if(addressChange.checkValidAddress(firstAddress)) {
-			if(new File(firstAddress).isFile()) // 파일 -> 폴더 이동
-				moveFileToFolder(new File(firstAddress), new File(cmdStart.currentAddress));
-			else if(new File(firstAddress).isDirectory()) // 폴더 -> 폴더 이동
-				moveFolerToFolder(new File(firstAddress), new File(cmdStart.currentAddress));
-		}
-		else 
-			errorText.showNonValidFile();
-	}
 	
-	private void runTwoAddress(String firstAddress, String secondAddress,CmdStart cmdStart) throws IOException { // 두개의 주소 입력했을때
-		
-		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); 
-		secondAddress = addressChange.setCompletedAddress(secondAddress,cmdStart); //완성된 주소로 변경
-		
-		if(addressChange.checkValidAddress(firstAddress)) {
-			
-			File firstFile = new File(firstAddress);
-			File secondFile = new File(secondAddress);
-			
-			
-			if(firstFile.isDirectory() && secondFile.isFile()) { // 폴더 -> 파일
-				
-			}
-			else if( firstFile.isDirectory() && secondFile.isDirectory()) // 폴더 -> 폴더
-				moveFolerToFolder(firstFile, secondFile);
-			else if( firstFile.isFile() && secondFile.isFile()) // 파일 -> 파일
-				moveFileToFile(firstFile, secondFile);
-			else if( firstFile.isFile() && secondFile.isDirectory()) // 파일 -> 폴더
-				moveFileToFolder(firstFile, secondFile);
-			else
-				errorText.showNonValidAddress();
-		}
-		else 
-			errorText.showNonValidAddress();
-		
-	}
 	//폴더 -> 폴더
 	private void moveFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		moveCount=0;
@@ -120,6 +80,48 @@ public class Move {
 		moveText.showCopyResult(moveCount);
 	}
 	
+	// 주소 하나만 입력
+	private void runOneAddress(String firstAddress,CmdStart cmdStart) throws IOException { 
+		
+		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); //완성된 주소로 변경
+			
+		if(addressChange.checkValidAddress(firstAddress)) {
+			if(new File(firstAddress).isFile()) // 파일 -> 폴더 이동
+				moveFileToFolder(new File(firstAddress), new File(cmdStart.currentAddress));
+			else if(new File(firstAddress).isDirectory()) // 폴더 -> 폴더 이동
+				moveFolerToFolder(new File(firstAddress), new File(cmdStart.currentAddress));
+		}
+		else 
+			errorText.showNonValidFile();
+	}
+	// 두개의 주소 입력했을때
+	private void runTwoAddress(String firstAddress, String secondAddress,CmdStart cmdStart) throws IOException { 
+			
+		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); 
+		secondAddress = addressChange.setCompletedAddress(secondAddress,cmdStart); //완성된 주소로 변경
+			
+		if(addressChange.checkValidAddress(firstAddress)) {
+				
+			File firstFile = new File(firstAddress);
+			File secondFile = new File(secondAddress);
+				
+				
+			if(firstFile.isDirectory() && secondFile.isFile()) { // 폴더 -> 파일
+					
+			}
+			else if( firstFile.isDirectory() && secondFile.isDirectory()) // 폴더 -> 폴더
+				moveFolerToFolder(firstFile, secondFile);
+			else if( firstFile.isFile() && secondFile.isFile()) // 파일 -> 파일
+				moveFileToFile(firstFile, secondFile);
+			else if( firstFile.isFile() && secondFile.isDirectory()) // 파일 -> 폴더
+				moveFileToFolder(firstFile, secondFile);
+			else
+				errorText.showNonValidAddress();
+			}
+			else 
+				errorText.showNonValidAddress();
+			
+		}
 	
 	// 문구 출력 후 입력
 	private int enterOverWrite(File firstAddressFile) { 

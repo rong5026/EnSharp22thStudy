@@ -20,4 +20,8 @@ public class MainText {
 				+ "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	}
 	
+	public void showCdAddress(String mainAddress) { // cd기능에서 그냥 cd만 눌렀을때 출력
+		System.out.println(mainAddress + "\n");
+	}
+	
 }
