@@ -20,7 +20,7 @@ public class Cd {
 	}
 	
 	
-	public void start(CmdStart cmdStart,String inputText) {//cd 명령어 수행
+	public void start(String inputText,CmdStart cmdStart) {//cd 명령어 수행
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		

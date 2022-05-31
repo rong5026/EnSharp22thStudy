@@ -46,41 +46,65 @@ public class Copy {
 	
 	
 	
-	public void start(String inputText,CmdStart cmdStart) { // copy 명령어 수행
+	public void start(String inputText,CmdStart cmdStart) throws IOException { // copy 명령어 수행
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		
 		
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
-		if(commandList.length == 2) {
-			
+		if(commandList.length == 2) { // 주소 1개 입력했을때
+			runOneAddress(commandList[1],cmdStart);
 		}
-		else if(commandList.length == 3) {
-			
+		else if(commandList.length == 3) { // 주소 2개 입력했을때
+			runTwoAddress( commandList[1],commandList[2], cmdStart);
 		}
 		else
 			errorText.showNonValidAddress();
 	}
 
-	private void runOneAddress(String inputAddress,CmdStart cmdStart) throws IOException { //하나의 주소만 입력했을때
+	private void runOneAddress(String firstAddress,CmdStart cmdStart) throws IOException { //하나의 주소만 입력했을때
 		
-		inputAddress = addressChange.setCompletedAddress(inputAddress,cmdStart); //완성된 주소로 변경
+		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); //완성된 주소로 변경
 		
-		if(addressChange.checkValidAddress(inputAddress)) {
-			if(new File(inputAddress).isFile()) // 파일 -> 폴더 복사
-				copyFileToFolder(new File(inputAddress), new File(cmdStart.currentAddress));
-			else if(new File(inputAddress).isDirectory()) // 폴더 -> 폴더 복사
-				copyFolerToFolder(new File(inputAddress), new File(cmdStart.currentAddress));
+		if(addressChange.checkValidAddress(firstAddress)) {
+			if(new File(firstAddress).isFile()) // 파일 -> 폴더 복사
+				copyFileToFolder(new File(firstAddress), new File(cmdStart.currentAddress));
+			else if(new File(firstAddress).isDirectory()) // 폴더 -> 폴더 복사
+				copyFolerToFolder(new File(firstAddress), new File(cmdStart.currentAddress));
 		}
 		else 
 			errorText.showNonValidAddress();
 		
+	}
+	private void runTwoAddress(String firstAddress, String secondAddress,CmdStart cmdStart) throws IOException {
+		
+		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); 
+		secondAddress = addressChange.setCompletedAddress(secondAddress,cmdStart); //완성된 주소로 변경
+		
+		if(addressChange.checkValidAddress(firstAddress)) {
 			
+			File firstFile = new File(firstAddress);
+			File secondFile = new File(secondAddress);
+			
+			
+			if(firstFile.isDirectory() && secondFile.isFile()) // 폴더 -> 파일
+				copyFolerToFile(firstFile, secondFile);
+			else if( firstFile.isDirectory() && secondFile.isDirectory()) // 폴더 -> 폴더
+				copyFolerToFolder(firstFile, secondFile);
+			else if( firstFile.isFile() && secondFile.isFile()) // 파일 -> 파일
+				copyFileToFile(firstFile, secondFile);
+			else if( firstFile.isFile() && secondFile.isDirectory()) // 파일 -> 폴더
+				copyFileToFolder(firstFile, secondFile);
+			else
+				errorText.showNonValidAddress();
+		}
+		else 
+			errorText.showNonValidAddress();
+		
 	}
 	
-	
 	//폴더 - > 파일
-	public void copyFolerToFile(File firstAddressFile, File secondAdressFile) throws IOException {
+	private void copyFolerToFile(File firstAddressFile, File secondAdressFile) throws IOException {
 		
 		copyCount=0;
 		inputAll =false;
@@ -98,7 +122,7 @@ public class Copy {
 	}
 
 	//폴더 -> 폴더
-	public void copyFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
+	private void copyFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		
 		copyCount=0;
 		inputAll =false;
@@ -119,7 +143,7 @@ public class Copy {
 	}
 	
 	// 파일 -> 파일
-	public void copyFileToFile(File firstAddressFile, File secondAdressFile) throws IOException {
+	private void copyFileToFile(File firstAddressFile, File secondAdressFile) throws IOException {
 		copyCount=0;
 		
 		
@@ -139,7 +163,7 @@ public class Copy {
 	
 	
 	//파일 -> 폴더
-	public void copyFileToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
+	private void copyFileToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		copyCount=0;
 		
 		File file = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );

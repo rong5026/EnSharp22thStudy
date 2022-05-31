@@ -24,10 +24,17 @@ public class CmdMain {
 		
 	
 		File file = new File("C:\\Users\\rong5\\Desktop\\5");
-		File file2 = new File("C:\\Users\\rong5\\Desktop\\5");
+		File file2 = new File("C:\\Users\\rong5\\Desktop\\65.txt");
 		
-		if(file.getPath() == file2.getPath())
-			System.out.println("같다");
+		
+		if(file.isDirectory())
+			System.out.println("1");
+		if(file.isFile())
+			System.out.println("2");
+		if(file2.isDirectory())
+			System.out.println("1");
+		if(file2.isFile())
+			System.out.println("2");
 		//String aString = "cd c:           \\users";
 		
 		//String[] liString = aString.split("\\s{1,}");

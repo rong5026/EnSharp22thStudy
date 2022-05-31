@@ -58,7 +58,7 @@ public class CmdStart {
 			
 			case  ConstantsNumber.CD:  
 				
-				cd.start(this,inputText);
+				cd.start(inputText,this);
 				break;
 			case ConstantsNumber.DIR: 
 				dir.start(currentAddress);
@@ -70,7 +70,7 @@ public class CmdStart {
 				help.start();
 				break;
 			case ConstantsNumber.COPY: 
-				copy.copyFolerToFile(new File("C:\\Users\\rong5\\Desktop\\3"),new File("C:\\Users\\rong5\\Desktop\\65.txt") );
+				copy.start(inputText, this);
 				break;
 			case  ConstantsNumber.MOVE: 
 				move.moveFolerToFolder(new File("C:\\Users\\rong5\\Desktop\\11"),new File("C:\\Users\\rong5\\Desktop\\11"));
