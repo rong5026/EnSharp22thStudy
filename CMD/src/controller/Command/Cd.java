@@ -28,9 +28,6 @@ public class Cd {
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		
 		
-		System.out.println(addressChange.checkValidAddress( addressChange.removeBlackAddress(inputText)));
-		System.out.println(( addressChange.removeBlackAddress(inputText)));
-		
 		if(inputText.equals("cd")) {// cd만 눌렀을때
 			mainText.showCdAddress(cmdStart.currentAddress);
 		}
