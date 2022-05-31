@@ -67,7 +67,6 @@ public class Dir {
 	
 	private void runDir(String inputText,CmdStart cmdStart) throws IOException  {
 		File directory;
-		//ArrayList<File> fileList = new ArrayList<File>();
 		File []fileList;
 		int fileCount;
 		int fileByteTotal;
@@ -75,11 +74,10 @@ public class Dir {
 		fileList = directory.listFiles();
 		
 		
-		
 		for (int index = 0; index < fileList.length; index++) {
 			
 			if(!fileList[index].isHidden()) {
-				String date = getCreationDate(fileList[index]);
+				String date = getModifiedDate(fileList[index]);
 				String dir= getDIR(fileList[index]);
 				String fileSize = getFileByte(fileList[index]);
 				String fileName = fileList[index].getName();
@@ -96,7 +94,7 @@ public class Dir {
 		
 		
 	}
-	private String getCreationDate(File file) throws IOException { // 파일,폴더생성날짜
+	private String getModifiedDate(File file) throws IOException { // 파일,폴더수정날짜
 		
 	
 		BasicFileAttributes atrribute;
@@ -107,7 +105,7 @@ public class Dir {
 		
 	
 		atrribute = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
-		time = atrribute.creationTime();
+		time = atrribute.lastModifiedTime();
 		dateForm = "yyyy-MM-dd  aa hh:mm";
 	    simpleDateFormat = new SimpleDateFormat(dateForm);
 	    result = simpleDateFormat.format( new Date( time.toMillis() ) );

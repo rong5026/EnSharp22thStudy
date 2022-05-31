@@ -21,9 +21,7 @@ public class DirText {
 		System.out.printf("              %s %10s  \n",decFormat.format(directoryFileSum-fileCount)+"개 디렉터리",decFormat.format(directoryByteTotal)+" 바이트 남음");
 		
 	}
-	
-	
-	
+
 	public void showDirStartText(String startText,String address) {
 		
 		System.out.println(startText+"\n");
