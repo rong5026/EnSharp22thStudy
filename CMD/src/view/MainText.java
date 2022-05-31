@@ -21,7 +21,7 @@ public class MainText {
 	}
 	
 	public void showCdAddress(String mainAddress) { // cd기능에서 그냥 cd만 눌렀을때 출력
-		System.out.println(mainAddress + "\n");
+		System.out.println(mainAddress );
 	}
 	
 }
