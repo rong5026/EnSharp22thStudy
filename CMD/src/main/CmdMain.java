@@ -24,6 +24,9 @@ public class CmdMain {
 
 		CmdStart cmd = new CmdStart();
 		cmd.start();
+		
+
+		
 	}
 }
 

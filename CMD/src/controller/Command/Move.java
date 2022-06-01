@@ -59,10 +59,6 @@ public class Move {
 	private void moveFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		moveCount=0;
 		
-		System.out.println(firstAddressFile.getPath());
-		System.out.println(secondAdressFile.getPath());
-		System.out.println(firstAddressFile.getPath().equals(secondAdressFile.getPath()));
-		
 		if(firstAddressFile.getPath()==secondAdressFile.getPath()) { // 주소가 같을때 오류
 			errorText.showSameMove();
 		}
@@ -81,8 +77,10 @@ public class Move {
 		
 	}
 		
+	
 	// 파일 -> 파일
 	private void moveFileToFile(File firstAdressFile, File secondAdressFile) throws IOException {
+		
 		moveCount=0;
 		executeMoveProcess(firstAdressFile,secondAdressFile);
 		commandText.showCopyResult(moveCount);
@@ -91,6 +89,7 @@ public class Move {
 	
 	//파일 -> 폴더
 	private void moveFileToFolder(File firstAdressFile, File secondAdressFile) throws IOException  {
+		
 		moveCount=0;
 		File file = new File( secondAdressFile+ "\\" + firstAdressFile.getName()  );	
 		executeMoveProcess(firstAdressFile,file);
@@ -98,12 +97,13 @@ public class Move {
 		commandText.showCopyResult(moveCount);
 	}
 	
+	
 	// 주소 하나만 입력
 	private void runOneAddress(String firstAddress,CmdStart cmdStart) throws IOException { 
 		
 		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); //완성된 주소로 변경
 			
-		System.out.println("유효한가 판단"+firstAddress );
+	
 		if(addressChange.checkValidAddress(firstAddress)) {
 			
 			if(new File(firstAddress).isFile()) // 파일 -> 폴더 이동
