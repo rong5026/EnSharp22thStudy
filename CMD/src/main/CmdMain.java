@@ -18,15 +18,12 @@ import controller.CmdStart;
 import utility.ConstantsNumber;
 
 public class CmdMain {
-	
-	
+
 	public static void main(String[] args) throws IOException {
 
 		CmdStart cmd = new CmdStart();
 		cmd.start();
-		
-
-		
+	
 	}
 }
 

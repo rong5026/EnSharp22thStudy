@@ -45,35 +45,49 @@ public class Dir {
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
 		
-		commandText.showDirStartText(getCmdNumber(), cmdStart.currentAddress);  // C 드라이브의 볼륨에는 이름이 없습니다.볼륨 일련 번호: 6C68-809A
+		commandText.showDirStartText(cmdStart.getCmdText("dir",2), cmdStart.currentAddress);  // C 드라이브의 볼륨에는 이름이 없습니다.볼륨 일련 번호: 6C68-809A
 		
 		
 		
 		if(commandList.length == 1) { // dir만 입력했을때
+			runDotAddressDir( inputText, cmdStart);
 			
-			
-			runDir(cmdStart.currentAddress,cmdStart); // dir 수행
+			//runDir(cmdStart.currentAddress,cmdStart); // dir 수행
 		}
-		if(commandList.length == 2) { // dir, 주소 입력했을때	
-		
-			String address =addressProcessing.removeBlackAddress(addressProcessing.setCompletedAddress(commandList[1], cmdStart));
-			
-			if(new File(address).isDirectory())
-				runDir(address,cmdStart);
-			else {
-				errorText.showNonValidDir();
-			}
+		else if(commandList.length == 2) { // dir, 주소 입력했을때	
+	
+			runEnteredAddressDir(commandList[1],cmdStart);  // 입력한 주소에서 dir실행
 		}
 		else 
 			errorText.showNonValidDir();	
 		
 	}
 	
-	private void runEnteredAddressDir(String commandText, CmdStart cmdStart) throws IOException {
+	private void runDotAddressDir(String inputText,CmdStart cmdStart) throws IOException {// 한단어입력에서 dir뒤에 .이나\가 있을때
+		
+		
+		if(inputText.equals("dir")) {   // dir만 입력
+			runDir(cmdStart.currentAddress,cmdStart);  
+		}
+		else if(inputText.charAt(3)=='.'|| inputText.charAt(3)=='\\') { // dir뒤에 .\이 왔을때
+			
+			String nonDirText = inputText.substring(3);
+			runEnteredAddressDir(nonDirText,cmdStart);
+		}
+	
+		
+	}
+	
+	private void runEnteredAddressDir(String commandText, CmdStart cmdStart) throws IOException { // 입력한 주소에서 dir실행
 		
 		String address =addressProcessing.removeBlackAddress(addressProcessing.setCompletedAddress(commandText, cmdStart));
 		
-		if(new File(address).isDirectory())
+		
+		File folder = new File(address);
+		
+
+		
+		if(folder.isDirectory() &&folder.exists())
 			runDir(address,cmdStart);
 		else {
 			errorText.showNonValidDir();
@@ -82,6 +96,7 @@ public class Dir {
 	
 	private void runDir(String inputText,CmdStart cmdStart) throws IOException  {
 		File directory;
+	
 		File []fileList;
 		int fileCount;
 		int fileByteTotal;
@@ -170,26 +185,6 @@ public class Dir {
 		return sum;
 	}
 	
-	private  String getCmdNumber() throws IOException { // 볼륨 번호
-		
-		 Process process = Runtime.getRuntime().exec("cmd /c " + "dir");
-	        BufferedReader reader = new BufferedReader(
-	                new InputStreamReader(process.getInputStream(),"MS949"));
-	      
-	        StringBuffer sb = new StringBuffer();
-	     
-	        String cDirveName = reader.readLine();
-	        String volumneNumber= reader.readLine();
-	        sb.append(cDirveName);
-	        sb.append("\n");
-	        sb.append(volumneNumber);
-	        
-	   
-	        return sb.toString();
-	  
-	   
-	 
-	}
 	
 	
 	

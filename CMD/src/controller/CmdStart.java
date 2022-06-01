@@ -1,8 +1,10 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.Console;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
@@ -53,7 +55,7 @@ public class CmdStart {
 	public void start() throws IOException {
 		
 		int commandType;
-		commandText.showMain(); // 처음 문구
+		commandText.showMain(getCmdText("ver", 2)); // 처음 문구
 		
 		while(ConstantsNumber.IS_CMD_ON) {
 			
@@ -95,7 +97,7 @@ public class CmdStart {
 	}
 	
 
-public int distinguishCommand(String inputText) {
+public int distinguishCommand(String inputText) { // 커멘드 명령어 구분
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자로 변환, 앞 공백 삭제
 	
@@ -162,6 +164,30 @@ public int distinguishCommand(String inputText) {
 			return ConstantsNumber.IS_COMMAND;
 		else 
 			return ConstantsNumber.IS_NON_COMMAND;
+	}
+	
+	public  String getCmdText(String cmdInput,int lineNumber) throws IOException { //cmd 값 가져오기
+		
+		 Process process = Runtime.getRuntime().exec("cmd /c " + cmdInput);
+	        BufferedReader reader = new BufferedReader(
+	                new InputStreamReader(process.getInputStream(),"MS949"));
+	      
+	        StringBuffer sb = new StringBuffer();
+	     
+	   
+	        
+	        for(int index = 0 ; index < lineNumber ; index++) {
+	        	  String cmdText = reader.readLine();
+	        	  sb.append(cmdText);
+	        	  sb.append("\n");
+	        }
+	
+	        
+
+	        return sb.toString();
+	  
+	   
+	 
 	}
 	
 
