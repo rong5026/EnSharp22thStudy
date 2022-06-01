@@ -23,25 +23,26 @@ import controller.AddressProcessing;
 import controller.CmdInput;
 import controller.CmdStart;
 import utility.ConstantsNumber;
-import view.CopyText;
+import view.CommandText;
 import view.ErrorText;
 
 public class Copy {
 
-	private CopyText copyText;
+	private CommandText commandText;
 	private CmdInput cmdInput;
 	private ErrorText errorText;
 	private AddressProcessing addressChange;
 	private int copyCount; 
 	private boolean inputAll;
 	
-	public Copy() {
-		copyText = new CopyText();
-		cmdInput = new CmdInput();
-		errorText = new ErrorText();
-		addressChange = new AddressProcessing();
-		copyCount=0;
-		inputAll = false;
+	public Copy(CommandText commandText,ErrorText errorText) {
+		
+		this.commandText = commandText;
+		this.errorText =errorText;
+		this.cmdInput = new CmdInput();
+		this.addressChange = new AddressProcessing();
+		this.copyCount=0;
+		this.inputAll = false;
 	}
 	
 	
@@ -87,7 +88,7 @@ public class Copy {
 				}
 			}
 		 }
-		copyText.showCopyResult(copyCount);
+		commandText.showCopyResult(copyCount);
 	}
 
 	//폴더 -> 폴더
@@ -118,7 +119,7 @@ public class Copy {
 			
 			}
 		 }
-		copyText.showCopyResult(copyCount);
+		commandText.showCopyResult(copyCount);
 		
 	}
 	
@@ -137,7 +138,7 @@ public class Copy {
 		else 
 			runFileCopy( firstAddressFile, secondAdressFile);
 		
-		copyText.showCopyResult(copyCount);
+		commandText.showCopyResult(copyCount);
 		
 	}
 	
@@ -157,7 +158,7 @@ public class Copy {
 		else 
 			runFileCopy( firstAddressFile, file);
 	
-		copyText.showCopyResult(copyCount);
+		commandText.showCopyResult(copyCount);
 		
 	}
 	
@@ -219,9 +220,9 @@ public class Copy {
 			
 			//문구 출력
 			if(type == ConstantsNumber.FileToFolder || type == ConstantsNumber.FolderToFolder)//파일 - 폴더 ,  폴더 - 폴더
-				copyText.showOverwriteFileToFolder(secondAdressFile.getName(), firstAddressFile.getName());
+				commandText.showOverwriteFileToFolder(secondAdressFile.getName(), firstAddressFile.getName());
 			else if(type == ConstantsNumber.FileToFile || type == ConstantsNumber.FolderToFile) // 파일 - 파일  , 폴더 - 파일
-				copyText.showOverwriteFileToFile(secondAdressFile.getName());
+				commandText.showOverwriteFileToFile(secondAdressFile.getName());
 	
 			// yes,no,all 입력
 			int input = cmdInput.enterYesNoAll();
@@ -262,7 +263,7 @@ public class Copy {
 		if(!copyFile.isDirectory()) {
 			
 			  //복사하는 폴더, 파일 이름 출력
-		    copyText.showFolderFileName(firstAddressFile.getName(),copyFile.getName());
+			commandText.showFolderFileName(firstAddressFile.getName(),copyFile.getName());
 			
 			if(!inputAll) 			
 				inputResult = enterOverWrite(copyFile,secondAdressFile,copyType);

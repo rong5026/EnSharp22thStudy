@@ -7,18 +7,21 @@ import javax.imageio.stream.ImageInputStreamImpl;
 import controller.AddressProcessing;
 import controller.CmdStart;
 import utility.ConstantsNumber;
+import view.CommandText;
 import view.ErrorText;
-import view.MainText;
+
 
 public class Cd {
 
 	private ErrorText errorText;
 	private AddressProcessing addressChange;
-	private MainText mainText;
-	public Cd() {
-		addressChange = new AddressProcessing();
-		errorText = new ErrorText();
-		mainText = new MainText();
+	private CommandText commandText;
+	
+	public Cd(CommandText commandText,ErrorText errorText) {
+		
+		this.addressChange = new AddressProcessing();
+		this.errorText =errorText;
+		this.commandText = commandText;
 		
 	}
 	
@@ -29,7 +32,7 @@ public class Cd {
 		
 		
 		if(inputText.equals("cd")) // cd만 눌렀을때
-			mainText.showCdAddress(cmdStart.currentAddress);
+			commandText.showCdAddress(cmdStart.currentAddress);
 		
 		else if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\"))  // cd\
 			moveFirstAddress(cmdStart);

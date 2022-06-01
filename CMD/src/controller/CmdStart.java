@@ -7,18 +7,21 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 
+
+
 import controller.Command.Cd;
 import controller.Command.Copy;
 import controller.Command.Dir;
 import controller.Command.Move;
 import utility.ConstantsNumber;
-import view.MainText;
-import view.DirText;
+
+import view.CommandText;
+import view.ErrorText;
 import view.HelpText;
 
 public class CmdStart {
 	
-	private MainText mainText;
+	private CommandText commandText;
 	public String currentAddress;
 	private String inputText;
 	private Dir dir;
@@ -27,59 +30,66 @@ public class CmdStart {
 	private Move move;
 	private InputException inputException;
 	private HelpText helpText;
+	private ErrorText errorText;
 	
 	
 	public  CmdStart() {
+		
 		currentAddress ="C:\\Users\\"+System.getProperty("user.name");
 		
-		mainText= new MainText();
-		dir= new Dir( );
+		commandText= new CommandText();
+		errorText = new ErrorText();
 		
-		cd = new Cd();
-		copy = new Copy();
-		move = new Move();
+		dir= new Dir(commandText,errorText);
+		cd = new Cd(commandText,errorText);
+		copy = new Copy(commandText,errorText);
+		move = new Move(commandText,errorText);
 		helpText = new HelpText();
-		
+
 		inputException = new InputException();
 	}
 	
 	
 	public void start() throws IOException {
+		
 		int commandType;
-		mainText.showMain(); // 처음 문구
+		commandText.showMain(); // 처음 문구
 		
 		while(ConstantsNumber.IS_CMD_ON) {
 			
-			mainText.showInput(currentAddress);
+			commandText.showInput(currentAddress); // 현재 주소
 			
 			inputText = new Scanner(System.in).nextLine();
+			
 			if(inputText!=null) {
-			commandType = inputException.distinguishCommand(inputText);
-			
-			switch (commandType) {
-			
-			case ConstantsNumber.CD:  
-				cd.start(inputText,this);
-				break;
-			case ConstantsNumber.DIR: 
-				dir.start(inputText,this);
-				break;
-			case ConstantsNumber.CLS: 
-				mainText.showCls();
-				break;
-			case ConstantsNumber.HELP: 
-				helpText.showHelp();
-				break;
-			case ConstantsNumber.COPY: 
-				copy.start(inputText, this);
-				break;
-			case  ConstantsNumber.MOVE: 
-				move.start(inputText, this);
-				break;
 				
-			default:
+				commandType = inputException.distinguishCommand(inputText); // 입력
 				
-			}
+				switch (commandType) {
+				
+				case ConstantsNumber.CD:  //CD로 이동
+					cd.start(inputText,this);
+					break;
+				case ConstantsNumber.DIR: //DIR로 이동
+					dir.start(inputText,this);
+					break;
+				case ConstantsNumber.CLS: //CLS로 이동
+					commandText.showCls();
+					break;
+				case ConstantsNumber.HELP: //Help로 이동
+					helpText.showHelp();
+					break;
+				case ConstantsNumber.COPY: //Copy로 이동
+					copy.start(inputText, this);
+					break;
+				case  ConstantsNumber.MOVE: // Move로 이동
+					move.start(inputText, this);
+					break;
+					
+				default:
+					
+				}
+			
 			}
 		}
 	}

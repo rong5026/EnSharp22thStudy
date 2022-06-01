@@ -19,20 +19,25 @@ import org.w3c.dom.html.HTMLIsIndexElement;
 
 import controller.AddressProcessing;
 import controller.CmdStart;
-import view.DirText;
+import view.CommandText;
 import view.ErrorText;
 
 public class Dir {
 
-	private DirText dirText;
+	private CommandText commandText;
 	private AddressProcessing addressProcessing;
 	private ErrorText errorText;
 	
-	public Dir() {
-		dirText = new DirText();
-		addressProcessing= new AddressProcessing();
-		errorText = new ErrorText();
+	
+	public Dir(CommandText commandText,ErrorText errorText) {
+		
+		this.commandText = commandText;
+		this.errorText = errorText;
+		this.addressProcessing= new AddressProcessing();
+	
+		
 	}
+	
 	public void start(String inputText,CmdStart cmdStart) throws IOException { // dir기능 수행
 		
 		//첫 텍스트 출력
@@ -42,13 +47,13 @@ public class Dir {
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
 		
 		if(commandList.length == 1) { // dir만 입력했을때
-			dirText.showDirStartText(getCmdNumber(), cmdStart.currentAddress);
+			commandText.showDirStartText(getCmdNumber(), cmdStart.currentAddress);
 			runDir(cmdStart.currentAddress,cmdStart);
 		}
 		else if(commandList.length == 2) { // dir, 주소 입력했을때	
 		
 			String address =addressProcessing.removeBlackAddress(addressProcessing.setCompletedAddress(commandList[1], cmdStart))  ;
-			dirText.showDirStartText(getCmdNumber(), address);
+			commandText.showDirStartText(getCmdNumber(), address);
 			
 			if(new File(address).isDirectory())
 				runDir(address,cmdStart);
@@ -79,7 +84,7 @@ public class Dir {
 				String fileSize = getFileByte(fileList[index]);
 				String fileName = fileList[index].getName();
 				count++;
-				dirText.showDir(date, dir, fileSize, fileName);// 출력
+				commandText.showDir(date, dir, fileSize, fileName);// 출력
 			
 			}
 		}
@@ -88,7 +93,7 @@ public class Dir {
 		fileCount =getFileCount(fileList);//파일의 수
 		fileByteTotal = sumFileByte(fileList);//파일의 크기합
 	
-		dirText.showDirLastText(fileCount,fileByteTotal,count);
+		commandText.showDirLastText(fileCount,fileByteTotal,count);
 		
 		
 	}
