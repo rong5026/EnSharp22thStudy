@@ -15,12 +15,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 import controller.AddressProcessing;
 
-import controller.CmdInput;
 import controller.CmdStart;
 import utility.ConstantsNumber;
 import view.CommandText;
@@ -29,7 +29,6 @@ import view.ErrorText;
 public class Copy {
 
 	private CommandText commandText;
-	private CmdInput cmdInput;
 	private ErrorText errorText;
 	private AddressProcessing addressChange;
 	private int copyCount; 
@@ -39,10 +38,10 @@ public class Copy {
 		
 		this.commandText = commandText;
 		this.errorText =errorText;
-		this.cmdInput = new CmdInput();
 		this.addressChange = new AddressProcessing();
 		this.copyCount=0;
 		this.inputAll = false;
+		
 	}
 	
 	
@@ -227,7 +226,7 @@ public class Copy {
 				commandText.showOverwriteFileToFile(secondAdressFile.getName());
 	
 			// yes,no,all 입력
-			int input = cmdInput.enterYesNoAll();
+			int input = enterYesNoAll();
 			if( input != ConstantsNumber.INVALID_INPUT) {
 				return input;
 			}
@@ -296,7 +295,30 @@ public class Copy {
 	   
 	}
 	
+	public int enterYesNoAll() { // yes, or, all중 선택
+		String inputText = new Scanner(System.in).nextLine();
+		
+		inputText = inputText.toLowerCase();
+		
+		if(inputText=="" || inputText ==null)
+			return ConstantsNumber.INVALID_INPUT;
+		
+		switch (inputText.charAt(0)){
+		
+		case 'y': 	
+			return ConstantsNumber.YES_INPUT;
+		
+		case 'n':
+			return ConstantsNumber.NO_INPUT;
+			
+		case 'a':
+			return ConstantsNumber.ALL_INPUT;
 
+		default:
+			return ConstantsNumber.INVALID_INPUT;
+		
+		}
+	}
 
 	
 	

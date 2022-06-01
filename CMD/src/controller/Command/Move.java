@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 import controller.AddressProcessing;
-import controller.CmdInput;
 import controller.CmdStart;
 import utility.ConstantsNumber;
 import view.CommandText;
@@ -18,19 +17,20 @@ import view.ErrorText;
 public class Move {
 	
 
-	private CmdInput cmdInput;
+	
 	private CommandText commandText;
 	private ErrorText errorText;
 	private AddressProcessing addressChange;
 	private int moveCount; 
+	private Copy copy;
 	
-	public Move(CommandText commandText,ErrorText errorText){
+	public Move(CommandText commandText,ErrorText errorText,Copy copy){
 		
+		this.copy = copy;
 		this.commandText =commandText;
 		this.errorText= errorText;
-		
-		this.cmdInput = new CmdInput();
 		this.addressChange = new AddressProcessing();
+		this.moveCount = 0;
 		this.moveCount = 0;
 		
 	}
@@ -42,13 +42,17 @@ public class Move {
 		
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
 		
+	
 		if(commandList.length == 2) {  // 주소 1개 입력했을때
+			
 			runOneAddress(  addressChange.removeBlackAddress(commandList[1]) , cmdStart );
 		}
 		else if(commandList.length == 3) {  // 주소 2개 입력했을때
+			
 			runTwoAddress( addressChange.removeBlackAddress(commandList[1]),  addressChange.removeBlackAddress(commandList[2]), cmdStart); 
 		}
 		else { // 주소입력이 없을때
+			
 			errorText.showNonValidAddress();
 		}
 		
@@ -63,17 +67,15 @@ public class Move {
 			errorText.showSameMove();
 		}
 		
-		//second폴더가 있을때
-		else if(secondAdressFile.isDirectory()) {
-			File directory = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );
-			runMoveProcess(firstAddressFile,directory);
+		else if(secondAdressFile.isDirectory()) { //second폴더가 이미 존재할때
 			
+			File directory = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );
+			secondAdressFile = directory;
 		}
-		//second폴더가 없을때
-		else {
-			runMoveProcess(firstAddressFile,secondAdressFile);
-			commandText.showCopyResult(moveCount);
-		}
+	
+		runMoveProcess(firstAddressFile,secondAdressFile);// move실행
+		
+		commandText.showCopyResult(moveCount); // 이동파일수 출력
 		
 	}
 		
@@ -81,7 +83,7 @@ public class Move {
 	// 파일 -> 파일
 	private void moveFileToFile(File firstAdressFile, File secondAdressFile) throws IOException {
 		
-		moveCount=0;
+		moveCount=0; // 이동한 파일 수 
 		executeMoveProcess(firstAdressFile,secondAdressFile);
 		commandText.showCopyResult(moveCount);
 	}
@@ -93,7 +95,6 @@ public class Move {
 		moveCount=0;
 		File file = new File( secondAdressFile+ "\\" + firstAdressFile.getName()  );	
 		executeMoveProcess(firstAdressFile,file);
-		
 		commandText.showCopyResult(moveCount);
 	}
 	
@@ -157,7 +158,7 @@ public class Move {
 			
 			commandText.showOverwriteFile(firstAddressFile.getPath());//문구 출력
 			
-			int input = cmdInput.enterYesNoAll(); // yes,no,all 입력
+			int input = copy.enterYesNoAll(); // yes,no,all 입력
 			
 			if( input != ConstantsNumber.INVALID_INPUT) 
 				return input;

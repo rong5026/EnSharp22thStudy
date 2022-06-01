@@ -40,20 +40,23 @@ public class Dir {
 	
 	public void start(String inputText,CmdStart cmdStart) throws IOException { // dir기능 수행
 		
-		//첫 텍스트 출력
-		
 	
+		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
 		
-		if(commandList.length == 1) { // dir만 입력했을때
-			commandText.showDirStartText(getCmdNumber(), cmdStart.currentAddress);
-			runDir(cmdStart.currentAddress,cmdStart);
-		}
-		else if(commandList.length == 2) { // dir, 주소 입력했을때	
+		commandText.showDirStartText(getCmdNumber(), cmdStart.currentAddress);  // C 드라이브의 볼륨에는 이름이 없습니다.볼륨 일련 번호: 6C68-809A
 		
-			String address =addressProcessing.removeBlackAddress(addressProcessing.setCompletedAddress(commandList[1], cmdStart))  ;
-			commandText.showDirStartText(getCmdNumber(), address);
+		
+		
+		if(commandList.length == 1) { // dir만 입력했을때
+			
+			runDir(cmdStart.currentAddress,cmdStart); // dir 수행
+		}
+		if(commandList.length == 2) { // dir, 주소 입력했을때	
+		
+			String address =addressProcessing.removeBlackAddress(addressProcessing.setCompletedAddress(commandList[1], cmdStart));
+			
 			
 			if(new File(address).isDirectory())
 				runDir(address,cmdStart);
@@ -79,10 +82,10 @@ public class Dir {
 		for (int index = 0; index < fileList.length; index++) {
 			
 			if(!fileList[index].isHidden()) {
-				String date = getModifiedDate(fileList[index]);
-				String dir= getDIR(fileList[index]);
-				String fileSize = getFileByte(fileList[index]);
-				String fileName = fileList[index].getName();
+				String date = getModifiedDate(fileList[index]); // 폴더마지막수정 날짜
+				String dir= getDIR(fileList[index]);            // <DIR> 표시
+				String fileSize = getFileByte(fileList[index]); // 파일 크기
+				String fileName = fileList[index].getName();    // 파일 이름
 				count++;
 				commandText.showDir(date, dir, fileSize, fileName);// 출력
 			
@@ -93,7 +96,7 @@ public class Dir {
 		fileCount =getFileCount(fileList);//파일의 수
 		fileByteTotal = sumFileByte(fileList);//파일의 크기합
 	
-		commandText.showDirLastText(fileCount,fileByteTotal,count);
+		commandText.showDirLastText(fileCount,fileByteTotal,count); // DIR 결과 출력
 		
 		
 	}
@@ -109,7 +112,7 @@ public class Dir {
 	
 		atrribute = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
 		time = atrribute.lastModifiedTime();
-		dateForm = "yyyy-MM-dd  aa hh:mm";
+		dateForm = "yyyy-MM-dd  aa hh:mm";       		     //날짜 형식
 	    simpleDateFormat = new SimpleDateFormat(dateForm);
 	    result = simpleDateFormat.format( new Date( time.toMillis() ) );
 
@@ -156,7 +159,7 @@ public class Dir {
 		return sum;
 	}
 	
-	private  String getCmdNumber() throws IOException {
+	private  String getCmdNumber() throws IOException { // 볼륨 번호
 		
 		 Process process = Runtime.getRuntime().exec("cmd /c " + "dir");
 	        BufferedReader reader = new BufferedReader(
@@ -170,11 +173,10 @@ public class Dir {
 	        sb.append("\n");
 	        sb.append(volumneNumber);
 	        
-	      
+	   
 	        return sb.toString();
 	  
-	      
-	  
+	   
 	 
 	}
 	

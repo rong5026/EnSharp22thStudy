@@ -28,7 +28,6 @@ public class CmdStart {
 	private Cd cd;
 	private Copy copy;
 	private Move move;
-	private InputException inputException;
 	private HelpText helpText;
 	private ErrorText errorText;
 	
@@ -41,12 +40,13 @@ public class CmdStart {
 		errorText = new ErrorText();
 		
 		dir= new Dir(commandText,errorText);
+		
 		cd = new Cd(commandText,errorText);
 		copy = new Copy(commandText,errorText);
-		move = new Move(commandText,errorText);
+		move = new Move(commandText,errorText,copy);
 		helpText = new HelpText();
 
-		inputException = new InputException();
+		
 	}
 	
 	
@@ -63,7 +63,7 @@ public class CmdStart {
 			
 			if(inputText!=null) {
 				
-				commandType = inputException.distinguishCommand(inputText); // 입력
+				commandType = distinguishCommand(inputText); // 입력
 				
 				switch (commandType) {
 				
@@ -94,30 +94,40 @@ public class CmdStart {
 		}
 	}
 	
-	public int enterYesNoAll() { // yes, or, all중 선택
-		String inputText = new Scanner(System.in).nextLine();
-		
-		inputText = inputText.toLowerCase();
-		
-		if(inputText=="" || inputText ==null)
-			return ConstantsNumber.INVALID_INPUT;
-		
-		switch (inputText.charAt(0)){
-		
-		case 'y': 	
-			return ConstantsNumber.YES_INPUT;
-		
-		case 'n':
-			return ConstantsNumber.NO_INPUT;
-			
-		case 'a':
-			return ConstantsNumber.ALL_INPUT;
 
-		default:
-			return ConstantsNumber.INVALID_INPUT;
+	public int distinguishCommand(String inputText) { // 명령어 구분
 		
+		inputText = inputText.toLowerCase().stripLeading(); // 소문자로 변환, 앞 공백 삭제
+	
+		
+		if(confirmCommandType(inputText,"cd"))
+			return ConstantsNumber.CD;
+		else if(confirmCommandType(inputText,"dir"))
+			return ConstantsNumber.DIR;
+		else if(confirmCommandType(inputText,"cls"))
+			return ConstantsNumber.CLS;
+		else if(confirmCommandType(inputText,"help"))
+			return ConstantsNumber.HELP;
+		else if(confirmCommandType(inputText,"copy"))
+			return ConstantsNumber.COPY;
+		else if(confirmCommandType(inputText,"move"))
+			return ConstantsNumber.MOVE;
+		else {
+			errorText.showNonCommand(inputText.split(" ")[0]);
+			return ConstantsNumber.NON_VALUE;
 		}
+	
 	}
+	
+
+	private boolean confirmCommandType(String inputText, String type) { //  cls, help,copy,move인지 확인
+		String input = inputText.substring(0, type.length());
+		if(input.equals(type))
+			return ConstantsNumber.IS_COMMAND;
+		else 
+			return ConstantsNumber.IS_NON_COMMAND;
+	}
+	
 	
 	
 	

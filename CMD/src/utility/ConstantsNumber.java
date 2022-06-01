@@ -45,6 +45,14 @@ public class ConstantsNumber {
 	public final static boolean IS_ABSOLUTE_ADDRESS = true;
 	public final static boolean IS_NON_ABSOLUTE_ADDRESS = false;
 	
+	//command
+	public final static String CD_COMMAND = "cd";
+	public final static String DIR_COMMAND = "dir";
+	public final static String CLS_COMMAND = "cls";
+	public final static String HELP_COMMAND = "help";
+	public final static String COPY_COMMAND = "copy";
+
+	
 	
 	
 	
