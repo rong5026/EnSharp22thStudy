@@ -1,5 +1,6 @@
 package controller.Command;
 
+import java.awt.event.InputEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -31,18 +32,22 @@ public class Cd {
 		
 		inputText = addressChange.unifyAddress(inputText); // 슬래시를 역슬래시로 변환
 		
-		
-	
 		inputText =  addressChange.removeBlackAddress(inputText.substring(2)).stripLeading(); // cd를 제외하고 자른문자에서 앞공백 삭제
 		
 		
-		inputText = addressChange.setCompletedAddress(inputText, cmdStart); // 완벽한 주소로 변경
 		
-		if(  checkAbsoluteAddress(inputText)  &&  addressChange.checkValidAddress(inputText ))
+		if(inputText.charAt(0)=='\\' ) { // cd문 다음에 \가 제일 먼저나올때, 첫주소로 옮겨주고 \ 다음부터 주소 확인
+	
+			cmdStart.currentAddress = "C:\\";
+			inputText = inputText.substring(1);
+		}
+		
+		inputText = addressChange.setCompletedAddress(inputText, cmdStart); // 완벽한 주소로 변경
+		if(  checkAbsoluteAddress(inputText)  &&  addressChange.checkValidAddress(inputText )) // 절대주소 , 유효한 주소일때
 			 moveEnteredAddress( cmdStart, inputText);	
 		
-		else if( !checkAbsoluteAddress(inputText)  && addressChange.checkValidAddress(  addressChange.setCompletedAddress(inputText, cmdStart))) 
-			moveEnteredAddress(cmdStart, addressChange.setCompletedAddress(inputText, cmdStart));
+		else if( !checkAbsoluteAddress(inputText)  && addressChange.checkValidAddress(  addressChange.setCompletedAddress(inputText, cmdStart))) //절대 주소가 아닐때
+			moveEnteredAddress(cmdStart, addressChange.setCompletedAddress(inputText, cmdStart)); // setCompletedAddress로 절대주소로 바꾼값을 넣어줌
 	
 		else // 에러메시지 표시
 			errorText.showNonValidAddress();
@@ -63,14 +68,14 @@ public class Cd {
 	
 	public void moveEnteredAddress(CmdStart cmdStart, String inputAddress) throws IOException {//입력한 주소로 이동
 		
-		inputAddress = addressChange.setCompletedAddress(inputAddress,cmdStart);
+		inputAddress = addressChange.setCompletedAddress(inputAddress,cmdStart); // 완전한 주소로 변환
 		
-		inputAddress = new File(inputAddress).getCanonicalPath();
+		inputAddress = new File(inputAddress).getCanonicalPath(); // cd가 적용된 주소
 		
 		if(new File(inputAddress).isFile())
 			errorText.showNotCorrectDirectory();
 		else 
-			cmdStart.currentAddress = inputAddress;
+			cmdStart.currentAddress = inputAddress; // 주소를 변경
 		
 	}
 	
