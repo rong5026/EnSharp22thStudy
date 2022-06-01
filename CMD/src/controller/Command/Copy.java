@@ -102,7 +102,7 @@ public class Copy {
 		String files[] = firstAddressFile.list();
 		
 		
-		if(firstAddressFile.getPath() ==secondAdressFile.getPath()) { // 같은 폴더 복사하려고 할때
+		if(firstAddressFile.getPath().equals(secondAdressFile.getPath())) { // 같은 폴더 복사하려고 할때
 			errorText.showSameCopy();
 		}
 		else if(files!=null) {	
@@ -127,8 +127,10 @@ public class Copy {
 	private void copyFileToFile(File firstAddressFile, File secondAdressFile) throws IOException {
 		copyCount=0;
 		
+
 		
-		if(firstAddressFile.getPath() ==secondAdressFile.getPath()) { // 같은 파일 복사하려고 할때
+		
+		if(firstAddressFile.getPath().equals(secondAdressFile.getPath())) { // 같은 파일 복사하려고 할때
 			errorText.showSameCopy();
 		}
 		else if(secondAdressFile.exists()) { // 폴더안에 중복되는것이 있을때
