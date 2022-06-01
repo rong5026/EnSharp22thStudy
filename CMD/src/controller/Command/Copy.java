@@ -51,7 +51,6 @@ public class Copy {
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		
 		
-		
 		String[] commandList = inputText.split("\\s{1,}"); // 공백으로 자르기
 		if(commandList.length == 2) { // 주소 1개 입력했을때
 			runOneAddress(  addressChange.removeBlackAddress(commandList[1]),cmdStart);
@@ -74,13 +73,18 @@ public class Copy {
 		String files[] = firstAddressFile.list();
 	
 		if(files!=null) {	
-			for (String file : files) {
-				File copyFile = new File(firstAddressFile, file);
-				if(secondAdressFile.exists())
+			
+			if(secondAdressFile.exists()) {
+				for (String file : files) {
+					File copyFile = new File(firstAddressFile, file);
 					runProcessFromFolder(copyFile,firstAddressFile,secondAdressFile,file, ConstantsNumber.FolderToFile);
-				else 
+				}
+			}
+			else {
+				for (String file : files) {
+					File copyFile = new File(firstAddressFile, file);
 					runFolderOrFileCopy(copyFile,secondAdressFile ,file,ConstantsNumber.FolderToFile);
-				
+				}
 			}
 		 }
 		copyText.showCopyResult(copyCount);
@@ -106,11 +110,9 @@ public class Copy {
 			for (String file : files) {
 				File copyFile = new File(firstAddressFile, file);
 				File copiedFile = new File( secondAdressFile.getPath()+ "\\" + copyFile.getName()  );
-				
-				
 				if(copiedFile.exists())
 					runProcessFromFolder( copyFile, firstAddressFile,  secondAdressFile ,file, ConstantsNumber.FolderToFolder);
-				else {
+				else {					
 					runFolderOrFileCopy(copyFile,secondAdressFile ,file,ConstantsNumber.FolderToFolder);
 				}
 			
@@ -182,20 +184,24 @@ public class Copy {
 		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); 
 		secondAddress = addressChange.setCompletedAddress(secondAddress,cmdStart); //완성된 주소로 변경
 	
-		
+	
 		if(addressChange.checkValidAddress(firstAddress)) {
 			
 			File firstFile = new File(firstAddress);
 			File secondFile = new File(secondAddress);
 			
-			if(firstFile.isDirectory() && secondFile.getName().contains("."))  // 폴더 -> 파일
-				copyFolerToFile(firstFile, secondFile);
-			else if( firstFile.isDirectory() && !secondFile.getName().contains("."))  // 폴더 -> 폴더
+			if(firstFile.isDirectory() && secondFile.getName().contains("."))   // 폴더 -> 파일
+				copyFolerToFile(firstFile, secondFile);		
+			
+			else if( firstFile.isDirectory() && !secondFile.getName().contains("."))   // 폴더 -> 폴더
 				copyFolerToFolder(firstFile, secondFile);
+			
 			else if( firstFile.isFile() && secondFile.getName().contains("."))  // 파일 -> 파일
 				copyFileToFile(firstFile, secondFile);
+			
 			else if( firstFile.isFile() && !secondFile.getName().contains("."))  // 파일 -> 폴더
 				copyFileToFolder(firstFile, secondFile);
+			
 			else
 				errorText.showNonValidAddress();
 		}
@@ -216,7 +222,6 @@ public class Copy {
 				copyText.showOverwriteFileToFolder(secondAdressFile.getName(), firstAddressFile.getName());
 			else if(type == ConstantsNumber.FileToFile || type == ConstantsNumber.FolderToFile) // 파일 - 파일  , 폴더 - 파일
 				copyText.showOverwriteFileToFile(secondAdressFile.getName());
-	
 	
 			// yes,no,all 입력
 			int input = cmdInput.enterYesNoAll();
@@ -276,13 +281,15 @@ public class Copy {
 	
 	// copyType에 따라 폴더- 파일, 폴더-폴더 수행 구분
 	private void runFolderOrFileCopy(File copyFile, File secondAdressFile ,String file,int copyType) throws IOException {
+		if(!copyFile.isDirectory()) {
+			if(copyType == ConstantsNumber.FolderToFile )
+				runFolderCopy(copyFile,secondAdressFile);
+			else {
+				runFileCopy( copyFile, secondAdressFile);
+				
+			}
 		
-	
-		if(copyType == ConstantsNumber.FolderToFile )
-	
-			runFolderCopy(copyFile,secondAdressFile);
-		else 
-			runFileCopy( copyFile, new File(secondAdressFile, file));
+		}
 	   
 	}
 	

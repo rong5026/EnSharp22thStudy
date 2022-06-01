@@ -57,11 +57,7 @@ public class Dir {
 			}
 		}
 		else 
-			errorText.showNonValidDir();
-		
-		
-			
-	
+			errorText.showNonValidDir();	
 		
 	}
 	
@@ -70,6 +66,7 @@ public class Dir {
 		File []fileList;
 		int fileCount;
 		int fileByteTotal;
+		int count = 0;
 		directory = new File(inputText);
 		fileList = directory.listFiles();
 		
@@ -81,6 +78,7 @@ public class Dir {
 				String dir= getDIR(fileList[index]);
 				String fileSize = getFileByte(fileList[index]);
 				String fileName = fileList[index].getName();
+				count++;
 				dirText.showDir(date, dir, fileSize, fileName);// 출력
 			
 			}
@@ -90,7 +88,7 @@ public class Dir {
 		fileCount =getFileCount(fileList);//파일의 수
 		fileByteTotal = sumFileByte(fileList);//파일의 크기합
 	
-		dirText.showDirLastText(fileCount,fileByteTotal,fileList.length);
+		dirText.showDirLastText(fileCount,fileByteTotal,count);
 		
 		
 	}
@@ -125,7 +123,7 @@ public class Dir {
 	private String getFileByte(File file ) { // 파일의 크기, 파일의 수 측정
 		DecimalFormat decFormat;
 		int fileByteSize;
-		if(file.isFile()) {
+		if(file.isFile() && !file.isHidden()) {
 			decFormat = new DecimalFormat("###,###");
 			fileByteSize = (int)file.length();
 			return decFormat.format(fileByteSize);  
@@ -137,7 +135,7 @@ public class Dir {
 	private int getFileCount(File []fileList) { // 폴더안 파일의 수 
 		int count=0;
 		for (int index = 0; index < fileList.length; index++) {
-			if(fileList[index].isFile())
+			if(fileList[index].isFile() &&  !fileList[index].isHidden())
 				count++;
 		}
 		return count;

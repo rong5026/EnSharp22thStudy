@@ -28,26 +28,24 @@ public class Cd {
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		
 		
-		if(inputText.equals("cd")) {// cd만 눌렀을때
+		if(inputText.equals("cd")) // cd만 눌렀을때
 			mainText.showCdAddress(cmdStart.currentAddress);
-		}
-		else if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\")) { // cd\
+		
+		else if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\"))  // cd\
 			moveFirstAddress(cmdStart);
-		}
-		else if(inputText.replace(" ", "").equals("cd..") && checkVaildCd(inputText,"..")) { // cd..
+		
+		else if(inputText.replace(" ", "").equals("cd..") && checkVaildCd(inputText,".."))  // cd..
 			moveBackOneAddress(cmdStart);	
-		}
-		else if(inputText.replace(" ", "").equals("cd..\\..") && checkVaildCd(inputText,"..\\..")) { // cd..\..
+		
+		else if(inputText.replace(" ", "").equals("cd..\\..") && checkVaildCd(inputText,"..\\.."))  // cd..\..
 			moveBackTwoAddress(cmdStart);
-		}
-		else if(addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  addressChange.checkValidAddress( addressChange.removeBlackAddress(inputText.substring(3)))){// c:\\ 첫주소부터 입력했을때	
+		
+		else if(addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  addressChange.checkValidAddress( addressChange.removeBlackAddress(inputText.substring(3))))// c:\\ 첫주소부터 입력했을때	
 			moveEnteredAddress( cmdStart, addressChange.removeBlackAddress(inputText).substring(3));	
 	
-		}
-		else if( !addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users") && addressChange.checkValidAddress( addressChange.removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) {
+		else if( !addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users") && addressChange.checkValidAddress( addressChange.removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) 
 			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+addressChange.removeBlackAddress(inputText).substring(3));
 		
-		}
 		else // 에러메시지 표시
 			errorText.showNonValidAddress();
 			

@@ -10,11 +10,11 @@ import java.util.Scanner;
 import controller.Command.Cd;
 import controller.Command.Copy;
 import controller.Command.Dir;
-import controller.Command.Help;
 import controller.Command.Move;
 import utility.ConstantsNumber;
 import view.MainText;
 import view.DirText;
+import view.HelpText;
 
 public class CmdStart {
 	
@@ -22,11 +22,11 @@ public class CmdStart {
 	public String currentAddress;
 	private String inputText;
 	private Dir dir;
-	private Help help;
 	private Cd cd;
 	private Copy copy;
 	private Move move;
 	private InputException inputException;
+	private HelpText helpText;
 	
 	
 	public  CmdStart() {
@@ -34,10 +34,11 @@ public class CmdStart {
 		
 		mainText= new MainText();
 		dir= new Dir( );
-		help = new Help();
+		
 		cd = new Cd();
 		copy = new Copy();
 		move = new Move();
+		helpText = new HelpText();
 		
 		inputException = new InputException();
 	}
@@ -52,12 +53,12 @@ public class CmdStart {
 			mainText.showInput(currentAddress);
 			
 			inputText = new Scanner(System.in).nextLine();
+			if(inputText!=null) {
 			commandType = inputException.distinguishCommand(inputText);
 			
 			switch (commandType) {
 			
-			case  ConstantsNumber.CD:  
-				
+			case ConstantsNumber.CD:  
 				cd.start(inputText,this);
 				break;
 			case ConstantsNumber.DIR: 
@@ -67,7 +68,7 @@ public class CmdStart {
 				mainText.showCls();
 				break;
 			case ConstantsNumber.HELP: 
-				help.start();
+				helpText.showHelp();
 				break;
 			case ConstantsNumber.COPY: 
 				copy.start(inputText, this);
@@ -78,6 +79,7 @@ public class CmdStart {
 				
 			default:
 				
+			}
 			}
 		}
 	}
