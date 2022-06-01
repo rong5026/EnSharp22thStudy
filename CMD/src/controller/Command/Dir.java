@@ -51,12 +51,12 @@ public class Dir {
 		
 		if(commandList.length == 1) { // dir만 입력했을때
 			
+			
 			runDir(cmdStart.currentAddress,cmdStart); // dir 수행
 		}
 		if(commandList.length == 2) { // dir, 주소 입력했을때	
 		
 			String address =addressProcessing.removeBlackAddress(addressProcessing.setCompletedAddress(commandList[1], cmdStart));
-			
 			
 			if(new File(address).isDirectory())
 				runDir(address,cmdStart);
@@ -67,6 +67,17 @@ public class Dir {
 		else 
 			errorText.showNonValidDir();	
 		
+	}
+	
+	private void runEnteredAddressDir(String commandText, CmdStart cmdStart) throws IOException {
+		
+		String address =addressProcessing.removeBlackAddress(addressProcessing.setCompletedAddress(commandText, cmdStart));
+		
+		if(new File(address).isDirectory())
+			runDir(address,cmdStart);
+		else {
+			errorText.showNonValidDir();
+		}
 	}
 	
 	private void runDir(String inputText,CmdStart cmdStart) throws IOException  {

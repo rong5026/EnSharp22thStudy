@@ -95,14 +95,13 @@ public class CmdStart {
 	}
 	
 
-	public int distinguishCommand(String inputText) { // 명령어 구분
+public int distinguishCommand(String inputText) {
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자로 변환, 앞 공백 삭제
 	
-		
-		if(confirmCommandType(inputText,"cd"))
+		if(distinguishCd(inputText))
 			return ConstantsNumber.CD;
-		else if(confirmCommandType(inputText,"dir"))
+		else if(distinguishDir(inputText))
 			return ConstantsNumber.DIR;
 		else if(confirmCommandType(inputText,"cls"))
 			return ConstantsNumber.CLS;
@@ -116,20 +115,54 @@ public class CmdStart {
 			errorText.showNonCommand(inputText.split(" ")[0]);
 			return ConstantsNumber.NON_VALUE;
 		}
+		
+
 	
 	}
 	
+	private boolean distinguishCd(String inputText) { // cd인지 확인
+		String input;
+		
 
-	private boolean confirmCommandType(String inputText, String type) { //  cls, help,copy,move인지 확인
-		String input = inputText.substring(0, type.length());
+		if(inputText.equals("cd"))
+			return ConstantsNumber.IS_CD;
+		else if(inputText.substring(0, 2).equals("cd")) {
+			input = inputText.replace(" ", "");
+			
+			if(input.charAt(2)=='.' ||input.charAt(2)=='\\' )
+				return ConstantsNumber.IS_CD;
+		}
+		input = inputText.split(" ")[0]; 
+		
+		return confirmCommandType(inputText,"cd");
+
+	}
+	private boolean distinguishDir(String inputText) { // dir인지 확인
+		String input;
+		
+
+		if(inputText.equals("dir"))
+			return ConstantsNumber.IS_COMMAND;
+		else if(inputText.substring(0, 3).equals("dir")) {
+			input = inputText.replace(" ", "");
+			
+			if(input.charAt(3)=='.' ||input.charAt(3)=='\\' )
+				return ConstantsNumber.IS_COMMAND;
+		}
+		input = inputText.split(" ")[0]; 
+		
+		return confirmCommandType(inputText,"dir");
+
+	}
+
+	private boolean confirmCommandType(String inputText, String type) { // cd, dir, cls, help,copy,move인지 확인
+		String input = inputText.split(" ")[0];
+		
 		if(input.equals(type))
 			return ConstantsNumber.IS_COMMAND;
 		else 
 			return ConstantsNumber.IS_NON_COMMAND;
 	}
-	
-	
-	
 	
 
 	
