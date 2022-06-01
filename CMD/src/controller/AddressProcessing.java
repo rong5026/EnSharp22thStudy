@@ -37,7 +37,7 @@ public class AddressProcessing {
 	
 	public String setCompletedAddress(String inputAddress, CmdStart cmdStart) { // 완성된 주소 리턴
 		
-		if(!inputAddress.contains("c:\\users"))
+		if(!inputAddress.contains(":"))
 			return cmdStart.currentAddress + "\\" + inputAddress;
 		else 
 			return inputAddress;

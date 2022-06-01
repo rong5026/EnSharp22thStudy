@@ -1,6 +1,7 @@
 package controller.Command;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.stream.ImageInputStreamImpl;
 
@@ -25,40 +26,30 @@ public class Cd {
 		
 	}
 	
-	
-	public void start(String inputText,CmdStart cmdStart) {//cd 명령어 수행
-		
+	public void start(String inputText,CmdStart cmdStart) throws IOException {
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		
 		inputText = addressChange.unifyAddress(inputText); // 슬래시를 역슬래시로 변환
 		
-		if(inputText.equals("cd")) // cd만 눌렀을때
-			commandText.showCdAddress(cmdStart.currentAddress);
 		
-		else if(inputText.replace(" ", "").equals("cd\\") && checkVaildCd(inputText,"\\"))  // cd\
-			moveFirstAddress(cmdStart);
-		
-		else if(inputText.replace(" ", "").equals("cd..") && checkVaildCd(inputText,".."))  // cd..
-			moveBackOneAddress(cmdStart);	
-		
-		else if(inputText.replace(" ", "").equals("cd..\\..") && checkVaildCd(inputText,"..\\.."))  // cd..\..
-			moveBackTwoAddress(cmdStart);
-		
-		else if(  checkAbsoluteAddress(inputText)  &&  addressChange.checkValidAddress( addressChange.removeBlackAddress(inputText.substring(3))))// c:\\ 첫주소부터 입력했을때	
-			moveEnteredAddress( cmdStart, addressChange.removeBlackAddress(inputText).substring(3));	
 	
-		else if( !checkAbsoluteAddress(inputText)  && addressChange.checkValidAddress( addressChange.removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) 
-			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+addressChange.removeBlackAddress(inputText).substring(3));
+		inputText =  addressChange.removeBlackAddress(inputText.substring(2)).stripLeading(); // cd를 제외하고 자른문자에서 앞공백 삭제
 		
+		
+		inputText = addressChange.setCompletedAddress(inputText, cmdStart); // 완벽한 주소로 변경
+		
+		if(  checkAbsoluteAddress(inputText)  &&  addressChange.checkValidAddress(inputText ))
+			 moveEnteredAddress( cmdStart, inputText);	
+		
+		else if( !checkAbsoluteAddress(inputText)  && addressChange.checkValidAddress(  addressChange.setCompletedAddress(inputText, cmdStart))) 
+			moveEnteredAddress(cmdStart, addressChange.setCompletedAddress(inputText, cmdStart));
+	
 		else // 에러메시지 표시
 			errorText.showNonValidAddress();
-			
 	}
 	
 	
 	private boolean checkAbsoluteAddress(String inputText) { //절대경로입력인지 확인
-		
-		inputText = addressChange.removeBlackAddress(inputText).substring(3);  // 역슬래쉬 앞 공백삭제, cd를 제외한 문자
 		
 		if( inputText.contains(":"))
 			return ConstantsNumber.IS_ABSOLUTE_ADDRESS;
@@ -67,38 +58,14 @@ public class Cd {
 	}
 	
 
-	private boolean checkVaildCd(String inputText, String typeText) { // cd\ cd.. cd..\..가 유효한지 검사
-		
-		if(inputText.contains(typeText))
-			return ConstantsNumber.IS_VALID_CDTYPE;
-		else 
-			return ConstantsNumber.IS_NON_VALID_CDTYPE;
-	}
-	
+
 
 	
-	public void moveFirstAddress(CmdStart cmdStart) { // cd\  처음위치로 이동
-		cmdStart.currentAddress = "C:\\";
-	}
-	
-	public void moveBackTwoAddress(CmdStart cmdStart) { // cd..\.. 상위 2단계 위로이동
+	public void moveEnteredAddress(CmdStart cmdStart, String inputAddress) throws IOException {//입력한 주소로 이동
 		
-		moveBackOneAddress(cmdStart);
-		moveBackOneAddress(cmdStart);
-	
-	}
-	public void moveBackOneAddress(CmdStart cmdStart) { // cd..  상위 1단계 이동
+		inputAddress = addressChange.setCompletedAddress(inputAddress,cmdStart);
 		
-		int backSlashIndex = cmdStart.currentAddress.lastIndexOf("\\");
-		
-		if(addressChange.countBackSlash(cmdStart.currentAddress)>=2) 
-			 cmdStart.currentAddress = cmdStart.currentAddress.substring(0,backSlashIndex);
-		
-		
-	}
-	
-	public void moveEnteredAddress(CmdStart cmdStart, String inputAddress) {//입력한 주소로 이동
-		
+		inputAddress = new File(inputAddress).getCanonicalPath();
 		
 		if(new File(inputAddress).isFile())
 			errorText.showNotCorrectDirectory();

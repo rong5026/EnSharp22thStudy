@@ -23,6 +23,13 @@ public class CmdMain {
 
 		CmdStart cmd = new CmdStart();
 		cmd.start();
+		
+		
+		//File file = new File("C:\\Users\\rong5\\Desktop\\CDM\\..\\..\\..\\..\\..\\..\\..\\");
+		
+
+		
+		//System.out.println(file.getCanonicalPath());
 	
 	}
 }
