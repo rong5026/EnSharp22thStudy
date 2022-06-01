@@ -22,7 +22,7 @@ public class ErrorText {
 	}
 	
 	public void showSameCopy() {
-		System.out.println("같은 파일로 복사할 수 없습니다.\n");
+		System.out.println("같은 파일로 복사할 수 없습니다.");
 	}
 	
 	public void showSameMove() {

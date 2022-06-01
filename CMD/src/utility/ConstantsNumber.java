@@ -41,6 +41,11 @@ public class ConstantsNumber {
 	public final static boolean IS_VALID_ADDRESS = true; 
 	public final static boolean IS_NON_VALID_ADDRESS = false; 
 	
+	//절대경로
+	public final static boolean IS_ABSOLUTE_ADDRESS = true;
+	public final static boolean IS_NON_ABSOLUTE_ADDRESS = false;
+	
+	
 	
 	
 	

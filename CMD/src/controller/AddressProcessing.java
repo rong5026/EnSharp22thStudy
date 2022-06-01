@@ -11,11 +11,18 @@ public class AddressProcessing {
 	
 
 	public String removeBlackAddress(String inputAddress) { // 역슬래시앞에 공백 제거
+		
 		return inputAddress.replaceAll("\s{0,}\\\\", "\\\\");
 	}
 	
-	public boolean checkValidAddress(String folderAddress) { //이동하려는 주소가 유효한지 검사
+	public String unifyAddress(String inputAddress) { // 슬래시를 역슬래시로 변환
 		
+		return inputAddress.replace("/", "\\");
+		
+	}
+	
+	public boolean checkValidAddress(String folderAddress) { //이동하려는 주소가 유효한지 검사	
+	
 		File file = new File(folderAddress);
 		
 		if(file.exists()) 

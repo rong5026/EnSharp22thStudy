@@ -30,11 +30,12 @@ public class Cd {
 		
 		inputText = inputText.toLowerCase().stripLeading(); // 소문자, 앞 공백 삭제
 		
+		inputText = addressChange.unifyAddress(inputText); // 슬래시를 역슬래시로 변환
 		
 		if(inputText.equals("cd")) // cd만 눌렀을때
 			commandText.showCdAddress(cmdStart.currentAddress);
 		
-		else if(inputText.replace(" ", "") == "cd\\" && checkVaildCd(inputText,"\\"))  // cd\
+		else if(inputText.replace(" ", "").equals("cd\\") && checkVaildCd(inputText,"\\"))  // cd\
 			moveFirstAddress(cmdStart);
 		
 		else if(inputText.replace(" ", "").equals("cd..") && checkVaildCd(inputText,".."))  // cd..
@@ -43,10 +44,10 @@ public class Cd {
 		else if(inputText.replace(" ", "").equals("cd..\\..") && checkVaildCd(inputText,"..\\.."))  // cd..\..
 			moveBackTwoAddress(cmdStart);
 		
-		else if(addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users")  &&  addressChange.checkValidAddress( addressChange.removeBlackAddress(inputText.substring(3))))// c:\\ 첫주소부터 입력했을때	
+		else if(  checkAbsoluteAddress(inputText)  &&  addressChange.checkValidAddress( addressChange.removeBlackAddress(inputText.substring(3))))// c:\\ 첫주소부터 입력했을때	
 			moveEnteredAddress( cmdStart, addressChange.removeBlackAddress(inputText).substring(3));	
 	
-		else if( !addressChange.removeBlackAddress(inputText).substring(3).contains("c:\\users") && addressChange.checkValidAddress( addressChange.removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) 
+		else if( !checkAbsoluteAddress(inputText)  && addressChange.checkValidAddress( addressChange.removeBlackAddress(cmdStart.currentAddress +"\\"+inputText.substring(3) )) ) 
 			moveEnteredAddress(cmdStart,cmdStart.currentAddress +"\\"+addressChange.removeBlackAddress(inputText).substring(3));
 		
 		else // 에러메시지 표시
@@ -55,8 +56,17 @@ public class Cd {
 	}
 	
 	
-
+	private boolean checkAbsoluteAddress(String inputText) { //절대경로입력인지 확인
+		
+		inputText = addressChange.removeBlackAddress(inputText).substring(3);  // 역슬래쉬 앞 공백삭제, cd를 제외한 문자
+		
+		if( inputText.contains(":"))
+			return ConstantsNumber.IS_ABSOLUTE_ADDRESS;
+		
+		return ConstantsNumber.IS_NON_ABSOLUTE_ADDRESS;
+	}
 	
+
 	private boolean checkVaildCd(String inputText, String typeText) { // cd\ cd.. cd..\..가 유효한지 검사
 		
 		if(inputText.contains(typeText))
