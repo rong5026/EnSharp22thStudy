@@ -58,12 +58,22 @@ public class Move {
 	//폴더 -> 폴더
 	private void moveFolerToFolder(File firstAddressFile, File secondAdressFile) throws IOException {
 		moveCount=0;
-		if(firstAddressFile.getPath() == secondAdressFile.getPath()) {
+		
+		System.out.println(firstAddressFile.getPath());
+		System.out.println(secondAdressFile.getPath());
+		System.out.println(firstAddressFile.getPath().equals(secondAdressFile.getPath()));
+		
+		if(firstAddressFile.getPath()==secondAdressFile.getPath()) { // 주소가 같을때 오류
 			errorText.showSameMove();
 		}
-		else if(secondAdressFile.exists()) {// 중복되는것이 있을때		
-			errorText.showSameFolderMove();
+		
+		//second폴더가 있을때
+		else if(secondAdressFile.isDirectory()) {
+			File directory = new File( secondAdressFile+ "\\" + firstAddressFile.getName()  );
+			runMoveProcess(firstAddressFile,directory);
+			
 		}
+		//second폴더가 없을때
 		else {
 			runMoveProcess(firstAddressFile,secondAdressFile);
 			commandText.showCopyResult(moveCount);
@@ -93,6 +103,7 @@ public class Move {
 		
 		firstAddress = addressChange.setCompletedAddress(firstAddress,cmdStart); //완성된 주소로 변경
 			
+		System.out.println("유효한가 판단"+firstAddress );
 		if(addressChange.checkValidAddress(firstAddress)) {
 			
 			if(new File(firstAddress).isFile()) // 파일 -> 폴더 이동
@@ -118,10 +129,8 @@ public class Move {
 			File secondFile = new File(secondAddress);
 				
 				
-			if(firstFile.isDirectory() && secondFile.getName().contains(".")) { // 폴더 -> 파일
-					
-			}
-			else if( firstFile.isDirectory() && !secondFile.getName().contains(".")) { // 폴더 -> 폴더
+			
+			if( firstFile.isDirectory() && !secondFile.getName().contains(".")) { // 폴더 -> 폴더
 				moveFolerToFolder(firstFile, secondFile);
 			}
 			else if( firstFile.isFile() && secondFile.getName().contains(".")) { // 파일 -> 파일
