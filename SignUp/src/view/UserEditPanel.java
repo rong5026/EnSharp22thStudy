@@ -21,39 +21,38 @@ import utility.ConstantNumber;
 public class UserEditPanel extends JPanel {
 	
 	private ComponentEdit componentEdit;
-	
 	private ImageIcon backgroundIcon;
 	private Image background;
-	private JLabel nameLabel;
-	private JLabel idLabel;
-	private JLabel passwordLabel;
-	private JLabel passwordCheckLabel;
-	private JLabel birthLabel;
-	private JLabel emailLabel;
-	private JLabel phoneLabel;
-	private JLabel addressCodeLabel;
-	private JLabel addressLabel;
-	
 	private JButton backButton;
 	private JButton editButton;
-	
 	private String[] labelName;
 	private Color buttonColor;
-	
 	private int buttonWidth;
 	private int buttonHeight;
+	
+	private JTextField name;
+	private JTextField id;
+	private JTextField password;
+	private JTextField repassword;
+	private JTextField birth;
+	private JTextField email;
+	private JTextField address;
+	
+	
+	
 	
 	public UserEditPanel(ComponentEdit componentEdit) {
 		
 		this.componentEdit = componentEdit;
 		
-		this.labelName = new String[] {"Name","ID", "PW", "CheckPW","Birth/Sex", "E-mail", "Phone","Zip Code","Address" };
+		this.labelName = new String[] {"Name","ID", "PW", "CheckPW","Birth", "E-mail", "Phone","Address" };
 		
 		this.buttonWidth = 250;
-		this.buttonHeight = 50;
+		this.buttonHeight = 50; // 버튼 가로,세로
+		
 		setLabel(); // 라벨만들어서 배치
 		
-		setButton();
+		setButton(); // 버튼 배치
 		
 		
 		
@@ -62,24 +61,31 @@ public class UserEditPanel extends JPanel {
 	}
 	
 	
+	
+	private void createTextField() {
+		
+		
+	}
+	
 	private void setButton() { //버튼 배치
+		
 		
 		createButton(); //버튼 생성
 		
-		backButton.setBounds(30,700,buttonWidth,buttonHeight);
+		backButton.setBounds(130,750,buttonWidth,buttonHeight);
 		
-		editButton.setBounds(300,700,buttonWidth,buttonHeight);
+		editButton.setBounds(400,750,buttonWidth,buttonHeight);
 		
 		add(backButton);
 		
 		add(editButton);
 		
-		
-		
+	
 	}
 	
 	
 	private void createButton() { // 버튼 생성
+		
 		
 		buttonColor =new Color(255,102,102);	
 		
@@ -95,6 +101,7 @@ public class UserEditPanel extends JPanel {
 	
 	private void setLabel() { // 라벨만들어서 배치
 		
+		
 		int width = 150;
 		int height = 70;
 		
@@ -102,7 +109,7 @@ public class UserEditPanel extends JPanel {
 			
 			JLabel label = createLabelOption(labelName[index]);
 		
-			label.setBounds(30,10+ index*height+10, width, height );
+			label.setBounds(30,60 +index*(height+5), width, height );
 			
 			add(label); 
 			
