@@ -6,7 +6,7 @@ public class ConstantNumber {
 	public final static String SIGNUP_ICON_IMAGE  = "./src/image/LegoIcon.png";
 	
 	// mainframe 이미지
-	public final static String MAIN_FRAME_IMAGE  = "./src/image/MainFrameImage.jpg";
+	public final static String MAIN_FRAME_IMAGE  = "./src/image/MainFrame.jpg";
 
 	
 }
