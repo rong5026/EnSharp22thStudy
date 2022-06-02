@@ -2,12 +2,17 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.TextField;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,7 +36,6 @@ public class MainFrame extends JFrame{
 		
 	}
 	
-	
 	public void startMainFrame() {
 		
 		
@@ -41,11 +45,8 @@ public class MainFrame extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//JFrame이 정상적으로 종료되게
 		
-		
 	}
 	
-	
-
 	
 	private void setMainFrame() { // mainframe 초기화
 		
@@ -68,6 +69,8 @@ public class MainFrame extends JFrame{
 }
 
 
+
+
 class MainPanel extends JPanel{  
 	
 	private ImageIcon backgroundIcon;
@@ -79,35 +82,23 @@ class MainPanel extends JPanel{
 	private JButton idFinding;
 	private JButton passwordFinding;
 
+	private JPanel textFieldPanel;
+	private JPanel buttonPanel;
+	
 	public MainPanel() {
 
 		idText = new JTextField();
-		
 		passwordText = new JPasswordField();
 		
-		
 		login = new JButton("Login");
-		
 		signUp = new JButton("Sign Up");
-		
 		idFinding = new JButton("Find ID");
-		
 		passwordFinding = new JButton("Find PW");
 		
+	
 		
-		setMainInput(); // id, password TextField 설정
-		
-		setMainButton();
-		
-		
-		add(idText);
-		
-		add(passwordText);
-		
-		
-		
-		
-		
+	
+		 setMainPanelComponent();
 		setLayout(null);
 		
 	}
@@ -115,47 +106,67 @@ class MainPanel extends JPanel{
 	
 	private void setMainPanelComponent() { // mainPanel에 textfield, button 배치
 		
-		setMainInput(); 
-		 
-		 
-		add(idText);
+		JPanel whitePanel = new JPanel();
 		
-		add(passwordText);
+		whitePanel.setLayout(new FlowLayout(FlowLayout.CENTER,6,6));
+		
+		whitePanel.setBackground(new Color(255,255,255,150)); // 불투명 패널색
+	
+		whitePanel.setBounds(200,300,400,500);  // 흰색
+		
+		
+		setMainInputOption();  //TextField 옵션적용
+		
+		setMainButtonOption(); //Button 옵션적용
+		
+		
+	
+		
+		whitePanel.add(idText);
+		whitePanel.add(passwordText);
+		
+		
+		add(whitePanel);
+		
+		
 		
 		
 	}
 	
 	
-	private void setMainInput() {  // id, password TextField 설정
+	private void setMainInputOption() {  // 메인 TextField 옵션
 		
 		Font font = new Font("맑은고딕",Font.PLAIN,25);
 		
 		idText.setFont(font);
-		
 		passwordText.setFont(font); // 폰트 설정
 		
-		
 		idText.setHorizontalAlignment(JTextField.CENTER); 
-		
 		passwordText.setHorizontalAlignment(JTextField.CENTER); // 입력 가운데 정렬
 
-		
-		idText.setBounds(250,500,300,40);
-		
-		passwordText.setBounds(250,550,300,40); // 위치설정
-		
+		idText.setPreferredSize(new Dimension(300,40));
+		passwordText.setPreferredSize(new Dimension(300,40));
 		
 		idText.requestFocus(); // 키보드 포커스 가져오기
+		
+		
+	
+		
+		
+		
+		
+		//idText.setBounds(250,500,300,40);
+		//passwordText.setBounds(250,550,300,40); // 위치설정
+		
 
 		 //JFormattedTextField
 		
 		
 	}
 	
-	private void setMainButton() {
+	private void setMainButtonOption() { // 메인버튼 옵션
 		
 		Font buttonFont = new Font("Stencil",Font.BOLD,30);
-		
 		
 		setButtonOption(login,buttonFont);
 		
@@ -166,13 +177,6 @@ class MainPanel extends JPanel{
 		setButtonOption(passwordFinding,buttonFont);
 		
 		
-		
-		add(idFinding);
-		
-		idFinding.setBounds(50,50,300,100);
-		
-		
-		
 	}
 	
 	private void setButtonOption(JButton button,Font font) { //버튼 폰트적용
@@ -181,9 +185,7 @@ class MainPanel extends JPanel{
 		
 		button.setFocusPainted(false); //선택시 사각형생기는거 제거
 		
-		
-		button.setFont(font);
-		
+		button.setFont(font); 
 		
 	}
 	

@@ -19,7 +19,6 @@ public class SignUpStart {
 		
 		mainFrame.startMainFrame();
 		
-		
 	}
 
 }
