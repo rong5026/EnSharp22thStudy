@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 import controller.ComponentEdit;
 import utility.ConstantNumber;
@@ -67,18 +68,15 @@ public class UserEditPanel extends JPanel {
 
 	private void createLabel() {
 		
-		int width = 30;
+		int width = 150;
 		int height = 70;
 		
 		for(int index = 0 ; index < labelName.length ; index++) {
 			
 			JLabel label = setLabelOption(labelName[index]);
 			
-			label.setPreferredSize(new Dimension(200,60));
-			
-			label.setBackground(Color.red);
-			
-			label.setBounds(10,10+ index*height+3, height, width );
+	
+			label.setBounds(30,10+ index*height+10, width, height );
 			
 			add(label);
 			
@@ -86,18 +84,25 @@ public class UserEditPanel extends JPanel {
 		
 		
 	}
-	private JLabel setLabelOption( String labelText ) { // 라벨 텍스트, 크기 설정
+	
+	
+	private JLabel setLabelOption( String labelText ) { // 라벨 텍스트
 		
 		JLabel label = new JLabel(labelText);
 		
-		
-		
 		Font labelFont = new Font("Stencil",Font.BOLD,25);
+		
+		label.setForeground(new Color(199,23,23)); // 텍스트 색상
+		
+		label.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용
+		
+		label.setBackground(new Color(255,175,175,230));
+	
+		label.setBorder(new LineBorder(Color.red));
 		
 		label.setFont(labelFont);
 		
-		
-		
+
 		return label;
 		
 	}
