@@ -10,5 +10,5 @@ public class ConstantNumber {
 	
 	public final static String MAIN_LEGO_IMAGE  = "./src/image/MainLegoIcon.png";
 
-	
+	public final static String USETEDIT_PANEL_IMAGE  = "./src/image/UserEditPanelImage.jpg";
 }
