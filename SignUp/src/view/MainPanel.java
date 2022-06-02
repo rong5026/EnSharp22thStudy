@@ -99,53 +99,30 @@ public class MainPanel extends JPanel{
 	
 	private void setMainInputOption() {  // 메인 TextField 옵션
 		
-		Font font = new Font("맑은고딕",Font.PLAIN,25);
-		
-		
-		idText.setFont(font);
-		passwordText.setFont(font); // 폰트 설정
+		componentEdit.setTextFieldOption(idText,25,300,40);        // jtextField 옵션변경 
+		componentEdit.setTextFieldOption(passwordText,25,300,40);   //  인자 ( 변경할 jtextfile , 폰트크기, 가로길이, 세로길이) 
 		
 		idText.setHorizontalAlignment(JTextField.CENTER); 
 		passwordText.setHorizontalAlignment(JTextField.CENTER); // 입력 가운데 정렬
 
-		idText.setPreferredSize(new Dimension(300,40));
-		passwordText.setPreferredSize(new Dimension(300,40));
-		
 		idText.requestFocus(); // 키보드 포커스 가져오기
 		
-		
 		 //JFormattedTextField
-		
 		
 	}
 	
 	private void setMainButtonOption() { // 메인버튼 옵션
 		
-		Font buttonFont = new Font("Stencil",Font.BOLD,35);
-		
-		Font findingFont = new Font("Stencil",Font.BOLD,20);
-		
 		Color buttonColor = new Color(255,102,102);
 		
 		// 버튼 옵션 적용
-		componentEdit.setButtonOption(loginButton,buttonFont,buttonColor);
+		componentEdit.setButtonOption(loginButton,35,buttonColor,300,50);
 		
-		componentEdit.setButtonOption(signUpButton,buttonFont,buttonColor);
+		componentEdit.setButtonOption(signUpButton,35,buttonColor,300,50);	
 		
-		componentEdit.setButtonOption(idFindingButton,findingFont,buttonColor);
+		componentEdit.setButtonOption(idFindingButton,20,buttonColor,147,50);
 		
-		componentEdit.setButtonOption(passwordFindingButton,findingFont,buttonColor);
-		
-		
-		// 버튼 크기 지정
-		loginButton.setPreferredSize(new Dimension(300,50));
-		
-		signUpButton.setPreferredSize(new Dimension(300,50));
-
-		idFindingButton.setPreferredSize(new Dimension(147,50));
-		
-		passwordFindingButton.setPreferredSize(new Dimension(147,50));
-		
+		componentEdit.setButtonOption(passwordFindingButton,20,buttonColor,147,50);  // (변경할 버튼, 폰트사이즈, 버튼색, 가로길이, 세로길이)
 		
 	}
 	

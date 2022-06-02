@@ -41,7 +41,7 @@ public class MainFrame extends JFrame{
 		
 		this.userEditPanel = new UserEditPanel(componentEdit);
 		
-		this.setMainFrame();// mainframe 초기화
+		setMainFrame();// mainframe 초기화
 		
 	}
 	
@@ -49,7 +49,7 @@ public class MainFrame extends JFrame{
 	public void startMainFrame() {
 		
 		
-		setContentPane(mainPanel); // frame에 mainpanel로 변경
+		setContentPane(userEditPanel); // frame에 mainpanel로 변경
 		
 		setVisible(true);
 		
