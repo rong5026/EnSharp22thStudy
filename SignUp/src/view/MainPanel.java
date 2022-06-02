@@ -38,19 +38,19 @@ public class MainPanel extends JPanel{
 	
 	public MainPanel(ComponentEdit componentEdit) {
 
-		idText = new JTextField();
-		passwordText = new JPasswordField();
+		this.idText = new JTextField();
+		this.passwordText = new JPasswordField();
 		
-		loginButton = new JButton("Login");
-		signUpButton = new JButton("Sign Up");
-		idFindingButton = new JButton("Find ID");
-		passwordFindingButton = new JButton("Find PW"); 
+		this.loginButton = new JButton("Login");
+		this.signUpButton = new JButton("Sign Up");
+		this.idFindingButton = new JButton("Find ID");
+		this.passwordFindingButton = new JButton("Find PW"); 
 		
 		this.componentEdit = componentEdit; // 컴포넌트 옵션 적용클래스
 		
 		setMainPanelComponent();
 		
-		setLayout(null);
+		this.setLayout(null);
 		
 	}
 	

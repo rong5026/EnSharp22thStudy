@@ -35,13 +35,13 @@ public class MainFrame extends JFrame{
 	
 	public MainFrame() {
 		
-		componentEdit =new ComponentEdit();
+		this.componentEdit =new ComponentEdit();
 		
-		mainPanel = new MainPanel(componentEdit);
+		this.mainPanel = new MainPanel(componentEdit);
 		
-		userEditPanel = new UserEditPanel();
+		this.userEditPanel = new UserEditPanel(componentEdit);
 		
-		setMainFrame();// mainframe 초기화
+		this.setMainFrame();// mainframe 초기화
 		
 	}
 	
