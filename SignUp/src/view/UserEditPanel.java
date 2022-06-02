@@ -34,9 +34,14 @@ public class UserEditPanel extends JPanel {
 	private JLabel addressCodeLabel;
 	private JLabel addressLabel;
 	
+	private JButton backButton;
+	private JButton editButton;
+	
 	private String[] labelName;
+	private Color buttonColor;
 	
-	
+	private int buttonWidth;
+	private int buttonHeight;
 	
 	public UserEditPanel(ComponentEdit componentEdit) {
 		
@@ -44,49 +49,70 @@ public class UserEditPanel extends JPanel {
 		
 		this.labelName = new String[] {"Name","ID", "PW", "CheckPW","Birth/Sex", "E-mail", "Phone","Zip Code","Address" };
 		
+		this.buttonWidth = 250;
+		this.buttonHeight = 50;
+		setLabel(); // 라벨만들어서 배치
 		
-		/*
-		//label 생성
-		nameLabel = setLabelOption("Name");
-		idLabel = setLabelOption("ID");
-		passwordLabel = setLabelOption("PW");
-		passwordCheckLabel = setLabelOption("CheckPW");
-		birthLabel = setLabelOption("Birth/Sex");
-		emailLabel =setLabelOption("E-mail");
-		phoneLabel = setLabelOption("Phone");
-		addressCodeLabel = setLabelOption("Zip Code");
-		addressLabel =setLabelOption("Address");
-		*/
-	
-		createLabel();
+		setButton();
+		
+		
 		
 		setLayout(null);
 		
 	}
 	
 	
+	private void setButton() { //버튼 배치
+		
+		createButton(); //버튼 생성
+		
+		backButton.setBounds(30,700,buttonWidth,buttonHeight);
+		
+		editButton.setBounds(300,700,buttonWidth,buttonHeight);
+		
+		add(backButton);
+		
+		add(editButton);
+		
+		
+		
+	}
+	
+	
+	private void createButton() { // 버튼 생성
+		
+		buttonColor =new Color(255,102,102);	
+		
+		backButton = new JButton("Go Back");
+		
+		editButton = new JButton("Edit");
+		
+		componentEdit.setButtonOption(backButton,35,buttonColor,buttonWidth,buttonHeight); // 버튼 옵션 적용 (변경할 버튼, 폰트사이즈, 버튼색, 가로길이, 세로길이)
+		
+		componentEdit.setButtonOption(editButton,35,buttonColor,buttonWidth,buttonHeight);
+	}
 
-	private void createLabel() {
+	
+	private void setLabel() { // 라벨만들어서 배치
 		
 		int width = 150;
 		int height = 70;
 		
 		for(int index = 0 ; index < labelName.length ; index++) {
 			
-			JLabel label = setLabelOption(labelName[index]);
-			
-	
+			JLabel label = createLabelOption(labelName[index]);
+		
 			label.setBounds(30,10+ index*height+10, width, height );
 			
-			add(label);
+			add(label); 
 			
 		}
-		
 		
 	}
 	
 	
-	private JLabel setLabelOption( String labelText ) { // 라벨 텍스트
+	private JLabel createLabelOption( String labelText ) { // 라벨 생성 후 옵션
+		
 		
 		JLabel label = new JLabel(labelText);
 		
@@ -96,11 +122,11 @@ public class UserEditPanel extends JPanel {
 		
 		label.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용
 		
-		label.setBackground(new Color(255,175,175,230));
+		label.setBackground(new Color(255,175,175,230));  // 라벨 배경색
 	
-		label.setBorder(new LineBorder(Color.red));
+		label.setBorder(new LineBorder(Color.red)); // 라벨 테두리
 		
-		label.setFont(labelFont);
+		label.setFont(labelFont); // 라벨 폰트
 		
 
 		return label;
@@ -109,6 +135,7 @@ public class UserEditPanel extends JPanel {
 	
 	
 	public void paintComponent(Graphics graphic) {  // mainframe 배경화면 설정
+		
 		
 		super.paintComponent(graphic); // frame의 크기를 받기 위해 super
 		

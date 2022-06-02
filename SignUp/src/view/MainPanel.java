@@ -114,15 +114,16 @@ public class MainPanel extends JPanel{
 	private void setMainButtonOption() { // 메인버튼 옵션
 		
 		Color buttonColor = new Color(255,102,102);
-		
-		// 버튼 옵션 적용
+	
+	
+		// 버튼 옵션 적용 (변경할 버튼, 폰트사이즈, 버튼색, 가로길이, 세로길이)
 		componentEdit.setButtonOption(loginButton,35,buttonColor,300,50);
 		
 		componentEdit.setButtonOption(signUpButton,35,buttonColor,300,50);	
 		
 		componentEdit.setButtonOption(idFindingButton,20,buttonColor,147,50);
 		
-		componentEdit.setButtonOption(passwordFindingButton,20,buttonColor,147,50);  // (변경할 버튼, 폰트사이즈, 버튼색, 가로길이, 세로길이)
+		componentEdit.setButtonOption(passwordFindingButton,20,buttonColor,147,50);  
 		
 	}
 	
