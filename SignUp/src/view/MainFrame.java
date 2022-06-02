@@ -1,51 +1,81 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import utility.ConstantNumber;
 
-public class MainFrame {
+public class MainFrame extends JFrame{
 	
 	
-	private JFrame mainFrame;
+	private MainPanel mainPanel;
+	
 	
 	public MainFrame() {
 		
+		setMainFrame();// mainframe 초기화
+		
+		mainPanel = new MainPanel();
 		
 	}
+	
 	
 	public void startMainFrame() {
 		
-		mainFrame = new JFrame();
 		
-		setMainFrame(); // main frame 초기설정
+		setContentPane(mainPanel); // frame에 mainpanel로 변경
 		
-		mainFrame.setLayout(new BorderLayout()); // 창 레이아웃 
+	
 		
+	}
+	
+	
+	private void setMainFrame() { // mainframe 초기화
 		
-		mainFrame.setVisible(true);
+		ImageIcon icon = new ImageIcon(ConstantNumber.SIGNUP_ICON_IMAGE);
 		
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//JFrame이 정상적으로 종료되게
+		setIconImage(icon.getImage()); // 아이콘 설정
 		
+		setTitle("EN# SignUp");       //타이틀 이름 
+		
+		setSize(1400,900);			//프레임의 크기
+		
+		setResizable(false);           //창 크기 고정
+		
+		setLocationRelativeTo(null);   //창 가운데 배치
+		
+		setLayout(new BorderLayout()); // 창 레이아웃 
+		
+		setVisible(true);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//JFrame이 정상적으로 종료되게
 		 
 	}
 	
-	
-	private void setMainFrame() { // mainframe 초기설정
+
+	class MainPanel extends JPanel{
 		
-		ImageIcon icon = new ImageIcon(ConstantNumber.SIGNUP_ICON_IMAGE);
-		mainFrame.setIconImage(icon.getImage());
+		private ImageIcon backgroundIcon = new ImageIcon(ConstantNumber.MAIN_FRAME_IMAGE); 
+		private Image background= backgroundIcon.getImage();    //배경이미지
 		
-		mainFrame.setTitle("EN# SignUp");       //타이틀 이름 
 		
-		mainFrame.setSize(1400,900);			//프레임의 크기
-		
-		mainFrame.setResizable(false);           //창 크기 고정
-		
-		mainFrame.setLocationRelativeTo(null);   //창 가운데 배치
+		public void paintComponent(Graphics graphic) {
+			
+			super.paintComponent(graphic);
+			
+			graphic.drawImage(background, 0, 0,getWidth(),getHeight(),this);
+			
+		}
 	}
+	
+	
+	
+	
 
 }
