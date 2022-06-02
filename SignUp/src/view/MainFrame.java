@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.ComponentEdit;
 import utility.ConstantNumber;
 
 public class MainFrame extends JFrame{
@@ -29,21 +30,26 @@ public class MainFrame extends JFrame{
 	
 	private MainPanel mainPanel;
 	private UserEditPanel userEditPanel;
+	private ComponentEdit componentEdit;
 	
 	
 	public MainFrame() {
 		
-		setMainFrame();// mainframe 초기화
+		componentEdit =new ComponentEdit();
 		
-		mainPanel = new MainPanel();
+		mainPanel = new MainPanel(componentEdit);
+		
 		userEditPanel = new UserEditPanel();
 		
+		setMainFrame();// mainframe 초기화
+		
 	}
+	
 	
 	public void startMainFrame() {
 		
 		
-		setContentPane(mainPanel.mainPanel); // frame에 mainpanel로 변경
+		setContentPane(mainPanel); // frame에 mainpanel로 변경
 		
 		setVisible(true);
 		

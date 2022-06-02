@@ -9,7 +9,6 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -20,10 +19,10 @@ import utility.ConstantNumber;
 
 
 
-public class MainPanel extends ComponentEdit{  
+public class MainPanel extends JPanel{  
 	
-	public JPanel mainPanel;
 	private ImageIcon backgroundIcon;
+	private Image background;
 	private JTextField idText;
 	private JPasswordField passwordText;
 	private JButton loginButton;
@@ -35,36 +34,23 @@ public class MainPanel extends ComponentEdit{
 	private JPanel buttonPanel;
 	private ImageIcon icon;
 	
-	public MainPanel() {
+	private ComponentEdit componentEdit;
+	
+	public MainPanel(ComponentEdit componentEdit) {
 
-		this.backgroundIcon = new ImageIcon(ConstantNumber.MAIN_FRAME_IMAGE);
+		idText = new JTextField();
+		passwordText = new JPasswordField();
 		
-	
+		loginButton = new JButton("Login");
+		signUpButton = new JButton("Sign Up");
+		idFindingButton = new JButton("Find ID");
+		passwordFindingButton = new JButton("Find PW"); 
 		
-		mainPanel = new JPanel() {
-			
-			 public void paintComponent(Graphics g) {
-				  
-				    g.drawImage(backgroundIcon.getImage(), 0, 0,800,900, null);
-	
-				    setOpaque(false);
-				    
-				    super.paintComponent(g);
-				   }
-		};
-		
-		
-		this.idText = new JTextField();
-		this.passwordText = new JPasswordField();
-		
-		this.loginButton = new JButton("Login");
-		this.signUpButton = new JButton("Sign Up");
-		this.idFindingButton = new JButton("Find ID");
-		this.passwordFindingButton = new JButton("Find PW"); 
+		this.componentEdit = componentEdit; // 컴포넌트 옵션 적용클래스
 		
 		setMainPanelComponent();
 		
-		mainPanel.setLayout(null);
+		setLayout(null);
 		
 	}
 	
@@ -92,7 +78,7 @@ public class MainPanel extends ComponentEdit{
 		setMainInputOption();  //TextField 옵션적용
 		
 		setMainButtonOption(); //Button 옵션적용
-		
+	
 		
 		whitePanel.add(label);
 		whitePanel.add(idText);
@@ -103,7 +89,7 @@ public class MainPanel extends ComponentEdit{
 		whitePanel.add(passwordFindingButton);
 
 		
-		mainPanel.add(whitePanel);
+		add(whitePanel);
 		
 		
 		
@@ -139,14 +125,16 @@ public class MainPanel extends ComponentEdit{
 		
 		Font findingFont = new Font("Stencil",Font.BOLD,20);
 		
+		Color buttonColor = new Color(255,102,102);
+		
 		// 버튼 옵션 적용
-		setButtonOption(loginButton,buttonFont);
+		componentEdit.setButtonOption(loginButton,buttonFont,buttonColor);
 		
-		setButtonOption(signUpButton,buttonFont);
+		componentEdit.setButtonOption(signUpButton,buttonFont,buttonColor);
 		
-		setButtonOption(idFindingButton,findingFont);
+		componentEdit.setButtonOption(idFindingButton,findingFont,buttonColor);
 		
-		setButtonOption(passwordFindingButton,findingFont);
+		componentEdit.setButtonOption(passwordFindingButton,findingFont,buttonColor);
 		
 		
 		// 버튼 크기 지정
@@ -161,18 +149,19 @@ public class MainPanel extends ComponentEdit{
 		
 	}
 	
-	private void setButtonOption(JButton button,Font font) { //버튼 폰트적용
-		
-		button.setBorderPainted(false); //테두리 제거
-		
-		button.setFocusPainted(false); //선택시 사각형생기는거 제거
-		
-		button.setFont(font); 
-		
-		button.setBackground(new Color(255,102,102));
-		
-	}
+	
 	
 
+	public void paintComponent(Graphics graphic) {  // mainframe 배경화면 설정
+		
+		super.paintComponent(graphic); // frame의 크기를 받기 위해 super
+		
+		this.backgroundIcon = new ImageIcon(ConstantNumber.MAIN_FRAME_IMAGE);
+		
+		this.background= backgroundIcon.getImage();   // mainframe 배경이미지
+		
+		graphic.drawImage(background, 0, 0,getWidth(),getHeight(),this); 
+		
+	}
 	
 }
