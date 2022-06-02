@@ -13,9 +13,11 @@ import java.awt.Image;
 import java.awt.TextField;
 
 import javax.swing.Box;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -77,28 +79,30 @@ class MainPanel extends JPanel{
 	private Image background;
 	private JTextField idText;
 	private JPasswordField passwordText;
-	private JButton login;
-	private JButton signUp;
-	private JButton idFinding;
-	private JButton passwordFinding;
+	private JButton loginButton;
+	private JButton signUpButton;
+	private JButton idFindingButton;
+	private JButton passwordFindingButton;
 
 	private JPanel textFieldPanel;
 	private JPanel buttonPanel;
+	private ImageIcon icon;
 	
 	public MainPanel() {
 
 		idText = new JTextField();
 		passwordText = new JPasswordField();
 		
-		login = new JButton("Login");
-		signUp = new JButton("Sign Up");
-		idFinding = new JButton("Find ID");
-		passwordFinding = new JButton("Find PW");
+		loginButton = new JButton("Login");
+		signUpButton = new JButton("Sign Up");
+		idFindingButton = new JButton("Find ID");
+		passwordFindingButton = new JButton("Find PW");
 		
 	
 		
 	
-		 setMainPanelComponent();
+		setMainPanelComponent();
+		
 		setLayout(null);
 		
 	}
@@ -114,6 +118,12 @@ class MainPanel extends JPanel{
 	
 		whitePanel.setBounds(200,300,400,500);  // 흰색
 		
+		ImageIcon icon = new ImageIcon(ConstantNumber.MAIN_LEGO_IMAGE);
+		JLabel label = new JLabel(icon);
+		label.setIcon(icon);
+		label.setPreferredSize(new Dimension(200,200));
+		
+		
 		
 		setMainInputOption();  //TextField 옵션적용
 		
@@ -121,10 +131,14 @@ class MainPanel extends JPanel{
 		
 		
 	
-		
+		whitePanel.add(label);
 		whitePanel.add(idText);
 		whitePanel.add(passwordText);
-		
+		whitePanel.add(loginButton);
+		whitePanel.add(signUpButton);
+		whitePanel.add(idFindingButton);
+		whitePanel.add(passwordFindingButton);
+
 		
 		add(whitePanel);
 		
@@ -137,6 +151,7 @@ class MainPanel extends JPanel{
 	private void setMainInputOption() {  // 메인 TextField 옵션
 		
 		Font font = new Font("맑은고딕",Font.PLAIN,25);
+		
 		
 		idText.setFont(font);
 		passwordText.setFont(font); // 폰트 설정
@@ -166,15 +181,28 @@ class MainPanel extends JPanel{
 	
 	private void setMainButtonOption() { // 메인버튼 옵션
 		
-		Font buttonFont = new Font("Stencil",Font.BOLD,30);
+		Font buttonFont = new Font("Stencil",Font.BOLD,35);
 		
-		setButtonOption(login,buttonFont);
+		Font findingFont = new Font("Stencil",Font.BOLD,20);
 		
-		setButtonOption(signUp,buttonFont);
+		// 버튼 옵션 적용
+		setButtonOption(loginButton,buttonFont);
 		
-		setButtonOption(idFinding,buttonFont);
+		setButtonOption(signUpButton,buttonFont);
 		
-		setButtonOption(passwordFinding,buttonFont);
+		setButtonOption(idFindingButton,findingFont);
+		
+		setButtonOption(passwordFindingButton,findingFont);
+		
+		
+		// 버튼 크기 지정
+		loginButton.setPreferredSize(new Dimension(300,50));
+		
+		signUpButton.setPreferredSize(new Dimension(300,50));
+
+		idFindingButton.setPreferredSize(new Dimension(147,50));
+		
+		passwordFindingButton.setPreferredSize(new Dimension(147,50));
 		
 		
 	}
