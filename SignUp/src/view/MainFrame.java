@@ -33,6 +33,7 @@ public class MainFrame extends JFrame{
 	private MainPanel mainPanel;
 	private UserEditPanel userEditPanel;
 	private LoginedPanel loginedPanel;
+	private LogoutPanel logoutPanel;
 
 	private SwitchingPanelListener switchingPanelListener;
 	
@@ -47,7 +48,12 @@ public class MainFrame extends JFrame{
 		
 		this.loginedPanel = new LoginedPanel(componentEdit);
 		
+		this.logoutPanel = new LogoutPanel(componentEdit);
+		
 		this.switchingPanelListener = new SwitchingPanelListener();
+		
+		
+		
 		
 		setMainFrame();// mainframe 초기화
 		
@@ -59,7 +65,7 @@ public class MainFrame extends JFrame{
 	public void startMainFrame() { // mainframe 초기화
 		
 		
-		add(loginedPanel); // mainFrame에 mainPanel 부착
+		add(mainPanel); // mainFrame에 mainPanel 부착
 		
 		setVisible(true);
 		
@@ -71,8 +77,19 @@ public class MainFrame extends JFrame{
 		
 		Container container = getContentPane();
 		
-		switchingPanelListener.changePanel(this.mainPanel.loginButton, container, userEditPanel);
+		//메인 -> 로그인 
+		switchingPanelListener.changePanel(this.mainPanel.loginButton, container, loginedPanel);
 		
+		//로그아웃 -> 메인
+		switchingPanelListener.changePanel(this.loginedPanel.logOutButton, container, logoutPanel);
+		
+		//로그아웃 yes -> 메인
+		switchingPanelListener.changePanel(this.logoutPanel.logoutYesButton, container, mainPanel);
+		
+		//로그아웃 no -> 로그인
+		switchingPanelListener.changePanel(this.logoutPanel.logoutNoButton, container, loginedPanel);
+		
+		//유저정보 수정 -> 메인
 		switchingPanelListener.changePanel(this.userEditPanel.backButton, container, mainPanel);
 		
 		

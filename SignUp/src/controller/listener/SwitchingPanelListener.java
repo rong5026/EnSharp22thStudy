@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import view.LogoutPanel;
+
 public class SwitchingPanelListener {
 
 	
@@ -25,6 +27,8 @@ public class SwitchingPanelListener {
 		
 		button.addActionListener(new SwitchingMainPage(container,switchingPanel));
 		
+		
+	
 	}
 }
 
