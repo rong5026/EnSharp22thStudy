@@ -45,5 +45,13 @@ public class ConstantNumber {
 	public final static String URL = "jdbc:mysql://localhost:3306/login_user_data";
 	
 	
+	//login
+	
+	public final static boolean IS_LOGIN_SUCCESS = true;
+	
+	public final static boolean IS_LOGIN_FAIL = false;
+	
+	
+	
 
 }

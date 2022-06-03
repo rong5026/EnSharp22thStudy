@@ -26,6 +26,8 @@ import controller.ComponentEdit;
 import controller.listener.SwitchingPanelListener;
 import utility.ConstantNumber;
 
+
+
 public class MainFrame extends JFrame{
 	
 	private ComponentEdit componentEdit;
@@ -37,12 +39,16 @@ public class MainFrame extends JFrame{
 	private DeletingPanel deletingPanel;
 	private SignupPanel signupPanel;
 
-	private SwitchingPanelListener switchingPanelListener;
+	private SwitchingPanelListener listener;
 	private Container container;
 	
 	public MainFrame() {
 		
-		container = getContentPane();
+		
+		container = getContentPane(); 
+		
+		this.listener = new SwitchingPanelListener(container);
+		
 		this.componentEdit =new ComponentEdit();
 		
 		this.mainPanel = new MainPanel(componentEdit,container);
@@ -56,13 +62,7 @@ public class MainFrame extends JFrame{
 		this.deletingPanel = new DeletingPanel(componentEdit);
 		
 		this.signupPanel = new SignupPanel(componentEdit);
-		
-		this.switchingPanelListener = new SwitchingPanelListener(container);
-		
-		
-		
-		
-		
+	
 		
 		setMainFrame();// mainframe 초기화
 		
@@ -87,44 +87,45 @@ public class MainFrame extends JFrame{
 		Container container = getContentPane();
 		
 		//메인 -> 로그인     로그인버튼에 바로 달아줌
+		listener.setLoginButtonListener(mainPanel.loginButton,loginedPanel,mainPanel.idText,mainPanel.passwordText );
 		//switchingPanelListener.changePanel(this.mainPanel.loginButton, container, loginedPanel);
 		
 		//메인 -> 회원가입
-		switchingPanelListener.changeMainFramePanel(this.mainPanel.signUpButton, signupPanel);
+		listener.changeMainFramePanel(this.mainPanel.signUpButton, signupPanel);
 		
 		//회원가입 (뒤로가기) -> 메인
-		switchingPanelListener.changeMainFramePanel(this.signupPanel.backButton, mainPanel);
+		listener.changeMainFramePanel(this.signupPanel.backButton, mainPanel);
 		
 		//회원가입 (가입하기) -> 메인
 		
-		switchingPanelListener.changeMainFramePanel(this.signupPanel.editButton, mainPanel);
+		listener.changeMainFramePanel(this.signupPanel.editButton, mainPanel);
 		
 		//로그아웃 패널로 이동
-		switchingPanelListener.changeMainFramePanel(this.loginedPanel.logOutButton, logoutPanel);
+		listener.changeMainFramePanel(this.loginedPanel.logOutButton, logoutPanel);
 		
 		//로그아웃 yes -> 메인
-		switchingPanelListener.changeMainFramePanel(this.logoutPanel.yesButton, mainPanel);
+		listener.changeMainFramePanel(this.logoutPanel.yesButton, mainPanel);
 		
 		//로그아웃 no -> 로그인
-		switchingPanelListener.changeMainFramePanel(this.logoutPanel.noButton, loginedPanel);
+		listener.changeMainFramePanel(this.logoutPanel.noButton, loginedPanel);
 		
 		//삭제 패널로 이동
-		switchingPanelListener.changeMainFramePanel(this.loginedPanel.idDeleteButton, deletingPanel);
+		listener.changeMainFramePanel(this.loginedPanel.idDeleteButton, deletingPanel);
 		
 		//삭제 Yes -> 메인 이동
-		switchingPanelListener.changeMainFramePanel(this.deletingPanel.yesButton, mainPanel);
+		listener.changeMainFramePanel(this.deletingPanel.yesButton, mainPanel);
 		
 		//삭제 No -> 로그인
-		switchingPanelListener.changeMainFramePanel(this.deletingPanel.noButton, loginedPanel);
+		listener.changeMainFramePanel(this.deletingPanel.noButton, loginedPanel);
 		
 		//로그인 -> 유저정보 수정
-		switchingPanelListener.changeMainFramePanel(this.loginedPanel.editButton, userEditPanel);
+		listener.changeMainFramePanel(this.loginedPanel.editButton, userEditPanel);
 		
 		//유저정보 수정 (뒤로가기) -> 로그인
-		switchingPanelListener.changeMainFramePanel(this.userEditPanel.backButton, loginedPanel);
+		listener.changeMainFramePanel(this.userEditPanel.backButton, loginedPanel);
 		
 		//유저정보 수정 (수정하기) -> 메인
-		switchingPanelListener.changeMainFramePanel(this.userEditPanel.editButton, mainPanel);
+		listener.changeMainFramePanel(this.userEditPanel.editButton, mainPanel);
 		
 	}
 	private void setMainFrame() { // mainframe 초기화

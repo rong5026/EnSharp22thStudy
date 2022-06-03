@@ -3,13 +3,13 @@ package controller.listener;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import controller.MySQLConnection;
 import view.LogoutPanel;
@@ -21,29 +21,13 @@ public class SwitchingPanelListener {
 	private JPanel switchingPanel;
 	
 	
-	private static SwitchingPanelListener listener =null;
-
-
-	public static SwitchingPanelListener getInstance() { // 싱글톤 적용
-		
-		if(listener == null) {
-			
-			listener = new SwitchingPanelListener();
-			
-		}
-		
-		return listener;
-	}
-	
-	
-	private SwitchingPanelListener(Container container) {
+	public SwitchingPanelListener(Container container) {
 		
 		
 		this.container = container;
 		
 	}
 	
-
 	
 	//버튼 누르면 mainFrame 패널 변경
 	public void changeMainFramePanel(JButton button,JPanel switchingPanel) {
@@ -53,7 +37,7 @@ public class SwitchingPanelListener {
 	}
 	
 	//로그인버튼 누르면 확인 후 로그인화면으로 이동
-	public void setLoginButtonListener(JButton button,JPanel switchingPanel,String id,char[] password) {
+	public void setLoginButtonListener(JButton button,JPanel switchingPanel,JTextField id,JPasswordField password) {
 		
 		button.addActionListener(new ActionListener() {
  
@@ -62,8 +46,8 @@ public class SwitchingPanelListener {
                 
             	try {
             		
-					if(MySQLConnection.getInstance().getLoginData(id, password)) {
-						
+					if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword())) {
+						System.out.println("로그인");
 						changePanel(switchingPanel); // 패널변경
 					}
 						

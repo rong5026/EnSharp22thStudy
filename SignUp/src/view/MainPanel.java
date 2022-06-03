@@ -20,33 +20,36 @@ import javax.swing.JTextField;
 
 import controller.ComponentEdit;
 import controller.MySQLConnection;
+import controller.listener.SwitchingPanelListener;
 import utility.ConstantNumber;
 
 
 
 public class MainPanel extends JPanel{  
 	
-	private ImageIcon backgroundIcon;
-	private Image background;
 	
-	private JTextField idText;
-	private JPasswordField passwordText;
+	public JTextField idText;
+	public JPasswordField passwordText;
 	
 	public JButton loginButton;
 	public JButton signUpButton;
+	
+	private ImageIcon backgroundIcon;
+	private Image background;
+	
 	private JButton idFindingButton;
 	private JButton passwordFindingButton;
-
+	
 	private JPanel textFieldPanel;
 	private JPanel buttonPanel;
 	
 	private ImageIcon icon;
-	
 	private ComponentEdit componentEdit;
-	
 	private MySQLConnection mySQLConnection;
-	
 	private Container container;
+	private SwitchingPanelListener listener;
+	
+	
 	
 	
 	public MainPanel(ComponentEdit componentEdit, Container container) {
@@ -69,10 +72,12 @@ public class MainPanel extends JPanel{
 		
 		this.mySQLConnection = MySQLConnection.getInstance();
 		
-		setMainPanelComponent();
+		
+		setMainPanelComponent(); // white패널에  textfield, button 배치
 		
 		this.setLayout(null);
 		
+
 	}
 	
 	
@@ -121,7 +126,7 @@ public class MainPanel extends JPanel{
 		Font textFieldFont = new Font("맑은고딕",Font.PLAIN,25);
 		
 		idText.setFont(textFieldFont);
-		passwordText.setFont(textFieldFont);  
+		passwordText.setFont(textFieldFont);    //폰트
 		
 		idText.setPreferredSize(new Dimension(300,40));
 		passwordText.setPreferredSize(new Dimension(300,40));
@@ -129,10 +134,7 @@ public class MainPanel extends JPanel{
 		idText.setHorizontalAlignment(JTextField.CENTER); 
 		passwordText.setHorizontalAlignment(JTextField.CENTER); // 입력 가운데 정렬
 
-		//idText.requestFocus(); // 키보드 포커스 가져오기
-		
-		 //JFormattedTextField
-		
+
 	}
 	
 	private void setMainButtonOption() { // 메인버튼 옵션
@@ -164,9 +166,6 @@ public class MainPanel extends JPanel{
 		
 	}
 	
-	
-	
-				//if(MySQLConnection.getInstance().getLoginData( idText.getText(), passwordText.getPassword())     ) {
-				
+
 	
 }

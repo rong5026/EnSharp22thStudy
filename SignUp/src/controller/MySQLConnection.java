@@ -55,13 +55,13 @@ public class MySQLConnection {
     		String userId = resultSet.getString("id");
     		
     		String userPassword = resultSet.getString("password");
-    		
-    		if(userId == id && userPassword == inputPassword) 
-    			return true;
+    	
+    		if(userId.equals(id) && userPassword.equals(inputPassword) ) 
+    			return ConstantNumber.IS_LOGIN_SUCCESS;
     		
     	}
     	
-		return false;
+		return ConstantNumber.IS_LOGIN_FAIL;
     	
     }
     
