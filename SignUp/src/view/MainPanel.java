@@ -94,18 +94,25 @@ public class MainPanel extends JPanel{
 		
 		
 		
+		
 	}
 	
 	
 	private void setMainInputOption() {  // 메인 TextField 옵션
 		
-		componentEdit.setTextFieldOption(idText,25,300,40);        // jtextField 옵션변경 
-		componentEdit.setTextFieldOption(passwordText,25,300,40);   //  인자 ( 변경할 jtextfile , 폰트크기, 가로길이, 세로길이) 
+		
+		Font textFieldFont = new Font("맑은고딕",Font.PLAIN,25);
+		
+		idText.setFont(textFieldFont);
+		passwordText.setFont(textFieldFont);  
+		
+		idText.setPreferredSize(new Dimension(300,40));
+		passwordText.setPreferredSize(new Dimension(300,40));
 		
 		idText.setHorizontalAlignment(JTextField.CENTER); 
 		passwordText.setHorizontalAlignment(JTextField.CENTER); // 입력 가운데 정렬
 
-		idText.requestFocus(); // 키보드 포커스 가져오기
+		//idText.requestFocus(); // 키보드 포커스 가져오기
 		
 		 //JFormattedTextField
 		

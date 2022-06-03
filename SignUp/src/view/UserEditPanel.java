@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
@@ -27,16 +28,20 @@ public class UserEditPanel extends JPanel {
 	private JButton editButton;
 	private String[] labelName;
 	private Color buttonColor;
+	
 	private int buttonWidth;
 	private int buttonHeight;
 	
-	private JTextField name;
-	private JTextField id;
-	private JTextField password;
-	private JTextField repassword;
-	private JTextField birth;
-	private JTextField email;
-	private JTextField address;
+	private int textFieldHeight;
+	private int textFieldFontSize;
+	
+	private JTextField nameInput;
+	private JTextField idInput;
+	private JPasswordField passwordInput;
+	private JPasswordField repasswordInput;
+	private JTextField birthInput;
+	private JTextField emailInput;
+	private JTextField addressInput;
 	
 	
 	
@@ -50,19 +55,47 @@ public class UserEditPanel extends JPanel {
 		this.buttonWidth = 250;
 		this.buttonHeight = 50; // 버튼 가로,세로
 		
+		this.textFieldFontSize = 18; // TextField 폰트크기
+		this.textFieldHeight = 30;
+		
 		setLabel(); // 라벨만들어서 배치
 		
 		setButton(); // 버튼 배치
 		
-		
+		setTextField(); // 텍스트필드 배치
 		
 		setLayout(null);
 		
 	}
 	
+	private void setTextField() {// TextField 배치
+		
+		 createTextField();
+		 
+		//nameInput.setBounds(200,60,300,30);
+		
+		add(nameInput);
+		
+	}
 	
-	
-	private void createTextField() {
+
+	private void createTextField() { // TextField 생성
+		
+		nameInput = new JTextField();
+		idInput= new JTextField();
+		passwordInput= new JPasswordField();
+		repasswordInput= new JPasswordField();
+		birthInput= new JTextField();
+		emailInput= new JTextField();
+		addressInput= new JTextField();
+		
+		componentEdit.setTextFieldOption(nameInput,textFieldFontSize);        
+		componentEdit.setTextFieldOption(idInput,textFieldFontSize); 
+		componentEdit.setTextFieldOption(passwordInput,textFieldFontSize);
+		componentEdit.setTextFieldOption(repasswordInput,textFieldFontSize);
+		componentEdit.setTextFieldOption(birthInput,textFieldFontSize);
+		componentEdit.setTextFieldOption(emailInput,textFieldFontSize);
+		componentEdit.setTextFieldOption(addressInput,textFieldFontSize);
 		
 		
 	}
@@ -124,7 +157,7 @@ public class UserEditPanel extends JPanel {
 		JLabel label = new JLabel(labelText);
 		
 		Font labelFont = new Font("Stencil",Font.BOLD,25);
-		
+			
 		label.setForeground(new Color(199,23,23)); // 텍스트 색상
 		
 		label.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용
@@ -134,6 +167,8 @@ public class UserEditPanel extends JPanel {
 		label.setBorder(new LineBorder(Color.red)); // 라벨 테두리
 		
 		label.setFont(labelFont); // 라벨 폰트
+		
+		label.setHorizontalAlignment(JLabel.CENTER); // 라벨텍스트 가운데정렬
 		
 
 		return label;

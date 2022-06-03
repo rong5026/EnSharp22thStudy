@@ -28,13 +28,12 @@ public class ComponentEdit {
 	}
 	
 	// TextField 옵션 적용
-	public void setTextFieldOption(JTextField jTextField,int fontSize, int width, int height ) {
+	public void setTextFieldOption(JTextField jTextField,int fontSize ) {
 		
 		Font textFieldFont = new Font("맑은고딕",Font.PLAIN,fontSize);
 		
 		jTextField.setFont(textFieldFont);
 		
-		jTextField.setPreferredSize(new Dimension(width,height));
 		
 	}
 
