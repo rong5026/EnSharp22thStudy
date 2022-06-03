@@ -36,30 +36,21 @@ public class SwitchingPanelListener {
 		
 	}
 	
-	//로그인버튼 누르면 확인 후 로그인화면으로 이동
-	public void setLoginButtonListener(JButton button,JPanel switchingPanel,JTextField id,JPasswordField password) {
+	//로그인 버튼 리스너
+	public void setLoginButtonListener(JButton loginButton,JPanel switchingPanel,JTextField id,JPasswordField password) {
 		
-		button.addActionListener(new ActionListener() {
- 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-            	try {
-            		
-					if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword())) {
-						System.out.println("로그인");
-						changePanel(switchingPanel); // 패널변경
-					}
-						
-				} catch (SQLException e1) {
-					
-					System.out.println("로그인 하는 과정에서 오류가 생겼습니다");
-					
-					e1.printStackTrace();
-				}
-            }
-        });
+		loginButton.addActionListener(new LoginButtonListener(switchingPanel, id, password));
+	
 	}
+	
+	
+	public void setSignUpButtonListener(JButton signUpButton,JPanel switchingPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput   ) {
+		
+		
+	}
+	
+	// 회원가입버튼 리스너
+	
 	
 	// 패널 변경
 	public void changePanel(JPanel switchingPanel) { 
@@ -90,6 +81,43 @@ public class SwitchingPanelListener {
 
 			changePanel(switchingPanel);
 		}	
+	}
+	
+	//로그인 버튼 리스너
+	class LoginButtonListener implements ActionListener{
+		
+		private JPanel switchingPanel;
+		private JTextField id;
+		private JPasswordField password;
+		
+		
+		public LoginButtonListener(JPanel switchingPanel,JTextField id,JPasswordField password) {
+			
+			this.switchingPanel = switchingPanel;
+			this.id = id;
+			this.password = password;
+			
+		}
+		
+		
+		 @Override
+         public void actionPerformed(ActionEvent e) {
+             
+         	try {
+         		
+					if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword())) {
+				
+						changePanel(switchingPanel); // 패널변경
+					}
+						
+				} catch (SQLException e1) {
+					
+					System.out.println("로그인 하는 과정에서 오류가 생겼습니다");
+					
+					e1.printStackTrace();
+				}
+         }
+		
 	}
 		
 

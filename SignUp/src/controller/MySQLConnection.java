@@ -34,7 +34,7 @@ public class MySQLConnection {
            
         } catch (Exception e) {
         	
-            System.out.println("드라이버 로딩 실패 ");
+            System.out.println("MySql 로딩 실패 ");
             
         }
         
