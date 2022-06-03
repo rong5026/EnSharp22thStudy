@@ -104,8 +104,13 @@ public class SwitchingPanelListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			try {
-			
-				if(MySQLConnection.getInstance().checkSameId(id.getText())) { // 중복일때
+				
+				if(id.getText().equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "ID를 입력해주세요.");
+					
+				}
+				else if(MySQLConnection.getInstance().checkSameId(id.getText())) { // 중복일때
 					
 					JOptionPane.showMessageDialog(null, "이미 존재하는 ID입니다.");
 					
@@ -120,19 +125,12 @@ public class SwitchingPanelListener {
 						
 						id.setText("");
 					} 
-					
 				}
-				
 			} catch (SQLException e1) {
-				
 				
 				e1.printStackTrace();
 			}
-			
-			
 		}
-		
-		
 	}
 	
 	
@@ -223,8 +221,46 @@ public class SwitchingPanelListener {
 			// 모든 항목이 입력이 되어있다면
 			try {
 				
-				MySQLConnection.getInstance().insertUserData(nameInput.getText(), idInput.getText(), passwordInput.getPassword(), birthInput.getText(), phoneInput.getText(), emailInput.getText(), addressInput.getText());
-				changePanel(switchingPanel);
+				if(nameInput.getText().equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "이름을 입력해주세요.");
+				}
+				else if(idInput.getText().equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "ID를 입력해주세요.");
+				}
+				else if(String.valueOf(passwordInput.getPassword()).equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "Password를 입력해주세요.");
+				}
+				else if(String.valueOf(repasswordInput.getPassword()).equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "RePassword를 입력해주세요.");
+				}
+				else if(birthInput.getText().equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "Birth를 입력해주세요.");
+				}
+				else if(phoneInput.getText().equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "PhoneNumber를 입력해주세요.");
+				}
+				else if(emailInput.getText().equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "Email를 입력해주세요.");
+				}
+				else if(addressInput.getText().equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "Address를 입력해주세요.");
+				}
+				
+				else {
+					
+					MySQLConnection.getInstance().insertUserData(nameInput.getText(), idInput.getText(), passwordInput.getPassword(), birthInput.getText(), phoneInput.getText(), emailInput.getText(), addressInput.getText());
+					changePanel(switchingPanel);
+				}
+				
+				
 				
 			} catch (SQLException e1) {
 		
@@ -277,17 +313,17 @@ public class SwitchingPanelListener {
 			 
          	try {
          		
-					if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword(),loginedId)) {
+				if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword(),loginedId)) {
 				
-						changePanel(switchingPanel); // 패널변경
-					}
-						
-				} catch (SQLException e1) {
-					
-					System.out.println("로그인 하는 과정에서 오류가 생겼습니다");
-					
-					e1.printStackTrace();
+					changePanel(switchingPanel); // 패널변경
 				}
+						
+			} catch (SQLException e1) {
+					
+				System.out.println("로그인 하는 과정에서 오류가 생겼습니다");
+					
+				e1.printStackTrace();
+			}
          	
          	id.setText("");
 			password.setText("");
