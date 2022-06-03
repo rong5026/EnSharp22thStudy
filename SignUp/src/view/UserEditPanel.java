@@ -21,6 +21,16 @@ import utility.ConstantNumber;
 
 public class UserEditPanel extends JPanel {
 	
+	
+	public JTextField nameInput;
+	public JTextField idInput;
+	public JPasswordField passwordInput;
+	public JPasswordField repasswordInput;
+	public JTextField birthInput;
+	public JTextField phoneInput;
+	public JTextField emailInput;
+	public JTextField addressInput;
+	
 	private ComponentEdit componentEdit;
 	
 	private ImageIcon backgroundIcon;
@@ -39,16 +49,6 @@ public class UserEditPanel extends JPanel {
 	
 	private String[] labelName;
 	
-	
-	private JTextField nameInput;
-	private JTextField idInput;
-	private JPasswordField passwordInput;
-	private JPasswordField repasswordInput;
-	private JTextField birthInput;
-	private JTextField phoneInput;
-	private JTextField emailInput;
-	private JTextField addressInput;
-	
 	protected Color labelTextColor;        //라벨 텍스트 색
 	protected Color labelBackgroundColor;  //라벨 배경색
 	protected Color labelBorderColor;      //라벨 테두리색
@@ -61,9 +61,6 @@ public class UserEditPanel extends JPanel {
 	private JLabel emailGuiding;
 	private JLabel phoneGuiding;
 	private JLabel addressGuiding;
-	
-	
-	
 	
 	
 	

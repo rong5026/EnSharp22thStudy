@@ -13,12 +13,13 @@ import javax.swing.JTextField;
 
 import controller.MySQLConnection;
 import view.LogoutPanel;
+import view.MainFrame;
 
 public class SwitchingPanelListener {
 
 	
 	private Container container;
-	private JPanel switchingPanel;
+	
 	
 	
 	public SwitchingPanelListener(Container container) {
@@ -43,13 +44,67 @@ public class SwitchingPanelListener {
 	
 	}
 	
-	
+	//회원가입하기 버튼 리스너
 	public void setSignUpButtonListener(JButton signUpButton,JPanel switchingPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput   ) {
+		
+		signUpButton.addActionListener(new SignUpButtonListener( switchingPanel, nameInput, idInput, passwordInput, repasswordInput, birthInput, phoneInput, emailInput, addressInput));
+	}
+	
+	
+	
+	
+	// 회원가입버튼 리스너
+	class SignUpButtonListener implements ActionListener{
+		
+	
+		private JPanel switchingPanel;
+		private JTextField nameInput;
+		private JTextField idInput;
+		private JPasswordField passwordInput;
+		private JPasswordField repasswordInput;
+		private JTextField birthInput;
+		private JTextField phoneInput;
+		private JTextField emailInput;
+		private JTextField addressInput ;
+		
+		
+		public SignUpButtonListener(JPanel switchingPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput ) {
+			
+			this.switchingPanel = switchingPanel;
+			this.nameInput = nameInput;
+			this.idInput = idInput;
+			this.passwordInput = passwordInput;
+			this.repasswordInput = repasswordInput;
+			this.birthInput = birthInput;
+			this.phoneInput = phoneInput;
+			this.emailInput = emailInput;
+			this.addressInput = addressInput;
+			
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			
+		
+			//한개라도 입력이 안되어있다면 팝업창 발생
+			
+			// 모든 항목이 입력이 되어있다면
+			try {
+				
+				MySQLConnection.getInstance().insertUserData(nameInput.getText(), idInput.getText(), passwordInput.getPassword(), birthInput.getText(), phoneInput.getText(), emailInput.getText(), addressInput.getText());
+				changePanel(switchingPanel);
+				
+			} catch (SQLException e1) {
+		
+				e1.printStackTrace();
+				
+			}
+			
+		}
 		
 		
 	}
-	
-	// 회원가입버튼 리스너
 	
 	
 	// 패널 변경
@@ -67,13 +122,11 @@ public class SwitchingPanelListener {
 	// 패널 변경하는 리스너
 	class SwitchingMainPage implements ActionListener{
 
-		//private Container container;
 		private JPanel switchingPanel;
 				
 		public SwitchingMainPage(JPanel switchingPanel) {
 		
 			this.switchingPanel  = switchingPanel;
-					
 		}
 
 		@Override
@@ -90,16 +143,13 @@ public class SwitchingPanelListener {
 		private JTextField id;
 		private JPasswordField password;
 		
-		
 		public LoginButtonListener(JPanel switchingPanel,JTextField id,JPasswordField password) {
 			
 			this.switchingPanel = switchingPanel;
 			this.id = id;
 			this.password = password;
-			
 		}
-		
-		
+	
 		 @Override
          public void actionPerformed(ActionEvent e) {
              
@@ -117,7 +167,6 @@ public class SwitchingPanelListener {
 					e1.printStackTrace();
 				}
          }
-		
 	}
 		
 

@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.*;
+import java.util.BitSet;
 
 import utility.ConstantNumber;
 
@@ -47,7 +48,6 @@ public class MySQLConnection {
     	
     	String inputPassword = new String(password); // 문자 배열 -> 문자열
     	
-    	
     	ResultSet resultSet = statement.executeQuery(sql);
     			
     	while(resultSet.next()) {
@@ -63,6 +63,31 @@ public class MySQLConnection {
     	
 		return ConstantNumber.IS_LOGIN_FAIL;
     	
+    }
+    
+    //회원가입
+    
+    public void insertUserData(String name, String id, char[] password, String birth, String phone, String email, String address ) throws SQLException {
+    	
+    	String sql = "INSERT INTO user_data VALUES (?,?,?,?,?,?,?)";
+    	
+    	PreparedStatement statement = connection.prepareStatement(sql);
+    	
+    	String inputPassword = new String(password); // 문자 배열 -> 문자열
+    	
+    	statement.setString(1, name);
+    	statement.setString(2, id);
+    	statement.setString(3, inputPassword);
+    	statement.setString(4, birth);
+    	statement.setString(5, phone);
+    	statement.setString(6, email);
+    	statement.setString(7, address);
+    	
+    	if(statement.executeUpdate()==0) {
+    		
+    		System.out.println("회원가입 실패");
+    	}
+
     }
     
     
