@@ -63,6 +63,8 @@ public class MainFrame extends JFrame{
 		
 		this.signupPanel = new SignupPanel(componentEdit);
 	
+		this.userEditPanel.idInput.setEditable(false);
+		this.userEditPanel.idGuiding.setText("아이디는 변경 할 수 없습니다.");
 		
 		setMainFrame();// mainframe 초기화
 		
@@ -110,8 +112,8 @@ public class MainFrame extends JFrame{
 		//삭제 패널로 이동
 		listener.changeMainFramePanel(this.loginedPanel.idDeleteButton, deletingPanel);
 		
-		//삭제 Yes -> 메인 이동      //나중에 고쳐야함 데이터베이스 삭제오류
-		listener.setDeleteButtonListener(this.deletingPanel.yesButton, mainPanel, mainPanel.loginedId );
+		//삭제 Yes -> 메인 이동      
+		listener.setDeleteButtonListener(this.deletingPanel.yesButton, mainPanel, mainPanel );
 		
 		//삭제 No -> 로그인
 		listener.changeMainFramePanel(this.deletingPanel.noButton, loginedPanel);
@@ -123,8 +125,9 @@ public class MainFrame extends JFrame{
 		//유저정보 수정 (뒤로가기) -> 로그인
 		listener.changeMainFramePanel(this.userEditPanel.backButton, loginedPanel);
 	
-		//유저정보 수정 (수정하기) -> 메인    //아직 수정안함
-		listener.changeMainFramePanel(this.userEditPanel.editButton, mainPanel);
+		//유저정보 수정 (수정하기) -> 메인   
+		listener.setSignUpButtonListener(userEditPanel.editButton, userEditPanel,userEditPanel.nameInput,userEditPanel.idInput,userEditPanel.passwordInput,userEditPanel.repasswordInput,userEditPanel.birthInput,userEditPanel.phoneInput,userEditPanel.emailInput,userEditPanel.addressInput    );
+		
 		
 		//회원가입 아이디중복 버튼
 		listener.setCheckingIdButtonListener(this.signupPanel.checkingIdButton, this.signupPanel.idInput);

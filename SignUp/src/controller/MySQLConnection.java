@@ -83,6 +83,9 @@ public class MySQLConnection {
     	
     	PreparedStatement statement = connection.prepareStatement(sql);
     	
+    	if(checkSameId(id)) { // 중복이 있다면 수정이므로 삭제 후 다시 생성
+    		deleteUserData(id);
+    	}
     	String inputPassword = new String(password); // 문자 배열 -> 문자열
     	
     	statement.setString(1, name);
@@ -100,16 +103,27 @@ public class MySQLConnection {
     	
     }
     
+    
     //회원탈퇴
-    public void deleteUserData(String loginedId) throws SQLException {
+    public void deleteUserData(String loginedId)   {
     	
     	String sql = "DELETE FROM user_data WHERE id=?";
     	
-    	PreparedStatement prepareStatement = connection.prepareStatement(sql);
+    	PreparedStatement prepareStatement;
+		try {
+			
+			prepareStatement = connection.prepareStatement(sql);
+			
+			prepareStatement.setString(1, loginedId);
+	    	
+	    	prepareStatement.execute();
+	    	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
-    	prepareStatement.setString(1, loginedId);
     	
-    	prepareStatement.executeUpdate(sql);
     	
     }
     
@@ -157,7 +171,7 @@ public class MySQLConnection {
     			String phone = resultSet.getString("phone");
     			String address = resultSet.getString("address");
     			
-    			userVO = new UserVO(id, name, password, birth, email, phone, address);
+    			userVO = new UserVO(name, id, password, birth, email, phone, address);
     			
     			return userVO;
     		}
