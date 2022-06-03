@@ -34,6 +34,16 @@ public class ConstantNumber {
 	
 	public final static String ADDRESS_GUIDE ="주소를 입력해주세요.";
 	
+	// MySQL
+	
+	public final static String USERNAME = "root";
+	
+	public final static String PASSWORD = "0000";
+	
+	public final static String JDBCDRIVER = "com.mysql.jdbc.Driver";
+	
+	public final static String URL = "jdbc:mysql://localhost:3306/login_user_data";
+	
 	
 
 }
