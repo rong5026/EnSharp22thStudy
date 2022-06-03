@@ -54,7 +54,7 @@ public class UserEditPanel extends JPanel {
 	protected Color labelBorderColor;      //라벨 테두리색
 	
 	private JLabel nameGuiding;
-	private JLabel idGuiding;
+	public JLabel idGuiding;
 	private JLabel pwGuiding;
 	private JLabel checkPwGuiding;
 	private JLabel birthGuiding;

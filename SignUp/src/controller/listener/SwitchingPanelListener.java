@@ -73,9 +73,9 @@ public class SwitchingPanelListener {
 	}
 	
 	//회원탈퇴 yes버튼 리스너
-	public void setDeleteButtonListener( JButton yesDeleteButton, JPanel switchingPanel ,String id) {
+	public void setDeleteButtonListener( JButton yesDeleteButton, JPanel switchingPanel ,MainPanel mainPanel) {
 		
-		yesDeleteButton.addActionListener(new DeleteButtonListener(switchingPanel, id));
+		yesDeleteButton.addActionListener(new DeleteButtonListener(switchingPanel, mainPanel));
 	}
 
 	////주소찾기버튼  리스너
@@ -231,26 +231,22 @@ public class SwitchingPanelListener {
 	class DeleteButtonListener implements ActionListener{
 	
 		private JPanel switchingPanel;
-		private String id;
+		private MainPanel mainPanel;
 		
-		public DeleteButtonListener(JPanel switchingPanel ,String id ) {
+		public DeleteButtonListener(JPanel switchingPanel ,MainPanel mainPanel ) {
 			
 			this.switchingPanel = switchingPanel;
-			this.id = id;
+			this.mainPanel = mainPanel;
 			
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			try {
+		
+			MySQLConnection.getInstance().deleteUserData(mainPanel.loginedId);
 				
-				MySQLConnection.getInstance().deleteUserData(id);
-				
-			} catch (SQLException e1) {
-				
-				e1.printStackTrace();
-			}
+			
 			changePanel(switchingPanel); // 패널전환
 			
 		}
