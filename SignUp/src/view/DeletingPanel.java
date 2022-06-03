@@ -20,10 +20,8 @@ public class DeletingPanel extends LogoutPanel{
 		
 		super(componentEdit);
 		
-		
 		this.logoutRequest.setText("Do you want to Delete the ID?");
 		
-
 		this.noButton.setBackground(new Color(204,204,255));
 		this.yesButton.setBackground(new Color(204,204,255));
 		
@@ -33,9 +31,6 @@ public class DeletingPanel extends LogoutPanel{
 		
 		this.logoutRequest.setBorder(new LineBorder(Color.blue)); // 라벨 테두리
 		
-
-		//Color color = new Color(ABORT)
-		//this.logoutNoButton.set
 		
 	}
 	

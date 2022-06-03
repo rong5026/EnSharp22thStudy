@@ -73,6 +73,25 @@ public class ComponentEdit {
 		return label;
 		
 	}
+	
+	public JLabel setGuidingLabelOption(String labelText) {
+		
+		JLabel label = new JLabel(labelText);
+		
+		Font labelFont = new Font("맑은 고딕",Font.BOLD,17);
+		
+		label.setForeground(Color.black); // 텍스트 색상
+		
+		label.setOpaque(false); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용
+		
+		label.setHorizontalAlignment(JLabel.LEFT); 
+		
+		label.setFont(labelFont); // 라벨 폰트
+		
+	
+		
+		return label;
+	}
 
 
 	

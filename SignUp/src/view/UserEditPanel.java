@@ -39,6 +39,7 @@ public class UserEditPanel extends JPanel {
 	
 	private String[] labelName;
 	
+	
 	private JTextField nameInput;
 	private JTextField idInput;
 	private JPasswordField passwordInput;
@@ -51,6 +52,17 @@ public class UserEditPanel extends JPanel {
 	private Color labelTextColor;        //라벨 텍스트 색
 	private Color labelBackgroundColor;  //라벨 배경색
 	private Color labelBorderColor;      //라벨 테두리색
+	
+	private JLabel nameGuiding;
+	private JLabel idGuiding;
+	private JLabel pwGuiding;
+	private JLabel checkPwGuiding;
+	private JLabel birthGuiding;
+	private JLabel emailGuiding;
+	private JLabel phoneGuiding;
+	private JLabel addressGuiding;
+	
+	
 	
 	
 	
@@ -68,6 +80,7 @@ public class UserEditPanel extends JPanel {
 		this.componentEdit = componentEdit;
 		
 		this.labelName = new String[] {"Name","ID", "PW", "CheckPW","Birth", "E-mail", "Phone","Address" };
+		
 		
 		this.buttonWidth = 250;
 		this.buttonHeight = 50; // 버튼 가로,세로
@@ -186,10 +199,40 @@ public class UserEditPanel extends JPanel {
 			label.setBounds(30,60 +index*(height+5), width, height );
 			
 			add(label); 
-			
-			JLabel guidingText = componentEdit.setLabelOption(TOOL_TIP_TEXT_KEY, labelTextColor, labelBackgroundColor, labelBorderColor);
-			
+		
 		}
+		
+		
+		// Guide 라벨 생성
+		nameGuiding = componentEdit.setGuidingLabelOption(ConstantNumber.NAME_GUIDE);
+		idGuiding = componentEdit.setGuidingLabelOption(ConstantNumber.ID_GUIDE);
+		pwGuiding = componentEdit.setGuidingLabelOption(ConstantNumber.PASSWORD_GUIDE);
+		checkPwGuiding = componentEdit.setGuidingLabelOption(ConstantNumber.REPASSWORD_GUIDE);
+		birthGuiding = componentEdit.setGuidingLabelOption(ConstantNumber.BIRTH_GUIDE);
+		emailGuiding = componentEdit.setGuidingLabelOption(ConstantNumber.EMAIL_GUIDE);
+		phoneGuiding = componentEdit.setGuidingLabelOption(ConstantNumber.PHONE_GUIDE);
+		addressGuiding = componentEdit.setGuidingLabelOption(ConstantNumber.ADDRESS_GUIDE);
+		
+		nameGuiding.setBounds(200,90,400,30);
+		idGuiding.setBounds(200,165,400,30);
+		pwGuiding.setBounds(200,250,400,30);
+		checkPwGuiding.setBounds(200,325,400,30);
+		birthGuiding.setBounds(200,395,400,30);
+		emailGuiding.setBounds(200,470,400,30);
+		phoneGuiding.setBounds(200,545,400,30);
+		addressGuiding.setBounds(200,620,400,30);
+		
+		add(nameGuiding);
+		add(idGuiding);
+		add(pwGuiding);
+		add(checkPwGuiding);
+		add(birthGuiding);
+		add(emailGuiding);
+		add(phoneGuiding);
+		add(addressGuiding);
+		
+		
+		
 		
 	}
 	

@@ -56,7 +56,7 @@ public class LogoutPanel extends JPanel{
 		
 	}
 	
-	protected void setButton() {
+	public void setButton() {
 		
 		Color buttonColor = new Color(255,102,102);
 		

@@ -17,6 +17,8 @@ import view.CenterPanel;
 import view.HistoryPanel;
 
 public class HistoryButtonAction implements ActionListener{
+	
+	
 	public HistoryPanel historyPanel;
 	private CenterPanel centerPanel;
 	private ArrayList<ResultDTO> resultList;
