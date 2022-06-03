@@ -26,8 +26,8 @@ public class UserEditPanel extends JPanel {
 	private ImageIcon backgroundIcon;
 	private Image background;
 	
-	public JButton backButton;
-	public JButton editButton;
+	protected JButton backButton;
+	protected JButton editButton;
 
 	private Color buttonColor;
 	
@@ -49,9 +49,9 @@ public class UserEditPanel extends JPanel {
 	private JTextField emailInput;
 	private JTextField addressInput;
 	
-	private Color labelTextColor;        //라벨 텍스트 색
-	private Color labelBackgroundColor;  //라벨 배경색
-	private Color labelBorderColor;      //라벨 테두리색
+	protected Color labelTextColor;        //라벨 텍스트 색
+	protected Color labelBackgroundColor;  //라벨 배경색
+	protected Color labelBorderColor;      //라벨 테두리색
 	
 	private JLabel nameGuiding;
 	private JLabel idGuiding;
