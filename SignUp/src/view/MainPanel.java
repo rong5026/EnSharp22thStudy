@@ -36,6 +36,7 @@ public class MainPanel extends JPanel{
 	
 	private ComponentEdit componentEdit;
 	
+	
 	public MainPanel(ComponentEdit componentEdit) {
 
 		this.idText = new JTextField();
@@ -55,7 +56,7 @@ public class MainPanel extends JPanel{
 	}
 	
 	
-	private void setMainPanelComponent() { // mainPanel에 textfield, button 배치
+	private void setMainPanelComponent() { // white패널에  textfield, button 배치
 		
 		JPanel whitePanel = new JPanel();
 		
@@ -89,12 +90,8 @@ public class MainPanel extends JPanel{
 		whitePanel.add(passwordFindingButton);
 
 		
-		add(whitePanel);
-		
-		
-		
-		
-		
+		add(whitePanel); // white 패널을 main패널에 부착
+
 	}
 	
 	

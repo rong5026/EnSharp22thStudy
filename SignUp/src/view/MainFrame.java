@@ -28,12 +28,14 @@ import utility.ConstantNumber;
 
 public class MainFrame extends JFrame{
 	
+	private ComponentEdit componentEdit;
 	
 	private MainPanel mainPanel;
 	private UserEditPanel userEditPanel;
-	private ComponentEdit componentEdit;
-	
+	private LoginedPanel loginedPanel;
+
 	private SwitchingPanelListener switchingPanelListener;
+	
 	
 	public MainFrame() {
 		
@@ -42,6 +44,8 @@ public class MainFrame extends JFrame{
 		this.mainPanel = new MainPanel(componentEdit);
 		
 		this.userEditPanel = new UserEditPanel(componentEdit);
+		
+		this.loginedPanel = new LoginedPanel(componentEdit);
 		
 		this.switchingPanelListener = new SwitchingPanelListener();
 		
@@ -55,9 +59,7 @@ public class MainFrame extends JFrame{
 	public void startMainFrame() { // mainframe 초기화
 		
 		
-		//setContentPane(userEditPanel); // frame에 mainpanel로 변경
-		
-		add(mainPanel);
+		add(loginedPanel); // mainFrame에 mainPanel 부착
 		
 		setVisible(true);
 		
