@@ -217,8 +217,7 @@ public class SwitchingPanelListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			//한개라도 입력이 안되어있다면 팝업창 발생
-			
-			// 모든 항목이 입력이 되어있다면
+		
 			try {
 				
 				if(nameInput.getText().equals("")) {
@@ -254,13 +253,15 @@ public class SwitchingPanelListener {
 					JOptionPane.showMessageDialog(null, "Address를 입력해주세요.");
 				}
 				
-				else {
+				else { // 값이 다 들어가있다면 회원가입
 					
+					JOptionPane.showConfirmDialog(null,nameInput.getText()+ "님 반갑습니다.", "confirm",JOptionPane.DEFAULT_OPTION );
+				
 					MySQLConnection.getInstance().insertUserData(nameInput.getText(), idInput.getText(), passwordInput.getPassword(), birthInput.getText(), phoneInput.getText(), emailInput.getText(), addressInput.getText());
+					
 					changePanel(switchingPanel);
+					
 				}
-				
-				
 				
 			} catch (SQLException e1) {
 		
@@ -316,6 +317,22 @@ public class SwitchingPanelListener {
 				if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword(),loginedId)) {
 				
 					changePanel(switchingPanel); // 패널변경
+				}
+				else {
+					
+					if(id.getText().equals("")) {
+						
+						JOptionPane.showConfirmDialog(null,"ID를 입력해주세요.", "Fail",JOptionPane.DEFAULT_OPTION );
+					}
+					else if(String.valueOf(password.getPassword()).equals("") ){
+						
+						JOptionPane.showConfirmDialog(null,"Password를 입력해주세요.", "Fail",JOptionPane.DEFAULT_OPTION );
+					}
+					else {
+						
+						JOptionPane.showConfirmDialog(null,"로그인 실패하였습니다.", "Fail",JOptionPane.DEFAULT_OPTION );
+					}
+					
 				}
 						
 			} catch (SQLException e1) {
