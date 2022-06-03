@@ -55,6 +55,7 @@ public class ComponentEdit {
 		
 		label.setFont(labelFont); // 라벨 폰트
 		
+		
 		label.setHorizontalAlignment(JLabel.CENTER); // 라벨텍스트 가운데정렬
 		
 

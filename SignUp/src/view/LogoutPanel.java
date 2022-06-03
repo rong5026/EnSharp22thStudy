@@ -19,9 +19,9 @@ public class LogoutPanel extends JPanel{
 	private ImageIcon backgroundIcon;
 	private Image background;
 	private ComponentEdit componentEdit;
-	private JLabel logoutRequest;
-	public JButton logoutYesButton;
-	public JButton logoutNoButton;
+	protected JLabel logoutRequest;
+	protected JButton yesButton;
+	protected JButton noButton;
 	
 	
 	public LogoutPanel(ComponentEdit componentEdit) {
@@ -29,9 +29,9 @@ public class LogoutPanel extends JPanel{
 		this.componentEdit = componentEdit;
 		
 		
-		this.logoutYesButton = new JButton("Yes");
+		this.yesButton = new JButton("Yes");
 		
-		this.logoutNoButton = new JButton("No"); // 버튼 생성
+		this.noButton = new JButton("No"); // 버튼 생성
 		
 		logoutRequest = componentEdit.createLabelOption("Do you want to logout?"); // 라벨생성
 		
@@ -44,25 +44,25 @@ public class LogoutPanel extends JPanel{
 		
 		setButton();// 버튼 옵션 적용
 		
-		logoutYesButton.setBounds(300,400,200,60);
+		yesButton.setBounds(300,400,200,60);
 		
-		logoutNoButton.setBounds(300,500,200,60);
+		noButton.setBounds(300,500,200,60);
 		
 		add(logoutRequest); 
-		add(logoutYesButton);
-		add(logoutNoButton); // 라벨, 버튼 추가
+		add(yesButton);
+		add(noButton); // 라벨, 버튼 추가
 		
 		
 		
 	}
 	
-	private void setButton() {
+	protected void setButton() {
 		
 		Color buttonColor = new Color(255,102,102);
 		
-		componentEdit.setButtonOption(logoutYesButton, 35, buttonColor, 300, 50);
+		componentEdit.setButtonOption(yesButton, 35, buttonColor, 300, 50);
 		
-		componentEdit.setButtonOption(logoutNoButton, 35, buttonColor, 300, 50);
+		componentEdit.setButtonOption(noButton, 35, buttonColor, 300, 50);
 		
 	}
 	

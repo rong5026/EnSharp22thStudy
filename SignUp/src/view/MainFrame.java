@@ -34,6 +34,7 @@ public class MainFrame extends JFrame{
 	private UserEditPanel userEditPanel;
 	private LoginedPanel loginedPanel;
 	private LogoutPanel logoutPanel;
+	private DeletingPanel deletingPanel;
 
 	private SwitchingPanelListener switchingPanelListener;
 	
@@ -49,6 +50,8 @@ public class MainFrame extends JFrame{
 		this.loginedPanel = new LoginedPanel(componentEdit);
 		
 		this.logoutPanel = new LogoutPanel(componentEdit);
+		
+		this.deletingPanel = new DeletingPanel(componentEdit);
 		
 		this.switchingPanelListener = new SwitchingPanelListener();
 		
@@ -80,17 +83,30 @@ public class MainFrame extends JFrame{
 		//메인 -> 로그인 
 		switchingPanelListener.changePanel(this.mainPanel.loginButton, container, loginedPanel);
 		
-		//로그아웃 -> 메인
+		//로그아웃 패널로 이동
 		switchingPanelListener.changePanel(this.loginedPanel.logOutButton, container, logoutPanel);
 		
 		//로그아웃 yes -> 메인
-		switchingPanelListener.changePanel(this.logoutPanel.logoutYesButton, container, mainPanel);
+		switchingPanelListener.changePanel(this.logoutPanel.yesButton, container, mainPanel);
 		
 		//로그아웃 no -> 로그인
-		switchingPanelListener.changePanel(this.logoutPanel.logoutNoButton, container, loginedPanel);
+		switchingPanelListener.changePanel(this.logoutPanel.noButton, container, loginedPanel);
 		
-		//유저정보 수정 -> 메인
-		switchingPanelListener.changePanel(this.userEditPanel.backButton, container, mainPanel);
+		//삭제 패널로 이동
+		switchingPanelListener.changePanel(this.loginedPanel.idDeleteButton, container, deletingPanel);
+		
+		//삭제 Yes -> 메인 이동
+		switchingPanelListener.changePanel(this.deletingPanel.yesButton, container, mainPanel);
+		
+		//삭제 No -> 로그인
+		switchingPanelListener.changePanel(this.deletingPanel.noButton, container, loginedPanel);
+		
+		//로그인 -> 유저정보 수정
+		switchingPanelListener.changePanel(this.loginedPanel.editButton, container, userEditPanel);
+		
+		//유저정보 수정 -> 로그인
+		switchingPanelListener.changePanel(this.userEditPanel.backButton, container, loginedPanel);
+		
 		
 		
 	}
