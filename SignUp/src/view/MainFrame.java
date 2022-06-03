@@ -126,6 +126,7 @@ public class MainFrame extends JFrame{
 		listener.changeMainFramePanel(this.userEditPanel.editButton, mainPanel);
 		
 		//회원가입 아이디중복 버튼
+		listener.setCheckingIdButtonListener(this.signupPanel.checkingIdButton, this.signupPanel.idInput);
 		
 		//회원가입 주소찾기 버튼
 		listener.setFindingAddressButtonListener(this.signupPanel.findingAddressButton);

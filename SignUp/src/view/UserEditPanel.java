@@ -22,14 +22,14 @@ import utility.ConstantNumber;
 public class UserEditPanel extends JPanel {
 	
 	
-	public JTextField nameInput;
-	public JTextField idInput;
-	public JPasswordField passwordInput;
-	public JPasswordField repasswordInput;
-	public JTextField birthInput;
-	public JTextField phoneInput;
-	public JTextField emailInput;
-	public JTextField addressInput;
+	protected JTextField nameInput;
+	protected JTextField idInput;
+	protected JPasswordField passwordInput;
+	protected JPasswordField repasswordInput;
+	protected JTextField birthInput;
+	protected JTextField phoneInput;
+	protected JTextField emailInput;
+	protected JTextField addressInput;
 	
 	private ComponentEdit componentEdit;
 	

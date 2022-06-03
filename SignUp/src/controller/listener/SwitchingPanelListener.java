@@ -59,6 +59,7 @@ public class SwitchingPanelListener {
 	public void setLoginButtonListener(JButton loginButton,JPanel switchingPanel,JTextField id,JPasswordField password,String loginedId) {
 		
 		loginButton.addActionListener(new LoginButtonListener(switchingPanel, id, password,loginedId));
+		
 	
 	}
 	
@@ -73,20 +74,60 @@ public class SwitchingPanelListener {
 		
 		yesDeleteButton.addActionListener(new DeleteButtonListener(switchingPanel, id));
 	}
-	
-	
+
 	////주소찾기버튼  리스너
 	public void setFindingAddressButtonListener(JButton findingAddressButton) {
 		
-		findingAddressButton.addActionListener(new findingAddressButtonListener());
+		findingAddressButton.addActionListener(new FindingAddressButtonListener());
 	}
 	
 	
+	// 아이디중복버튼 리스너
+	public void setCheckingIdButtonListener(JButton checkingIdButton,JTextField id) {
+		
+		checkingIdButton.addActionListener(new CheckingIdButtonListener(id));
+	}
 	
+	
+	class CheckingIdButtonListener implements ActionListener{
+
+		private JTextField id;
+		
+		public CheckingIdButtonListener(JTextField id) {
+			
+			this.id =id;
+			
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			try {
+				
+				System.out.println("입력된 아이디"+id.getText());
+				if(MySQLConnection.getInstance().checkSameId(id.getText())) { // 중복일때
+					
+					System.out.println("중복이다 이놈아");
+				}
+				else { // 중복이 아닐때
+					System.out.println("중복 아니다");
+				}
+				
+			} catch (SQLException e1) {
+				
+				
+				e1.printStackTrace();
+			}
+			
+			
+		}
+		
+		
+	}
 	
 	
 	//주소찾기버튼 리스너
-	class findingAddressButtonListener implements ActionListener{
+	class FindingAddressButtonListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -217,11 +258,13 @@ public class SwitchingPanelListener {
 			this.id = id;
 			this.password = password;
 			this.loginedId = loginedId;
+			
 		}
 	
 		 @Override
          public void actionPerformed(ActionEvent e) {
              
+			 
          	try {
          		
 					if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword(),loginedId)) {
@@ -235,6 +278,9 @@ public class SwitchingPanelListener {
 					
 					e1.printStackTrace();
 				}
+         	
+         	id.setText("");
+			password.setText("");
          }
 	}
 		

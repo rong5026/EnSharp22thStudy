@@ -62,11 +62,7 @@ public class MySQLConnection {
     		if(userId.equals(id)  && userPassword.equals(inputPassword)  && id.equals("")==false ) {
     			
     			loginedId = userId;
-    			System.out.println(id);
-    			System.out.println(inputPassword);
-    			System.out.println(userId);
-        		System.out.println(userPassword);
-        		
+    			
     			return ConstantNumber.IS_LOGIN_SUCCESS;
     		}
     		
@@ -105,13 +101,36 @@ public class MySQLConnection {
     	
     	String sql = "DELETE FROM user_data WHERE id=?";
     	
-    	PreparedStatement statement = connection.prepareStatement(sql);
+    	PreparedStatement prepareStatement = connection.prepareStatement(sql);
     	
-    	statement.setString(1, loginedId);
+    	prepareStatement.setString(1, loginedId);
     	
-    	statement.executeUpdate(sql);
+    	prepareStatement.executeUpdate(sql);
     	
+    }
+    
+    
+    //아이디 중복체크
+    public boolean checkSameId(String id) throws SQLException {
     	
+    	String sql = "SELECT * FROM user_data";
+    
+    	ResultSet resultSet = statement.executeQuery(sql);
+    		
+    	while(resultSet.next()) {
+    		
+    		String userId = resultSet.getString("id");
+    		
+    		System.out.println(userId);
+    		
+    		if(id.equals(userId))
+    			return ConstantNumber.IS_SAME_ID;
+  
+    	}
+    	
+    	return ConstantNumber.IS_NOT_SAME_ID;
+    	
+		
     }
     
     

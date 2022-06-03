@@ -35,7 +35,6 @@ public class ConstantNumber {
 	public final static String ADDRESS_GUIDE ="주소를 입력해주세요.";
 	
 	// MySQL
-	
 	public final static String USERNAME = "root";
 	
 	public final static String PASSWORD = "0000";
@@ -46,10 +45,15 @@ public class ConstantNumber {
 	
 	
 	//login
-	
 	public final static boolean IS_LOGIN_SUCCESS = true;
 	
 	public final static boolean IS_LOGIN_FAIL = false;
+	
+	//check Id
+	
+	public final static boolean IS_SAME_ID = true;
+	
+	public final static boolean IS_NOT_SAME_ID = false;
 	
 	
 	
