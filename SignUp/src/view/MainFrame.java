@@ -122,11 +122,20 @@ public class MainFrame extends JFrame{
 		//유저정보 수정 (뒤로가기) -> 로그인
 		listener.changeMainFramePanel(this.userEditPanel.backButton, loginedPanel);
 	
-		//유저정보 수정 (수정하기) -> 메인
+		//유저정보 수정 (수정하기) -> 메인    //아직 수정안함
 		listener.changeMainFramePanel(this.userEditPanel.editButton, mainPanel);
+		
+		//회원가입 아이디중복 버튼
+		
+		//회원가입 주소찾기 버튼
+		listener.setFindingAddressButtonListener(this.signupPanel.findingAddressButton);
+		
+		
 		
 		
 	}
+	
+	
 	private void setMainFrame() { // mainframe 초기화
 		
 		ImageIcon icon = new ImageIcon(ConstantNumber.SIGNUP_ICON_IMAGE);

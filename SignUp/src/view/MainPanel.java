@@ -139,6 +139,7 @@ public class MainPanel extends JPanel{
 
 	}
 	
+	
 	private void setMainButtonOption() { // 메인버튼 옵션
 		
 		Color buttonColor = new Color(255,102,102);
@@ -167,6 +168,8 @@ public class MainPanel extends JPanel{
 		graphic.drawImage(background, 0, 0,getWidth(),getHeight(),this); 
 		
 	}
+	
+	
 	
 
 	

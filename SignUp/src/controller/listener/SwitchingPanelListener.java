@@ -1,8 +1,12 @@
 package controller.listener;
 
 import java.awt.Container;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -24,9 +28,22 @@ public class SwitchingPanelListener {
 	
 	public SwitchingPanelListener(Container container) {
 		
-		
 		this.container = container;
+	}
+	
+	
+	
+	
+	// 패널 변경
+	public void changePanel(JPanel switchingPanel) { 
 		
+		container.removeAll();
+		
+		container.add(switchingPanel);
+		
+		container.repaint();
+		
+		container.revalidate();
 	}
 	
 	
@@ -54,6 +71,37 @@ public class SwitchingPanelListener {
 	public void setDeleteButtonListener( JButton yesDeleteButton, JPanel switchingPanel ,String id) {
 		
 		yesDeleteButton.addActionListener(new DeleteButtonListener(switchingPanel, id));
+	}
+	
+	
+	////주소찾기버튼  리스너
+	public void setFindingAddressButtonListener(JButton findingAddressButton) {
+		
+		findingAddressButton.addActionListener(new findingAddressButtonListener());
+	}
+	
+	
+	
+	
+	
+	//주소찾기버튼 리스너
+	class findingAddressButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String url = "https://www.juso.go.kr/openIndexPage.do";
+			try {
+				
+				Desktop.getDesktop().browse(new URI(url));
+				
+			} catch (IOException | URISyntaxException e1) {
+				
+				System.out.println("웹페이지 불러오기 실패");
+				e1.printStackTrace();
+			}
+			
+			
+		}
 	}
 	
 	
@@ -137,19 +185,7 @@ public class SwitchingPanelListener {
 		
 	}
 	
-	
-	// 패널 변경
-	public void changePanel(JPanel switchingPanel) { 
-		
-		container.removeAll();
-		
-		container.add(switchingPanel);
-		
-		container.repaint();
-		
-		container.revalidate();
-	}
-	
+
 	// 패널 변경하는 리스너
 	class SwitchingMainPage implements ActionListener{
 
