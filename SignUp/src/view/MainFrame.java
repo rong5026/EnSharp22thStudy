@@ -23,6 +23,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.ComponentEdit;
+import controller.listener.SwitchingPanelListener;
 import utility.ConstantNumber;
 
 public class MainFrame extends JFrame{
@@ -32,6 +33,7 @@ public class MainFrame extends JFrame{
 	private UserEditPanel userEditPanel;
 	private ComponentEdit componentEdit;
 	
+	private SwitchingPanelListener switchingPanelListener;
 	
 	public MainFrame() {
 		
@@ -41,15 +43,21 @@ public class MainFrame extends JFrame{
 		
 		this.userEditPanel = new UserEditPanel(componentEdit);
 		
+		this.switchingPanelListener = new SwitchingPanelListener();
+		
 		setMainFrame();// mainframe 초기화
+		
+		setListner(); // 버튼에 리스너 달기
 		
 	}
 	
 	
-	public void startMainFrame() {
+	public void startMainFrame() { // mainframe 초기화
 		
 		
-		setContentPane(userEditPanel); // frame에 mainpanel로 변경
+		//setContentPane(userEditPanel); // frame에 mainpanel로 변경
+		
+		add(mainPanel);
 		
 		setVisible(true);
 		
@@ -57,7 +65,16 @@ public class MainFrame extends JFrame{
 		
 	}
 	
-	
+	private void setListner() {
+		
+		Container container = getContentPane();
+		
+		switchingPanelListener.changePanel(this.mainPanel.loginButton, container, userEditPanel);
+		
+		switchingPanelListener.changePanel(this.userEditPanel.backButton, container, mainPanel);
+		
+		
+	}
 	private void setMainFrame() { // mainframe 초기화
 		
 		ImageIcon icon = new ImageIcon(ConstantNumber.SIGNUP_ICON_IMAGE);

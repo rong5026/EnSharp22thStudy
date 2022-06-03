@@ -24,8 +24,8 @@ public class UserEditPanel extends JPanel {
 	private ComponentEdit componentEdit;
 	private ImageIcon backgroundIcon;
 	private Image background;
-	private JButton backButton;
-	private JButton editButton;
+	public JButton backButton;
+	public JButton editButton;
 	private String[] labelName;
 	private Color buttonColor;
 	

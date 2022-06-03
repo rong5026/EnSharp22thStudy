@@ -19,20 +19,13 @@ public class SwitchingPanelListener {
 		
 		
 		
-		
 	}
 	
 	public void changePanel(JButton button,  Container container,JPanel switchingPanel) {
 		
 		button.addActionListener(new SwitchingMainPage(container,switchingPanel));
 		
-		
 	}
-	
-	
-	
-	
-
 }
 
 
@@ -40,6 +33,7 @@ class SwitchingMainPage implements ActionListener{
 
 	private Container container;
 	private JPanel switchingPanel;
+	
 	
 	public SwitchingMainPage(Container container,JPanel switchingPanel) {
 		
@@ -52,8 +46,13 @@ class SwitchingMainPage implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		mainFrame.setContentPane(switchingPanel);
+		container.removeAll();
 		
+		container.add(switchingPanel);
+		
+		container.repaint();
+		
+		container.revalidate();
 	}
 	
 	
