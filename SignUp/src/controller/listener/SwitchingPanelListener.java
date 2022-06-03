@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import javax.swing.JTextField;
 
 import controller.MySQLConnection;
 import model.UserVO;
+import utility.ConstantNumber;
 import view.LogoutPanel;
 import view.MainFrame;
 import view.MainPanel;
@@ -264,7 +266,8 @@ public class SwitchingPanelListener {
 		private JTextField birthInput;
 		private JTextField phoneInput;
 		private JTextField emailInput;
-		private JTextField addressInput ;
+		private JTextField addressInput;
+		private Pattern pattern;
 		
 		
 		public SignUpButtonListener(JPanel switchingPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput ) {
@@ -281,44 +284,87 @@ public class SwitchingPanelListener {
 			
 		}
 		
+		
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
 			//한개라도 입력이 안되어있다면 팝업창 발생
-		
+			
+			String name = nameInput.getText();
+			String id = nameInput.getText();
+			String password = String.valueOf(passwordInput.getPassword());
+			String rePassword = String.valueOf(repasswordInput.getPassword());
+			String birth = birthInput.getText();
+			String phone = phoneInput.getText();
+			String email = emailInput.getText();
+			String address = addressInput.getText();
+			
+			
 			try {
 				
-				if(nameInput.getText().equals("")) {
+				if(name.equals("")) {
 					
 					JOptionPane.showMessageDialog(null, "이름을 입력해주세요.");
 				}
-				else if(idInput.getText().equals("")) {
+				else if(id.equals("")) {
 					
 					JOptionPane.showMessageDialog(null, "ID를 입력해주세요.");
 				}
-				else if(String.valueOf(passwordInput.getPassword()).equals("")) {
+				else if(password.equals("")) {
 					
 					JOptionPane.showMessageDialog(null, "Password를 입력해주세요.");
 				}
-				else if(String.valueOf(repasswordInput.getPassword()).equals("")) {
+				else if(rePassword.equals("")) {
 					
 					JOptionPane.showMessageDialog(null, "RePassword를 입력해주세요.");
 				}
-				else if(birthInput.getText().equals("")) {
+				else if(birth.equals("")) {
 					
 					JOptionPane.showMessageDialog(null, "Birth를 입력해주세요.");
 				}
-				else if(phoneInput.getText().equals("")) {
+				else if(phone.equals("")) {
 					
 					JOptionPane.showMessageDialog(null, "PhoneNumber를 입력해주세요.");
 				}
-				else if(emailInput.getText().equals("")) {
+				else if(email.equals("")) {
 					
 					JOptionPane.showMessageDialog(null, "Email를 입력해주세요.");
 				}
-				else if(addressInput.getText().equals("")) {
+				else if(address.equals("")) {
 					
 					JOptionPane.showMessageDialog(null, "Address를 입력해주세요.");
+				}
+				
+				
+				else if(!checkValidInput(name,ConstantNumber.NAME_EXCEPTION)) {
+					
+					showPopUp("이름");
+				}
+				else if(!checkValidInput(id,ConstantNumber.ID_EXCEPTION)) {
+					
+					showPopUp("ID");
+				}
+				else if(!checkValidInput(password,ConstantNumber.PASSWORD_EXCEPTION)) {
+	
+					showPopUp("Password");
+				}
+				else if(!checkValidInput(rePassword,ConstantNumber.PASSWORD_EXCEPTION) || !rePassword.equals(password)) {
+	
+					JOptionPane.showMessageDialog(null, "Password와 일치하지 않습니다.");
+				}
+				else if(!checkValidInput(birth,ConstantNumber.BIRTH_EXCEPTION)) {
+	
+					showPopUp("Birth");
+				}
+				else if(!checkValidInput(phone,ConstantNumber.PHONE_EXCEPTION)) {
+
+					showPopUp("Phone");
+	
+				}
+				else if(!checkValidInput(email,ConstantNumber.EMAIL_EXCEPTION)) {
+					
+					showPopUp("Email");
 				}
 				
 				else { // 값이 다 들어가있다면 회원가입
@@ -337,6 +383,18 @@ public class SwitchingPanelListener {
 				
 			}
 			
+		}
+		
+		//정규식 적용해서 올바른 입력인지 확인
+		private boolean checkValidInput(String text,String exceptionText ) {
+			
+			pattern = Pattern.compile(exceptionText);
+			
+			return pattern.matcher(text).matches();
+		}
+		
+		private void showPopUp(String text) {
+			JOptionPane.showMessageDialog(null, "올바른  "+text+"을(를)  입력해주세요.");
 		}
 		
 		
