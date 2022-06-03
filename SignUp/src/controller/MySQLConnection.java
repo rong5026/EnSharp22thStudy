@@ -42,7 +42,7 @@ public class MySQLConnection {
     }
     
     // 로그인 확인 
-    public boolean getLoginData(String id, char[] password) throws SQLException { 
+    public boolean getLoginData(String id, char[] password,String loginedId) throws SQLException { 
     	
     	String sql = "SELECT * FROM user_data";
     	
@@ -56,8 +56,12 @@ public class MySQLConnection {
     		
     		String userPassword = resultSet.getString("password");
     	
-    		if(userId.equals(id) && userPassword.equals(inputPassword) ) 
+    		if(userId.equals(id) && userPassword.equals(inputPassword) ) {
+    			
+    			loginedId = userId;
+    			
     			return ConstantNumber.IS_LOGIN_SUCCESS;
+    		}
     		
     	}
     	
@@ -66,7 +70,6 @@ public class MySQLConnection {
     }
     
     //회원가입
-    
     public void insertUserData(String name, String id, char[] password, String birth, String phone, String email, String address ) throws SQLException {
     	
     	String sql = "INSERT INTO user_data VALUES (?,?,?,?,?,?,?)";
@@ -83,11 +86,25 @@ public class MySQLConnection {
     	statement.setString(6, email);
     	statement.setString(7, address);
     	
-    	if(statement.executeUpdate()==0) {
+    	if(statement.executeUpdate() == 0) {
     		
     		System.out.println("회원가입 실패");
     	}
-
+    	
+    }
+    
+    //회원탈퇴
+    public void deleteUserData(String loginedId) throws SQLException {
+    	
+    	String sql = "DELETE FROM user_data WHERE id=?";
+    	
+    	PreparedStatement statement = connection.prepareStatement(sql);
+    	
+    	statement.setString(1, loginedId);
+    	
+    	statement.executeUpdate(sql);
+    	
+    	
     }
     
     

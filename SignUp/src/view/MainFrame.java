@@ -87,7 +87,7 @@ public class MainFrame extends JFrame{
 		Container container = getContentPane();
 		
 		//메인 -> 로그인     로그인버튼에 바로 달아줌
-		listener.setLoginButtonListener(mainPanel.loginButton,loginedPanel,mainPanel.idText,mainPanel.passwordText );
+		listener.setLoginButtonListener(mainPanel.loginButton,loginedPanel,mainPanel.idText,mainPanel.passwordText, mainPanel.loginedId );
 		
 		//메인 -> 회원가입
 		listener.changeMainFramePanel(this.mainPanel.signUpButton, signupPanel);
@@ -97,8 +97,6 @@ public class MainFrame extends JFrame{
 		
 		//회원가입 (가입하기) -> 메인
 		listener.setSignUpButtonListener(signupPanel.editButton, mainPanel,signupPanel.nameInput,signupPanel.idInput,signupPanel.passwordInput,signupPanel.repasswordInput,signupPanel.birthInput,signupPanel.phoneInput,signupPanel.emailInput,signupPanel.addressInput    );
-		
-		
 		
 		//로그아웃 패널로 이동
 		listener.changeMainFramePanel(this.loginedPanel.logOutButton, logoutPanel);
@@ -113,7 +111,9 @@ public class MainFrame extends JFrame{
 		listener.changeMainFramePanel(this.loginedPanel.idDeleteButton, deletingPanel);
 		
 		//삭제 Yes -> 메인 이동
-		listener.changeMainFramePanel(this.deletingPanel.yesButton, mainPanel);
+		listener.setDeleteButtonListener(this.deletingPanel.yesButton, mainPanel, mainPanel.loginedId );
+		
+		
 		
 		//삭제 No -> 로그인
 		listener.changeMainFramePanel(this.deletingPanel.noButton, loginedPanel);

@@ -30,7 +30,7 @@ public class MainPanel extends JPanel{
 	
 	public JTextField idText;
 	public JPasswordField passwordText;
-	
+	public String loginedId;
 	public JButton loginButton;
 	public JButton signUpButton;
 	
@@ -54,8 +54,10 @@ public class MainPanel extends JPanel{
 	
 	public MainPanel(ComponentEdit componentEdit, Container container) {
 
+		this.loginedId = "";
 		
 		this.container = container;
+		
 		this.idText = new JTextField();
 		
 		this.passwordText = new JPasswordField();

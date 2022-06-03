@@ -38,9 +38,9 @@ public class SwitchingPanelListener {
 	}
 	
 	//로그인 버튼 리스너
-	public void setLoginButtonListener(JButton loginButton,JPanel switchingPanel,JTextField id,JPasswordField password) {
+	public void setLoginButtonListener(JButton loginButton,JPanel switchingPanel,JTextField id,JPasswordField password,String loginedId) {
 		
-		loginButton.addActionListener(new LoginButtonListener(switchingPanel, id, password));
+		loginButton.addActionListener(new LoginButtonListener(switchingPanel, id, password,loginedId));
 	
 	}
 	
@@ -50,8 +50,41 @@ public class SwitchingPanelListener {
 		signUpButton.addActionListener(new SignUpButtonListener( switchingPanel, nameInput, idInput, passwordInput, repasswordInput, birthInput, phoneInput, emailInput, addressInput));
 	}
 	
+	//회원탈퇴 yes버튼 리스너
+	public void setDeleteButtonListener( JButton yesDeleteButton, JPanel switchingPanel ,String id) {
+		
+		yesDeleteButton.addActionListener(new DeleteButtonListener(switchingPanel, id));
+	}
 	
 	
+	// 회원탈퇴 Yes버튼 리스너
+	class DeleteButtonListener implements ActionListener{
+	
+		private JPanel switchingPanel;
+		private String id;
+		
+		public DeleteButtonListener(JPanel switchingPanel ,String id ) {
+			
+			this.switchingPanel = switchingPanel;
+			this.id = id;
+			
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			try {
+				
+				MySQLConnection.getInstance().deleteUserData(id);
+				
+			} catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+			changePanel(switchingPanel);
+			
+		}
+	}
 	
 	// 회원가입버튼 리스너
 	class SignUpButtonListener implements ActionListener{
@@ -85,8 +118,6 @@ public class SwitchingPanelListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			
-		
 			//한개라도 입력이 안되어있다면 팝업창 발생
 			
 			// 모든 항목이 입력이 되어있다면
@@ -142,12 +173,13 @@ public class SwitchingPanelListener {
 		private JPanel switchingPanel;
 		private JTextField id;
 		private JPasswordField password;
-		
-		public LoginButtonListener(JPanel switchingPanel,JTextField id,JPasswordField password) {
+		private String loginedId;
+		public LoginButtonListener(JPanel switchingPanel,JTextField id,JPasswordField password,String loginedId) {
 			
 			this.switchingPanel = switchingPanel;
 			this.id = id;
 			this.password = password;
+			this.loginedId = loginedId;
 		}
 	
 		 @Override
@@ -155,7 +187,7 @@ public class SwitchingPanelListener {
              
          	try {
          		
-					if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword())) {
+					if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword(),loginedId)) {
 				
 						changePanel(switchingPanel); // 패널변경
 					}
