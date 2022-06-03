@@ -110,10 +110,8 @@ public class MainFrame extends JFrame{
 		//삭제 패널로 이동
 		listener.changeMainFramePanel(this.loginedPanel.idDeleteButton, deletingPanel);
 		
-		//삭제 Yes -> 메인 이동
+		//삭제 Yes -> 메인 이동      //나중에 고쳐야함 데이터베이스 삭제오류
 		listener.setDeleteButtonListener(this.deletingPanel.yesButton, mainPanel, mainPanel.loginedId );
-		
-		
 		
 		//삭제 No -> 로그인
 		listener.changeMainFramePanel(this.deletingPanel.noButton, loginedPanel);
@@ -123,9 +121,10 @@ public class MainFrame extends JFrame{
 		
 		//유저정보 수정 (뒤로가기) -> 로그인
 		listener.changeMainFramePanel(this.userEditPanel.backButton, loginedPanel);
-		
+	
 		//유저정보 수정 (수정하기) -> 메인
 		listener.changeMainFramePanel(this.userEditPanel.editButton, mainPanel);
+		
 		
 	}
 	private void setMainFrame() { // mainframe 초기화

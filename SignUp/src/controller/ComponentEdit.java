@@ -29,6 +29,7 @@ public class ComponentEdit {
 		
 	}
 	
+	
 	// TextField 옵션 적용
 	public void setTextFieldOption(JTextField jTextField,int fontSize ) {
 		
@@ -38,6 +39,7 @@ public class ComponentEdit {
 		jTextField.setFont(textFieldFont);
 		
 	}
+	
 	
 	public JLabel createLabelOption(String labelText ) { // 라벨 공통요소 적용 후 생성
 		
@@ -74,7 +76,8 @@ public class ComponentEdit {
 		
 	}
 	
-	public JLabel setGuidingLabelOption(String labelText) {
+	
+	public JLabel setGuidingLabelOption(String labelText) { // 회원수정, 회원가입 안내문구
 		
 		JLabel label = new JLabel(labelText);
 		

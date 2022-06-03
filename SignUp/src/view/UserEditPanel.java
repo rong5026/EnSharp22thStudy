@@ -39,7 +39,7 @@ public class UserEditPanel extends JPanel {
 	protected JButton backButton;
 	protected JButton editButton;
 
-	private Color buttonColor;
+	protected Color buttonColor;
 	
 	private int buttonWidth;
 	private int buttonHeight;
@@ -108,7 +108,7 @@ public class UserEditPanel extends JPanel {
 		birthInput.setBounds(200,360,210,30);
 		emailInput.setBounds(200,435,260,30);
 		phoneInput.setBounds(200,510,260,30);
-		addressInput.setBounds(200,585,300,30);
+		addressInput.setBounds(200,585,400,30);
 		
 		add(nameInput);
 		add(idInput);
