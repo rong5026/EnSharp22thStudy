@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
+import javax.lang.model.element.NestingKind;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -69,9 +70,9 @@ public class SwitchingPanelListener {
 	}
 	
 	//회원가입하기 버튼 리스너
-	public void setSignUpButtonListener(JButton signUpButton,JPanel switchingPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput   ) {
+	public void setSignUpButtonListener(JButton signUpButton,JPanel switchingPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput ,String type  ) {
 		
-		signUpButton.addActionListener(new SignUpButtonListener( switchingPanel, nameInput, idInput, passwordInput, repasswordInput, birthInput, phoneInput, emailInput, addressInput));
+		signUpButton.addActionListener(new SignUpButtonListener( switchingPanel, nameInput, idInput, passwordInput, repasswordInput, birthInput, phoneInput, emailInput, addressInput,type));
 	}
 	
 	//회원탈퇴 yes버튼 리스너
@@ -268,9 +269,10 @@ public class SwitchingPanelListener {
 		private JTextField emailInput;
 		private JTextField addressInput;
 		private Pattern pattern;
+		private String type;
 		
 		
-		public SignUpButtonListener(JPanel switchingPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput ) {
+		public SignUpButtonListener(JPanel switchingPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput,String type ) {
 			
 			this.switchingPanel = switchingPanel;
 			this.nameInput = nameInput;
@@ -281,6 +283,7 @@ public class SwitchingPanelListener {
 			this.phoneInput = phoneInput;
 			this.emailInput = emailInput;
 			this.addressInput = addressInput;
+			this.type = type;
 			
 		}
 		
@@ -292,7 +295,7 @@ public class SwitchingPanelListener {
 			//한개라도 입력이 안되어있다면 팝업창 발생
 			
 			String name = nameInput.getText();
-			String id = nameInput.getText();
+			String id = idInput.getText();
 			String password = String.valueOf(passwordInput.getPassword());
 			String rePassword = String.valueOf(repasswordInput.getPassword());
 			String birth = birthInput.getText();
@@ -369,11 +372,25 @@ public class SwitchingPanelListener {
 				
 				else { // 값이 다 들어가있다면 회원가입
 					
-					JOptionPane.showConfirmDialog(null,nameInput.getText()+ "님 반갑습니다.", "confirm",JOptionPane.DEFAULT_OPTION );
+					JOptionPane.showConfirmDialog(null,nameInput.getText()+ "님 환영합니다.", "confirm",JOptionPane.DEFAULT_OPTION );
 				
 					MySQLConnection.getInstance().insertUserData(nameInput.getText(), idInput.getText(), passwordInput.getPassword(), birthInput.getText(), phoneInput.getText(), emailInput.getText(), addressInput.getText());
 					
 					changePanel(switchingPanel);
+					
+					
+					if(type.equals("Signup")) {
+
+						nameInput.setText("");
+						idInput.setText("");
+						passwordInput.setText("");
+						repasswordInput.setText("");
+						birthInput.setText("");
+						phoneInput.setText("");
+						emailInput.setText("");
+						addressInput.setText("");
+					}
+	
 					
 				}
 				
@@ -483,7 +500,6 @@ public class SwitchingPanelListener {
 	
 	
 }
-
 
 
 

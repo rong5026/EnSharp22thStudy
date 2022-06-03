@@ -92,8 +92,8 @@ public class MySQLConnection {
     	statement.setString(2, id);
     	statement.setString(3, inputPassword);
     	statement.setString(4, birth);
-    	statement.setString(5, phone);
-    	statement.setString(6, email);
+    	statement.setString(5, email);
+    	statement.setString(6, phone);
     	statement.setString(7, address);
     	
     	if(statement.executeUpdate() == 0) {

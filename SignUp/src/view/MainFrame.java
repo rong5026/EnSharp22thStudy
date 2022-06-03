@@ -98,7 +98,7 @@ public class MainFrame extends JFrame{
 		listener.changeMainFramePanel(this.signupPanel.backButton, mainPanel);
 		
 		//회원가입 (가입하기) -> 메인
-		listener.setSignUpButtonListener(signupPanel.editButton, mainPanel,signupPanel.nameInput,signupPanel.idInput,signupPanel.passwordInput,signupPanel.repasswordInput,signupPanel.birthInput,signupPanel.phoneInput,signupPanel.emailInput,signupPanel.addressInput    );
+		listener.setSignUpButtonListener(signupPanel.editButton, mainPanel,signupPanel.nameInput,signupPanel.idInput,signupPanel.passwordInput,signupPanel.repasswordInput,signupPanel.birthInput,signupPanel.phoneInput,signupPanel.emailInput,signupPanel.addressInput ,"Signup"   );
 		
 		//로그아웃 패널로 이동
 		listener.changeMainFramePanel(this.loginedPanel.logOutButton, logoutPanel);
@@ -126,7 +126,7 @@ public class MainFrame extends JFrame{
 		listener.changeMainFramePanel(this.userEditPanel.backButton, loginedPanel);
 	
 		//유저정보 수정 (수정하기) -> 메인   
-		listener.setSignUpButtonListener(userEditPanel.editButton, userEditPanel,userEditPanel.nameInput,userEditPanel.idInput,userEditPanel.passwordInput,userEditPanel.repasswordInput,userEditPanel.birthInput,userEditPanel.phoneInput,userEditPanel.emailInput,userEditPanel.addressInput    );
+		listener.setSignUpButtonListener(userEditPanel.editButton, userEditPanel,userEditPanel.nameInput,userEditPanel.idInput,userEditPanel.passwordInput,userEditPanel.repasswordInput,userEditPanel.birthInput,userEditPanel.phoneInput,userEditPanel.emailInput,userEditPanel.addressInput,"Edit"   );
 		
 		
 		//회원가입 아이디중복 버튼
