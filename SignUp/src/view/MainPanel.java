@@ -25,8 +25,8 @@ public class MainPanel extends JPanel{
 	private Image background;
 	private JTextField idText;
 	private JPasswordField passwordText;
-	private JButton loginButton;
-	private JButton signUpButton;
+	public JButton loginButton;
+	public JButton signUpButton;
 	private JButton idFindingButton;
 	private JButton passwordFindingButton;
 

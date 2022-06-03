@@ -40,6 +40,7 @@ public class UserEditPanel extends JPanel {
 	private JPasswordField passwordInput;
 	private JPasswordField repasswordInput;
 	private JTextField birthInput;
+	private JTextField phoneInput;
 	private JTextField emailInput;
 	private JTextField addressInput;
 	
@@ -68,12 +69,29 @@ public class UserEditPanel extends JPanel {
 		
 	}
 	
+
 	private void setTextField() {// TextField 배치
 		
 		 createTextField();
-		 
-		//nameInput.setBounds(200,60,300,30);
 		
+		//사이즈, 위치설정
+		nameInput.setBounds(200,60,260,30);
+		idInput.setBounds(200,135,260,30);
+		passwordInput.setBounds(200,210,260,30);
+		repasswordInput.setBounds(200,285,260,30);
+		birthInput.setBounds(200,360,210,30);
+		emailInput.setBounds(200,435,260,30);
+		phoneInput.setBounds(200,510,260,30);
+		addressInput.setBounds(200,585,300,30);
+		
+		add(nameInput);
+		add(idInput);
+		add(passwordInput);
+		add(repasswordInput);
+		add(birthInput);
+		add(emailInput);
+		add(phoneInput);
+		add(addressInput);
 		add(nameInput);
 		
 	}
@@ -82,20 +100,24 @@ public class UserEditPanel extends JPanel {
 	private void createTextField() { // TextField 생성
 		
 		nameInput = new JTextField();
-		idInput= new JTextField();
-		passwordInput= new JPasswordField();
-		repasswordInput= new JPasswordField();
-		birthInput= new JTextField();
-		emailInput= new JTextField();
+		idInput = new JTextField();
+		passwordInput = new JPasswordField();
+		repasswordInput = new JPasswordField();
+		birthInput = new JTextField();
+		emailInput = new JTextField();
+		phoneInput = new JTextField();
 		addressInput= new JTextField();
 		
+		//폰트변경
 		componentEdit.setTextFieldOption(nameInput,textFieldFontSize);        
 		componentEdit.setTextFieldOption(idInput,textFieldFontSize); 
 		componentEdit.setTextFieldOption(passwordInput,textFieldFontSize);
 		componentEdit.setTextFieldOption(repasswordInput,textFieldFontSize);
 		componentEdit.setTextFieldOption(birthInput,textFieldFontSize);
 		componentEdit.setTextFieldOption(emailInput,textFieldFontSize);
+		componentEdit.setTextFieldOption(phoneInput,textFieldFontSize);
 		componentEdit.setTextFieldOption(addressInput,textFieldFontSize);
+
 		
 		
 	}

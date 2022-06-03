@@ -34,8 +34,9 @@ public class ComponentEdit {
 		
 		jTextField.setFont(textFieldFont);
 		
-		
 	}
+	
+
 
 	
 	
