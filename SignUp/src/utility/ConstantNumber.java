@@ -40,7 +40,7 @@ public class ConstantNumber {
 	
 	public final static String PASSWORD = "0000";
 	
-	public final static String JDBCDRIVER = "com.mysql.jdbc.Driver";
+	public final static String JDBCDRIVER = "com.mysql.cj.jdbc.Driver";
 	
 	public final static String URL = "jdbc:mysql://localhost:3306/login_user_data";
 	

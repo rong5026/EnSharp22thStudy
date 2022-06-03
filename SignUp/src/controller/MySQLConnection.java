@@ -5,12 +5,24 @@ import java.sql.*;
 import utility.ConstantNumber;
 
 public class MySQLConnection {
+	
+	private static MySQLConnection mySQLConnection =null;
 
 	private Connection connection; //DB 커넥션 연결 객체
 	private Statement statement;
    
-    
-    public MySQLConnection() {
+	public static MySQLConnection getInstance() { // 싱글톤 적용
+		
+		if(mySQLConnection == null) {
+			
+			mySQLConnection = new MySQLConnection();
+			
+		}
+		
+		return mySQLConnection;
+	}
+	
+    private MySQLConnection() {
     	
         try {
            
@@ -29,9 +41,12 @@ public class MySQLConnection {
     }
     
     // 로그인 확인 
-    public boolean getLoginData(String id, String password) throws SQLException { 
+    public boolean getLoginData(String id, char[] password) throws SQLException { 
     	
     	String sql = "SELECT * FROM user_data";
+    	
+    	String inputPassword = new String(password); // 문자 배열 -> 문자열
+    	
     	
     	ResultSet resultSet = statement.executeQuery(sql);
     			
@@ -41,7 +56,7 @@ public class MySQLConnection {
     		
     		String userPassword = resultSet.getString("password");
     		
-    		if(userId == id && password == password) 
+    		if(userId == id && userPassword == inputPassword) 
     			return true;
     		
     	}

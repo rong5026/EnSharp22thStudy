@@ -1,11 +1,15 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.ComponentEdit;
+import controller.MySQLConnection;
 import utility.ConstantNumber;
 
 
@@ -23,8 +28,10 @@ public class MainPanel extends JPanel{
 	
 	private ImageIcon backgroundIcon;
 	private Image background;
+	
 	private JTextField idText;
 	private JPasswordField passwordText;
+	
 	public JButton loginButton;
 	public JButton signUpButton;
 	private JButton idFindingButton;
@@ -32,22 +39,35 @@ public class MainPanel extends JPanel{
 
 	private JPanel textFieldPanel;
 	private JPanel buttonPanel;
+	
 	private ImageIcon icon;
 	
 	private ComponentEdit componentEdit;
 	
+	private MySQLConnection mySQLConnection;
 	
-	public MainPanel(ComponentEdit componentEdit) {
+	private Container container;
+	
+	
+	public MainPanel(ComponentEdit componentEdit, Container container) {
 
+		
+		this.container = container;
 		this.idText = new JTextField();
+		
 		this.passwordText = new JPasswordField();
 		
 		this.loginButton = new JButton("Login");
+		
 		this.signUpButton = new JButton("Sign Up");
+		
 		this.idFindingButton = new JButton("Find ID");
+		
 		this.passwordFindingButton = new JButton("Find PW"); 
 		
 		this.componentEdit = componentEdit; // 컴포넌트 옵션 적용클래스
+		
+		this.mySQLConnection = MySQLConnection.getInstance();
 		
 		setMainPanelComponent();
 		
@@ -131,8 +151,6 @@ public class MainPanel extends JPanel{
 		
 	}
 	
-	
-	
 
 	public void paintComponent(Graphics graphic) {  // mainframe 배경화면 설정
 		
@@ -145,5 +163,10 @@ public class MainPanel extends JPanel{
 		graphic.drawImage(background, 0, 0,getWidth(),getHeight(),this); 
 		
 	}
+	
+	
+	
+				//if(MySQLConnection.getInstance().getLoginData( idText.getText(), passwordText.getPassword())     ) {
+				
 	
 }
