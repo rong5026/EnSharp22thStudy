@@ -50,16 +50,23 @@ public class MySQLConnection {
     	
     	ResultSet resultSet = statement.executeQuery(sql);
     			
+
+		
     	while(resultSet.next()) {
     		
     		String userId = resultSet.getString("id");
     		
     		String userPassword = resultSet.getString("password");
     	
-    		if(userId.equals(id) && userPassword.equals(inputPassword) ) {
+    		
+    		if(userId.equals(id)  && userPassword.equals(inputPassword)  && id.equals("")==false ) {
     			
     			loginedId = userId;
-    			
+    			System.out.println(id);
+    			System.out.println(inputPassword);
+    			System.out.println(userId);
+        		System.out.println(userPassword);
+        		
     			return ConstantNumber.IS_LOGIN_SUCCESS;
     		}
     		

@@ -44,6 +44,7 @@ public class SwitchingPanelListener {
 		container.repaint();
 		
 		container.revalidate();
+		
 	}
 	
 	
