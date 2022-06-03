@@ -22,14 +22,14 @@ import utility.ConstantNumber;
 public class UserEditPanel extends JPanel {
 	
 	
-	protected JTextField nameInput;
-	protected JTextField idInput;
-	protected JPasswordField passwordInput;
-	protected JPasswordField repasswordInput;
-	protected JTextField birthInput;
-	protected JTextField phoneInput;
-	protected JTextField emailInput;
-	protected JTextField addressInput;
+	public JTextField nameInput;
+	public JTextField idInput;
+	public JPasswordField passwordInput;
+	public JPasswordField repasswordInput;
+	public JTextField birthInput;
+	public JTextField phoneInput;
+	public JTextField emailInput;
+	public JTextField addressInput;
 	
 	private ComponentEdit componentEdit;
 	
@@ -89,6 +89,8 @@ public class UserEditPanel extends JPanel {
 		
 		setButton(); // 버튼 배치
 		
+		createTextField(); // 텍스트필드 생성
+		
 		setTextField(); // 텍스트필드 배치
 		
 		setLayout(null);
@@ -98,7 +100,7 @@ public class UserEditPanel extends JPanel {
 
 	private void setTextField() {// TextField 배치
 		
-		 createTextField();
+		
 		
 		//사이즈, 위치설정
 		nameInput.setBounds(200,60,260,30);

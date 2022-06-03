@@ -3,7 +3,11 @@ package controller;
 import java.sql.*;
 import java.util.BitSet;
 
+import javax.swing.JPanel;
+
+import model.UserVO;
 import utility.ConstantNumber;
+import view.MainPanel;
 
 public class MySQLConnection {
 	
@@ -42,7 +46,7 @@ public class MySQLConnection {
     }
     
     // 로그인 확인 
-    public boolean getLoginData(String id, char[] password,String loginedId) throws SQLException { 
+    public boolean getLoginData(String id, char[] password,MainPanel mainPanel) throws SQLException { 
     	
     	String sql = "SELECT * FROM user_data";
     	
@@ -61,7 +65,7 @@ public class MySQLConnection {
     		
     		if(userId.equals(id)  && userPassword.equals(inputPassword)  && id.equals("")==false ) {
     			
-    			loginedId = userId;
+    			mainPanel.loginedId = userId;
     			
     			return ConstantNumber.IS_LOGIN_SUCCESS;
     		}
@@ -128,6 +132,38 @@ public class MySQLConnection {
     	
     	return ConstantNumber.IS_NOT_SAME_ID;
     	
+    }
+    
+    
+    //id가 같은 유저의 정보를 반환
+    public UserVO findUserData(MainPanel mainJPanel) throws SQLException {
+    	
+    	UserVO userVO;
+    	
+    	String sql = "SELECT * FROM user_data";
+    	
+    	ResultSet resultSet = statement.executeQuery(sql);
+    			
+    	while(resultSet.next()) {
+    		
+    		String id = resultSet.getString("id");
+    		
+    		if( mainJPanel.loginedId.equals(id)) {
+    			
+    			String name = resultSet.getString("name");
+    			String password = resultSet.getString("password");
+    			String birth = resultSet.getString("birth");
+    			String email = resultSet.getString("email");
+    			String phone = resultSet.getString("phone");
+    			String address = resultSet.getString("address");
+    			
+    			userVO = new UserVO(id, name, password, birth, email, phone, address);
+    			
+    			return userVO;
+    		}
+    	}  	
+    	
+    	return null;
 		
     }
     

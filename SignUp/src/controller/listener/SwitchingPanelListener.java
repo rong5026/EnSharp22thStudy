@@ -17,8 +17,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.MySQLConnection;
+import model.UserVO;
 import view.LogoutPanel;
 import view.MainFrame;
+import view.MainPanel;
 
 public class SwitchingPanelListener {
 
@@ -57,9 +59,9 @@ public class SwitchingPanelListener {
 	}
 	
 	//로그인 버튼 리스너
-	public void setLoginButtonListener(JButton loginButton,JPanel switchingPanel,JTextField id,JPasswordField password,String loginedId) {
+	public void setLoginButtonListener(JButton loginButton,JPanel switchingPanel,JTextField id,JPasswordField password,MainPanel mainPanel) {
 		
-		loginButton.addActionListener(new LoginButtonListener(switchingPanel, id, password,loginedId));
+		loginButton.addActionListener(new LoginButtonListener(switchingPanel, id, password,mainPanel));
 		
 	
 	}
@@ -89,7 +91,77 @@ public class SwitchingPanelListener {
 		checkingIdButton.addActionListener(new CheckingIdButtonListener(id));
 	}
 	
+	//유저정보패널로 가는 버튼 리스너
+	public void setChangingEditUserButtonListener(JButton editButton,JPanel switchingPanel,MainPanel mainPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput) {
+		
+		editButton.addActionListener(new ChangingEditUserButtonListener(switchingPanel, mainPanel,nameInput, idInput, passwordInput, repasswordInput, birthInput, phoneInput, emailInput, addressInput) );
+	}
 	
+	
+	//유저정보패널로 가는 버튼 리스너
+	class ChangingEditUserButtonListener implements ActionListener{
+
+		private MainPanel mainJPanel;
+		private JPanel userEditPanel;
+		
+		private JTextField nameInput;
+		private JTextField idInput;
+		private JPasswordField passwordInput;
+		private JPasswordField repasswordInput;
+		private JTextField birthInput;
+		private JTextField phoneInput;
+		private JTextField emailInput;
+		private JTextField addressInput;
+		
+		public ChangingEditUserButtonListener(JPanel userEditPanel,MainPanel mainJPanel,JTextField nameInput,JTextField idInput,JPasswordField passwordInput,JPasswordField repasswordInput,JTextField birthInput,JTextField phoneInput,JTextField emailInput,JTextField addressInput) {
+			
+			this.userEditPanel = userEditPanel;
+			this.mainJPanel = mainJPanel;
+			
+			this.nameInput = nameInput;
+			this.idInput = idInput;
+			this.passwordInput = passwordInput;
+			this.repasswordInput = repasswordInput;
+			this.birthInput = birthInput;
+			this.phoneInput = phoneInput;
+			this.emailInput = emailInput;
+			this.addressInput =addressInput;
+			
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			try {
+				
+				UserVO loginedUserVO = MySQLConnection.getInstance().findUserData(mainJPanel);
+				
+				changePanel(userEditPanel); // 패널 전환
+				
+				// 사용자 입력칸에 사용자 정보 삽입
+				nameInput.setText(loginedUserVO.getName());
+				idInput.setText(loginedUserVO.getId());
+				passwordInput.setText(loginedUserVO.getPassword());
+				repasswordInput.setText(loginedUserVO.getPassword());
+				birthInput.setText(loginedUserVO.getBirth());
+				phoneInput.setText(loginedUserVO.getPhone());
+				emailInput.setText(loginedUserVO.getEmail());
+				addressInput.setText(loginedUserVO.getAddress());
+				
+				
+			} catch (SQLException e1) {
+				
+				System.out.println("로그인된 유저의 정보를 받아오지 못했습니다.");
+				e1.printStackTrace();
+			}
+			
+		}
+		
+		
+	}
+	
+	
+	// ID중복 버튼 리스너
 	class CheckingIdButtonListener implements ActionListener{
 
 		private JTextField id;
@@ -179,7 +251,7 @@ public class SwitchingPanelListener {
 				
 				e1.printStackTrace();
 			}
-			changePanel(switchingPanel);
+			changePanel(switchingPanel); // 패널전환
 			
 		}
 	}
@@ -298,13 +370,14 @@ public class SwitchingPanelListener {
 		private JPanel switchingPanel;
 		private JTextField id;
 		private JPasswordField password;
-		private String loginedId;
-		public LoginButtonListener(JPanel switchingPanel,JTextField id,JPasswordField password,String loginedId) {
+		private MainPanel mainPanel;
+		
+		public LoginButtonListener(JPanel switchingPanel,JTextField id,JPasswordField password,MainPanel mainPanel) {
 			
 			this.switchingPanel = switchingPanel;
 			this.id = id;
 			this.password = password;
-			this.loginedId = loginedId;
+			this.mainPanel = mainPanel;
 			
 		}
 	
@@ -314,9 +387,14 @@ public class SwitchingPanelListener {
 			 
          	try {
          		
-				if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword(),loginedId)) {
+				if(MySQLConnection.getInstance().getLoginData(id.getText(), password.getPassword(),mainPanel)) {
 				
+					
+					mainPanel.loginedId = id.getText(); // 현재 로그인된 유저의 id를 넣음
+					
 					changePanel(switchingPanel); // 패널변경
+					
+					
 				}
 				else {
 					
