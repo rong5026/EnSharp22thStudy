@@ -40,27 +40,31 @@ public class ComponentEdit {
 	
 	public JLabel createLabelOption(String labelText ) { // 라벨 생성 후 옵션
 		
-		
 		JLabel label = new JLabel(labelText);
 		
 		Font labelFont = new Font("Stencil",Font.BOLD,25);
 			
-		label.setForeground(new Color(199,23,23)); // 텍스트 색상
-		
-		label.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용
-		
-		label.setBackground(new Color(255,175,175,230));  // 라벨 배경색
-	
-		label.setBorder(new LineBorder(Color.red)); // 라벨 테두리
+		setLabelOption( label,new Color(199,23,23),new Color(255,175,175,230), Color.red); // 라벨들의 옵션
 		
 		label.setFont(labelFont); // 라벨 폰트
 		
-		
 		label.setHorizontalAlignment(JLabel.CENTER); // 라벨텍스트 가운데정렬
 		
-
 		return label;
 		
+	}
+	
+	public void setLabelOption(JLabel label , Color text, Color background, Color border) {
+		
+		label.setForeground(text); // 텍스트 색상
+		
+		label.setOpaque(true); //Opaque값을 true로 미리 설정해 주어야 배경색이 적용
+		
+		label.setBackground(background);  // 라벨 배경색
+	
+		label.setBorder(new LineBorder(border)); // 라벨 테두리
+		
+		label.setHorizontalAlignment(JLabel.LEFT); // 라벨텍스트 가운데정렬
 	}
 
 
