@@ -22,11 +22,13 @@ import utility.ConstantNumber;
 public class UserEditPanel extends JPanel {
 	
 	private ComponentEdit componentEdit;
+	
 	private ImageIcon backgroundIcon;
 	private Image background;
+	
 	public JButton backButton;
 	public JButton editButton;
-	private String[] labelName;
+
 	private Color buttonColor;
 	
 	private int buttonWidth;
@@ -34,6 +36,8 @@ public class UserEditPanel extends JPanel {
 	
 	private int textFieldHeight;
 	private int textFieldFontSize;
+	
+	private String[] labelName;
 	
 	private JTextField nameInput;
 	private JTextField idInput;
@@ -44,10 +48,22 @@ public class UserEditPanel extends JPanel {
 	private JTextField emailInput;
 	private JTextField addressInput;
 	
+	private Color labelTextColor;        //라벨 텍스트 색
+	private Color labelBackgroundColor;  //라벨 배경색
+	private Color labelBorderColor;      //라벨 테두리색
+	
 	
 	
 	
 	public UserEditPanel(ComponentEdit componentEdit) {
+		
+		
+		this.labelTextColor = new Color(199,23,23);
+		
+		this.labelBackgroundColor = new Color(255,175,175,230);
+		
+		this.labelBorderColor =  Color.red; // 라벨 색상 옵션들
+		
 		
 		this.componentEdit = componentEdit;
 		
@@ -162,11 +178,16 @@ public class UserEditPanel extends JPanel {
 		
 		for(int index = 0 ; index < labelName.length ; index++) {
 			
-			JLabel label = componentEdit.createLabelOption(labelName[index]);
+			// text, text 색, label 배경색, label 테두리색
+			JLabel label = componentEdit.setLabelOption(labelName[index],labelTextColor,labelBackgroundColor,labelBorderColor);
+			
+			label.setHorizontalAlignment(JLabel.CENTER); 
 		
 			label.setBounds(30,60 +index*(height+5), width, height );
 			
 			add(label); 
+			
+			JLabel guidingText = componentEdit.setLabelOption(TOOL_TIP_TEXT_KEY, labelTextColor, labelBackgroundColor, labelBorderColor);
 			
 		}
 		
