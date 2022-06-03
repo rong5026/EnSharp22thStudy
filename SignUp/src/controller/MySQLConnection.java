@@ -121,8 +121,6 @@ public class MySQLConnection {
     		
     		String userId = resultSet.getString("id");
     		
-    		System.out.println(userId);
-    		
     		if(id.equals(userId))
     			return ConstantNumber.IS_SAME_ID;
   

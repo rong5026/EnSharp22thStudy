@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -103,14 +104,23 @@ public class SwitchingPanelListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			try {
-				
-				System.out.println("입력된 아이디"+id.getText());
+			
 				if(MySQLConnection.getInstance().checkSameId(id.getText())) { // 중복일때
 					
-					System.out.println("중복이다 이놈아");
+					JOptionPane.showMessageDialog(null, "이미 존재하는 ID입니다.");
+					
+					id.setText("");
+					
 				}
 				else { // 중복이 아닐때
-					System.out.println("중복 아니다");
+					
+					int answer = JOptionPane.showConfirmDialog(null, "ID를 사용하시겠습니까?", "confirm",JOptionPane.YES_NO_OPTION );
+					
+					if(answer==JOptionPane.NO_OPTION){  //사용자가 yes를 눌렀을 경우
+						
+						id.setText("");
+					} 
+					
 				}
 				
 			} catch (SQLException e1) {
