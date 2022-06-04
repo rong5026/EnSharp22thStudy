@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 
 import controller.ComponentEdit;
 import controller.MySQLConnection;
-import controller.listener.SwitchingPanelListener;
+import controller.SwitchingPanelListener;
 import utility.ConstantNumber;
 
 

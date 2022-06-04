@@ -23,7 +23,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.ComponentEdit;
-import controller.listener.SwitchingPanelListener;
+import controller.SwitchingPanelListener;
 import utility.ConstantNumber;
 
 
@@ -84,7 +84,9 @@ public class MainFrame extends JFrame{
 		
 	}
 	
-	private void setListner() {
+	
+	//리스너들 달기
+	private void setListner() { 
 		
 		Container container = getContentPane();
 		

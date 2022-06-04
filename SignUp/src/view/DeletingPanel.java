@@ -20,6 +20,7 @@ public class DeletingPanel extends LogoutPanel{
 		
 		super(componentEdit);
 		
+		// Logout패널 상속받고 라벨 등 몇가지만 수정
 		this.logoutRequest.setText("Do you want to Delete the ID?");
 		
 		this.noButton.setBackground(new Color(204,204,255));

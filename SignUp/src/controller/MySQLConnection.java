@@ -62,12 +62,12 @@ public class MySQLConnection {
     		
     		String userPassword = resultSet.getString("password");
     	
-    		
+    		// 입력한 아이디와 비밀번호가 같으면
     		if(userId.equals(id)  && userPassword.equals(inputPassword)  && id.equals("")==false ) {
     			
-    			mainPanel.loginedId = userId;
+    			mainPanel.loginedId = userId;  // 현재 로그인 중인 id에 넣음
     			
-    			return ConstantNumber.IS_LOGIN_SUCCESS;
+    			return ConstantNumber.IS_LOGIN_SUCCESS; // 로그인 성공
     		}
     		
     	}
@@ -116,10 +116,10 @@ public class MySQLConnection {
 			
 			prepareStatement.setString(1, loginedId);
 	    	
-	    	prepareStatement.execute();
+	    	prepareStatement.execute(); // 아이디값을 받아서 해당 id의 유저를 삭제
 	    	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
     	
@@ -139,7 +139,7 @@ public class MySQLConnection {
     		
     		String userId = resultSet.getString("id");
     		
-    		if(id.equals(userId))
+    		if(id.equals(userId)) // 이미 아이디가 존재한다면 리턴
     			return ConstantNumber.IS_SAME_ID;
   
     	}
@@ -162,7 +162,7 @@ public class MySQLConnection {
     		
     		String id = resultSet.getString("id");
     		
-    		if( mainJPanel.loginedId.equals(id)) {
+    		if( mainJPanel.loginedId.equals(id)) {  // id가 같다면 리턴
     			
     			String name = resultSet.getString("name");
     			String password = resultSet.getString("password");
